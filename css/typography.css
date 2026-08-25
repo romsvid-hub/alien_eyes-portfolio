@@ -1,0 +1,63 @@
+/*
+  Type scale — verified from Figma variables (see tokens.css header).
+  Class names mirror the Figma variable names so they map 1:1 back to
+  the source: H1 Display, H2 Section, H3 Case Study, Body Large,
+  Body Main, UI/Caption.
+*/
+
+h1,
+.h1-display {
+  font-family: var(--font-display);
+  font-size: var(--h1-size);
+  font-weight: var(--h1-weight);
+  line-height: var(--h1-line-height);
+  letter-spacing: var(--h1-letter-spacing);
+  margin: 0;
+}
+
+h2,
+.h2-section {
+  font-family: var(--font-display);
+  font-size: var(--h2-size);
+  font-weight: var(--h2-weight);
+  line-height: var(--h2-line-height);
+  letter-spacing: var(--h2-letter-spacing);
+  margin: 0;
+}
+
+h3,
+.h3-case-study {
+  font-family: var(--font-display);
+  font-size: var(--h3-size);
+  font-weight: var(--h3-weight);
+  line-height: var(--h3-line-height);
+  letter-spacing: var(--h3-letter-spacing);
+  margin: 0;
+}
+
+.body-large {
+  font-family: var(--font-body);
+  font-size: var(--body-large-size);
+  font-weight: var(--body-large-weight);
+  line-height: var(--body-large-line-height);
+  letter-spacing: var(--body-large-letter-spacing);
+  margin: 0;
+}
+
+.body-main {
+  font-family: var(--font-body);
+  font-size: var(--body-main-size);
+  font-weight: var(--body-main-weight);
+  line-height: var(--body-main-line-height);
+  letter-spacing: var(--body-main-letter-spacing);
+  margin: 0;
+}
+
+.ui-caption {
+  font-family: var(--font-body);
+  font-size: var(--ui-caption-size);
+  font-weight: var(--ui-caption-weight);
+  line-height: var(--ui-caption-line-height);
+  letter-spacing: var(--ui-caption-letter-spacing);
+  margin: 0;
+}

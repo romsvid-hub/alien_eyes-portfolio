@@ -1,0 +1,72 @@
+/*
+  Design tokens verified from the Figma file "Copy portfolio"
+  (fileKey DU3fuTo8QXIJ0uMcI3jh91, node 2:15045 "System part") via
+  get_variable_defs. See docs/Portfolio_Data_Inventory.md, section
+  "Design System — verified from Figma", for the source verification.
+
+  Only VERIFIED values are listed here. Figma does not define spacing
+  or border-radius tokens, so none are invented here — those values are
+  applied per-component, sourced from get_design_context on the actual
+  instance being built (see css/nav.css, css/footer.css).
+*/
+
+:root {
+  /* Color tokens — core "Alien" palette */
+  --color-black: #000000;
+  --color-white: #fffefe;
+  --color-dark-alien: #110e15;
+  --color-dark-pink: #74095f;
+  --color-pink-alien: #d60dae;
+  --color-purple-light: #9a73ff;
+  --color-dark-gray: #4d4a50;
+  --color-subtle-text: #595959;
+  --color-lines-dividers: #d9d9d9;
+  --color-divider-lines: #e9e9e9;
+  --color-aqua-eyes: #6bbec8;
+
+  /* Color tokens — surfaces / text */
+  --color-deep-text: #181413;
+  --color-bg-1: #161616;
+  --color-bg-4: #141517;
+  --color-light-gray: #858585;
+  --color-main-canvas: #f7f7f7;
+
+  /* Color tokens — case-specific (not part of the core palette) */
+  --color-unibrand: #3072f5;
+  --color-atj-accent: #c44323;
+
+  /* Typography — font families */
+  --font-display: "Sora", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  /* Typography — verified type scale (Figma variables) */
+  --h1-size: 64px;
+  --h1-weight: 800;
+  --h1-line-height: 100%;
+  --h1-letter-spacing: -0.02px;
+
+  --h2-size: 40px;
+  --h2-weight: 700;
+  --h2-line-height: 100%;
+  --h2-letter-spacing: -0.02px;
+
+  --h3-size: 24px;
+  --h3-weight: 700;
+  --h3-line-height: 100%;
+  --h3-letter-spacing: -0.02px;
+
+  --body-large-size: 18px;
+  --body-large-weight: 400;
+  --body-large-line-height: 28px;
+  --body-large-letter-spacing: -0.02px;
+
+  --body-main-size: 16px;
+  --body-main-weight: 400;
+  --body-main-line-height: 25px;
+  --body-main-letter-spacing: -0.02px;
+
+  --ui-caption-size: 14px;
+  --ui-caption-weight: 600;
+  --ui-caption-line-height: 100%;
+  --ui-caption-letter-spacing: -0.02px;
+}

@@ -1,0 +1,70 @@
+/*
+  Footer — verified via get_design_context on the live instance 2:13425
+  (Home page, fileKey DU3fuTo8QXIJ0uMcI3jh91). Pixel values below are
+  literal values read from that instance, not a formal spacing token
+  (Figma does not define one — see docs/Portfolio_Data_Inventory.md).
+
+  Figma laid this out with absolute positioning inside a fixed
+  1280px-wide frame; reimplemented here as a responsive flex layout
+  that preserves the same visual arrangement (logo+social row, then
+  copyright+contact row) at the same 80px page margin used elsewhere.
+*/
+
+.site-footer {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-deep-text);
+  padding: 24px 80px;
+}
+
+.site-footer__bg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1280px;
+  max-width: none;
+  height: 256px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.site-footer__row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.site-footer__row--top {
+  margin-bottom: 45px;
+}
+
+.site-footer__social {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+}
+
+.site-footer__social a img {
+  width: 24px;
+  height: 24px;
+}
+
+.site-footer__copyright,
+.site-footer__contact {
+  color: var(--color-light-gray);
+}
+
+.site-footer__contact a {
+  color: inherit;
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 24px;
+  }
+}

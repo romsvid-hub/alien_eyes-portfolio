@@ -1,0 +1,49 @@
+/* Minimal reset + base document styles. Colors/fonts from tokens.css. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--color-dark-alien);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: var(--body-main-size);
+  font-weight: var(--body-main-weight);
+  line-height: var(--body-main-line-height);
+  letter-spacing: var(--body-main-letter-spacing);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

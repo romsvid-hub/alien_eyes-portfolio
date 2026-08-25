@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alien Eyes — Copy Portfolio</title>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Sora:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/typography.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/preview.css" />
+  </head>
+  <body>
+    <nav class="site-nav">
+      <a class="nav-logo" href="index.html">
+        <span class="nav-logo__icon">
+          <img
+            class="nav-logo__glow"
+            src="assets/icons/logo-glow.svg"
+            alt=""
+            aria-hidden="true"
+          />
+          <img
+            class="nav-logo__avatar"
+            src="assets/icons/logo-avatar.png"
+            alt=""
+          />
+        </span>
+        <span class="nav-logo__text">Alien Eyes</span>
+      </a>
+
+      <div class="nav-links">
+        <a class="nav-links__link" href="#case-studies">Case Studies</a>
+        <a class="nav-links__link" href="#feedbacks">Feedbacks</a>
+      </div>
+
+      <a class="nav-cta" href="#">Download CV</a>
+
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+    </nav>
+
+    <main class="tokens-preview">
+      <section class="tokens-preview__section">
+        <p class="ui-caption tokens-preview__label">Step 1 preview</p>
+        <h1>Design tokens &amp; typography</h1>
+        <p class="body-large tokens-preview__intro">
+          This page exists to verify the tokens, typography, navigation,
+          and footer implemented in Step 1. Case study content is not
+          part of this step.
+        </p>
+      </section>
+
+      <section class="tokens-preview__section">
+        <h2>Typography scale</h2>
+        <div class="type-sample">
+          <p class="ui-caption type-sample__label">H1 Display — Sora ExtraBold 800, 64px</p>
+          <h1 class="type-sample__el">Головний заголовок</h1>
+        </div>
+        <div class="type-sample">
+          <p class="ui-caption type-sample__label">H2 Section — Sora Bold 700, 40px</p>
+          <h2 class="type-sample__el">Section heading</h2>
+        </div>
+        <div class="type-sample">
+          <p class="ui-caption type-sample__label">H3 Case Study — Sora Bold 700, 24px</p>
+          <h3 class="type-sample__el">Case study heading</h3>
+        </div>
+        <div class="type-sample">
+          <p class="ui-caption type-sample__label">Body Large — Inter Regular 400, 18px</p>
+          <p class="body-large type-sample__el">
+            I turn complex information into intuitive interfaces.
+          </p>
+        </div>
+        <div class="type-sample">
+          <p class="ui-caption type-sample__label">Body Main — Inter Regular 400, 16px</p>
+          <p class="body-main type-sample__el">
+            Used in Nav links and Footer copy.
+          </p>
+        </div>
+        <div class="type-sample">
+          <p class="ui-caption type-sample__label">UI/Caption — Inter SemiBold 600, 14px</p>
+          <p class="ui-caption type-sample__el">Label text example</p>
+        </div>
+      </section>
+
+      <section class="tokens-preview__section">
+        <h2>Color tokens</h2>
+        <ul class="swatch-grid">
+          <li class="swatch">
+            <span class="swatch__color" style="background-color: var(--color-dark-alien)"></span>
+            <span class="ui-caption">Dark Alien — #110E15</span>
+          </li>
+          <li class="swatch">
+            <span class="swatch__color" style="background-color: var(--color-dark-pink)"></span>
+            <span class="ui-caption">Dark Pink — #74095F</span>
+          </li>
+          <li class="swatch">
+            <span class="swatch__color" style="background-color: var(--color-pink-alien)"></span>
+            <span class="ui-caption">Pink Alien — #D60DAE</span>
+          </li>
+          <li class="swatch">
+            <span class="swatch__color" style="background-color: var(--color-purple-light)"></span>
+            <span class="ui-caption">Purple Light — #9A73FF</span>
+          </li>
+          <li class="swatch">
+            <span class="swatch__color" style="background-color: var(--color-dark-gray)"></span>
+            <span class="ui-caption">Dark Gray — #4D4A50</span>
+          </li>
+          <li class="swatch">
+            <span class="swatch__color" style="background-color: var(--color-subtle-text)"></span>
+            <span class="ui-caption">Subtle Text — #595959</span>
+          </li>
+          <li class="swatch">
+            <span class="swatch__color" style="background-color: var(--color-lines-dividers)"></span>
+            <span class="ui-caption">Lines/Dividers — #D9D9D9</span>
+          </li>
+          <li class="swatch">
+            <span class="swatch__color" style="background-color: var(--color-aqua-eyes)"></span>
+            <span class="ui-caption">Aqua Eyes — #6BBEC8</span>
+          </li>
+          <li class="swatch">
+            <span class="swatch__color" style="background-color: var(--color-white)"></span>
+            <span class="ui-caption">White — #FFFEFE</span>
+          </li>
+        </ul>
+        <p class="ui-caption tokens-preview__label">
+          Case-specific tokens (not part of the core palette):
+          UniBrand #3072F5, ATJ Primary Accent #C44323.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <img
+        class="site-footer__bg"
+        src="assets/images/footer-bg.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <div class="site-footer__row site-footer__row--top">
+        <a class="nav-logo" href="index.html">
+          <span class="nav-logo__icon">
+            <img
+              class="nav-logo__glow"
+              src="assets/icons/logo-glow.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <img
+              class="nav-logo__avatar"
+              src="assets/icons/logo-avatar.png"
+              alt=""
+            />
+          </span>
+          <span class="nav-logo__text">Alien Eyes</span>
+        </a>
+
+        <div class="site-footer__social">
+          <a href="https://www.instagram.com/romsvid/" target="_blank" rel="noopener">
+            <img src="assets/icons/social-instagram.svg" alt="Instagram" />
+          </a>
+          <a href="https://www.linkedin.com/in/romsvid/" target="_blank" rel="noopener">
+            <img src="assets/icons/social-linkedin.svg" alt="LinkedIn" />
+          </a>
+          <a href="https://t.me/Rmsddddd" target="_blank" rel="noopener">
+            <img src="assets/icons/social-telegram.svg" alt="Telegram" />
+          </a>
+        </div>
+      </div>
+
+      <div class="site-footer__row site-footer__row--bottom">
+        <p class="body-main site-footer__copyright">© 2026 Roman Sviderskyi</p>
+        <p class="body-main site-footer__contact">
+          +380 97 334 9540&nbsp;&nbsp;/&nbsp;&nbsp;<a
+            href="mailto:svidddrommm25@gmail.com"
+            >svidddrommm25@gmail.com</a
+          >
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+  </body>
+</html>
