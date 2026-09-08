@@ -78,6 +78,10 @@ document.addEventListener("DOMContentLoaded", function () {
     segments.forEach(function (segment, i) {
       segment.classList.toggle("is-active", i === index);
     });
+    // Text was just swapped in via textContent, which bypasses the
+    // one-time pass nbsp-typography.js runs on load — re-apply it here
+    // so switching reviews doesn't reintroduce hanging short words.
+    if (window.applyNbspTypography) window.applyNbspTypography(slide);
   }
 
   if (defaultIndex >= 0) {

@@ -86,6 +86,12 @@
       dots.forEach(function (dot, i) {
         dot.classList.toggle("is-active", i === index);
       });
+      // Title/desc were just swapped in via textContent, bypassing the
+      // one-time pass nbsp-typography.js runs on load.
+      if (window.applyNbspTypography) {
+        window.applyNbspTypography(titleEl);
+        window.applyNbspTypography(descEl);
+      }
     }
 
     function goTo(index, direction) {
