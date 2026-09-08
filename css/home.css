@@ -851,32 +851,56 @@
 }
 
 /*
-  ATJ DEI Audit (2026-09-07): unlike the ATJ1/Uniqkey frames above, this
-  card has no Figma source to match crop percentages against (the card
-  itself was authored directly in code, not translated from a Figma
-  frame) — same outer frame proportions as .atj-mockup-frame for visual
-  rhythm with the rest of the row, but object-fit: cover instead of a
-  hand-solved oversized-image crop, since there's no exact Figma offset
-  to reproduce here.
+  ATJ DEI Audit — fixed 2026-09-08: was a single frame showing the raw
+  screenshot edge-to-edge (object-fit: cover, no device chrome), which
+  read as visibly "bigger"/more zoomed-in than the ATJ1/Uniqkey cards
+  next to it — those show their screenshots sitting inside a photographed
+  laptop, with real bezel/background space around the screen, not
+  filling their frame completely. Roman flagged this as the cards not
+  being a consistent size. This card has no Figma source of its own
+  (authored directly in code), so rather than inventing a one-off crop,
+  it now reuses the exact same two-layer laptop composite technique and
+  positioning as .uniqkey-dashboard-frame/.uniqkey-laptop-frame —
+  including the generic uniqkey-macbook-frame.png device-chrome asset,
+  which isn't actually Uniqkey-branded, just a laptop bezel illustration
+  — giving this card the same visual weight as its siblings.
 */
-.atj2-mockup-frame {
+.atj2-dashboard-frame {
   position: absolute;
-  left: 0;
-  top: 13.16%;
-  width: 100%;
-  height: 66.41%;
+  left: 14.88%;
+  top: 24.41%;
+  width: 70.56%;
+  height: 46.8%;
   overflow: hidden;
-  border-radius: 8px;
   z-index: 1;
 }
 
-.atj2-mockup-frame img {
+.atj2-dashboard-frame img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top;
+}
+
+.atj2-laptop-frame {
+  position: absolute;
+  left: 5.66%;
+  top: 23.05%;
+  width: 88.69%;
+  height: 52.39%;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.atj2-laptop-frame img {
+  position: absolute;
+  width: 100%;
+  height: 169.28%;
+  left: 0;
+  top: -34.8%;
+  max-width: none;
 }
 
 /*
