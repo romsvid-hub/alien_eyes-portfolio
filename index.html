@@ -40,13 +40,21 @@
         </span>
         <span class="nav-logo__text">Alien Eyes</span>
       </a>
+      <!-- Mobile-only, case-study pages only (716:12726) — hidden here
+           via .nav-back's default display:none; only .site-nav--case
+           pages show it instead of the logo. -->
+      <a class="nav-back" href="index.html" aria-label="Back to home">
+        <img src="assets/icons/icon-arrow-right.svg" alt="" />
+      </a>
 
-      <div class="nav-links">
-        <a class="nav-links__link" href="#case-studies">Case Studies</a>
-        <a class="nav-links__link" href="#feedbacks">Feedbacks</a>
+      <div class="nav-menu">
+        <div class="nav-links">
+          <a class="nav-links__link" href="#case-studies">Case Studies</a>
+          <a class="nav-links__link" href="#feedbacks">Feedbacks</a>
+        </div>
+
+        <a class="nav-cta" href="#">Download CV</a>
       </div>
-
-      <a class="nav-cta" href="#">Download CV</a>
 
       <button
         class="nav-toggle"

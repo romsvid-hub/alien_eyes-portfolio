@@ -18,6 +18,20 @@
   z-index: 100;
 }
 
+/*
+  .nav-menu exists only to give the mobile dropdown one panel to
+  position/pad as a unit (see the max-width:768px block) — at every
+  wider breakpoint it must NOT introduce a box of its own, or it would
+  collapse .nav-links and .nav-cta from two separate space-between
+  flex items of .site-nav down to one, changing how they're spaced
+  from each other on desktop. display:contents dissolves the wrapper
+  there, so .nav-links/.nav-cta act as direct .site-nav flex children
+  exactly as before.
+*/
+.nav-menu {
+  display: contents;
+}
+
 .nav-logo {
   display: flex;
   align-items: center;
@@ -55,6 +69,28 @@
   color: var(--color-white);
   letter-spacing: -0.004px;
   white-space: nowrap;
+}
+
+/*
+  Mobile-only back arrow (716:12726, "On case"): on a case-study page's
+  mobile nav, the logo is replaced entirely by a back-to-home arrow —
+  reuses the shared right-arrow icon, mirrored, rather than a new asset.
+  Hidden by default (desktop always keeps the logo, on every page); the
+  breakpoint block below shows it instead of the logo, only when
+  .site-nav carries the --case modifier.
+*/
+.nav-back {
+  display: none;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-back img {
+  width: 10px;
+  height: 18px;
+  transform: scaleX(-1);
 }
 
 .nav-links {
@@ -117,6 +153,7 @@
   gap: 4px;
   width: 24px;
   height: 24px;
+  position: relative;
 }
 
 .nav-toggle__bar {
@@ -124,6 +161,33 @@
   width: 100%;
   height: 2px;
   background-color: var(--color-white);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/*
+  Hamburger -> X (716:12799, "Close"): the icon itself never changed
+  state before — three static bars regardless of open/closed. Rotates
+  the top/bottom bars into an X and fades the middle one out, using
+  absolute positioning on all three so the rotated bars pivot around
+  the toggle's own center instead of their own (now-collapsed) gap-based
+  position.
+*/
+.site-nav.is-open .nav-toggle__bar {
+  position: absolute;
+  top: 50%;
+  left: 0;
+}
+
+.site-nav.is-open .nav-toggle__bar:nth-child(1) {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.site-nav.is-open .nav-toggle__bar:nth-child(2) {
+  opacity: 0;
+}
+
+.site-nav.is-open .nav-toggle__bar:nth-child(3) {
+  transform: translateY(-50%) rotate(-45deg);
 }
 
 /*
@@ -137,8 +201,22 @@
     padding: 8px 24px;
   }
 
-  .nav-links,
-  .nav-cta {
+  /*
+    716:12790 ("Default", home) vs 716:12726 ("On case") — the logo is
+    replaced entirely by a back arrow on case-study pages, mobile only;
+    desktop always keeps the logo everywhere, out of scope here. Stays
+    the arrow in both the closed and open (716:12799) states, since
+    opening the menu doesn't touch which one is showing.
+  */
+  .site-nav--case .nav-logo {
+    display: none;
+  }
+
+  .site-nav--case .nav-back {
+    display: flex;
+  }
+
+  .nav-menu {
     display: none;
   }
 
@@ -146,11 +224,17 @@
     display: flex;
   }
 
-  .site-nav.is-open .nav-links {
+  /*
+    Single panel (not .nav-links and .nav-cta positioned/padded
+    separately) so the links and the button share one consistent
+    8px rhythm and the same horizontal inset — matches the "Menu is
+    open" reference (716:12799): Case Studies / Feedbacks / Button
+    Second stacked with a uniform 8px gap, all the same width.
+  */
+  .site-nav.is-open .nav-menu {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
+    gap: 8px;
     position: absolute;
     top: 100%;
     left: 0;
@@ -159,8 +243,17 @@
     background-color: var(--color-dark-alien);
   }
 
-  .site-nav.is-open .nav-cta {
-    display: inline-flex;
-    margin: 0 24px 16px;
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* Full width of the panel (716:12799's "Button Second" spans the
+     same width as the menu links above it), not hugging its own
+     content like the desktop nav-cta does. */
+  .nav-cta {
+    width: 100%;
   }
 }

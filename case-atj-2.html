@@ -22,20 +22,25 @@
   </head>
   <body class="case-page atj2-page">
     <!-- UI: GLOBAL-NAV-01 | Site navigation | shared component, reused unchanged -->
-    <nav class="site-nav">
+    <nav class="site-nav site-nav--case">
       <a class="nav-logo" href="index.html">
         <span class="nav-logo__icon">
           <img class="nav-logo__avatar" src="assets/icons/logo-avatar.png" alt="" />
         </span>
         <span class="nav-logo__text">Alien Eyes</span>
       </a>
+      <a class="nav-back" href="index.html" aria-label="Back to home">
+        <img src="assets/icons/icon-arrow-right.svg" alt="" />
+      </a>
 
-      <div class="nav-links">
-        <a class="nav-links__link" href="index.html#case-studies">Case Studies</a>
-        <a class="nav-links__link" href="index.html#feedbacks">Feedbacks</a>
+      <div class="nav-menu">
+        <div class="nav-links">
+          <a class="nav-links__link" href="index.html#case-studies">Case Studies</a>
+          <a class="nav-links__link" href="index.html#feedbacks">Feedbacks</a>
+        </div>
+
+        <a class="nav-cta" href="#">Download CV</a>
       </div>
-
-      <a class="nav-cta" href="#">Download CV</a>
 
       <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
         <span class="nav-toggle__bar"></span>
