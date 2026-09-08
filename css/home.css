@@ -273,15 +273,20 @@
 /*
   Added 2026-08-25: Figma has a dedicated mobile Hero frame (2:13530),
   not just a scaled-down copy of the desktop one — verified via
-  get_design_context. Two real differences from the tablet/desktop
-  version, mobile-only (<768px):
-  1. Different headline copy and a smaller type size (26px/36px vs
-     40px+ elsewhere) — swapped via the two spans below, not invented.
-  2. The buttons visually sit on top of the lower part of the photo
-     instead of stacking below it. Photo and name/role/headline stay
-     in normal flow (so the card's height is still driven by real
-     content); only .hero-actions is pulled out with position:absolute
-     to land over the photo — no DOM reordering needed.
+  get_design_context. One real difference from the tablet/desktop
+  version, mobile-only (<768px): the buttons visually sit on top of the
+  lower part of the photo instead of stacking below it. Photo and
+  name/role/headline stay in normal flow (so the card's height is still
+  driven by real content); only .hero-actions is pulled out with
+  position:absolute to land over the photo — no DOM reordering needed.
+
+  The headline itself used to swap between two different copy variants
+  per breakpoint (.hero-title__mobile / .hero-title__desktop spans) —
+  removed 2026-09-08 per Roman's request, since the two texts were
+  showing concatenated wherever the toggling didn't apply (e.g. a
+  screen reader, or anything reading raw text content). Now a single
+  static string at every breakpoint; only the font-size below still
+  varies responsively.
 */
 @media (max-width: 767px) {
   .hero-card {
@@ -295,10 +300,6 @@
 
   .hero-card__body {
     order: 1;
-  }
-
-  .hero-title__desktop {
-    display: none;
   }
 
   .hero-title {
@@ -317,10 +318,6 @@
 }
 
 @media (min-width: 768px) {
-  .hero-title__mobile {
-    display: none;
-  }
-
   .hero-title {
     font-size: 48px;
   }
