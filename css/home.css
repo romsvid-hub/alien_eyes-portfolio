@@ -318,6 +318,19 @@
     aspect-ratio: 454 / 518; /* verified against Figma's dedicated mobile frame (2:13530) */
   }
 
+  /*
+    Scaled up per Roman's request — the photo should read a bit bigger
+    inside its frame on mobile specifically. The frame's own
+    overflow:hidden (above) clips the scaled image at the frame edge,
+    so it never bleeds past the rounded corners; transform-origin
+    matches object-position (center bottom) so the extra size grows
+    upward from the same anchor point instead of shifting the crop.
+  */
+  .hero-card__photo img {
+    transform: scale(1.15);
+    transform-origin: center bottom;
+  }
+
   .hero-title {
     font-size: 26px;
     line-height: 36px;
