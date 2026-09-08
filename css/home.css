@@ -684,6 +684,26 @@
   margin: 0 auto;
 }
 
+/*
+  Fixed 2026-09-08: found the card visibly overflowing its own 16px
+  mobile margins. A grid item's default min-width is `auto`, not 0 —
+  its content's own intrinsic minimum size can still force the single
+  1fr column wider than the actual available space. Uniqkey's
+  5-tag row (vs ATJ's 4) has a natural un-shrunk width wider than the
+  card itself; .tag-row's own overflow-x:auto doesn't zero out its
+  contribution to the ancestor grid item's min-content calculation, so
+  the whole card was stretching to fit it instead of the tag row
+  scrolling within a fixed-width card. Was only set at the desktop
+  (>=1024px) 2-column breakpoint before (checkpoint_017) — needed here
+  too, since the single-column mobile/tablet layout is just as
+  susceptible.
+*/
+.case-card__intro,
+.case-card__media,
+.case-card__cta {
+  min-width: 0;
+}
+
 .case-card + .case-card {
   margin-top: 64px;
 }
@@ -930,22 +950,6 @@
   .case-card__media {
     grid-row: 1 / 3;
     max-width: none;
-  }
-
-  /*
-    A grid item's default min-width is `auto`, not 0 — meaning its
-    content's own intrinsic minimum size can still force its 1fr track
-    wider than an even split, at the other track's expense. Uniqkey's
-    card has 5 tags (vs ATJ's 4), whose un-shrunk natural row width
-    exceeded 548px and was silently stealing space from the media
-    column even though .tag-row itself scrolls (overflow-x:auto on a
-    descendant doesn't zero out the grid item's own min-content
-    contribution). min-width: 0 makes both columns hold their true 1fr
-    (50/50) share regardless of text/tag content length.
-  */
-  .case-card__intro,
-  .case-card__media {
-    min-width: 0;
   }
 }
 

@@ -204,10 +204,16 @@
   system-part board documents a distinct mobile Nav state (logo +
   hamburger) but does not specify a pixel breakpoint. Not a verified
   Figma value.
+
+  Horizontal padding fixed 2026-09-08: was a hardcoded 24px, not
+  var(--page-px) — Figma's actual mobile nav frames (716:12790,
+  716:12726, 716:12799) all measure a 16px margin (Logo/back-arrow
+  starts at x=16, Menu/Close ends 16px from the 374px frame's right
+  edge), matching --page-px exactly, not a nav-specific value.
 */
 @media (max-width: 768px) {
   .site-nav {
-    padding: 8px 24px;
+    padding: 8px var(--page-px);
   }
 
   /*
@@ -249,7 +255,7 @@
     top: 100%;
     left: 0;
     right: 0;
-    padding: 16px 24px;
+    padding: 16px var(--page-px);
     background-color: var(--color-dark-alien);
   }
 
