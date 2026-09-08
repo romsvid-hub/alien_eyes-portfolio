@@ -662,9 +662,23 @@
   margin: 0 auto 32px;
 }
 
+/*
+  Grid, not flex — per the mobile Figma card reference (716:12478):
+  title/text/tags, then the photo, then a full-width button below it —
+  not the button glued right after the tags with the photo trailing
+  last. .case-card__cta is a genuine sibling of .case-card__media (the
+  old .case-card__body wrapper that used to hold intro+button together
+  was removed), so grid-template-areas can freely place the photo
+  between them per breakpoint, the same technique used for the mobile
+  Hero fix.
+*/
 .case-card {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "intro"
+    "media"
+    "actions";
   gap: 32px;
   max-width: 1120px;
   margin: 0 auto;
@@ -675,6 +689,7 @@
 }
 
 .case-card__media {
+  grid-area: media;
   position: relative;
   width: 100%;
   max-width: 548px;
@@ -696,16 +711,15 @@
   z-index: 0;
 }
 
-.case-card__body {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
 .case-card__intro {
+  grid-area: intro;
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.case-card__cta {
+  grid-area: actions;
 }
 
 .case-card__title {
@@ -890,22 +904,31 @@
   .case-card--reverse cards are added later.
 */
 @media (min-width: 1024px) {
+  /*
+    Text column (intro stacked above the actions button) beside the
+    media column, spanning both text rows so it centers against their
+    combined height — grid-template-areas replaces the old
+    order-based .case-card__body/.case-card__media reversal now that
+    the button is a separate grid item from intro rather than nested
+    inside a shared wrapper.
+  */
   .case-card {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "intro media"
+      "actions media";
     align-items: center;
     gap: 24px;
   }
 
-  .case-card--reverse .case-card__body {
-    order: 2;
-  }
-
-  .case-card--reverse .case-card__media {
-    order: 1;
+  .case-card--reverse {
+    grid-template-areas:
+      "media intro"
+      "media actions";
   }
 
   .case-card__media {
+    grid-row: 1 / 3;
     max-width: none;
   }
 
@@ -920,7 +943,7 @@
     contribution). min-width: 0 makes both columns hold their true 1fr
     (50/50) share regardless of text/tag content length.
   */
-  .case-card__body,
+  .case-card__intro,
   .case-card__media {
     min-width: 0;
   }
