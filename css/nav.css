@@ -73,11 +73,20 @@
 
 /*
   Mobile-only back arrow (716:12726, "On case"): on a case-study page's
-  mobile nav, the logo is replaced entirely by a back-to-home arrow —
-  reuses the shared right-arrow icon, mirrored, rather than a new asset.
+  mobile nav, the logo is replaced entirely by a back-to-home chevron.
   Hidden by default (desktop always keeps the logo, on every page); the
   breakpoint block below shows it instead of the logo, only when
   .site-nav carries the --case modifier.
+
+  Fixed 2026-09-08: was reusing the shared icon-arrow-right.svg (a
+  wide line+arrowhead shape, natively ~square) forced into a narrow
+  10x18 box — that asset sets preserveAspectRatio="none", so a
+  non-matching box stretches/squishes its content rather than
+  letterboxing it, which is exactly why it read as "narrowed". Figma's
+  actual back icon (716:12727) is a plain chevron, not that arrow, so
+  this is now its own small inline SVG (matching the stroke style of
+  the site's other inline icons) sized at its natural aspect ratio —
+  nothing to distort.
 */
 .nav-back {
   display: none;
@@ -85,12 +94,12 @@
   height: 24px;
   align-items: center;
   justify-content: center;
+  color: var(--color-white);
 }
 
-.nav-back img {
-  width: 10px;
-  height: 18px;
-  transform: scaleX(-1);
+.nav-back svg {
+  width: 8px;
+  height: 14px;
 }
 
 .nav-links {
@@ -227,14 +236,15 @@
   /*
     Single panel (not .nav-links and .nav-cta positioned/padded
     separately) so the links and the button share one consistent
-    8px rhythm and the same horizontal inset — matches the "Menu is
-    open" reference (716:12799): Case Studies / Feedbacks / Button
-    Second stacked with a uniform 8px gap, all the same width.
+    rhythm and the same horizontal inset. Gap bumped to 16px 2026-09-08
+    per Roman's request (was 8px, matching the "Menu is open" reference
+    716:12799 literally — he wants more breathing room than that in
+    practice).
   */
   .site-nav.is-open .nav-menu {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 16px;
     position: absolute;
     top: 100%;
     left: 0;
@@ -247,7 +257,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 16px;
   }
 
   /* Full width of the panel (716:12799's "Button Second" spans the
