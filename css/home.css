@@ -88,6 +88,15 @@
   content. DOM order does the layering: .hero-card__texture, then
   .hero-card__stars, then the real children.
 */
+/*
+  Grid, not flex — .hero-card__body and .hero-actions are separate
+  siblings (not nested) precisely so a mobile-only grid-template-areas
+  override can slot .hero-card__photo between them, while desktop keeps
+  them stacked back-to-back (photo positioned absolutely, outside the
+  grid flow there). A single flex container couldn't reorder a
+  grandchild (.hero-actions) around a sibling (.hero-card__photo)
+  without duplicating markup per breakpoint.
+*/
 .hero-card {
   position: relative;
   /* Establishes .hero-card's own stacking context (position:relative
@@ -98,8 +107,13 @@
   overflow: hidden;
   background-color: rgba(19, 20, 20, 0.2);
   border-radius: 16px;
-  display: flex;
-  flex-direction: column-reverse; /* tablet (768-1023px): text first, image second */
+  display: grid;
+  grid-template-columns: 1fr;
+  /* tablet (768-1023px) default: text, then buttons, then image */
+  grid-template-areas:
+    "body"
+    "actions"
+    "photo";
   gap: 32px;
   padding: 24px;
   max-width: 1120px;
@@ -199,6 +213,7 @@
 }
 
 .hero-card__photo {
+  grid-area: photo;
   position: relative;
   width: 100%;
   aspect-ratio: 454 / 400; /* tablet (768-1023px) — untouched by the 2026-08-25 mobile-only fix */
@@ -230,6 +245,7 @@
 }
 
 .hero-card__body {
+  grid-area: body;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -265,6 +281,7 @@
 }
 
 .hero-actions {
+  grid-area: actions;
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -273,12 +290,7 @@
 /*
   Added 2026-08-25: Figma has a dedicated mobile Hero frame (2:13530),
   not just a scaled-down copy of the desktop one — verified via
-  get_design_context. One real difference from the tablet/desktop
-  version, mobile-only (<768px): the buttons visually sit on top of the
-  lower part of the photo instead of stacking below it. Photo and
-  name/role/headline stay in normal flow (so the card's height is still
-  driven by real content); only .hero-actions is pulled out with
-  position:absolute to land over the photo — no DOM reordering needed.
+  get_design_context.
 
   The headline itself used to swap between two different copy variants
   per breakpoint (.hero-title__mobile / .hero-title__desktop spans) —
@@ -287,19 +299,23 @@
   screen reader, or anything reading raw text content). Now a single
   static string at every breakpoint; only the font-size below still
   varies responsively.
+
+  Rebuilt 2026-09-08 against the actual mobile Hero frame (716:12471):
+  identity+headline, then the photo, then a separate full-width button
+  row below it — not buttons overlaid on the photo (the previous
+  position:absolute approach). Buttons stretch to fill the row evenly
+  (mobile only — desktop/tablet keep their natural, unstretched width).
 */
 @media (max-width: 767px) {
   .hero-card {
-    flex-direction: column;
+    grid-template-areas:
+      "body"
+      "photo"
+      "actions";
   }
 
   .hero-card__photo {
-    order: 2;
     aspect-ratio: 454 / 518; /* verified against Figma's dedicated mobile frame (2:13530) */
-  }
-
-  .hero-card__body {
-    order: 1;
   }
 
   .hero-title {
@@ -308,12 +324,24 @@
     letter-spacing: -0.0052px;
   }
 
+  /*
+    nowrap + flex:1 puts both buttons on one row like the Figma mobile
+    frame — but their natural (18px font, 8x16 padding) combined width
+    slightly exceeds the available row width on narrow phones, which
+    without this override would either force a shrink the browser can't
+    do (white-space:nowrap keeps a button's min-content at its full
+    text width) or silently fall back to wrapping. A small mobile-only
+    size reduction closes that gap instead of touching the shared .btn
+    component used everywhere else on the site.
+  */
   .hero-actions {
-    position: absolute;
-    left: 24px;
-    right: 24px;
-    bottom: 24px;
-    z-index: 1;
+    flex-wrap: nowrap;
+  }
+
+  .hero-actions .btn {
+    flex: 1;
+    font-size: 16px;
+    padding: 8px 12px;
   }
 }
 
@@ -343,7 +371,6 @@
   */
   .hero-card {
     position: relative;
-    flex-direction: row;
     align-items: center;
     padding: 48px;
     /* Reserves room so the text column never runs under the
@@ -351,6 +378,12 @@
        width (520px) + a 48px breathing gap, matching the padding
        scale used everywhere else in this card. */
     padding-right: 572px;
+    /* Photo is positioned absolutely below (outside grid flow), so
+       only these two rows actually occupy the grid. */
+    grid-template-areas:
+      "body"
+      "actions";
+    gap: 42px;
   }
 
   /*
@@ -387,7 +420,6 @@
   }
 
   .hero-card__body {
-    flex: 1;
     gap: 42px;
   }
 

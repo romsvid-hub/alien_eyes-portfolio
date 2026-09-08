@@ -85,17 +85,22 @@
               I turn complex systems into interfaces people actually
               understand.
             </h1>
-            <div class="hero-actions">
-              <a class="btn btn--primary" href="#feedbacks">
-                Contact me
-                <img
-                  class="btn__icon"
-                  src="assets/icons/icon-arrow-right.svg"
-                  alt=""
-                />
-              </a>
-              <a class="btn btn--secondary" href="#">Download CV</a>
-            </div>
+          </div>
+          <!-- A separate block from .hero-card__body (not nested inside
+               it): at desktop/tablet it still stacks right under the
+               headline, but on mobile it needs to render as its own
+               full-width block below the photo instead of overlaid on
+               top of it — see the Figma mobile Hero frame (716:12471). -->
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="#feedbacks">
+              Contact me
+              <img
+                class="btn__icon"
+                src="assets/icons/icon-arrow-right.svg"
+                alt=""
+              />
+            </a>
+            <a class="btn btn--secondary" href="#">Download CV</a>
           </div>
         </div>
       </section>
