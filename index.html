@@ -22,18 +22,16 @@
     <link rel="stylesheet" href="css/typography.css" />
     <link rel="stylesheet" href="css/nav.css" />
     <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/preview.css" />
+    <link rel="stylesheet" href="css/buttons.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
   </head>
   <body>
+    <!-- UI: GLOBAL-NAV-01 | Site navigation | inspect/adjust -->
     <nav class="site-nav">
       <a class="nav-logo" href="index.html">
         <span class="nav-logo__icon">
-          <img
-            class="nav-logo__glow"
-            src="assets/icons/logo-glow.svg"
-            alt=""
-            aria-hidden="true"
-          />
+          <!-- IMAGE: GLOBAL-NAV-LOGO-01 | Site logo mark (Nav) | replaceable -->
           <img
             class="nav-logo__avatar"
             src="assets/icons/logo-avatar.png"
@@ -62,97 +60,396 @@
       </button>
     </nav>
 
-    <main class="tokens-preview">
-      <section class="tokens-preview__section">
-        <p class="ui-caption tokens-preview__label">Step 1 preview</p>
-        <h1>Design tokens &amp; typography</h1>
-        <p class="body-large tokens-preview__intro">
-          This page exists to verify the tokens, typography, navigation,
-          and footer implemented in Step 1. Case study content is not
-          part of this step.
-        </p>
+    <main>
+      <!-- UI: HOME-HERO-01 | Hero layout | inspect/adjust -->
+      <section class="home-section hero-section">
+        <div class="hero-card" data-reveal>
+          <div class="hero-card__texture" aria-hidden="true"></div>
+          <!-- Decorative starfield, JS-populated (js/hero-stars.js) — sits
+               above the texture overlay. -->
+          <div class="hero-card__stars" aria-hidden="true"></div>
+          <div class="hero-card__photo">
+            <!-- IMAGE: HOME-HERO-01 | Hero portrait | replaceable -->
+            <img
+              src="assets/home/hero-photo.png"
+              alt="Roman Sviderskyi"
+            />
+          </div>
+          <div class="hero-card__body">
+            <div class="hero-identity">
+              <p class="h3-case-study hero-identity__name">Roman Sviderskyi</p>
+              <p class="body-main hero-identity__role">UI/UX Designer</p>
+            </div>
+            <!-- CONTENT: HOME-HERO-01 | Hero headline | editable with approval -->
+            <h1 class="hero-title">
+              <span class="hero-title__mobile"
+                >I turn complex systems into interfaces people actually
+                understand.</span
+              ><span class="hero-title__desktop"
+                >I turn complex information into intuitive interfaces</span
+              >
+            </h1>
+            <div class="hero-actions">
+              <a class="btn btn--primary" href="#feedbacks">
+                Contact me
+                <img
+                  class="btn__icon"
+                  src="assets/icons/icon-arrow-right.svg"
+                  alt=""
+                />
+              </a>
+              <a class="btn btn--secondary" href="#">Download CV</a>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section class="tokens-preview__section">
-        <h2>Typography scale</h2>
-        <div class="type-sample">
-          <p class="ui-caption type-sample__label">H1 Display — Sora ExtraBold 800, 64px</p>
-          <h1 class="type-sample__el">Головний заголовок</h1>
-        </div>
-        <div class="type-sample">
-          <p class="ui-caption type-sample__label">H2 Section — Sora Bold 700, 40px</p>
-          <h2 class="type-sample__el">Section heading</h2>
-        </div>
-        <div class="type-sample">
-          <p class="ui-caption type-sample__label">H3 Case Study — Sora Bold 700, 24px</p>
-          <h3 class="type-sample__el">Case study heading</h3>
-        </div>
-        <div class="type-sample">
-          <p class="ui-caption type-sample__label">Body Large — Inter Regular 400, 18px</p>
-          <p class="body-large type-sample__el">
-            I turn complex information into intuitive interfaces.
-          </p>
-        </div>
-        <div class="type-sample">
-          <p class="ui-caption type-sample__label">Body Main — Inter Regular 400, 16px</p>
-          <p class="body-main type-sample__el">
-            Used in Nav links and Footer copy.
-          </p>
-        </div>
-        <div class="type-sample">
-          <p class="ui-caption type-sample__label">UI/Caption — Inter SemiBold 600, 14px</p>
-          <p class="ui-caption type-sample__el">Label text example</p>
+      <!-- UI: HOME-CLIENT-LOGOS-01 | Client logos section | inspect/adjust -->
+      <section class="home-section logos-section">
+        <!-- CONTENT: HOME-CLIENT-LOGOS-01 | Section heading | editable with approval -->
+        <p class="h3-case-study logos-heading" data-reveal>I worked with:</p>
+        <div class="logos-grid" data-reveal-group>
+          <!-- LINK: HOME-CLIENT-LOGO-01 | ALL TOGETHER JOBS | add URL here -->
+          <a
+            class="client-logo client-logo--atj"
+            href="#"
+            aria-label="ALL TOGETHER JOBS"
+          ></a>
+          <!-- LINK: HOME-CLIENT-LOGO-02 | uniqkey | add URL here -->
+          <a
+            class="client-logo client-logo--uniqkey"
+            href="#"
+            aria-label="Uniqkey"
+          ></a>
+          <!-- LINK: HOME-CLIENT-LOGO-03 | JustPlay | add URL here -->
+          <a
+            class="client-logo client-logo--justplay"
+            href="#"
+            aria-label="JustPlay"
+          ></a>
+          <!-- LINK: HOME-CLIENT-LOGO-04 | lampa | add URL here -->
+          <a
+            class="client-logo client-logo--lampa"
+            href="#"
+            aria-label="lampa"
+          ></a>
+          <!-- LINK: HOME-CLIENT-LOGO-05 | SoftServe | add URL here -->
+          <a
+            class="client-logo client-logo--softserve"
+            href="#"
+            aria-label="softserve"
+          ></a>
+          <!-- LINK: HOME-CLIENT-LOGO-06 | HOCHU RAYU | add URL here -->
+          <a
+            class="client-logo client-logo--hochurayu"
+            href="#"
+            aria-label="Hochu Rayu"
+          ></a>
         </div>
       </section>
 
-      <section class="tokens-preview__section">
-        <h2>Color tokens</h2>
-        <ul class="swatch-grid">
-          <li class="swatch">
-            <span class="swatch__color" style="background-color: var(--color-dark-alien)"></span>
-            <span class="ui-caption">Dark Alien — #110E15</span>
-          </li>
-          <li class="swatch">
-            <span class="swatch__color" style="background-color: var(--color-dark-pink)"></span>
-            <span class="ui-caption">Dark Pink — #74095F</span>
-          </li>
-          <li class="swatch">
-            <span class="swatch__color" style="background-color: var(--color-pink-alien)"></span>
-            <span class="ui-caption">Pink Alien — #D60DAE</span>
-          </li>
-          <li class="swatch">
-            <span class="swatch__color" style="background-color: var(--color-purple-light)"></span>
-            <span class="ui-caption">Purple Light — #9A73FF</span>
-          </li>
-          <li class="swatch">
-            <span class="swatch__color" style="background-color: var(--color-dark-gray)"></span>
-            <span class="ui-caption">Dark Gray — #4D4A50</span>
-          </li>
-          <li class="swatch">
-            <span class="swatch__color" style="background-color: var(--color-subtle-text)"></span>
-            <span class="ui-caption">Subtle Text — #595959</span>
-          </li>
-          <li class="swatch">
-            <span class="swatch__color" style="background-color: var(--color-lines-dividers)"></span>
-            <span class="ui-caption">Lines/Dividers — #D9D9D9</span>
-          </li>
-          <li class="swatch">
-            <span class="swatch__color" style="background-color: var(--color-aqua-eyes)"></span>
-            <span class="ui-caption">Aqua Eyes — #6BBEC8</span>
-          </li>
-          <li class="swatch">
-            <span class="swatch__color" style="background-color: var(--color-white)"></span>
-            <span class="ui-caption">White — #FFFEFE</span>
-          </li>
-        </ul>
-        <p class="ui-caption tokens-preview__label">
-          Case-specific tokens (not part of the core palette):
-          UniBrand #3072F5, ATJ Primary Accent #C44323.
-        </p>
+      <!-- UI: HOME-IMPACT-STATS-01 | Impact/stat numbers | inspect/adjust -->
+      <section class="home-section">
+        <!-- CONTENT: HOME-IMPACT-STATS-01 | Impact stat numbers and labels | editable with approval -->
+        <div class="stats-grid" data-reveal-group>
+          <div class="stat-item">
+            <p class="stat-item__label">Positive feedback</p>
+            <p class="stat-item__value">95%</p>
+          </div>
+          <div class="stat-item">
+            <p class="stat-item__label">Fewer support tickets</p>
+            <p class="stat-item__value">80%</p>
+          </div>
+          <div class="stat-item">
+            <p class="stat-item__label">Fewer support tickets</p>
+            <p class="stat-item__value">50%</p>
+          </div>
+          <div class="stat-item">
+            <p class="stat-item__label">Friction points</p>
+            <p class="stat-item__value">-20%</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-section" id="case-studies">
+        <!-- CONTENT: HOME-CASE-STUDIES-01 | Section heading | editable with approval -->
+        <h2 class="h2-section case-studies-heading" data-reveal>Case Studies:</h2>
+
+        <!-- UI: HOME-CASE-ATJ-01 | ATJ case study card | inspect/adjust -->
+        <article class="case-card" data-reveal>
+          <div class="case-card__body">
+            <div class="case-card__intro">
+              <!-- CONTENT: HOME-CASE-ATJ-01 | Case study title | editable with approval -->
+              <h3 class="h3-case-study case-card__title">
+                Inclusive Hiring Platform
+              </h3>
+              <!-- CONTENT: HOME-CASE-ATJ-DESC-01 | Case study description | editable with approval -->
+              <p class="body-main case-card__description">
+                An ecosystem connecting inclusive employers with diverse
+                candidates. Ensuring accessible opportunities and decent
+                work for underrepresented groups.
+              </p>
+              <div class="tag-row">
+                <span class="tag">HR Tech</span>
+                <span class="tag">Inclusive Design</span>
+                <span class="tag">Accessibility</span>
+                <span class="tag">B2C/B2B</span>
+              </div>
+            </div>
+            <a class="btn btn--outline" href="case-atj.html">
+              View case
+              <svg class="btn__icon" viewBox="0 0 21 11.547" fill="none" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M21 5.7735L11 0V11.547L21 5.7735ZM0 5.7735V6.7735H12V5.7735V4.7735H0V5.7735Z"
+                />
+              </svg>
+            </a>
+          </div>
+          <div class="case-card__media">
+            <!-- IMAGE: HOME-ATJ-GLOW-01 | Decorative glow behind ATJ mockup | replaceable -->
+            <img
+              class="case-card__glow"
+              src="assets/home/atj-glow.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <div class="atj-mockup-frame">
+              <!-- IMAGE: HOME-ATJ-MOCKUP-01 | ATJ case product mockup | replaceable -->
+              <img
+                src="assets/home/atj-mockup.png"
+                alt="Inclusive Hiring Platform — product screenshot"
+              />
+            </div>
+          </div>
+        </article>
+
+        <!-- UI: HOME-CASE-UNIQKEY-01 | Uniqkey case study card | inspect/adjust -->
+        <article class="case-card case-card--reverse" data-reveal>
+          <div class="case-card__body">
+            <div class="case-card__intro">
+              <!-- CONTENT: HOME-CASE-UNIQKEY-01 | Case study title | editable with approval -->
+              <h3 class="h3-case-study case-card__title">
+                From Numbers To Decisions.
+              </h3>
+              <!-- CONTENT: HOME-CASE-UNIQKEY-DESC-01 | Case study description | editable with approval -->
+              <p class="body-main case-card__description">
+                I redesigned the Admin Portal — building a connected
+                system of dashboards, data tables, and navigation that
+                made the organizational security legible for the first
+                time.
+              </p>
+              <div class="tag-row">
+                <span class="tag">Password manager</span>
+                <span class="tag">Admin UX</span>
+                <span class="tag">Enterprise Security</span>
+                <span class="tag">B2B SaaS</span>
+                <span class="tag">Cross platform product</span>
+              </div>
+            </div>
+            <a class="btn btn--outline" href="case-uniqkey.html">
+              View case
+              <svg class="btn__icon" viewBox="0 0 21 11.547" fill="none" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M21 5.7735L11 0V11.547L21 5.7735ZM0 5.7735V6.7735H12V5.7735V4.7735H0V5.7735Z"
+                />
+              </svg>
+            </a>
+          </div>
+          <div class="case-card__media">
+            <!-- IMAGE: HOME-UNIQKEY-GLOW-01 | Decorative glow behind Uniqkey mockup | replaceable -->
+            <img
+              class="case-card__glow"
+              src="assets/home/uniqkey-glow.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <div class="uniqkey-dashboard-frame">
+              <!-- IMAGE: HOME-UNIQKEY-DASHBOARD-01 | Uniqkey case product mockup (dashboard screen) | replaceable -->
+              <img
+                src="assets/home/uniqkey-dashboard.png"
+                alt="Uniqkey Admin Portal dashboard screenshot"
+              />
+            </div>
+            <div class="uniqkey-laptop-frame">
+              <!-- IMAGE: HOME-UNIQKEY-LAPTOP-01 | Uniqkey case product mockup (laptop frame) | replaceable -->
+              <img src="assets/home/uniqkey-macbook-frame.png" alt="" />
+            </div>
+          </div>
+        </article>
+
+        <!-- UI: HOME-CASE-ATJ2-01 | ATJ DEI Audit case study card | inspect/adjust -->
+        <article class="case-card" data-reveal>
+          <div class="case-card__body">
+            <div class="case-card__intro">
+              <!-- CONTENT: HOME-CASE-ATJ2-01 | Case study title | editable with approval -->
+              <h3 class="h3-case-study case-card__title">
+                ATJ DEI Audit
+              </h3>
+              <!-- CONTENT: HOME-CASE-ATJ2-DESC-01 | Case study description | editable with approval -->
+              <p class="body-main case-card__description">
+                Turned a heavy business process into a digital service,
+                companies complete a diagnostic and find out exactly
+                where they stand on readiness to hire veterans and
+                people with disabilities.
+              </p>
+              <!-- Tags: to be added later -->
+            </div>
+            <a class="btn btn--outline" href="case-atj-2.html">
+              View case
+              <svg class="btn__icon" viewBox="0 0 21 11.547" fill="none" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M21 5.7735L11 0V11.547L21 5.7735ZM0 5.7735V6.7735H12V5.7735V4.7735H0V5.7735Z"
+                />
+              </svg>
+            </a>
+          </div>
+          <div class="case-card__media">
+            <!-- IMAGE: HOME-ATJ2-GLOW-01 | Decorative glow behind ATJ DEI Audit mockup (reuses ATJ1's accent glow — same brand family) | replaceable -->
+            <img
+              class="case-card__glow"
+              src="assets/home/atj-glow.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <div class="atj2-mockup-frame">
+              <!-- IMAGE: HOME-ATJ2-MOCKUP-01 | ATJ DEI Audit diagnostic questionnaire screenshot | replaceable -->
+              <img
+                src="assets/case-atj-2/draft-audit-body.png"
+                alt="ATJ DEI Audit — diagnostic questionnaire screenshot"
+              />
+            </div>
+          </div>
+        </article>
+
+        <!-- UI: HOME-CASE-RIDI-01 | Ridi case study card (template — content pending) | inspect/adjust -->
+        <article class="case-card case-card--reverse" data-reveal>
+          <div class="case-card__body">
+            <div class="case-card__intro">
+              <!-- CONTENT: HOME-CASE-RIDI-01 | Case study title | editable with approval -->
+              <h3 class="h3-case-study case-card__title">Ridi</h3>
+              <!-- CONTENT: HOME-CASE-RIDI-DESC-01 | Placeholder — real description pending | editable with approval -->
+              <p class="body-main case-card__description">Coming soon</p>
+            </div>
+          </div>
+          <div class="case-card__media">
+            <div class="case-card__placeholder">
+              <p class="case-card__placeholder-text">Coming soon</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- UI: HOME-CASE-YOY-01 | Yoy case study card (template — content pending) | inspect/adjust -->
+        <article class="case-card" data-reveal>
+          <div class="case-card__body">
+            <div class="case-card__intro">
+              <!-- CONTENT: HOME-CASE-YOY-01 | Case study title | editable with approval -->
+              <h3 class="h3-case-study case-card__title">Yoy</h3>
+              <!-- CONTENT: HOME-CASE-YOY-DESC-01 | Placeholder — real description pending | editable with approval -->
+              <p class="body-main case-card__description">Coming soon</p>
+            </div>
+          </div>
+          <div class="case-card__media">
+            <div class="case-card__placeholder">
+              <p class="case-card__placeholder-text">Coming soon</p>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="home-section" id="feedbacks">
+        <!-- CONTENT: HOME-REVIEWS-01 | Section heading | editable with approval -->
+        <h2 class="h2-section reviews-heading" data-reveal>Reviews:</h2>
+        <!-- UI: HOME-REVIEWS-01 | Reviews carousel | inspect/adjust -->
+        <div class="reviews-carousel" data-reveal>
+          <button
+            class="reviews-arrow reviews-arrow--prev"
+            type="button"
+            aria-label="Previous review"
+            aria-controls="review-slide"
+          >
+            <svg viewBox="0 0 49.5818 71.9599" fill="none" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M37.5211 4.0415C36.5477 4.0473 35.6104 4.44612 34.8971 5.15772L4.01164 35.9709C4.01081 35.9717 4.00974 35.9723 4.00857 35.9724L4.00252 35.9733C4.00025 35.9736 3.99942 35.9765 4.00116 35.978L4.00131 35.9781C4.00248 35.9791 4.00248 35.9809 4.00131 35.9819C3.99961 35.9833 4.00053 35.9861 4.00276 35.9863L4.00855 35.9867C4.00972 35.9868 4.01082 35.9873 4.01165 35.9881L34.8971 66.8022C35.6103 67.5138 36.5478 67.9126 37.5211 67.9185L44.5741 67.9599C45.4662 67.9651 45.9181 66.8882 45.2895 66.2552L15.9202 36.6847C15.5329 36.2947 15.5329 35.6653 15.9202 35.2753L45.2895 5.70474C45.9181 5.07179 45.4662 3.99483 44.5741 4.00007L37.5211 4.0415Z"
+              />
+            </svg>
+          </button>
+
+          <div class="review-slide" id="review-slide" aria-live="polite" aria-atomic="true">
+            <div>
+              <p class="h3-case-study review-slide__name">Sanne Øst</p>
+              <p class="body-large review-slide__role">
+                Chief Product Officer
+              </p>
+            </div>
+            <p class="body-main review-slide__quote">Roman is a very creative person. We worked together on the design of a password management application and came up with a great solution that was successfully launched. Roman loves to research the market and is always full of creative ideas. If you need fresh and unique eye on your product - Roman is the right person.</p>
+            <a
+              class="review-slide__link"
+              href="https://www.linkedin.com/in/romsvid/details/recommendations/"
+              target="_blank"
+              rel="noopener"
+            >
+              <img src="assets/icons/icon-linkedin-small.svg" alt="" />
+              View in LinkedIn
+            </a>
+          </div>
+
+          <button
+            class="reviews-arrow reviews-arrow--next"
+            type="button"
+            aria-label="Next review"
+            aria-controls="review-slide"
+          >
+            <svg viewBox="0 0 49.5818 71.9599" fill="none" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M12.0609 4.04145C13.0343 4.04725 13.9716 4.44606 14.6849 5.15766L45.5704 35.9708C45.5712 35.9717 45.5723 35.9722 45.5734 35.9724L45.5795 35.9732C45.5818 35.9736 45.5826 35.9764 45.5809 35.9779L45.5807 35.978C45.5795 35.979 45.5795 35.9808 45.5807 35.9818C45.5824 35.9833 45.5815 35.9861 45.5793 35.9862L45.5735 35.9866C45.5723 35.9867 45.5712 35.9872 45.5704 35.988L14.6849 66.8022C13.9717 67.5137 13.0342 67.9125 12.0609 67.9184L5.00792 67.9598C4.11585 67.9651 3.66388 66.8881 4.29253 66.2552L33.6618 36.6846C34.0491 36.2947 34.0491 35.6652 33.6618 35.2752L4.29253 5.70469C3.66389 5.07174 4.11585 3.99478 5.00792 4.00002L12.0609 4.04145Z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="reviews-progress" aria-hidden="true">
+          <span class="reviews-progress__segment is-active"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+        </div>
+
+        <!-- UI: HOME-CTA-01 | CTA block | inspect/adjust -->
+        <div class="cta-section" data-reveal>
+          <!-- CONTENT: HOME-CTA-01 | CTA headline | editable with approval -->
+          <h2 class="h2-section cta-heading">
+            Ready to architect your next product?
+          </h2>
+          <p class="body-large cta-description">
+            Open for complex challenges and leadership roles. Select time
+            to call and Hire Me below.
+          </p>
+          <a
+            class="btn btn--primary"
+            href="https://calendar.app.google/CUCg9pmqeG8U3nfM7"
+            target="_blank"
+            rel="noopener"
+          >
+            Book a Call
+            <img
+              class="btn__icon"
+              src="assets/icons/icon-arrow-right.svg"
+              alt=""
+            />
+          </a>
+        </div>
       </section>
     </main>
 
+    <!-- UI: GLOBAL-FOOTER-01 | Site footer | inspect/adjust -->
     <footer class="site-footer">
+      <!-- IMAGE: GLOBAL-FOOTER-BG-01 | Decorative footer background glow | replaceable -->
       <img
         class="site-footer__bg"
         src="assets/images/footer-bg.svg"
@@ -162,12 +459,7 @@
       <div class="site-footer__row site-footer__row--top">
         <a class="nav-logo" href="index.html">
           <span class="nav-logo__icon">
-            <img
-              class="nav-logo__glow"
-              src="assets/icons/logo-glow.svg"
-              alt=""
-              aria-hidden="true"
-            />
+            <!-- IMAGE: GLOBAL-FOOTER-LOGO-01 | Site logo mark (Footer) | replaceable -->
             <img
               class="nav-logo__avatar"
               src="assets/icons/logo-avatar.png"
@@ -202,5 +494,8 @@
     </footer>
 
     <script src="js/nav.js"></script>
+    <script src="js/reviews.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="js/hero-stars.js"></script>
   </body>
 </html>

@@ -1,0 +1,1095 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ATJ — Inclusive AI-Driven Hiring Platform | Alien Eyes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/typography.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/buttons.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/case-atj.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <!--
+      Tailwind CDN — scoped to the Job Card showcase only (see
+      "Live component" note in that section). Not used anywhere else on
+      this site, which is otherwise plain hand-written CSS on purpose.
+      preflight:false stops Tailwind's base reset from touching this
+      page's own typography/base styles outside the showcase.
+    -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { corePlugins: { preflight: false } };
+    </script>
+  </head>
+  <body class="case-page atj-page">
+    <!-- UI: GLOBAL-NAV-01 | Site navigation | inspect/adjust -->
+    <nav class="site-nav">
+      <a class="nav-logo" href="index.html">
+        <span class="nav-logo__icon">
+          <img class="nav-logo__avatar" src="assets/icons/logo-avatar.png" alt="" />
+        </span>
+        <span class="nav-logo__text">Alien Eyes</span>
+      </a>
+
+      <div class="nav-links">
+        <a class="nav-links__link" href="index.html#case-studies">Case Studies</a>
+        <a class="nav-links__link" href="index.html#feedbacks">Feedbacks</a>
+      </div>
+
+      <a class="nav-cta" href="#">Download CV</a>
+
+      <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+    </nav>
+
+    <main>
+      <!-- UI: CASE02-HERO-01 | Hero layout | inspect/adjust -->
+      <section class="atj-hero" data-reveal>
+        <!-- IMAGE: CASE02-HERO-MOCKUP-01 | Laptop mockup of ATJ platform | replaceable -->
+        <div class="atj-hero__mockup-frame">
+          <img
+            class="atj-hero__mockup"
+            src="assets/case-atj/hero-mockup.png"
+            alt="ATJ platform shown on a laptop"
+          />
+        </div>
+        <div class="atj-hero__content">
+          <div class="tag-row">
+            <span class="atj-tag">HR Tech</span>
+            <span class="atj-tag">Inclusive Design</span>
+            <span class="atj-tag">Accessibility</span>
+            <span class="atj-tag">B2C/B2B</span>
+          </div>
+          <p class="atj-eyebrow">Inclusive AI-Driven</p>
+          <h1 class="atj-hero__title">Hiring<br />Platform</h1>
+          <div class="body-main atj-hero__desc">
+            <p>
+              In Ukraine, millions of people — veterans, people with
+              disabilities, IDPs, mothers returning to work face structural
+              barriers to employment.
+            </p>
+            <p>
+              I helped design ATJ: an inclusive hiring platform that embeds
+              fairness into the product's foundation not as a feature, but
+              as the architecture itself.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE02-IMPACT-01 | Impact stats | inspect/adjust | matches Figma order: Hero, Impact, Context, Role (472:4166) -->
+      <section class="atj-impact">
+        <p class="atj-eyebrow cc-trick" data-reveal>Impact:</p>
+        <div class="atj-impact__grid" data-reveal-group>
+          <div class="atj-impact__item">
+            <p class="atj-impact__value">65</p>
+            <p class="atj-impact__label">Pains points</p>
+          </div>
+          <div class="atj-impact__item">
+            <p class="atj-impact__value">10</p>
+            <p class="atj-impact__label">In-depth interviews</p>
+          </div>
+          <div class="atj-impact__item">
+            <p class="atj-impact__value">6</p>
+            <p class="atj-impact__label">Customer Journey Maps</p>
+          </div>
+          <div class="atj-impact__item">
+            <p class="atj-impact__value">16</p>
+            <p class="atj-impact__label">Core User flows</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE02-CONTEXT-01 | Context section | inspect/adjust -->
+      <section class="atj-section atj-context" data-reveal-group>
+        <div class="atj-context__text">
+          <!-- IMAGE: CASE02-CONTEXT-ICON-01 | Decorative logo mark | decorative -->
+          <img class="atj-context__icon" src="assets/case-atj/context-icon.svg" alt="" aria-hidden="true" />
+          <div class="atj-context__copy">
+          <p class="atj-eyebrow atj-eyebrow--lg">CONTEXT</p>
+          <p class="body-main atj-context__body">
+            A Ukrainian organization building an ecosystem to connect
+            inclusive employers with diverse candidates. What existed
+            before: educational content, DEI audits, webinars, corporate
+            training. What didn't exist: a product that could scale this
+            mission.
+          </p>
+          </div>
+        </div>
+        <!-- IMAGE: CASE02-CONTEXT-IMAGE-01 | Context photo | replaceable -->
+        <img class="atj-context__image" src="assets/case-atj/context-image.png" alt="A veteran candidate in a wheelchair shaking hands with an employer" />
+      </section>
+
+      <!-- UI: CASE02-ROLE-01 | My role in team | inspect/adjust -->
+      <section class="atj-section">
+        <div class="atj-role" data-reveal>
+          <div class="atj-role__items">
+            <p class="atj-eyebrow atj-role__label cc-trick">My role in team:</p>
+            <span>User interviews;</span>
+            <span>Jobs Catalog page;</span>
+            <span>Job Card component;</span>
+            <span>Presentation to stakeholders.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE02-RESEARCH-01 | Research stats | inspect/adjust -->
+      <section class="atj-section">
+        <div class="atj-research">
+          <p class="atj-eyebrow atj-eyebrow--research atj-eyebrow--lg cc-trick">RESEARCH:</p>
+          <p class="body-large atj-research__intro">
+            I didn't study users, I listened to people. Before opening
+            Figma — I conducted and documented interviews with people from
+            vulnerable groups. The market moved faster than the tools. DEI
+            culture is becoming a critical necessity for Ukraine's
+            workforce.
+          </p>
+          <div class="atj-research__grid" data-reveal-group>
+            <!-- IMAGE: CASE02-RESEARCH-CONNECTOR-01 | Decorative wavy connector line | decorative -->
+            <img class="atj-research__connector" src="assets/case-atj/research-connector.svg" alt="" aria-hidden="true" />
+            <div class="atj-research__card atj-research__card--1">
+              <p class="atj-research__title">Veterans Unemployment Rate</p>
+              <p class="atj-research__stat">1.3M+</p>
+              <p class="atj-research__note"><span class="atj-research__tag">30%+</span> unemployed</p>
+            </div>
+            <div class="atj-research__card atj-research__card--2">
+              <p class="atj-research__title">Unemployment Among IDPs</p>
+              <p class="atj-research__stat">5M</p>
+              <p class="atj-research__note"><span class="atj-research__tag">15%</span> unemployed</p>
+            </div>
+            <div class="atj-research__card atj-research__card--3">
+              <p class="atj-research__title">Employment Rate of People with Disabilities</p>
+              <p class="atj-research__stat">15–18%</p>
+              <p class="atj-research__note">are employed (vs. up to 50% in Europe).</p>
+            </div>
+            <div class="atj-research__card atj-research__card--4">
+              <p class="atj-research__title">Nationwide Talent Shortage</p>
+              <p class="atj-research__stat">75%</p>
+              <p class="atj-research__note">of employers face a constant workforce shortage.</p>
+            </div>
+            <div class="atj-research__card atj-research__card--5">
+              <p class="atj-research__title">Nationwide Talent Shortage</p>
+              <p class="atj-research__stat">27%</p>
+              <p class="atj-research__note">of people over 50 are employed.</p>
+            </div>
+            <div class="atj-research__card atj-research__card--6">
+              <p class="atj-research__title">Nationwide Talent Shortage</p>
+              <p class="atj-research__stat">56%</p>
+              <p class="atj-research__note">of unemployed IDPs are women</p>
+            </div>
+            <div class="atj-research__card atj-research__card--featured atj-research__card--7">
+              <p class="atj-research__title">Unemployment by Personal Choice</p>
+              <p class="atj-research__stat">4%</p>
+              <p class="atj-research__note">of non-working people say it's by choice</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE02-INSIGHT-01 | The insight changed everything | inspect/adjust -->
+      <section class="atj-section atj-insight">
+        <p class="atj-eyebrow cc-trick" data-reveal>The insight changed everything</p>
+        <div class="atj-insight__row" data-reveal-group>
+          <!-- IMAGE: CASE02-INSIGHT-IMAGE-01 | Insight illustration | replaceable -->
+          <div class="atj-insight__image-frame">
+            <img class="atj-insight__image" src="assets/case-atj/insight-image.png" alt="Insight research illustration" />
+          </div>
+          <div class="body-main atj-insight__text">
+            <p>
+              Standard platforms expect employers to become inclusive on
+              their own.
+            </p>
+            <p>
+              Candidates with specific needs must open every job to check
+              accessibility conditions.
+            </p>
+            <p>
+              The issue is not bad intent. It's that the system doesn't make
+              inclusion visible before first contact.
+            </p>
+            <p>
+              Solution: make inclusion structural, embedded into every
+              touchpoint, not an optional add-on.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE02-PAINPOINTS-01 | Candidate pain point cards | inspect/adjust -->
+      <section class="atj-section">
+        <div class="atj-painpoints" data-reveal-group>
+          <article class="atj-painpoint">
+            <div class="atj-painpoint__head">
+              <div class="atj-painpoint__id">
+                <p class="atj-painpoint__name">Alexander Savchuk</p>
+                <p class="atj-painpoint__role">Military veteran</p>
+              </div>
+              <!-- IMAGE: CASE02-AVATAR-01 | Alexander Savchuk avatar | replaceable -->
+              <img class="atj-painpoint__avatar" src="assets/case-atj/avatar-alexander.png" alt="" />
+            </div>
+            <div class="atj-painpoint__divider"></div>
+            <p class="atj-painpoint__quote">
+              Finding ways to apply your skills in civilian life. Prejudiced
+              attitude on the part of employers
+            </p>
+          </article>
+          <article class="atj-painpoint">
+            <div class="atj-painpoint__head">
+              <div class="atj-painpoint__id">
+                <p class="atj-painpoint__name">Kateryna Lubarska</p>
+                <p class="atj-painpoint__role">Mom after maternity leave</p>
+              </div>
+              <!-- IMAGE: CASE02-AVATAR-02 | Kateryna Lubarska avatar | replaceable -->
+              <img class="atj-painpoint__avatar" src="assets/case-atj/avatar-kateryna.png" alt="" />
+            </div>
+            <div class="atj-painpoint__divider"></div>
+            <p class="atj-painpoint__quote">
+              Lack of flexible offers on the market. Discrimination and
+              prejudice against mothers
+            </p>
+          </article>
+          <article class="atj-painpoint">
+            <div class="atj-painpoint__head">
+              <div class="atj-painpoint__id">
+                <p class="atj-painpoint__name">Anna Dubinska</p>
+                <p class="atj-painpoint__role">Person with a disability</p>
+              </div>
+              <!-- IMAGE: CASE02-AVATAR-03 | Anna Dubinska avatar | replaceable -->
+              <img class="atj-painpoint__avatar" src="assets/case-atj/avatar-anna.png" alt="" />
+            </div>
+            <div class="atj-painpoint__divider"></div>
+            <p class="atj-painpoint__quote">
+              Research workplace accessibility needs. Employer distrust or
+              condescension
+            </p>
+          </article>
+        </div>
+        <!-- UI: CASE02-SCOPE-01 | Overall scope of work | matches Figma "OVERALL SCOPE OF WORK:" (472:4311) -->
+        <div class="atj-scope" data-reveal>
+          <p class="atj-eyebrow atj-scope__heading cc-trick">OVERALL SCOPE OF WORK:</p>
+          <p class="body-main atj-scope__text">
+            A large team effort went into this project. What's shown here
+            covers only a small part of my own contribution<br />
+            explore the fuller scope via
+            <a
+              class="atj-scope__link"
+              href="https://www.figma.com/board/FZCBSAGkFmXhcJ24UvoRLh/ATJ-Research?node-id=0-1&t=wWSIEh0u6exd0DoT-1"
+              target="_blank"
+              rel="noopener"
+              >the link below</a
+            >.
+          </p>
+          <a
+            class="atj-scope__image"
+            href="https://www.figma.com/board/FZCBSAGkFmXhcJ24UvoRLh/ATJ-Research?node-id=0-1&t=wWSIEh0u6exd0DoT-1"
+            target="_blank"
+            rel="noopener"
+          >
+            <!-- IMAGE: CASE02-SCOPE-FIGJAM-01 | FigJam research board screenshot | replaceable -->
+            <img
+              src="assets/case-atj/scope-of-work-figjam.png"
+              alt="FigJam research board: stakeholder interviews, competitor analysis, JTBD, value proposition map, CJMs, brainstorming and prioritisation"
+            />
+          </a>
+        </div>
+        <div class="atj-pattern" data-reveal>
+          <p class="atj-eyebrow cc-trick">Pattern I saw:</p>
+          <p class="body-large atj-pattern__text">
+            The problem is not a lack of candidates or willing employers.
+            The problem is the structure of interaction — biased at every
+            step before first contact. This insight changed everything.
+            Inclusion cannot be a feature. It must be architecture.
+          </p>
+        </div>
+      </section>
+
+      <!-- UI: CASE02-MVP-01 | Key MVP contribution gallery | inspect/adjust -->
+      <section class="atj-mvp">
+        <div class="atj-mvp__band">
+          <h2 class="h1-display atj-mvp__heading" data-reveal>Key MVP Contribution</h2>
+          <!--
+            Figma "Gallery" (472:4317): 3 full slide-cards. Previously
+            rebuilt live (title+intro+positioned screenshots per
+            slide); now replaced with the user's own flat, fully
+            pre-composed exports for these 3 (their own re-crop —
+            "найпроблемніші макети переробив у зображення") — simpler
+            and matches their prepared source exactly.
+          -->
+          <div class="atj-mvp__gallery" data-reveal-group>
+            <img class="atj-mvp__slide-img" src="assets/case-atj/mvp-slide-onboarding.png" alt="Onboarding: select needs for a comfortable work environment, choose interview format, create or upload a resume" />
+            <img class="atj-mvp__slide-img" src="assets/case-atj/mvp-slide-filters.png" alt="Personalised filters: employers set a real salary range, shown against matching job cards" />
+            <img class="atj-mvp__slide-img" src="assets/case-atj/mvp-slide-benefits.png" alt="Inclusive benefits: accessibility and benefits tags shown clearly on a job card" />
+          </div>
+        </div>
+        <div class="atj-mvp__contribution" data-reveal>
+          <p class="atj-eyebrow atj-eyebrow--lg">My contribution:</p>
+          <p class="body-large atj-mvp__contribution-text">
+            This was my main area of responsibility — the central search
+            experience where all product decisions come together.
+          </p>
+        </div>
+        <!-- IMAGE: CASE02-MVP-BOTTOM-01 | Decorative bottom illustration | decorative -->
+        <img class="atj-mvp__bottom-deco" src="assets/case-atj/mvp-decorative-bottom.png" alt="" aria-hidden="true" />
+      </section>
+
+      <!-- UI: CASE02-CONTRIB-01 | Contribution highlights grid | inspect/adjust -->
+      <section class="atj-section atj-contrib">
+        <div class="atj-contrib__grid" data-reveal-group>
+          <div class="atj-contrib__item">
+            <!-- IMAGE: CASE02-CONTRIB-ICON-01 | Primary focus icon | replaceable -->
+            <img class="atj-contrib__icon--primary" src="assets/case-atj/icon-primary-focus.png" alt="" />
+            <div>
+              <p class="h3-case-study atj-accent-blue">Primary Focus:</p>
+              <p class="body-main">
+                Managed the <strong>Jobs Catalog</strong> the core search
+                experience where all product decisions converge.
+              </p>
+            </div>
+          </div>
+          <div class="atj-contrib__item">
+            <!-- IMAGE: CASE02-CONTRIB-ICON-02 | Accessibility tags icon | replaceable -->
+            <img class="atj-contrib__icon--accessibility" src="assets/case-atj/icon-accessibility-tags.png" alt="" />
+            <div>
+              <p class="h3-case-study atj-accent-blue">Accessibility Tags:</p>
+              <p class="body-main">
+                Tags are placed directly on the job cards rather than
+                hidden, <strong>helping candidates quickly</strong> narrow
+                down to relevant ones.
+              </p>
+            </div>
+          </div>
+          <div class="atj-contrib__item">
+            <!-- IMAGE: CASE02-CONTRIB-ICON-03 | Dynamic card icon | replaceable -->
+            <img src="assets/case-atj/icon-dynamic-card.png" alt="" />
+            <div>
+              <p class="h3-case-study atj-accent-blue">Dynamic Card:</p>
+              <p class="body-main">
+                Cards instantly <strong>adapt to user context</strong>,
+                acting as a micro feedback surface without requiring extra
+                navigation.
+              </p>
+            </div>
+          </div>
+          <div class="atj-contrib__item">
+            <!-- IMAGE: CASE02-CONTRIB-ICON-04 | CV selector icon | replaceable -->
+            <img class="atj-contrib__icon--cvselector" src="assets/case-atj/icon-cv-selector.png" alt="" />
+            <div>
+              <p class="h3-case-study atj-accent-blue">CV Selector:</p>
+              <p class="body-main">
+                Candidates <strong>can switch CV versions</strong> during
+                the application, accommodating varied profiles like career
+                changers and veterans.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE02-SMARTFILTERS-01 | Matching by smart filters | inspect/adjust -->
+      <section class="atj-section atj-smartfilters">
+        <h2 class="h2-section atj-smartfilters__heading" data-reveal>Matching by Smart Filters</h2>
+        <div class="atj-smartfilters__intro body-main" data-reveal>
+          <p>
+            The Jobs page serves as a central search hub, where smart
+            algorithms, accessibility filters, and transparent job cards
+            collaborate to create an environment of equal opportunities.
+            The filtering system enables job search not only by skills but
+            also by environmental conditions.
+          </p>
+          <p>
+            Users can tailor the search to their physical and mental needs.
+            A personalization option is also available: when enabled,
+            filters automatically adjust based on the candidate's profile
+            and CV data.
+          </p>
+        </div>
+        <!--
+          Figma "Smart Filters media & details" (formerly "Frame 2147262867"):
+          the screenshot bleeds edge-to-edge while "Smart Filters detail text"
+          (formerly "Frame 2147262450", Problem/Solution/Educational Context)
+          sits absolutely, flush-left, overlapping the screenshot's
+          bottom-left ~30% at desktop — a deliberate asymmetric overlay,
+          not a conventional stacked layout. No Figma mobile spec exists
+          for this composition, so <1024px falls back to a plain stacked
+          column for readability.
+        -->
+        <div class="atj-smartfilters__composition" data-reveal>
+          <!-- IMAGE: CASE02-SMARTFILTERS-SCREEN-01 | Jobs catalog page screenshot | replaceable -->
+          <img class="atj-smartfilters__screen" src="assets/case-atj/smartfilters-home.png" alt="ATJ Jobs Catalog page with smart filters" />
+          <div class="atj-smartfilters__blocks">
+            <div>
+              <p class="h3-case-study atj-smartfilters__block-title">The Problem:</p>
+              <p class="body-main atj-smartfilters__block-text">
+                Standard filters are typically limited to salary, location,
+                and basic professional criteria. People with disabilities or
+                specific needs often have to manually review hundreds of
+                vacancies to find ones that offer features such as ramps,
+                shelters, or other required conditions.
+              </p>
+            </div>
+            <div>
+              <p class="h3-case-study atj-smartfilters__block-title">The Solution:</p>
+              <p class="body-main atj-smartfilters__block-text">
+                A detailed sidebar with Accessibility and Well-being
+                categories turns specific needs (such as "Quiet office" or
+                "Barrier-free access") into primary search criteria,
+                effectively filtering out irrelevant job offers.
+              </p>
+            </div>
+            <div>
+              <p class="h3-case-study atj-smartfilters__block-title">Educational Context:</p>
+              <p class="body-main atj-smartfilters__block-text">
+                The filters also serve an educational purpose: expanded
+                categories help candidates discover inclusive options they
+                may not have known about or felt comfortable asking for.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE02-JOBCARD-01 | Job card deep dive | inspect/adjust -->
+      <section class="atj-section atj-jobcard">
+        <div class="atj-jobcard__pin" data-jobcard-pin>
+        <div class="atj-jobcard__pin-inner">
+        <!--
+          Heading + intro live inside the pin, so it only fully engages
+          once this whole block (title included) has scrolled into
+          place — by then "Matching by Smart Filters" above has
+          scrolled out, so the title reads cleanly, not mid-transition.
+        -->
+        <div class="atj-jobcard__intro">
+          <p class="h2-section atj-jobcard__heading">Job Card</p>
+          <p class="body-large">
+            The card is designed so candidates can instantly grasp the
+            essentials:<br />
+            The role, inclusivity match level, accessibility options,
+            benefits, and financial compensation.
+          </p>
+        </div>
+        <div class="atj-jobcard__row">
+        <!--
+          Desktop only (>=1024px): static exports of the 7 states
+          (Stages=Default/Consideration/Suggestion/Unlogged/Unlogged
+          (expanded)/Unavailable/Saved), at the mockup's real column
+          width (7/12 of the row). The card stack scrolls continuously
+          past a fixed-height window sized to match the text column's
+          own height (so both sides run for roughly the same scroll
+          distance) — a plain smooth translate, no per-card snapping.
+          The live Tailwind component below is reserved for mobile +
+          the GitHub demo per explicit instruction, not shown (or
+          pinned) on desktop.
+        -->
+        <div class="atj-jobcard-stages" data-jobcard-stages-viewport>
+          <div class="atj-jobcard-stages__track" data-jobcard-stages-track>
+            <div class="atj-jobcard-stages__item">
+              <p class="atj-jobcard-stages__label">Default</p>
+              <img src="assets/case-atj/jobcard-stage-default.png" alt="Job card, Default state" />
+            </div>
+            <div class="atj-jobcard-stages__item">
+              <p class="atj-jobcard-stages__label">Consideration</p>
+              <img src="assets/case-atj/jobcard-stage-consideration.png" alt="Job card, Consideration state" />
+            </div>
+            <div class="atj-jobcard-stages__item">
+              <p class="atj-jobcard-stages__label">Suggestion</p>
+              <img src="assets/case-atj/jobcard-stage-suggestion.png" alt="Job card, Suggestion state" />
+            </div>
+            <div class="atj-jobcard-stages__item">
+              <p class="atj-jobcard-stages__label">Unlogged</p>
+              <img src="assets/case-atj/jobcard-stage-unlogged.png" alt="Job card, Unlogged state" />
+            </div>
+            <div class="atj-jobcard-stages__item">
+              <p class="atj-jobcard-stages__label">Unlogged (expanded)</p>
+              <img src="assets/case-atj/jobcard-stage-unlogged-expanded.png" alt="Job card, Unlogged expanded state" />
+            </div>
+            <div class="atj-jobcard-stages__item">
+              <p class="atj-jobcard-stages__label">Unavailable</p>
+              <img src="assets/case-atj/jobcard-stage-unavailable.png" alt="Job card, Unavailable state" />
+            </div>
+            <div class="atj-jobcard-stages__item">
+              <p class="atj-jobcard-stages__label">Saved</p>
+              <img src="assets/case-atj/jobcard-stage-saved.png" alt="Job card, Saved state" />
+            </div>
+          </div>
+        </div>
+        <div class="atj-jobcard-showcase">
+          <!--
+            Live component, not a screenshot: all 7 states from
+            github.com/romsvid-hub/job-card-tailwind (Tailwind CDN),
+            extended from the repo's single "Default"-ish state to the
+            full Figma state set (node 761:17614, ATJ copy — Main design
+            file), verified via get_design_context. Mobile only now
+            (<1024px) — desktop shows the static exports above instead.
+          -->
+          <div class="atj-jobcard-showcase__grid">
+
+            <div class="atj-jobcard-showcase__item">
+              <p class="atj-jobcard-showcase__state">Default</p>
+              <div class="atj-jobcard-showcase__scale">
+                <article class="bg-white rounded-2xl shadow-[2px_2px_18px_rgba(24,20,19,0.12)] p-4 sm:p-8 flex flex-col gap-4 w-full">
+                  <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1 sm:gap-4">
+                    <h2 class="text-xl sm:text-2xl font-semibold text-[#0f1828]">Sales Manager, Call Tracking (B2B)</h2>
+                    <span class="jc-display-font font-medium text-sm sm:text-lg text-[#3c4451] whitespace-nowrap">15 hours ago</span>
+                  </div>
+                  <div class="flex flex-wrap items-center gap-x-8 gap-y-2">
+                    <div class="flex items-center gap-2"><img class="atj-jobcard-showcase__icon" src="assets/case-atj/jobcard-icon-briefcase.svg" alt="" /><span class="font-medium text-base sm:text-lg text-[#0f1828]">Akvarel</span></div>
+                    <div class="flex items-center gap-2"><img class="atj-jobcard-showcase__icon" src="assets/case-atj/jobcard-icon-mappin.svg" alt="" /><span class="font-medium text-base sm:text-lg text-[#0f1828]">Lviv</span></div>
+                  </div>
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="bg-[#eafbee] text-[#1a8234] rounded-full px-3 h-7 sm:h-8 flex items-center gap-1 text-sm sm:text-base font-medium"><img class="atj-jobcard-showcase__icon-xs" src="assets/case-atj/jobcard-icon-check.svg" alt="" /> Ramp available</span>
+                    <span class="bg-[#f5f5f6] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">Backup generator</span>
+                    <span class="bg-[#f5f5f6] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">Psychological support</span>
+                    <span class="bg-[#f5f5f6] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">Shelter available</span>
+                    <span class="border border-[#ebeced] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">+5</span>
+                  </div>
+                  <hr class="border-[#ebeced]" />
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="flex items-baseline gap-2">
+                      <span class="text-xl sm:text-2xl text-[#0f1828]">24,000 - 32,000</span>
+                      <span class="jc-display-font font-medium text-xl sm:text-2xl text-[#676d77]">UAH</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <button class="size-8 flex items-center justify-center shrink-0"><img class="atj-jobcard-showcase__icon" src="assets/case-atj/jobcard-icon-heart.svg" alt="Save" /></button>
+                      <button class="flex-1 sm:flex-none border border-[#0f1828] rounded-lg px-6 py-3 text-base sm:text-lg font-medium text-[#0f1828]">View details</button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="atj-jobcard-showcase__item">
+              <p class="atj-jobcard-showcase__state">Consideration</p>
+              <div class="atj-jobcard-showcase__scale">
+                <article class="bg-white rounded-2xl shadow-[2px_2px_18px_rgba(24,20,19,0.12)] p-4 sm:p-8 flex flex-col gap-4 w-full">
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4">
+                    <h2 class="text-xl sm:text-2xl font-semibold text-[#0f1828]">Sales Manager, Call Tracking (B2B)</h2>
+                    <span class="jc-display-font font-medium text-sm sm:text-lg text-[#3c4451] whitespace-nowrap">15 hours ago</span>
+                    <span class="bg-[#fceab9] text-[#974632] rounded-lg pl-2 pr-3 h-8 flex items-center gap-1 text-sm sm:text-base font-medium w-fit">Under review <img class="atj-jobcard-showcase__icon-xs" src="assets/case-atj/jobcard-icon-help-amber.svg" alt="" /></span>
+                  </div>
+                  <div class="flex flex-wrap items-center gap-x-8 gap-y-2">
+                    <div class="flex items-center gap-2"><img class="atj-jobcard-showcase__icon" src="assets/case-atj/jobcard-icon-briefcase.svg" alt="" /><span class="font-medium text-base sm:text-lg text-[#0f1828]">Akvarel</span></div>
+                    <div class="flex items-center gap-2"><img class="atj-jobcard-showcase__icon" src="assets/case-atj/jobcard-icon-mappin.svg" alt="" /><span class="font-medium text-base sm:text-lg text-[#0f1828]">Lviv</span></div>
+                  </div>
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="bg-[#eafbee] text-[#1a8234] rounded-full px-3 h-7 sm:h-8 flex items-center gap-1 text-sm sm:text-base font-medium"><img class="atj-jobcard-showcase__icon-xs" src="assets/case-atj/jobcard-icon-check.svg" alt="" /> Ramp available</span>
+                    <span class="bg-[#f5f5f6] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">Backup generator</span>
+                    <span class="bg-[#f5f5f6] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">Psychological support</span>
+                    <span class="bg-[#f5f5f6] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">Shelter available</span>
+                    <span class="border border-[#ebeced] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">+5</span>
+                  </div>
+                  <hr class="border-[#ebeced]" />
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="flex items-baseline gap-2">
+                      <span class="text-xl sm:text-2xl text-[#0f1828]">24,000 - 32,000</span>
+                      <span class="jc-display-font font-medium text-xl sm:text-2xl text-[#676d77]">UAH</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <button class="border border-[#0f1828] rounded-lg px-6 py-3 text-base sm:text-lg font-medium text-[#0f1828]">View details</button>
+                      <button class="flex-1 sm:flex-none border border-[#0f1828] rounded-lg px-6 py-3 text-base sm:text-lg font-medium text-[#0f1828]">Withdraw</button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="atj-jobcard-showcase__item">
+              <p class="atj-jobcard-showcase__state">Suggestion</p>
+              <div class="atj-jobcard-showcase__scale">
+                <article class="bg-white rounded-2xl shadow-[2px_2px_18px_rgba(24,20,19,0.12)] p-4 sm:p-8 flex flex-col gap-4 w-full">
+                  <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1 sm:gap-4">
+                    <h2 class="text-xl sm:text-2xl font-semibold text-[#0f1828]">Sales Manager, Call Tracking (B2B)</h2>
+                    <span class="jc-display-font font-medium text-sm sm:text-lg text-[#3c4451] whitespace-nowrap">15 hours ago</span>
+                  </div>
+                  <div class="flex flex-wrap items-center gap-x-8 gap-y-2">
+                    <div class="flex items-center gap-2"><img class="atj-jobcard-showcase__icon" src="assets/case-atj/jobcard-icon-briefcase.svg" alt="" /><span class="font-medium text-base sm:text-lg text-[#0f1828]">Akvarel</span></div>
+                    <div class="flex items-center gap-2"><img class="atj-jobcard-showcase__icon" src="assets/case-atj/jobcard-icon-mappin.svg" alt="" /><span class="font-medium text-base sm:text-lg text-[#0f1828]">Lviv</span></div>
+                  </div>
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="bg-[#eafbee] text-[#1a8234] rounded-full px-3 h-7 sm:h-8 flex items-center gap-1 text-sm sm:text-base font-medium"><img class="atj-jobcard-showcase__icon-xs" src="assets/case-atj/jobcard-icon-check.svg" alt="" /> Ramp available</span>
+                    <span class="bg-[#f5f5f6] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">Backup generator</span>
+                    <span class="bg-[#f5f5f6] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">Psychological support</span>
+                    <span class="bg-[#f5f5f6] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">Shelter available</span>
+                    <span class="border border-[#ebeced] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">+5</span>
+                  </div>
+                  <hr class="border-[#ebeced]" />
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="flex items-baseline gap-2">
+                      <span class="text-xl sm:text-2xl text-[#0f1828]">24,000 - 32,000</span>
+                      <span class="jc-display-font font-medium text-xl sm:text-2xl text-[#676d77]">UAH</span>
+                    </div>
+                    <div class="flex items-center gap-2 sm:gap-3 flex-wrap justify-end">
+                      <button class="border border-[#0f1828] rounded-lg px-6 py-3 text-base sm:text-lg font-medium text-[#0f1828]">View details</button>
+                      <button class="border border-[#0f1828] rounded-lg px-6 py-3 text-base sm:text-lg font-medium text-[#0f1828]">Not interested</button>
+                      <button class="rounded-lg px-6 py-3 text-base sm:text-lg font-medium text-white" style="background:#c94b2c">Interested</button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="atj-jobcard-showcase__item">
+              <p class="atj-jobcard-showcase__state">Unlogged</p>
+              <div class="atj-jobcard-showcase__scale">
+                <article class="bg-white rounded-2xl shadow-[2px_2px_18px_rgba(24,20,19,0.12)] p-4 sm:p-8 flex flex-col gap-4 w-full">
+                  <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1 sm:gap-4">
+                    <h2 class="text-xl sm:text-2xl font-semibold text-[#0f1828]">Sales Manager, Call Tracking (B2B)</h2>
+                    <span class="jc-display-font font-medium text-sm sm:text-lg text-[#3c4451] whitespace-nowrap">15 hours ago</span>
+                  </div>
+                  <div class="flex flex-wrap items-center gap-x-8 gap-y-2">
+                    <div class="flex items-center gap-2"><img class="atj-jobcard-showcase__icon" src="assets/case-atj/jobcard-icon-briefcase.svg" alt="" /><span class="font-medium text-base sm:text-lg text-[#0f1828]">Akvarel</span></div>
+                    <div class="flex items-center gap-2"><img class="atj-jobcard-showcase__icon" src="assets/case-atj/jobcard-icon-mappin.svg" alt="" /><span class="font-medium text-base sm:text-lg text-[#0f1828]">Lviv</span></div>
+                  </div>
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="bg-[#f5f5f6] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">Ramp available</span>
+                    <span class="bg-[#f5f5f6] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">Backup generator</span>
+                    <span class="bg-[#f5f5f6] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">Psychological support</span>
+                    <span class="bg-[#f5f5f6] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">Shelter available</span>
+                    <span class="border border-[#ebeced] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">+5</span>
+                  </div>
+                  <hr class="border-[#ebeced]" />
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="flex items-baseline gap-2">
+                      <span class="text-xl sm:text-2xl text-[#0f1828]">24,000 - 32,000</span>
+                      <span class="jc-display-font font-medium text-xl sm:text-2xl text-[#676d77]">UAH</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <button class="size-8 flex items-center justify-center shrink-0"><img class="atj-jobcard-showcase__icon" src="assets/case-atj/jobcard-icon-heart.svg" alt="Save" /></button>
+                      <button class="flex-1 sm:flex-none border border-[#0f1828] rounded-lg px-6 py-3 text-base sm:text-lg font-medium text-[#0f1828]">View details</button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="atj-jobcard-showcase__item">
+              <p class="atj-jobcard-showcase__state">Unlogged (expanded)</p>
+              <div class="atj-jobcard-showcase__scale atj-jobcard-showcase__scale--expanded">
+                <article class="bg-white rounded-2xl shadow-[2px_2px_18px_rgba(24,20,19,0.12)] p-4 sm:p-8 flex flex-col gap-4 w-full">
+                  <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1 sm:gap-4">
+                    <h2 class="text-xl sm:text-2xl font-semibold text-[#0f1828]">Sales Manager, Call Tracking (B2B)</h2>
+                    <span class="jc-display-font font-medium text-sm sm:text-lg text-[#3c4451] whitespace-nowrap">15 hours ago</span>
+                  </div>
+                  <div class="flex flex-wrap items-center gap-x-8 gap-y-2">
+                    <div class="flex items-center gap-2"><img class="atj-jobcard-showcase__icon" src="assets/case-atj/jobcard-icon-briefcase.svg" alt="" /><span class="font-medium text-base sm:text-lg text-[#0f1828]">Akvarel</span></div>
+                    <div class="flex items-center gap-2"><img class="atj-jobcard-showcase__icon" src="assets/case-atj/jobcard-icon-mappin.svg" alt="" /><span class="font-medium text-base sm:text-lg text-[#0f1828]">Lviv</span></div>
+                  </div>
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="bg-[#f5f5f6] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">Ramp available</span>
+                    <span class="bg-[#f5f5f6] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">Backup generator</span>
+                    <span class="bg-[#f5f5f6] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">Psychological support</span>
+                    <span class="bg-[#f5f5f6] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">Shelter available</span>
+                    <span class="border border-[#ebeced] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">+5</span>
+                  </div>
+                  <hr class="border-[#ebeced]" />
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="flex items-baseline gap-2">
+                      <span class="text-xl sm:text-2xl text-[#0f1828]">24,000 - 32,000</span>
+                      <span class="jc-display-font font-medium text-xl sm:text-2xl text-[#676d77]">UAH</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <button class="size-8 flex items-center justify-center shrink-0"><img class="atj-jobcard-showcase__icon" src="assets/case-atj/jobcard-icon-heart.svg" alt="Save" /></button>
+                      <button class="flex-1 sm:flex-none border border-[#0f1828] rounded-lg px-6 py-3 text-base sm:text-lg font-medium text-[#0f1828]">View details</button>
+                    </div>
+                  </div>
+                  <div class="bg-[#f5f5f6] rounded-lg pl-5 pr-8 py-2 text-sm sm:text-base text-[#0f1828]">
+                    To save this job, <a href="#" class="font-medium underline" style="color:#c94b2c">log in</a> or <a href="#" class="font-medium underline" style="color:#c94b2c">create a profile</a>.
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="atj-jobcard-showcase__item">
+              <p class="atj-jobcard-showcase__state">Unavailable</p>
+              <div class="atj-jobcard-showcase__scale">
+                <article class="bg-white rounded-2xl shadow-[2px_2px_18px_rgba(24,20,19,0.12)] p-4 sm:p-8 flex flex-col gap-4 w-full">
+                  <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1 sm:gap-4">
+                    <h2 class="text-xl sm:text-2xl font-semibold text-[#9599a0]">Sales Manager, Call Tracking (B2B)</h2>
+                    <span class="text-sm sm:text-lg text-[#9599a0] whitespace-nowrap">15 hours ago</span>
+                    <span class="bg-[#fceaea] text-[#891b1b] rounded-lg pl-2 pr-3 h-8 flex items-center gap-1 text-sm sm:text-base font-medium w-fit">Vacancy closed <img class="atj-jobcard-showcase__icon-xs" src="assets/case-atj/jobcard-icon-help-red.svg" alt="" /></span>
+                  </div>
+                  <div class="flex flex-wrap items-center gap-x-8 gap-y-2">
+                    <div class="flex items-center gap-2"><img class="atj-jobcard-showcase__icon opacity-40" src="assets/case-atj/jobcard-icon-briefcase.svg" alt="" /><span class="font-medium text-base sm:text-lg text-[#9599a0]">Akvarel</span></div>
+                    <div class="flex items-center gap-2"><img class="atj-jobcard-showcase__icon opacity-40" src="assets/case-atj/jobcard-icon-mappin.svg" alt="" /><span class="font-medium text-base sm:text-lg text-[#9599a0]">Lviv</span></div>
+                  </div>
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="bg-gray-50 rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base text-gray-300">Ramp available</span>
+                    <span class="bg-gray-50 rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base text-gray-300">Backup generator</span>
+                    <span class="bg-gray-50 rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base text-gray-300">Psychological support</span>
+                    <span class="bg-gray-50 rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base text-gray-300">Shelter available</span>
+                    <span class="border border-gray-100 rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base text-gray-300">+5</span>
+                  </div>
+                  <hr class="border-[#ebeced]" />
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="flex items-baseline gap-2">
+                      <span class="text-xl sm:text-2xl text-[#9599a0]">24,000 - 32,000</span>
+                      <span class="text-base sm:text-lg text-[#9599a0]">UAH</span>
+                    </div>
+                    <button class="border border-[#e12d2d] rounded-lg pl-5 pr-6 py-3 flex items-center gap-2 text-base sm:text-lg font-medium text-[#e12d2d]"><img class="atj-jobcard-showcase__icon" src="assets/case-atj/jobcard-icon-trash.svg" alt="" /> Remove</button>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="atj-jobcard-showcase__item">
+              <p class="atj-jobcard-showcase__state">Saved</p>
+              <div class="atj-jobcard-showcase__scale">
+                <article class="bg-white rounded-2xl shadow-[2px_2px_18px_rgba(24,20,19,0.12)] p-4 sm:p-8 flex flex-col gap-4 w-full">
+                  <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-1 sm:gap-4">
+                    <h2 class="text-xl sm:text-2xl font-semibold text-[#0f1828]">Sales Manager, Call Tracking (B2B)</h2>
+                    <span class="jc-display-font font-medium text-sm sm:text-lg text-[#3c4451] whitespace-nowrap">15 hours ago</span>
+                  </div>
+                  <div class="flex flex-wrap items-center gap-x-8 gap-y-2">
+                    <div class="flex items-center gap-2"><img class="atj-jobcard-showcase__icon" src="assets/case-atj/jobcard-icon-briefcase.svg" alt="" /><span class="font-medium text-base sm:text-lg text-[#0f1828]">Akvarel</span></div>
+                    <div class="flex items-center gap-2"><img class="atj-jobcard-showcase__icon" src="assets/case-atj/jobcard-icon-mappin.svg" alt="" /><span class="font-medium text-base sm:text-lg text-[#0f1828]">Lviv</span></div>
+                  </div>
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="bg-[#eafbee] text-[#1a8234] rounded-full px-3 h-7 sm:h-8 flex items-center gap-1 text-sm sm:text-base font-medium"><img class="atj-jobcard-showcase__icon-xs" src="assets/case-atj/jobcard-icon-check.svg" alt="" /> Ramp available</span>
+                    <span class="bg-[#f5f5f6] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">Backup generator</span>
+                    <span class="bg-[#f5f5f6] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">Psychological support</span>
+                    <span class="bg-[#f5f5f6] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">Shelter available</span>
+                    <span class="border border-[#ebeced] rounded-full px-3 h-7 sm:h-8 flex items-center text-sm sm:text-base font-medium text-[#0f1828]">+5</span>
+                  </div>
+                  <hr class="border-[#ebeced]" />
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="flex items-baseline gap-2">
+                      <span class="text-xl sm:text-2xl text-[#0f1828]">24,000 - 32,000</span>
+                      <span class="jc-display-font font-medium text-xl sm:text-2xl text-[#676d77]">UAH</span>
+                    </div>
+                    <div class="flex items-center gap-2 sm:gap-3 flex-wrap justify-end">
+                      <button class="border border-[#0f1828] rounded-lg px-6 py-3 text-base sm:text-lg font-medium text-[#0f1828]">View details</button>
+                      <button class="rounded-lg px-6 py-3 text-base sm:text-lg font-medium text-white" style="background:#c94b2c">Respond</button>
+                      <button class="border border-[#e12d2d] rounded-lg pl-5 pr-6 py-3 flex items-center gap-2 text-base sm:text-lg font-medium text-[#e12d2d]"><img class="atj-jobcard-showcase__icon" src="assets/case-atj/jobcard-icon-trash.svg" alt="" /> Remove</button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="atj-jobcard__text">
+          <div>
+            <p class="h3-case-study">The Problem:</p>
+            <p class="body-main atj-jobcard__block-text">
+              Standard job cards are often "silent" about accessibility
+              conditions. Candidates are forced to open each vacancy and
+              read long descriptions to find out whether a ramp or a quiet
+              space is available, wasting time on irrelevant offers.
+            </p>
+          </div>
+          <div>
+            <p class="h3-case-study">The Solution:</p>
+            <p class="body-main atj-jobcard__block-text">
+              Accessibility Tags are placed at the top level as mandatory
+              attributes. Combined with transparent salary and work format,
+              this allows candidates to evaluate a job without extra clicks.
+            </p>
+          </div>
+          <div class="atj-jobcard__closing">
+            <p class="h3-case-study">Dynamic States:</p>
+            <p class="body-main atj-jobcard__block-text">
+              The cards are adaptive and visualize interaction status (such
+              as "Applied" or "Interview"), giving users immediate feedback
+              on their application progress.
+            </p>
+            <div class="atj-jobcard-showcase__note">
+              <span>Live component, not a screenshot — full state set built from</span>
+              <a href="https://github.com/romsvid-hub/job-card-tailwind" target="_blank" rel="noopener">github.com/romsvid-hub/job-card-tailwind</a>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE02-SCREENS-01 | Other impact screens | inspect/adjust -->
+      <section class="atj-screens">
+        <h2 class="h2-section atj-screens__heading" data-reveal>Other impact screens</h2>
+
+        <div class="atj-screens__row" data-reveal>
+          <div class="atj-screens__text">
+            <p class="h3-case-study atj-screens__title">Create CV at Onboarding</p>
+            <p class="body-main atj-screens__body">
+              Your personal data will be hidden, and the resume will be
+              anonymous. This isn't fine print at the bottom. It's the very
+              first thing a candidate sees when creating their profile.
+            </p>
+          </div>
+          <!-- IMAGE: CASE02-SCREENS-01 | Create CV at onboarding screenshot | replaceable -->
+          <div class="atj-screens__image atj-screens__image--createcv">
+            <img src="assets/case-atj/screens-create-cv-cropped.png" alt="Create CV at onboarding screen" />
+          </div>
+        </div>
+
+        <div class="atj-screens__row" data-reveal>
+          <!-- IMAGE: CASE02-SCREENS-02 | Job page with accessibility tags screenshot | replaceable -->
+          <div class="atj-screens__image atj-screens__image--jobpage">
+            <img src="assets/case-atj/screens-job-page-cropped.png" alt="Job page with accessibility tags shown first" />
+          </div>
+          <div class="atj-screens__text">
+            <p class="h3-case-study atj-screens__title">Job Page with Accessibility Tags First</p>
+            <p class="body-main atj-screens__body">
+              Know before you click. Decide before you apply. Accessibility
+              features aren't hidden in a dropdown, buried in the
+              description, or tucked away below the fold. They are front
+              and center on the first screen.
+            </p>
+          </div>
+        </div>
+
+        <div class="atj-screens__row" data-reveal>
+          <div class="atj-screens__text">
+            <p class="h3-case-study atj-screens__title">CV Selector</p>
+            <p class="body-main atj-screens__body">
+              Apply with the right version of you. The candidate chooses
+              which resume version to submit—Sales Manager or Accountant
+              version. No "one size fits all" here
+            </p>
+          </div>
+          <!-- IMAGE: CASE02-SCREENS-03 | CV selector screenshot | replaceable -->
+          <div class="atj-screens__image atj-screens__image--selectcv">
+            <img src="assets/case-atj/screens-select-cv-cropped.png" alt="CV selector screen" />
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE02-UIKIT-01 | Design System / AI usage | matches Figma "UI Kit - Selection" (477:38537) -->
+      <section class="atj-section">
+        <p class="atj-eyebrow atj-eyebrow--lg" data-reveal>Design System / AI usage</p>
+        <div class="atj-uikit__grid" data-reveal-group>
+          <div>
+            <p class="body-main">
+              I built this design system myself, based on the Atlassian
+              Design System, chosen specifically for its strong
+              accessibility foundation. Accessibility was checked manually
+              and through Figma plugins, covering color contrast,
+              typography and readability, and other accessibility
+              parameters.
+            </p>
+            <p class="body-main">
+              The system is structured methodically: tokens → atomic
+              components → components, with a consistent naming convention
+              and clear rules for extending it.
+            </p>
+          </div>
+          <p class="body-main">
+            AI in the process. The large audit's clickable prototype was
+            assembled through <strong>Figma Make</strong> (an AI tool)
+            based on an approved wireflow and existing design-system
+            components. AI did not generate the interface from scratch, I
+            used it to assemble and arrange already-designed screens into a
+            clickable prototype.
+          </p>
+          <p class="body-main">
+            For prototyping, I used Figma Prototype and, in select cases,
+            Figma Make. Before handing the Job Cards over to development, I
+            refactored the design system with Claude Code — cleaning up
+            structure and consistency ahead of the handoff, not generating
+            it from scratch.
+          </p>
+        </div>
+
+        <!-- IMAGE: CASE02-UIKIT-FOUNDATION-01 | Design system foundation sheet | replaceable -->
+        <div class="atj-uikit__illustration" data-reveal>
+          <a
+            href="https://www.figma.com/design/a42eTgy6hzjmFWrVymHdfG/ATJ-copy-_Main_design_file?node-id=1-6&t=juXXjvmDWBSKsdZh-1"
+            target="_blank"
+            rel="noopener"
+          >
+            <img
+              src="assets/case-atj/design-system-foundation.png"
+              alt="Design system foundation: radius, colors, typography, spacing, layout, icons, tone of voice"
+            />
+          </a>
+        </div>
+        <p class="atj-uikit__link">
+          Foundation -
+          <a
+            href="https://www.figma.com/design/a42eTgy6hzjmFWrVymHdfG/ATJ-copy-_Main_design_file?node-id=1-6&t=juXXjvmDWBSKsdZh-1"
+            target="_blank"
+            rel="noopener"
+            >Link</a
+          >
+        </p>
+
+        <!-- IMAGE: CASE02-UIKIT-COMPONENTS-01 | Design system components sheet | replaceable -->
+        <div class="atj-uikit__illustration" data-reveal>
+          <a
+            href="https://www.figma.com/design/a42eTgy6hzjmFWrVymHdfG/ATJ-copy-_Main_design_file?node-id=1-10&t=juXXjvmDWBSKsdZh-1"
+            target="_blank"
+            rel="noopener"
+          >
+            <img
+              src="assets/case-atj/design-system-components.png"
+              alt="Design system components: buttons, inputs, form elements, text area, toggle, photo, modals, navigation, tags, tabs, pagination, radio, checkbox"
+            />
+          </a>
+        </div>
+        <p class="atj-uikit__link">
+          Components -
+          <a
+            href="https://www.figma.com/design/a42eTgy6hzjmFWrVymHdfG/ATJ-copy-_Main_design_file?node-id=1-10&t=juXXjvmDWBSKsdZh-1"
+            target="_blank"
+            rel="noopener"
+            >Link</a
+          >
+        </p>
+      </section>
+
+      <!-- UI: CASE02-RESULTS-01 | Results | matches Figma "Section — Results" (477:38551) -->
+      <section class="atj-section" data-reveal>
+        <p class="atj-eyebrow atj-eyebrow--lg">Results</p>
+        <p class="body-large atj-final__text">
+          What we delivered wasn't a set of screens. It was a hiring system
+          where fairness is structural — built into every filter, every
+          card, every touchpoint. Ready for development. Ready to scale.
+          Ready to matter.
+        </p>
+        <p class="body-main atj-final__medium-note">
+          There's also a
+          <a
+            href="https://medium.com/offgrid-design-community/all-together-jobs-%D1%96%D0%BD%D0%BA%D0%BB%D1%8E%D0%B7%D0%B8%D0%B2%D0%BD%D0%B0-%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D0%B0-%D0%B4%D0%BB%D1%8F-%D0%BF%D0%BE%D1%88%D1%83%D0%BA%D1%83-%D1%80%D0%BE%D0%B1%D0%BE%D1%82%D0%B8-94a5fbd5189d"
+            target="_blank"
+            rel="noopener"
+            >Medium article</a
+          >
+          covering the collaborative work in more detail.
+        </p>
+      </section>
+
+      <!-- UI: HOME-REVIEWS-01 | Reviews carousel | inspect/adjust (shared component, reused unchanged) -->
+      <section class="home-section case-reviews-cta" id="feedbacks">
+        <h2 class="h2-section reviews-heading">Reviews:</h2>
+        <div class="reviews-carousel">
+          <button
+            class="reviews-arrow reviews-arrow--prev"
+            type="button"
+            aria-label="Previous review"
+            aria-controls="review-slide"
+          >
+            <svg viewBox="0 0 49.5818 71.9599" fill="none" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M37.5211 4.0415C36.5477 4.0473 35.6104 4.44612 34.8971 5.15772L4.01164 35.9709C4.01081 35.9717 4.00974 35.9723 4.00857 35.9724L4.00252 35.9733C4.00025 35.9736 3.99942 35.9765 4.00116 35.978L4.00131 35.9781C4.00248 35.9791 4.00248 35.9809 4.00131 35.9819C3.99961 35.9833 4.00053 35.9861 4.00276 35.9863L4.00855 35.9867C4.00972 35.9868 4.01082 35.9873 4.01165 35.9881L34.8971 66.8022C35.6103 67.5138 36.5478 67.9126 37.5211 67.9185L44.5741 67.9599C45.4662 67.9651 45.9181 66.8882 45.2895 66.2552L15.9202 36.6847C15.5329 36.2947 15.5329 35.6653 15.9202 35.2753L45.2895 5.70474C45.9181 5.07179 45.4662 3.99483 44.5741 4.00007L37.5211 4.0415Z"
+              />
+            </svg>
+          </button>
+
+          <div class="review-slide" id="review-slide" aria-live="polite" aria-atomic="true" data-default-review="Olga Novykova">
+            <div>
+              <p class="h3-case-study review-slide__name">Olga Novykova</p>
+              <p class="body-large review-slide__role">CEO &amp; Founder</p>
+            </div>
+            <p class="body-main review-slide__quote">
+              We worked with Roman on the Alltogether.jobs project, where he
+              led the UI and UX design for our platform. Roman conducted
+              in-depth user research, helped structure complex information,
+              and translated it into a clear product vision. He designed the
+              system architecture and a thoughtful design system, which we
+              are now actively implementing. We highly recommend Roman as a
+              professional who deeply understands business needs and
+              delivers effective solutions.
+            </p>
+            <button type="button" class="review-slide__link">
+              <img src="assets/icons/icon-linkedin-small.svg" alt="" />
+              View
+            </button>
+          </div>
+
+          <button
+            class="reviews-arrow reviews-arrow--next"
+            type="button"
+            aria-label="Next review"
+            aria-controls="review-slide"
+          >
+            <svg viewBox="0 0 49.5818 71.9599" fill="none" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M12.0609 4.04145C13.0343 4.04725 13.9716 4.44606 14.6849 5.15766L45.5704 35.9708C45.5712 35.9717 45.5723 35.9722 45.5734 35.9724L45.5795 35.9732C45.5818 35.9736 45.5826 35.9764 45.5809 35.9779L45.5807 35.978C45.5795 35.979 45.5795 35.9808 45.5807 35.9818C45.5824 35.9833 45.5815 35.9861 45.5793 35.9862L45.5735 35.9866C45.5723 35.9867 45.5712 35.9872 45.5704 35.988L14.6849 66.8022C13.9717 67.5137 13.0342 67.9125 12.0609 67.9184L5.00792 67.9598C4.11585 67.9651 3.66388 66.8881 4.29253 66.2552L33.6618 36.6846C34.0491 36.2947 34.0491 35.6652 33.6618 35.2752L4.29253 5.70469C3.66389 5.07174 4.11585 3.99478 5.00792 4.00002L12.0609 4.04145Z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="reviews-progress" aria-hidden="true">
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment is-active"></span>
+          <span class="reviews-progress__segment"></span>
+        </div>
+
+        <!-- UI: HOME-CTA-01 | CTA block | inspect/adjust (shared component, reused unchanged) -->
+        <div class="cta-section">
+          <h2 class="h2-section cta-heading">Ready to architect your next product?</h2>
+          <p class="body-large cta-description">
+            Open for complex challenges and leadership roles. Select time to
+            call and Hire Me below.
+          </p>
+          <a
+            class="btn btn--primary"
+            href="https://calendar.app.google/CUCg9pmqeG8U3nfM7"
+            target="_blank"
+            rel="noopener"
+          >
+            Book a Call
+            <img class="btn__icon" src="assets/icons/icon-arrow-right.svg" alt="" />
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- UI: GLOBAL-FOOTER-01 | Site footer | inspect/adjust (shared component, reused unchanged) -->
+    <footer class="site-footer">
+      <img class="site-footer__bg" src="assets/images/footer-bg.svg" alt="" aria-hidden="true" />
+      <div class="site-footer__row site-footer__row--top">
+        <a class="nav-logo" href="index.html">
+          <span class="nav-logo__icon">
+            <img class="nav-logo__avatar" src="assets/icons/logo-avatar.png" alt="" />
+          </span>
+          <span class="nav-logo__text">Alien Eyes</span>
+        </a>
+
+        <div class="site-footer__social">
+          <a href="https://www.instagram.com/romsvid/" target="_blank" rel="noopener">
+            <img src="assets/icons/social-instagram.svg" alt="Instagram" />
+          </a>
+          <a href="https://www.linkedin.com/in/romsvid/" target="_blank" rel="noopener">
+            <img src="assets/icons/social-linkedin.svg" alt="LinkedIn" />
+          </a>
+          <a href="https://t.me/Rmsddddd" target="_blank" rel="noopener">
+            <img src="assets/icons/social-telegram.svg" alt="Telegram" />
+          </a>
+        </div>
+      </div>
+
+      <div class="site-footer__row site-footer__row--bottom">
+        <p class="body-main site-footer__copyright">© 2026 Roman Sviderskyi</p>
+        <p class="body-main site-footer__contact">
+          +380 97 334 9540&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:svidddrommm25@gmail.com"
+            >svidddrommm25@gmail.com</a
+          >
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+    <script src="js/reviews.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="js/jobcard-scroll.js"></script>
+  </body>
+</html>

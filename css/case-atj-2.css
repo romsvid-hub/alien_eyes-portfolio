@@ -1,0 +1,1990 @@
+/*
+  ATJ Case Study 2 — "ATJ DEI Audit" — rebuilt to match the FINAL Figma
+  design (fileKey DU3fuTo8QXIJ0uMcI3jh91, node 418:31416, page
+  "ATJ 2 Case — rebuilt from code"). Verified section-by-section via
+  get_design_context / get_screenshot — see the approved discrepancy
+  report for the full comparison against the previous draft build.
+
+  Case-specific only: does not touch home.css/nav.css/footer.css/tokens.css
+  or css/case-atj.css. Reuses --page-px (home.css) and the shared type
+  scale (typography.css), same as every other case study.
+
+  COLOR: two local, case-scoped tokens — never added to tokens.css, never
+  applied to ATJ Case 1 or any shared component:
+    --atj2-accent      #475FA9 — eyebrows, headings, numbers, links
+    --atj2-accent-dark #3D5BAE — Hero H1 + the solid rounded panels
+                                 (Challenge, Key Solutions, Results) —
+                                 verified as the literal fill Figma uses
+                                 on those specific nodes, not a guess.
+
+  Images: every photo/illustration/mockup below is a real (if still
+  first-pass) Figma asset, downloaded once via the MCP asset URLs (which
+  expire ~7 days after export) into assets/case-atj-2/figma/. Each is a
+  single, plainly-named <img> in its own container — never baked into a
+  background-image or sprite — so swapping in a final asset later is a
+  one-line src change, not a layout change.
+*/
+
+.atj2-page {
+  background-color: var(--color-main-canvas);
+  color: var(--color-deep-text);
+}
+
+:root {
+  --atj2-accent: #475fa9;
+  --atj2-accent-dark: #3d5bae;
+  --atj2-tint: #eef1f9;
+}
+
+/* ---------- Shared primitives ---------- */
+
+.atj2-section {
+  padding: 48px var(--page-px);
+}
+
+/* Composition-width cap: Figma's desktop frame is 1280px wide (1120px
+   content inside 80px side margins). Beyond that viewport, extra space
+   becomes outer whitespace instead of stretching text columns/grids —
+   keeps wrapping and section rhythm stable at 1440/1600/1920. */
+@media (min-width: 1280px) {
+  .atj2-section {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Heroselect is a full-bleed panel in Figma — its own 80px inset
+   provides the content gutter, so the wrapping .atj2-section must not
+   add page-px on top (that was doubling the inset and shrinking its
+   inner content ~14% narrower than Figma). */
+.atj2-section:has(> .atj2-heroselect) {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Facts has asymmetric internal spacing in Figma (~70px top / ~32px
+   bottom to its content) instead of the shared 48px/48px — a
+   Facts-specific override, not a change to .atj2-section itself. */
+.atj2-section:has(> .atj2-facts) {
+  padding-top: 70px;
+  padding-bottom: 32px;
+}
+
+/* "Key Solutions" (the blue .atj2-solutions panel) is an edge-to-edge
+   panel in Figma, same as "Challenge - Section": zero outer padding on
+   every side so it touches Research above and Design System / AI Usage
+   below, with no page-background gap. Its own internal padding
+   (.atj2-solutions__heading / .atj2-solution) supplies all breathing
+   room, same pattern as .atj2-section--challenge. */
+.atj2-section:has(> .atj2-solutions) {
+  padding: 0;
+}
+
+/* "Challenge - Section" (the outer wrapper) is itself the blue,
+   rounded, edge-to-edge panel — not .atj2-challenge inside it, which is
+   only the padded content positioner ("Challenge gradient block").
+   Full-bleed at every breakpoint, matching Heroselect/Solutions. */
+.atj2-section--challenge {
+  padding: 0;
+  background-color: var(--atj2-accent-dark);
+  border-radius: 24px;
+  /* Clips the mascot that intentionally bleeds past .atj2-challenge's
+     own edge — this outer panel's rounded boundary is the real crop. */
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .atj2-section--challenge {
+    border-radius: 48px;
+  }
+}
+
+.atj2-eyebrow {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--h3-size);
+  letter-spacing: var(--h3-letter-spacing);
+  color: var(--color-subtle-text);
+  margin: 0 0 16px;
+}
+
+.atj2-eyebrow--lg {
+  font-size: var(--h2-size);
+  color: var(--atj2-accent);
+}
+
+@media (min-width: 1024px) {
+  .atj2-eyebrow--lg {
+    margin-bottom: 24px;
+  }
+
+  /* Other Core Features specifically uses a wider eyebrow-to-content
+     gap in Figma (48px) than the other eyebrow--lg sections (24px).
+     Adjacent-sibling margins collapse, so splitting this 24px+24px was
+     silently producing only 24px total, not 48px — zero the eyebrow's
+     own bottom margin in this specific pairing and put the full 48px
+     on one side only, so there's nothing left to collapse against. */
+  .atj2-eyebrow--lg:has(+ .atj2-features) {
+    margin-bottom: 0;
+  }
+
+  .atj2-eyebrow--lg + .atj2-features {
+    margin-top: 48px;
+  }
+}
+
+.atj2-eyebrow--white {
+  color: var(--color-white);
+}
+
+.cc-trick {
+  text-transform: lowercase;
+}
+
+.cc-trick::first-letter {
+  text-transform: uppercase;
+}
+
+.atj2-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #e3e3e3;
+  border: 1px dashed #b3b3b3;
+  border-radius: 8px;
+  color: #8a8a8a;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: center;
+  padding: 16px;
+}
+
+/* ---------- Hero ---------- */
+
+.atj2-hero {
+  margin: 24px var(--page-px) 48px;
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  .atj2-hero {
+    border-radius: 48px;
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+@media (min-width: 1280px) {
+  .atj2-hero {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.atj2-hero__media {
+  flex: 1 1 50%;
+  aspect-ratio: 628 / 400;
+  background: linear-gradient(180deg, #e4e5e5 0%, #d9d9da 100%);
+}
+
+@media (min-width: 1024px) {
+  .atj2-hero__media {
+    aspect-ratio: auto;
+  }
+}
+
+.atj2-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.atj2-hero__content {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  padding: 32px 24px 40px;
+  background: linear-gradient(180deg, #e4e5e5 0%, #d9d9da 100%);
+}
+
+@media (min-width: 1024px) {
+  .atj2-hero__content {
+    padding: 48px;
+  }
+}
+
+.atj2-hero__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 1.1;
+  letter-spacing: var(--h1-letter-spacing);
+  color: var(--atj2-accent-dark);
+  margin: 0 0 16px;
+}
+
+@media (min-width: 1024px) {
+  .atj2-hero__title {
+    font-size: 64px;
+  }
+}
+
+.atj2-hero__desc {
+  color: var(--color-deep-text);
+  max-width: 548px;
+  margin: 0;
+}
+
+.atj2-hero__meta-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+@media (min-width: 1024px) {
+  .atj2-hero__meta-row {
+    gap: 0;
+  }
+}
+
+.atj2-hero__mascot {
+  width: 56px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .atj2-hero__mascot {
+    width: 71px;
+  }
+}
+
+.atj2-hero__meta {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--color-deep-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 25px;
+}
+
+.atj2-hero__meta li {
+  list-style: disc;
+}
+
+/* ---------- Context (Source / Goal) ---------- */
+
+.atj2-context__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .atj2-context__grid {
+    flex-direction: row;
+  }
+}
+
+.atj2-context__col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.atj2-context__col h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--color-deep-text);
+  margin: 0;
+}
+
+.atj2-context__col p {
+  color: var(--color-deep-text);
+  margin: 0;
+}
+
+/* ---------- Hero-Selection (Before / After) ---------- */
+
+.atj2-heroselect {
+  background-color: #f0f0f0;
+  border-radius: 24px;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  /* The accent mascot intentionally bleeds past the "after" image area,
+     but Figma still crops it at this frame's own bottom edge — it must
+     not show past "Before and after - section" into Facts below it. */
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .atj2-heroselect {
+    border-radius: 48px;
+    padding: 48px 80px 0;
+    gap: 48px;
+  }
+}
+
+.atj2-heroselect__block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.atj2-heroselect__block h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--color-deep-text);
+  margin: 0;
+}
+
+.atj2-heroselect__block p {
+  color: var(--color-subtle-text);
+  margin: 0;
+}
+
+.atj2-heroselect__media {
+  width: 100%;
+  margin-top: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.atj2-heroselect__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.atj2-heroselect__after-media {
+  width: 100%;
+  margin-top: 16px;
+  position: relative;
+}
+
+.atj2-heroselect__after-media img.atj2-heroselect__main {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.atj2-heroselect__after-media img.atj2-heroselect__accent {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .atj2-heroselect__after-media img.atj2-heroselect__accent {
+    display: block;
+    position: absolute;
+    right: 0;
+    /* Figma: mascot mask is 394x542 within an 808.55-tall "after" image
+       area, bottom edge 205px past that area's own bottom — now that
+       the asset is the correctly re-cropped full-height transparent
+       version (not the earlier truncated/white-matted one), it can use
+       the exact measured overflow instead of an approximation. */
+    bottom: -205px;
+    width: 35.18%;
+    max-width: 394px;
+    height: auto;
+  }
+}
+
+/* ---------- Facts (4-column stat header) ---------- */
+
+.atj2-facts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 24px;
+}
+
+@media (min-width: 1024px) {
+  .atj2-facts {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.atj2-facts__item h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--atj2-accent);
+  margin: 0 0 8px;
+}
+
+.atj2-facts__item p {
+  color: var(--color-subtle-text);
+  margin: 0;
+}
+
+/* ---------- My Scope ---------- */
+
+.atj2-scope__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .atj2-scope__grid {
+    flex-direction: row;
+  }
+}
+
+.atj2-scope__col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.atj2-scope__col h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--color-deep-text);
+  margin: 0;
+}
+
+.atj2-scope__col p {
+  color: var(--color-deep-text);
+  margin: 0;
+}
+
+/* ---------- Key Decision (Problem / Solution / Why) ----------
+   Default = plain, white-background variant (used standalone, e.g.
+   Accessibility). Divider-only cards, no colored band — matches Figma
+   literally (border-left dividers, no card background/shadow). */
+
+.atj2-decision__heading {
+  color: var(--atj2-accent);
+  margin: 0 0 24px;
+}
+
+.atj2-decision__grid {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  .atj2-decision__grid {
+    flex-direction: row;
+    gap: 24px;
+  }
+}
+
+.atj2-decision__card {
+  padding: 16px 0;
+  border-top: 1px solid var(--color-light-gray);
+}
+
+@media (min-width: 1024px) {
+  .atj2-decision__card {
+    flex: 1;
+    padding: 20px;
+    border-top: none;
+    border-left: 1px solid var(--color-light-gray);
+  }
+
+  .atj2-decision__card:first-child {
+    border-left: none;
+  }
+}
+
+.atj2-decision__card h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--color-deep-text);
+  margin: 0 0 8px;
+}
+
+.atj2-decision__card p {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 25px;
+  color: var(--color-dark-gray);
+  margin: 0;
+}
+
+/* On-blue variant — used for the 3 decisions inside .atj2-solutions */
+.atj2-decision--on-blue .atj2-decision__card {
+  border-color: var(--color-white);
+}
+
+.atj2-decision--on-blue .atj2-decision__card h4 {
+  color: var(--color-white);
+}
+
+.atj2-decision--on-blue .atj2-decision__card p {
+  color: rgba(255, 254, 254, 0.85);
+}
+
+/* ---------- The Challenge ---------- */
+
+/* .atj2-challenge = "Challenge gradient block": just the padded content
+   positioner inside the blue "Challenge - Section" panel (that outer
+   section now carries the background/radius/clip — see
+   .atj2-section--challenge above). This div has no visual treatment of
+   its own — only the reference-column width and Figma's exact 48px
+   top / 80px bottom padding. */
+.atj2-challenge {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px 20px 60px;
+}
+
+@media (min-width: 768px) {
+  .atj2-challenge {
+    padding: 40px 32px 60px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .atj2-challenge {
+    gap: 48px;
+    /* Figma exact: 48px top, 80px bottom. Horizontal is 0 because
+       max-width:1120px + margin:auto already center it within the
+       edge-to-edge outer panel. */
+    padding: 48px 0 80px;
+  }
+}
+
+.atj2-challenge__eyebrow {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 40px;
+  color: var(--color-white);
+  margin: 0;
+}
+
+@media (min-width: 1024px) {
+  .atj2-challenge {
+    gap: 48px;
+  }
+}
+
+.atj2-challenge__content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .atj2-challenge__content {
+    flex-direction: row;
+  }
+}
+
+.atj2-challenge__card {
+  background-color: var(--color-white);
+  border-radius: 16px;
+  padding: 24px;
+  position: relative;
+  /* Not hidden: the mascot image intentionally bleeds past this card's
+     own right/bottom edge onto the gradient block behind it (Figma) —
+     the gradient block itself (.atj2-challenge) does the actual clip. */
+  overflow: visible;
+  flex: 1 1 57.41%;
+}
+
+.atj2-challenge__card h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--color-subtle-text);
+  margin: 0 0 16px;
+}
+
+.atj2-challenge__card p {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--color-deep-text);
+  margin: 0;
+  max-width: 429px;
+}
+
+.atj2-challenge__illustration {
+  display: none;
+}
+
+/* Figma "Before 1": x=484 y=1.445 w=157 h=179 within a 643-wide card —
+   nearly flush to the card's top-right corner, not a bottom overhang. */
+@media (min-width: 1024px) {
+  .atj2-challenge__illustration {
+    display: block;
+    position: absolute;
+    right: 2px;
+    top: 1px;
+    width: 157px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 2px 2px 18px rgba(24, 20, 19, 0.12);
+    z-index: 1;
+  }
+}
+
+.atj2-challenge__mascot {
+  display: none;
+}
+
+/* Figma "Mascot illustration" (formerly "ChatGPT Image..."): x=401 y=91.445 w=282 h=282 within the same
+   643-wide card — right edge sits 40px past the card's own right edge,
+   bottom edge 64px past the card's bottom edge. Intentional overflow:
+   clipped by .atj2-challenge (the gradient block), not by this card. */
+@media (min-width: 1024px) {
+  .atj2-challenge__mascot {
+    display: block;
+    position: absolute;
+    right: -40px;
+    top: 91px;
+    width: 282px;
+    height: auto;
+    z-index: 2;
+  }
+}
+
+.atj2-challenge__context {
+  flex: 1 1 40.45%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 1024px) {
+  .atj2-challenge__context {
+    /* Figma: this column's content starts 24px from the row's top,
+       matching the card's own 24px padding — without this the two
+       columns' headings don't align on the same baseline. */
+    padding-top: 24px;
+  }
+}
+
+.atj2-challenge__context h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.atj2-challenge__context ul {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.atj2-challenge__context li {
+  list-style: disc;
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--color-white);
+}
+
+/* ---------- Research ---------- */
+
+.atj2-research__intro {
+  color: var(--color-dark-alien);
+  max-width: 780px;
+  margin: 0 0 32px;
+}
+
+.atj2-research__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 1024px) {
+  .atj2-research__grid {
+    flex-direction: row;
+  }
+}
+
+.atj2-research__grid > div {
+  flex: 1;
+}
+
+.atj2-research__grid h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--color-deep-text);
+  margin: 0 0 8px;
+}
+
+.atj2-research__grid p {
+  color: var(--color-deep-text);
+  margin: 0;
+}
+
+.atj2-research__label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--color-deep-text);
+  margin: 0 0 24px;
+}
+
+.atj2-logos {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 32px;
+}
+
+.atj2-logos__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.atj2-logos__item img {
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%);
+  opacity: 0.55;
+  transition: filter 0.2s ease, opacity 0.2s ease;
+}
+
+.atj2-logos__item:hover img,
+.atj2-logos__item:focus-visible img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .atj2-logos {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 20px;
+  }
+}
+
+.atj2-research__hypotheses {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 1024px) {
+  .atj2-research__hypotheses {
+    flex-direction: row;
+  }
+}
+
+.atj2-research__hypotheses p {
+  flex: 1;
+  color: var(--color-deep-text);
+  margin: 0;
+}
+
+.atj2-research__images {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .atj2-research__images {
+    flex-direction: row;
+  }
+}
+
+.atj2-research__images > div {
+  flex: 1;
+  aspect-ratio: 357 / 307;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.atj2-research__images img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---------- Key Solutions — single continuous rounded panel ---------- */
+
+.atj2-solutions {
+  background-color: var(--atj2-accent-dark);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .atj2-solutions {
+    border-radius: 48px;
+  }
+}
+
+.atj2-solutions__heading {
+  padding: 32px 20px 0;
+}
+
+@media (min-width: 1024px) {
+  .atj2-solutions__heading {
+    padding: 48px 80px 0;
+  }
+}
+
+.atj2-solutions__heading h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 1.1;
+  letter-spacing: var(--h1-letter-spacing);
+  color: var(--color-white);
+  margin: 0;
+}
+
+@media (min-width: 1024px) {
+  .atj2-solutions__heading h2 {
+    font-size: 64px;
+  }
+}
+
+.atj2-solution {
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+@media (min-width: 1024px) {
+  .atj2-solution {
+    padding: 48px 80px;
+    gap: 48px;
+  }
+
+  /* Figma's 3 solution groups sit back-to-back with no extra gap between
+     them — each block's own bottom padding is the only separator, so
+     drop the next block's top padding to avoid doubling it. */
+  .atj2-solution + .atj2-solution {
+    padding-top: 0;
+  }
+}
+
+.atj2-solution__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.2;
+  color: var(--color-white);
+  margin: 0;
+}
+
+@media (min-width: 1024px) {
+  .atj2-solution__title {
+    font-size: 40px;
+  }
+}
+
+.atj2-solution__media-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.atj2-solution__media-block h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.atj2-solution__media-block p {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.atj2-solution__row {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+@media (min-width: 1024px) {
+  .atj2-solution__row {
+    gap: 24px;
+    justify-content: center;
+    overflow-x: visible;
+  }
+}
+
+.atj2-solution__row--start {
+  justify-content: flex-start;
+}
+
+.atj2-solution__phone {
+  flex: 0 0 auto;
+  width: 160px;
+  aspect-ratio: 262 / 535;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 2px 2px 18px rgba(24, 20, 19, 0.12);
+}
+
+@media (min-width: 768px) {
+  .atj2-solution__phone {
+    width: 200px;
+  }
+}
+
+.atj2-solution__phone img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.atj2-solution__wide {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 2px 2px 18px rgba(24, 20, 19, 0.12);
+}
+
+.atj2-solution__wide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Modifier for pre-composed local assets whose own soft drop-shadow is
+   already baked into the raster (verified via alpha-channel sampling) —
+   no CSS card treatment on top, or it would double the shadow. */
+.atj2-solution__wide--flat {
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
+}
+
+/* Pre-composed multi-screen filmstrip assets (Onboarding, Menu,
+   Questionnaire) — each is a single image with several phone mockups
+   already laid out on a transparent canvas with generous padding
+   between them. Rendered plain: a card-style radius/shadow around the
+   whole bounding box would show as a phantom rectangle over that
+   transparent padding, not around the phones themselves. */
+.atj2-solution__filmstrip {
+  width: 100%;
+}
+
+.atj2-solution__filmstrip img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.atj2-solution__crop-row {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-start;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+@media (min-width: 1024px) {
+  .atj2-solution__crop-row {
+    justify-content: center;
+    overflow-x: visible;
+  }
+}
+
+.atj2-solution__crop {
+  flex: 0 0 auto;
+  width: 160px;
+  aspect-ratio: 262 / 534;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 2px 2px 18px rgba(24, 20, 19, 0.12);
+}
+
+@media (min-width: 768px) {
+  .atj2-solution__crop {
+    width: 220px;
+  }
+}
+
+.atj2-solution__crop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.atj2-solution__crop--top img {
+  object-position: center top;
+}
+
+.atj2-solution__crop--mid img {
+  object-position: center 50%;
+}
+
+.atj2-solution__crop--bottom img {
+  object-position: center bottom;
+}
+
+/* ---------- SMB Result — two independently scrolling phone previews
+   (Figma "mockup-s": Left side 1 / Right side 1). The right phone is
+   deliberately offset lower than the left one (Figma "Right side 1.2"
+   is 372px lower, relative to a 726.9px-tall reference frame — ~51% of
+   its own height, reproduced per breakpoint below since CSS percentage
+   margins resolve against the container's width, not an element's own
+   height, and can't express this offset directly). ---------- */
+
+.atj2-smb-mockup {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+@media (min-width: 1024px) {
+  .atj2-smb-mockup {
+    gap: 24px;
+    overflow-x: visible;
+  }
+}
+
+.atj2-smb-mockup__phone {
+  flex: 0 0 auto;
+  width: 160px;
+}
+
+@media (min-width: 768px) {
+  .atj2-smb-mockup__phone {
+    width: 220px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .atj2-smb-mockup__phone {
+    /* Figma exact: "Paste design image here" is 321.125px wide at the
+       1120px content-width reference. */
+    width: 321px;
+  }
+}
+
+.atj2-smb-mockup__phone--right {
+  margin-top: 185px;
+}
+
+@media (min-width: 768px) {
+  .atj2-smb-mockup__phone--right {
+    margin-top: 255px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .atj2-smb-mockup__phone--right {
+    margin-top: 372px;
+  }
+}
+
+.atj2-smb-mockup__viewport {
+  width: 100%;
+  aspect-ratio: 321.125 / 697.368;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 2px 2px 18px rgba(24, 20, 19, 0.12);
+  position: relative;
+}
+
+.atj2-smb-mockup__body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  display: block;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atj2-smb-mockup__body {
+    transform: none !important;
+  }
+}
+
+/* ---------- UI Kit / Design System ---------- */
+
+.atj2-uikit__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 1024px) {
+  .atj2-uikit__grid {
+    flex-direction: row;
+  }
+}
+
+.atj2-uikit__grid p {
+  flex: 1;
+  color: var(--color-deep-text);
+  margin: 0;
+}
+
+.atj2-uikit__illustration {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  background-color: #ececec;
+}
+
+.atj2-uikit__illustration a {
+  display: block;
+}
+
+.atj2-uikit__illustration img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.atj2-uikit__link {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--color-deep-text);
+  margin: 0 0 32px;
+}
+
+.atj2-uikit__link a {
+  color: var(--color-unibrand, #3072f5);
+  text-decoration: underline;
+}
+
+/* ---------- Other Core Features ---------- */
+
+.atj2-features {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.atj2-features__row {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .atj2-features__row {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .atj2-features__row--reverse {
+    flex-direction: row-reverse;
+  }
+}
+
+.atj2-features__text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1 1 33%;
+}
+
+.atj2-features__title {
+  color: var(--color-deep-text);
+  margin: 0;
+}
+
+.atj2-features__body {
+  color: var(--color-subtle-text);
+  margin: 0;
+}
+
+.atj2-features__media {
+  flex: 1 1 62%;
+  width: 100%;
+}
+
+/* No CSS card treatment: all 4 images used here (Survey body, Multi-user,
+   Term Glossary, Diagnostic Cabinet) are pre-composed local assets with
+   their own soft drop-shadow already baked into the raster (verified via
+   alpha-channel sampling) — an added CSS shadow would double it. */
+.atj2-features__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.atj2-features__media--split {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+}
+
+.atj2-features__media--split > div {
+  flex: 0 0 auto;
+  width: 45%;
+  max-width: 262px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 2px 2px 18px rgba(24, 20, 19, 0.12);
+}
+
+.atj2-features__media--split img {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Notifications feature — small stacked status cards, reproduced as
+   plain HTML/CSS (Figma builds this from a live component library, not
+   a flat image) using the exported status icons. */
+.atj2-notif {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Notification-specific pop in/out — see js/notif-reveal.js. Distinct
+   from the general reveal system on purpose: it re-fires every time a
+   card crosses the viewport (appears going down, clears going back up),
+   and adds a slight scale so it reads as a status message arriving/
+   clearing rather than a generic section reveal. */
+.notif-anim {
+  opacity: 0;
+  transform: translateY(16px) scale(0.94);
+  transition: opacity 480ms cubic-bezier(0.16, 1, 0.3, 1), transform 480ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.notif-anim.is-shown {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notif-anim {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.atj2-notif__card {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 14px;
+  border-radius: 14px;
+  border: 4px solid var(--color-white);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.atj2-notif__card--info {
+  background-color: #e6edff;
+}
+
+.atj2-notif__card--warning {
+  background-color: #fffbe9;
+}
+
+.atj2-notif__card--success {
+  background-color: #eafbee;
+}
+
+.atj2-notif__icon-wrap {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background-color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.atj2-notif__icon-wrap img {
+  width: 16px;
+  height: 16px;
+}
+
+.atj2-notif__title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0 0 4px;
+}
+
+.atj2-notif__card--info .atj2-notif__title {
+  color: #002e9c;
+}
+
+.atj2-notif__card--warning .atj2-notif__title {
+  color: #897200;
+}
+
+.atj2-notif__card--success .atj2-notif__title {
+  color: #1a8234;
+  margin-bottom: 0;
+}
+
+.atj2-notif__text {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: #676d77;
+  margin: 0;
+}
+
+/* ---------- Results ---------- */
+
+.atj2-results {
+  background-color: var(--atj2-accent-dark);
+  border-radius: 16px;
+  padding: 32px 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .atj2-results {
+    padding: 48px;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.atj2-results__text {
+  flex: 1 1 68%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 1024px) {
+  .atj2-results__text {
+    /* Figma text column is 809px within the 1120-wide panel — the
+       mascot is now absolutely positioned (intentional overflow), so
+       constrain the text explicitly instead of letting it expand into
+       the space the mascot used to reserve as a flex sibling. */
+    max-width: 809px;
+  }
+}
+
+.atj2-results__text h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 40px;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.atj2-results__lead {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.atj2-results__text p:not(.atj2-results__lead) {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 25px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+.atj2-results__mascot {
+  display: none;
+}
+
+/* Figma: x=818 y=73.486 w=350 h=439 within a 1120-wide Frame 1 — right
+   edge sits 48px past the panel's own right edge, bottom edge ~116px
+   past the panel's bottom edge, continuing down toward What's Next.
+   Intentional overflow: no clipping container here, so it's covered
+   only by whatever paints after it (the next section). Only shown at
+   >=1280px (not the usual >=1024px): below that, --page-px shrinks to
+   32px and this fixed 48px right-overflow would push past the actual
+   viewport edge — real page overflow, not just local/intentional. */
+@media (min-width: 1280px) {
+  .atj2-results__mascot {
+    display: block;
+    position: absolute;
+    top: 73px;
+    right: -48px;
+    width: 350px;
+    height: auto;
+  }
+}
+
+/* ---------- What's Next / What I Would Do Differently ---------- */
+
+.atj2-next {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .atj2-next {
+    flex-direction: row;
+  }
+}
+
+.atj2-next__col {
+  flex: 1;
+  border-left: 3px solid var(--atj2-accent);
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.atj2-next__col h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--color-deep-text);
+  margin: 0;
+}
+
+.atj2-next__col p {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 25px;
+  color: var(--color-subtle-text);
+  margin: 0;
+}
+
+/* ---------- Live Questionnaire (Question Selection) ----------
+   A real, live HTML/CSS reproduction of the product UI shown in Figma
+   node 433:31780 ("Place here" viewport) / 433:31783 ("Body"), used so
+   the internal Body can be scroll-animated instead of shipping a flat
+   screenshot. This is deliberately its OWN visual language (Fixel Text,
+   product neutrals/blue) — NOT the ATJ2 portfolio system (Sora/Inter,
+   portfolio blue) — per the product-UI-inside-a-portfolio distinction.
+
+   Sizing: every value below is the exact px Figma reports for this
+   component instance (already Figma-scaled ~0.777x from its own base
+   4/8/16/24 spacing tokens — reproduced as-measured, not re-derived).
+   Values are expressed as min(Ncqw, Npx): Ncqw keeps every element
+   perfectly proportional to Figma as the component's own container
+   shrinks (mirrors exactly what Figma did when this instance was
+   resized), min() caps growth at the exact Figma px so nothing exceeds
+   spec on wide viewports. There is no readability floor by design — at
+   very narrow widths this scales down like a flat mockup image would,
+   matching how every other product-screenshot media block on this page
+   already behaves on mobile. */
+
+.atj2-questionnaire {
+  container-type: inline-size;
+  --q-font: "Fixel Text", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --q-bg-main: #f5f5f6;
+  --q-bg-card: #ffffff;
+  --q-bg-disabled: #ebeced;
+  --q-text-main: #0f1828;
+  --q-text-secondary: #3c4451;
+  --q-text-tertiary: #676d77;
+  --q-text-disabled: #9599a0;
+  --q-border-input: #c0c2c7;
+  --q-accent: #244199;
+
+  --q-title-size: min(2.222cqw, 24.86px);
+  --q-title-lh: min(2.778cqw, 31.074px);
+  --q-tag-size: min(0.864cqw, 9.66px);
+  --q-qtitle-size: min(0.971cqw, 10.86px);
+  --q-qtitle-lh: min(1.403cqw, 15.691px);
+  --q-body-size: min(0.864cqw, 9.66px);
+  --q-body-lh: min(1.295cqw, 14.484px);
+
+  --q-radius-card: min(1.111cqw, 12.43px);
+  --q-radius-input: min(0.5556cqw, 6.215px);
+  --q-radius-badge: min(0.2778cqw, 3.107px);
+  --q-radius-round: min(1.789cqw, 20px);
+
+  --q-sp-4: min(0.2778cqw, 3.107px);
+  --q-sp-6: min(0.4167cqw, 4.661px);
+  --q-sp-8: min(0.5556cqw, 6.215px);
+  --q-sp-12: min(0.8333cqw, 9.322px);
+  --q-sp-16: min(1.111cqw, 12.43px);
+  --q-sp-20: min(1.389cqw, 15.537px);
+  --q-sp-24: min(1.667cqw, 18.645px);
+
+  --q-border-w: min(0.0695cqw, 0.777px);
+}
+
+.atj2-questionnaire__viewport {
+  width: 100%;
+  aspect-ratio: 1118.68 / 1230.55;
+  overflow: hidden;
+  border-radius: min(2.146cqw, 24px);
+  background-color: var(--q-bg-main);
+  box-shadow: 2px 2px 18px rgba(24, 20, 19, 0.12);
+  position: relative;
+}
+
+/* Static browser chrome — literal reproduction of Figma node 433:31800:
+   real exported icon assets at their measured positions (not invented
+   glyphs), sitting above the scroll area so the animated Body (below)
+   visually disappears "underneath" it as it translates up. Font is the
+   one deliberate exception here (per instruction): SF Pro isn't
+   available, so this panel alone uses -apple-system/system-ui instead
+   of the questionnaire's --q-font — colors and every position/size are
+   Figma's exact measured values, not approximated. */
+.atj2-questionnaire__chrome {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: min(5.417cqw, 60.595px);
+  z-index: 2;
+  border-radius: min(2.146cqw, 24px) min(2.146cqw, 24px) 0 0;
+  overflow: hidden;
+  font-family: -apple-system, "SF Pro Text", system-ui, "Segoe UI", Roboto, sans-serif;
+}
+
+.atj2-questionnaire__topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: min(2.917cqw, 32.628px);
+  background-color: #dfe1e5;
+  box-shadow: inset 0 0.5px 0.5px rgba(255, 255, 255, 0.75);
+}
+
+.atj2-questionnaire__dot {
+  position: absolute;
+  top: min(1.041cqw, 11.65px);
+  width: min(0.8333cqw, 9.322px);
+  height: min(0.8333cqw, 9.322px);
+}
+
+.atj2-questionnaire__dot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.atj2-questionnaire__dot--close {
+  left: min(1.458cqw, 16.31px);
+}
+
+.atj2-questionnaire__dot--min {
+  left: min(2.847cqw, 31.85px);
+}
+
+.atj2-questionnaire__dot--zoom {
+  left: min(4.237cqw, 47.39px);
+}
+
+.atj2-questionnaire__tab {
+  position: absolute;
+  top: min(0.5556cqw, 6.215px);
+  left: min(5.834cqw, 65.256px);
+  width: min(17.919cqw, 200.431px);
+  height: min(2.361cqw, 26.414px);
+  overflow: hidden;
+}
+
+.atj2-questionnaire__tab-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.atj2-questionnaire__favicon {
+  position: absolute;
+  top: min(0.625cqw, 6.992px);
+  left: min(1.458cqw, 16.314px);
+  width: min(1.111cqw, 12.43px);
+  height: min(1.111cqw, 12.43px);
+  border-radius: 3px;
+  object-fit: cover;
+}
+
+.atj2-questionnaire__tab-title {
+  position: absolute;
+  top: min(0.6944cqw, 7.769px);
+  left: min(3.125cqw, 34.959px);
+  max-width: min(11.8cqw, 132px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: min(1.073cqw, 12px);
+  line-height: 1;
+  color: #3c4043;
+}
+
+.atj2-questionnaire__tab-close {
+  position: absolute;
+  top: min(0.8856cqw, 9.906px);
+  left: min(15.885cqw, 177.707px);
+  width: min(0.5903cqw, 6.603px);
+  height: min(0.5903cqw, 6.603px);
+}
+
+.atj2-questionnaire__newtab {
+  position: absolute;
+  top: min(1.319cqw, 14.76px);
+  left: min(24.239cqw, 271.125px);
+  width: min(0.8334cqw, 9.323px);
+  height: min(0.8334cqw, 9.323px);
+}
+
+.atj2-questionnaire__tabs-arrow {
+  position: absolute;
+  top: min(1.580cqw, 17.674px);
+  left: min(98.207cqw, 1098.607px);
+  width: min(0.5903cqw, 6.603px);
+  height: min(0.3472cqw, 3.884px);
+}
+
+.atj2-questionnaire__addressbar {
+  position: absolute;
+  top: min(2.917cqw, 32.628px);
+  left: 0;
+  right: 0;
+  height: min(2.5cqw, 27.967px);
+  background-color: #ffffff;
+  box-shadow: 0 1px 0 0 #dbdcdd;
+}
+
+.atj2-questionnaire__back,
+.atj2-questionnaire__forward {
+  position: absolute;
+  top: min(0.8161cqw, 9.129px);
+  width: min(0.8855cqw, 9.905px);
+  height: min(0.8333cqw, 9.322px);
+}
+
+.atj2-questionnaire__back {
+  left: min(1.0937cqw, 12.236px);
+}
+
+.atj2-questionnaire__forward {
+  left: min(3.298cqw, 36.901px);
+}
+
+.atj2-questionnaire__refresh {
+  position: absolute;
+  top: min(0.7986cqw, 8.934px);
+  left: min(5.520cqw, 61.76px);
+  width: min(0.9375cqw, 10.487px);
+  height: min(0.9028cqw, 10.1px);
+}
+
+.atj2-questionnaire__pill {
+  position: absolute;
+  top: min(0.2778cqw, 3.108px);
+  left: min(7.500cqw, 83.901px);
+  width: min(87.259cqw, 976.057px);
+  height: min(1.9445cqw, 21.752px);
+  background-color: #f0f3f4;
+  border-radius: min(1.251cqw, 14px);
+}
+
+.atj2-questionnaire__padlock {
+  position: absolute;
+  top: min(0.625cqw, 6.992px);
+  left: min(0.9723cqw, 10.876px);
+  width: min(0.5556cqw, 6.215px);
+  height: min(0.7292cqw, 8.157px);
+}
+
+.atj2-questionnaire__pill .atj2-questionnaire__url {
+  position: absolute;
+  top: min(0.4167cqw, 4.661px);
+  left: min(2.3611cqw, 26.413px);
+  font-size: min(1.2516cqw, 14px);
+  /* Figma text box is 13px tall for a 14px font — a tight line-height
+     is required, or the inherited (much larger) body line-height pads
+     the line box and visually pushes the glyphs down from `top`. */
+  line-height: 1;
+  letter-spacing: 0.2px;
+  color: #202124;
+  white-space: nowrap;
+}
+
+.atj2-questionnaire__share {
+  position: absolute;
+  top: min(0.4861cqw, 5.438px);
+  left: min(83.28cqw, 931.719px);
+  width: min(1.0069cqw, 11.264px);
+  height: min(1.0069cqw, 11.264px);
+}
+
+.atj2-questionnaire__share2 {
+  position: absolute;
+  top: min(0.5253cqw, 5.877px);
+  left: min(83.90cqw, 938.653px);
+  width: min(0.6712cqw, 7.51px);
+  height: min(0.923cqw, 10.326px);
+}
+
+.atj2-questionnaire__star {
+  position: absolute;
+  top: min(0.4514cqw, 5.05px);
+  left: min(85.46cqw, 956.106px);
+  width: min(1.0567cqw, 11.821px);
+  height: min(1.0050cqw, 11.243px);
+}
+
+.atj2-questionnaire__avatar {
+  position: absolute;
+  top: min(3.4029cqw, 38.066px);
+  left: min(95.510cqw, 1068.504px);
+  width: min(1.5277cqw, 17.091px);
+  height: min(1.5277cqw, 17.091px);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.atj2-questionnaire__menu {
+  position: absolute;
+  top: min(3.715cqw, 41.562px);
+  left: min(98.394cqw, 1100.744px);
+  width: min(0.2084cqw, 2.331px);
+  height: min(0.9028cqw, 10.1px);
+}
+
+.atj2-questionnaire__scroll {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.atj2-questionnaire__body {
+  width: min(56.68cqw, 633.919px);
+  margin: 0 auto;
+  padding: min(5.417cqw, 60.595px) 0 min(1.667cqw, 18.645px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--q-sp-16);
+  will-change: transform;
+}
+
+/* Every rule below is scoped under .atj2-questionnaire (not just the bare
+   .atj2-q-* class) so its specificity reliably beats ancestor rules like
+   .atj2-solution__media-block p / h3 (which set color/font-size for ANY
+   plain <p>/<h3> in this part of the page) — those were silently
+   clobbering this component's text color and type before this fix. */
+
+.atj2-questionnaire .atj2-q-card {
+  background-color: var(--q-bg-card);
+  border-radius: var(--q-radius-card);
+  padding: var(--q-sp-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--q-sp-16);
+  width: 100%;
+}
+
+.atj2-questionnaire .atj2-q-card--title {
+  gap: var(--q-sp-16);
+  padding-bottom: min(1.667cqw, 18.645px);
+}
+
+.atj2-questionnaire .atj2-q-title {
+  font-family: var(--q-font);
+  font-weight: 600;
+  font-size: var(--q-title-size);
+  line-height: var(--q-title-lh);
+  letter-spacing: -0.02em;
+  color: var(--q-text-main);
+  margin: 0;
+}
+
+.atj2-questionnaire .atj2-q-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  background-color: var(--q-bg-main);
+  border-radius: var(--q-radius-badge);
+  padding: var(--q-sp-4) var(--q-sp-8);
+  font-family: var(--q-font);
+  font-weight: 500;
+  font-size: var(--q-tag-size);
+  line-height: min(1.295cqw, 14.484px);
+  color: var(--q-text-main);
+}
+
+.atj2-questionnaire .atj2-q-qtitle {
+  font-family: var(--q-font);
+  font-weight: 600;
+  font-size: var(--q-qtitle-size);
+  line-height: var(--q-qtitle-lh);
+  letter-spacing: -0.006em;
+  color: var(--q-text-main);
+  margin: 0;
+}
+
+.atj2-questionnaire .atj2-q-caption {
+  font-family: var(--q-font);
+  font-weight: 500;
+  font-size: var(--q-body-size);
+  line-height: var(--q-body-lh);
+  letter-spacing: -0.005em;
+  color: var(--q-text-tertiary);
+  margin: 0;
+}
+
+.atj2-questionnaire .atj2-q-radios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--q-sp-12);
+  padding: var(--q-sp-16) 0;
+}
+
+.atj2-questionnaire .atj2-q-radios--vertical {
+  flex-direction: column;
+}
+
+.atj2-questionnaire .atj2-q-radios--horizontal {
+  flex-direction: row;
+  align-items: center;
+}
+
+.atj2-questionnaire .atj2-q-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--q-sp-4);
+  font-family: var(--q-font);
+  font-weight: 500;
+  font-size: var(--q-body-size);
+  line-height: var(--q-body-lh);
+  color: var(--q-text-main);
+}
+
+.atj2-questionnaire .atj2-q-radio__dot {
+  flex-shrink: 0;
+  width: min(1.667cqw, 18.645px);
+  height: min(1.667cqw, 18.645px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.atj2-questionnaire .atj2-q-radio__dot::before {
+  content: "";
+  display: block;
+  width: min(0.9722cqw, 10.876px);
+  height: min(0.9722cqw, 10.876px);
+  border-radius: 50%;
+  border: var(--q-border-w) solid var(--q-border-input);
+}
+
+.atj2-questionnaire .atj2-q-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--q-sp-12);
+  padding: var(--q-sp-16) 0;
+  width: 100%;
+}
+
+.atj2-questionnaire .atj2-q-checkbox {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--q-sp-4);
+  font-family: var(--q-font);
+  font-weight: 500;
+  font-size: var(--q-body-size);
+  line-height: var(--q-body-lh);
+  color: var(--q-text-main);
+}
+
+.atj2-questionnaire .atj2-q-checkbox__box {
+  flex-shrink: 0;
+  width: min(1.111cqw, 12.43px);
+  height: min(1.111cqw, 12.43px);
+  margin: min(0.2778cqw, 3.107px);
+  border-radius: 2px;
+  border: var(--q-border-w) solid var(--q-border-input);
+  background-color: var(--q-bg-card);
+}
+
+.atj2-questionnaire .atj2-q-field-label {
+  font-family: var(--q-font);
+  font-weight: 600;
+  font-size: var(--q-qtitle-size);
+  line-height: var(--q-qtitle-lh);
+  letter-spacing: -0.006em;
+  color: var(--q-text-secondary);
+  margin: 0;
+  padding-bottom: var(--q-sp-16);
+}
+
+.atj2-questionnaire .atj2-q-field {
+  width: 100%;
+  box-sizing: border-box;
+  border: var(--q-border-w) solid var(--q-border-input);
+  border-radius: var(--q-radius-input);
+  padding: var(--q-sp-12) var(--q-sp-16);
+  font-family: var(--q-font);
+  font-weight: 400;
+  font-size: var(--q-qtitle-size);
+  line-height: var(--q-body-lh);
+  color: var(--q-text-tertiary);
+  background-color: var(--q-bg-card);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atj2-questionnaire__body {
+    transition: none !important;
+  }
+}
+
+/* ---------- Reviews + CTA (shared component, same treatment as the
+   other two case studies — dark backdrop panel) ---------- */
+
+.case-reviews-cta {
+  background-color: var(--color-dark-alien);
+}

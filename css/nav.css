@@ -6,6 +6,7 @@
   (see docs/Portfolio_Data_Inventory.md).
 */
 
+/* UI: GLOBAL-NAV-01 | Site navigation | inspect/adjust */
 .site-nav {
   display: flex;
   align-items: center;
@@ -30,15 +31,13 @@
   flex-shrink: 0;
 }
 
-.nav-logo__glow {
-  position: absolute;
-  inset: -35%;
-  width: auto;
-  height: auto;
-  z-index: 0;
-  pointer-events: none;
-}
-
+/*
+  Requested 2026-08-25: replace the exported glow SVG with a soft
+  CSS shadow in #C31188. drop-shadow (not box-shadow) so the glow
+  follows the avatar PNG's own transparent silhouette instead of its
+  rectangular bounding box. Applies to every "nav-logo__avatar" use
+  on the site (Nav + Footer share this class).
+*/
 .nav-logo__avatar {
   position: relative;
   z-index: 1;
@@ -46,6 +45,7 @@
   height: 40px;
   object-fit: cover;
   margin: 0 auto;
+  filter: drop-shadow(0 0 6px #c31188);
 }
 
 .nav-logo__text {
@@ -70,6 +70,20 @@
   color: var(--color-white);
   letter-spacing: -0.0032px;
   white-space: nowrap;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+/*
+  Hover added 2026-08-25, verified against Figma's "Menu button"
+  component set (2:15301) — Hover variant: purple-light text +
+  underline. The set also has an "Active" (current-page) variant in
+  pink, not implemented here — that needs route/section detection,
+  which is out of scope for a hover-only pass.
+*/
+.nav-links__link:hover {
+  color: var(--color-purple-light);
+  text-decoration: underline;
 }
 
 .nav-cta {
@@ -85,6 +99,15 @@
   font-size: 18px;
   color: var(--color-white);
   white-space: nowrap;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+/* Hover added 2026-08-25, verified against Figma "Button Second" (2:15357) — nav-cta shares that visual style. */
+.nav-cta:hover {
+  background-color: #181413;
+  border-color: #6a5aba;
+  color: var(--color-cta-purple);
 }
 
 .nav-toggle {

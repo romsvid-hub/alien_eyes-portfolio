@@ -35,6 +35,16 @@
   --color-unibrand: #3072f5;
   --color-atj-accent: #c44323;
 
+  /*
+    Raw hex observed repeatedly on Home (2:13410) — hero/CTA buttons,
+    impact-stat numbers, reviews progress bar. Not a named Figma
+    variable (confirmed via get_variable_defs — see
+    docs/Portfolio_Data_Inventory.md); distinct from the named
+    "Purple Light" token (#9A73FF). Added here because it repeats
+    3+ times, not invented.
+  */
+  --color-cta-purple: #7b61ff;
+
   /* Typography — font families */
   --font-display: "Sora", sans-serif;
   --font-body: "Inter", sans-serif;

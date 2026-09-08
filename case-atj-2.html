@@ -1,0 +1,985 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ATJ DEI Audit — Modular Diagnostic Service | Alien Eyes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/typography.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/buttons.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/case-atj-2.css" />
+  </head>
+  <body class="case-page atj2-page">
+    <!-- UI: GLOBAL-NAV-01 | Site navigation | shared component, reused unchanged -->
+    <nav class="site-nav">
+      <a class="nav-logo" href="index.html">
+        <span class="nav-logo__icon">
+          <img class="nav-logo__avatar" src="assets/icons/logo-avatar.png" alt="" />
+        </span>
+        <span class="nav-logo__text">Alien Eyes</span>
+      </a>
+
+      <div class="nav-links">
+        <a class="nav-links__link" href="index.html#case-studies">Case Studies</a>
+        <a class="nav-links__link" href="index.html#feedbacks">Feedbacks</a>
+      </div>
+
+      <a class="nav-cta" href="#">Download CV</a>
+
+      <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+    </nav>
+
+    <main>
+      <!-- UI: CASE03-HERO-01 | Hero | matches Figma "Hero" (418:31417) | draft asset, easy to replace -->
+      <section class="atj2-hero" data-reveal>
+        <div class="atj2-hero__media">
+          <!-- IMAGE: laptop mockup on photo background | draft asset from Figma, swap via src -->
+          <img src="assets/case-atj-2/figma/hero-bg-photo.png" alt="ATJ DEI Audit result dashboard shown on a laptop" />
+        </div>
+        <div class="atj2-hero__content">
+          <h1 class="atj2-hero__title">ATJ DEI Audit</h1>
+          <p class="body-large atj2-hero__desc">
+            Turned a heavy business process into a digital service,
+            companies complete a diagnostic and find out exactly where
+            they stand on readiness to hire veterans and people with
+            disabilities.
+          </p>
+          <div class="atj2-hero__meta-row">
+            <!-- IMAGE: mascot icon | draft asset from Figma -->
+            <img class="atj2-hero__mascot" src="assets/case-atj-2/figma/hero-mascot.png" alt="" aria-hidden="true" />
+            <ul class="atj2-hero__meta">
+              <li>Role: UX Designer</li>
+              <li>Team: DEI methodologist, developer, UX copywriter</li>
+              <li>Tools: Claude, Figma, FigJam</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE03-CONTEXT-01 | Context (Source / Goal) | matches Figma "Context - Selection" (418:31428) -->
+      <section class="atj2-section">
+        <p class="atj2-eyebrow atj2-eyebrow--lg" data-reveal>Context</p>
+        <div class="atj2-context__grid" data-reveal-group>
+          <div class="atj2-context__col">
+            <h3>Source:</h3>
+            <p class="body-main">
+              The organization came with an inclusivity questionnaire
+              containing roughly 300 unstructured questions in a Google
+              Sheet. It was a data-heavy, user-unfriendly format that
+              failed to account for the different needs of businesses.
+            </p>
+            <p class="body-main">
+              I turned it into a modular digital product: 15–16
+              structured sections and a complete path for enterprise
+              clients, plus a separate, shortened 30–40 question version
+              for small and medium-sized businesses — instead of one
+              fixed scope for everyone.
+            </p>
+          </div>
+          <div class="atj2-context__col">
+            <h3>Goal:</h3>
+            <p class="body-main">
+              Move inclusivity assessment out of Google Forms and Excel
+              sheets into a digital service. Two core users: enterprise
+              clients completing a full diagnostic as part of a
+              corporate process, and small-to-medium businesses
+              completing a lighter version on their own initiative.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE03-HEROSELECT-01 | Before / After | matches Figma "Hero - Selection" (418:31438) -->
+      <section class="atj2-section">
+        <div class="atj2-heroselect" data-reveal-group>
+          <div class="atj2-heroselect__block">
+            <h3>Before:</h3>
+            <p class="body-main">Raw table data dumped straight on the user.</p>
+            <div class="atj2-heroselect__media">
+              <!-- IMAGE: composite illustration (messy sheet + annotations + mascot) | draft asset from Figma -->
+              <img src="assets/case-atj-2/figma/contrast-before.png" alt="Raw, unstructured questionnaire in a Google Sheet, annotated as hard to track and navigate" />
+            </div>
+          </div>
+          <div class="atj2-heroselect__block">
+            <h3>After:</h3>
+            <p class="body-main">The complex questionnaire became a modular system.</p>
+            <div class="atj2-heroselect__after-media">
+              <!-- IMAGE: modular audit body screenshot | draft asset from Figma -->
+              <img class="atj2-heroselect__main" src="assets/case-atj-2/figma/contrast-after-main.png" alt="Modular audit body with sidebar, progress and welcome message" />
+              <!-- IMAGE: mascot accent | draft asset from Figma -->
+              <img class="atj2-heroselect__accent" src="assets/case-atj-2/figma/contrast-after-accent.png" alt="" aria-hidden="true" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE03-FACTS-01 | Facts | matches Figma "Facts - Selection" (418:31451) -->
+      <section class="atj2-section">
+        <div class="atj2-facts" data-reveal-group>
+          <div class="atj2-facts__item">
+            <h3>~300 Questions</h3>
+            <p class="body-main">In total audit form</p>
+          </div>
+          <div class="atj2-facts__item">
+            <h3>Two Product tracks</h3>
+            <p class="body-main">Enterprise, and Small Medium Business,</p>
+          </div>
+          <div class="atj2-facts__item">
+            <h3>18 User interviews</h3>
+            <p class="body-main">7 Enterprise, + 11 SMB</p>
+          </div>
+          <div class="atj2-facts__item">
+            <h3>4 Key Decisions</h3>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE03-SCOPE-01 | My Scope | matches Figma "My Scope - Selection" (418:31464) -->
+      <section class="atj2-section">
+        <p class="atj2-eyebrow atj2-eyebrow--lg" data-reveal>My Scope</p>
+        <div class="atj2-scope__grid" data-reveal-group>
+          <div class="atj2-scope__col">
+            <h3>Role:</h3>
+            <p class="body-main">
+              I served as Lead UX Designer on the project. The team also
+              included a methodologist (question content and scoring
+              criteria), a developer (implementation), and a UX
+              copywriter (text elements, microcopy).
+            </p>
+            <p class="body-main">
+              My area of responsibility: research, information
+              architecture, wireflows, UI built on an existing design
+              system I developed during a previous collaboration, and
+              taking the large audit through to a clickable prototype.
+            </p>
+          </div>
+          <div class="atj2-scope__col">
+            <h3>Constraints:</h3>
+            <p class="body-main">
+              A fixed budget and timeline led me to ship a first MVP
+              generation, meant I couldn't measure impact metrics, and
+              left the Employee Survey at the hypothesis and basic
+              user-flow stage.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE03-DECISION-ACCESSIBILITY-01 | Key Decisions – Accessibility | matches Figma "Key Decision - Section" (418:31474) -->
+      <section class="atj2-section">
+        <p class="h2-section atj2-decision__heading" data-reveal>Key Decisions - Accessibility</p>
+        <div class="atj2-decision">
+          <div class="atj2-decision__grid" data-reveal-group>
+            <div class="atj2-decision__card">
+              <h4>Problem</h4>
+              <p>
+                The audit is taken by people of varying technical skill
+                and ability; legal terminology and visual noise raise
+                anxiety and the risk of dropping out midway.
+              </p>
+            </div>
+            <div class="atj2-decision__card">
+              <h4>Solution</h4>
+              <p>
+                Minimum 4.5:1 text contrast, visible focus indicators on
+                every interactive element for progress and errors, and no
+                jarring animations or flashes between steps.
+              </p>
+            </div>
+            <div class="atj2-decision__card">
+              <h4>Why?</h4>
+              <p>
+                A product about inclusivity that isn't itself accessible
+                undermines its own stated mission — this isn't a separate
+                checkbox, it's a direct consequence of the project's own
+                theme.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE03-CHALLENGE-01 | The Challenge | matches Figma "Challenge - Section" (418:31487) -->
+      <section class="atj2-section atj2-section--challenge">
+        <div class="atj2-challenge" data-reveal>
+          <p class="atj2-challenge__eyebrow">The Challenge</p>
+          <div class="atj2-challenge__content">
+            <div class="atj2-challenge__card">
+              <h3>One architecture, two audiences</h3>
+              <p>
+                ~300 questions in a plain-text table the team called it
+                "a <strong>nightmare</strong>." One base architecture had
+                to serve two audiences: large businesses complete it
+                regardless, but SMBs, doing it on their own time, drop
+                off the moment it feels like unnecessary evaluation.
+                <strong>That's why the next focus is Small Medium
+                Business (SMB).</strong>
+              </p>
+              <!-- IMAGE: browser sheet accent (top-right, near-flush per Figma "Mascot accent shape", formerly "Before 1") | draft asset from Figma -->
+              <img class="atj2-challenge__illustration" src="assets/case-atj-2/figma/challenge-sheet-badge.png" alt="" aria-hidden="true" />
+              <!-- IMAGE: mascot accent — intentionally overflows the card's right/bottom edge per
+                   Figma "Mascot illustration" (formerly "ChatGPT Image 7 серп. 2026 р., 13_19_51 1"); clipped by the gradient block -->
+              <img class="atj2-challenge__mascot" src="assets/case-atj-2/figma/challenge-mascot-crop.png" alt="" aria-hidden="true" />
+            </div>
+            <div class="atj2-challenge__context">
+              <h3>Audit of the initial state:</h3>
+              <ul>
+                <li>No sense of scope or timing upfront.</li>
+                <li>No modularity, same question set for everyone.</li>
+                <li>No saved progress, no completing it in stages.</li>
+                <li>Google Sheet format doesn't scale across segments.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE03-RESEARCH-01 | Research | matches Figma "Research - Selection" (418:31505) -->
+      <section class="atj2-section">
+        <p class="atj2-eyebrow atj2-eyebrow--lg" data-reveal>Research</p>
+        <div class="atj2-research__grid" data-reveal-group>
+          <div>
+            <h3>Methods:</h3>
+            <p class="body-main">
+              Analog testing (learning platforms with modular test flows,
+              a government service analog as a benchmark for scope and
+              structure), in-depth interviews (7 large-business
+              companies, 11 SMB representatives), a quantitative SMB
+              survey (71 responses), and desk research for the Employee
+              Survey (22 segments of evidence on trust and behavior in
+              anonymous surveys).
+            </p>
+          </div>
+          <div>
+            <h3>Data processing:</h3>
+            <p class="body-main">
+              The volume of research material (the quantitative survey
+              and interview transcripts) was too large for manual
+              analysis, so initial structuring went through Claude (Figma
+              MCP), followed by manual synthesis in FigJam.
+            </p>
+          </div>
+        </div>
+
+        <p class="atj2-research__label">Analogs referenced:</p>
+        <div class="atj2-logos" data-reveal-group>
+          <a class="atj2-logos__item" href="https://business.diia.gov.ua/home/inclusion" target="_blank" rel="noopener">
+            <img src="assets/case-atj-2/figma/logo-diia.png" alt="Diia Business" />
+          </a>
+          <a class="atj2-logos__item" href="https://cei.org.ua/" target="_blank" rel="noopener">
+            <img src="assets/case-atj-2/figma/logo-cei.png" alt="CEI" />
+          </a>
+          <a class="atj2-logos__item" href="https://www.opsizo.eu/sat-emp.php" target="_blank" rel="noopener">
+            <img src="assets/case-atj-2/figma/logo-opsizo.png" alt="Opsizo" />
+          </a>
+          <a class="atj2-logos__item" href="https://www.cultureamp.com/" target="_blank" rel="noopener">
+            <img src="assets/case-atj-2/figma/logo-cultureamp.png" alt="Culture Amp" />
+          </a>
+          <a class="atj2-logos__item" href="https://diversio.com/" target="_blank" rel="noopener">
+            <img src="assets/case-atj-2/figma/logo-diversio.png" alt="Diversio" />
+          </a>
+        </div>
+
+        <p class="atj2-research__label">Hypotheses (Hypothesis Canvas):</p>
+        <div class="atj2-research__hypotheses" data-reveal-group>
+          <p class="body-main">
+            Several product hypotheses were formulated for SMB. After
+            team discussion, one was rejected unanimously, and two others
+            were merged into one, based on every team member
+            independently choosing elements from those two.
+          </p>
+          <p class="body-main">
+            As a compromise for SMB, the team chose to follow the
+            architecture and logic of the large-business flow, with
+            certain reductions and simplifications specific to the SMB
+            audience. This decision satisfies UX needs while also
+            streamlining development and rollout.
+          </p>
+        </div>
+
+        <div class="atj2-research__images" data-reveal-group>
+          <!-- IMAGE: Hypothesis Canvas board | draft asset from Figma -->
+          <div><img src="assets/case-atj-2/figma/research-wf1.png" alt="Hypothesis Canvas board — rejected and merged hypotheses" /></div>
+          <!-- IMAGE: mid-stage architecture flow diagram | draft asset from Figma -->
+          <div><img src="assets/case-atj-2/figma/research-wf2.png" alt="Mid-stage architectural construction flow diagram" /></div>
+          <!-- IMAGE: final deep-structure wireflow diagram | draft asset from Figma -->
+          <div><img src="assets/case-atj-2/figma/research-wf3.png" alt="Final deep structure wireflow diagram" /></div>
+        </div>
+      </section>
+
+      <!-- UI: CASE03-SOLUTIONS-01 | Key Solutions — single continuous panel | matches Figma "Solution - Section" (418:31546) -->
+      <section class="atj2-section">
+        <div class="atj2-solutions">
+          <div class="atj2-solutions__heading" data-reveal>
+            <h2>Key Solutions</h2>
+          </div>
+
+          <!-- Onboarding & Screening -->
+          <div class="atj2-solution">
+            <h3 class="atj2-solution__title" data-reveal>Progressive journey, not a full list upfront</h3>
+            <div class="atj2-decision atj2-decision--on-blue">
+              <div class="atj2-decision__grid" data-reveal-group>
+                <div class="atj2-decision__card">
+                  <h4>Problem</h4>
+                  <p>
+                    The ~300-question Google Sheet gave users no sense of
+                    scope or steps ahead of time. In interviews, the
+                    company Auchan said directly: it was unclear whether
+                    supporting documents were needed for each answer,
+                    which stretched completion out to 1–3 weeks.
+                  </p>
+                </div>
+                <div class="atj2-decision__card">
+                  <h4>Solution</h4>
+                  <p>
+                    I designed an onboarding flow that clearly explains
+                    time and steps, screening questions (10–20) that
+                    narrow the visible scope to relevant sections, and a
+                    sidebar showing progress as a percentage plus the
+                    weight of each step.
+                  </p>
+                </div>
+                <div class="atj2-decision__card">
+                  <h4>Why?</h4>
+                  <p>
+                    Showing the full scope upfront with no explanation of
+                    structure was the main source of uncertainty
+                    described by interview respondents.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="atj2-solution__media-block" data-reveal>
+              <h3>Onboarding</h3>
+              <p>Explains time and steps, and clarify other specifics before the user starts.</p>
+              <div class="atj2-solution__filmstrip">
+                <img src="assets/case-atj-2/figma/onboarding-filmstrip.png" alt="Onboarding flow: diagnostic overview, side panel and glossary explanation, assessment levels, and organization-tailoring questions — steps 1 to 4 of 4" />
+              </div>
+            </div>
+
+            <div class="atj2-solution__media-block" data-reveal>
+              <h3>Side menu</h3>
+              <p>Shows only the sections relevant to this organization — the rest stays out of view.</p>
+              <div class="atj2-solution__filmstrip">
+                <img src="assets/case-atj-2/figma/menu-filmstrip.png" alt="Section menu with progress and completed sections, and a single diagnostic question screen" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Modular Architecture -->
+          <div class="atj2-solution">
+            <h3 class="atj2-solution__title" data-reveal>Modular Architecture for the SMB Questionnaire</h3>
+            <div class="atj2-decision atj2-decision--on-blue">
+              <div class="atj2-decision__grid" data-reveal-group>
+                <div class="atj2-decision__card">
+                  <h4>Problem</h4>
+                  <p>
+                    The quantitative survey (71 responses) showed only 9%
+                    of SMBs want the full audit with recommendations, 47%
+                    want a checklist, and 41% want a step-by-step guide.
+                    The full scope of the large audit (roughly 400
+                    questions) would scare this audience away.
+                  </p>
+                </div>
+                <div class="atj2-decision__card">
+                  <h4>Solution</h4>
+                  <p>
+                    I built a modular architecture: 4–5 entry questions
+                    automatically select the relevant company sections
+                    instead of a fixed full questionnaire. Scope is
+                    reduced to 30–40 questions depending on the selected
+                    set.
+                  </p>
+                </div>
+                <div class="atj2-decision__card">
+                  <h4>Why?</h4>
+                  <p>
+                    The survey showed SMBs want lighter commitment, not a
+                    full assessment. Modularity keeps depth only where
+                    relevant. Results show as a level, not a percentage
+                    or red, even when low, so a wary audience isn't
+                    discouraged.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="atj2-solution__media-block">
+              <h3>Question Selection</h3>
+              <p>The screening step narrows ~300 questions down to the sections that actually apply to this organization.</p>
+              <!-- LIVE UI: reproduces Figma node 433:31780 (viewport) / 433:31783 (Body) in real HTML/CSS,
+                   so the Body can be scroll-animated instead of shipping a flat screenshot. See
+                   js/questionnaire-scroll.js for the animation; static screenshot asset kept at
+                   assets/case-atj-2/figma/modular-form.png (unused here, still referenced from the
+                   discrepancy report) in case a flat fallback is ever needed again. -->
+              <div class="atj2-questionnaire" data-questionnaire role="img" aria-label="Preview of the organization-tailoring questionnaire: ownership type, veteran-partnership status, workforce composition and accessibility questions, and a team-invitation step, shown mid-flow at step 4 of 4">
+                <div class="atj2-questionnaire__viewport">
+                  <!-- Static browser chrome — a literal reproduction of Figma node
+                       433:31800 (exact asset icons + measured positions, not an
+                       invented approximation). Stays fixed while the Body layer
+                       beneath it scrolls, per node 433:31783. -->
+                  <div class="atj2-questionnaire__chrome" aria-hidden="true">
+                    <div class="atj2-questionnaire__topbar">
+                      <span class="atj2-questionnaire__dot atj2-questionnaire__dot--close"><img src="assets/case-atj-2/chrome/btn-close.svg" alt="" /></span>
+                      <span class="atj2-questionnaire__dot atj2-questionnaire__dot--min"><img src="assets/case-atj-2/chrome/btn-minimise.svg" alt="" /></span>
+                      <span class="atj2-questionnaire__dot atj2-questionnaire__dot--zoom"><img src="assets/case-atj-2/chrome/btn-zoom.svg" alt="" /></span>
+                      <span class="atj2-questionnaire__tab">
+                        <img class="atj2-questionnaire__tab-bg" src="assets/case-atj-2/chrome/tab-shape.svg" alt="" />
+                        <img class="atj2-questionnaire__favicon" src="assets/case-atj-2/chrome/favicon.png" alt="" />
+                        <span class="atj2-questionnaire__tab-title">Alltogether.jobs</span>
+                        <img class="atj2-questionnaire__tab-close" src="assets/case-atj-2/chrome/close.svg" alt="" />
+                      </span>
+                      <img class="atj2-questionnaire__newtab" src="assets/case-atj-2/chrome/new-tab.svg" alt="" />
+                      <img class="atj2-questionnaire__tabs-arrow" src="assets/case-atj-2/chrome/tabs-arrow.svg" alt="" />
+                    </div>
+                    <div class="atj2-questionnaire__addressbar">
+                      <img class="atj2-questionnaire__back" src="assets/case-atj-2/chrome/back-arrow.svg" alt="" />
+                      <img class="atj2-questionnaire__forward" src="assets/case-atj-2/chrome/forward-arrow.svg" alt="" />
+                      <img class="atj2-questionnaire__refresh" src="assets/case-atj-2/chrome/refresh.svg" alt="" />
+                      <span class="atj2-questionnaire__pill">
+                        <img class="atj2-questionnaire__padlock" src="assets/case-atj-2/chrome/padlock.svg" alt="" />
+                        <span class="atj2-questionnaire__url">alltogether.jobs</span>
+                        <img class="atj2-questionnaire__share" src="assets/case-atj-2/chrome/share-1.svg" alt="" />
+                        <img class="atj2-questionnaire__share2" src="assets/case-atj-2/chrome/share-2.svg" alt="" />
+                        <img class="atj2-questionnaire__star" src="assets/case-atj-2/chrome/favourite.svg" alt="" />
+                      </span>
+                    </div>
+                    <img class="atj2-questionnaire__avatar" src="assets/case-atj-2/chrome/avatar.png" alt="" />
+                    <img class="atj2-questionnaire__menu" src="assets/case-atj-2/chrome/menu.svg" alt="" />
+                  </div>
+                  <div class="atj2-questionnaire__scroll">
+                  <div class="atj2-questionnaire__body" data-q-body aria-hidden="true">
+
+                    <div class="atj2-q-card atj2-q-card--title">
+                      <h4 class="atj2-q-title">Let's tailor the questions and recommendations to your organization</h4>
+                      <span class="atj2-q-tag">Step 4 of 4</span>
+                    </div>
+
+                    <div class="atj2-q-card">
+                      <p class="atj2-q-qtitle">What is your organization's form of ownership?</p>
+                      <div class="atj2-q-radios atj2-q-radios--vertical">
+                        <span class="atj2-q-radio"><span class="atj2-q-radio__dot"></span>Private</span>
+                        <span class="atj2-q-radio"><span class="atj2-q-radio__dot"></span>State-owned</span>
+                        <span class="atj2-q-radio"><span class="atj2-q-radio__dot"></span>Municipal</span>
+                        <span class="atj2-q-radio"><span class="atj2-q-radio__dot"></span>Mixed</span>
+                      </div>
+                    </div>
+
+                    <div class="atj2-q-card">
+                      <p class="atj2-q-qtitle">Has your organization signed the «Veteran-Friendly Business Principles»?</p>
+                      <p class="atj2-q-caption">This is a declaration of Ukrainian business's readiness to act in the interest of fair support for our servicemembers and their families in all areas. Learn more here <a href="https://businessforveterans.org.ua/" target="_blank" rel="noopener">https://businessforveterans.org.ua/</a>.</p>
+                      <div class="atj2-q-radios atj2-q-radios--horizontal">
+                        <span class="atj2-q-radio"><span class="atj2-q-radio__dot"></span>Yes</span>
+                        <span class="atj2-q-radio"><span class="atj2-q-radio__dot"></span>Applied</span>
+                        <span class="atj2-q-radio"><span class="atj2-q-radio__dot"></span>No</span>
+                      </div>
+                    </div>
+
+                    <div class="atj2-q-card">
+                      <p class="atj2-q-qtitle">Number of employed veterans hired from outside the organization</p>
+                      <p class="atj2-q-caption">(This information is not published and is used solely for diagnostic purposes)</p>
+                      <p class="atj2-q-caption">A veteran is a person discharged from military service, regardless of combat participation. We also include people with combat experience in this category, even if they do not have official veteran status.</p>
+                      <div class="atj2-q-field">For example: 10</div>
+                    </div>
+
+                    <div class="atj2-q-card">
+                      <p class="atj2-q-qtitle">Number of employees who returned to the organization after being discharged from military service</p>
+                      <div class="atj2-q-field">For example: 10</div>
+                    </div>
+
+                    <div class="atj2-q-card">
+                      <p class="atj2-q-qtitle">Number of mobilized employees</p>
+                      <div class="atj2-q-field">For example: 10</div>
+                    </div>
+
+                    <div class="atj2-q-card">
+                      <p class="atj2-q-qtitle">Number of people with disabilities</p>
+                      <div class="atj2-q-field">For example: 10</div>
+                    </div>
+
+                    <div class="atj2-q-card">
+                      <p class="atj2-q-qtitle">Number of people aged 60+</p>
+                      <div class="atj2-q-field">For example: 10</div>
+                    </div>
+
+                    <div class="atj2-q-card">
+                      <p class="atj2-q-qtitle">Number of internally displaced persons</p>
+                      <div class="atj2-q-field">For example: 10</div>
+                    </div>
+
+                    <div class="atj2-q-card">
+                      <p class="atj2-q-qtitle">If people with disabilities work at your organization, which disabilities specifically? (optional question)</p>
+                      <p class="atj2-q-caption">You can select multiple options</p>
+                      <div class="atj2-q-checkboxes">
+                        <span class="atj2-q-checkbox"><span class="atj2-q-checkbox__box"></span>Visual impairment</span>
+                        <span class="atj2-q-checkbox"><span class="atj2-q-checkbox__box"></span>Hearing impairment</span>
+                        <span class="atj2-q-checkbox"><span class="atj2-q-checkbox__box"></span>Musculoskeletal impairment</span>
+                        <span class="atj2-q-checkbox"><span class="atj2-q-checkbox__box"></span>Mental impairment</span>
+                        <span class="atj2-q-checkbox"><span class="atj2-q-checkbox__box"></span>Invisible disability (e.g., diabetes or cardiovascular disease)</span>
+                        <span class="atj2-q-checkbox"><span class="atj2-q-checkbox__box"></span>Prosthesis use</span>
+                      </div>
+                      <p class="atj2-q-field-label">Or with other</p>
+                      <div class="atj2-q-field">Specify which ones</div>
+                    </div>
+
+                    <div class="atj2-q-card">
+                      <p class="atj2-q-qtitle">Would you like to complete the section on service accessibility?</p>
+                      <p class="atj2-q-caption">It's optional, but relevant for service-oriented organizations. It helps determine whether you're considering the needs of different people in your service, and get recommendations.</p>
+                      <div class="atj2-q-radios atj2-q-radios--horizontal">
+                        <span class="atj2-q-radio"><span class="atj2-q-radio__dot"></span>Yes</span>
+                        <span class="atj2-q-radio"><span class="atj2-q-radio__dot"></span>No</span>
+                      </div>
+                    </div>
+
+                    <div class="atj2-q-card">
+                      <p class="atj2-q-qtitle">Would you like to take the diagnostic with colleagues?</p>
+                      <p class="atj2-q-caption">You may need help from colleagues in different departments to fill out sections that match their expertise. Enter their emails, and we'll send them an invitation.</p>
+                      <div class="atj2-q-field">Email</div>
+                    </div>
+
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="atj2-solution__media-block" data-reveal>
+              <h3>Questionnaire (Diagnostic)</h3>
+              <p>One section per screen, with progress and navigation always visible — no wall of questions to scroll through.</p>
+              <div class="atj2-solution__filmstrip">
+                <!-- IMAGE: one raster asset still contains Ukrainian text ("Розпочати") — kept as-is per instruction; swap in an English version when available -->
+                <img src="assets/case-atj-2/figma/questionnaire-filmstrip.png" alt="Choose your sections screen, congratulations on starting your diagnosis, a section question screen, and the diagnostic terms glossary sidebar" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Section Levels -->
+          <div class="atj2-solution">
+            <h3 class="atj2-solution__title" data-reveal>Section Levels Instead of an Overall Percentage (SMB)</h3>
+            <div class="atj2-decision atj2-decision--on-blue">
+              <div class="atj2-decision__grid" data-reveal-group>
+                <div class="atj2-decision__card">
+                  <h4>Problem</h4>
+                  <p>
+                    A single overall percentage would let companies
+                    compare themselves to each other, but it doesn't fit
+                    the modular approach: different companies complete
+                    different sets of sections, so a direct percentage
+                    comparison would be misleading.
+                  </p>
+                </div>
+                <div class="atj2-decision__card">
+                  <h4>Solution</h4>
+                  <p>
+                    I replaced the overall percentage with a qualitative
+                    level per completed section, with no single final
+                    score. SMB also got a dedicated focus on smartphone
+                    use.
+                  </p>
+                </div>
+                <div class="atj2-decision__card">
+                  <h4>Why?</h4>
+                  <p>
+                    Removes the "you're at 60%, so you're bad" effect and
+                    matches the modular structure. A conscious trade-off:
+                    comparing companies against each other and any public
+                    benchmark are both ruled out by this decision.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="atj2-solution__media-block" data-reveal>
+              <h3>Enterprise Result</h3>
+              <p>Shows an overall percentage score.</p>
+              <div class="atj2-solution__wide atj2-solution__wide--flat">
+                <img src="assets/case-atj-2/figma/enterprise-result.png" alt="Enterprise result screen with an overall percentage score, strengths, growth areas and recommendations" />
+              </div>
+            </div>
+
+            <div class="atj2-solution__media-block">
+              <h3>Small Medium Business Result</h3>
+              <p>Shows qualitative levels per section, not a score.</p>
+              <!-- LIVE SCROLL: two independent phone viewports (Figma "mockup-s" /
+                   "Left side 1" / "Right side 1"), each clipping a tall screenshot
+                   that scroll-animates in place — see js/smb-scroll.js. The right
+                   phone is deliberately offset lower than the left one (Figma
+                   "Right side 1.2" y-offset), not a layout bug. -->
+              <div class="atj2-smb-mockup">
+                <div class="atj2-smb-mockup__phone atj2-smb-mockup__phone--left">
+                  <div class="atj2-smb-mockup__viewport">
+                    <img class="atj2-smb-mockup__body" data-smb-body src="assets/case-atj-2/figma/smb-result-left.png" alt="SMB result screen: level summary, strengths, growth areas, and section recommendations" />
+                  </div>
+                </div>
+                <div class="atj2-smb-mockup__phone atj2-smb-mockup__phone--right">
+                  <div class="atj2-smb-mockup__viewport">
+                    <img class="atj2-smb-mockup__body" data-smb-body src="assets/case-atj-2/figma/smb-result-right.png" alt="Diagnostics dashboard: badge, strengths, growth areas, and completed diagnostics list" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE03-UIKIT-01 | Design System / AI usage | matches Figma "UI Kit - Selection" (418:31630) -->
+      <section class="atj2-section">
+        <p class="atj2-eyebrow atj2-eyebrow--lg" data-reveal>Design System / AI usage</p>
+        <div class="atj2-uikit__grid" data-reveal-group>
+          <p class="body-main">
+            The product is built on an existing, already
+            <strong>accessible design system</strong> created before
+            this phase of work began. I adapted and extended components
+            for new screens (onboarding, the progress sidebar, result
+            cards) without changing the system's base tokens.
+          </p>
+          <p class="body-main">
+            AI in the process. The large audit's clickable prototype was
+            assembled through <strong>Figma Make</strong> (an AI tool)
+            based on an approved wireflow and existing design-system
+            components. AI did not generate the interface from scratch,
+            I used it to assemble and arrange already-designed screens
+            into a clickable prototype.
+          </p>
+          <p class="body-main">
+            I didn't read the raw research data (the quantitative
+            survey, interview transcripts) manually line by line -
+            <strong>Claude</strong> structured it into tables. But
+            selecting and filtering the final hypotheses from those
+            tables was my own decision, not an automatic AI conclusion.
+          </p>
+        </div>
+
+        <!-- IMAGE: design-system foundation sheet | draft asset from Figma -->
+        <div class="atj2-uikit__illustration" data-reveal>
+          <a href="https://www.figma.com/design/a42eTgy6hzjmFWrVymHdfG/ATJ-copy-_Main_design_file?node-id=1-6&t=juXXjvmDWBSKsdZh-1" target="_blank" rel="noopener">
+            <img src="assets/case-atj-2/figma/uikit-illustration1-fixed.png" alt="Design system foundation: radius, colors, typography, spacing, layout, icons, tone of voice" />
+          </a>
+        </div>
+        <p class="atj2-uikit__link">Foundation - <a href="https://www.figma.com/design/a42eTgy6hzjmFWrVymHdfG/ATJ-copy-_Main_design_file?node-id=1-6&t=juXXjvmDWBSKsdZh-1" target="_blank" rel="noopener">Link</a></p>
+
+        <!-- IMAGE: design-system components sheet | draft asset from Figma -->
+        <div class="atj2-uikit__illustration" data-reveal>
+          <a href="https://www.figma.com/design/a42eTgy6hzjmFWrVymHdfG/ATJ-copy-_Main_design_file?node-id=1-10&t=juXXjvmDWBSKsdZh-1" target="_blank" rel="noopener">
+            <img src="assets/case-atj-2/figma/uikit-illustration2-fixed.png" alt="Design system components: buttons, inputs, form elements, modals, navigation, tags, tabs, radio, checkbox" />
+          </a>
+        </div>
+        <p class="atj2-uikit__link">Components - <a href="https://www.figma.com/design/a42eTgy6hzjmFWrVymHdfG/ATJ-copy-_Main_design_file?node-id=1-10&t=juXXjvmDWBSKsdZh-1" target="_blank" rel="noopener">Link</a></p>
+      </section>
+
+      <!-- UI: CASE03-FEATURES-01 | Other Core Features | matches Figma "Section — Other Core Features" (418:31640) -->
+      <section class="atj2-section">
+        <p class="atj2-eyebrow atj2-eyebrow--lg" data-reveal>Other Core Features</p>
+        <div class="atj2-features">
+          <div class="atj2-features__row" data-reveal>
+            <div class="atj2-features__text">
+              <p class="h3-case-study atj2-features__title">Notifications</p>
+              <p class="body-main atj2-features__body">
+                The system keeps the user informed throughout the
+                process: confirms current status, clarifies legal and
+                factual deadlines, and warns about possible gaps without
+                blocking the main flow. If the user leaves the service, a
+                reminder to complete the questionnaire is sent by email.
+              </p>
+            </div>
+            <div class="atj2-features__media">
+              <!-- Reproduced as HTML/CSS status cards, not a flat image — Figma builds this from a live component library. Icons are real exported assets. -->
+              <div class="atj2-notif" data-notif-stagger>
+                <div class="atj2-notif__card atj2-notif__card--info">
+                  <span class="atj2-notif__icon-wrap"><img src="assets/case-atj-2/figma/icon-info.svg" alt="" /></span>
+                  <div>
+                    <p class="atj2-notif__title">Your answers are saved for 30 days</p>
+                    <p class="atj2-notif__text">Complete the diagnostic within this time so you don't have to start over.</p>
+                  </div>
+                </div>
+                <div class="atj2-notif__card atj2-notif__card--warning">
+                  <span class="atj2-notif__icon-wrap"><img src="assets/case-atj-2/figma/icon-warning.svg" alt="" /></span>
+                  <div>
+                    <p class="atj2-notif__title">Please note</p>
+                    <p class="atj2-notif__text">You have an unfinished section 3 «Digital accessibility». You can return to it at any time.</p>
+                  </div>
+                </div>
+                <div class="atj2-notif__card atj2-notif__card--info">
+                  <span class="atj2-notif__icon-wrap"><img src="assets/case-atj-2/figma/icon-scale.svg" alt="" /></span>
+                  <div>
+                    <p class="atj2-notif__title">A veteran is a person discharged from military service, regardless of combat participation. We also include people with combat experience in this category, even if they do not have official status as a veteran.</p>
+                    <p class="atj2-notif__text">Definitions within the diagnostic</p>
+                  </div>
+                </div>
+                <div class="atj2-notif__card atj2-notif__card--success">
+                  <span class="atj2-notif__icon-wrap"><img src="assets/case-atj-2/figma/icon-check.svg" alt="" /></span>
+                  <p class="atj2-notif__title">The «Metrics monitoring» section is complete. Thank you for your time and attention to this topic.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="atj2-features__row" data-reveal>
+            <div class="atj2-features__media">
+              <img src="assets/case-atj-2/figma/survey-body.png" alt="Audit body with sidebar, welcome message and section progress" />
+            </div>
+            <div class="atj2-features__text">
+              <p class="h3-case-study atj2-features__title">Survey body</p>
+              <p class="body-main atj2-features__body">
+                The complex questionnaire became a modular system. The
+                base pattern is borrowed from EdTech platforms, the same
+                analogs referenced in Research: questions split into
+                sections, step-by-step progression with navigation,
+                visible progress, and free choice of question order. This
+                removes the feeling of one endless questionnaire.
+              </p>
+            </div>
+          </div>
+
+          <div class="atj2-features__row" data-reveal>
+            <div class="atj2-features__text">
+              <p class="h3-case-study atj2-features__title">Multi-user</p>
+              <p class="body-main atj2-features__body">
+                By default, at registration, a user can create a team and
+                invite colleagues to complete the questionnaire together,
+                speeding up the process in larger companies. If disputed
+                or borderline answers remain after completion, they're
+                surfaced to the primary user for a final decision.
+              </p>
+            </div>
+            <div class="atj2-features__media">
+              <img src="assets/case-atj-2/figma/multiuser.png" alt="Screen showing colleagues' answers differ, with a discrepancy resolution flow" />
+            </div>
+          </div>
+
+          <div class="atj2-features__row" data-reveal>
+            <div class="atj2-features__media">
+              <img src="assets/case-atj-2/figma/term-glossary-filmstrip.png" alt="Inline glossary — typing a term into the search field, and the term definition shown inline" />
+            </div>
+            <div class="atj2-features__text">
+              <p class="h3-case-study atj2-features__title">Term Glossary</p>
+              <p class="body-main atj2-features__body">
+                The process uses specific terms that aren't always
+                familiar to the audience, especially SMB. So we added a
+                glossary directly in the section menu: explanations stay
+                one click away, without leaving the main flow.
+              </p>
+            </div>
+          </div>
+
+          <div class="atj2-features__row" data-reveal>
+            <div class="atj2-features__text">
+              <p class="h3-case-study atj2-features__title">Diagnostic Cabinet</p>
+              <p class="body-main atj2-features__body">
+                The user's profile includes a diagnostics dashboard — all
+                current and past diagnostics are stored there. Users can
+                track progress, download the documents they need, or
+                resume a paused questionnaire.
+              </p>
+            </div>
+            <div class="atj2-features__media">
+              <img src="assets/case-atj-2/figma/diagnostic-cabinet.png" alt="Diagnostics dashboard with current result, in-progress and completed diagnostics" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE03-RESULTS-01 | Results | matches Figma "Section — Results" (418:31692) -->
+      <section class="atj2-section">
+        <div class="atj2-results" data-reveal>
+          <div class="atj2-results__text">
+            <h2>Results</h2>
+            <p class="atj2-results__lead">
+              The ~300-question survey became a modular service: two-stage
+              filtering (10–20 screening questions → ~15–16 relevant
+              sections) narrows the scope to each specific company.
+              Completion is staged, with pauses between sessions, without
+              losing progress.
+            </p>
+            <p>
+              A dashboard, navigation, and notifications (including email
+              reminder on exit) keep the user in context. The product is
+              mobile-adaptive, with a focus on accessibility a direct
+              consequence of the project's theme, not an add-on.
+            </p>
+            <p>
+              In parallel, I refined the UI on the existing design system
+              and interviewed methodologists and developers, this let me
+              revisit part of the initial hypotheses and build an
+              architecture suited to a two-platform service.
+            </p>
+          </div>
+          <!-- IMAGE: mascot illustration | draft asset from Figma -->
+          <img class="atj2-results__mascot" src="assets/case-atj-2/figma/results-mascot.png" alt="" aria-hidden="true" />
+        </div>
+      </section>
+
+      <!-- UI: CASE03-NEXT-01 | What's Next / What I Would Do Differently | matches Figma "Section — What's Next" (418:31701) -->
+      <section class="atj2-section">
+        <div class="atj2-next" data-reveal-group>
+          <div class="atj2-next__col">
+            <h3>What's next?</h3>
+            <p>
+              Time constraints meant I didn't get to build a separate app
+              for internal inclusivity — a logical direction to continue.
+            </p>
+            <p>
+              A more important next step is working with real data after
+              launch: completion results, user behavior, iterating the
+              questionnaire based on facts, not just hypotheses.
+            </p>
+          </div>
+          <div class="atj2-next__col">
+            <h3>What I would do differently</h3>
+            <p>
+              I'd have focused harder on SMB from the start large
+              businesses complete the questionnaire even with weaker UX,
+              since it's part of their process; SMBs lose motivation more
+              easily.
+            </p>
+            <p>
+              I'd have dug deeper into funnel analytics and looked at the
+              service's overall architecture earlier, I started with the
+              questionnaire and only saw the wider system later. I'd have
+              paid more attention to team formation and roles from day
+              one, instead of adapting to an already-formed process.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: HOME-REVIEWS-01 | Reviews carousel | shared component, reused unchanged -->
+      <section class="home-section case-reviews-cta" id="feedbacks">
+        <h2 class="h2-section reviews-heading" data-reveal>Reviews:</h2>
+        <div class="reviews-carousel" data-reveal>
+          <button
+            class="reviews-arrow reviews-arrow--prev"
+            type="button"
+            aria-label="Previous review"
+            aria-controls="review-slide"
+          >
+            <svg viewBox="0 0 49.5818 71.9599" fill="none" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M37.5211 4.0415C36.5477 4.0473 35.6104 4.44612 34.8971 5.15772L4.01164 35.9709C4.01081 35.9717 4.00974 35.9723 4.00857 35.9724L4.00252 35.9733C4.00025 35.9736 3.99942 35.9765 4.00116 35.978L4.00131 35.9781C4.00248 35.9791 4.00248 35.9809 4.00131 35.9819C3.99961 35.9833 4.00053 35.9861 4.00276 35.9863L4.00855 35.9867C4.00972 35.9868 4.01082 35.9873 4.01165 35.9881L34.8971 66.8022C35.6103 67.5138 36.5478 67.9126 37.5211 67.9185L44.5741 67.9599C45.4662 67.9651 45.9181 66.8882 45.2895 66.2552L15.9202 36.6847C15.5329 36.2947 15.5329 35.6653 15.9202 35.2753L45.2895 5.70474C45.9181 5.07179 45.4662 3.99483 44.5741 4.00007L37.5211 4.0415Z"
+              />
+            </svg>
+          </button>
+
+          <div class="review-slide" id="review-slide" aria-live="polite" aria-atomic="true" data-default-review="Olga Novykova">
+            <div>
+              <p class="h3-case-study review-slide__name">Olga Novykova</p>
+              <p class="body-large review-slide__role">CEO &amp; Founder</p>
+            </div>
+            <p class="body-main review-slide__quote">
+              We worked with Roman on the Alltogether.jobs project, where he
+              led the UI and UX design for our platform. Roman conducted
+              in-depth user research, helped structure complex information,
+              and translated it into a clear product vision. He designed the
+              system architecture and a thoughtful design system, which we
+              are now actively implementing. We highly recommend Roman as a
+              professional who deeply understands business needs and
+              delivers effective solutions.
+            </p>
+            <button type="button" class="review-slide__link">
+              <img src="assets/icons/icon-linkedin-small.svg" alt="" />
+              View
+            </button>
+          </div>
+
+          <button
+            class="reviews-arrow reviews-arrow--next"
+            type="button"
+            aria-label="Next review"
+            aria-controls="review-slide"
+          >
+            <svg viewBox="0 0 49.5818 71.9599" fill="none" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M12.0609 4.04145C13.0343 4.04725 13.9716 4.44606 14.6849 5.15766L45.5704 35.9708C45.5712 35.9717 45.5723 35.9722 45.5734 35.9724L45.5795 35.9732C45.5818 35.9736 45.5826 35.9764 45.5809 35.9779L45.5807 35.978C45.5795 35.979 45.5795 35.9808 45.5807 35.9818C45.5824 35.9833 45.5815 35.9861 45.5793 35.9862L45.5735 35.9866C45.5723 35.9867 45.5712 35.9872 45.5704 35.988L14.6849 66.8022C13.9717 67.5137 13.0342 67.9125 12.0609 67.9184L5.00792 67.9598C4.11585 67.9651 3.66388 66.8881 4.29253 66.2552L33.6618 36.6846C34.0491 36.2947 34.0491 35.6652 33.6618 35.2752L4.29253 5.70469C3.66389 5.07174 4.11585 3.99478 5.00792 4.00002L12.0609 4.04145Z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="reviews-progress" aria-hidden="true">
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment is-active"></span>
+          <span class="reviews-progress__segment"></span>
+        </div>
+
+        <!-- UI: HOME-CTA-01 | CTA block | shared component, reused unchanged -->
+        <div class="cta-section" data-reveal>
+          <h2 class="h2-section cta-heading">Ready to architect your next product?</h2>
+          <p class="body-large cta-description">
+            Open for complex challenges and leadership roles. Select time to
+            call and Hire Me below.
+          </p>
+          <a
+            class="btn btn--primary"
+            href="https://calendar.app.google/CUCg9pmqeG8U3nfM7"
+            target="_blank"
+            rel="noopener"
+          >
+            Book a Call
+            <img class="btn__icon" src="assets/icons/icon-arrow-right.svg" alt="" />
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- UI: GLOBAL-FOOTER-01 | Site footer | shared component, reused unchanged -->
+    <footer class="site-footer">
+      <img class="site-footer__bg" src="assets/images/footer-bg.svg" alt="" aria-hidden="true" />
+      <div class="site-footer__row site-footer__row--top">
+        <a class="nav-logo" href="index.html">
+          <span class="nav-logo__icon">
+            <img class="nav-logo__avatar" src="assets/icons/logo-avatar.png" alt="" />
+          </span>
+          <span class="nav-logo__text">Alien Eyes</span>
+        </a>
+
+        <div class="site-footer__social">
+          <a href="https://www.instagram.com/romsvid/" target="_blank" rel="noopener">
+            <img src="assets/icons/social-instagram.svg" alt="Instagram" />
+          </a>
+          <a href="https://www.linkedin.com/in/romsvid/" target="_blank" rel="noopener">
+            <img src="assets/icons/social-linkedin.svg" alt="LinkedIn" />
+          </a>
+          <a href="https://t.me/Rmsddddd" target="_blank" rel="noopener">
+            <img src="assets/icons/social-telegram.svg" alt="Telegram" />
+          </a>
+        </div>
+      </div>
+
+      <div class="site-footer__row site-footer__row--bottom">
+        <p class="body-main site-footer__copyright">© 2026 Roman Sviderskyi</p>
+        <p class="body-main site-footer__contact">
+          +380 97 334 9540&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:svidddrommm25@gmail.com"
+            >svidddrommm25@gmail.com</a
+          >
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+    <script src="js/reviews.js"></script>
+    <script src="js/questionnaire-scroll.js"></script>
+    <script src="js/smb-scroll.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="js/notif-reveal.js"></script>
+  </body>
+</html>

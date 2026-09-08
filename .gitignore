@@ -1,0 +1,9 @@
+.DS_Store
+**/.DS_Store
+.claude/
+
+# Raw image staging folders — not site assets, just local drops before
+# files get placed into assets/<case>/
+ATJ 1 Images/
+ATJ 2 Images/
+Uniqkey 1 Images/

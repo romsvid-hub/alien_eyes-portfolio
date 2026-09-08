@@ -10,6 +10,7 @@
   copyright+contact row) at the same 80px page margin used elsewhere.
 */
 
+/* UI: GLOBAL-FOOTER-01 | Site footer | inspect/adjust */
 .site-footer {
   position: relative;
   overflow: hidden;
@@ -17,13 +18,19 @@
   padding: 24px 80px;
 }
 
+/*
+  Fixed 2026-08-25: was fixed at 1280px and centered, so it never
+  reached the screen edges below 1280px viewports (clipped by
+  .site-footer's overflow:hidden) and left empty space beyond 1280px
+  on wider screens. The source SVG is preserveAspectRatio="none" (a
+  plain stroked rectangle), so stretching it to 100% width is safe —
+  no distortion risk the way a photo would have.
+*/
 .site-footer__bg {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1280px;
-  max-width: none;
+  left: 0;
+  width: 100%;
   height: 256px;
   z-index: 0;
   pointer-events: none;
@@ -47,6 +54,27 @@
   display: flex;
   align-items: center;
   gap: 38px;
+}
+
+/*
+  Hover added 2026-08-25. Figma's "Social link" icons (2:15077 etc.)
+  have no Hover variant defined — unlike every other interactive
+  element in this file, they're single-state static icons. A uniform
+  recolor-to-purple (this site's usual hover convention) isn't safe
+  here: the LinkedIn icon is a two-tone badge (white background +
+  #373737 glyph), so recoloring only one fill would look broken next
+  to the single-color Instagram/Telegram icons. Scale/opacity feedback
+  works the same regardless of an icon's own color makeup, so it's
+  used for all three instead of inventing a Figma-unspecified color.
+*/
+.site-footer__social a {
+  display: inline-flex;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.site-footer__social a:hover {
+  transform: scale(1.12);
+  opacity: 0.8;
 }
 
 .site-footer__social a img {

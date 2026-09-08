@@ -1,0 +1,1313 @@
+/*
+  ATJ Case Study — "Inclusive AI-Driven Hiring Platform" (Figma fileKey
+  DU3fuTo8QXIJ0uMcI3jh91, node 2:13802, live content frame 2:13812) —
+  verified via get_metadata + get_design_context on 2:13813, 2:13829,
+  2:13855, 2:13863, 2:13879, 2:13940, 2:13963, 2:14010, 2:14042, 2:14066,
+  2:14088, 2:14121, 2:14139, 2:14145, 2:14149, 2:14164.
+
+  This is a full working-implementation pass, not a pixel-perfect
+  visual-refinement pass (per brief) — layout/content/structure match
+  Figma; some decorative sub-elements (a wavy connector line behind the
+  Research stat cards, a decorative frame behind the Insight image) were
+  simplified/omitted since they are decorative only and add significant
+  implementation cost for no structural value.
+
+  Case-specific only: does not touch home.css/nav.css/footer.css/tokens.css.
+  Reuses --page-px (home.css) for the same 12/8/4-column margin system,
+  and .h1-display/.h2-section/.h3-case-study/.body-large/.body-main
+  (typography.css) since Figma's verified type scale matches exactly.
+*/
+
+.atj-page {
+  background-color: var(--color-main-canvas);
+  color: var(--color-deep-text);
+}
+
+/* ---------- Shared primitives ---------- */
+
+.atj-section {
+  padding: 48px var(--page-px);
+}
+
+@media (min-width: 1024px) {
+  .atj-section {
+    padding: 64px var(--page-px);
+  }
+}
+
+.atj-eyebrow {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--h3-size);
+  letter-spacing: var(--h3-letter-spacing);
+  color: var(--color-subtle-text);
+  margin: 0 0 16px;
+}
+
+.atj-eyebrow--lg {
+  font-size: var(--h2-size);
+  color: var(--color-atj-accent);
+}
+
+.atj-eyebrow--research {
+  color: #bb5337;
+}
+
+/* "Case-trick" pattern (see case-study.css for the same technique on the
+   Uniqkey case): Figma types the eyebrow in caps, forces it lowercase,
+   then overrides just the first letter back to uppercase. */
+.cc-trick {
+  text-transform: lowercase;
+}
+
+.cc-trick::first-letter {
+  text-transform: uppercase;
+}
+
+.atj-accent-blue {
+  color: #475fa9;
+  margin-bottom: 16px;
+}
+
+.atj-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border: 1px solid var(--color-lines-dividers);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.0028px;
+  color: var(--color-subtle-text);
+  white-space: nowrap;
+}
+
+/* ---------- Hero (2:13813) ---------- */
+
+.atj-hero {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 32px;
+  padding: 32px var(--page-px) 48px;
+}
+
+@media (min-width: 1024px) {
+  .atj-hero {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+    padding: 24px var(--page-px) 48px;
+  }
+}
+
+.atj-hero__mockup-frame {
+  flex: 1 1 55%;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 721 / 478;
+}
+
+/*
+  Oversized-crop technique (see css/case-study.css for the same pattern):
+  Figma's own frame (721x478) crops this raw asset via these exact
+  percentages — verified via get_design_context on 2:13815, not guessed.
+*/
+.atj-hero__mockup {
+  position: absolute;
+  left: -13.18%;
+  top: -19.34%;
+  width: 133.98%;
+  height: 151.44%;
+  max-width: none;
+}
+
+.atj-hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1 1 45%;
+}
+
+.atj-hero__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 1.15;
+  letter-spacing: var(--h1-letter-spacing);
+  color: var(--color-atj-accent);
+  margin: 0;
+}
+
+@media (min-width: 1024px) {
+  .atj-hero__title {
+    font-size: var(--h1-size);
+    line-height: 74px;
+  }
+}
+
+.atj-hero__desc {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: var(--color-deep-text);
+}
+
+.atj-hero__desc p {
+  margin: 0;
+}
+
+/* ---------- Context (2:13829) ---------- */
+
+.atj-context {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .atj-context {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+.atj-context__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1 1 45%;
+}
+
+.atj-context__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/*
+  Figma (2:13832) shows a large 168px gap between the icon and the
+  CONTEXT heading, not the uniform 24px used elsewhere in this column —
+  verified via get_design_context frame offset.
+*/
+.atj-context__icon {
+  width: 100px;
+  height: auto;
+  margin-bottom: 48px;
+}
+
+@media (min-width: 1024px) {
+  .atj-context__icon {
+    margin-bottom: 168px;
+  }
+}
+
+.atj-context__body {
+  color: var(--color-deep-text);
+  max-width: 480px;
+}
+
+.atj-context__image {
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  display: block;
+  flex: 1 1 55%;
+  object-fit: cover;
+}
+
+@media (min-width: 1024px) {
+  .atj-context__image {
+    max-width: 55%;
+  }
+}
+
+/* ---------- My role in team (2:13855) ---------- */
+
+.atj-role {
+  padding: 24px var(--page-px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.atj-role__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.0036px;
+  color: var(--color-atj-accent);
+}
+
+/*
+  Figma (472:4159) lays the eyebrow out as the row's own first item,
+  not stacked above it, with the row space-between across the full
+  column: "My role in team:" flush left, "Presentation to
+  stakeholders." flush right, the rest evenly gapped between. Desktop
+  only — mobile keeps the eyebrow-then-wrapped-pills stack.
+*/
+.atj-role__label {
+  margin: 0;
+}
+
+@media (min-width: 1024px) {
+  .atj-role__items {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+}
+
+/* ---------- Impact stats (2:13863) ---------- */
+
+.atj-impact {
+  padding: 32px var(--page-px) 48px;
+}
+
+.atj-impact__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 24px;
+}
+
+@media (min-width: 1024px) {
+  .atj-impact__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 48px;
+  }
+}
+
+.atj-impact__item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .atj-impact__item {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 16px 16px 0;
+  }
+}
+
+.atj-impact__value {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--color-atj-accent);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .atj-impact__value {
+    font-size: 64px;
+  }
+}
+
+.atj-impact__label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--color-subtle-text);
+  margin: 0;
+  min-width: 0;
+}
+
+/* ---------- Research (2:13879) ---------- */
+
+/*
+  Horizontal padding intentionally omitted: the wrapping .atj-section
+  already applies padding: Npx var(--page-px), so adding it again here
+  double-indented the heading/intro 80px past the true column edge
+  (verified via getBoundingClientRect — they sat at x=160 while every
+  other section's column starts at x=80). Vertical padding stays since
+  that layer doesn't double up visibly the same way.
+*/
+.atj-research {
+  background-color: var(--color-main-canvas);
+  border-radius: 24px;
+  padding: 48px 0;
+}
+
+.atj-research__intro {
+  color: var(--color-dark-alien);
+  max-width: 780px;
+  margin: 0 0 32px;
+}
+
+.atj-research__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  position: relative;
+}
+
+.atj-research__connector {
+  display: none;
+}
+
+.atj-research__card {
+  background-color: var(--color-white);
+  border: 1px solid #f5f5f6;
+  border-radius: 10px;
+  box-shadow: 2px 2px 18px rgba(24, 20, 19, 0.12);
+  padding: 16px;
+  flex: 1 1 200px;
+  max-width: 260px;
+  position: relative;
+  z-index: 1;
+}
+
+/*
+  Figma (472:4182 "RESEARCH") arranges these 7 cards in a scattered,
+  staggered pattern connected by a wavy line (Vector 488), not a plain
+  grid. Positions below are computed directly from get_metadata's
+  per-card x/y on the 1280x720 RESEARCH frame (left% = x/1280, top% =
+  y/720) — ground truth from Figma, not a screenshot/DOM guess. Card 1
+  and the featured card 7 are pinned flush to the column edges (left:0
+  / right:0) per explicit request, rather than Figma's raw 4%/77%
+  offsets. Desktop only — no tablet/mobile spec exists for this
+  scatter, so smaller breakpoints keep the plain flex-wrap flow above.
+*/
+@media (min-width: 1024px) {
+  .atj-research__grid {
+    display: block;
+    height: 640px;
+  }
+
+  .atj-research__connector {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .atj-research__card {
+    position: absolute;
+    width: 210px;
+    max-width: none;
+  }
+
+  .atj-research__card--1 {
+    left: 0;
+    top: 49%;
+  }
+
+  .atj-research__card--2 {
+    left: 14%;
+    top: 69%;
+  }
+
+  .atj-research__card--3 {
+    left: 34%;
+    top: 68%;
+  }
+
+  .atj-research__card--4 {
+    left: 51%;
+    top: 44%;
+  }
+
+  .atj-research__card--5 {
+    left: 61%;
+    top: 67%;
+  }
+
+  .atj-research__card--6 {
+    left: 70%;
+    top: 43%;
+  }
+
+  .atj-research__card--7 {
+    right: 0;
+    top: 17%;
+  }
+}
+
+.atj-research__title {
+  font-family: "Manrope", var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  margin: 0 0 8px;
+}
+
+.atj-research__stat {
+  display: inline-flex;
+  background-color: #bb5337;
+  color: var(--color-white);
+  font-family: "Manrope", var(--font-body);
+  font-weight: 700;
+  font-size: 20px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin: 0 0 6px;
+}
+
+.atj-research__note {
+  font-size: 12px;
+  color: var(--color-deep-text);
+  margin: 0;
+}
+
+.atj-research__tag {
+  display: inline-flex;
+  background-color: #96999f;
+  color: var(--color-white);
+  font-weight: 700;
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-right: 4px;
+}
+
+.atj-research__card--featured {
+  background-color: #bb5337;
+}
+
+.atj-research__card--featured .atj-research__title,
+.atj-research__card--featured .atj-research__note {
+  color: var(--color-white);
+}
+
+.atj-research__card--featured .atj-research__stat {
+  background: none;
+  color: var(--color-white);
+  font-size: 24px;
+  padding: 0;
+}
+
+/*
+  A bit of life for the scatter, cheaply: reuses the existing
+  reveal.js observer (data-reveal-group on .atj-research__grid) —
+  no new JS. The connector line draws itself in left-to-right via
+  clip-path (works on a plain <img>, no inline SVG needed); the cards
+  get a livelier spring/overshoot ease instead of the site's default
+  fade+rise, so they feel like they're landing on the line as it grows.
+*/
+.atj-research__connector.reveal-init {
+  transform: translateX(-32px);
+  transition:
+    transform 900ms ease,
+    opacity 500ms ease;
+}
+
+.atj-research__card.reveal-init {
+  transform: translateY(32px) scale(0.9);
+  transition:
+    opacity 600ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---------- The insight changed everything (2:13940) ---------- */
+
+.atj-insight {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.atj-insight__row {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .atj-insight__row {
+    flex-direction: row;
+    align-items: center;
+    gap: 48px;
+  }
+}
+
+.atj-insight__image-frame {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 548px;
+  aspect-ratio: 548 / 392;
+  border-radius: 16px;
+  flex-shrink: 0;
+}
+
+/*
+  Oversized-crop: verified via get_design_context on 2:13945 (box 548x392).
+*/
+.atj-insight__image {
+  position: absolute;
+  left: -27.61%;
+  top: -51.84%;
+  width: 163.43%;
+  height: 203.68%;
+  max-width: none;
+}
+
+.atj-insight__text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: var(--color-deep-text);
+}
+
+.atj-insight__text p {
+  margin: 0;
+}
+
+/* ---------- Candidate pain points + pattern (2:13963) ---------- */
+
+.atj-painpoints {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+@media (min-width: 1024px) {
+  .atj-painpoints {
+    flex-direction: row;
+  }
+}
+
+.atj-painpoint {
+  background-color: var(--color-white);
+  border-radius: 16px;
+  box-shadow: 2px 2px 9px rgba(24, 20, 19, 0.12);
+  padding: 16px;
+  flex: 1;
+}
+
+.atj-painpoint__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.atj-painpoint__name {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-light-gray);
+  margin: 0 0 8px;
+}
+
+.atj-painpoint__role {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  color: #475fa9;
+  margin: 0;
+}
+
+.atj-painpoint__avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.atj-painpoint__divider {
+  height: 1px;
+  background-color: var(--color-lines-dividers);
+  margin-bottom: 16px;
+}
+
+.atj-painpoint__quote {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 25px;
+  color: #111827;
+  margin: 0;
+}
+
+.atj-pattern {
+  max-width: 1026px;
+}
+
+.atj-scope {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 1026px;
+  margin-bottom: 48px;
+}
+
+.atj-scope__heading {
+  color: var(--color-atj-accent);
+}
+
+.atj-scope__text {
+  color: var(--color-dark-alien);
+  margin: 0;
+}
+
+.atj-scope__link {
+  color: var(--color-atj-accent);
+  text-decoration: underline;
+}
+
+.atj-scope__image {
+  display: block;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.atj-scope__image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1680 / 806;
+  object-fit: cover;
+}
+
+.atj-pattern__text {
+  color: var(--color-dark-alien);
+  margin: 0;
+}
+
+/* ---------- Key MVP Contribution (2:14010) ---------- */
+
+.atj-mvp {
+  background-color: #e8e8e8;
+  border-radius: 48px 48px 0 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.atj-mvp__band {
+  background-color: #bb5337;
+  padding: 40px var(--page-px) 48px;
+}
+
+.atj-mvp__heading {
+  color: var(--color-white);
+  font-size: 40px;
+  margin: 0 0 24px;
+}
+
+@media (min-width: 1024px) {
+  .atj-mvp__heading {
+    font-size: var(--h1-size);
+  }
+}
+
+.atj-mvp__gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/*
+  3 flat, fully pre-composed slide images (the user's own exports,
+  replacing the earlier live zigzag/overlay reconstruction) — plain
+  full-width images at a fixed 1120x630 (16:9) aspect ratio, matching
+  the source files' own native ratio exactly, so no cropping happens.
+*/
+.atj-mvp__slide-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1120 / 630;
+  border-radius: 24px;
+  object-fit: cover;
+}
+
+.atj-mvp__contribution {
+  padding: 48px var(--page-px) 16px;
+}
+
+.atj-mvp__contribution-text {
+  color: var(--color-subtle-text);
+  margin: 0;
+}
+
+.atj-mvp__bottom-deco {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- Contribution highlights grid (2:14042) ---------- */
+
+.atj-contrib {
+  background-color: var(--color-main-canvas);
+}
+
+.atj-contrib__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .atj-contrib__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.atj-contrib__item {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+/*
+  These are transparent illustration cutouts, not framed photos — no
+  background box or shadow (a box-shadow on a mostly-transparent PNG
+  just draws a floating rounded-square outline around empty space,
+  which read as a stray "frame"). object-fit: contain, not cover, so
+  the illustration is never cropped.
+*/
+.atj-contrib__item img {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.atj-contrib__item p:last-child {
+  color: var(--color-dark-alien);
+  margin: 0;
+}
+
+/* ---------- Matching by Smart Filters (2:14066) ---------- */
+
+.atj-smartfilters {
+  background-color: var(--color-atj-accent);
+  border-radius: 48px;
+  color: var(--color-white);
+}
+
+.atj-smartfilters__heading {
+  color: var(--color-white);
+  margin: 0 0 24px;
+}
+
+.atj-smartfilters__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: #f3d0c9;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 1024px) {
+  .atj-smartfilters__intro {
+    flex-direction: row;
+    gap: 24px;
+  }
+
+  .atj-smartfilters__intro p {
+    flex: 1;
+    margin: 0;
+  }
+}
+
+.atj-smartfilters__composition {
+  position: relative;
+}
+
+.atj-smartfilters__screen {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 32px;
+}
+
+.atj-smartfilters__blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/*
+  Desktop: reproduces Figma's "Smart Filters detail text" (formerly
+  "Frame 2147262450") — flush-left, ~57% of
+  the column width, overlapping the screenshot's bottom-left corner
+  (bottom: 30px of a 1469px-tall composition, ~2%) rather than sitting
+  in a row below it. Verified via get_design_context on 472:4375/4378.
+*/
+@media (min-width: 1024px) {
+  .atj-smartfilters__screen {
+    margin-bottom: 0;
+  }
+
+  .atj-smartfilters__blocks {
+    position: absolute;
+    left: 0;
+    bottom: 2%;
+    width: 57%;
+    max-width: 548px;
+    gap: 32px;
+  }
+}
+
+.atj-smartfilters__block-title {
+  color: var(--color-white);
+  margin: 0 0 8px;
+}
+
+.atj-smartfilters__block-text {
+  color: #f3d0c9;
+  margin: 0;
+}
+
+/* ---------- Job Card deep dive (2:14088) ---------- */
+
+.atj-jobcard {
+  background-color: var(--color-main-canvas);
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/*
+  Job Card showcase — a live component from
+  github.com/romsvid-hub/job-card-tailwind (Tailwind CDN), not a
+  screenshot, so it needs its own full-width row rather than the 50/50
+  gallery-vs-text split the old flat images used.
+
+  Fixel Text is the real component's typeface (Fixel_Text:Medium/
+  SemiBold/Regular per Figma 761:17614) — scoped to this showcase only,
+  the rest of the page keeps Inter/Sora untouched.
+*/
+@font-face {
+  font-family: "Fixel Text";
+  src: url("../assets/fonts/FixelText/FixelText-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fixel Text";
+  src: url("../assets/fonts/FixelText/FixelText-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fixel Text";
+  src: url("../assets/fonts/FixelText/FixelText-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fixel Text";
+  src: url("../assets/fonts/FixelText/FixelText-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+.atj-jobcard-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.atj-jobcard-showcase__grid,
+.atj-jobcard-showcase__grid * {
+  font-family: "Fixel Text", var(--font-body), sans-serif;
+}
+
+/*
+  Figma (807:*) specs the time ("15 hours ago") and currency ("UAH")
+  labels as "Fixel Display", a DIFFERENT family than the rest of the
+  card's "Fixel Text" — confirmed directly by the user, not guessed.
+  No Fixel Display font files were provided yet (only FixelText/), so
+  this falls back to Fixel Text for now — the visual weight/size below
+  are still correct (Medium, 18px time / 24px currency), only the exact
+  typeface differs. Add a "Fixel Display" @font-face above and this
+  class picks it up automatically, no markup changes needed.
+*/
+.jc-display-font {
+  font-family: "Fixel Display", "Fixel Text", var(--font-body), sans-serif;
+}
+
+.atj-jobcard-showcase__note {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-subtle-text);
+}
+
+.atj-jobcard-showcase__note a {
+  font-family: monospace;
+  font-weight: 700;
+  color: var(--color-atj-accent);
+  text-decoration: underline;
+}
+
+.atj-jobcard-showcase__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.atj-jobcard-showcase__state {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--color-atj-accent);
+  margin: 0 0 8px;
+}
+
+/*
+  Real Figma icons (briefcase 1101:34266 / map-pin 1101:34270, both
+  reused component 379:12898 / 379:13322) replacing the placeholder
+  emoji — not decorative enough on their own to skip alt, but the
+  adjacent text label already names what they are, so alt="" is right.
+*/
+.atj-jobcard-showcase__icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* Inline icons (check, help-circle, trash) sit at their own Figma
+   native sizes (16-23px) inside tags/badges/buttons, not the 24px
+   standalone size above. */
+.atj-jobcard-showcase__icon-xs {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: -3px;
+  flex-shrink: 0;
+}
+
+/*
+  Static desktop exports (Stages=*.png), replacing the live Tailwind
+  component on desktop — that one is reserved for mobile + the GitHub
+  demo now, per explicit instruction. Hidden below 1024px; the mobile
+  breakpoint shows .atj-jobcard-showcase (the live component) instead.
+*/
+.atj-jobcard-stages {
+  display: none;
+}
+
+.atj-jobcard-stages__track {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.atj-jobcard-stages__label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--color-atj-accent);
+  margin: 0 0 8px;
+}
+
+.atj-jobcard-stages__item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/*
+  .atj-jobcard__pin / .atj-jobcard__row are plain passthrough wrappers
+  (needed so js/jobcard-scroll.js has a spacer element to size and a
+  place to hang the flex row); the pin lives on .atj-jobcard__pin-inner
+  (which wraps the heading/intro too, not just the row, so it only
+  engages once the title itself has scrolled into place), the 7:5 flex
+  split on .atj-jobcard__row.
+*/
+.atj-jobcard__pin {
+  height: auto;
+}
+
+.atj-jobcard__pin-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.atj-jobcard__row {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/*
+  Standard column width (.atj-section's usual 1280px cap, no special
+  override) — cards:text at a 7:5 flex-grow ratio, matching the
+  mockup's 12-column split. Desktop shows the static stage images
+  (.atj-jobcard-stages); the live Tailwind component
+  (.atj-jobcard-showcase) is mobile-only from here up.
+
+  Desktop pins the heading+row in place (position:sticky on
+  .atj-jobcard__pin-inner) while .atj-jobcard-stages__track scrolls
+  smoothly past the fixed-height, overflow:hidden .atj-jobcard-stages
+  window — a single continuous translate proportional to scroll
+  position, no per-card snapping. The window's height is set by
+  js/jobcard-scroll.js to match .atj-jobcard__text's own rendered
+  height, so the cards keep pace with the text column instead of
+  running on their own arbitrary timeline. --jobcard-pin-top is set by
+  that script to the live nav height; the extra +20px here is a
+  scroll-only gap (so the title doesn't sit flush against the header
+  edge while pinned) — it does not touch the block's normal, unpinned
+  spacing. js/jobcard-scroll.js also drifts this block slowly upward
+  as you scroll through the pin (on top of the sticky position), so
+  the section still visibly progresses instead of reading as a dead
+  stop, while staying comfortably clear of the header.
+*/
+@media (min-width: 1024px) {
+  .atj-jobcard__pin-inner {
+    position: sticky;
+    top: calc(var(--jobcard-pin-top, 24px) + 20px);
+  }
+
+  .atj-jobcard__row {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 48px;
+  }
+
+  .atj-jobcard-stages {
+    display: block;
+    flex: 7 1 0px;
+    overflow: hidden;
+    position: relative;
+    height: var(--jobcard-stage-height, 400px);
+  }
+
+  .atj-jobcard-stages__track {
+    will-change: transform;
+  }
+
+  .atj-jobcard-showcase {
+    display: none;
+  }
+
+  .atj-jobcard__text {
+    flex: 5 1 0px;
+  }
+}
+
+.atj-jobcard__label {
+  color: var(--color-subtle-text);
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.atj-jobcard__text {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.atj-jobcard__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* "Dynamic States" copy + the GitHub note read as one group (tighter
+   gap than the 48px rhythm between the other Problem/Solution/Dynamic
+   States blocks), not two separate unrelated items. */
+.atj-jobcard__closing {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.atj-jobcard__heading {
+  color: var(--color-atj-accent);
+  margin: 0;
+}
+
+.atj-jobcard__intro p.body-large {
+  color: var(--color-dark-alien);
+  margin: 0;
+}
+
+.atj-jobcard__text h3,
+.atj-jobcard__text p.h3-case-study {
+  margin: 0 0 8px;
+}
+
+.atj-jobcard__block-text {
+  color: var(--color-subtle-text);
+  margin: 0;
+}
+
+/* ---------- Other impact screens (2:14121) ---------- */
+
+.atj-screens {
+  background-color: var(--color-atj-accent);
+  border-radius: 48px;
+  padding: 48px var(--page-px);
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.atj-screens__heading {
+  color: var(--color-white);
+  margin: 0;
+}
+
+.atj-screens__row {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .atj-screens__row {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.atj-screens__text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1 1 40%;
+}
+
+.atj-screens__title {
+  color: var(--color-white);
+  margin: 0;
+}
+
+.atj-screens__body {
+  color: #f3d0c9;
+  margin: 0;
+}
+
+/*
+  Edge-to-edge of the column, same pattern as ATJ2's Other Core
+  Features (.atj2-features__media): the images are now pre-cropped
+  local assets (screens-*-cropped.png, cropped from the oversized raw
+  mockup exports to the same window the old position:absolute +
+  percentage-offset hack was carving out) so a plain width:100% fills
+  the full flex column with no artificial max-width cap and no
+  fragile percentage math.
+*/
+.atj-screens__image {
+  flex: 1 1 55%;
+  width: 100%;
+}
+
+.atj-screens__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+/* ---------- Design System / AI usage (477:38537) ---------- */
+
+.atj-uikit__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 1024px) {
+  .atj-uikit__grid {
+    flex-direction: row;
+  }
+}
+
+.atj-uikit__grid > * {
+  flex: 1;
+  margin: 0;
+}
+
+.atj-uikit__grid p {
+  color: var(--color-dark-alien);
+  margin: 0;
+}
+
+.atj-uikit__grid div p + p {
+  margin-top: 16px;
+}
+
+.atj-uikit__illustration {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  background-color: #ececec;
+}
+
+.atj-uikit__illustration a {
+  display: block;
+}
+
+.atj-uikit__illustration img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.atj-uikit__link {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--color-dark-alien);
+  margin: 0 0 32px;
+}
+
+.atj-uikit__link a {
+  color: var(--color-atj-accent);
+  text-decoration: underline;
+}
+
+/* ---------- Results (477:38551) ---------- */
+
+.atj-final__text {
+  color: var(--color-dark-alien);
+  max-width: 643px;
+  margin: 0 0 16px;
+}
+
+.atj-final__medium-note {
+  color: var(--color-dark-alien);
+  margin: 0;
+}
+
+.atj-final__medium-note a {
+  color: var(--color-atj-accent);
+  text-decoration: underline;
+}
+
+/* ---------- Reviews + CTA (shared component reused unchanged) ---------- */
+
+/*
+  Same treatment as the Uniqkey case study: the shared Reviews/CTA
+  component assumes a dark backdrop, so it gets its own full-bleed dark
+  panel here (no border-radius — verified against Figma as a plain
+  rectangle for the Uniqkey case's equivalent section; ATJ's Figma
+  instance is the same shared component at the same size).
+*/
+.case-reviews-cta {
+  background-color: var(--color-dark-alien);
+}

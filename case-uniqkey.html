@@ -1,0 +1,806 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uniqkey — From Numbers To Decisions | Alien Eyes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Sora:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/typography.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/buttons.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/case-study.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+  </head>
+  <body class="case-page">
+    <!-- UI: GLOBAL-NAV-01 | Site navigation | inspect/adjust -->
+    <nav class="site-nav">
+      <a class="nav-logo" href="index.html">
+        <span class="nav-logo__icon">
+          <img class="nav-logo__avatar" src="assets/icons/logo-avatar.png" alt="" />
+        </span>
+        <span class="nav-logo__text">Alien Eyes</span>
+      </a>
+
+      <div class="nav-links">
+        <a class="nav-links__link" href="index.html#case-studies">Case Studies</a>
+        <a class="nav-links__link" href="index.html#feedbacks">Feedbacks</a>
+      </div>
+
+      <a class="nav-cta" href="#">Download CV</a>
+
+      <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+    </nav>
+
+    <main>
+      <!-- UI: CASE01-HERO-01 | Hero layout | inspect/adjust -->
+      <section class="case-hero" data-reveal>
+        <!-- IMAGE: CASE01-HERO-BG-01 | Hero background photo | replaceable -->
+        <img class="case-hero__bg" src="assets/case-uniqkey/hero-bg.png" alt="" aria-hidden="true" />
+        <div class="case-hero__overlay" aria-hidden="true"></div>
+
+        <div class="case-hero__content">
+          <div class="tag-row case-hero__tags">
+            <span class="tag">Password manager</span>
+            <span class="tag">Admin UX</span>
+            <span class="tag">Enterprise Security</span>
+            <span class="tag">B2B SaaS</span>
+            <span class="tag">4 Platforms</span>
+          </div>
+
+          <!-- IMAGE: CASE01-HERO-LOGO-01 | Uniqkey wordmark | replaceable -->
+          <div class="case-hero__logo" role="img" aria-label="Uniqkey">
+            <img src="assets/case-uniqkey/uniqkey-wordmark-sprite.png" alt="" />
+          </div>
+
+          <h1 class="case-hero__title">From Numbers<br />To Decisions.</h1>
+          <p class="body-main case-hero__subhead">
+            I redesigned the Admin Portal — building a connected system of
+            dashboards, data tables, and navigation that made the
+            organizational security legible for the first time.
+          </p>
+        </div>
+
+        <!-- IMAGE: CASE01-HERO-MOCKUP-01 | Hero iMac product mockup | replaceable -->
+        <img
+          class="case-hero__mockup"
+          src="assets/case-uniqkey/hero-imac-mockup.png"
+          alt="Uniqkey Admin Portal shown on an iMac"
+        />
+      </section>
+
+      <!-- UI: CASE01-IMPACT-01 | Impact stats | inspect/adjust -->
+      <section class="case-impact">
+        <p class="case-eyebrow cc-trick" data-reveal>Impact:</p>
+        <div class="case-impact__grid" data-reveal-group>
+          <div class="case-impact__item">
+            <p class="case-impact__value">26%</p>
+            <p class="case-impact__label">Satisfaction Score</p>
+          </div>
+          <div class="case-impact__item">
+            <p class="case-impact__value">95%</p>
+            <p class="case-impact__label">Found nav improved</p>
+          </div>
+          <div class="case-impact__item">
+            <p class="case-impact__value">85%</p>
+            <p class="case-impact__label">Security Score understood</p>
+          </div>
+          <div class="case-impact__item">
+            <p class="case-impact__value">27%</p>
+            <p class="case-impact__label">Support tickets</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE01-SCOPE-01 | Product scope card | inspect/adjust -->
+      <section class="case-section case-scope">
+        <p class="case-eyebrow" data-reveal>Product SCOPE</p>
+        <!-- IMAGE: CASE01-SCOPE-MOCKUP-01 | Admin portal, extension/mobile and iPhone device mockups | replaceable
+             Column labels (Admin portal / Extension and Mobile App / Partner
+             Portal) and the card background were removed — they're already
+             baked into this image. -->
+        <img
+          class="case-scope__devices"
+          src="assets/case-uniqkey/scope-devices-composite.png"
+          alt="Admin Portal shown across two MacBook screens and an iPhone"
+          data-reveal
+        />
+        <p class="body-large case-scope__text" data-reveal>
+          This case study centers on the Admin Portal, the core of
+          Uniqkey's management experience.<br />
+          As Lead Designer, I worked across a global ecosystem of
+          platforms, ensuring consistency across all of them.
+        </p>
+      </section>
+
+      <!-- UI: CASE01-CHALLENGE-01 | Story / challenge / context | inspect/adjust -->
+      <section class="case-section case-challenge-wrap">
+        <div class="case-bleed case-challenge" data-reveal-group>
+          <div class="case-challenge__intro">
+            <p class="case-eyebrow case-eyebrow--gold cc-trick">This is the story of</p>
+            <h2 class="h2-section case-challenge__heading">
+              Admin portal<br />Dashboard evolution.
+            </h2>
+          </div>
+
+          <div class="case-challenge__card">
+            <div class="case-challenge__card-head">
+              <p class="case-challenge__icon" aria-hidden="true">⚠️</p>
+              <p class="case-eyebrow cc-trick">The challenge</p>
+            </div>
+            <p class="body-large">
+              Admins couldn't understand their organization's security
+              posture without manual investigation across multiple
+              disconnected screens.
+            </p>
+          </div>
+
+          <div class="case-challenge__context">
+            <p>
+              <strong>Context —</strong> Uniqkey's Admin Panel was the
+              product's most critical decision-making surface.
+            </p>
+            <p>
+              <strong>Enterprise IT admins</strong> — in governments,
+              financial institutions, leading European corporations used
+              it daily to manage organizational security.
+            </p>
+            <p>
+              <strong>The Average Security Score</strong> existed as a
+              single number. No one understood where it came from, what
+              affected it, or what to do about it.
+            </p>
+            <p>That's what <strong>triggered</strong> the redesign.</p>
+          </div>
+        </div>
+
+        <div class="case-bleed case-firstgen" data-reveal>
+          <p class="case-eyebrow cc-trick">First-gen</p>
+          <p class="h3-case-study case-firstgen__heading">DASHBOARD</p>
+          <p class="body-main case-firstgen__caption">
+            Before my redesign: the interface I inherited, not the one I designed.
+          </p>
+          <!-- IMAGE: CASE01-FIRSTGEN-01 | Legacy first-generation dashboard screenshot | replaceable -->
+          <img
+            class="case-firstgen__img"
+            src="assets/case-uniqkey/firstgen-dashboard-screenshot.png"
+            alt="First-generation Uniqkey Admin Portal dashboard"
+          />
+        </div>
+      </section>
+
+      <!-- UI: CASE01-FEEDBACK-01 | User feedback quotes | inspect/adjust
+           Left column (heading + pain points) is a plain CSS position:sticky
+           at desktop — no JS-computed clip/translate window needed, since a
+           native sticky element naturally holds in place for exactly as
+           long as its (taller) row sibling keeps scrolling past, then
+           releases on its own. The old approach (fixed-height overflow:hidden
+           viewport + JS translateY of a card track) is gone — clipping a
+           tall card stack to a short window showed a partial card sliced
+           across the clip edge, reading as a background/seam glitch.
+           Right column cards instead pop in/out individually, notification-
+           style, exactly like the ATJ2 "Notifications" feature row — see
+           js/notif-reveal.js + .notif-anim in css/case-study.css. Each card
+           animates on every crossing (not once), so it reads as messages
+           arriving/clearing rather than a page-load reveal. -->
+      <section class="case-section case-feedback">
+        <div class="case-feedback__row">
+          <div class="case-feedback__left">
+            <p class="case-eyebrow cc-trick">Different roles,</p>
+            <h2 class="h2-section case-feedback__heading">ONE UNIFIED FEEDBACK</h2>
+            <ul class="case-feedback__list body-large">
+              <li>Bulky widgets hinder key info perception.</li>
+              <li>Admin panel is complex and time-consuming.</li>
+              <li>Limited customization for role-based data.</li>
+              <li>Unclear security score guidance.</li>
+            </ul>
+          </div>
+
+          <div class="case-feedback__right" data-notif-stagger>
+            <article class="case-testimonial">
+              <div class="case-testimonial__head">
+                <!-- IMAGE: CASE01-FEEDBACK-AVATAR-01 | Compliance Officer avatar | replaceable -->
+                <img class="case-testimonial__avatar" src="assets/case-uniqkey/avatar-compliance-officer.png" alt="" />
+                <p class="case-testimonial__role">Compliance Officer</p>
+              </div>
+              <p class="case-testimonial__quote">
+                "I don't fully understand how to improve the Average Security
+                score. The UI doesn't provide clear guidance on how to enhance
+                these metrics."
+              </p>
+            </article>
+
+            <article class="case-testimonial">
+              <div class="case-testimonial__head">
+                <!-- IMAGE: CASE01-FEEDBACK-AVATAR-02 | Systems Administrator avatar | replaceable -->
+                <img class="case-testimonial__avatar" src="assets/case-uniqkey/avatar-systems-administrator.png" alt="" />
+                <p class="case-testimonial__role">Systems Administrator</p>
+              </div>
+              <p class="case-testimonial__quote">
+                "Relevant information is not always visible on the dashboard.
+                More customization is needed to display data by company
+                priorities and roles."
+              </p>
+            </article>
+
+            <article class="case-testimonial">
+              <div class="case-testimonial__head">
+                <!-- IMAGE: CASE01-FEEDBACK-AVATAR-03 | Operations Manager avatar | replaceable -->
+                <img class="case-testimonial__avatar" src="assets/case-uniqkey/avatar-operations-manager.png" alt="" />
+                <p class="case-testimonial__role case-testimonial__role--bold">Operations Manager</p>
+              </div>
+              <p class="case-testimonial__quote">
+                "The dashboard widgets appear too bulky, making key information
+                harder to perceive. Data configuration is also challenging, and
+                setup takes longer than expected."
+              </p>
+            </article>
+
+            <article class="case-testimonial">
+              <div class="case-testimonial__head">
+                <!-- IMAGE: CASE01-FEEDBACK-AVATAR-04 | HR Manager avatar | replaceable -->
+                <img class="case-testimonial__avatar" src="assets/case-uniqkey/avatar-hr-manager.png" alt="" />
+                <p class="case-testimonial__role">HR Manager</p>
+              </div>
+              <p class="case-testimonial__quote">
+                "The admin panel is quite complex, taking a lot of time to
+                manage employees and service access. More intuitive settings
+                would be appreciated."
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE01-APPROACH-01 | Approach | inspect/adjust -->
+      <section class="case-section case-approach">
+        <h2 class="h2-section case-approach__heading" data-reveal>HOW I APPROACHED IT</h2>
+        <p class="body-main case-approach__intro" data-reveal>
+          Working closely with the Product Owner, and with strategic input
+          from the Chief Product Officer, I built the information
+          architecture and user flows from scratch, mapping how data
+          moved between screens and how each layer contributed to the
+          overall security picture. The logic was validated with the
+          business team before moving to design.
+        </p>
+        <!-- IMAGE: CASE01-APPROACH-DIAGRAM-01 | Security score calculation diagram | replaceable -->
+        <img
+          class="case-approach__diagram"
+          src="assets/case-uniqkey/approach-diagram.jpg"
+          alt="Diagram of the average security score calculation logic"
+          data-reveal
+        />
+      </section>
+
+      <!-- UI: CASE01-SCORE-01 | Redesigned average security score comparison | inspect/adjust -->
+      <section class="case-section case-score">
+        <p class="case-eyebrow cc-trick" data-reveal>Redesigned</p>
+        <h2 class="h2-section case-score__heading" data-reveal>AVERAGE SECURITY SCORE</h2>
+
+        <div class="case-score__issue" data-reveal>
+          <p class="body-large case-score__issue-text">
+            A main issue - just a single score number.<br />
+            Admins either ignore it or are anxious about it.
+          </p>
+          <ul class="body-large case-score__issue-list">
+            <li>No explanation of what drives it.</li>
+            <li>No path to view details or act on them.</li>
+          </ul>
+        </div>
+
+        <div class="case-score__compare" data-reveal-group>
+          <div class="case-score__stage">
+            <p class="case-score__stage-label">
+              <span class="case-accent-red">Before:</span> First Gen
+            </p>
+            <!-- IMAGE: CASE01-SCORE-BEFORE-01 | First-gen average score widget | replaceable -->
+            <img
+              class="case-score__stage-img case-score__stage-img--before"
+              src="assets/case-uniqkey/score-before-firstgen.png"
+              alt="First-generation average security score, shown as a single 76% number"
+            />
+          </div>
+
+          <!-- IMAGE: CASE01-SCORE-ARROW-01 | Progression arrow | decorative -->
+          <img class="case-score__arrow" src="assets/case-uniqkey/arrow-icon.svg" alt="" aria-hidden="true" />
+
+          <div class="case-score__stage">
+            <p class="case-eyebrow cc-trick case-score__stage-label"> iteration: 1</p>
+            <!-- IMAGE: CASE01-SCORE-ITER1-01 | Iteration 1 average score widget | replaceable -->
+            <img
+              class="case-score__stage-img"
+              src="assets/case-uniqkey/iteration1-widget.png"
+              alt="Iteration 1: average security score with a weak/high gauge and two supporting stats"
+            />
+          </div>
+
+          <!-- IMAGE: CASE01-SCORE-ARROW-02 | Progression arrow | decorative -->
+          <img class="case-score__arrow" src="assets/case-uniqkey/arrow-icon.svg" alt="" aria-hidden="true" />
+
+          <div class="case-score__stage case-score__stage--wide">
+            <p class="case-eyebrow cc-trick case-score__stage-label">iteration: 2</p>
+            <!-- IMAGE: CASE01-SCORE-ITER2-01 | Iteration 2 average score widget | replaceable -->
+            <img
+              class="case-score__stage-img"
+              src="assets/case-uniqkey/iteration2-widget.png"
+              alt="Iteration 2: average security score gauge with a breakdown table of contributing factors"
+            />
+          </div>
+        </div>
+
+        <div class="case-score__outro" data-reveal>
+          <p class="h3-case-study case-score__outro-heading">
+            The Score is now<br />a connected indicator:
+          </p>
+          <div class="case-score__outro-cols body-main">
+            <p>
+              Organisation-level overview Shows current security health and
+              trend direction. Employee breakdown Which team members affect
+              the score and how navigable directly from the dashboard.
+            </p>
+            <p>
+              Data items breakdown Which passwords, cards, or secure notes
+              create risk weak, reused, missing 2FA. Direct action paths
+              from every insight to the relevant management screen one
+              click.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE01-SHIFT-01 | "The shift" statement | inspect/adjust
+           Solid blue rounded panel (confirmed via Figma fill — corrected
+           after an earlier misread), white title, two separate lines
+           (not one flowing paragraph). -->
+      <section class="case-section">
+        <div class="case-shift case-shift--panel" data-reveal>
+          <p class="case-eyebrow case-eyebrow--white cc-trick">The shift</p>
+          <p class="case-shift__text">
+            The admin no longer asks <strong>"what does this number mean?"</strong>.
+          </p>
+          <p class="case-shift__text">
+            They choose, <strong>"Which of these do I fix first?"</strong>. That's
+            the shift!
+          </p>
+        </div>
+      </section>
+
+      <!-- UI: CASE01-DASH1-01 | Redesigned dashboard 1/2 | inspect/adjust -->
+      <section class="case-bleed case-dash1">
+        <div class="case-dash1__white">
+          <p class="case-eyebrow cc-trick" data-reveal>Redesigned 1/2</p>
+          <h2 class="h2-section case-dash__admin-heading" data-reveal>ADMIN DASHBOARD</h2>
+          <p class="body-main case-dash1__intro" data-reveal>
+            After, Iteration 1, The new dashboard is the entry point to
+            organizational security designed around one question:<br />
+            "What does my organization's security look like right now and
+            what needs my attention?"
+          </p>
+          <!-- UI: CASE01-DASH1-SCREEN-01 | Redesigned nav + dashboard, pinned scroll | inspect/adjust
+               Menu stays fully visible (it sets the pinned window's height);
+               the dashboard shot is taller than that window and translates
+               upward as the page scrolls, revealing more of itself, then
+               scrolling continues normally to the next section. Always a
+               horizontal row, at every breakpoint — see js/uniqkey-dash1-scroll.js -->
+          <div class="case-dash1__pin" data-dash1-pin>
+            <div class="case-dash1__row">
+              <img
+                class="case-dash1__menu"
+                src="assets/case-uniqkey/old-menu.png"
+                alt="Redesigned Uniqkey navigation menu"
+                data-dash1-menu
+              />
+              <div class="case-dash1__db-window" data-dash1-db-viewport>
+                <img
+                  class="case-dash1__db-image"
+                  src="assets/case-uniqkey/old-db.png"
+                  alt="Redesigned Uniqkey Admin Dashboard"
+                  data-dash1-db-track
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-dash1__blue">
+          <h2 class="h2-section case-dash1__blue-heading" data-reveal>KEY CHANGES</h2>
+          <div class="case-dash1__cards" data-reveal-group>
+            <div class="case-keychange">
+              <p class="h3-case-study">Security Score</p>
+              <p class="body-main">
+                <strong>Now explainable</strong> The score is no longer a
+                black box. Admins see which factors drive it and
+                <strong>can navigate directly</strong> to the source.
+              </p>
+            </div>
+            <div class="case-keychange">
+              <p class="h3-case-study">Navigation</p>
+              <p class="body-main">
+                <strong>Always oriented</strong> <strong>Admins always know
+                where they are</strong>, what they're looking at, and how to
+                get back. Previously, users got lost. Now the system guides
+                them.
+              </p>
+            </div>
+            <div class="case-keychange">
+              <p class="h3-case-study">Information hierarchy</p>
+              <p class="body-main">
+                <strong>Decision-first</strong> Critical alerts surface
+                immediately. <strong>Secondary data</strong> is accessible
+                but doesn't compete for attention..
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE01-DASH2-01 | Redesigned dashboard 2/2 | inspect/adjust -->
+      <section class="case-section case-dash2">
+        <p class="case-eyebrow cc-trick" data-reveal>Redesigned 2/2</p>
+        <h2 class="h2-section case-dash__admin-heading" data-reveal>ADMIN DASHBOARD</h2>
+        <p class="body-main case-dash2__intro" data-reveal>
+          After, Iteration 2 (final), Navigation improved, but the visual
+          system still felt overly consumer-oriented for enterprise buyers
+          such as governments and financial institutions who expect a more
+          formal, restrained aesthetic. Not a rebrand, but just a
+          recalibration for the audience. That was the real impact: not
+          cosmetics, but trust from a new audience.
+        </p>
+        <!-- UI: CASE01-DASH2-SCREEN-01 | Recalibrated nav + dashboard, pinned scroll | inspect/adjust
+             Three slices of one composite (Top+Menu+DB share the same
+             source width, so they scale together as one image — widths
+             below are percentages of that, not independent breakpoint
+             values). Top.png is a header strip that stays pinned in view
+             together with the menu; New DB.png is taller than the menu
+             and translates upward inside its window as the page scrolls,
+             revealing more of itself, then scrolling continues normally.
+             Zero gap anywhere — the three pieces sit flush, as if still
+             one image. No border/frame. Menu+DB stay a horizontal row at
+             every breakpoint — see js/uniqkey-dash2-scroll.js -->
+        <div class="case-dash2__pin" data-dash2-pin>
+          <div class="case-dash2__sticky">
+            <img class="case-dash2__top" src="assets/case-uniqkey/top.png" alt="" aria-hidden="true" />
+            <div class="case-dash2__row">
+              <img
+                class="case-dash2__menu"
+                src="assets/case-uniqkey/new-menu.png"
+                alt="Recalibrated Uniqkey navigation menu"
+                data-dash2-menu
+              />
+              <div class="case-dash2__db-window" data-dash2-db-viewport>
+                <img
+                  class="case-dash2__db-image"
+                  src="assets/case-uniqkey/new-db.png"
+                  alt="Recalibrated Uniqkey Admin Dashboard, second iteration"
+                  data-dash2-db-track
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plain, no panel — same heading+columns pattern as the
+             "Score is now a connected indicator" outro above
+             (case-score__outro / -heading / -cols). -->
+        <div class="case-shift-outro" data-reveal>
+          <p class="h3-case-study case-shift-outro-heading">The Shift</p>
+          <div class="case-shift-outro-cols body-main">
+            <p>
+              Rounded elements, vibrant colors, and visual noise gave way to
+              sharp geometry,<br />
+              a muted palette, refined typography, and less decoration.
+            </p>
+            <p>
+              Enterprise clients started calling the interface professional
+              and trustworthy before reading a single data point.
+            </p>
+          </div>
+        </div>
+
+        <!-- Renamed from "Business impact"; panel color changed from
+             green to a muted blue (#3d5bae — distinct from the standalone
+             "The Shift" panel's brighter --color-unibrand). -->
+        <div class="case-shift case-shift--panel-results" data-reveal>
+          <div class="case-shift__left">
+            <p class="h3-case-study case-shift__heading">Results</p>
+            <p class="case-shift__text">
+              That shift became part of a bigger result: 35% annual revenue
+              growth, alongside the work of sales, marketing, and the wider
+              team. Design was one input, not the only one. The product
+              moved beyond Scandinavia into new European markets and got
+              featured at international cybersecurity summits. Not just a
+              redesign. Trust, scale, recognition.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE01-OTHER-01 | Other screens carousel (v2) | inspect/adjust
+           Updated per Figma "MacBook Air - 1..6" (612:4369-612:4633):
+           image now sits above the heading/description (was below),
+           mockups are flat browser/phone-chrome screenshots (no 3D
+           laptop illustration), each at its own natural aspect ratio.
+           Arrows kept beside the image; dot navigation preserved at the
+           bottom per explicit instruction. Smooth crossfade+slide
+           transition on switch, normal page-scroll flow, width capped to
+           the same content column as the rest of the case study. See
+           js/case-other-carousel.js. Expect further revisions. -->
+      <section class="case-section case-other">
+        <h2 class="h2-section case-other__heading" data-reveal>Other Screens</h2>
+        <div class="case-other-carousel" data-reveal data-other-carousel>
+          <div class="case-other-carousel__text">
+            <p class="h3-case-study case-other-carousel__title" data-other-carousel-title>Admin Portal – Groups</p>
+            <p class="body-main case-other-carousel__desc" data-other-carousel-desc>
+              A unified table view for monitoring security scores and
+              activity across all groups. The toolbar enables quick
+              management actions, and clicking any row opens a detailed
+              view of that group.
+            </p>
+          </div>
+
+          <div class="case-other-carousel__stage">
+            <button
+              class="case-other-carousel__arrow case-other-carousel__arrow--prev"
+              type="button"
+              aria-label="Previous screen"
+              data-other-carousel-prev
+            >
+              <svg viewBox="0 0 49.5818 71.9599" fill="none" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M37.5211 4.0415C36.5477 4.0473 35.6104 4.44612 34.8971 5.15772L4.01164 35.9709C4.01081 35.9717 4.00974 35.9723 4.00857 35.9724L4.00252 35.9733C4.00025 35.9736 3.99942 35.9765 4.00116 35.978L4.00131 35.9781C4.00248 35.9791 4.00248 35.9809 4.00131 35.9819C3.99961 35.9833 4.00053 35.9861 4.00276 35.9863L4.00855 35.9867C4.00972 35.9868 4.01082 35.9873 4.01165 35.9881L34.8971 66.8022C35.6103 67.5138 36.5478 67.9126 37.5211 67.9185L44.5741 67.9599C45.4662 67.9651 45.9181 66.8882 45.2895 66.2552L15.9202 36.6847C15.5329 36.2947 15.5329 35.6653 15.9202 35.2753L45.2895 5.70474C45.9181 5.07179 45.4662 3.99483 44.5741 4.00007L37.5211 4.0415Z"
+                />
+              </svg>
+            </button>
+
+            <div class="case-other-carousel__viewport" aria-live="polite">
+              <!-- IMAGE: CASE01-OTHER-CAROUSEL-01 | Current screen mockup | replaceable -->
+              <img
+                class="case-other-carousel__img"
+                data-other-carousel-img
+                src="assets/case-uniqkey/otherscreens-v2-1-groups.png"
+                alt="Admin Portal group table view"
+              />
+            </div>
+
+            <button
+              class="case-other-carousel__arrow case-other-carousel__arrow--next"
+              type="button"
+              aria-label="Next screen"
+              data-other-carousel-next
+            >
+              <svg viewBox="0 0 49.5818 71.9599" fill="none" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M12.0609 4.04145C13.0343 4.04725 13.9716 4.44606 14.6849 5.15766L45.5704 35.9708C45.5712 35.9717 45.5723 35.9722 45.5734 35.9724L45.5795 35.9732C45.5818 35.9736 45.5826 35.9764 45.5809 35.9779L45.5807 35.978C45.5795 35.979 45.5795 35.9808 45.5807 35.9818C45.5824 35.9833 45.5815 35.9861 45.5793 35.9862L45.5735 35.9866C45.5723 35.9867 45.5712 35.9872 45.5704 35.988L14.6849 66.8022C13.9717 67.5137 13.0342 67.9125 12.0609 67.9184L5.00792 67.9598C4.11585 67.9651 3.66388 66.8881 4.29253 66.2552L33.6618 36.6846C34.0491 36.2947 34.0491 35.6652 33.6618 35.2752L4.29253 5.70469C3.66389 5.07174 4.11585 3.99478 5.00792 4.00002L12.0609 4.04145Z"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div class="case-other-carousel__dots" data-other-carousel-dots aria-hidden="true">
+            <span class="case-other-carousel__dot is-active"></span>
+            <span class="case-other-carousel__dot"></span>
+            <span class="case-other-carousel__dot"></span>
+            <span class="case-other-carousel__dot"></span>
+            <span class="case-other-carousel__dot"></span>
+            <span class="case-other-carousel__dot"></span>
+          </div>
+        </div>
+
+        <div class="case-awards" data-reveal>
+          <p class="h2-section case-awards__heading">Product Awards at the Time.</p>
+          <!-- IMAGE: CASE01-AWARDS-BANNER-01 | Product awards banner texture (decorative, no award logos present in Figma) | decorative -->
+          <div class="case-awards__banner-frame">
+            <img
+              class="case-awards__banner"
+              src="assets/case-uniqkey/product-awards-banner.png"
+              alt=""
+              aria-hidden="true"
+            />
+          </div>
+        </div>
+
+        <div class="case-design-system">
+          <p class="h2-section case-design-system__heading" data-reveal>Design system</p>
+          <p class="body-large case-design-system__intro" data-reveal>
+            The Admin Portal was the foundation for everything that followed.
+            As the system scaled across platforms, I turned the UI Kit into
+            a token-based Design System, an investment that pays off on
+            every future feature.
+          </p>
+          <div class="case-design-system__cols" data-reveal-group>
+            <div>
+              <p class="h3-case-study case-accent-blue">Foundation layer:</p>
+              <ul class="body-main">
+                <li>Typography</li>
+                <li>Color tokens</li>
+                <li>Spacing</li>
+                <li>Effects</li>
+              </ul>
+            </div>
+            <div>
+              <p class="h3-case-study case-accent-blue">Component library:</p>
+              <ul class="body-main">
+                <li>Variants</li>
+                <li>States</li>
+                <li>Auto-layout</li>
+                <li>Constraints</li>
+              </ul>
+            </div>
+            <div>
+              <p class="h3-case-study case-accent-blue">Development integration:</p>
+              <ul class="body-main">
+                <li>Figma Dev Mode</li>
+                <li>Documentation</li>
+                <li>Token system</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE01-LIVEFILES-01 | Live design files links | inspect/adjust
+           No title/icon, no dark panel — Figma shows this as a plain
+           continuation of the white Design System block above it, not a
+           separately-titled section (confirmed: the frame has no fill
+           and no "Live Design Files:" text/icon anymore). -->
+      <section class="case-section case-livefiles">
+        <div class="case-livefiles__links" data-reveal>
+          <p>
+            Prototype:
+            <a
+              href="https://www.figma.com/proto/Fi2Pu6xu0jrd8qV1dZNloz/Admin-Portal?node-id=1-55172&viewport=723%2C767%2C0.1&t=37Y4K4rtAnpwjuNp-1&scaling=min-zoom&content-scaling=fixed&page-id=1%3A6"
+              target="_blank"
+              rel="noopener"
+              >Dashboard prototype</a
+            >
+          </p>
+          <p>
+            Design System:
+            <a
+              href="https://www.figma.com/design/6UnTFgXYiYcNjj9CwToxgh/Uniqkey-Design-System--Copy-?node-id=35-836&t=pGd4wXbCQAlqEfrI-1"
+              target="_blank"
+              rel="noopener"
+              >Components, styles, and tokens</a
+            >
+          </p>
+        </div>
+      </section>
+
+      <!-- UI: HOME-REVIEWS-01 | Reviews carousel | inspect/adjust (shared component, reused unchanged) -->
+      <section class="home-section case-reviews-cta" id="feedbacks">
+        <h2 class="h2-section reviews-heading" data-reveal>Reviews:</h2>
+        <div class="reviews-carousel" data-reveal>
+          <button
+            class="reviews-arrow reviews-arrow--prev"
+            type="button"
+            aria-label="Previous review"
+            aria-controls="review-slide"
+          >
+            <svg viewBox="0 0 49.5818 71.9599" fill="none" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M37.5211 4.0415C36.5477 4.0473 35.6104 4.44612 34.8971 5.15772L4.01164 35.9709C4.01081 35.9717 4.00974 35.9723 4.00857 35.9724L4.00252 35.9733C4.00025 35.9736 3.99942 35.9765 4.00116 35.978L4.00131 35.9781C4.00248 35.9791 4.00248 35.9809 4.00131 35.9819C3.99961 35.9833 4.00053 35.9861 4.00276 35.9863L4.00855 35.9867C4.00972 35.9868 4.01082 35.9873 4.01165 35.9881L34.8971 66.8022C35.6103 67.5138 36.5478 67.9126 37.5211 67.9185L44.5741 67.9599C45.4662 67.9651 45.9181 66.8882 45.2895 66.2552L15.9202 36.6847C15.5329 36.2947 15.5329 35.6653 15.9202 35.2753L45.2895 5.70474C45.9181 5.07179 45.4662 3.99483 44.5741 4.00007L37.5211 4.0415Z"
+              />
+            </svg>
+          </button>
+
+          <div class="review-slide" id="review-slide" aria-live="polite" aria-atomic="true">
+            <div>
+              <p class="h3-case-study review-slide__name">Sanne Øst</p>
+              <p class="body-large review-slide__role">Chief Product Officer</p>
+            </div>
+            <p class="body-main review-slide__quote">
+              Roman is a very creative person. We worked together on the
+              design of a password management application and came up with a
+              great solution that was successfully launched. Roman loves to
+              research the market and is always full of creative ideas. If
+              you need fresh and unique eye on your product - Roman is the
+              right person.
+            </p>
+            <button type="button" class="review-slide__link">
+              <img src="assets/icons/icon-linkedin-small.svg" alt="" />
+              View
+            </button>
+          </div>
+
+          <button
+            class="reviews-arrow reviews-arrow--next"
+            type="button"
+            aria-label="Next review"
+            aria-controls="review-slide"
+          >
+            <svg viewBox="0 0 49.5818 71.9599" fill="none" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M12.0609 4.04145C13.0343 4.04725 13.9716 4.44606 14.6849 5.15766L45.5704 35.9708C45.5712 35.9717 45.5723 35.9722 45.5734 35.9724L45.5795 35.9732C45.5818 35.9736 45.5826 35.9764 45.5809 35.9779L45.5807 35.978C45.5795 35.979 45.5795 35.9808 45.5807 35.9818C45.5824 35.9833 45.5815 35.9861 45.5793 35.9862L45.5735 35.9866C45.5723 35.9867 45.5712 35.9872 45.5704 35.988L14.6849 66.8022C13.9717 67.5137 13.0342 67.9125 12.0609 67.9184L5.00792 67.9598C4.11585 67.9651 3.66388 66.8881 4.29253 66.2552L33.6618 36.6846C34.0491 36.2947 34.0491 35.6652 33.6618 35.2752L4.29253 5.70469C3.66389 5.07174 4.11585 3.99478 5.00792 4.00002L12.0609 4.04145Z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="reviews-progress" aria-hidden="true">
+          <span class="reviews-progress__segment is-active"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+        </div>
+
+        <!-- UI: HOME-CTA-01 | CTA block | inspect/adjust (shared component, reused unchanged) -->
+        <div class="cta-section" data-reveal>
+          <h2 class="h2-section cta-heading">Ready to architect your next product?</h2>
+          <p class="body-large cta-description">
+            Open for complex challenges and leadership roles. Select time to
+            call and Hire Me below.
+          </p>
+          <a
+            class="btn btn--primary"
+            href="https://calendar.app.google/CUCg9pmqeG8U3nfM7"
+            target="_blank"
+            rel="noopener"
+          >
+            Book a Call
+            <img class="btn__icon" src="assets/icons/icon-arrow-right.svg" alt="" />
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- UI: GLOBAL-FOOTER-01 | Site footer | inspect/adjust (shared component, reused unchanged) -->
+    <footer class="site-footer">
+      <img class="site-footer__bg" src="assets/images/footer-bg.svg" alt="" aria-hidden="true" />
+      <div class="site-footer__row site-footer__row--top">
+        <a class="nav-logo" href="index.html">
+          <span class="nav-logo__icon">
+            <img class="nav-logo__avatar" src="assets/icons/logo-avatar.png" alt="" />
+          </span>
+          <span class="nav-logo__text">Alien Eyes</span>
+        </a>
+
+        <div class="site-footer__social">
+          <a href="https://www.instagram.com/romsvid/" target="_blank" rel="noopener">
+            <img src="assets/icons/social-instagram.svg" alt="Instagram" />
+          </a>
+          <a href="https://www.linkedin.com/in/romsvid/" target="_blank" rel="noopener">
+            <img src="assets/icons/social-linkedin.svg" alt="LinkedIn" />
+          </a>
+          <a href="https://t.me/Rmsddddd" target="_blank" rel="noopener">
+            <img src="assets/icons/social-telegram.svg" alt="Telegram" />
+          </a>
+        </div>
+      </div>
+
+      <div class="site-footer__row site-footer__row--bottom">
+        <p class="body-main site-footer__copyright">© 2026 Roman Sviderskyi</p>
+        <p class="body-main site-footer__contact">
+          +380 97 334 9540&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:svidddrommm25@gmail.com"
+            >svidddrommm25@gmail.com</a
+          >
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+    <script src="js/reviews.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="js/notif-reveal.js"></script>
+    <script src="js/uniqkey-dash1-scroll.js"></script>
+    <script src="js/uniqkey-dash2-scroll.js"></script>
+    <script src="js/uniqkey-feedback-pin.js"></script>
+    <script src="js/case-other-carousel.js"></script>
+  </body>
+</html>

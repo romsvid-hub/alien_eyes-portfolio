@@ -1,0 +1,1259 @@
+/*
+  Uniqkey Case Study (Figma fileKey DU3fuTo8QXIJ0uMcI3jh91, node 2:14428,
+  live content frame 2:14459) — verified via get_metadata + get_design_context
+  on 2:14460, 2:14497, 2:14514, 2:14592, 2:14636, 2:14683, 2:14693, 2:14776,
+  2:14786, 2:14810, 2:14833, 2:14861.
+
+  This case study is a deliberate light-theme branding exception to the
+  site's dark "Alien" theme — confirmed in Figma, not a deviation to fix.
+  Case-specific only: does not touch home.css/nav.css/footer.css/tokens.css.
+  Reuses --page-px (home.css) for the same 12/8/4-column margin system used
+  site-wide; reuses .h2-section/.h3-case-study/.body-large/.body-main
+  (typography.css) since Figma's verified type scale for this case matches
+  the existing tokens exactly.
+
+  Figma provided desktop (1280px) frames only — no separate tablet/mobile
+  frames exist for this case study. Breakpoints below apply the same
+  stacking conventions already established for Home's equivalent multi-
+  column sections (see home.css header), not an invented pattern.
+*/
+
+.case-page {
+  background-color: var(--color-main-canvas);
+  color: var(--color-deep-text);
+}
+
+/* ---------- Shared case-study primitives ---------- */
+
+.case-section {
+  padding: 48px var(--page-px);
+}
+
+@media (min-width: 1024px) {
+  .case-section {
+    padding: 48px var(--page-px) 64px;
+  }
+}
+
+/*
+  Full-bleed breakout — used where Figma's own child frame extends back
+  out to the full 1280px canvas width (e.g. the blue Challenge/Context
+  block) instead of sitting inside the 1120px content column implied by
+  --page-px.
+*/
+.case-bleed {
+  padding: 48px var(--page-px);
+}
+
+.case-eyebrow {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--h3-size);
+  letter-spacing: var(--h3-letter-spacing);
+  color: var(--color-subtle-text);
+  margin: 0 0 16px;
+}
+
+.case-eyebrow--gold {
+  color: #ffd166;
+}
+
+.case-eyebrow--white {
+  color: var(--color-white);
+}
+
+.case-eyebrow--muted {
+  color: var(--color-subtle-text);
+}
+
+/*
+  "Case-trick" eyebrow pattern (repeats ~10x in this case study): Figma
+  types the label in caps, wraps the whole string in lowercase, then
+  overrides just the first character back to uppercase — net visual
+  result is plain sentence case (e.g. "REDESIGNED" -> "Redesigned").
+  Reproduced here with ::first-letter instead of literal duplicate
+  spans, since the visual output is identical either way.
+*/
+.cc-trick {
+  text-transform: lowercase;
+}
+
+.cc-trick::first-letter {
+  text-transform: uppercase;
+}
+
+.case-accent-red {
+  color: var(--color-atj-accent);
+}
+
+.case-accent-blue {
+  color: var(--color-unibrand);
+  margin-bottom: 16px;
+}
+
+/* ---------- Hero (2:14461) ---------- */
+
+.case-hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  background-color: #ececec;
+  padding: 96px var(--page-px) 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+@media (min-width: 1024px) {
+  .case-hero {
+    min-height: 653px;
+    padding: 24px var(--page-px) 0 var(--page-px);
+    justify-content: center;
+  }
+}
+
+.case-hero__bg,
+.case-hero__overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.case-hero__overlay {
+  background: rgba(30, 27, 59, 0.3);
+}
+
+.case-hero__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 473px;
+}
+
+@media (min-width: 1024px) {
+  .case-hero__content {
+    gap: 48px;
+  }
+}
+
+.case-hero__tags .tag {
+  color: var(--color-main-canvas);
+}
+
+.case-hero__logo {
+  position: relative;
+  overflow: hidden;
+  width: 120px;
+  height: 26px;
+  mix-blend-mode: luminosity;
+  opacity: 0.5;
+}
+
+@media (min-width: 768px) {
+  .case-hero__logo {
+    width: 167px;
+    height: 36px;
+  }
+}
+
+.case-hero__logo img {
+  position: absolute;
+  left: -155.69%;
+  top: -338.11%;
+  width: 396.99%;
+  height: 1002.46%;
+  max-width: none;
+}
+
+.case-hero__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 1.05;
+  letter-spacing: var(--h1-letter-spacing);
+  color: var(--color-main-canvas);
+  margin: 0;
+}
+
+@media (min-width: 1024px) {
+  .case-hero__title {
+    font-size: var(--h1-size);
+    line-height: 63px;
+  }
+}
+
+.case-hero__subhead {
+  color: #d9d9d9;
+}
+
+.case-hero__mockup {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  align-self: center;
+  object-fit: contain;
+}
+
+@media (min-width: 1024px) {
+  .case-hero__mockup {
+    position: absolute;
+    right: var(--page-px);
+    bottom: 0;
+    width: 591px;
+    max-width: 46.17%; /* 591/1280 per Figma — was 42%, which shrank the mockup below spec at the 1280px breakpoint */
+    align-self: auto;
+  }
+}
+
+/* ---------- Impact stats (2:14497) ---------- */
+
+.case-impact {
+  background-color: #ececec;
+  padding: 32px var(--page-px) 48px;
+}
+
+.case-impact__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 24px;
+}
+
+@media (min-width: 1024px) {
+  .case-impact__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 48px;
+  }
+}
+
+/*
+  Figma (2:14497) lays the number and label side by side (row), not
+  stacked — verified via screenshot. That's only comfortable once each
+  grid item has enough width to breathe; at the mobile 2-column grid
+  (~160px/item) a row layout crowds into the neighboring column, so it
+  only switches to row from the tablet breakpoint up, where Figma's
+  layout is actually verified.
+*/
+.case-impact__item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .case-impact__item {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 16px 16px 0;
+  }
+}
+
+.case-impact__value {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--color-unibrand);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .case-impact__value {
+    font-size: 64px;
+  }
+}
+
+.case-impact__label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--color-subtle-text);
+  margin: 0;
+  min-width: 0;
+}
+
+/* ---------- Product Scope (2:14514) ---------- */
+
+/*
+  Figma (2:14514, x=80 y=80 within its 906-tall-offset parent) shows an
+  80px gap between Impact and Product Scope, not the shared .case-section
+  48px default — verified via get_metadata frame offsets (not text
+  bounding boxes, so no font-ascent ambiguity).
+*/
+@media (min-width: 1024px) {
+  .case-scope {
+    padding-top: 80px;
+  }
+}
+
+.case-scope__devices {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.case-scope__text {
+  margin-top: 24px;
+  color: var(--color-subtle-text);
+}
+
+/* ---------- Story / Challenge / Context (2:14592) ---------- */
+
+.case-challenge-wrap {
+  padding: 0;
+}
+
+.case-challenge {
+  background: linear-gradient(115.6deg, rgb(48, 114, 245) 36.6%, rgb(37, 95, 210) 94.9%);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .case-challenge {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 48px;
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .case-challenge__intro {
+    width: 100%;
+  }
+}
+
+.case-challenge__heading {
+  color: var(--color-main-canvas);
+  margin-top: 8px;
+}
+
+.case-challenge__card {
+  background: var(--color-white);
+  border: 2px solid #e4e7ee;
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  filter: drop-shadow(2px 2px 18px rgba(24, 20, 19, 0.12));
+}
+
+@media (min-width: 1024px) {
+  .case-challenge__card {
+    flex: 1 1 480px;
+    max-width: 547px;
+  }
+}
+
+.case-challenge__card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.case-challenge__card-head .case-eyebrow {
+  margin: 0;
+}
+
+.case-challenge__icon {
+  font-size: 40px;
+  line-height: 1;
+  margin: 0;
+}
+
+.case-challenge__context {
+  color: #dce6ff;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.case-challenge__context p {
+  margin: 0;
+}
+
+.case-challenge__context strong {
+  color: #f3f6ff;
+}
+
+@media (min-width: 1024px) {
+  .case-challenge__context {
+    flex: 1 1 480px;
+    max-width: 549px;
+  }
+}
+
+.case-firstgen {
+  background-color: #f3f3f3;
+  border-radius: 24px;
+  margin-top: 24px;
+}
+
+.case-firstgen__heading {
+  color: var(--color-unibrand);
+  margin: -12px 0 16px;
+}
+
+.case-firstgen__caption {
+  color: var(--color-subtle-text);
+  margin: 0 0 24px;
+}
+
+.case-firstgen__img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+
+/* ---------- User feedback quotes (2:14636) ---------- */
+
+/*
+  Left column is a plain native position:sticky at desktop (js/uniqkey-feedback-pin.js
+  only sets --feedback-pin-top from the nav's height, nothing else) — a
+  sticky element naturally holds in place for as long as its row sibling
+  keeps scrolling past, then releases on its own, no JS-computed
+  clip/translate window needed. Cards on the right pop in/out individually
+  instead — see the notification-card animation block below.
+*/
+.case-feedback__row {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+@media (min-width: 1024px) {
+  .case-feedback__row {
+    flex-direction: row;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .case-feedback__left {
+    position: sticky;
+    /* +20px so it locks with a bit of breathing room under the nav —
+       reading as "settling in right after the Challenge & First-gen
+       Dashboard block above it", not snapped flush against the header —
+       same convention as .atj-jobcard__pin-inner's +20px in case-atj.css. */
+    top: calc(var(--feedback-pin-top, 0px) + 20px);
+    width: 548px;
+    flex-shrink: 0;
+  }
+
+  .case-feedback__right {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.case-feedback__heading {
+  color: var(--color-unibrand);
+  margin: 8px 0 24px;
+}
+
+.case-feedback__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 24px;
+  list-style: disc;
+  color: var(--color-deep-text);
+  margin: 0;
+}
+
+.case-feedback__right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/*
+  Notification-style pop in/out for the feedback cards — same technique
+  as ATJ2's "Notifications" feature row (js/notif-reveal.js): each card
+  fades + rises + scales in as it crosses into view, and reverses the
+  same way going back out, re-firing on every crossing rather than once,
+  so the stack reads like messages arriving/clearing rather than a
+  generic page-load reveal.
+*/
+.notif-anim {
+  opacity: 0;
+  transform: translateY(16px) scale(0.94);
+  transition: opacity 480ms cubic-bezier(0.16, 1, 0.3, 1), transform 480ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.notif-anim.is-shown {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notif-anim {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.case-testimonial {
+  background: var(--color-white);
+  border: 2px solid #e4e7ee;
+  border-radius: 16px;
+  padding: 16px;
+  filter: drop-shadow(2px 2px 18px rgba(24, 20, 19, 0.12));
+}
+
+.case-testimonial__head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.case-testimonial__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.case-testimonial__role {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--color-subtle-text);
+  margin: 0;
+}
+
+.case-testimonial__role--bold {
+  font-weight: 700;
+}
+
+.case-testimonial__quote {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 25px;
+  color: var(--color-subtle-text);
+  margin: 0;
+}
+
+/* ---------- Approach (2:14683) ---------- */
+
+.case-approach__heading {
+  color: var(--color-unibrand);
+  margin: 8px 0 24px;
+}
+
+.case-approach__intro {
+  margin-bottom: 24px;
+}
+
+.case-approach__diagram {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  display: block;
+}
+
+/* ---------- Redesigned Average Security Score (2:14693) ---------- */
+
+.case-score__heading {
+  color: var(--color-unibrand);
+  margin: 8px 0 24px;
+}
+
+.case-score__issue {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 1024px) {
+  .case-score__issue {
+    flex-direction: row;
+    gap: 24px;
+  }
+
+  .case-score__issue > * {
+    flex: 1;
+  }
+}
+
+.case-score__issue-text {
+  color: var(--color-subtle-text);
+}
+
+.case-score__issue-list {
+  color: var(--color-atj-accent);
+  padding-left: 24px;
+  margin: 0;
+}
+
+.case-score__compare {
+  background-color: #efefef;
+  border-radius: 16px;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .case-score__compare {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+}
+
+.case-score__stage {
+  width: 100%;
+  max-width: 320px;
+}
+
+@media (min-width: 1024px) {
+  .case-score__stage {
+    width: 283px;
+  }
+
+  .case-score__stage--wide {
+    width: 347px;
+  }
+}
+
+.case-score__stage-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--color-subtle-text);
+  margin: 0 0 16px;
+}
+
+.case-score__stage-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.case-score__stage-img--before {
+  aspect-ratio: 590 / 296;
+  object-fit: cover;
+}
+
+.case-score__arrow {
+  width: 12px;
+  height: 60px;
+  flex-shrink: 0;
+  /* Icon itself points right; rotate to point down while stages stack
+     vertically (base/tablet), then reset to its native right-pointing
+     orientation once the row goes horizontal at desktop. */
+  transform: rotate(90deg);
+}
+
+@media (min-width: 1024px) {
+  .case-score__arrow {
+    width: 25px;
+    height: 100px;
+    transform: none;
+  }
+}
+
+.case-score__outro {
+  margin-top: 48px;
+}
+
+.case-score__outro-heading {
+  color: var(--color-subtle-text);
+  margin: 0 0 24px;
+}
+
+.case-score__outro-cols {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: var(--color-subtle-text);
+}
+
+@media (min-width: 1024px) {
+  .case-score__outro-cols {
+    flex-direction: row;
+  }
+
+  .case-score__outro-cols p {
+    flex: 1;
+  }
+}
+
+/*
+  "The Shift" statement blocks (2:14776, 2:14810). Three instances, each
+  different:
+  - Standalone, before Dashboard 1: solid panel in Uniqkey's own accent
+    blue (--color-unibrand / #3072f5), white title, two stacked lines
+    (confirmed directly against Figma fills/structure).
+  - "The Shift" inside Dashboard 2: plain (no panel) — uses the separate
+    .case-shift-outro rules below, matching .case-score__outro's
+    heading+columns pattern.
+  - "Results" (formerly "Business impact") inside Dashboard 2: solid
+    panel in a separate, more muted blue (#3d5bae — not the same value
+    as the standalone panel above), single block, no column split.
+*/
+.case-shift {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.case-shift--panel {
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: var(--color-unibrand);
+  border: 2px solid #2669ed;
+  border-radius: 8px;
+  padding: 24px;
+  gap: 0;
+  filter: drop-shadow(2px 2px 9px rgba(24, 20, 19, 0.12));
+}
+
+/*
+  The eyebrow's own base margin-bottom (16px) already sets the
+  title-to-text gap — no extra flex `gap` on top of it, so it stays a
+  flat 16px instead of stacking to 24px. Only the two body lines get
+  their own smaller 8px gap between each other.
+*/
+.case-shift--panel .case-shift__text + .case-shift__text {
+  margin-top: 8px;
+}
+
+.case-shift--panel-results {
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #3d5bae;
+  border: 2px solid #33488f;
+  border-radius: 8px;
+  padding: 24px;
+  margin-top: 24px;
+  filter: drop-shadow(2px 2px 9px rgba(24, 20, 19, 0.12));
+}
+
+@media (min-width: 1024px) {
+  .case-shift--panel-results {
+    padding: 32px 24px;
+  }
+}
+
+.case-shift__heading {
+  color: #efefef;
+  margin: 0 0 8px;
+}
+
+.case-shift__text {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: -0.0036px;
+  color: var(--color-deep-text);
+  margin: 0;
+}
+
+.case-shift--panel .case-shift__text,
+.case-shift--panel-results .case-shift__text {
+  color: #efefef;
+}
+
+.case-shift__text strong {
+  font-weight: 700;
+}
+
+/*
+  "The Shift" inside Dashboard 2 (plain, no panel) — same heading+columns
+  pattern as .case-score__outro above: a subtle-text heading followed by
+  a column pair that stacks on mobile and sits side by side at desktop.
+*/
+.case-shift-outro {
+  margin-top: 48px;
+}
+
+.case-shift-outro-heading {
+  color: var(--color-subtle-text);
+  margin: 0 0 16px;
+}
+
+.case-shift-outro-cols {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: var(--color-subtle-text);
+}
+
+@media (min-width: 1024px) {
+  .case-shift-outro-cols {
+    flex-direction: row;
+  }
+
+  .case-shift-outro-cols p {
+    flex: 1;
+  }
+}
+
+/* ---------- Redesigned Dashboard 1/2 (2:14786) ---------- */
+
+.case-dash1 {
+  padding: 0;
+}
+
+/*
+  Figma (2:14786 -> 2:14788, local y=24) shows a 24px top padding here,
+  not 48px — verified via get_metadata frame offset.
+*/
+.case-dash1__white {
+  padding: 24px var(--page-px) 24px;
+}
+
+.case-dash__admin-heading {
+  color: var(--color-unibrand);
+}
+
+.case-dash1__intro {
+  color: var(--color-dark-alien);
+  margin: 16px 0 24px;
+}
+
+/*
+  Pinned-scroll nav+dashboard pair (js/uniqkey-dash1-scroll.js).
+  Always a horizontal row — never stacked vertically, at any breakpoint.
+  Menu is shown in full and defines the pinned window's height; the DB
+  screenshot is taller than that window and translates upward inside it
+  as the page scrolls, revealing more of itself before scrolling hands
+  back to the normal page flow.
+*/
+.case-dash1__pin {
+  position: relative;
+}
+
+/*
+  Menu width and gap are percentages of the row (220px and 16px at the
+  1120px desktop content-column reference: 220/1120, 16/1120) instead
+  of fixed px + a breakpoint swap. Treating Old Menu + Old DB as if
+  they were slices of one image that scales as a whole: with a fixed-px
+  menu, narrowing the row shrank the DB window's width (and so its own
+  natural rendered height) faster than the menu's height, so at small
+  widths the "taller DB scrolling behind a shorter menu" relationship
+  inverted — DB ran out of height before the menu did, leaving blank
+  space in the window instead of a crop. Percentages keep menu/gap/DB
+  in the same proportion at every width, so that can't happen.
+*/
+.case-dash1__row {
+  position: sticky;
+  top: var(--dash1-pin-top, 0px);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.7143%; /* 8 / 1120 */
+}
+
+.case-dash1__menu {
+  width: 19.6429%; /* 220 / 1120 */
+  height: auto;
+  flex-shrink: 0;
+  display: block;
+}
+
+.case-dash1__db-window {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.case-dash1__db-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.case-dash1__blue {
+  background-color: var(--color-unibrand);
+  padding: 48px var(--page-px) 64px;
+}
+
+.case-dash1__blue-heading {
+  color: #ffd166;
+  margin: 0 0 24px;
+}
+
+.case-dash1__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 1024px) {
+  .case-dash1__cards {
+    flex-direction: row;
+  }
+
+  .case-dash1__cards > * {
+    flex: 1;
+  }
+}
+
+.case-keychange {
+  background-color: var(--color-main-canvas);
+  border: 2px solid #e4e7ee;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  filter: drop-shadow(2px 2px 9px rgba(24, 20, 19, 0.12));
+}
+
+.case-keychange p:last-child {
+  color: var(--color-deep-text);
+  margin: 0;
+}
+
+/* ---------- Redesigned Dashboard 2/2 (2:14810) ---------- */
+
+.case-dash2__intro {
+  color: var(--color-deep-text);
+  margin: 16px 0 24px;
+}
+
+/*
+  Pinned-scroll nav+dashboard pair (js/uniqkey-dash2-scroll.js).
+  Top.png (2880px wide) + New Menu.png (560px) + New DB.png (2320px)
+  are slices of one 2880px-wide composite (560+2320=2880) — Menu's
+  width below is a percentage of that (560/2880), not a fixed px
+  breakpoint value, specifically so the whole assembly scales down as
+  one unit on smaller screens instead of reflowing independently.
+  Zero gap anywhere: the three pieces sit flush, as if still one image,
+  no border/frame. Top+Menu stay pinned in place; the DB screenshot is
+  taller than the menu and translates upward inside its window as the
+  page scrolls, revealing more of itself before scrolling hands back to
+  the normal page flow. Menu+DB stay a horizontal row at every
+  breakpoint.
+*/
+.case-dash2__pin {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.case-dash2__sticky {
+  position: sticky;
+  top: var(--dash2-pin-top, 0px);
+}
+
+.case-dash2__top {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.case-dash2__row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.case-dash2__menu {
+  width: 19.4444%; /* 560 / 2880 */
+  height: auto;
+  flex-shrink: 0;
+  display: block;
+}
+
+.case-dash2__db-window {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.case-dash2__db-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- Other Screens + Awards + Design System (2:14833) ---------- */
+
+.case-other__heading {
+  color: var(--color-subtle-text);
+  margin: 0 0 32px;
+}
+
+/*
+  Other Screens carousel (js/case-other-carousel.js). One slide (device
+  mockup + heading + description) at a time, prev/next arrows either
+  side of the image, smooth crossfade+slide on switch, dot navigation
+  at the bottom. Colors are tuned for this case study's light background
+  (unlike .reviews-arrow on the dark Reviews/CTA section) — same
+  interaction pattern, different palette.
+
+  v2 (Figma "MacBook Air - 1..6", 612:4369-612:4633): each slide's
+  mockup is a flat browser/phone-chrome screenshot at its own natural
+  aspect ratio (no shared laptop-illustration frame or backing tile),
+  so the viewport's height changes slide to slide rather than staying
+  fixed.
+
+  Text moved back above the image (was image-then-text): with no cap on
+  image height, a tall mockup could fill the whole viewport and push the
+  description below the fold, so a reader had to scroll to discover it
+  even existed. The image also now caps at 60vh so the slide's image,
+  caption, and dots have a better chance of fitting in view together.
+*/
+.case-other-carousel {
+  margin-bottom: 64px;
+}
+
+.case-other-carousel__text {
+  max-width: 640px;
+  margin-bottom: 24px;
+}
+
+.case-other-carousel__title {
+  color: var(--color-deep-text);
+  margin: 0 0 8px;
+}
+
+.case-other-carousel__desc {
+  color: var(--color-subtle-text);
+  margin: 0;
+}
+
+.case-other-carousel__stage {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .case-other-carousel__stage {
+    gap: 24px;
+  }
+}
+
+.case-other-carousel__viewport {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.case-other-carousel__img {
+  max-width: 100%;
+  max-height: 60vh;
+  width: auto;
+  height: auto;
+  display: block;
+  transition: opacity 280ms ease, transform 280ms ease;
+}
+
+.case-other-carousel__img.is-out-next {
+  opacity: 0;
+  transform: translateX(-24px);
+}
+
+.case-other-carousel__img.is-out-prev {
+  opacity: 0;
+  transform: translateX(24px);
+}
+
+.case-other-carousel__img.is-in-next {
+  opacity: 0;
+  transform: translateX(24px);
+  transition: none;
+}
+
+.case-other-carousel__img.is-in-prev {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-other-carousel__img {
+    transition: none;
+  }
+}
+
+.case-other-carousel__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 36px;
+  flex-shrink: 0;
+  color: var(--color-subtle-text);
+  transition: color 0.15s ease;
+}
+
+@media (min-width: 768px) {
+  .case-other-carousel__arrow {
+    width: 32px;
+    height: 48px;
+  }
+}
+
+.case-other-carousel__arrow:hover {
+  color: var(--color-unibrand);
+}
+
+.case-other-carousel__arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+.case-other-carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.case-other-carousel__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background-color: #e4e7ee;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.case-other-carousel__dot.is-active {
+  background-color: var(--color-unibrand);
+  transform: scale(1.25);
+}
+
+.case-awards {
+  margin-bottom: 64px;
+  filter: drop-shadow(2px 2px 9px rgba(24, 20, 19, 0.12));
+}
+
+.case-awards__heading {
+  color: var(--color-subtle-text);
+  margin: 0 0 24px;
+}
+
+.case-awards__banner-frame {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 1072 / 194;
+  border-radius: 8px;
+}
+
+.case-awards__banner {
+  position: absolute;
+  left: -6.31%;
+  top: -984.62%;
+  width: 112.77%;
+  height: 1106.41%;
+  max-width: none;
+}
+
+.case-design-system__heading {
+  color: var(--color-subtle-text);
+}
+
+.case-design-system__intro {
+  color: var(--color-subtle-text);
+  margin: 16px 0 24px;
+}
+
+.case-design-system__cols {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .case-design-system__cols {
+    flex-direction: row;
+  }
+
+  .case-design-system__cols > * {
+    flex: 1;
+  }
+}
+
+.case-design-system__cols ul {
+  list-style: disc;
+  padding-left: 24px;
+  color: var(--color-subtle-text);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/*
+  Live Design Files (2:14861) — this isn't a titled/iconed dark strip of
+  its own; the Prototype/Design System links are just part of the white
+  Design System block's content, so the section carries no background or
+  padding override of its own beyond the shared .case-section rhythm.
+*/
+
+.case-livefiles__links {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.case-livefiles__links p {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--color-subtle-text);
+  margin: 0;
+}
+
+/*
+  Matches the established "uikit link" style from ATJ1/ATJ2
+  (.atj-uikit__link a / .atj2-uikit__link a): plain body font, the
+  case's own brand accent color, underlined — not a generic purple +
+  monospace treatment that doesn't belong to this case or the site.
+*/
+.case-livefiles__links a {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--color-unibrand);
+  text-decoration: underline;
+}
+
+/* ---------- Reviews + CTA (shared component reused unchanged) ---------- */
+
+/*
+  The shared Reviews/CTA component (home.css) assumes a dark backdrop
+  (white/light-gray text, no background of its own — it inherits the
+  dark <body> from Home). This case study's <body> is light, so this
+  section gets its own dark panel here, matching how the component is
+  designed to sit in Figma, without touching the shared component rules.
+
+  No border-radius: verified via Figma screenshot (2:14875) — the section
+  is a plain full-bleed rectangle, not a rounded floating card.
+*/
+.case-reviews-cta {
+  background-color: var(--color-dark-alien);
+}

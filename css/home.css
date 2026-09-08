@@ -1,0 +1,1067 @@
+/*
+  Home (2:13410) — verified via get_design_context on: hero (2:13414),
+  job logos (2:13427), impact stats (2:13437), "Case Card — ATJ1" (2:13454,
+  formerly Case_1), "Case Card — Uniqkey" (2:13472, formerly Case_2),
+  Reviews+CTA (2:13501).
+
+  Responsive behavior below was NOT specified in the desktop-only Figma
+  file — breakpoints, wrapping, and stacking are implementation
+  decisions per Roman's brief (mobile <768px, tablet 768–1023px,
+  desktop >=1024px). Verified pixel values (padding, gaps, colors,
+  font specs) are preserved; only layout mechanics (flex/grid direction,
+  wrapping) change per breakpoint.
+
+  "Case Card — Future (Moto navigator)" / "Case Card — Future (Travel
+  navigator)" (formerly Case_3/Case_4; hidden="true" in Figma, "Case in
+  progress") are intentionally not implemented.
+*/
+
+/*
+  Layout grid — internal system rule (2026-08-25 spec), not a visible
+  grid, not implemented as literal grid columns. Used only as the
+  source for --page-px (horizontal section margin) below, and as the
+  basis for the client-logos row/column counts further down.
+
+  Desktop (>=1280px): 12 columns, 80px margin, 24px gutter.
+  Tablet  (768–1279px): 8 columns, 32px margin, 24px gutter.
+  Mobile  (<768px): 4 columns, 16px margin, 16px gutter.
+*/
+:root {
+  --page-px: 16px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --page-px: 32px;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --page-px: 80px;
+  }
+}
+
+.home-section {
+  padding: 64px var(--page-px);
+}
+
+@media (min-width: 1024px) {
+  .home-section {
+    padding: 96px var(--page-px);
+  }
+}
+
+.home-section + .home-section {
+  padding-top: 0;
+}
+
+/* ---------- Hero (2:13414) ---------- */
+
+/*
+  Pulled in from the shared .home-section top padding (64px/96px) to a
+  flat 40px at every breakpoint, per Roman's request — the hero card
+  should sit close under the nav, not with the same generous spacing
+  used between the other sections further down the page.
+*/
+.hero-section {
+  padding-top: 40px;
+}
+
+/*
+  UI: HOME-HERO-01 | Hero layout | inspect/adjust
+
+  The card's "Hero card" frame (2:13414, formerly "background") isn't just
+  a flat fill in Figma — it also carries a soft blurred texture image
+  ("Hero backdrop texture", 2:13411, formerly "background 2", exported as
+  hero-bg-texture.png) and a top-to-bottom dark
+  gradient (Rectangle 240650994) sitting behind the glass-blurred card
+  fill, which is what gave it depth instead of reading as plain black.
+  Neither layer had been ported to code before; the glass-blur effect
+  itself has no direct CSS equivalent so it's approximated here as a
+  soft radial glow instead (a literal backdrop-filter blur would need
+  something moving behind the card to blur, which doesn't apply here).
+
+  The texture+gradient now live in .hero-card__texture (a real element,
+  not this element's own CSS background) so the starfield can sit on
+  top of it as its own layer, painting below the real photo/text
+  content. DOM order does the layering: .hero-card__texture, then
+  .hero-card__stars, then the real children.
+*/
+.hero-card {
+  position: relative;
+  /* Establishes .hero-card's own stacking context (position:relative
+     alone doesn't) so the negative z-index below on .hero-card__texture
+     / .hero-card__stars is scoped to just this card, not competing
+     with unrelated positioned elements elsewhere on the page. */
+  z-index: 0;
+  overflow: hidden;
+  background-color: rgba(19, 20, 20, 0.2);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column-reverse; /* tablet (768-1023px): text first, image second */
+  gap: 32px;
+  padding: 24px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/*
+  z-index: -1 (not touching .hero-card__body/photo's own position, to
+  avoid making .hero-card__body a new containing block — it wasn't
+  one before, and .hero-actions' mobile position:absolute depends on
+  resolving against .hero-card itself, not .hero-card__body; giving
+  body its own stacking context here broke that, pulling the mobile
+  buttons up to sit under .hero-card instead of near the card's
+  bottom). Within the stacking context .hero-card now establishes,
+  negative z-index descendants paint before (below) everything at
+  z-index 0/auto — CSS2.1 Appendix E, steps 2 vs 3/6 — so this alone
+  is enough to sink these two below the real content regardless of
+  DOM order, without needing z-index on the content itself.
+*/
+.hero-card__texture,
+.hero-card__stars {
+  z-index: -1;
+}
+
+.hero-card__texture {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(180deg, rgba(11, 11, 19, 0) 6%, rgba(11, 11, 19, 0.55) 82%),
+    url("../assets/home/hero-bg-texture.png");
+  background-size: cover, cover;
+  background-position: center, bottom;
+  background-repeat: no-repeat, no-repeat;
+}
+
+/*
+  Starfield (sits above .hero-card__texture): dots race outward from
+  the card's center, like flying forward through space toward that
+  point, rather than drifting chaotically. One shared keyframe
+  (hero-star-warp below) handles
+  every star — each one's direction comes from its own --angle custom
+  property (set per star in js/hero-stars.js), so rotate(angle) +
+  translateX(distance) traces a straight line outward at that angle
+  without needing a separate keyframe per star. Auxiliary and
+  low-key by design: small dots, capped opacity, animation-only
+  transform/opacity (no layout cost) — see js/hero-stars.js for the
+  element generation (also respects prefers-reduced-motion, in which
+  case no stars are created at all).
+*/
+.hero-card__stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-card__star {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0;
+  animation-name: hero-star-warp;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/*
+  Opacity ramps in several steps (not a flat plateau) so stars read as
+  dim near the center — 40% dimmer than before at the 15% mark — and
+  gradually brighten as they travel outward, fading back out at the
+  end. transform only needs its two endpoints (0%/100%); the browser
+  interpolates it smoothly across the whole timeline regardless of how
+  many opacity-only stops sit in between.
+*/
+@keyframes hero-star-warp {
+  0% {
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateX(0) scale(0.4);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.54;
+  }
+  55% {
+    opacity: 0.7;
+  }
+  85% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateX(340px) scale(1.6);
+    opacity: 0;
+  }
+}
+
+.hero-card__photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 454 / 400; /* tablet (768-1023px) — untouched by the 2026-08-25 mobile-only fix */
+  border-radius: 13px;
+  overflow: hidden;
+}
+
+/*
+  "my 1.png" is a transparent cutout (no background of its own —
+  verified via alpha channel) meant to blend straight into
+  .hero-card's own textured background rather than sit in an opaque
+  photo box. contain here (mobile/tablet default) shows the whole
+  cutout without ever cropping the person, at breakpoints where the
+  container's aspect ratio isn't precisely calibrated to the source
+  photo; since the surrounding "empty" space is transparent, any
+  letterboxing just reveals the card's background rather than leaving
+  a visible gap. Desktop overrides this to `cover` — see the
+  min-width:1024px block below — since that container is precisely
+  positioned to touch the card's edges with no gap, which only `cover`
+  guarantees.
+*/
+.hero-card__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.hero-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.hero-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-identity__name {
+  color: var(--color-white);
+}
+
+.hero-identity__role {
+  color: var(--color-white);
+}
+
+/*
+  Hero headline: Sora ExtraBold, 60px / 72px line-height, letter-spacing
+  -0.012px — verified via get_design_context, distinct from the H1
+  Display token (64px). Not mapped onto .h1-display.
+*/
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 1.2;
+  letter-spacing: -0.012px;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/*
+  Added 2026-08-25: Figma has a dedicated mobile Hero frame (2:13530),
+  not just a scaled-down copy of the desktop one — verified via
+  get_design_context. Two real differences from the tablet/desktop
+  version, mobile-only (<768px):
+  1. Different headline copy and a smaller type size (26px/36px vs
+     40px+ elsewhere) — swapped via the two spans below, not invented.
+  2. The buttons visually sit on top of the lower part of the photo
+     instead of stacking below it. Photo and name/role/headline stay
+     in normal flow (so the card's height is still driven by real
+     content); only .hero-actions is pulled out with position:absolute
+     to land over the photo — no DOM reordering needed.
+*/
+@media (max-width: 767px) {
+  .hero-card {
+    flex-direction: column;
+  }
+
+  .hero-card__photo {
+    order: 2;
+    aspect-ratio: 454 / 518; /* verified against Figma's dedicated mobile frame (2:13530) */
+  }
+
+  .hero-card__body {
+    order: 1;
+  }
+
+  .hero-title__desktop {
+    display: none;
+  }
+
+  .hero-title {
+    font-size: 26px;
+    line-height: 36px;
+    letter-spacing: -0.0052px;
+  }
+
+  .hero-actions {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
+    z-index: 1;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-title__mobile {
+    display: none;
+  }
+
+  .hero-title {
+    font-size: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  /*
+    Updated 2026-09-04: the photo (now a transparent cutout, see
+    .hero-card__photo img below) is pinned bottom+right flush against
+    the card with no gap, and its top now lines up with the headline's
+    own top edge (143px down from the card's top, measured against the
+    live layout) instead of bleeding above it. Right (4px) and bottom
+    (1px) insets are the same near-edge-bleed values as before.
+
+    aspect-ratio was removed from the container: with both top AND
+    bottom set, the browser was using aspect-ratio to size the box
+    (from width alone) instead of stretching it to fill the top/bottom
+    insets exactly — which silently left a real ~47px gap at the
+    bottom despite `bottom: 1px` in the source, the opposite of what's
+    wanted here. Without aspect-ratio the box now stretches to fill
+    top/bottom/right/width exactly, and object-fit: cover on the img
+    (below) does the uniform, non-distorting scale-to-fill instead.
+  */
+  .hero-card {
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    padding: 48px;
+    /* Reserves room so the text column never runs under the
+       absolutely positioned photo: photo's right inset (4px) + its
+       width (520px) + a 48px breathing gap, matching the padding
+       scale used everywhere else in this card. */
+    padding-right: 572px;
+  }
+
+  /*
+    Enlarged 2026-09-07 per Roman's request — grows toward the upper-left
+    (right/bottom stay anchored to the card's edge with no gap, so a
+    wider box only extends further left, and a smaller `top` only
+    extends further up): width 457px -> 520px, top 143px -> 100px.
+  */
+  .hero-card__photo {
+    position: absolute;
+    top: 100px;
+    right: 4px;
+    bottom: 1px;
+    width: 520px;
+    /* Resets the base rule's aspect-ratio: 454/400 (tablet), which
+       cascades in unless explicitly cleared — with it still active,
+       top+bottom stretch-to-fill never took effect. */
+    aspect-ratio: auto;
+  }
+
+  /*
+    cover, not contain: this container's edges are meant to touch the
+    card's bottom/right with no gap, which only a fill-the-box fit
+    guarantees. Scales uniformly (never distorts) and crops overflow —
+    object-position: bottom keeps the crop within the source photo's
+    transparent top margin rather than into the subject's hair (the
+    box is proportionally wider/shorter than the source image, so
+    cover scales to the container's width and trims the excess height
+    off the top).
+  */
+  .hero-card__photo img {
+    object-fit: cover;
+    object-position: center bottom;
+  }
+
+  .hero-card__body {
+    flex: 1;
+    gap: 42px;
+  }
+
+  .hero-title {
+    font-size: 60px;
+    line-height: 72px;
+  }
+}
+
+/* ---------- "I worked with:" client logos (2:13427) ---------- */
+
+/*
+  Fixed 2026-08-25: aligned to the shared grid system (same
+  max-width:1120px + margin:auto pattern as every other section
+  below), instead of its own centered flex container with arbitrary
+  max-widths — that's what caused "I worked with:" to sit out of
+  alignment with "Case Studies:" and forced the logo row into a
+  cramped fixed-width box instead of spanning the full grid width.
+*/
+/* UI: HOME-CLIENT-LOGOS-01 | Client logos section | inspect/adjust */
+.logos-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.logos-heading {
+  color: var(--color-white);
+  max-width: 1120px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/*
+  3 columns (mobile + tablet) / 6 columns (desktop >=1280px) — per the
+  2026-08-25 grid spec: never 5+1, 4+2, or 2x3. Columns are fluid
+  (1fr), not a fixed px track, so the row always spans the full grid
+  width edge-to-edge without a fixed-width sub-container.
+*/
+.logos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 1120px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .logos-grid {
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .logos-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/*
+  Fluid logo cells: width is the grid track (1fr), aspect-ratio locks
+  the box to the sprite's native 167:74 shape so it never distorts,
+  and background-size/-position are expressed as % (not px) so the
+  sprite crop scales exactly with the cell at any width — same
+  technique as the mockup composites above, just applied via
+  background instead of an <img>.
+
+  The % position values are NOT the raw Figma offsets (those describe
+  simple top-left placement, not CSS background-position, which uses
+  the "(area - image) * pct" formula) — each has been solved so the
+  rendered crop matches Figma's offset ratio at any container size:
+  X% = (offset/area) / (1 - size%/100) * 100, same for Y.
+*/
+/*
+  Was opacity 0.5 by default / 1 on hover — flagged 2026-09-07 as a
+  touch-device accessibility gap and briefly changed to full opacity at
+  rest. Superseded the same day by an explicit spec: 70% at rest, 100%
+  on hover/focus (still meaningfully more visible at rest than the
+  original 50%, just not full brightness until interaction).
+*/
+.client-logo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 167 / 74;
+  border-radius: 8px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  /* IMAGE: HOME-CLIENT-LOGOS-01 | Client logos sprite | replaceable */
+  background-image: url("../assets/home/client-logos-sprite.png");
+  background-repeat: no-repeat;
+  mix-blend-mode: luminosity;
+}
+
+.client-logo:hover,
+.client-logo:focus-visible {
+  opacity: 1;
+}
+
+/*
+  Each logo is also a `data-reveal-group` child, so once scrolled into
+  view it permanently carries reveal.css's own .reveal-init.is-revealed
+  class, whose `opacity: 1` (two classes = higher specificity than the
+  single-class .client-logo above, and reveal.css loads after home.css)
+  would otherwise pin every logo at full opacity forever post-reveal,
+  never settling back to the intended 70% resting state. Matching that
+  selector's specificity with a third class wins the tie regardless of
+  stylesheet order.
+*/
+.client-logo.reveal-init.is-revealed {
+  opacity: 0.7;
+}
+
+.client-logo.reveal-init.is-revealed:hover,
+.client-logo.reveal-init.is-revealed:focus-visible {
+  opacity: 1;
+}
+
+.client-logo--atj {
+  background-size: 419.26% 515.05%;
+  background-position: 16.373% 36.163%;
+}
+.client-logo--uniqkey {
+  background-size: 396.99% 487.68%;
+  background-position: 52.421% 35.454%;
+}
+.client-logo--justplay {
+  background-size: 419.26% 515.05%;
+  background-position: 86.192% 36.044%;
+}
+.client-logo--lampa {
+  background-size: 419.26% 515.05%;
+  background-position: 17.122% 62.734%;
+}
+.client-logo--softserve {
+  background-size: 345.68% 424.66%;
+  background-position: 54.351% 63.522%;
+}
+.client-logo--hochurayu {
+  background-size: 419.26% 515.05%;
+  background-position: 87.148% 62.734%;
+}
+
+/* ---------- Impact stats (2:13437) ---------- */
+
+/* UI: HOME-IMPACT-STATS-01 | Impact/stat numbers | inspect/adjust */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: 1px solid #363636;
+  border-radius: 8px;
+  max-width: 1120px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+  padding: 20px 16px;
+  min-height: 120px;
+  border-top: 1px solid #363636;
+}
+
+.stat-item:nth-child(-n + 2) {
+  border-top: none;
+}
+
+.stat-item:nth-child(odd) {
+  border-right: 1px solid #363636;
+}
+
+.stat-item__label {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: -0.0024px;
+  text-transform: uppercase;
+  color: var(--color-lines-dividers);
+}
+
+.stat-item__value {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 40px;
+  letter-spacing: -0.0112px;
+  color: var(--color-cta-purple);
+}
+
+@media (min-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    min-height: 146px;
+  }
+
+  .stat-item {
+    min-height: 146px;
+    border-top: none;
+  }
+
+  .stat-item:nth-child(-n + 2) {
+    border-top: none;
+  }
+
+  .stat-item:nth-child(odd) {
+    border-right: none;
+  }
+
+  .stat-item:not(:first-child) {
+    border-left: 1px solid #363636;
+  }
+
+  .stat-item__value {
+    font-size: 56px;
+  }
+}
+
+/* ---------- Case studies (2:13454 ATJ, 2:13472 Uniqkey) ---------- */
+
+/* UI: HOME-CASE-STUDIES-01 | Case study cards (shared layout) | inspect/adjust */
+.case-studies-heading {
+  color: var(--color-white);
+  max-width: 1120px;
+  margin: 0 auto 32px;
+}
+
+.case-card {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.case-card + .case-card {
+  margin-top: 64px;
+}
+
+.case-card__media {
+  position: relative;
+  width: 100%;
+  max-width: 548px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+}
+
+.case-card__media img,
+.case-card__media picture {
+  position: absolute;
+}
+
+.case-card__glow {
+  position: absolute;
+  left: 50%;
+  top: 12%;
+  width: 75%;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.case-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.case-card__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.case-card__title {
+  color: var(--color-white);
+}
+
+.case-card__description {
+  color: var(--color-white);
+}
+
+/*
+  Always a single horizontal row, never wrapping to a second line — per
+  Figma (Uniqkey hero "Frame 2147262425" etc.) and confirmed as the
+  standard for every case's tag row going forward. Narrow viewports
+  scroll horizontally instead of wrapping.
+*/
+.tag-row {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tag-row::-webkit-scrollbar {
+  display: none;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 4px 10px;
+  background-color: rgba(89, 89, 89, 0.25);
+  border: 1px solid rgba(217, 217, 217, 0.25);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.0028px;
+  color: var(--color-main-canvas);
+  white-space: nowrap;
+}
+
+/*
+  Mockup composites (ATJ, Uniqkey): the source PNGs are larger than
+  their display frame (screenshots exported at their own native
+  aspect ratio, not the cropped display aspect Figma shows). Each is
+  an overflow:hidden "frame" positioned as a % of the square media
+  box (matches get_design_context's outer offsets), containing an
+  oversized, offset inner <img> (matches get_design_context's own
+  inner width/height/left/top %) to reproduce Figma's crop exactly.
+*/
+.atj-mockup-frame {
+  position: absolute;
+  left: 0;
+  top: 13.16%;
+  width: 100%;
+  height: 66.41%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.atj-mockup-frame img {
+  position: absolute;
+  width: 133.98%;
+  height: 151.44%;
+  left: -13.18%;
+  top: -19.34%;
+  max-width: none;
+}
+
+.uniqkey-dashboard-frame {
+  position: absolute;
+  left: 14.88%;
+  top: 24.41%;
+  width: 70.56%;
+  height: 46.8%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.uniqkey-dashboard-frame img {
+  position: absolute;
+  width: 100.25%;
+  height: 174.8%;
+  left: -0.12%;
+  top: 0;
+  max-width: none;
+}
+
+.uniqkey-laptop-frame {
+  position: absolute;
+  left: 5.66%;
+  top: 23.05%;
+  width: 88.69%;
+  height: 52.39%;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.uniqkey-laptop-frame img {
+  position: absolute;
+  width: 100%;
+  height: 169.28%;
+  left: 0;
+  top: -34.8%;
+  max-width: none;
+}
+
+/*
+  ATJ DEI Audit (2026-09-07): unlike the ATJ1/Uniqkey frames above, this
+  card has no Figma source to match crop percentages against (the card
+  itself was authored directly in code, not translated from a Figma
+  frame) — same outer frame proportions as .atj-mockup-frame for visual
+  rhythm with the rest of the row, but object-fit: cover instead of a
+  hand-solved oversized-image crop, since there's no exact Figma offset
+  to reproduce here.
+*/
+.atj2-mockup-frame {
+  position: absolute;
+  left: 0;
+  top: 13.16%;
+  width: 100%;
+  height: 66.41%;
+  overflow: hidden;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.atj2-mockup-frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+/*
+  Template cards (Ridi, Yoy — content "coming soon" per Roman, added
+  2026-09-07): a plain neutral placeholder instead of inventing a fake
+  product screenshot or mockup for a case that doesn't have real content
+  yet.
+*/
+.case-card__placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.case-card__placeholder-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  /* --color-subtle-text (#595959) is calibrated for the light
+     case-study pages — far too dark to read against Home's dark
+     background. --color-light-gray is the token already used for
+     muted text elsewhere on this same dark page (.review-slide__role,
+     .cta-description). */
+  color: var(--color-light-gray);
+}
+
+/*
+  Fixed 2026-09-07: text column and media column must each be a true
+  half (6 of the page's 12 grid columns), checkerboarded card to card —
+  not a fixed-548px media box next to a flex:1 text column. Those only
+  came out equal by coincidence at the widest breakpoint (1120px content
+  width: 548px + 24px gap + 548px), and skewed toward the media column
+  at any narrower desktop width (1024-1279px), where --page-px shrinks
+  the available width below 1120px but media's 548px cap didn't shrink
+  with it. Grid's two `1fr` tracks stay a true 50/50 split at every
+  width. `order` (not flex-direction: row-reverse) drives the
+  checkerboard alternation so it keeps working the same way as more
+  .case-card--reverse cards are added later.
+*/
+@media (min-width: 1024px) {
+  .case-card {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 24px;
+  }
+
+  .case-card--reverse .case-card__body {
+    order: 2;
+  }
+
+  .case-card--reverse .case-card__media {
+    order: 1;
+  }
+
+  .case-card__media {
+    max-width: none;
+  }
+
+  /*
+    A grid item's default min-width is `auto`, not 0 — meaning its
+    content's own intrinsic minimum size can still force its 1fr track
+    wider than an even split, at the other track's expense. Uniqkey's
+    card has 5 tags (vs ATJ's 4), whose un-shrunk natural row width
+    exceeded 548px and was silently stealing space from the media
+    column even though .tag-row itself scrolls (overflow-x:auto on a
+    descendant doesn't zero out the grid item's own min-content
+    contribution). min-width: 0 makes both columns hold their true 1fr
+    (50/50) share regardless of text/tag content length.
+  */
+  .case-card__body,
+  .case-card__media {
+    min-width: 0;
+  }
+}
+
+/* ---------- Reviews (2:13501) ---------- */
+
+/* UI: HOME-REVIEWS-01 | Reviews carousel | inspect/adjust */
+.reviews-heading {
+  color: var(--color-white);
+  max-width: 1120px;
+  margin: 0 auto 32px;
+}
+
+.reviews-carousel {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/*
+  Fixed 2026-08-25: the arrow SVGs were hardcoded to #7B61FF (a raw
+  hex, not this component's actual hover color) — meaning the arrows
+  were showing an always-on, slightly-wrong "hover" look, with no real
+  default state. Figma's "Arrow" set (2:15276) verified via
+  get_design_context: Default = #FFFEFE (white), Hover = #9A73FF
+  (Purple Light token) — recolored via `color` + `fill="currentColor"`
+  on the inlined SVGs in index.html, so no second asset file is needed.
+*/
+/*
+  Shrunk 2026-09-07 to match the same shared arrow icon's more modest
+  sizing on the case-study carousels (.case-other-carousel__arrow,
+  24x36) — at 32x48 these read as oversized/clunky for a simple
+  prev/next control; smaller reads closer to a native carousel arrow.
+*/
+.reviews-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 36px;
+  flex-shrink: 0;
+  color: var(--color-white);
+  transition: color 0.15s ease;
+}
+
+.reviews-arrow:not([aria-disabled="true"]):hover {
+  color: var(--color-purple-light);
+}
+
+.reviews-arrow[aria-disabled="true"] {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.reviews-arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+/*
+  Centered 2026-09-07 to match the CTA block below (.cta-section) —
+  name, role, quote, and (per a follow-up request) the "View in
+  LinkedIn" link all center now.
+*/
+.review-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  max-width: 738px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.review-slide__name {
+  color: var(--color-purple-light);
+}
+
+.review-slide__role {
+  color: var(--color-light-gray);
+}
+
+.review-slide__quote {
+  color: var(--color-white);
+  white-space: pre-line;
+}
+
+/* A quote this long reads better slightly smaller on mobile. */
+@media (max-width: 767px) {
+  .review-slide__quote {
+    font-size: 14px;
+  }
+}
+
+.review-slide__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: center;
+  padding: 4px 12px;
+  background-color: #131414;
+  border: 1px solid rgba(133, 133, 133, 0.25);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: -0.0032px;
+  color: var(--color-white);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+/*
+  Hover added 2026-08-25, verified against Figma "Viewer" (2:15308).
+  No longer gated behind :disabled — Figma has no real href for this
+  button on any of the 6 review slides, but rendering it disabled made
+  it look broken/inert instead of like a normal interactive element,
+  which isn't what the design shows. It's a plain enabled <button>
+  now; clicking it just has nowhere real to go yet.
+*/
+.review-slide__link:hover {
+  background-color: rgba(154, 115, 255, 0.25);
+  border-color: var(--color-purple-light);
+}
+
+.review-slide__link img {
+  width: 16px;
+  height: 16px;
+}
+
+/*
+  Fixed 2026-08-25: was a single static SVG (one fixed state), so it
+  couldn't reflect which of the 6 review slides is active. Replaced
+  with 6 CSS segments toggled by js/reviews.js, synced to the carousel
+  position.
+
+  Restyled 2026-09-07: the slanted-dash look (matching the original
+  Figma "Frame 2147262364" asset) read as a custom, unfamiliar control.
+  Switched to plain round dots — same pattern as the Uniqkey case
+  study's "Other Screens" carousel (.case-other-carousel__dot) — closer
+  to a native carousel indicator. js/reviews.js is unchanged: it only
+  toggles .is-active, agnostic of shape.
+*/
+.reviews-progress {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 24px auto 0;
+}
+
+.reviews-progress__segment {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background-color: #4d4a50;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.reviews-progress__segment.is-active {
+  background-color: var(--color-cta-purple);
+  transform: scale(1.25);
+}
+
+/* ---------- CTA (2:13505) ---------- */
+
+/* UI: HOME-CTA-01 | CTA block | inspect/adjust */
+.cta-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+  padding-top: 48px;
+}
+
+.cta-heading {
+  color: var(--color-white);
+}
+
+.cta-description {
+  color: var(--color-light-gray);
+  max-width: 480px;
+}
