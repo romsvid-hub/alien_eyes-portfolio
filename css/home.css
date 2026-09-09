@@ -783,7 +783,9 @@
   padding: 4px 10px;
   background-color: rgba(89, 89, 89, 0.25);
   border: 1px solid rgba(217, 217, 217, 0.25);
-  border-radius: 6px;
+  /* Fixed 2026-09-09: was 6px — verified via Figma "Tag" component
+     (2:13460), cornerRadius is 16px. */
+  border-radius: 16px;
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 14px;
@@ -1009,10 +1011,13 @@
     actual grid gap (still visually centered as a block against media,
     since the leftover row space just moves to the outer edges instead).
     Only here does .case-card__cta then sit directly under
-    .case-card__intro (ending in the tag row) with no media between
-    them — pulled up from this breakpoint's 24px block gap to the 16px
-    used between every other object in the card (.case-card__intro's own
-    gap:16px), per Roman's request 2026-09-09.
+    .case-card__intro (ending in the tag row) with no media between them.
+
+    Gap fixed 2026-09-09: verified against Figma "Case Card — ATJ1"
+    (2:13454) and "Case Card — Uniqkey" (2:13472) — "View case button"
+    sits exactly 32px below the intro block in both, not the 16px used
+    between title/description/tags inside .case-card__intro itself. 24px
+    (this breakpoint's block gap) + 8px = 32px.
   */
   .case-card__intro {
     align-self: end;
@@ -1020,7 +1025,7 @@
 
   .case-card__cta {
     align-self: start;
-    margin-top: -8px;
+    margin-top: 8px;
   }
 
   .case-card--reverse {
