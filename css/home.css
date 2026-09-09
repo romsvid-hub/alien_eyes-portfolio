@@ -904,10 +904,35 @@
 }
 
 /*
-  Template cards (Ridi, Yoy — content "coming soon" per Roman, added
-  2026-09-07): a plain neutral placeholder instead of inventing a fake
-  product screenshot or mockup for a case that doesn't have real content
-  yet.
+  YOY! Events — added 2026-09-09 alongside case-yoy.html. Unlike the
+  ATJ/Uniqkey cards, there's no laptop dashboard screenshot to crop yet,
+  just the same phone mockup used as a placeholder throughout the case
+  page itself (see css/case-yoy.css header) — shown here at its natural
+  aspect ratio, contained and centered, on the case's own dark/yellow
+  brand background instead of the laptop-composite technique.
+*/
+.case-card__media--yoy {
+  background-color: #1a1a1a;
+  border: 1px solid rgba(255, 184, 0, 0.25);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.case-card__media--yoy img {
+  position: static;
+  width: auto;
+  height: 92%;
+  max-width: 90%;
+  margin: 4% auto 0;
+  object-fit: contain;
+}
+
+/*
+  Template cards (Ridi — content "coming soon" per Roman, added
+  2026-09-07; Yoy moved off this pattern 2026-09-09, see
+  .case-card__media--yoy above): a plain neutral placeholder instead of
+  inventing a fake product screenshot or mockup for a case that doesn't
+  have real content yet.
 */
 .case-card__placeholder {
   position: absolute;

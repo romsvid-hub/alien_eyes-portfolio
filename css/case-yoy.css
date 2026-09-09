@@ -1,0 +1,573 @@
+/*
+  YOY! Events case study — verified via get_design_context on node 768:13234
+  (fileKey DU3fuTo8QXIJ0uMcI3jh91, page containing "YOY Case"). Pixel
+  values (padding, gaps, radii, colors) below are the literal values read
+  from that node, same convention as css/case-atj-2.css.
+
+  Case-specific only: does not touch home.css/nav.css/footer.css/tokens.css.
+  Reuses --page-px (home.css) and the shared type scale (typography.css).
+
+  COLOR: local, case-scoped tokens — never added to tokens.css:
+    --yoy-bg      #242424 — page background
+    --yoy-tint    #2e2e2e — alternating section background
+    --yoy-accent  #ffb800 — eyebrows/headings, matches the product's own
+                             brand yellow (not a portfolio-wide token)
+    --yoy-muted   #b3b3b3 — secondary body text on dark backgrounds
+
+  This is the FIRST pass of this case (2026-09-09) — Roman explicitly
+  flagged more content/changes are coming. Every phone "Screens" slot
+  currently reuses one shared placeholder mockup image, matching Figma's
+  own source file, which has the identical placeholder repeated in every
+  screen slot (no per-screen screenshots exported yet).
+
+  Note on Key Decisions cards: Figma's own fill data has the "problem/
+  solution/why" cards at the exact same #1a1a1a as the panel they sit in
+  (768:13321 direct children, no bg on the wrapper, cards at #1a1a1a
+  inside a #1a1a1a outer panel) — literally invisible against each other
+  in a flat render. Used --yoy-bg (#242424, one step darker) for the
+  cards instead so they read as distinct cards; a deliberate legibility
+  call, not a verified Figma value.
+*/
+
+.yoy-page {
+  background-color: #242424;
+  color: #fffefe;
+}
+
+:root {
+  --yoy-bg: #242424;
+  --yoy-tint: #2e2e2e;
+  --yoy-accent: #ffb800;
+  --yoy-muted: #b3b3b3;
+}
+
+/* ---------- Shared primitives ---------- */
+
+.yoy-section {
+  padding: 48px var(--page-px);
+}
+
+@media (min-width: 1280px) {
+  .yoy-section {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.yoy-section--tint {
+  background-color: var(--yoy-tint);
+}
+
+.yoy-heading {
+  color: var(--yoy-accent);
+  margin: 0 0 16px;
+}
+
+@media (min-width: 1024px) {
+  .yoy-heading {
+    margin-bottom: 24px;
+  }
+}
+
+.yoy-heading--spaced {
+  margin-top: 32px;
+}
+
+@media (min-width: 1024px) {
+  .yoy-heading--spaced {
+    margin-top: 48px;
+  }
+}
+
+.yoy-subheading {
+  color: #fffefe;
+  margin: 0 0 8px;
+}
+
+.yoy-label {
+  color: #fffefe;
+  margin: 0 0 16px;
+}
+
+.yoy-body-muted {
+  color: var(--yoy-muted);
+}
+
+.yoy-body-muted + .yoy-body-muted {
+  margin-top: 16px;
+}
+
+.yoy-two-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .yoy-two-col {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.yoy-media img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.yoy-media--wide img {
+  border-radius: 16px;
+}
+
+.yoy-panel {
+  background-color: var(--yoy-tint);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.yoy-section--tint .yoy-panel {
+  background-color: var(--yoy-bg);
+}
+
+.yoy-panel + .yoy-panel,
+.yoy-media + .yoy-panel,
+.yoy-panel + .yoy-row {
+  margin-top: 24px;
+}
+
+.yoy-media + .yoy-panel {
+  margin-top: 16px;
+}
+
+.yoy-section--tint > .yoy-label + .yoy-media {
+  margin-top: 0;
+}
+
+/* Screens strip: reused wherever the design shows 3 phone mockups in a
+   row. Scrolls horizontally below the desktop breakpoint instead of the
+   CSS Grid min-width:0 fix (documented in project_home_case_card_pattern)
+   since this is a flex strip of fixed-size images, not a grid item whose
+   track needs shrinking. */
+.yoy-screens {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.yoy-screens img {
+  flex-shrink: 0;
+  width: 172px;
+  height: 352px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+@media (min-width: 1024px) {
+  .yoy-screens {
+    gap: 24px;
+    overflow-x: visible;
+  }
+
+  .yoy-screens img {
+    width: 230px;
+    height: 470px;
+    border-radius: 12px;
+  }
+}
+
+/* ---------- Hero (768:13235) ---------- */
+
+.yoy-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 48px var(--page-px);
+}
+
+@media (min-width: 1280px) {
+  .yoy-hero {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .yoy-hero {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 64px var(--page-px) 48px;
+  }
+}
+
+.yoy-hero__media {
+  flex-shrink: 0;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .yoy-hero__media {
+    width: 357px;
+    max-width: none;
+    margin: 0;
+  }
+}
+
+.yoy-hero__media img {
+  width: 100%;
+  display: block;
+}
+
+.yoy-hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .yoy-hero__content {
+    gap: 24px;
+    flex: 1;
+  }
+}
+
+.yoy-hero__title-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.yoy-hero__title {
+  color: var(--yoy-accent);
+  font-size: 40px;
+  margin: 0;
+}
+
+@media (min-width: 1024px) {
+  .yoy-hero__title {
+    font-size: var(--h1-size);
+  }
+}
+
+.yoy-hero__subtitle {
+  color: var(--yoy-muted);
+}
+
+.yoy-hero__desc {
+  color: #fffefe;
+}
+
+.yoy-details {
+  background-color: #1a1a1a;
+  border: 1px solid rgba(255, 184, 0, 0.3);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+}
+
+.yoy-details__row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.yoy-details__row dt {
+  color: var(--yoy-accent);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.yoy-details__row dd {
+  color: var(--yoy-muted);
+  margin: 0;
+  font-size: 16px;
+  line-height: 25px;
+}
+
+@media (min-width: 768px) {
+  .yoy-details__row {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .yoy-details__row dt {
+    flex-shrink: 0;
+    width: 130px;
+  }
+}
+
+/* ---------- Three Facts (768:13259) ---------- */
+
+.yoy-facts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 1024px) {
+  .yoy-facts {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+.yoy-facts__card {
+  background-color: var(--yoy-bg);
+  border: 1px solid rgba(255, 184, 0, 0.25);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  min-height: 140px;
+}
+
+.yoy-facts__card p {
+  color: #fffefe;
+  margin: 0;
+}
+
+/* ---------- The Challenge (768:13283) ---------- */
+
+.yoy-row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+@media (min-width: 1024px) {
+  .yoy-row {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .yoy-row .yoy-media {
+    flex-shrink: 0;
+    width: 548px;
+  }
+}
+
+.yoy-row__text {
+  color: #fffefe;
+  margin: 0;
+}
+
+/* ---------- Research / Approach (768:13294) ---------- */
+
+.yoy-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+@media (min-width: 1024px) {
+  .yoy-logos {
+    gap: 24px;
+  }
+}
+
+.yoy-logos__item {
+  background-color: #d9d9d9;
+  border-radius: 8px;
+  width: 120px;
+  height: 54px;
+}
+
+@media (min-width: 1024px) {
+  .yoy-logos__item {
+    width: 167px;
+    height: 75px;
+  }
+}
+
+/* ---------- Key Decisions (768:13317) ---------- */
+
+.yoy-panel--dark {
+  background-color: #1a1a1a;
+  border-radius: 24px;
+  padding: 32px var(--page-px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .yoy-panel--dark {
+    border-radius: 48px;
+    padding: 48px 80px;
+  }
+}
+
+.yoy-decision {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.yoy-decision h3 {
+  color: #fffefe;
+  margin: 0;
+}
+
+.yoy-decision__body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .yoy-decision__body {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .yoy-decision__body--reverse {
+    flex-direction: row-reverse;
+  }
+}
+
+.yoy-decision__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .yoy-decision__cards {
+    width: 333px;
+    flex-shrink: 0;
+  }
+}
+
+.yoy-decision__card {
+  background-color: var(--yoy-bg);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.yoy-decision__card h4 {
+  color: var(--yoy-accent);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 18px;
+  margin: 0 0 6px;
+}
+
+.yoy-decision__card p {
+  color: var(--yoy-muted);
+  margin: 0;
+  font-size: 16px;
+  line-height: 25px;
+}
+
+/* ---------- Core Features (768:13355) ---------- */
+
+.yoy-feature {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 0;
+}
+
+@media (min-width: 1024px) {
+  .yoy-feature {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .yoy-feature--reverse {
+    flex-direction: row-reverse;
+  }
+}
+
+.yoy-feature__text {
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .yoy-feature__text {
+    width: 333px;
+    flex-shrink: 0;
+  }
+}
+
+.yoy-feature__text h3 {
+  color: #fffefe;
+  margin: 0 0 12px;
+}
+
+/* ---------- UIKit (768:13407) ---------- */
+
+.yoy-uikit {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .yoy-uikit {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.yoy-uikit__text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .yoy-uikit__text {
+    width: 548px;
+    flex-shrink: 0;
+  }
+}
+
+.yoy-uikit__media {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .yoy-uikit__media {
+    width: 548px;
+  }
+}
+
+.yoy-uikit__media img {
+  aspect-ratio: 548 / 320;
+}
+
+/* ---------- Results (768:13414) ---------- */
+
+.yoy-panel--accent {
+  background-color: var(--yoy-accent);
+  color: #242424;
+}
+
+.yoy-panel--accent .yoy-two-col {
+  margin-top: 24px;
+}
+
+.yoy-panel--accent .body-large {
+  color: #2e2e2e;
+}
+
+.yoy-results__label {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px;
+  color: #242424;
+  margin: 0 0 20px;
+}

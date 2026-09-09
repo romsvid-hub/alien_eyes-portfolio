@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YOY! Events — Product &amp; UX/UI Design for a Live MVP | Alien Eyes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/typography.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/buttons.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/case-yoy.css" />
+  </head>
+  <body class="case-page yoy-page">
+    <!-- UI: GLOBAL-NAV-01 | Site navigation | shared component, reused unchanged -->
+    <nav class="site-nav site-nav--case">
+      <a class="nav-logo" href="index.html">
+        <span class="nav-logo__icon">
+          <img class="nav-logo__avatar" src="assets/icons/logo-avatar.png" alt="" />
+        </span>
+        <span class="nav-logo__text">Alien Eyes</span>
+      </a>
+      <a class="nav-back" href="index.html" aria-label="Back to home">
+        <svg viewBox="0 0 8 14" fill="none" aria-hidden="true">
+          <path
+            d="M7 1L1 7L7 13"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="square"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </a>
+
+      <div class="nav-menu">
+        <div class="nav-links">
+          <a class="nav-links__link" href="index.html#case-studies">Case Studies</a>
+          <a class="nav-links__link" href="index.html#feedbacks">Feedbacks</a>
+        </div>
+
+        <a class="nav-cta" href="#">Download CV</a>
+      </div>
+
+      <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+    </nav>
+
+    <main>
+      <!-- UI: CASE04-HERO-01 | Hero | matches Figma "Hero" (768:13235) -->
+      <section class="yoy-hero" data-reveal>
+        <div class="yoy-hero__media">
+          <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="YOY! Events organizer flow shown on a phone" />
+        </div>
+        <div class="yoy-hero__content">
+          <div class="yoy-hero__title-row">
+            <h1 class="yoy-hero__title">YOY! Events</h1>
+            <p class="body-large yoy-hero__subtitle">Product &amp; UX/UI design for a live MVP</p>
+          </div>
+          <p class="body-large yoy-hero__desc">
+            A product for events and communities, built technology-first.
+            I rebuilt it around what the organizer actually needs to do.
+          </p>
+          <dl class="yoy-details">
+            <div class="yoy-details__row">
+              <dt>Role:</dt>
+              <dd>Product &amp; UX/UI designer, solo — research, IA, flows, design system, UI, handoff</dd>
+            </div>
+            <div class="yoy-details__row">
+              <dt>Client:</dt>
+              <dd>product owner, also the developer building it</dd>
+            </div>
+            <div class="yoy-details__row">
+              <dt>Stage:</dt>
+              <dd>live second-generation MVP, work ongoing</dd>
+            </div>
+            <div class="yoy-details__row">
+              <dt>Tools:</dt>
+              <dd>Figma, FigJam, Figma MCP, Claude</dd>
+            </div>
+            <div class="yoy-details__row">
+              <dt>Case status:</dt>
+              <dd>MVP, product exists and is in active development</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- UI: CASE04-FACTS-01 | Three Facts | matches Figma "Three Facts" (768:13259) -->
+      <section class="yoy-section yoy-section--tint">
+        <h2 class="h2-section yoy-heading" data-reveal>Three facts instead of metrics</h2>
+        <p class="body-large yoy-body-muted" data-reveal>
+          These aren't product metrics (no conversion tracking was run) they're objective facts
+          about what was built, an honest way to show scale without invented numbers.
+        </p>
+        <div class="yoy-facts" data-reveal-group>
+          <div class="yoy-facts__card">
+            <p class="body-main">UI Kit built with Claude and Figma MCP on the Shadcn design system, meeting WCAG 2.2 AAA</p>
+          </div>
+          <div class="yoy-facts__card">
+            <p class="body-main">14 screens in the organizer flow, including 4 conditional states for the visibility step</p>
+          </div>
+          <div class="yoy-facts__card">
+            <p class="body-main">Found 4 payment-provider integration defects invisible when working within a single role, the fix for the main one is shown below</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE04-OVERVIEW-01 | Overview | matches Figma "Overview" (768:13269) -->
+      <section class="yoy-section">
+        <h2 class="h2-section yoy-heading" data-reveal>Overview</h2>
+        <div class="yoy-two-col" data-reveal-group>
+          <p class="body-large">
+            Yoy! Events is a Ukrainian platform for events and communities for the IT/business scene:
+            creating events, selling tickets, managing communities, networking. The core role is the
+            organizer: the one who fills the platform with content. Without them there are no events,
+            no tickets, no communities.
+          </p>
+          <p class="body-large">
+            The product was built engineering-first, screen by screen, driven by technology rather than
+            the user's task. The hardest node is event creation: this is where the organizer either
+            stays or leaves.
+          </p>
+        </div>
+      </section>
+
+      <!-- UI: CASE04-SCOPE-01 | My Scope | matches Figma "My Scope" (768:13274) -->
+      <section class="yoy-section">
+        <h2 class="h2-section yoy-heading" data-reveal>My Scope</h2>
+        <div class="yoy-two-col" data-reveal-group>
+          <div>
+            <h3 class="h3-case-study yoy-subheading">Source:</h3>
+            <p class="body-large">
+              I led the project solo, covering research, information architecture, user flows, design
+              system, UI design, and developer handoff. I was responsible for taking the experience from
+              an initially feature-focused concept to a structured system ready for implementation.
+            </p>
+          </div>
+          <div>
+            <h3 class="h3-case-study yoy-subheading">Constraints:</h3>
+            <p class="body-large">
+              The project came with several constraints that directly shaped the design decisions. There
+              was no access to users, so no direct interviews were possible; instead, I used feedback from
+              analogous platforms and conversations with the client, who is also an event organizer. One
+              designer covered the entire process, from research and system design to UI and handoff. The
+              client initially thought in terms of screens and features rather than an underlying
+              architecture, which required deeper conversations to separate communities, events, and
+              networking into distinct entities. Implementation also runs through Figma MCP, meaning the
+              developer generates code directly from the design, so an untokenized design would result in
+              hardcoded code.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE04-CHALLENGE-01 | The Challenge | matches Figma "The Challenge" (768:13283) -->
+      <section class="yoy-section yoy-section--tint">
+        <p class="h3-case-study yoy-label" data-reveal>Before:</p>
+        <div class="yoy-media yoy-media--wide" data-reveal>
+          <img src="assets/case-yoy/before-screenshot.png" alt="The live MVP before the redesign" />
+        </div>
+        <div class="yoy-panel" data-reveal>
+          <h2 class="h2-section yoy-heading">The Challenge</h2>
+          <div class="yoy-two-col">
+            <p class="body-large">
+              The client didn't come with «make it pretty». Three things: the product was fragmented,
+              built without end-to-end logic. Creating an event was the hardest node, because everything
+              else starts from there. Networking was pitched as the main differentiator, but in practice
+              it was a red button leading to a dead-end page.
+            </p>
+            <p class="body-large">
+              A heuristic audit of the live MVP confirmed the problem was systemic, not isolated bugs:
+              overloaded navigation, networking as a dead-end function disconnected from the event,
+              inconsistent patterns across sections of the product.
+            </p>
+          </div>
+        </div>
+        <div class="yoy-row" data-reveal-group>
+          <div class="yoy-media">
+            <img src="assets/case-yoy/yoy-maps-1.png" alt="Mapping the current organizer flow with the client" />
+          </div>
+          <p class="body-main yoy-row__text">
+            There was a lot that didn't make sense, I had to sit down with the client and go through
+            every step by hand, matching screens and mapping the actual user flow to understand how it
+            currently works.
+          </p>
+        </div>
+      </section>
+
+      <!-- UI: CASE04-RESEARCH-01 | Research + Approach | matches Figma "Research - Approach" (768:13294) -->
+      <section class="yoy-section">
+        <h2 class="h2-section yoy-heading" data-reveal>Research</h2>
+        <p class="body-large" data-reveal>
+          Went through the live product, findings: fragmented flows, networking as a dead end,
+          inconsistent patterns across sections.
+        </p>
+        <h3 class="h3-case-study yoy-subheading" data-reveal>Analogs and benchmarking</h3>
+        <p class="body-large yoy-body-muted" data-reveal>
+          Analyzed Luma, Meetup, Eventbrite, Ticketbox, creatorstore.co. Three patterns for how services
+          open ticket sales:
+        </p>
+        <div class="yoy-logos" data-reveal-group>
+          <div class="yoy-logos__item"></div>
+          <div class="yoy-logos__item"></div>
+          <div class="yoy-logos__item"></div>
+          <div class="yoy-logos__item"></div>
+          <div class="yoy-logos__item"></div>
+          <div class="yoy-logos__item"></div>
+        </div>
+        <p class="body-large yoy-body-muted" data-reveal>
+          In the per-ticket pattern, the organizer can't see the full sales picture — it's scattered
+          across cards. That's what led to showing an explicit sales-strategy choice on one screen
+          (SCR-05).
+        </p>
+        <div class="yoy-panel" data-reveal>
+          <h3 class="h3-case-study yoy-subheading">JTBD and gaps (hypothesis)</h3>
+          <p class="body-large yoy-body-muted">
+            Built JTBD for 3 personas overall: admin, manager, and attendee. Together with the client we
+            agreed to focus on the admin persona, so this case centers on the admin flow. For that
+            persona, the hypothesis is that the biggest gap between importance and satisfaction is in
+            ticket sales (10 vs 3) and in getting people to attend (9 vs 3). This is a hypothesis that
+            needs interview validation, but it was adopted as the MVP decision.
+          </p>
+        </div>
+
+        <h2 class="h2-section yoy-heading yoy-heading--spaced" data-reveal>How I Approached It</h2>
+        <div class="yoy-two-col" data-reveal-group>
+          <p class="body-large">
+            I didn't overthink it: simple, native solutions that most users already understand. I didn't
+            even significantly change the user flow or information architecture. I just applied standard
+            UX patterns that split the path from creation to publishing into steps with core features,
+            instead of one complex form with tangled navigation.
+          </p>
+          <p class="body-large">
+            The weak, templated UI and systemic bugs in the initial version didn't just create cognitive
+            load. They genuinely confused users, turning event creation into a maze.
+          </p>
+        </div>
+        <div class="yoy-media yoy-media--wide" data-reveal>
+          <img src="assets/case-yoy/yoy-maps-deep-1.png" alt="Deep-dive flow mapping for the event-creation architecture" />
+        </div>
+      </section>
+
+      <!-- UI: CASE04-DECISIONS-01 | Key Decisions | matches Figma "Key Decisions" (768:13317) -->
+      <section class="yoy-section">
+        <div class="yoy-panel yoy-panel--dark">
+          <p class="h3-case-study yoy-label" data-reveal>After:</p>
+          <h2 class="h2-section yoy-heading" data-reveal>Key Decisions</h2>
+          <p class="body-large yoy-body-muted" data-reveal>
+            Each decision below solves for more than just a «convenient interface» or «nice UI» — it
+            builds a logical structure users can actually follow.
+          </p>
+
+          <div class="yoy-decision" data-reveal>
+            <h3 class="h3-case-study">Tickets: the builder, separate from managing sales</h3>
+            <div class="yoy-decision__body">
+              <div class="yoy-decision__cards" data-reveal-group>
+                <div class="yoy-decision__card">
+                  <h4>Problem</h4>
+                  <p>
+                    The organizer has to both configure tickets and manage their sale. In analog
+                    products, these two tasks are mixed into one screen.
+                  </p>
+                </div>
+                <div class="yoy-decision__card">
+                  <h4>Solution</h4>
+                  <p>
+                    The creation wizard has no «open the wave» action — it only builds the structure.
+                    Managing sales is moved to a separate screen after publishing.
+                  </p>
+                </div>
+                <div class="yoy-decision__card">
+                  <h4>Why</h4>
+                  <p>
+                    The «am I configuring or already managing» confusion is the main source of errors in
+                    Eventbrite and Tito, per the competitive analysis.
+                  </p>
+                </div>
+              </div>
+              <div class="yoy-screens">
+                <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Ticket-type builder screen" />
+                <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Ticket wave configuration screen" />
+                <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Sales-management screen, separate from the builder" />
+              </div>
+            </div>
+          </div>
+
+          <div class="yoy-decision" data-reveal>
+            <h3 class="h3-case-study">Networking: from a dead end to a layer inside the event</h3>
+            <div class="yoy-decision__body yoy-decision__body--reverse">
+              <div class="yoy-screens">
+                <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Networking toggle during event setup" />
+                <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Discussion thread inside the event" />
+                <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Who's going list with the ability to connect" />
+              </div>
+              <div class="yoy-decision__cards" data-reveal-group>
+                <div class="yoy-decision__card">
+                  <h4>Problem</h4>
+                  <p>
+                    The stated main differentiator was a red button leading to a separate page
+                    disconnected from the event. Users landed there without understanding what to do.
+                  </p>
+                </div>
+                <div class="yoy-decision__card">
+                  <h4>Solution</h4>
+                  <p>
+                    Networking became a configurable layer inside the event, which the organizer turns on
+                    during setup. Two layers: a discussion thread and «who's going» with the ability to
+                    connect.
+                  </p>
+                </div>
+                <div class="yoy-decision__card">
+                  <h4>Why</h4>
+                  <p>
+                    A thread alone doesn't close a one-on-one connection or save contacts after the
+                    event. Both layers are needed, or the differentiator stays a declaration.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE04-FEATURES-01 | Core Features | matches Figma "Core Features" (768:13355) -->
+      <section class="yoy-section">
+        <h2 class="h2-section yoy-heading" data-reveal>Core Features</h2>
+        <p class="body-large" data-reveal>The organizer's path from an empty state to a published event, step by step.</p>
+
+        <div class="yoy-feature" data-reveal>
+          <div class="yoy-feature__text">
+            <h3 class="h3-case-study">Creating a community</h3>
+            <p class="body-main yoy-body-muted">A community as a container, not a registration form. Manager invite included right away.</p>
+          </div>
+          <div class="yoy-screens">
+            <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Create-community screen, step 1" />
+            <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Create-community screen, step 2" />
+            <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Manager invite screen" />
+          </div>
+        </div>
+
+        <div class="yoy-feature yoy-feature--reverse" data-reveal>
+          <div class="yoy-screens">
+            <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Community created confirmation" />
+            <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Prompt to create the first event" />
+            <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Community dashboard, empty state" />
+          </div>
+          <div class="yoy-feature__text">
+            <h3 class="h3-case-study">Community created</h3>
+            <p class="body-main yoy-body-muted">Success doesn't end the journey, it leads to the next action: creating a first event.</p>
+          </div>
+        </div>
+
+        <div class="yoy-feature" data-reveal>
+          <div class="yoy-feature__text">
+            <h3 class="h3-case-study">Basic event information</h3>
+            <p class="body-main yoy-body-muted">
+              Format (offline / online / hybrid) changes the following fields: location or streaming
+              link. This is also where the organizer types the ticket wave name, that free-text field
+              later flows unprocessed straight to the WayForPay payment page (for example, «Offline +
+              afterparty»), which shows no event name or date. On a bank statement, a charge like that
+              looks unrecognizable, a classic chargeback trigger. This is a finding, not a separate
+              design decision: you can only spot it by walking through both the organizer's and the
+              buyer's paths in a row.
+            </p>
+          </div>
+          <div class="yoy-screens">
+            <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Event format selection screen" />
+            <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Basic event information form" />
+            <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Ticket wave naming field" />
+          </div>
+        </div>
+
+        <div class="yoy-feature yoy-feature--reverse" data-reveal>
+          <div class="yoy-screens">
+            <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Optional fields selection, screen 1" />
+            <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Optional fields selection, screen 2" />
+            <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Optional fields selection, screen 3" />
+          </div>
+          <div class="yoy-feature__text">
+            <h3 class="h3-case-study">Fields to fill in</h3>
+            <p class="body-main yoy-body-muted">The organizer decides what data to collect. Minimal by default.</p>
+          </div>
+        </div>
+
+        <div class="yoy-feature" data-reveal>
+          <div class="yoy-feature__text">
+            <h3 class="h3-case-study">Preview</h3>
+            <p class="body-main yoy-body-muted">The organizer sees exactly what the buyer will see. Not a separate screen, the event page seen through a different role.</p>
+          </div>
+          <div class="yoy-screens">
+            <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Event preview screen, screen 1" />
+            <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Event preview screen, screen 2" />
+            <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Event preview screen, screen 3" />
+          </div>
+        </div>
+
+        <div class="yoy-feature yoy-feature--reverse" data-reveal>
+          <div class="yoy-screens">
+            <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Published event page, organizer mode" />
+            <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Published event page, attendee mode" />
+            <img src="assets/case-yoy/phone-mockup-placeholder.png" alt="Role switch link on the event page" />
+          </div>
+          <div class="yoy-feature__text">
+            <h3 class="h3-case-study">Event published</h3>
+            <p class="body-main yoy-body-muted">The same page, in admin mode. The role changes in the link, and that's exactly where the organizer's path becomes the attendee's path.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE04-UIKIT-01 | UI-Kit | matches Figma "UIKit" (768:13407) -->
+      <section class="yoy-section yoy-section--tint">
+        <div class="yoy-uikit" data-reveal-group>
+          <div class="yoy-uikit__text">
+            <h2 class="h2-section yoy-heading">UI-Kit</h2>
+            <p class="body-large yoy-body-muted">
+              The UI Kit was generated with Claude and Figma MCP on the Shadcn library, and baseline
+              WCAG 2.2 AAA compliance was checked with A11y. I reviewed the result, adjusted it, and
+              applied it in the design, this is the tooling part, not the core work.
+            </p>
+            <p class="body-large yoy-body-muted">
+              One principle on its own: don't multiply visually different components for the same role.
+              One component with variants, hierarchy through size and weight, not separate styles.
+            </p>
+          </div>
+          <div class="yoy-media yoy-uikit__media">
+            <img src="assets/case-yoy/uikit-overview.png" alt="YOY! Events UI Kit overview: components, tokens, and states" />
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE04-RESULTS-01 | Results | matches Figma "Results" (768:13414) -->
+      <section class="yoy-section yoy-section--tint">
+        <div class="yoy-panel yoy-panel--accent" data-reveal>
+          <h2 class="h2-section">Results</h2>
+          <div class="yoy-two-col">
+            <div>
+              <p class="yoy-results__label">Qualitative</p>
+              <p class="body-large">
+                The client got a scalable design system with tokenized components that the team can
+                extend independently, a 14-screen organizer flow ready for development, and a documented
+                payment-provider integration defect identified before it could cause chargebacks,
+                enabling them to create new templates, scale the UI to new screens, and avoid critical
+                payment issues before release.
+              </p>
+            </div>
+            <div>
+              <p class="yoy-results__label">Objective</p>
+              <p class="body-large">
+                A design system with 30+ components built on 12 tokens, with contrast calculated and
+                every text pair reaching at least 8:1 for AAA-level accessibility, alongside a 14-screen
+                organizer flow covering four conditional states for the visibility step.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE04-REFLECTION-01 | Reflection | matches Figma "Reflection" (768:13426) -->
+      <section class="yoy-section">
+        <h3 class="h3-case-study yoy-heading" data-reveal>What I'd Do Differently</h3>
+        <p class="body-main yoy-body-muted" data-reveal>
+          I'd start with live interviews, not just analogs and client feedback, the JTBD scores are a
+          hypothesis right now, and I say so honestly, but validation would have taken the same few days
+          at the start rather than after the architecture was already set. I'd also revisit work
+          prioritization earlier: the product closed the two jobs with the smallest gap before I managed
+          to show the client the full JTBD picture, had it been on the table from week one, the order
+          might have been different.
+        </p>
+      </section>
+
+      <!-- UI: HOME-REVIEWS-01 | Reviews carousel | shared component, reused unchanged -->
+      <section class="home-section case-reviews-cta" id="feedbacks">
+        <h2 class="h2-section reviews-heading" data-reveal>Reviews:</h2>
+        <div class="reviews-carousel" data-reveal>
+          <button
+            class="reviews-arrow reviews-arrow--prev"
+            type="button"
+            aria-label="Previous review"
+            aria-controls="review-slide"
+          >
+            <svg viewBox="0 0 49.5818 71.9599" fill="none" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M37.5211 4.0415C36.5477 4.0473 35.6104 4.44612 34.8971 5.15772L4.01164 35.9709C4.01081 35.9717 4.00974 35.9723 4.00857 35.9724L4.00252 35.9733C4.00025 35.9736 3.99942 35.9765 4.00116 35.978L4.00131 35.9781C4.00248 35.9791 4.00248 35.9809 4.00131 35.9819C3.99961 35.9833 4.00053 35.9861 4.00276 35.9863L4.00855 35.9867C4.00972 35.9868 4.01082 35.9873 4.01165 35.9881L34.8971 66.8022C35.6103 67.5138 36.5478 67.9126 37.5211 67.9185L44.5741 67.9599C45.4662 67.9651 45.9181 66.8882 45.2895 66.2552L15.9202 36.6847C15.5329 36.2947 15.5329 35.6653 15.9202 35.2753L45.2895 5.70474C45.9181 5.07179 45.4662 3.99483 44.5741 4.00007L37.5211 4.0415Z"
+              />
+            </svg>
+          </button>
+
+          <div class="review-slide" id="review-slide" aria-live="polite" aria-atomic="true" data-default-review="Olga Novykova">
+            <div>
+              <p class="h3-case-study review-slide__name">Olga Novykova</p>
+              <p class="body-large review-slide__role">CEO &amp; Founder</p>
+            </div>
+            <p class="body-main review-slide__quote">
+              We worked with Roman on the Alltogether.jobs project, where he
+              led the UI and UX design for our platform. Roman conducted
+              in-depth user research, helped structure complex information,
+              and translated it into a clear product vision. He designed the
+              system architecture and a thoughtful design system, which we
+              are now actively implementing. We highly recommend Roman as a
+              professional who deeply understands business needs and
+              delivers effective solutions.
+            </p>
+            <a
+              class="review-slide__link"
+              href="https://www.linkedin.com/in/romsvid/details/recommendations/"
+              target="_blank"
+              rel="noopener"
+            >
+              <img src="assets/icons/icon-linkedin-small.svg" alt="" />
+              View in LinkedIn
+            </a>
+          </div>
+
+          <button
+            class="reviews-arrow reviews-arrow--next"
+            type="button"
+            aria-label="Next review"
+            aria-controls="review-slide"
+          >
+            <svg viewBox="0 0 49.5818 71.9599" fill="none" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M12.0609 4.04145C13.0343 4.04725 13.9716 4.44606 14.6849 5.15766L45.5704 35.9708C45.5712 35.9717 45.5723 35.9722 45.5734 35.9724L45.5795 35.9732C45.5818 35.9736 45.5826 35.9764 45.5809 35.9779L45.5807 35.978C45.5795 35.979 45.5795 35.9808 45.5807 35.9818C45.5824 35.9833 45.5815 35.9861 45.5793 35.9862L45.5735 35.9866C45.5723 35.9867 45.5712 35.9872 45.5704 35.988L14.6849 66.8022C13.9717 67.5137 13.0342 67.9125 12.0609 67.9184L5.00792 67.9598C4.11585 67.9651 3.66388 66.8881 4.29253 66.2552L33.6618 36.6846C34.0491 36.2947 34.0491 35.6652 33.6618 35.2752L4.29253 5.70469C3.66389 5.07174 4.11585 3.99478 5.00792 4.00002L12.0609 4.04145Z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="reviews-progress" aria-hidden="true">
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment is-active"></span>
+        </div>
+
+        <!-- UI: HOME-CTA-01 | CTA block | shared component, reused unchanged -->
+        <div class="cta-section" data-reveal>
+          <h2 class="h2-section cta-heading">Ready to architect your next product?</h2>
+          <p class="body-large cta-description">
+            Open for complex challenges and leadership roles. Select time to
+            call and hire me below.
+          </p>
+          <a
+            class="btn btn--primary"
+            href="https://calendar.app.google/CUCg9pmqeG8U3nfM7"
+            target="_blank"
+            rel="noopener"
+          >
+            Book a Call
+            <img class="btn__icon" src="assets/icons/icon-arrow-right.svg" alt="" />
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- UI: GLOBAL-FOOTER-01 | Site footer | shared component, reused unchanged -->
+    <footer class="site-footer">
+      <img class="site-footer__bg" src="assets/images/footer-bg.svg" alt="" aria-hidden="true" />
+      <div class="site-footer__row site-footer__row--top">
+        <a class="nav-logo" href="index.html">
+          <span class="nav-logo__icon">
+            <img class="nav-logo__avatar" src="assets/icons/logo-avatar.png" alt="" />
+          </span>
+          <span class="nav-logo__text">Alien Eyes</span>
+        </a>
+
+        <div class="site-footer__social">
+          <a href="https://www.instagram.com/romsvid/" target="_blank" rel="noopener">
+            <img src="assets/icons/social-instagram.svg" alt="Instagram" />
+          </a>
+          <a href="https://www.linkedin.com/in/romsvid/" target="_blank" rel="noopener">
+            <img src="assets/icons/social-linkedin.svg" alt="LinkedIn" />
+          </a>
+          <a href="https://t.me/Rmsddddd" target="_blank" rel="noopener">
+            <img src="assets/icons/social-telegram.svg" alt="Telegram" />
+          </a>
+        </div>
+      </div>
+
+      <div class="site-footer__row site-footer__row--bottom">
+        <p class="body-main site-footer__copyright">© 2026 Roman Sviderskyi</p>
+        <p class="body-main site-footer__contact">
+          +380 97 334 9540&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:svidddrommm25@gmail.com"
+            >svidddrommm25@gmail.com</a
+          >
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+    <script src="js/reviews.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="js/nbsp-typography.js"></script>
+  </body>
+</html>
