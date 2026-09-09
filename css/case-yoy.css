@@ -235,6 +235,30 @@
   }
 }
 
+/*
+  Placeholder tags, added 2026-09-09 (Roman: "all tags are a template,
+  I'll replace them later"). Own yellow-tinted chip, matching this
+  case's own accent instead of the generic gray .tag (css/home.css) —
+  same visual language as .yoy-facts__card's border. Radius verified
+  against Figma's shared "Tag" component (2:13460): 16px, same as every
+  other tag on the site.
+*/
+.yoy-tag {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 4px 10px;
+  background-color: rgba(255, 184, 0, 0.12);
+  border: 1px solid rgba(255, 184, 0, 0.3);
+  border-radius: 16px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.0028px;
+  color: var(--yoy-accent);
+  white-space: nowrap;
+}
+
 .yoy-hero__title-row {
   display: flex;
   flex-direction: column;

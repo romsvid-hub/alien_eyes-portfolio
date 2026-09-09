@@ -224,6 +224,31 @@
   }
 }
 
+/*
+  Placeholder tags, added 2026-09-09 (Roman: "all tags are a template,
+  I'll replace them later"). Own light-theme chip instead of reusing the
+  dark-page .tag (css/home.css) — this page's background is light
+  (.atj2-page), so .tag's near-white text on a translucent gray fill
+  would read as low-contrast here. Radius verified against Figma's
+  shared "Tag" component (2:13460): 16px, same as every other tag on
+  the site.
+*/
+.atj2-tag {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 4px 10px;
+  background-color: var(--atj2-tint);
+  border: 1px solid var(--atj2-accent);
+  border-radius: 16px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.0028px;
+  color: var(--atj2-accent-dark);
+  white-space: nowrap;
+}
+
 .atj2-hero__title {
   font-family: var(--font-display);
   font-weight: 800;

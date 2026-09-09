@@ -74,7 +74,9 @@
   align-items: center;
   padding: 4px 10px;
   border: 1px solid var(--color-lines-dividers);
-  border-radius: 6px;
+  /* Fixed 2026-09-09: was 6px — verified via Figma "Tag" component
+     (2:13460), cornerRadius is 16px, same everywhere on the site. */
+  border-radius: 16px;
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 14px;
