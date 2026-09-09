@@ -738,6 +738,14 @@
   gap: 16px;
 }
 
+/*
+  At mobile/tablet the stacking order is intro -> media -> actions (see
+  the header comment above .case-card), so the button sits below the
+  photo, not the tag row — the 32px block gap stays untouched there.
+  Only at the >=1024px breakpoint does actions sit directly under intro
+  in the same column with no media between them; that's where the
+  16px-to-tag-row override below applies.
+*/
 .case-card__cta {
   grid-area: actions;
 }
@@ -988,6 +996,31 @@
       "actions media";
     align-items: center;
     gap: 24px;
+  }
+
+  /*
+    .case-card__media spans both auto rows (grid-row:1/3), so Grid
+    inflates row1/row2 to whatever height fits media's own (much taller)
+    aspect-ratio box — with the container's align-items:center, intro and
+    actions were each centering independently inside their own inflated
+    row, which put ~150px+ of dead space between them instead of the
+    real 24px `gap`. Pinning intro to the BOTTOM of its row and actions
+    to the TOP of theirs collapses that inflation-driven gap down to the
+    actual grid gap (still visually centered as a block against media,
+    since the leftover row space just moves to the outer edges instead).
+    Only here does .case-card__cta then sit directly under
+    .case-card__intro (ending in the tag row) with no media between
+    them — pulled up from this breakpoint's 24px block gap to the 16px
+    used between every other object in the card (.case-card__intro's own
+    gap:16px), per Roman's request 2026-09-09.
+  */
+  .case-card__intro {
+    align-self: end;
+  }
+
+  .case-card__cta {
+    align-self: start;
+    margin-top: -8px;
   }
 
   .case-card--reverse {
