@@ -179,11 +179,40 @@
 
 /* ---------- Hero (768:13235) ---------- */
 
+/*
+  "Hero gradient for YOY and ATJ2" (Roman's own name for this, 2026-09-10)
+  — a slow, barely-visible flow along the gradient's own diagonal, via
+  background-position rather than repainting colors. To make it static
+  again: delete the `animation` line and the @keyframes block below (the
+  gradient itself stays). To remove entirely: delete the `background`
+  declaration too. The matching gradient on ATJ2's hero (case-atj-2.css,
+  same search term in a comment there) should be treated identically —
+  Roman asked for both to behave the same way.
+*/
 .yoy-hero {
   display: flex;
   flex-direction: column;
   gap: 24px;
   padding: 48px var(--page-px);
+  background: linear-gradient(120.11deg, #111111 0%, #222222 50%, #111111 100%);
+  background-size: 200% 200%;
+  animation: yoy-hero-gradient-flow 14s ease-in-out infinite;
+}
+
+@keyframes yoy-hero-gradient-flow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .yoy-hero {
+    animation: none;
+  }
 }
 
 @media (min-width: 1280px) {
@@ -204,20 +233,41 @@
 
 .yoy-hero__media {
   flex-shrink: 0;
-  max-width: 280px;
+  max-width: 320px;
+  width: 100%;
   margin: 0 auto;
 }
 
 @media (min-width: 1024px) {
   .yoy-hero__media {
-    width: 357px;
+    width: 548px;
     max-width: none;
     margin: 0;
   }
 }
 
-.yoy-hero__media img {
+/*
+  Oversized-crop technique (same pattern as .atj-hero__mockup,
+  .uniqkey-dashboard-frame etc.) — verified via get_design_context on
+  798:12743: at the 548x622 desktop container, the source image sits at
+  left:0, top:-19.87%, width:100%, height:132.19%. Same percentages
+  reused at mobile since the container keeps the same aspect-ratio.
+*/
+.yoy-hero__media-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  aspect-ratio: 548 / 622;
+  box-shadow: 8px 8px 16px 0 #1f1f1f;
+}
+
+.yoy-hero__media-frame img {
+  position: absolute;
+  left: 0;
+  top: -19.87%;
   width: 100%;
+  height: 132.19%;
+  max-width: none;
   display: block;
 }
 
@@ -277,55 +327,34 @@
   }
 }
 
-.yoy-hero__subtitle {
-  color: var(--yoy-muted);
-}
-
 .yoy-hero__desc {
   color: #fffefe;
 }
 
+/*
+  Synced 2026-09-10: Figma's Meta list is now a plain bulleted <ul>
+  (get_design_context on 796:12776) — was a boxed dt/dd table before.
+  No background/border on the list itself in the current design; it
+  just sits on the hero's own (now gradient) background.
+*/
 .yoy-details {
-  background-color: #1a1a1a;
-  border: 1px solid rgba(255, 184, 0, 0.3);
-  border-radius: 12px;
-  padding: 16px 20px;
   display: flex;
   flex-direction: column;
   gap: 8px;
   margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.yoy-details__row {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.yoy-details__row dt {
-  color: var(--yoy-accent);
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 16px;
-}
-
-.yoy-details__row dd {
+.yoy-details li {
   color: var(--yoy-muted);
-  margin: 0;
   font-size: 16px;
   line-height: 25px;
 }
 
-@media (min-width: 768px) {
-  .yoy-details__row {
-    flex-direction: row;
-    gap: 8px;
-  }
-
-  .yoy-details__row dt {
-    flex-shrink: 0;
-    width: 130px;
-  }
+.yoy-details b {
+  color: var(--yoy-accent);
+  font-weight: 500;
 }
 
 /* ---------- Three Facts (768:13259) ---------- */
@@ -399,17 +428,22 @@
   }
 }
 
+/*
+  Synced 2026-09-10: real analog logos (were empty gray placeholder
+  boxes). Every source file is a light/white-colored mark (confirmed via
+  pixel sampling — avg RGB in the 240-255 range for 4 of 5), meant to
+  sit directly on the section's own dark background, not inside a light
+  box — so no bg-color here, just natural sizing by height.
+*/
 .yoy-logos__item {
-  background-color: #d9d9d9;
-  border-radius: 8px;
-  width: 120px;
-  height: 54px;
+  height: 32px;
+  width: auto;
+  object-fit: contain;
 }
 
 @media (min-width: 1024px) {
   .yoy-logos__item {
-    width: 167px;
-    height: 75px;
+    height: 40px;
   }
 }
 
@@ -594,4 +628,36 @@
   font-size: 16px;
   color: #242424;
   margin: 0 0 20px;
+}
+
+/*
+  New 2026-09-10 (get_design_context on 795:12768): a short note plus a
+  link out to the actual live product, sitting below the yellow Results
+  panel on the section's own dark background.
+*/
+.yoy-results__focus {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.yoy-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: var(--yoy-accent);
+  border: 1px solid #4f4c61;
+  border-radius: 6px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  color: #1a1a1a;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.yoy-btn-primary:hover {
+  background-color: #e6a600;
 }

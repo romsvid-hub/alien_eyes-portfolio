@@ -939,6 +939,21 @@
 }
 
 /*
+  ATJ2 — added 2026-09-10 alongside the new laptop+phone mockup image,
+  which already renders its own device chrome (unlike the old raw
+  screenshot that needed a separate .atj2-dashboard-frame/
+  .atj2-laptop-frame overlay). Same simple contained-image approach as
+  .case-card__media--yoy above, keeping the existing accent glow behind
+  it for visual consistency with the ATJ1/Uniqkey cards.
+*/
+.case-card__media--atj2 img:not(.case-card__glow) {
+  position: static;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/*
   Template cards (Ridi — content "coming soon" per Roman, added
   2026-09-07; Yoy moved off this pattern 2026-09-09, see
   .case-card__media--yoy above): a plain neutral placeholder instead of

@@ -58,49 +58,36 @@
     </nav>
 
     <main>
-      <!-- UI: CASE04-HERO-01 | Hero | matches Figma "Hero" (768:13235) -->
+      <!-- UI: CASE04-HERO-01 | Hero | matches Figma "Hero" (768:13235), synced 2026-09-10 -->
       <section class="yoy-hero" data-reveal>
         <div class="yoy-hero__media">
-          <img src="assets/case-yoy/phone-mockup-placeholder.webp" alt="YOY! Events organizer flow shown on a phone" />
+          <div class="yoy-hero__media-frame">
+            <img src="assets/case-yoy/mobmocup.webp" alt="YOY! Events organizer flow shown on a phone" />
+          </div>
         </div>
         <div class="yoy-hero__content">
-          <!-- CONTENT: placeholder tags, per Roman 2026-09-09 — will be replaced -->
           <div class="tag-row">
-            <span class="yoy-tag">Events</span>
-            <span class="yoy-tag">Community</span>
-            <span class="yoy-tag">B2C</span>
-            <span class="yoy-tag">MVP</span>
+            <span class="yoy-tag">Mobile app</span>
+            <span class="yoy-tag">Events Platform</span>
+            <span class="yoy-tag">AI Design</span>
           </div>
-          <div class="yoy-hero__title-row">
-            <h1 class="yoy-hero__title">YOY! Events</h1>
-            <p class="body-large yoy-hero__subtitle">Product &amp; UX/UI design for a live MVP</p>
-          </div>
+          <h1 class="yoy-hero__title">YOY! Events</h1>
           <p class="body-large yoy-hero__desc">
             A product for events and communities, built technology-first.
             I rebuilt it around what the organizer actually needs to do.
           </p>
-          <dl class="yoy-details">
-            <div class="yoy-details__row">
-              <dt>Role:</dt>
-              <dd>Product &amp; UX/UI designer, solo — research, IA, flows, design system, UI, handoff</dd>
-            </div>
-            <div class="yoy-details__row">
-              <dt>Client:</dt>
-              <dd>product owner, also the developer building it</dd>
-            </div>
-            <div class="yoy-details__row">
-              <dt>Stage:</dt>
-              <dd>live second-generation MVP, work ongoing</dd>
-            </div>
-            <div class="yoy-details__row">
-              <dt>Tools:</dt>
-              <dd>Figma, FigJam, Figma MCP, Claude</dd>
-            </div>
-            <div class="yoy-details__row">
-              <dt>Case status:</dt>
-              <dd>MVP, product exists and is in active development</dd>
-            </div>
-          </dl>
+          <!-- CONTENT: synced 2026-09-10 — Figma's Meta list is now a plain
+               bulleted list (was a 5-row label/value table); "Stage:" row
+               was dropped and "Role:" shortened. Figma's raw text has
+               "Роль:"/"Інструменти:" (Ukrainian) — translated to
+               Role:/Tools: to match the rest of the page; the Client/Tools
+               values themselves were already English. -->
+          <ul class="yoy-details">
+            <li><b>Role:</b> UX Designer</li>
+            <li><b>Client:</b> Product Owner, also the developer building it</li>
+            <li><b>Tools:</b> Claude, Figma MCP, FigJam</li>
+            <li><b>Case status:</b> MVP, product exists in web version</li>
+          </ul>
         </div>
       </section>
 
@@ -214,16 +201,18 @@
         </p>
         <h3 class="h3-case-study yoy-subheading" data-reveal>Analogs and benchmarking</h3>
         <p class="body-large yoy-body-muted" data-reveal>
-          Analyzed Luma, Meetup, Eventbrite, Ticketbox, creatorstore.co. Three patterns for how services
-          open ticket sales:
+          Three patterns for how services open ticket sales:
         </p>
+        <!-- CONTENT: synced 2026-09-10 — real analog logos, replacing the 6
+             empty placeholder boxes. Logos are light-colored marks meant to
+             sit directly on the section's own dark background (no light box
+             behind them), confirmed via pixel sampling. -->
         <div class="yoy-logos" data-reveal-group>
-          <div class="yoy-logos__item"></div>
-          <div class="yoy-logos__item"></div>
-          <div class="yoy-logos__item"></div>
-          <div class="yoy-logos__item"></div>
-          <div class="yoy-logos__item"></div>
-          <div class="yoy-logos__item"></div>
+          <img loading="lazy" class="yoy-logos__item" src="assets/case-yoy/logo-eventbrite.webp" alt="Eventbrite" />
+          <img loading="lazy" class="yoy-logos__item" src="assets/case-yoy/logo-luma.webp" alt="Luma" />
+          <img loading="lazy" class="yoy-logos__item" src="assets/case-yoy/logo-tito.webp" alt="Tito" />
+          <img loading="lazy" class="yoy-logos__item" src="assets/case-yoy/logo-skiddle.webp" alt="Skiddle" />
+          <img loading="lazy" class="yoy-logos__item" src="assets/case-yoy/logo-creatorstore.webp" alt="creatorstore.co" />
         </div>
         <p class="body-large yoy-body-muted" data-reveal>
           In the per-ticket pattern, the organizer can't see the full sales picture — it's scattered
@@ -295,10 +284,11 @@
                   </p>
                 </div>
               </div>
+              <!-- CONTENT: synced 2026-09-10 — real screens, replacing the placeholder -->
               <div class="yoy-screens">
-                <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Ticket-type builder screen" />
-                <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Ticket wave configuration screen" />
-                <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Sales-management screen, separate from the builder" />
+                <img loading="lazy" src="assets/case-yoy/tickets-1.webp" alt="Ticket wave list" />
+                <img loading="lazy" src="assets/case-yoy/tickets-2.webp" alt="Ticket wave configuration" />
+                <img loading="lazy" src="assets/case-yoy/tickets-3.webp" alt="Adding a new ticket wave" />
               </div>
             </div>
           </div>
@@ -306,10 +296,10 @@
           <div class="yoy-decision" data-reveal>
             <h3 class="h3-case-study">Networking: from a dead end to a layer inside the event</h3>
             <div class="yoy-decision__body yoy-decision__body--reverse">
+              <!-- CONTENT: synced 2026-09-10 — real screens, replacing the placeholder -->
               <div class="yoy-screens">
-                <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Networking toggle during event setup" />
-                <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Discussion thread inside the event" />
-                <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Who's going list with the ability to connect" />
+                <img loading="lazy" src="assets/case-yoy/networking-1.webp" alt="Networking tag entry during event setup" />
+                <img loading="lazy" src="assets/case-yoy/networking-2.webp" alt="Event page with the networking layer enabled" />
               </div>
               <div class="yoy-decision__cards" data-reveal-group>
                 <div class="yoy-decision__card">
@@ -350,10 +340,10 @@
             <h3 class="h3-case-study">Creating a community</h3>
             <p class="body-main yoy-body-muted">A community as a container, not a registration form. Manager invite included right away.</p>
           </div>
+          <!-- CONTENT: synced 2026-09-10 — real screens, replacing the placeholder -->
           <div class="yoy-screens">
-            <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Create-community screen, step 1" />
-            <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Create-community screen, step 2" />
-            <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Manager invite screen" />
+            <img loading="lazy" src="assets/case-yoy/creating-a-community-1.webp" alt="Create-community form" />
+            <img loading="lazy" src="assets/case-yoy/creating-a-community-2.webp" alt="Create-community form with manager invite" />
           </div>
         </div>
 
@@ -373,13 +363,7 @@
           <div class="yoy-feature__text">
             <h3 class="h3-case-study">Basic event information</h3>
             <p class="body-main yoy-body-muted">
-              Format (offline / online / hybrid) changes the following fields: location or streaming
-              link. This is also where the organizer types the ticket wave name, that free-text field
-              later flows unprocessed straight to the WayForPay payment page (for example, «Offline +
-              afterparty»), which shows no event name or date. On a bank statement, a charge like that
-              looks unrecognizable, a classic chargeback trigger. This is a finding, not a separate
-              design decision: you can only spot it by walking through both the organizer's and the
-              buyer's paths in a row.
+              Format (offline / online / hybrid) changes the following fields: location or streaming link.
             </p>
           </div>
           <div class="yoy-screens">
@@ -414,10 +398,10 @@
         </div>
 
         <div class="yoy-feature yoy-feature--reverse" data-reveal>
+          <!-- CONTENT: synced 2026-09-10 — real screens, replacing the placeholder -->
           <div class="yoy-screens">
-            <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Published event page, organizer mode" />
-            <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Published event page, attendee mode" />
-            <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Role switch link on the event page" />
+            <img loading="lazy" src="assets/case-yoy/event-published-1.webp" alt="Published event page, organizer mode" />
+            <img loading="lazy" src="assets/case-yoy/event-published-2.webp" alt="Published event page, attendee mode" />
           </div>
           <div class="yoy-feature__text">
             <h3 class="h3-case-study">Event published</h3>
@@ -432,9 +416,11 @@
           <div class="yoy-uikit__text">
             <h2 class="h2-section yoy-heading">UI-Kit</h2>
             <p class="body-large yoy-body-muted">
-              The UI Kit was generated with Claude and Figma MCP on the Shadcn library, and baseline
-              WCAG 2.2 AAA compliance was checked with A11y. I reviewed the result, adjusted it, and
-              applied it in the design, this is the tooling part, not the core work.
+              The UI Kit was generated with Claude and Figma MCP on the Shadcn library. You can see it as
+              it actually was, without trying to make the AI output look more polished than it was. I made
+              a few adjustments afterwards, mainly refining components, spacing, and visual details.
+              Baseline WCAG 2.2 AAA compliance was checked with A11y. I reviewed the result, adjusted it,
+              and applied it in the design, this is the tooling part, not the core work.
             </p>
             <p class="body-large yoy-body-muted">
               One principle on its own: don't multiply visually different components for the same role.
@@ -471,6 +457,17 @@
               </p>
             </div>
           </div>
+        </div>
+
+        <!-- CONTENT: synced 2026-09-10 — new callout + link to the live product -->
+        <div class="yoy-results__focus" data-reveal>
+          <p class="body-main yoy-body-muted">My focus: the mobile app. The client's MVP currently prioritizes the web version.</p>
+          <a class="yoy-btn-primary" href="https://yoy.events/events" target="_blank" rel="noopener">
+            Open Real Product
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
         </div>
       </section>
 

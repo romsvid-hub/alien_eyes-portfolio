@@ -314,25 +314,21 @@
               <span class="tag">Accessibility</span>
             </div>
           </div>
-          <div class="case-card__media">
-            <!-- IMAGE: HOME-ATJ2-GLOW-01 | Decorative glow behind ATJ DEI Audit mockup (reuses ATJ1's accent glow — same brand family) | replaceable -->
+          <!-- Synced 2026-09-10: replaced the old raw-screenshot +
+               generic-laptop-frame composite with the new mockup image,
+               which already renders its own laptop + phone (real device
+               chrome baked in, not a separate overlay needed). -->
+          <div class="case-card__media case-card__media--atj2">
             <img loading="lazy"
               class="case-card__glow"
               src="assets/home/atj-glow.svg"
               alt=""
               aria-hidden="true"
             />
-            <div class="atj2-dashboard-frame">
-              <!-- IMAGE: HOME-ATJ2-MOCKUP-01 | ATJ DEI Audit diagnostic questionnaire screenshot | replaceable -->
-              <img loading="lazy"
-                src="assets/case-atj-2/draft-audit-body.png"
-                alt="ATJ DEI Audit — diagnostic questionnaire screenshot"
-              />
-            </div>
-            <div class="atj2-laptop-frame">
-              <!-- IMAGE: HOME-ATJ2-LAPTOP-01 | Generic laptop device frame (reuses the Uniqkey card's own asset — same generic chrome, not brand-specific) | replaceable -->
-              <img loading="lazy" src="assets/home/uniqkey-macbook-frame.png" alt="" />
-            </div>
+            <img loading="lazy"
+              src="assets/case-atj-2/figma/mockup-atj2.webp"
+              alt="ATJ DEI Audit shown on laptop and mobile"
+            />
           </div>
           <a class="btn btn--primary case-card__cta" href="case-atj-2.html">
             View case
@@ -371,17 +367,15 @@
               the organizer actually needs to do, from event creation to
               networking.
             </p>
-            <!-- CONTENT: placeholder tags, per Roman 2026-09-09 — will be replaced -->
+            <!-- CONTENT: synced 2026-09-10 — real tags from Figma (769:13474) -->
             <div class="tag-row">
-              <span class="tag">Events</span>
-              <span class="tag">Community</span>
-              <span class="tag">B2C</span>
-              <span class="tag">MVP</span>
+              <span class="tag">Mobile app</span>
+              <span class="tag">Events Platform</span>
+              <span class="tag">AI Design</span>
             </div>
           </div>
           <div class="case-card__media case-card__media--yoy">
-            <!-- IMAGE: HOME-YOY-MOCKUP-01 | YOY organizer flow phone mockup | replaceable -->
-            <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="YOY! Events organizer flow shown on a phone" />
+            <img loading="lazy" src="assets/case-yoy/mobmocup.webp" alt="YOY! Events organizer flow shown on a phone" />
           </div>
           <a class="btn btn--primary case-card__cta" href="case-yoy.html">
             View case

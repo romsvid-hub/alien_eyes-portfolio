@@ -178,12 +178,39 @@
 
 /* ---------- Hero ---------- */
 
+/*
+  "Hero gradient for YOY and ATJ2" (Roman's own name for this, 2026-09-10)
+  — synced from get_design_context on 418:31417: a single gradient now
+  spans the whole hero row (was two separate copies, one per half, which
+  didn't quite line up as one continuous gradient). Animated the same
+  slow background-position flow as YOY's hero — see that file's comment
+  for how to make this static/remove it; do the same thing here.
+*/
 .atj2-hero {
   margin: 24px var(--page-px) 48px;
   border-radius: 24px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  background: linear-gradient(246.48deg, #e4e5e5 0%, #d9d9da 50%, #e4e5e5 100%);
+  background-size: 200% 200%;
+  animation: yoy-hero-gradient-flow 14s ease-in-out infinite;
+}
+
+@keyframes yoy-hero-gradient-flow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atj2-hero {
+    animation: none;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -205,7 +232,8 @@
 .atj2-hero__media {
   flex: 1 1 50%;
   aspect-ratio: 628 / 400;
-  background: linear-gradient(180deg, #e4e5e5 0%, #d9d9da 100%);
+  position: relative;
+  overflow: hidden;
 }
 
 @media (min-width: 1024px) {
@@ -214,11 +242,32 @@
   }
 }
 
+/*
+  Mobile: object-fit:cover — safe default, no distortion, since Figma
+  only specified a crop for the desktop layout (a very different aspect
+  ratio from mobile's wide 628:400 box). Desktop: the verified
+  oversized-crop percentages from get_design_context on 798:12745 (the
+  "mockup atj 2" node) — left:0.06%, top:-4.59%, width:100.05%,
+  height:100%.
+*/
 .atj2-hero__media img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+@media (min-width: 1024px) {
+  .atj2-hero__media img {
+    left: 0.06%;
+    top: -4.59%;
+    width: 100.05%;
+    height: 100%;
+    max-width: none;
+    object-fit: unset;
+  }
 }
 
 .atj2-hero__content {
@@ -228,7 +277,6 @@
   justify-content: center;
   gap: 24px;
   padding: 32px 24px 40px;
-  background: linear-gradient(180deg, #e4e5e5 0%, #d9d9da 100%);
 }
 
 @media (min-width: 1024px) {
