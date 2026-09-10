@@ -193,7 +193,7 @@
       </section>
 
       <!-- UI: CASE04-RESEARCH-01 | Research + Approach | matches Figma "Research - Approach" (768:13294) -->
-      <section class="yoy-section">
+      <section class="yoy-section yoy-research">
         <h2 class="h2-section yoy-heading" data-reveal>Research</h2>
         <p class="body-large" data-reveal>
           Went through the live product, findings: fragmented flows, networking as a dead end,
@@ -295,12 +295,13 @@
 
           <div class="yoy-decision" data-reveal>
             <h3 class="h3-case-study">Networking: from a dead end to a layer inside the event</h3>
+            <!-- FIX 2026-09-10 (correction pass): DOM order normalized to match
+                 Tickets (cards, then screens) — the previous [screens, cards]
+                 order combined with flex-direction:row-reverse cancelled out,
+                 leaving Networking visually identical to Tickets instead of
+                 mirrored. Cards/screens keep the same DOM order in every
+                 .yoy-decision__body; --reverse alone drives the mirroring. -->
             <div class="yoy-decision__body yoy-decision__body--reverse">
-              <!-- CONTENT: synced 2026-09-10 — real screens, replacing the placeholder -->
-              <div class="yoy-screens">
-                <img loading="lazy" src="assets/case-yoy/networking-1.webp" alt="Networking tag entry during event setup" />
-                <img loading="lazy" src="assets/case-yoy/networking-2.webp" alt="Event page with the networking layer enabled" />
-              </div>
               <div class="yoy-decision__cards" data-reveal-group>
                 <div class="yoy-decision__card">
                   <h4>Problem</h4>
@@ -325,6 +326,11 @@
                   </p>
                 </div>
               </div>
+              <!-- CONTENT: synced 2026-09-10 — real screens, replacing the placeholder -->
+              <div class="yoy-screens">
+                <img loading="lazy" src="assets/case-yoy/networking-1.webp" alt="Networking tag entry during event setup" />
+                <img loading="lazy" src="assets/case-yoy/networking-2.webp" alt="Event page with the networking layer enabled" />
+              </div>
             </div>
           </div>
         </div>
@@ -347,15 +353,20 @@
           </div>
         </div>
 
+        <!-- FIX 2026-09-10 (correction pass): DOM order normalized to
+             [text, screens] like every other .yoy-feature row — the
+             previous [screens, text] order combined with
+             flex-direction:row-reverse cancelled out, so every row
+             (reverse or not) rendered text-left/screens-right with no
+             actual alternation. --reverse alone now drives the mirroring. -->
         <div class="yoy-feature yoy-feature--reverse" data-reveal>
-          <div class="yoy-screens">
-            <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Community created confirmation" />
-            <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Prompt to create the first event" />
-            <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Community dashboard, empty state" />
-          </div>
           <div class="yoy-feature__text">
             <h3 class="h3-case-study">Community created</h3>
             <p class="body-main yoy-body-muted">Success doesn't end the journey, it leads to the next action: creating a first event.</p>
+          </div>
+          <!-- CONTENT: synced 2026-09-10 (correction pass) — real screen, replacing the placeholder -->
+          <div class="yoy-screens">
+            <img loading="lazy" src="assets/case-yoy/community-created.webp" alt="Community created confirmation" />
           </div>
         </div>
 
@@ -366,22 +377,20 @@
               Format (offline / online / hybrid) changes the following fields: location or streaming link.
             </p>
           </div>
+          <!-- CONTENT: synced 2026-09-10 (correction pass) — real screen, replacing the placeholder -->
           <div class="yoy-screens">
-            <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Event format selection screen" />
-            <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Basic event information form" />
-            <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Ticket wave naming field" />
+            <img loading="lazy" src="assets/case-yoy/basic-event-information.webp" alt="Basic event information form" />
           </div>
         </div>
 
         <div class="yoy-feature yoy-feature--reverse" data-reveal>
-          <div class="yoy-screens">
-            <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Optional fields selection, screen 1" />
-            <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Optional fields selection, screen 2" />
-            <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Optional fields selection, screen 3" />
-          </div>
           <div class="yoy-feature__text">
             <h3 class="h3-case-study">Fields to fill in</h3>
             <p class="body-main yoy-body-muted">The organizer decides what data to collect. Minimal by default.</p>
+          </div>
+          <!-- CONTENT: synced 2026-09-10 (correction pass) — real screen, replacing the placeholder -->
+          <div class="yoy-screens">
+            <img loading="lazy" src="assets/case-yoy/fields-to-fill-in.webp" alt="Optional fields selection screen" />
           </div>
         </div>
 
@@ -390,31 +399,36 @@
             <h3 class="h3-case-study">Preview</h3>
             <p class="body-main yoy-body-muted">The organizer sees exactly what the buyer will see. Not a separate screen, the event page seen through a different role.</p>
           </div>
+          <!-- CONTENT: synced 2026-09-10 (correction pass) — real screen, replacing the placeholder -->
           <div class="yoy-screens">
-            <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Event preview screen, screen 1" />
-            <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Event preview screen, screen 2" />
-            <img loading="lazy" src="assets/case-yoy/phone-mockup-placeholder.webp" alt="Event preview screen, screen 3" />
+            <img loading="lazy" src="assets/case-yoy/preview-screen.webp" alt="Event preview screen" />
           </div>
         </div>
 
         <div class="yoy-feature yoy-feature--reverse" data-reveal>
+          <div class="yoy-feature__text">
+            <h3 class="h3-case-study">Event published</h3>
+            <p class="body-main yoy-body-muted">The same page, in admin mode. The role changes in the link, and that's exactly where the organizer's path becomes the attendee's path.</p>
+          </div>
           <!-- CONTENT: synced 2026-09-10 — real screens, replacing the placeholder -->
           <div class="yoy-screens">
             <img loading="lazy" src="assets/case-yoy/event-published-1.webp" alt="Published event page, organizer mode" />
             <img loading="lazy" src="assets/case-yoy/event-published-2.webp" alt="Published event page, attendee mode" />
-          </div>
-          <div class="yoy-feature__text">
-            <h3 class="h3-case-study">Event published</h3>
-            <p class="body-main yoy-body-muted">The same page, in admin mode. The role changes in the link, and that's exactly where the organizer's path becomes the attendee's path.</p>
           </div>
         </div>
       </section>
 
       <!-- UI: CASE04-UIKIT-01 | UI-Kit | matches Figma "UIKit" (768:13407) -->
       <section class="yoy-section yoy-section--tint">
+        <!-- FIX 2026-09-10 (correction pass): heading moved above the row
+             so the image's top now aligns with the paragraph's top,
+             instead of the heading's — per Roman's explicit correction
+             (Figma's own canvas has the image vertically centered
+             against the whole text block, title included; this is a
+             deliberate live-review deviation from that default). -->
+        <h2 class="h2-section yoy-heading" data-reveal>UI-Kit</h2>
         <div class="yoy-uikit" data-reveal-group>
           <div class="yoy-uikit__text">
-            <h2 class="h2-section yoy-heading">UI-Kit</h2>
             <p class="body-large yoy-body-muted">
               The UI Kit was generated with Claude and Figma MCP on the Shadcn library. You can see it as
               it actually was, without trying to make the AI output look more polished than it was. I made
@@ -428,7 +442,7 @@
             </p>
           </div>
           <div class="yoy-media yoy-uikit__media">
-            <img loading="lazy" src="assets/case-yoy/uikit-overview.png" alt="YOY! Events UI Kit overview: components, tokens, and states" />
+            <img loading="lazy" src="assets/case-yoy/uikit-overview.webp" alt="YOY! Events UI Kit overview: components, tokens, and states" />
           </div>
         </div>
       </section>

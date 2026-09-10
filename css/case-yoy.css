@@ -55,8 +55,17 @@
   }
 }
 
+/*
+  Fixed 2026-09-10 (correction pass): the tint fill must run edge-to-edge
+  of the viewport even though .yoy-section itself is capped to 1280px at
+  wide desktop widths — box-shadow spread paints past the element's own
+  box without affecting its layout size, clip-path stops that spread
+  from creating horizontal overflow/scrollbars.
+*/
 .yoy-section--tint {
   background-color: var(--yoy-tint);
+  box-shadow: 0 0 0 100vmax var(--yoy-tint);
+  clip-path: inset(0 -100vmax);
 }
 
 .yoy-heading {
@@ -247,27 +256,26 @@
 }
 
 /*
-  Oversized-crop technique (same pattern as .atj-hero__mockup,
-  .uniqkey-dashboard-frame etc.) — verified via get_design_context on
-  798:12743: at the 548x622 desktop container, the source image sits at
-  left:0, top:-19.87%, width:100%, height:132.19%. Same percentages
-  reused at mobile since the container keeps the same aspect-ratio.
+  Fixed 2026-09-10 (correction pass): mobmocup is a transparent-background
+  composite PNG (two angled phones, no fill to crop into), not a photo —
+  the earlier oversized-crop-cover technique clipped part of it. Roman
+  re-exported the source with more headroom and asked to stop cropping,
+  so this now just contains the image inside its slot; no shadow either
+  (the "gradient" instruction was about the Hero section background
+  above, not a shadow under the mockup).
 */
 .yoy-hero__media-frame {
   position: relative;
-  overflow: hidden;
-  border-radius: 12px;
   aspect-ratio: 548 / 622;
-  box-shadow: 8px 8px 16px 0 #1f1f1f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .yoy-hero__media-frame img {
-  position: absolute;
-  left: 0;
-  top: -19.87%;
   width: 100%;
-  height: 132.19%;
-  max-width: none;
+  height: 100%;
+  object-fit: contain;
   display: block;
 }
 
@@ -363,12 +371,14 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
+  margin-top: 16px;
 }
 
 @media (min-width: 1024px) {
   .yoy-facts {
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
+    margin-top: 24px;
   }
 }
 
@@ -416,16 +426,16 @@
 
 /* ---------- Research / Approach (768:13294) ---------- */
 
+/*
+  Fixed 2026-09-10 (correction pass): logos stretch edge-to-edge of the
+  content column with equal spacing between them — space-between on a
+  single non-wrapping row, instead of the earlier wrap+gap cluster.
+*/
 .yoy-logos {
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-@media (min-width: 1024px) {
-  .yoy-logos {
-    gap: 24px;
-  }
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 /*
@@ -447,20 +457,67 @@
   }
 }
 
+/*
+  Fixed 2026-09-10 (correction pass): consistent gap between every block
+  in this section, matching the heading-to-paragraph gap established
+  above (.yoy-heading margin-bottom, 16px/24px) — several transitions
+  here previously had zero top margin. Scoped to .yoy-research so it
+  doesn't touch .yoy-subheading/.yoy-panel/.yoy-body-muted usages
+  elsewhere on the page that already have their own deliberate spacing.
+*/
+.yoy-research > .yoy-subheading,
+.yoy-research > .yoy-logos,
+.yoy-research > .yoy-logos + .yoy-body-muted,
+.yoy-research > .yoy-body-muted + .yoy-panel,
+.yoy-research > .yoy-two-col + .yoy-media {
+  margin-top: 16px;
+}
+
+@media (min-width: 1024px) {
+  .yoy-research > .yoy-subheading,
+  .yoy-research > .yoy-logos,
+  .yoy-research > .yoy-logos + .yoy-body-muted,
+  .yoy-research > .yoy-body-muted + .yoy-panel,
+  .yoy-research > .yoy-two-col + .yoy-media {
+    margin-top: 24px;
+  }
+}
+
 /* ---------- Key Decisions (768:13317) ---------- */
 
+/*
+  Fixed 2026-09-10 (correction pass): same edge-to-edge bug as
+  .yoy-section--tint above, plus the gradient fill verified via
+  get_design_context on 768:13317 (was flat #1a1a1a, missing the
+  gradient entirely). box-shadow can't paint a gradient, so the bleed
+  here uses a ::before breakout instead — sized to 100vw via the
+  left:50%/-50vw margin trick, sitting behind the content (z-index:-1).
+  Edge-to-edge and the panel's previous rounded corners are mutually
+  exclusive at wide viewports, so the radius is dropped.
+*/
 .yoy-panel--dark {
-  background-color: #1a1a1a;
-  border-radius: 24px;
+  position: relative;
+  z-index: 0;
   padding: 32px var(--page-px);
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
+.yoy-panel--dark::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  background-image: linear-gradient(141.72deg, #111111 0%, #1d1c1c 100%);
+}
+
 @media (min-width: 1024px) {
   .yoy-panel--dark {
-    border-radius: 48px;
     padding: 48px 80px;
   }
 }
@@ -603,12 +660,27 @@
   }
 }
 
+/*
+  Fixed 2026-09-10 (correction pass): aspect-ratio now matches the
+  updated uikit-overview.webp's own dimensions (822x410, ~2:1) instead
+  of the old 548/320 (1.71:1) ratio, which cropped the new asset under
+  object-fit:cover.
+*/
 .yoy-uikit__media img {
-  aspect-ratio: 548 / 320;
+  aspect-ratio: 822 / 410;
 }
 
 /* ---------- Results (768:13414) ---------- */
 
+/*
+  Fixed 2026-09-10 (correction pass): the Results panel sits inside a
+  .yoy-section--tint section, and `.yoy-section--tint .yoy-panel`
+  (higher specificity via the descendant combinator) was silently
+  overriding this panel's own accent color back to --yoy-bg — the
+  #FFB800 fill from get_design_context on 768:13415 was in the CSS but
+  never actually rendered. Re-declared here at matching specificity.
+*/
+.yoy-section--tint .yoy-panel--accent,
 .yoy-panel--accent {
   background-color: var(--yoy-accent);
   color: #242424;

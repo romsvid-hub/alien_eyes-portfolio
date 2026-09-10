@@ -915,26 +915,15 @@
 }
 
 /*
-  YOY! Events — added 2026-09-09 alongside case-yoy.html. Unlike the
-  ATJ/Uniqkey cards, there's no laptop dashboard screenshot to crop yet,
-  just the same phone mockup used as a placeholder throughout the case
-  page itself (see css/case-yoy.css header) — shown here at its natural
-  aspect ratio, contained and centered, on the case's own dark/yellow
-  brand background instead of the laptop-composite technique.
+  YOY! Events — added 2026-09-09, reworked 2026-09-10 (correction pass):
+  Roman confirmed no background/border box behind the mockup — mobmocup
+  (a transparent-background composite PNG) shows directly on the card,
+  same simple contained-image approach as .case-card__media--atj2 below.
 */
-.case-card__media--yoy {
-  background-color: #1a1a1a;
-  border: 1px solid rgba(255, 184, 0, 0.25);
-  border-radius: 16px;
-  overflow: hidden;
-}
-
 .case-card__media--yoy img {
   position: static;
-  width: auto;
-  height: 92%;
-  max-width: 90%;
-  margin: 4% auto 0;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
@@ -1064,6 +1053,7 @@
   color: var(--color-white);
   max-width: 1120px;
   margin: 0 auto 32px;
+  text-align: center;
 }
 
 .reviews-carousel {
