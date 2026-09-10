@@ -45,10 +45,18 @@
   padding: 48px var(--page-px);
 }
 
+/*
+  Fixed 2026-09-10: as a <p> (not a real h3), this never set its own
+  line-height and never picked up typography.css's h3 tag-level rule
+  either — it fell back to body's 25px line-height against a 24px+
+  font, which overlapped whenever the text wrapped on mobile. Same
+  fix as .atj-eyebrow/.atj2-eyebrow.
+*/
 .case-eyebrow {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: var(--h3-size);
+  line-height: 1.2;
   letter-spacing: var(--h3-letter-spacing);
   color: var(--color-subtle-text);
   margin: 0 0 16px;
@@ -641,6 +649,7 @@
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 20px;
+  line-height: 1.3;
   color: var(--color-subtle-text);
   margin: 0 0 16px;
 }

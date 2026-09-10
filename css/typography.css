@@ -61,3 +61,29 @@ h3,
   letter-spacing: var(--ui-caption-letter-spacing);
   margin: 0;
 }
+
+/*
+  Fixed 2026-09-10 (Roman: mobile line-spacing on wrapped headings
+  reads as overlapping/merged — reported on "Design System / AI usage"
+  and "Other Core Features", confirmed present on most pages).
+  Figma's verified line-height (100%) is correct for these headings at
+  desktop, where they're effectively single-line — but the same text
+  routinely wraps to 2+ lines on mobile's much narrower columns, and at
+  exactly 100% line-height a wrapped heading's lines visibly crowd
+  each other. A modest bump to 1.2, mobile-only, gives wrapped text
+  real breathing room without touching the verified desktop value.
+  h4 has no entry above (every usage sets its own font-size per
+  component) but inherited the same 100%-effective tightness via
+  body's line-height, so it's included here too.
+*/
+@media (max-width: 767px) {
+  h1,
+  .h1-display,
+  h2,
+  .h2-section,
+  h3,
+  .h3-case-study,
+  h4 {
+    line-height: 1.2;
+  }
+}

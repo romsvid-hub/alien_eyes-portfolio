@@ -100,10 +100,22 @@
   }
 }
 
+/*
+  Fixed 2026-09-10: neither this nor .atj2-eyebrow--lg set their own
+  line-height, and since this is a <p> (not a real h2/h3), it never
+  picked up typography.css's h1/h2/h3 tag-level line-height either —
+  it fell through to body's line-height (25px, sized for 16px body
+  text). Fine at a glance since these are usually short one-line
+  labels, but once the text wraps on mobile (e.g. "Design System / AI
+  usage", "Other Core Features") a 24-40px font squeezed into a 25px
+  line-height visibly overlaps line to line. 1.2 gives real breathing
+  room without changing single-line desktop appearance much.
+*/
 .atj2-eyebrow {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: var(--h3-size);
+  line-height: 1.2;
   letter-spacing: var(--h3-letter-spacing);
   color: var(--color-subtle-text);
   margin: 0 0 16px;
@@ -111,6 +123,7 @@
 
 .atj2-eyebrow--lg {
   font-size: var(--h2-size);
+  line-height: 1.2;
   color: var(--atj2-accent);
 }
 
@@ -602,6 +615,9 @@
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 40px;
+  /* Fixed 2026-09-10: same missing-line-height issue as .atj2-eyebrow
+     — this <p> was falling back to body's 25px line-height. */
+  line-height: 1.2;
   color: var(--color-white);
   margin: 0;
 }
@@ -775,6 +791,8 @@
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 24px;
+  /* Fixed 2026-09-10: same missing-line-height issue as .atj2-eyebrow. */
+  line-height: 1.2;
   color: var(--color-deep-text);
   margin: 0 0 24px;
 }
