@@ -838,11 +838,40 @@
 
 /* ---------- Core Features (768:13355) ---------- */
 
+/*
+  Fixed 2026-09-10 (correction pass): each row is its own card, full
+  width of the content column (not inset from it) — verified via
+  get_design_context on 768:13358. Figma alternates a solid fill on the
+  non-reverse rows with a barely-visible radial vignette on the reverse
+  ones (rgba(40,40,40)->rgba(46,46,46), nearly flat); approximated here
+  as a CSS radial-gradient. Figma's own padding was asymmetric (24px
+  right/top/bottom, 0 left) and one row had a different gap (24px vs
+  12px everywhere else) — per Roman, simplified to symmetric padding and
+  one consistent gap instead of replicating those, content stays
+  centered via justify-content as already fixed above.
+*/
 .yoy-feature {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 24px 0;
+  padding: 24px;
+  border-radius: 16px;
+  background-color: #272727;
+}
+
+.yoy-feature--reverse {
+  background-color: transparent;
+  background-image: radial-gradient(ellipse at center, #282828 8%, #2e2e2e 90%);
+}
+
+.yoy-feature + .yoy-feature {
+  margin-top: 24px;
+}
+
+@media (min-width: 1024px) {
+  .yoy-feature + .yoy-feature {
+    margin-top: 48px;
+  }
 }
 
 @media (min-width: 1024px) {
