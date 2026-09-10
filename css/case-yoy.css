@@ -372,14 +372,14 @@
   transform: rotate(-10.24deg);
 }
 
-/* Fixed 2026-09-10: sped up (12s/16s -> 8s/11s) — Roman said the wiggle
-   was barely noticeable; still eased, not abrupt. */
+/* Fixed 2026-09-10: sped up again, 3x this round (8s/11s -> 2.7s/3.7s)
+   per Roman, on top of the earlier 12s/16s -> 8s/11s pass. */
 .yoy-hero__line--gray path {
-  animation: yoy-line-wiggle-gray 8s ease-in-out infinite;
+  animation: yoy-line-wiggle-gray 2.7s ease-in-out infinite;
 }
 
 .yoy-hero__line--orange path {
-  animation: yoy-line-wiggle-orange 11s ease-in-out infinite;
+  animation: yoy-line-wiggle-orange 3.7s ease-in-out infinite;
 }
 
 @keyframes yoy-line-wiggle-gray {
