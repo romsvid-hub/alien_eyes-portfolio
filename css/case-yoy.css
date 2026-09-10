@@ -129,6 +129,57 @@
   border-radius: 16px;
 }
 
+/*
+  New 2026-09-10: the "How I Approached It" deep-dive image links out to
+  the live FigJam board — hover feedback (dim + zoom + a small hint
+  label) so it reads as clickable, not just a static screenshot.
+*/
+.yoy-media--linked {
+  overflow: hidden;
+}
+
+.yoy-media--linked a {
+  position: relative;
+  display: block;
+}
+
+.yoy-media--linked img {
+  display: block;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.yoy-media--linked a:hover img,
+.yoy-media--linked a:focus-visible img {
+  transform: scale(1.02);
+  filter: brightness(0.85);
+}
+
+.yoy-media__hint {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background-color: rgba(26, 26, 26, 0.9);
+  border: 1px solid rgba(255, 184, 0, 0.3);
+  border-radius: 6px;
+  color: var(--yoy-accent);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.yoy-media--linked a:hover .yoy-media__hint,
+.yoy-media--linked a:focus-visible .yoy-media__hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .yoy-panel {
   background-color: var(--yoy-tint);
   border-radius: 16px;
@@ -278,11 +329,22 @@
   display: none;
 }
 
+/*
+  Fixed 2026-09-10 (correction pass): container widened from the hero's
+  own box (max-width:1280 at wide screens) to a full 100vw breakout
+  (same left:50%/-50vw trick as the gradient), and the two lines
+  repositioned so orange reaches the viewport's left edge and gray
+  reaches its right edge, per Roman.
+*/
 @media (min-width: 1024px) {
   .yoy-hero__lines {
     display: block;
     position: absolute;
-    inset: 0;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    margin-left: -50vw;
     overflow: hidden;
     z-index: 0;
     pointer-events: none;
@@ -295,27 +357,29 @@
 }
 
 .yoy-hero__line--gray {
-  left: 67.16%;
+  left: 58%;
   top: -32.09%;
-  width: 50.75%;
+  width: 44%;
   height: 83.12%;
   transform: rotate(-141.16deg) scaleY(-1);
 }
 
 .yoy-hero__line--orange {
-  left: -5.29%;
+  left: -4%;
   top: 4.97%;
-  width: 107.79%;
+  width: 106%;
   height: 134.49%;
   transform: rotate(-10.24deg);
 }
 
+/* Fixed 2026-09-10: sped up (12s/16s -> 8s/11s) — Roman said the wiggle
+   was barely noticeable; still eased, not abrupt. */
 .yoy-hero__line--gray path {
-  animation: yoy-line-wiggle-gray 12s ease-in-out infinite;
+  animation: yoy-line-wiggle-gray 8s ease-in-out infinite;
 }
 
 .yoy-hero__line--orange path {
-  animation: yoy-line-wiggle-orange 16s ease-in-out infinite;
+  animation: yoy-line-wiggle-orange 11s ease-in-out infinite;
 }
 
 @keyframes yoy-line-wiggle-gray {
@@ -589,22 +653,29 @@
   }
 }
 
+/*
+  Fixed 2026-09-10 (correction pass): switched from a zoomed sprite-sheet
+  crop to a standalone extracted character (mascot-peek.webp — cropped
+  out of the same source, own file), and dropped overflow:hidden — Roman
+  wants this mascot spilling past its disc like the Results one, not
+  contained.
+*/
 .yoy-row__mascot {
   width: 70px;
   height: 68px;
   border-radius: 50%;
   background-color: #2a2b2c;
-  overflow: hidden;
   position: relative;
 }
 
 .yoy-row__mascot img {
   position: absolute;
-  left: -146.13%;
-  top: -51.04%;
-  width: 271.91%;
-  height: 335.47%;
+  left: 50%;
+  top: 50%;
+  width: 160%;
+  height: 160%;
   max-width: none;
+  transform: translate(-50%, -50%);
 }
 
 /* ---------- Research / Approach (768:13294) ---------- */
@@ -899,7 +970,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
-  margin-top: 24px;
+  margin-top: 40px;
 }
 
 @media (min-width: 1024px) {
