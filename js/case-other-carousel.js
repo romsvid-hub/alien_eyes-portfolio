@@ -19,42 +19,42 @@
       title: "Admin Portal – Groups",
       desc:
         "A unified table view for monitoring security scores and activity across all groups. The toolbar enables quick management actions, and clicking any row opens a detailed view of that group.",
-      src: "assets/case-uniqkey/otherscreens-v2-1-groups.png",
+      src: "assets/case-uniqkey/otherscreens-v2-1-groups.webp",
       alt: "Admin Portal group table view",
     },
     {
       title: "Admin Portal – Group details",
       desc:
         "A detailed group view with key metrics, member count, login usage, and security score, organized across tabs for easy navigation. The same consistent layout is applied across both groups and employees.",
-      src: "assets/case-uniqkey/otherscreens-v2-2-groupdetails.png",
+      src: "assets/case-uniqkey/otherscreens-v2-2-groupdetails.webp",
       alt: "Admin Portal group detail view",
     },
     {
       title: "Admin Portal – Data sorting",
       desc:
         "A centralized view of shared company logins, organized into groups and folders for easier access management. Structured permissions allow admins to control visibility by department or role, so employees only see credentials relevant to their work.",
-      src: "assets/case-uniqkey/otherscreens-v2-3-datasorting.png",
+      src: "assets/case-uniqkey/otherscreens-v2-3-datasorting.webp",
       alt: "Shared company logins, grouped by folder",
     },
     {
       title: "Mobile app",
       desc:
         "A mobile home screen with saved logins organized into tabs and department folders for faster navigation. Selecting a login opens full credentials, 2FA, sharing details, and quick actions — giving users everything they need in one place.",
-      src: "assets/case-uniqkey/otherscreens-v2-4-mobileapp.png",
+      src: "assets/case-uniqkey/otherscreens-v2-4-mobileapp.webp",
       alt: "Mobile app home screen with saved logins",
     },
     {
       title: "Browser extension",
       desc:
         "For secure access to company credentials, payments, and notes, synchronized with the mobile app for seamless authentication. The interface enables quick login actions, secure password management, advanced filtering, and real-time security monitoring in a compact, accessible workflow.",
-      src: "assets/case-uniqkey/otherscreens-v2-5-browserext.png",
+      src: "assets/case-uniqkey/otherscreens-v2-5-browserext.webp",
       alt: "Browser extension credential list",
     },
     {
       title: "Partner Portal",
       desc:
         "A centralized dashboard for managing partners, organizations, and license distribution across the ecosystem. The interface provides quick access to key metrics, detailed partner views, and organization management — streamlining product distribution and access control in one place.",
-      src: "assets/case-uniqkey/otherscreens-v2-6-partnerportal.png",
+      src: "assets/case-uniqkey/otherscreens-v2-6-partnerportal.webp",
       alt: "Partner portal dashboard",
     },
   ];
