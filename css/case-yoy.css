@@ -263,7 +263,97 @@
   }
 }
 
+/*
+  New 2026-09-10 ("gray line"/"orange line", 806:12926): decorative
+  vectors from get_design_context, positioned as percentages of the
+  1280x734 canvas they were authored against. Desktop-only — they were
+  never authored for the mobile stacked layout, and .yoy-hero's height
+  is content-driven there rather than a fixed 734px canvas the
+  percentages could map onto. `d` is natively animatable in current
+  browsers for same-command paths; three jittered variants of each path
+  loop for a slow, organic "alive thread" wiggle, each line on its own
+  independent duration so they don't move in lockstep.
+*/
+.yoy-hero__lines {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .yoy-hero__lines {
+    display: block;
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+  }
+}
+
+.yoy-hero__line {
+  position: absolute;
+  overflow: visible;
+}
+
+.yoy-hero__line--gray {
+  left: 67.16%;
+  top: -32.09%;
+  width: 50.75%;
+  height: 83.12%;
+  transform: rotate(-141.16deg) scaleY(-1);
+}
+
+.yoy-hero__line--orange {
+  left: -5.29%;
+  top: 4.97%;
+  width: 107.79%;
+  height: 134.49%;
+  transform: rotate(-10.24deg);
+}
+
+.yoy-hero__line--gray path {
+  animation: yoy-line-wiggle-gray 12s ease-in-out infinite;
+}
+
+.yoy-hero__line--orange path {
+  animation: yoy-line-wiggle-orange 16s ease-in-out infinite;
+}
+
+@keyframes yoy-line-wiggle-gray {
+  0%,
+  100% {
+    d: path("M6.00055 9.8113C35.1869 -10.3227 57.9417 52.9622 27.4215 113.99C-3.09863 175.019 112.136 109.046 176.812 128.742C241.487 148.438 21.3473 254.426 139.309 260.774C257.27 267.123 286.907 232.051 364.704 231.279C442.5 230.507 502.248 392.256 584.174 289.563");
+  }
+  33% {
+    d: path("M6.00055 9.8113C27.87 -3.37 63.22 48.06 27.33 112.98C-0.07 180.79 104.01 99.61 183.53 127.40C246.73 138.48 20.26 258.86 133.88 269.68C265.30 257.73 277.42 232.88 373.49 228.90C436.83 228.95 492.83 386.69 584.174 289.563");
+  }
+  66% {
+    d: path("M6.00055 9.8113C44.31 -1.37 49.07 44.66 34.13 118.71C0.30 171.18 114.25 111.18 178.44 121.91C240.10 146.31 25.81 264.32 148.30 261.66C256.17 262.49 277.63 222.60 364.00 227.65C440.10 238.34 502.76 393.47 584.174 289.563");
+  }
+}
+
+@keyframes yoy-line-wiggle-orange {
+  0%,
+  100% {
+    d: path("M6 39.3048C108.478 39.3048 245.701 -39.2487 312.61 44.9151C379.519 129.079 368.592 240.953 315.305 288.879C262.018 336.805 103.183 278.337 107.491 191.392C111.799 104.446 362.217 193.244 400.289 228.008C438.361 262.771 426.773 262.453 392.126 355.425C357.479 448.397 539.043 609.965 676.683 526.52C814.324 443.074 888.463 647.282 989.785 647.42C1091.11 647.558 1073.9 608.757 1109.47 637.883C1145.03 667.01 1224.07 844.964 1267.99 757.112");
+  }
+  33% {
+    d: path("M6 39.3048C101.14 40.54 242.06 -36.34 316.13 32.75C365.89 138.53 361.85 233.51 329.18 288.05C271.44 336.14 107.08 268.55 111.27 201.70C112.45 111.20 367.02 181.04 407.52 230.56C432.80 249.64 437.01 261.69 398.25 366.03C363.47 460.19 536.10 618.39 675.13 538.72C824.93 431.80 878.27 639.36 1002.82 645.63C1094.66 641.99 1074.10 605.56 1105.30 640.27C1147.39 678.33 1229.17 856.97 1267.99 757.112");
+  }
+  66% {
+    d: path("M6 39.3048C101.09 28.19 242.79 -48.91 300.47 42.16C391.22 137.49 376.02 233.17 316.33 282.63C252.85 325.78 95.19 290.31 116.70 199.98C120.21 95.86 356.89 196.80 406.78 237.94C449.00 251.20 429.74 267.26 392.29 346.40C356.74 436.90 551.21 620.20 678.02 520.93C825.77 445.10 899.17 657.03 990.02 645.01C1093.88 645.63 1064.42 603.30 1118.22 625.09C1132.33 670.55 1217.92 845.93 1267.99 757.112");
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .yoy-hero__line--gray path,
+  .yoy-hero__line--orange path {
+    animation: none;
+  }
+}
+
 .yoy-hero__media {
+  position: relative;
+  z-index: 1;
   flex-shrink: 0;
   max-width: 320px;
   width: 100%;
@@ -302,7 +392,37 @@
   display: block;
 }
 
+/*
+  New 2026-09-10 ("mascotte", 806:12937): pinned onto the mockup like a
+  sticker — position/size are percentages of .yoy-hero__media-frame's
+  own 548x622 box, converted from Figma's absolute coordinates (mascotte
+  was positioned 290.5/22.22 within the 548x622 mobmocup box), so it
+  scales together with the mockup at every breakpoint. Same
+  oversized-crop technique as the mockup itself for the inner image.
+*/
+.yoy-hero__mascotte {
+  position: absolute;
+  z-index: 1;
+  overflow: hidden;
+  left: 53.01%;
+  top: 3.57%;
+  width: 36.11%;
+  height: 23.09%;
+  transform: rotate(8.87deg);
+}
+
+.yoy-hero__mascotte img {
+  position: absolute;
+  left: -9%;
+  top: -12.41%;
+  width: 119.93%;
+  height: 124.44%;
+  max-width: none;
+}
+
 .yoy-hero__content {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -450,6 +570,41 @@
 .yoy-row__text {
   color: #fffefe;
   margin: 0;
+}
+
+/*
+  New 2026-09-10 ("content"/"mascot", 806:12939): wraps the mascot icon
+  above the paragraph — added as-is, no special animation treatment.
+*/
+.yoy-row__content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .yoy-row__content {
+    gap: 48px;
+  }
+}
+
+.yoy-row__mascot {
+  width: 70px;
+  height: 68px;
+  border-radius: 50%;
+  background-color: #2a2b2c;
+  overflow: hidden;
+  position: relative;
+}
+
+.yoy-row__mascot img {
+  position: absolute;
+  left: -146.13%;
+  top: -51.04%;
+  width: 271.91%;
+  height: 335.47%;
+  max-width: none;
 }
 
 /* ---------- Research / Approach (768:13294) ---------- */
@@ -735,14 +890,51 @@
 /*
   New 2026-09-10 (get_design_context on 795:12768): a short note plus a
   link out to the actual live product, sitting below the yellow Results
-  panel on the section's own dark background.
+  panel on the section's own dark background. Row layout added for the
+  "mascot" (806:12949) — its rocket flame/smoke intentionally overflows
+  the disc past the left edge; overflow is NOT clipped here, per Roman.
 */
 .yoy-results__focus {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
+  gap: 24px;
   margin-top: 24px;
+}
+
+@media (min-width: 1024px) {
+  .yoy-results__focus {
+    flex-direction: row;
+    align-items: center;
+    gap: 48px;
+  }
+}
+
+.yoy-results__mascot {
+  width: 108px;
+  height: 105px;
+  border-radius: 50%;
+  background-color: #2a2b2c;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.yoy-results__mascot img {
+  position: absolute;
+  left: -22%;
+  top: -32.5%;
+  width: 157.3%;
+  height: 154.5%;
+  max-width: none;
+  transform: rotate(178.64deg) scaleY(-1);
+}
+
+.yoy-results__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  min-width: 0;
 }
 
 .yoy-btn-primary {

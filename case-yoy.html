@@ -60,9 +60,25 @@
     <main>
       <!-- UI: CASE04-HERO-01 | Hero | matches Figma "Hero" (768:13235), synced 2026-09-10 -->
       <section class="yoy-hero" data-reveal>
+        <!-- CONTENT: synced 2026-09-10 — "gray line"/"orange line" (806:12926),
+             decorative vectors given a slow organic wiggle via animated
+             `d` (see css/case-yoy.css). Desktop-only. -->
+        <div class="yoy-hero__lines" aria-hidden="true">
+          <svg class="yoy-hero__line yoy-hero__line--gray" viewBox="0 0 590.175 329.71" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.00055 9.8113C35.1869 -10.3227 57.9417 52.9622 27.4215 113.99C-3.09863 175.019 112.136 109.046 176.812 128.742C241.487 148.438 21.3473 254.426 139.309 260.774C257.27 267.123 286.907 232.051 364.704 231.279C442.5 230.507 502.248 392.256 584.174 289.563" stroke="#D1D1D1" stroke-opacity="0.06" stroke-width="12" stroke-linecap="round" />
+          </svg>
+          <svg class="yoy-hero__line yoy-hero__line--orange" viewBox="0 0 1273.99 787.258" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 39.3048C108.478 39.3048 245.701 -39.2487 312.61 44.9151C379.519 129.079 368.592 240.953 315.305 288.879C262.018 336.805 103.183 278.337 107.491 191.392C111.799 104.446 362.217 193.244 400.289 228.008C438.361 262.771 426.773 262.453 392.126 355.425C357.479 448.397 539.043 609.965 676.683 526.52C814.324 443.074 888.463 647.282 989.785 647.42C1091.11 647.558 1073.9 608.757 1109.47 637.883C1145.03 667.01 1224.07 844.964 1267.99 757.112" stroke="#FFB800" stroke-width="12" stroke-linecap="round" />
+          </svg>
+        </div>
         <div class="yoy-hero__media">
           <div class="yoy-hero__media-frame">
             <img src="assets/case-yoy/mobmocup.webp" alt="YOY! Events organizer flow shown on a phone" />
+            <!-- CONTENT: synced 2026-09-10 — "mascotte" (806:12937),
+                 pinned onto the mockup like a sticker -->
+            <div class="yoy-hero__mascotte" aria-hidden="true">
+              <img src="assets/case-yoy/mascotte.webp" alt="" />
+            </div>
           </div>
         </div>
         <div class="yoy-hero__content">
@@ -184,11 +200,18 @@
           <div class="yoy-media">
             <img loading="lazy" src="assets/case-yoy/yoy-maps-1.webp" alt="Mapping the current organizer flow with the client" />
           </div>
-          <p class="body-main yoy-row__text">
-            There was a lot that didn't make sense, I had to sit down with the client and go through
-            every step by hand, matching screens and mapping the actual user flow to understand how it
-            currently works.
-          </p>
+          <!-- CONTENT: synced 2026-09-10 — "content" + "mascot" (806:12939),
+               added as-is, no special treatment (per Roman: leave it be) -->
+          <div class="yoy-row__content">
+            <div class="yoy-row__mascot" aria-hidden="true">
+              <img loading="lazy" src="assets/case-yoy/mascot-peek.webp" alt="" />
+            </div>
+            <p class="body-main yoy-row__text">
+              There was a lot that didn't make sense, I had to sit down with the client and go through
+              every step by hand, matching screens and mapping the actual user flow to understand how it
+              currently works.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -473,15 +496,22 @@
           </div>
         </div>
 
-        <!-- CONTENT: synced 2026-09-10 — new callout + link to the live product -->
+        <!-- CONTENT: synced 2026-09-10 — new callout + link to the live product,
+             plus "mascot" (806:12949): the rocket flame/smoke intentionally
+             overflows the disc past the left edge, per Roman — don't clip it -->
         <div class="yoy-results__focus" data-reveal>
-          <p class="body-main yoy-body-muted">My focus: the mobile app. The client's MVP currently prioritizes the web version.</p>
-          <a class="yoy-btn-primary" href="https://yoy.events/events" target="_blank" rel="noopener">
-            Open Real Product
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </a>
+          <div class="yoy-results__mascot" aria-hidden="true">
+            <img loading="lazy" src="assets/case-yoy/mascot-rocket.webp" alt="" />
+          </div>
+          <div class="yoy-results__body">
+            <p class="body-main yoy-body-muted">My focus: the mobile app. The client's MVP currently prioritizes the web version.</p>
+            <a class="yoy-btn-primary" href="https://yoy.events/events" target="_blank" rel="noopener">
+              Open Real Product
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
         </div>
       </section>
 
