@@ -245,10 +245,11 @@
 /*
   Mobile: object-fit:cover — safe default, no distortion, since Figma
   only specified a crop for the desktop layout (a very different aspect
-  ratio from mobile's wide 628:400 box). Desktop: the verified
-  oversized-crop percentages from get_design_context on 798:12745 (the
-  "mockup atj 2" node) — left:0.06%, top:-4.59%, width:100.05%,
-  height:100%.
+  ratio from mobile's wide 628:400 box). Desktop: oversized-crop
+  percentages re-verified 2026-09-10 via get_design_context on 418:31417
+  ("mockup atj 2", 806:12747, container 526x485 — Roman resized this
+  container since the last check) — left:7.15%, top:-1.57%,
+  width:85.88%, height:94.68%.
 */
 .atj2-hero__media img {
   position: absolute;
@@ -261,13 +262,32 @@
 
 @media (min-width: 1024px) {
   .atj2-hero__media img {
-    left: 0.06%;
-    top: -4.59%;
-    width: 100.05%;
-    height: 100%;
+    left: 7.15%;
+    top: -1.57%;
+    width: 85.88%;
+    height: 94.68%;
     max-width: none;
     object-fit: unset;
   }
+}
+
+/*
+  New 2026-09-10 (get_design_context on 418:31417): the ATJ wordmark
+  badge sits flush top-left over the mockup, sized proportionally to the
+  same 526x485 container (151/526 wide, 66/485 tall) it's authored
+  against in Figma. Selector needs the .atj2-hero__media prefix to
+  out-specificity the generic `.atj2-hero__media img` crop rules above
+  (1 class + 1 tag) which would otherwise apply their oversized-crop
+  positioning to this image too.
+*/
+.atj2-hero__media .atj2-hero__badge {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28.7%;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
 }
 
 .atj2-hero__content {

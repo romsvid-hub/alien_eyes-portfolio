@@ -723,13 +723,20 @@
   position: absolute;
 }
 
+/*
+  Fixed 2026-09-10 (correction pass): z-index:0 was placing the glow
+  ABOVE the mockup image — a positioned z-index:0 element outranks a
+  non-positioned inline image in normal stacking order regardless of DOM
+  order. z-index:-1 puts it behind the image, in front of the card's own
+  (transparent) background, matching "background glow" intent.
+*/
 .case-card__glow {
   position: absolute;
   left: 50%;
   top: 12%;
   width: 75%;
   transform: translateX(-50%);
-  z-index: 0;
+  z-index: -1;
 }
 
 .case-card__intro {

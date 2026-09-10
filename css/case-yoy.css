@@ -139,14 +139,18 @@
   background-color: var(--yoy-bg);
 }
 
-.yoy-panel + .yoy-panel,
-.yoy-media + .yoy-panel,
-.yoy-panel + .yoy-row {
+.yoy-panel + .yoy-panel {
   margin-top: 24px;
 }
 
-.yoy-media + .yoy-panel {
-  margin-top: 16px;
+/*
+  Fixed 2026-09-10 (correction pass): both widened to 32px — Roman
+  flagged the "Before" screenshot → "The Challenge" panel gap and the
+  panel → lower .yoy-row gap as too tight.
+*/
+.yoy-media + .yoy-panel,
+.yoy-panel + .yoy-row {
+  margin-top: 32px;
 }
 
 .yoy-section--tint > .yoy-label + .yoy-media {
@@ -197,12 +201,31 @@
   declaration too. The matching gradient on ATJ2's hero (case-atj-2.css,
   same search term in a comment there) should be treated identically —
   Roman asked for both to behave the same way.
+
+  Fixed 2026-09-10 (correction pass): the section itself must bleed
+  edge-to-edge of the viewport while its media+content row stays on the
+  standard 1280px column grid — same full-bleed ::before breakout as
+  .yoy-panel--dark, so the gradient (and its animation) moved onto the
+  pseudo-element instead of the element's own background.
 */
 .yoy-hero {
+  position: relative;
+  z-index: 0;
   display: flex;
   flex-direction: column;
   gap: 24px;
   padding: 48px var(--page-px);
+}
+
+.yoy-hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
   background: linear-gradient(120.11deg, #111111 0%, #222222 50%, #111111 100%);
   background-size: 200% 200%;
   animation: yoy-hero-gradient-flow 14s ease-in-out infinite;
@@ -219,7 +242,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .yoy-hero {
+  .yoy-hero::before {
     animation: none;
   }
 }
@@ -382,9 +405,14 @@
   }
 }
 
+/*
+  Fixed 2026-09-10 (correction pass): border verified via
+  get_design_context on 768:13259 as gray (#4f4f4f), not the accent
+  yellow it was guessed at originally.
+*/
 .yoy-facts__card {
   background-color: var(--yoy-bg);
-  border: 1px solid rgba(255, 184, 0, 0.25);
+  border: 1px solid #4f4f4f;
   border-radius: 12px;
   padding: 20px;
   display: flex;
@@ -459,28 +487,19 @@
 
 /*
   Fixed 2026-09-10 (correction pass): consistent gap between every block
-  in this section, matching the heading-to-paragraph gap established
-  above (.yoy-heading margin-bottom, 16px/24px) — several transitions
-  here previously had zero top margin. Scoped to .yoy-research so it
-  doesn't touch .yoy-subheading/.yoy-panel/.yoy-body-muted usages
-  elsewhere on the page that already have their own deliberate spacing.
+  in this section — several transitions here previously had zero top
+  margin. First pass used the 16/24px heading-to-paragraph gap; Roman
+  said it was still too tight, bumped to a flat 32px. Scoped to
+  .yoy-research so it doesn't touch .yoy-subheading/.yoy-panel/
+  .yoy-body-muted usages elsewhere on the page that already have their
+  own deliberate spacing.
 */
 .yoy-research > .yoy-subheading,
 .yoy-research > .yoy-logos,
 .yoy-research > .yoy-logos + .yoy-body-muted,
 .yoy-research > .yoy-body-muted + .yoy-panel,
 .yoy-research > .yoy-two-col + .yoy-media {
-  margin-top: 16px;
-}
-
-@media (min-width: 1024px) {
-  .yoy-research > .yoy-subheading,
-  .yoy-research > .yoy-logos,
-  .yoy-research > .yoy-logos + .yoy-body-muted,
-  .yoy-research > .yoy-body-muted + .yoy-panel,
-  .yoy-research > .yoy-two-col + .yoy-media {
-    margin-top: 24px;
-  }
+  margin-top: 32px;
 }
 
 /* ---------- Key Decisions (768:13317) ---------- */
@@ -522,10 +541,16 @@
   }
 }
 
+/*
+  Fixed 2026-09-10 (correction pass): gap between the decision title
+  ("Tickets: the builder...", "Networking: from a dead end...") and its
+  body widened from 16px to 32px — Roman flagged the titles as too
+  cramped against the cards/screens below them.
+*/
 .yoy-decision {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 32px;
 }
 
 .yoy-decision h3 {
@@ -598,6 +623,11 @@
   .yoy-feature {
     flex-direction: row;
     align-items: center;
+    /* Fixed 2026-09-10 (correction pass): rows with a single, narrower
+       screen (the 4 recently-added Core Features images) left a big gap
+       of empty space on one side instead of sitting as a centered unit —
+       Roman asked for the text+screens pair to stay centered. */
+    justify-content: center;
   }
 
   .yoy-feature--reverse {
