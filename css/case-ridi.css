@@ -1,0 +1,444 @@
+/*
+  Ridi — Moto Navigator case study. Structure synced from Figma node
+  816:12955 (fileKey DU3fuTo8QXIJ0uMcI3jh91), 2026-09-11.
+
+  FIRST PASS — per Roman: focus on structure, not final. Most images
+  will be replaced, some text may change, and the whole page will be
+  translated to English later. No animations yet (no data-reveal, no
+  gradient/line effects like YOY/ATJ2) — added once content stabilizes.
+
+  Colors: local, case-scoped tokens taken from the MotoNavigator Figma
+  file (fileKey QEfcgZpb1hSHl99b1DW2G5, get_variable_defs on 1034:2234)
+  — never added to tokens.css. Fonts are the site's own (Sora/Inter),
+  NOT MotoNavigator's SF Pro, per Roman's explicit instruction.
+*/
+
+.ridi-page {
+  background-color: #151518;
+  color: #ffffff;
+}
+
+:root {
+  --ridi-bg: #151518;
+  --ridi-tint: #1e1e23;
+  --ridi-surface3: #27272d;
+  --ridi-accent: #ff8a1f;
+  --ridi-muted: #9898a5;
+  --ridi-border: #2e2e36;
+}
+
+/* ---------- Shared primitives ---------- */
+
+.ridi-section {
+  padding: 48px var(--page-px);
+}
+
+@media (min-width: 1280px) {
+  .ridi-section {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.ridi-section--tint {
+  background-color: var(--ridi-tint);
+}
+
+.ridi-heading {
+  color: var(--ridi-accent);
+  margin: 0 0 16px;
+}
+
+@media (min-width: 1024px) {
+  .ridi-heading {
+    margin-bottom: 24px;
+  }
+}
+
+.ridi-subheading {
+  color: #fffefe;
+  margin: 0 0 8px;
+}
+
+.ridi-body-muted {
+  color: var(--ridi-muted);
+}
+
+.ridi-body-muted + .ridi-body-muted {
+  margin-top: 16px;
+}
+
+.ridi-two-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .ridi-two-col {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.ridi-media img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+}
+
+.ridi-media--wide img {
+  border-radius: 16px;
+}
+
+.ridi-panel {
+  background-color: var(--ridi-tint);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.ridi-section--tint .ridi-panel {
+  background-color: var(--ridi-surface3);
+}
+
+/* Simple list (was Figma's "—" bullet rows) */
+.ridi-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ridi-list li {
+  color: var(--ridi-muted);
+  padding-left: 24px;
+  position: relative;
+}
+
+.ridi-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--ridi-muted);
+}
+
+/* Placeholder box — used wherever no real asset exists yet */
+.ridi-placeholder {
+  background-color: var(--ridi-surface3);
+  border: 1px dashed var(--ridi-border);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: var(--ridi-muted);
+  font-family: var(--font-body);
+  font-size: 14px;
+  text-align: center;
+  padding: 16px;
+}
+
+/* ---------- Hero (816:12956) ---------- */
+
+.ridi-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 48px var(--page-px);
+  background-color: #0c0c0e;
+}
+
+@media (min-width: 1280px) {
+  .ridi-hero {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ridi-hero {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 64px var(--page-px) 48px;
+  }
+}
+
+.ridi-hero__media {
+  flex-shrink: 0;
+  max-width: 320px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .ridi-hero__media {
+    width: 548px;
+    max-width: none;
+    margin: 0;
+  }
+}
+
+.ridi-hero__media-frame {
+  position: relative;
+  aspect-ratio: 548 / 496;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: var(--ridi-tint);
+}
+
+.ridi-hero__media-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ridi-hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .ridi-hero__content {
+    gap: 24px;
+    flex: 1;
+  }
+}
+
+.ridi-hero__title {
+  color: var(--ridi-accent);
+  font-size: 40px;
+  margin: 0;
+}
+
+@media (min-width: 1024px) {
+  .ridi-hero__title {
+    font-size: var(--h1-size);
+  }
+}
+
+.ridi-hero__desc {
+  color: #ffffff;
+}
+
+.ridi-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: var(--ridi-tint);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.ridi-details li {
+  color: var(--ridi-muted);
+  font-size: 16px;
+  line-height: 25px;
+}
+
+.ridi-details b {
+  color: var(--ridi-accent);
+  font-weight: 500;
+}
+
+/* ---------- Three Facts (816:12978) ---------- */
+
+.ridi-facts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+@media (min-width: 1024px) {
+  .ridi-facts {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 24px;
+  }
+}
+
+.ridi-facts__card {
+  background-color: var(--ridi-surface3);
+  border: 1px solid var(--ridi-border);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  min-height: 140px;
+}
+
+.ridi-facts__card p {
+  color: #ffffff;
+  margin: 0;
+}
+
+/* ---------- Audience segmentation (816:13030) ---------- */
+
+.ridi-audience {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+@media (min-width: 768px) {
+  .ridi-audience {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.ridi-audience__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.ridi-audience__avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background-color: var(--ridi-surface3);
+  border: 1px dashed var(--ridi-border);
+}
+
+.ridi-audience__item p {
+  color: var(--ridi-muted);
+  margin: 0;
+}
+
+/* ---------- Key Decisions (816:13050) ---------- */
+
+.ridi-decision {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ridi-decision + .ridi-decision {
+  margin-top: 48px;
+}
+
+.ridi-decision h3 {
+  color: #ffffff;
+  margin: 0;
+}
+
+.ridi-decision__cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 1024px) {
+  .ridi-decision__cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.ridi-decision__card {
+  background-color: var(--ridi-tint);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.ridi-decision__card h4 {
+  color: var(--ridi-accent);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 18px;
+  margin: 0 0 6px;
+}
+
+.ridi-decision__card p {
+  color: var(--ridi-muted);
+  margin: 0;
+  font-size: 16px;
+  line-height: 25px;
+}
+
+/* ---------- Core Features (816:13126) ---------- */
+
+.ridi-feature {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  border-radius: 16px;
+  background-color: var(--ridi-surface3);
+}
+
+.ridi-feature + .ridi-feature {
+  margin-top: 24px;
+}
+
+@media (min-width: 1024px) {
+  .ridi-feature + .ridi-feature {
+    margin-top: 48px;
+  }
+}
+
+.ridi-feature__text h3 {
+  color: #ffffff;
+  margin: 0 0 12px;
+}
+
+.ridi-feature__text p {
+  margin: 0;
+}
+
+/* ---------- UIKit (816:13105) ---------- */
+
+.ridi-uikit__media img {
+  aspect-ratio: 548 / 320;
+  object-fit: contain;
+  background-color: var(--ridi-tint);
+}
+
+.ridi-mascot {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 48px;
+}
+
+@media (min-width: 1024px) {
+  .ridi-mascot {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.ridi-mascot__media {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .ridi-mascot__media {
+    width: 320px;
+  }
+}
+
+.ridi-mascot__media img {
+  border-radius: 16px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* ---------- What's Next (816:13164) ---------- */
+
+.ridi-next p {
+  margin: 0;
+}

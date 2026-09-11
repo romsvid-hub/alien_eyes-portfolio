@@ -758,6 +758,23 @@
   grid-area: actions;
 }
 
+/*
+  Added 2026-09-11 (Ridi card): looks inactive/disabled on purpose —
+  Roman isn't ready for visitors to notice this case yet, but the link
+  itself is real so he can preview it. Muted gray instead of the accent
+  fill, dimmed further on hover instead of brightening.
+*/
+.case-card__cta--muted {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--color-light-gray);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.case-card__cta--muted:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--color-light-gray);
+}
+
 .case-card__title {
   color: var(--color-white);
 }

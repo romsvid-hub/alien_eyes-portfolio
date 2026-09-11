@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ridi — Moto Navigator | Alien Eyes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/typography.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/buttons.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/case-ridi.css" />
+  </head>
+  <body class="case-page ridi-page">
+    <!-- UI: GLOBAL-NAV-01 | Site navigation | shared component, reused unchanged -->
+    <nav class="site-nav site-nav--case">
+      <a class="nav-logo" href="index.html">
+        <span class="nav-logo__icon">
+          <img class="nav-logo__avatar" src="assets/icons/logo-avatar.png" alt="" />
+        </span>
+        <span class="nav-logo__text">Alien Eyes</span>
+      </a>
+      <a class="nav-back" href="index.html" aria-label="Back to home">
+        <svg viewBox="0 0 8 14" fill="none" aria-hidden="true">
+          <path
+            d="M7 1L1 7L7 13"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="square"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </a>
+
+      <div class="nav-menu">
+        <div class="nav-links">
+          <a class="nav-links__link" href="index.html#case-studies">Case Studies</a>
+          <a class="nav-links__link" href="index.html#feedbacks">Feedbacks</a>
+        </div>
+
+        <a class="nav-cta" href="#">Download CV</a>
+      </div>
+
+      <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+    </nav>
+
+    <main>
+      <!-- UI: CASE05-HERO-01 | Hero | matches Figma "Hero" (816:12956) -->
+      <section class="ridi-hero">
+        <div class="ridi-hero__media">
+          <div class="ridi-hero__media-frame">
+            <img src="assets/case-ridi/hero-mockup.webp" alt="Ridi navigation app — suggested routes and live navigation screens" />
+          </div>
+        </div>
+        <div class="ridi-hero__content">
+          <h1 class="ridi-hero__title">Ridi — Moto Navigator</h1>
+          <p class="body-large">Product &amp; UX/UI дизайн навігаційного концепту для мотоциклістів</p>
+          <p class="body-large ridi-hero__desc">
+            У мотоцикліста немає часу дивитися на екран. Я спроєктував навігатор, який читається
+            периферійним зором на швидкості, а не вимагає уваги.
+          </p>
+          <ul class="ridi-details">
+            <li><b>Роль:</b> Product/UX-UI дизайнер, сольно — research, IA, UX, дизайн-система, UI</li>
+            <li><b>Контекст:</b> особистий concept-проєкт, орієнтований на європейський ринок мотоподорожей</li>
+            <li><b>Стадія:</b> hi-fi концепт з дизайн-системою; жодного живого продукту немає</li>
+            <li><b>Інструменти:</b> Figma, Figma MCP, Claude, Gemini (мокап маскота)</li>
+            <li><b>Статус кейсу:</b> Concept · Personal project</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- UI: CASE05-FACTS-01 | Three Facts | matches Figma "Three Facts" (816:12978) -->
+      <section class="ridi-section ridi-section--tint">
+        <h2 class="h2-section ridi-heading">Три факти замість метрик</h2>
+        <p class="body-large ridi-body-muted">
+          Продукту немає в природі як живого застосунку — це концепт-кейс, тож жодних product-метрик
+          тут бути не може. Замість них — цифри з реального research (10 інтерв'ю, 50 відповідей
+          опитування) і об'єктивні характеристики зробленого.
+        </p>
+        <div class="ridi-facts">
+          <div class="ridi-facts__card">
+            <p class="body-main">70% опитаних скаржаться на перевантажені навігатори, 45% бракує кастомізації маршруту — звідси весь підхід продукту</p>
+          </div>
+          <div class="ridi-facts__card">
+            <p class="body-main">29 компонентів на 4 колекціях токенів (Primitives / Color / Spacing / Radius), контраст праймері піднято до AAA (8.2:1)</p>
+          </div>
+          <div class="ridi-facts__card">
+            <p class="body-main">4 маршрутні сценарії + онбординг зібрані в hi-fi UI на базі Apple iOS 26 Liquid Glass</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE05-OVERVIEW-01 | Overview | matches Figma "Overview" (816:12988) -->
+      <section class="ridi-section">
+        <h2 class="h2-section ridi-heading">Overview</h2>
+        <div class="ridi-two-col">
+          <p class="body-large">
+            Ridi — концепт навігаційного застосунку для мотоциклістів (iOS), що покриває три типи
+            райдерів: спорт-байки, ендуро, сіті-байки. Продукт пройшов повний шлях від польового
+            UX-дослідження до дизайн-системи й зібраного UI за процесом Double Diamond.
+          </p>
+          <p class="body-large">
+            Ключова теза, що виводить усі рішення: у мотоцикліста немає часу дивитися на екран. Він у
+            русі, в рукавичках, на швидкості, часто без стабільного покриття. Звідси — великі кнопки,
+            домінантний спідометр, автозум за швидкістю, вибір доріг за типом і настроєм.
+          </p>
+        </div>
+      </section>
+
+      <!-- UI: CASE05-SCOPE-01 | My Scope | matches Figma "My Role and Constraints" (816:12993) -->
+      <section class="ridi-section">
+        <h2 class="h2-section ridi-heading">My Scope</h2>
+        <div class="ridi-two-col">
+          <div>
+            <h3 class="h3-case-study ridi-subheading">Role:</h3>
+            <p class="body-large">
+              Проєкт вів одноосібно: research, information architecture, UX-сценарії, дизайн-система
+              та UI. Клієнта чи команди не було — це особистий concept-проєкт, і я прямо зазначаю це,
+              не видаючи його за комерційне замовлення.
+            </p>
+          </div>
+          <div>
+            <h3 class="h3-case-study ridi-subheading">Constraints:</h3>
+            <p class="body-large">
+              Дослідження було польовим та опитувальним: 10 інтерв'ю і 50 відповідей. Це не масштабне
+              UX-тестування, тому проєкт залишається на concept-стадії, а рішення не слід сприймати як
+              валідовані на реальному продукті.
+            </p>
+            <p class="body-large">
+              Географія респондентів: Україна та частково Європа. Тому позиціювання орієнтоване на
+              європейський ринок мотоподорожей, а не на американський.
+            </p>
+            <p class="body-large">
+              Живого коду немає. Оцінку складності реалізації винесено окремо, у розділ «Що далі».
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE05-CHALLENGE-01 | The Challenge | matches Figma "The Challenge" (816:13004) -->
+      <section class="ridi-section ridi-section--tint">
+        <h2 class="h2-section ridi-heading">The Challenge</h2>
+        <div class="ridi-two-col">
+          <div class="ridi-panel">
+            <p class="body-large">
+              Існуючі навігатори або не для мотоциклістів (Google Maps, Waze — популярні, але не
+              враховують контекст руху на мотоциклі), або незручні на швидкості (Rever вимагає
+              підписки на повний функціонал, Strava без мото-специфіки, Waze складний для новачків).
+            </p>
+          </div>
+          <p class="body-large">
+            Дослідження підтвердило системність проблеми, не поодинокі скарги: перевантажені
+            інтерфейси, відсутність кастомізації маршруту, відсутність реакції на перешкоди в
+            реальному часі.
+          </p>
+        </div>
+      </section>
+
+      <!-- UI: CASE05-RESEARCH-01 | Research | matches Figma "Research" (816:13010) -->
+      <section class="ridi-section">
+        <h2 class="h2-section ridi-heading">Research</h2>
+        <div class="ridi-two-col">
+          <div>
+            <h3 class="h3-case-study ridi-subheading">Методи</h3>
+            <ul class="ridi-list">
+              <li>Особистий досвід у русі: кілька навігаційних застосунків протестовано наживо, за кермом</li>
+              <li>10 інтерв'ю з мотоциклістами різних дисциплін (спорт / ендуро / сіті)</li>
+              <li>50 відповідей онлайн-опитування</li>
+              <li>Конкурентний аналіз: Strava, Rever, Google Maps, Waze, Garmin, komoot, Calimoto, Scenic</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="h3-case-study ridi-subheading">Результати опитування</h3>
+            <ul class="ridi-list">
+              <li>60% скаржаться на надто складні або перевантажені застосунки</li>
+              <li>45% бракує кастомізації маршруту</li>
+              <li>70% хочуть реакцію в реальному часі на перешкоди</li>
+              <li>55% хочуть ділитися маршрутами в спільноті</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-top: 48px">
+          <h3 class="h3-case-study ridi-subheading">Analogy аналіз:</h3>
+          <p class="body-large ridi-body-muted">
+            Rever / EatSleepRIDE / DynoJet PowerCore / Scenic / Strava / Google Maps / Waze / Garmin /
+            komoot / Calimoto
+          </p>
+        </div>
+
+        <div style="margin-top: 48px">
+          <h3 class="h3-case-study ridi-subheading">Сегментація аудиторії</h3>
+          <div class="ridi-audience">
+            <div class="ridi-audience__item">
+              <div class="ridi-audience__avatar" aria-hidden="true"></div>
+              <p class="body-main">Мотолюбителі 70% (прості інструменти планування)</p>
+            </div>
+            <div class="ridi-audience__item">
+              <div class="ridi-audience__avatar" aria-hidden="true"></div>
+              <p class="body-main">досвідчені 20% (аналітика, статистика, спільноти)</p>
+            </div>
+            <div class="ridi-audience__item">
+              <div class="ridi-audience__avatar" aria-hidden="true"></div>
+              <p class="body-main">новачки 10% (простий onboarding і рекомендації)</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 48px">
+          <h3 class="h3-case-study ridi-subheading">Research Artifacts</h3>
+          <div class="ridi-placeholder" style="aspect-ratio: 1120 / 486">
+            JTBD / CJM / Personas — будуть додані окремим зображенням
+          </div>
+        </div>
+
+        <div style="margin-top: 48px">
+          <h3 class="h3-case-study ridi-subheading">Інформаційна архітектура</h3>
+          <div class="ridi-media ridi-media--wide">
+            <img loading="lazy" src="assets/case-ridi/information-architecture.webp" alt="Ridi information architecture map" />
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE05-DECISIONS-01 | Key Decisions | matches Figma "Key Decisions" (816:13050) -->
+      <section class="ridi-section ridi-section--tint">
+        <h2 class="h2-section ridi-heading">Ключові рішення</h2>
+        <p class="body-large ridi-body-muted" style="margin-bottom: 24px">
+          Кожне рішення нижче прив'язане до контексту руху — це те, що відрізняє продуктове мислення
+          від «красивих екранів».
+        </p>
+
+        <div class="ridi-decision">
+          <h3 class="h3-case-study">Стан «Небезпека» у Ride Cluster</h3>
+          <div class="ridi-media">
+            <img loading="lazy" src="assets/case-ridi/decision-danger.webp" alt="Speed cluster in the Danger state, red glow around the capsule" />
+          </div>
+          <div class="ridi-decision__cards">
+            <div class="ridi-decision__card">
+              <h4>Проблема</h4>
+              <p>На швидкості читати цифру на спідометрі — це відволікання, яке коштує дорого. Стандартний UI показує перевищення тим самим кольором, що і норму.</p>
+            </div>
+            <div class="ridi-decision__card">
+              <h4>Рішення</h4>
+              <p>При перевищенні швидкість стає червоною з червоним glow навколо капсули. Три рівні станів: Норма → Попередження → Небезпека.</p>
+            </div>
+            <div class="ridi-decision__card">
+              <h4>Чому</h4>
+              <p>Периферійним зором колір і світіння зчитуються швидше за цифру. Небезпечний стан має «кричати» ще до того, як водій встигне прочитати число.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ridi-decision">
+          <h3 class="h3-case-study">Автозум карти за швидкістю</h3>
+          <div class="ridi-media">
+            <img loading="lazy" src="assets/case-ridi/decision-autozoom.webp" alt="Map automatically zooming out as speed increases" />
+          </div>
+          <div class="ridi-decision__cards">
+            <div class="ridi-decision__card">
+              <h4>Проблема</h4>
+              <p>Стандартна карта тримає один масштаб незалежно від швидкості — на розгоні водій отримує замало контексту про дорогу попереду.</p>
+            </div>
+            <div class="ridi-decision__card">
+              <h4>Рішення</h4>
+              <p>Карта автоматично віддаляється на розгоні, даючи більше простору для реакції, і наближається на низькій швидкості для деталізації.</p>
+            </div>
+            <div class="ridi-decision__card">
+              <h4>Чому</h4>
+              <p>Це власна фіча, якої немає навіть у прямому орієнтирі Scenic — вона напряму випливає з інсайту «немає часу дивитись на екран».</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ridi-decision">
+          <h3 class="h3-case-study">GPS-lost стан замість приховування невизначеності</h3>
+          <div class="ridi-media">
+            <img loading="lazy" src="assets/case-ridi/decision-gps-lost.webp" alt="Rider puck turning gray with a growing halo when GPS signal is lost" />
+          </div>
+          <div class="ridi-decision__cards">
+            <div class="ridi-decision__card">
+              <h4>Проблема</h4>
+              <p>У тунелях і лісі (частий кейс ендуро-катання) GPS-сигнал губиться. Більшість навігаторів або зависають, або мовчки показують стару позицію як актуальну.</p>
+            </div>
+            <div class="ridi-decision__card">
+              <h4>Рішення</h4>
+              <p>Rider Puck сіріє, а ореол навколо нього росте — невизначеність позиції показана буквально, а не прихована.</p>
+            </div>
+            <div class="ridi-decision__card">
+              <h4>Чому</h4>
+              <p>Чесний UI під час втрати сигналу важливіший за ілюзію точності — водій має знати, що дані вже не свіжі, саме в той момент коли це критично.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ridi-decision">
+          <h3 class="h3-case-study">Захист запису треку від випадкового завершення</h3>
+          <div class="ridi-media">
+            <img loading="lazy" src="assets/case-ridi/decision-track-protection.webp" alt="Pause moved into a separate tray, away from the Finish action" />
+          </div>
+          <div class="ridi-decision__cards">
+            <div class="ridi-decision__card">
+              <h4>Проблема</h4>
+              <p>Одна випадкова дотика під час руху може завершити й втратити запис 200-кілометрового треку — це найдорожча помилка в flow.</p>
+            </div>
+            <div class="ridi-decision__card">
+              <h4>Рішення</h4>
+              <p>Pause винесено в шторку окремо від Finish; завершення відбувається тільки через hold-to-finish (утримання), не одним тапом.</p>
+            </div>
+            <div class="ridi-decision__card">
+              <h4>Чому</h4>
+              <p>Патерн підглянутий у Strava навмисно: захист цінних даних важливіший за швидкість дії, коли ціна помилки — втрата всієї поїздки.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE05-UIKIT-01 | UI-Kit | matches Figma "UIKit" (816:13105) -->
+      <section class="ridi-section">
+        <h2 class="h2-section ridi-heading">UIKit</h2>
+        <div class="ridi-two-col">
+          <div>
+            <p class="body-large ridi-body-muted">
+              Компонентна бібліотека (29 компонентів на 4 колекціях токенів) і базові контроли з
+              офіційної Apple iOS 26 Liquid Glass — згенеровані через Claude і Figma MCP, я перевірив
+              результат і скоригував під продуктові потреби. Це інструментальна частина, не основна
+              робота.
+            </p>
+            <p class="body-large ridi-body-muted">
+              Основна робота в цьому кейсі — рішення, прив'язані до контексту руху (розділ «Ключові
+              рішення» вище): які стани потрібні на швидкості, як поводиться карта, як захищений запис
+              треку. Компоненти — лише матеріал, з якого це зібрано.
+            </p>
+            <p class="body-large ridi-body-muted">
+              Контраст праймері підняли свідомо: старий #FF6B00 давав 6.8:1 і провалював AAA, новий
+              #FF8A1F — 8.2:1, AAA пройдено. Touch targets 56–64px замість стандартних 44px HIG —
+              свідоме відхилення від гайдлайну, виправдане їздою в рукавичках.
+            </p>
+          </div>
+          <div class="ridi-media ridi-uikit__media">
+            <img loading="lazy" src="assets/case-ridi/uikit-overview.webp" alt="Ridi UI Kit overview: components, tokens, and states" />
+          </div>
+        </div>
+
+        <div class="ridi-mascot">
+          <div class="ridi-mascot__media">
+            <img loading="lazy" src="assets/case-ridi/mascot.webp" alt="Ridi mascot — a falcon in a racing helmet" />
+          </div>
+          <div>
+            <h3 class="h3-case-study ridi-subheading">Маскот (коротко)</h3>
+            <p class="body-large ridi-body-muted">
+              Сокіл — асоціація з навігацією (зір згори, точна траєкторія) і швидкістю. Два регістри:
+              плаский мінімальний силует для робочих знаків (маркер на карті, іконка застосунку) і
+              повноцінний 3D-персонаж для обкладинки кейсу.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE05-AI-01 | AI in process | matches Figma "AI in process" (816:13118) -->
+      <section class="ridi-section ridi-section--tint">
+        <h2 class="h2-section ridi-heading">AI у моєму процесі</h2>
+        <p class="body-large ridi-body-muted" style="margin-bottom: 24px">
+          UI Kit і базові компоненти описано вище, в UIKit — тут інше застосування:
+        </p>
+        <div class="ridi-two-col" style="margin-bottom: 24px">
+          <p class="body-main ridi-body-muted">Компоненти генерувались поетапно через Figma MCP — каркас, варіанти, токенізація, далі ручне доопрацювання під продуктові стани (Небезпека, GPS-lost)</p>
+          <p class="body-main ridi-body-muted">Перевірка контрасту й AAA-відповідності, рахунками, не на око</p>
+        </div>
+        <p class="body-main ridi-body-muted" style="margin-bottom: 24px">Мокап маскота — ітерації промптів у Gemini, фінальний вибір і корекція вручну</p>
+        <p class="body-large">
+          Кожне рішення — які стани потрібні на швидкості, як захищений трек, коли карта зумиться —
+          ухвалював я. AI прискорив збірку, а не рішення.
+        </p>
+      </section>
+
+      <!-- UI: CASE05-FEATURES-01 | Core Features | matches Figma "Core Features" (816:13126) -->
+      <section class="ridi-section">
+        <h2 class="h2-section ridi-heading">Core Features</h2>
+        <p class="body-large" style="margin-bottom: 24px">Онбординг і чотири маршрутні сценарії — по кроках, з JTBD кожного.</p>
+
+        <div class="ridi-feature">
+          <div class="ridi-feature__text">
+            <h3 class="h3-case-study">Онбординг</h3>
+            <p class="body-main ridi-body-muted">Збирає стиль райдера один раз: рівень, стиль їзди, обсяг двигуна, дистанція. Дані наповнюють пресет, який підставляється у фільтри Сценарію 2 — менше кроків при кожній наступній побудові маршруту. Skip на кожному кроці, фінал — одразу згенерований маршрут, не порожнє «дякуємо».</p>
+          </div>
+          <div class="ridi-media ridi-media--wide">
+            <img loading="lazy" src="assets/case-ridi/onboarding.webp" alt="Ridi onboarding flow: rider level, style, engine size, distance" />
+          </div>
+        </div>
+
+        <div class="ridi-feature">
+          <div class="ridi-feature__text">
+            <h3 class="h3-case-study">Сценарій 1 — Direct Route Planning</h3>
+            <p class="body-main ridi-body-muted">Райдер хоче доїхати до конкретної точки найпрямішим шляхом, з опцією додати проміжні зупинки.</p>
+          </div>
+          <div class="ridi-media ridi-media--wide">
+            <img loading="lazy" src="assets/case-ridi/scenario-1.webp" alt="Scenario 1 — direct route planning screens" />
+          </div>
+        </div>
+
+        <div class="ridi-feature">
+          <div class="ridi-feature__text">
+            <h3 class="h3-case-study">Сценарій 2 — Custom Route Based on Preferences</h3>
+            <p class="body-main ridi-body-muted">Райдер хоче покататись навколо поточної локації; застосунок пропонує маршрути під стиль і рівень (Rider Level, Style, Terrain, Distance, Area).</p>
+          </div>
+          <div class="ridi-media ridi-media--wide">
+            <img loading="lazy" src="assets/case-ridi/scenario-2.webp" alt="Scenario 2 — custom route based on preferences screens" />
+          </div>
+        </div>
+
+        <div class="ridi-feature">
+          <div class="ridi-feature__text">
+            <h3 class="h3-case-study">Сценарій 3 — Free Riding</h3>
+            <p class="body-main ridi-body-muted">Старт без пункту призначення й маршруту → застосунок автоматично пише трек → наприкінці збереження й іменування.</p>
+          </div>
+          <div class="ridi-media ridi-media--wide">
+            <img loading="lazy" src="assets/case-ridi/scenario-3.webp" alt="Scenario 3 — free riding screens" />
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE05-RESULTS-01 | Results | matches Figma "Results" (816:13149) -->
+      <section class="ridi-section ridi-section--tint">
+        <h2 class="h2-section ridi-heading">Results</h2>
+        <div class="ridi-two-col">
+          <div>
+            <h3 class="h3-case-study ridi-subheading">Об'єктивні характеристики:</h3>
+            <ul class="ridi-list">
+              <li>29 компонентів на 4 колекціях токенів (Primitives / Color / Spacing / Radius)</li>
+              <li>Контраст праймері піднято з 6.8:1 до 8.2:1 — з провалу AAA до проходження</li>
+              <li>4 маршрутні сценарії + онбординг зібрані в hi-fi UI</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="h3-case-study ridi-subheading">На що я ставлю після запуску:</h3>
+            <ul class="ridi-list">
+              <li>Середній час створення маршруту ≤2 хвилин</li>
+              <li>3+ збережені маршрути на користувача щомісяця</li>
+              <li>Завантаження застосунку ≥50 000 за 6 місяців, MAU ≥40%, підписки ≥10% від активних</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE05-NEXT-01 | What's Next | matches Figma "What's Next" (816:13164) -->
+      <section class="ridi-section ridi-next">
+        <h2 class="h2-section ridi-heading">What's Next</h2>
+        <h3 class="h3-case-study ridi-subheading">План на реалізацію</h3>
+        <p class="body-large ridi-body-muted">Lorem ipsum</p>
+      </section>
+
+      <!-- UI: HOME-REVIEWS-01 | Reviews carousel | shared component, reused unchanged -->
+      <section class="home-section case-reviews-cta" id="feedbacks">
+        <h2 class="h2-section reviews-heading">Reviews:</h2>
+        <div class="reviews-carousel">
+          <button
+            class="reviews-arrow reviews-arrow--prev"
+            type="button"
+            aria-label="Previous review"
+            aria-controls="review-slide"
+          >
+            <svg viewBox="0 0 49.5818 71.9599" fill="none" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M37.5211 4.0415C36.5477 4.0473 35.6104 4.44612 34.8971 5.15772L4.01164 35.9709C4.01081 35.9717 4.00974 35.9723 4.00857 35.9724L4.00252 35.9733C4.00025 35.9736 3.99942 35.9765 4.00116 35.978L4.00131 35.9781C4.00248 35.9791 4.00248 35.9809 4.00131 35.9819C3.99961 35.9833 4.00053 35.9861 4.00276 35.9863L4.00855 35.9867C4.00972 35.9868 4.01082 35.9873 4.01165 35.9881L34.8971 66.8022C35.6103 67.5138 36.5478 67.9126 37.5211 67.9185L44.5741 67.9599C45.4662 67.9651 45.9181 66.8882 45.2895 66.2552L15.9202 36.6847C15.5329 36.2947 15.5329 35.6653 15.9202 35.2753L45.2895 5.70474C45.9181 5.07179 45.4662 3.99483 44.5741 4.00007L37.5211 4.0415Z"
+              />
+            </svg>
+          </button>
+
+          <div class="review-slide" id="review-slide" aria-live="polite" aria-atomic="true">
+            <div>
+              <p class="h3-case-study review-slide__name">Sanne Øst</p>
+              <p class="body-large review-slide__role">Chief Product Officer</p>
+            </div>
+            <p class="body-main review-slide__quote">
+              Roman is a very creative person. We worked together on the design of a password
+              management application and came up with a great solution that was successfully
+              launched. Roman loves to research the market and is always full of creative ideas. If
+              you need fresh and unique eye on your product - Roman is the right person.
+            </p>
+          </div>
+
+          <button
+            class="reviews-arrow reviews-arrow--next"
+            type="button"
+            aria-label="Next review"
+            aria-controls="review-slide"
+          >
+            <svg viewBox="0 0 49.5818 71.9599" fill="none" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M12.0609 4.04145C13.0343 4.04725 13.9716 4.44606 14.6849 5.15766L45.5704 35.9708C45.5712 35.9717 45.5723 35.9722 45.5734 35.9724L45.5795 35.9732C45.5818 35.9736 45.5826 35.9764 45.5809 35.9779L45.5807 35.978C45.5795 35.979 45.5795 35.9808 45.5807 35.9818C45.5824 35.9833 45.5815 35.9861 45.5793 35.9862L45.5735 35.9866C45.5723 35.9867 45.5712 35.9872 45.5704 35.988L14.6849 66.8022C13.9717 67.5137 13.0342 67.9125 12.0609 67.9184L5.00792 67.9598C4.11585 67.9651 3.66388 66.8881 4.29253 66.2552L33.6618 36.6846C34.0491 36.2947 34.0491 35.6652 33.6618 35.2752L4.29253 5.70469C3.66389 5.07174 4.11585 3.99478 5.00792 4.00002L12.0609 4.04145Z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="reviews-progress" aria-hidden="true">
+          <span class="reviews-progress__segment is-active"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+        </div>
+
+        <!-- UI: HOME-CTA-01 | CTA block | shared component, reused unchanged -->
+        <div class="cta-section">
+          <h2 class="h2-section cta-heading">Ready to architect your next product?</h2>
+          <p class="body-large cta-description">
+            Open for complex challenges and leadership roles. Select time to
+            call and hire me below.
+          </p>
+          <a
+            class="btn btn--primary"
+            href="https://calendar.app.google/CUCg9pmqeG8U3nfM7"
+            target="_blank"
+            rel="noopener"
+          >
+            Book a Call
+            <img loading="lazy" class="btn__icon" src="assets/icons/icon-arrow-right.svg" alt="" />
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- UI: GLOBAL-FOOTER-01 | Site footer | shared component, reused unchanged -->
+    <footer class="site-footer">
+      <img loading="lazy" class="site-footer__bg" src="assets/images/footer-bg.svg" alt="" aria-hidden="true" />
+      <div class="site-footer__row site-footer__row--top">
+        <a class="nav-logo" href="index.html">
+          <span class="nav-logo__icon">
+            <img class="nav-logo__avatar" src="assets/icons/logo-avatar.png" alt="" />
+          </span>
+          <span class="nav-logo__text">Alien Eyes</span>
+        </a>
+
+        <div class="site-footer__social">
+          <a href="https://www.instagram.com/romsvid/" target="_blank" rel="noopener">
+            <img loading="lazy" src="assets/icons/social-instagram.svg" alt="Instagram" />
+          </a>
+          <a href="https://www.linkedin.com/in/romsvid/" target="_blank" rel="noopener">
+            <img loading="lazy" src="assets/icons/social-linkedin.svg" alt="LinkedIn" />
+          </a>
+          <a href="https://t.me/Rmsddddd" target="_blank" rel="noopener">
+            <img loading="lazy" src="assets/icons/social-telegram.svg" alt="Telegram" />
+          </a>
+        </div>
+      </div>
+
+      <div class="site-footer__row site-footer__row--bottom">
+        <p class="body-main site-footer__copyright">© 2026 Roman Sviderskyi</p>
+        <p class="body-main site-footer__contact">
+          +380 97 334 9540&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:svidddrommm25@gmail.com"
+            >svidddrommm25@gmail.com</a
+          >
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+    <script src="js/reviews.js"></script>
+    <script src="js/nbsp-typography.js"></script>
+  </body>
+</html>
