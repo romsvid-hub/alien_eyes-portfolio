@@ -427,21 +427,9 @@
     cover scales to the container's width and trims the excess height
     off the top).
   */
-  /*
-    Enlarged 2026-09-12 per Roman — 8% bigger, image only (not the
-    .hero-card__photo box itself, which stays 520px/100px above, and
-    not the text column's padding-right — an earlier attempt resized
-    the box instead, which shifted the text and grew the whole card;
-    reverted). transform-origin: right bottom keeps that corner fixed
-    (already flush with the card's edge, no gap) so the extra size
-    only extends up and to the left, matching object-position's own
-    bottom anchor; the box's overflow:hidden clips it at the frame.
-  */
   .hero-card__photo img {
     object-fit: cover;
     object-position: center bottom;
-    transform: scale(1.08);
-    transform-origin: right bottom;
   }
 
   .hero-card__body {
