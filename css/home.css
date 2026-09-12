@@ -388,9 +388,9 @@
     padding: 48px;
     /* Reserves room so the text column never runs under the
        absolutely positioned photo: photo's right inset (4px) + its
-       width (520px) + a 48px breathing gap, matching the padding
+       width (598px) + a 48px breathing gap, matching the padding
        scale used everywhere else in this card. */
-    padding-right: 572px;
+    padding-right: 650px;
     /* Photo is positioned absolutely below (outside grid flow), so
        only these two rows actually occupy the grid. */
     grid-template-areas:
@@ -404,13 +404,19 @@
     (right/bottom stay anchored to the card's edge with no gap, so a
     wider box only extends further left, and a smaller `top` only
     extends further up): width 457px -> 520px, top 143px -> 100px.
+
+    Enlarged again 2026-09-12, another 15% by the same technique —
+    right/bottom stay untouched, width 520px -> 598px (x1.15), top
+    100px -> 20px (approximating the matching 15% height increase
+    against this card's rendered height at the reference 1440px
+    desktop width, same hardcoded-pixel approach as the values above).
   */
   .hero-card__photo {
     position: absolute;
-    top: 100px;
+    top: 20px;
     right: 4px;
     bottom: 1px;
-    width: 520px;
+    width: 598px;
     /* Resets the base rule's aspect-ratio: 454/400 (tablet), which
        cascades in unless explicitly cleared — with it still active,
        top+bottom stretch-to-fill never took effect. */
