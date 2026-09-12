@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/buttons.css" />
     <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
     <link rel="stylesheet" href="css/case-ridi.css" />
   </head>
   <body class="case-page ridi-page">
@@ -58,18 +59,18 @@
 
     <main>
       <!-- UI: CASE05-HERO-01 | Hero | matches Figma "Hero" (866:14394), synced 2026-09-12 -->
-      <section class="ridi-hero">
+      <section class="ridi-hero" data-reveal>
         <img class="ridi-hero__bg" src="assets/case-ridi/hero-bg.webp" alt="" aria-hidden="true" />
-        <!-- "gray line" x3 — same wiggle technique as YOY/ATJ2's Hero lines, 15% faster -->
+        <!-- "gray line" x3 — same wiggle technique + speed as YOY/ATJ2's Hero lines -->
         <div class="ridi-hero__lines" aria-hidden="true">
           <svg class="ridi-hero__line ridi-hero__line--1" viewBox="0 0 590.175 329.71" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6.00055 9.8113C35.1869 -10.3227 57.9417 52.9622 27.4215 113.99C-3.09863 175.019 112.136 109.046 176.812 128.742C241.487 148.438 21.3473 254.426 139.309 260.774C257.27 267.123 286.907 232.051 364.704 231.279C442.5 230.507 502.248 392.256 584.174 289.563" stroke="#D1D1D1" stroke-opacity="0.06" stroke-width="12" stroke-linecap="round" />
+            <path d="M6.00055 9.8113C35.1869 -10.3227 57.9417 52.9622 27.4215 113.99C-3.09863 175.019 112.136 109.046 176.812 128.742C241.487 148.438 21.3473 254.426 139.309 260.774C257.27 267.123 286.907 232.051 364.704 231.279C442.5 230.507 502.248 392.256 584.174 289.563" stroke="#D1D1D1" stroke-opacity="0.04" stroke-width="12" stroke-linecap="round" />
           </svg>
           <svg class="ridi-hero__line ridi-hero__line--2" viewBox="0 0 1333.03 737.914" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6.00055 14.7082C72.6865 -31.2948 124.677 113.301 54.944 252.74C-14.7896 392.179 248.503 241.442 396.276 286.444C544.048 331.446 41.0652 573.613 310.588 588.117C580.111 602.622 647.826 522.49 825.578 520.726C1003.33 518.961 1139.84 888.531 1327.03 653.895" stroke="#D1D1D1" stroke-opacity="0.06" stroke-width="12" stroke-linecap="round" />
+            <path d="M6.00055 14.7082C72.6865 -31.2948 124.677 113.301 54.944 252.74C-14.7896 392.179 248.503 241.442 396.276 286.444C544.048 331.446 41.0652 573.613 310.588 588.117C580.111 602.622 647.826 522.49 825.578 520.726C1003.33 518.961 1139.84 888.531 1327.03 653.895" stroke="#D1D1D1" stroke-opacity="0.04" stroke-width="12" stroke-linecap="round" />
           </svg>
           <svg class="ridi-hero__line ridi-hero__line--3" viewBox="0 0 755.228 420.407" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6.00055 10.8993C43.5188 -14.9824 72.7695 66.3686 33.5366 144.819C-5.6962 223.269 142.435 138.462 225.574 163.781C308.712 189.1 25.7283 325.345 177.365 333.506C329.001 341.666 367.099 296.583 467.104 295.59C567.109 294.598 643.914 502.522 749.227 370.513" stroke="#D1D1D1" stroke-opacity="0.06" stroke-width="12" stroke-linecap="round" />
+            <path d="M6.00055 10.8993C43.5188 -14.9824 72.7695 66.3686 33.5366 144.819C-5.6962 223.269 142.435 138.462 225.574 163.781C308.712 189.1 25.7283 325.345 177.365 333.506C329.001 341.666 367.099 296.583 467.104 295.59C567.109 294.598 643.914 502.522 749.227 370.513" stroke="#D1D1D1" stroke-opacity="0.04" stroke-width="12" stroke-linecap="round" />
           </svg>
         </div>
 
@@ -106,32 +107,16 @@
               <li><b>Роль:</b> UX Designer, Product Owner</li>
               <li><b>Pet Project</b></li>
               <li><b>Tools:</b> Claude, Figma MCP, FigJam</li>
-              <li><b>Case status:</b> MVP, product exists in web version</li>
+              <li><b>Case status:</b> MVP, ready for vibe coding</li>
             </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- UI: CASE05-FACTS-01 | Three Facts | matches Figma "Three Facts" (816:12978) -->
-      <section class="ridi-section ridi-section--tint">
-        <h2 class="h2-section ridi-heading">Три факти замість метрик</h2>
-        <div class="ridi-facts">
-          <div class="ridi-facts__card">
-            <p class="body-main">70% опитаних скаржаться на перевантажені навігатори, 45% бракує кастомізації маршруту — звідси весь підхід продукту</p>
-          </div>
-          <div class="ridi-facts__card">
-            <p class="body-main">29 компонентів на 4 колекціях токенів (Primitives / Color / Spacing / Radius), контраст праймері піднято до AAA (8.2:1)</p>
-          </div>
-          <div class="ridi-facts__card">
-            <p class="body-main">4 маршрутні сценарії + онбординг зібрані в hi-fi UI на базі Apple iOS 26 Liquid Glass</p>
           </div>
         </div>
       </section>
 
       <!-- UI: CASE05-OVERVIEW-01 | Overview | matches Figma "Overview" (816:12988) -->
       <section class="ridi-section">
-        <h2 class="h2-section ridi-heading">Overview</h2>
-        <div class="ridi-two-col">
+        <h2 class="h2-section ridi-heading" data-reveal>Overview</h2>
+        <div class="ridi-two-col" data-reveal-group>
           <p class="body-large">
             Ridi — концепт навігаційного застосунку для мотоциклістів (iOS), що покриває три типи
             райдерів: спорт-байки, ендуро, сіті-байки. Продукт пройшов повний шлях від польового
@@ -147,8 +132,8 @@
 
       <!-- UI: CASE05-SCOPE-01 | My Scope | matches Figma "My Role and Constraints" (816:12993) -->
       <section class="ridi-section">
-        <h2 class="h2-section ridi-heading">My Scope</h2>
-        <div class="ridi-two-col">
+        <h2 class="h2-section ridi-heading" data-reveal>My Scope</h2>
+        <div class="ridi-two-col" data-reveal-group>
           <div>
             <h3 class="h3-case-study ridi-subheading">Role:</h3>
             <p class="body-large">
@@ -174,9 +159,9 @@
 
       <!-- UI: CASE05-CHALLENGE-01 | The Challenge | matches Figma "The Challenge" (816:13004) -->
       <section class="ridi-section ridi-section--tint">
-        <h2 class="h2-section ridi-heading">The Challenge</h2>
-        <div class="ridi-two-col">
-          <div class="ridi-panel">
+        <h2 class="h2-section ridi-heading" data-reveal>The Challenge</h2>
+        <div class="ridi-two-col" data-reveal-group>
+          <div class="ridi-panel ridi-panel--accent">
             <p class="body-large">
               Існуючі навігатори або не для мотоциклістів (Google Maps, Waze популярні, але не
               враховують контекст руху на мотоциклі), або незручні на швидкості (Rever вимагає
@@ -194,8 +179,8 @@
 
       <!-- UI: CASE05-RESEARCH-01 | Research | matches Figma "Research" (816:13010) -->
       <section class="ridi-section">
-        <h2 class="h2-section ridi-heading">Research</h2>
-        <div class="ridi-two-col">
+        <h2 class="h2-section ridi-heading" data-reveal>Research</h2>
+        <div class="ridi-two-col" data-reveal-group>
           <div>
             <h3 class="h3-case-study ridi-subheading">Методи</h3>
             <ul class="ridi-list">
@@ -216,7 +201,7 @@
           </div>
         </div>
 
-        <div style="margin-top: 48px">
+        <div style="margin-top: 48px" data-reveal>
           <h3 class="h3-case-study ridi-subheading">Analogy які тестував у процесі:</h3>
           <div class="ridi-logos">
             <img loading="lazy" src="assets/case-ridi/analogy-logo-1.webp" alt="" />
@@ -228,29 +213,35 @@
           </div>
         </div>
 
-        <div style="margin-top: 48px">
+        <div style="margin-top: 48px" data-reveal>
           <h3 class="h3-case-study ridi-subheading">Сегментація аудиторії</h3>
           <!-- "1"/"2"/"3" — jump up on scroll into view, random order, per Roman -->
           <div class="ridi-audience" data-bounce-group="scroll">
             <div class="ridi-audience__item">
-              <img class="ridi-audience__avatar" loading="lazy" src="assets/case-ridi/avatar-newbie.webp" alt="" />
+              <div class="ridi-audience__avatar-wrap ridi-audience__avatar-wrap--1">
+                <img class="ridi-audience__avatar" loading="lazy" src="assets/case-ridi/avatar-newbie.webp" alt="" />
+              </div>
               <p class="ridi-audience__name">Новачки 10%</p>
               <p class="ridi-audience__desc">(простий onboarding і рекомендації)</p>
             </div>
             <div class="ridi-audience__item">
-              <img class="ridi-audience__avatar" loading="lazy" src="assets/case-ridi/avatar-enthusiast.webp" alt="" />
+              <div class="ridi-audience__avatar-wrap ridi-audience__avatar-wrap--2">
+                <img class="ridi-audience__avatar" loading="lazy" src="assets/case-ridi/avatar-enthusiast.webp" alt="" />
+              </div>
               <p class="ridi-audience__name">Любителі 70%</p>
               <p class="ridi-audience__desc">(прості інструменти планування)</p>
             </div>
             <div class="ridi-audience__item">
-              <img class="ridi-audience__avatar" loading="lazy" src="assets/case-ridi/avatar-experienced.webp" alt="" />
+              <div class="ridi-audience__avatar-wrap ridi-audience__avatar-wrap--3">
+                <img class="ridi-audience__avatar" loading="lazy" src="assets/case-ridi/avatar-experienced.webp" alt="" />
+              </div>
               <p class="ridi-audience__name">Досвідчені 20%</p>
               <p class="ridi-audience__desc">(аналітика, статистика, спільноти)</p>
             </div>
           </div>
         </div>
 
-        <div style="margin-top: 48px">
+        <div style="margin-top: 48px" data-reveal>
           <h3 class="ridi-artifact-heading h3-case-study">Отже, я використав дослідження і створив відповідні артифакти</h3>
           <!-- fades in through blur ("з туману"), per Roman -->
           <div class="ridi-artifact-media" data-fog>
@@ -258,7 +249,7 @@
           </div>
         </div>
 
-        <div style="margin-top: 48px">
+        <div style="margin-top: 48px" data-reveal>
           <h3 class="ridi-artifact-heading h3-case-study">Які згодом переосмислив у інформаційну архитектуру для чіткого розуміння логіки</h3>
           <div class="ridi-artifact-media" data-fog>
             <img loading="lazy" src="assets/case-ridi/information-architecture.webp" alt="Ridi information architecture map" />
@@ -269,13 +260,13 @@
       <!-- UI: CASE05-DECISIONS-01 | Key Decisions | matches Figma "Key Decisions" (816:13050) -->
       <section class="ridi-section">
         <div class="ridi-decisions-panel">
-          <h1 class="ridi-heading" style="font-size: 40px">Ключові рішення</h1>
-          <p class="body-large">
+          <h1 class="ridi-heading" style="font-size: 40px" data-reveal>Ключові рішення</h1>
+          <p class="body-large" data-reveal>
             Кожне рішення нижче прив'язане до контексту руху — це те, що відрізняє продуктове
             мислення від «красивих екранів».
           </p>
 
-          <div class="ridi-decision">
+          <div class="ridi-decision" data-reveal>
             <h3 class="h3-case-study">Стан «Небезпека» у Ride Cluster</h3>
             <div class="ridi-decision__body">
               <div class="ridi-decision__screens">
@@ -300,7 +291,7 @@
             </div>
           </div>
 
-          <div class="ridi-decision">
+          <div class="ridi-decision" data-reveal>
             <h3 class="h3-case-study">Автозум карти за швидкістю</h3>
             <div class="ridi-decision__body">
               <!-- Roman will drop a GIF into this frame later; static phone bezel for now -->
@@ -324,7 +315,7 @@
             </div>
           </div>
 
-          <div class="ridi-decision">
+          <div class="ridi-decision" data-reveal>
             <h3 class="h3-case-study">Захист запису треку від випадкового завершення</h3>
             <div class="ridi-decision__body">
               <div class="ridi-decision__cards">
@@ -353,8 +344,8 @@
       <!-- UI: CASE05-UIKIT-01 | UI-Kit | matches Figma "UIKit" (816:13105) -->
       <section class="ridi-section ridi-section--tint">
         <div class="ridi-card-block">
-          <h2 class="h2-section ridi-heading">UIKit</h2>
-          <div class="ridi-two-col">
+          <h2 class="h2-section ridi-heading" data-reveal>UIKit</h2>
+          <div class="ridi-two-col ridi-uikit-body" data-reveal-group>
             <div>
               <p class="body-large ridi-body-muted">
                 Компонентна бібліотека (29 компонентів на 4 колекціях токенів) і базові контроли з
@@ -378,7 +369,7 @@
             </div>
           </div>
 
-          <div class="ridi-mascot">
+          <div class="ridi-mascot" data-reveal>
             <!-- fades in through blur ("з туману"), per Roman -->
             <div class="ridi-mascot__media" data-fog>
               <img loading="lazy" src="assets/case-ridi/mascot-2.webp" alt="Ridi mascot — a falcon in a racing helmet" />
@@ -397,11 +388,11 @@
 
       <!-- UI: CASE05-AI-01 | AI in process | matches Figma "AI in process" (816:13118) -->
       <section class="ridi-section">
-        <h2 class="h2-section ridi-heading">AI у моєму процесі</h2>
-        <p class="body-large ridi-body-muted" style="margin-bottom: 24px">
+        <h2 class="h2-section ridi-heading" data-reveal>AI у моєму процесі</h2>
+        <p class="body-large ridi-body-muted" style="margin-bottom: 24px" data-reveal>
           UI Kit і базові компоненти описано вище, в UIKit — тут інше застосування:
         </p>
-        <div class="ridi-two-col">
+        <div class="ridi-two-col" data-reveal-group>
           <p class="body-main ridi-body-muted">Компоненти генерувались поетапно через Figma MCP — каркас, варіанти, токенізація, далі ручне доопрацювання під продуктові стани (Небезпека, GPS-lost)</p>
           <p class="body-main ridi-body-muted">Перевірка контрасту й AAA-відповідності, рахунками, не на око</p>
         </div>
@@ -409,9 +400,9 @@
 
       <!-- UI: CASE05-FEATURES-01 | Core Features | matches Figma "Core Features" (816:13126) -->
       <section class="ridi-section">
-        <h2 class="h2-section ridi-heading">Core Features</h2>
+        <h2 class="h2-section ridi-heading" data-reveal>Core Features</h2>
 
-        <div class="ridi-card-block">
+        <div class="ridi-card-block" data-reveal>
           <h3 class="h3-case-study">Онбординг</h3>
           <p class="body-main ridi-body-muted">Збирає стиль райдера один раз: рівень, стиль їзди, обсяг двигуна, дистанція. Дані наповнюють пресет, який підставляється у фільтри Сценарію 2, менше кроків при кожній наступній побудові маршруту.</p>
           <div class="ridi-media ridi-media--wide" style="margin-top: 24px">
@@ -419,7 +410,7 @@
           </div>
         </div>
 
-        <div class="ridi-card-block">
+        <div class="ridi-card-block" data-reveal>
           <div class="ridi-feature__text">
             <h3 class="h3-case-study">Сценарій 1 — Direct Route Planning</h3>
             <p class="body-main ridi-body-muted">Райдер хоче доїхати до конкретної точки найпрямішим шляхом, з опцією додати проміжні зупинки.</p>
@@ -438,7 +429,7 @@
           </div>
         </div>
 
-        <div class="ridi-card-block">
+        <div class="ridi-card-block" data-reveal>
           <div class="ridi-feature__text">
             <h3 class="h3-case-study">Сценарій 2 — Custom Route Based on Preferences</h3>
             <p class="body-main ridi-body-muted">Райдер хоче покататись навколо поточної локації; застосунок пропонує маршрути під стиль і рівень (Rider Level, Style, Terrain, Distance, Area).</p>
@@ -456,7 +447,7 @@
           </div>
         </div>
 
-        <div class="ridi-card-block">
+        <div class="ridi-card-block" data-reveal>
           <div class="ridi-feature__text">
             <h3 class="h3-case-study">Сценарій 3 — Free Riding</h3>
             <p class="body-main ridi-body-muted">Старт без пункту призначення й маршруту → застосунок автоматично пише трек → наприкінці збереження й іменування.</p>
@@ -477,9 +468,9 @@
         </div>
       </section>
 
-      <!-- UI: CASE05-RESULTS-CTA-01 | Results CTA | matches Figma "Results" (816:13149) -->
-      <section class="ridi-section ridi-section--tint">
-        <div class="ridi-card-block ridi-results-cta">
+      <!-- UI: CASE05-RESULTS-CTA-01 | Results CTA | matches Figma "Results" (816:13149), banner restyle synced 2026-09-12 -->
+      <section class="ridi-section ridi-results-section">
+        <div class="ridi-results-cta" data-reveal>
           <p class="h3-case-study">Бажаєте переглянути усі UX сценарії?</p>
           <a class="ridi-btn-primary" href="https://www.figma.com/design/zrUZB4ZGeNVnx52eqyIPxF/Ridi-wireframing?node-id=0-1&t=gsIByTu6stTn5cu8-1" target="_blank" rel="noopener">
             View all
@@ -492,8 +483,8 @@
 
       <!-- UI: CASE05-RESULTS-01 | Results | matches Figma "Results" (856:13838) -->
       <section class="ridi-section">
-        <h2 class="h2-section ridi-heading">Results</h2>
-        <div class="ridi-two-col">
+        <h2 class="h2-section ridi-heading" data-reveal>Results</h2>
+        <div class="ridi-two-col" data-reveal-group>
           <div>
             <h3 class="h3-case-study ridi-subheading">Об'єктивні характеристики:</h3>
             <ul class="ridi-list">
@@ -511,13 +502,6 @@
             </ul>
           </div>
         </div>
-      </section>
-
-      <!-- UI: CASE05-NEXT-01 | What's Next | matches Figma "What's Next" (816:13164) -->
-      <section class="ridi-section ridi-section--tint ridi-next">
-        <h2 class="h2-section ridi-heading">What's Next</h2>
-        <h3 class="h3-case-study ridi-subheading">План на реалізацію</h3>
-        <p class="body-large ridi-body-muted">Lorem ipsum</p>
       </section>
 
       <!-- UI: HOME-REVIEWS-01 | Reviews carousel | shared component, reused unchanged -->
@@ -630,6 +614,7 @@
 
     <script src="js/nav.js"></script>
     <script src="js/reviews.js"></script>
+    <script src="js/reveal.js"></script>
     <script src="js/nbsp-typography.js"></script>
     <script src="js/ridi-animations.js"></script>
   </body>
