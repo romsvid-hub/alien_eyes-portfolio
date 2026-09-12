@@ -112,3 +112,68 @@
     });
   }
 })();
+
+/*
+  Key Decisions: "description" (.ridi-decision__cards) and "Screens"
+  (.ridi-decision__screens / .ridi-gif-frame) must always match height
+  on this page, per Roman. Text length varies decision to decision (and
+  changes with translation), so the cards column's height can't be
+  hardcoded — CSS alone also can't derive it reliably here (aspect-ratio
+  doesn't transfer through flex's cross-stretch across two nesting
+  levels in current browsers), so this measures the cards column and
+  sets a matching explicit height on its sibling directly. Only applies
+  at the >=1024px breakpoint where the two sit side by side; the mobile
+  stacked layout doesn't need it.
+*/
+(function () {
+  var desktopQuery = window.matchMedia('(min-width: 1024px)');
+  var IMG_RATIO = 262 / 534;
+  var IMG_GAP = 16;
+  var ROW_GAP = 24;
+
+  function syncDecisionHeights() {
+    document.querySelectorAll('.ridi-decision__body').forEach(function (body) {
+      var cards = body.querySelector('.ridi-decision__cards');
+      var screens = body.querySelector('.ridi-decision__screens');
+      var gifFrame = body.querySelector('.ridi-gif-frame');
+      var target = screens || gifFrame;
+      if (!cards || !target) return;
+      if (!desktopQuery.matches) {
+        target.style.height = '';
+        return;
+      }
+
+      var cardsH = cards.getBoundingClientRect().height;
+
+      // .ridi-gif-frame is a single image: always has room (its column
+      // is generously sized for one 262-wide phone), so just match.
+      if (gifFrame) {
+        target.style.height = cardsH + 'px';
+        return;
+      }
+
+      // .ridi-decision__screens can hold 2-3 images side by side
+      // (Danger, auto-save) — stretching every image to match a tall
+      // cards column can outgrow the row's actual available width.
+      // Cap the height so the images still fit; the cards column is
+      // simply taller than Screens in that case, same as Figma's own
+      // Danger layout (630 cards vs 535 screens).
+      var count = screens.querySelectorAll('img').length || 1;
+      var availableWidth = body.getBoundingClientRect().width - cards.getBoundingClientRect().width - ROW_GAP;
+      var maxHeightByWidth = (availableWidth - (count - 1) * IMG_GAP) / (count * IMG_RATIO);
+      target.style.height = Math.min(cardsH, maxHeightByWidth) + 'px';
+    });
+  }
+
+  var resizeTimer;
+  function scheduleSync() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(syncDecisionHeights, 150);
+  }
+
+  syncDecisionHeights();
+  window.addEventListener('resize', scheduleSync);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(syncDecisionHeights);
+  }
+})();

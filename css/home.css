@@ -969,42 +969,17 @@
 /*
   Ridi — added 2026-09-12, replacing the earlier dashed-outline "Coming
   soon" placeholder now that the case has a real Hero to draw from.
-  Reuses the exact same 3 assets and relative left/top/width percentages
-  as .ridi-hero__screen in case-ridi.css, just scaled into this card's
-  square media box instead of the Hero's wider one — no new asset
-  needed, no outline/border (Roman: remove the outline that was there).
+  2026-09-12 (correction): switched to the same single flattened
+  "Screens - cover" export used in the Hero (case-ridi.html) instead of
+  3 separately-positioned mockups — simple contained-image approach,
+  same as .case-card__media--yoy/--atj2. No outline/border (Roman:
+  remove the outline that was there).
 */
-.case-card__media--ridi {
-  position: relative;
-}
-
-.case-card__ridi-screen {
-  position: absolute;
-  width: 38%;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
-.case-card__ridi-screen img {
+.case-card__media--ridi img {
+  position: static;
   width: 100%;
-  display: block;
-}
-
-.case-card__ridi-screen--1 {
-  left: 62%;
-  top: 4%;
-}
-
-.case-card__ridi-screen--2 {
-  left: 4%;
-  top: 15%;
-}
-
-.case-card__ridi-screen--3 {
-  left: 33%;
-  top: 10%;
-  z-index: 1;
+  height: 100%;
+  object-fit: contain;
 }
 
 /*

@@ -221,9 +221,14 @@
 
 /* ---------- Hero (866:14394) ---------- */
 
+/* Gap from the header + rounded corners, same pattern as .atj2-hero:
+   a permanent horizontal margin (not just padding) so the radius is
+   visible at every width, not only past the 1280 max-width cap. */
 .ridi-hero {
   position: relative;
   overflow: hidden;
+  margin: 24px var(--page-px) 0;
+  border-radius: 24px;
   padding: 48px var(--page-px);
 }
 
@@ -237,6 +242,7 @@
 
 @media (min-width: 1024px) {
   .ridi-hero {
+    border-radius: 48px;
     padding: 64px var(--page-px) 48px;
   }
 }
@@ -377,12 +383,14 @@
   }
 }
 
+/* Single flattened "Screens - cover" export (822x712, matches the
+   548x474 Figma frame at 1.5x) replaces the old 3-separately-positioned
+   mockup composite, per Roman's own flattened Figma layer. */
 .ridi-hero__screens {
   position: relative;
   flex-shrink: 0;
   width: 100%;
   max-width: 380px;
-  height: 340px;
   margin: 0 auto;
 }
 
@@ -390,38 +398,13 @@
   .ridi-hero__screens {
     width: 548px;
     max-width: none;
-    height: 475px;
     margin: 0;
   }
 }
 
-.ridi-hero__screen {
-  position: absolute;
-  width: 38%;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
-.ridi-hero__screen img {
+.ridi-hero__screen-cover img {
   width: 100%;
   display: block;
-}
-
-.ridi-hero__screen--1 {
-  left: 62%;
-  top: 4%;
-}
-
-.ridi-hero__screen--2 {
-  left: 4%;
-  top: 15%;
-}
-
-.ridi-hero__screen--3 {
-  left: 33%;
-  top: 10%;
-  z-index: 1;
 }
 
 .ridi-hero__content {
@@ -676,10 +659,19 @@
   gap: 24px;
 }
 
+/*
+  2026-09-12 (correction pass): "description" and "Screens" must always
+  match height on this page — switched from align-items:center (which
+  just centers a shorter column, leaving mismatched whitespace) to
+  stretch, so the Screens/gif-frame column grows or shrinks to the
+  cards column's actual height (text length varies decision to
+  decision and after translation), scaling the phone image
+  proportionally via aspect-ratio instead of distorting it.
+*/
 @media (min-width: 1024px) {
   .ridi-decision__body {
     flex-direction: row;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
   }
 }
@@ -691,19 +683,37 @@
   padding-bottom: 4px;
 }
 
+/* 262x534 aspect, matching every other "Screens" image on this page
+   (Core Features ride shots, the AutoZoom gif frame) — was wrongly
+   shrunk to a fixed 140/180px, which made this column read much
+   shorter than its sibling "description" column instead of matching
+   its height, per Roman. */
 .ridi-decision__screens img {
   flex-shrink: 0;
-  width: 140px;
+  width: 160px;
+  aspect-ratio: 262 / 534;
+  object-fit: cover;
   border-radius: 12px;
   display: block;
 }
 
+/*
+  Desktop height comes from js/ridi-animations.js (syncDecisionHeights),
+  set as an explicit inline px height on .ridi-decision__screens itself
+  — matching the sibling .ridi-decision__cards column, per Roman. A
+  plain CSS flex-stretch here doesn't reliably transfer through to the
+  aspect-ratio'd <img> children (verified: resolves to 0 width), so the
+  height needs to be a real specified length for aspect-ratio's width
+  derivation to work — hence the JS measurement instead of %/stretch.
+*/
 @media (min-width: 1024px) {
-  .ridi-decision__screens {
-    overflow-x: visible;
-  }
+  /* overflow-x stays auto (not visible) as a safety net: JS caps the
+     height to fit, but a scrollbar here is a much smaller failure mode
+     than page-level horizontal overflow if a rounding edge case slips
+     through. */
   .ridi-decision__screens img {
-    width: 180px;
+    width: auto;
+    height: 100%;
   }
 }
 
@@ -751,6 +761,23 @@
   width: 100%;
   max-width: 262px;
   aspect-ratio: 262 / 534;
+}
+
+/*
+  Desktop height comes from js/ridi-animations.js (syncDecisionHeights),
+  set as an explicit inline px height matching the sibling
+  .ridi-decision__cards column, per Roman — width then follows from the
+  preserved aspect-ratio so the phone scales without distorting, and
+  the gif/bezel children (percentage-sized off this box) scale with it.
+  A plain CSS flex-stretch alone doesn't reliably transfer through to
+  aspect-ratio here (verified: resolves to 0 width) — hence JS instead
+  of relying on align-items:stretch/height:100%.
+*/
+@media (min-width: 1024px) {
+  .ridi-gif-frame {
+    width: auto;
+    max-width: none;
+  }
 }
 
 /* Gif fills the "Paste gif here" cutout (861:14351: inset 20/22/17/22,
