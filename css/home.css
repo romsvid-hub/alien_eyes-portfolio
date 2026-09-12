@@ -967,36 +967,44 @@
 }
 
 /*
-  Template cards (Ridi — content "coming soon" per Roman, added
-  2026-09-07; Yoy moved off this pattern 2026-09-09, see
-  .case-card__media--yoy above): a plain neutral placeholder instead of
-  inventing a fake product screenshot or mockup for a case that doesn't
-  have real content yet.
+  Ridi — added 2026-09-12, replacing the earlier dashed-outline "Coming
+  soon" placeholder now that the case has a real Hero to draw from.
+  Reuses the exact same 3 assets and relative left/top/width percentages
+  as .ridi-hero__screen in case-ridi.css, just scaled into this card's
+  square media box instead of the Hero's wider one — no new asset
+  needed, no outline/border (Roman: remove the outline that was there).
 */
-.case-card__placeholder {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px dashed rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  background-color: rgba(255, 255, 255, 0.03);
+.case-card__media--ridi {
+  position: relative;
 }
 
-.case-card__placeholder-text {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 1.3;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  /* --color-subtle-text (#595959) is calibrated for the light
-     case-study pages — far too dark to read against Home's dark
-     background. --color-light-gray is the token already used for
-     muted text elsewhere on this same dark page (.review-slide__role,
-     .cta-description). */
-  color: var(--color-light-gray);
+.case-card__ridi-screen {
+  position: absolute;
+  width: 38%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.case-card__ridi-screen img {
+  width: 100%;
+  display: block;
+}
+
+.case-card__ridi-screen--1 {
+  left: 62%;
+  top: 4%;
+}
+
+.case-card__ridi-screen--2 {
+  left: 4%;
+  top: 15%;
+}
+
+.case-card__ridi-screen--3 {
+  left: 33%;
+  top: 10%;
+  z-index: 1;
 }
 
 /*
