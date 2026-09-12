@@ -192,43 +192,49 @@
         <!-- CONTENT: HOME-CASE-STUDIES-01 | Section heading | editable with approval -->
         <h2 class="h2-section case-studies-heading" data-reveal>Case Studies:</h2>
 
-        <!-- UI: HOME-CASE-ATJ-01 | ATJ case study card | inspect/adjust -->
+        <!-- UI: HOME-CASE-ATJ2-01 | ATJ DEI Audit case study card | inspect/adjust -->
+        <!-- 2026-09-12: swapped to position 1 per Roman — "почитанися з
+             нового", start with the newer ATJ case. -->
         <article class="case-card" data-reveal>
           <div class="case-card__intro">
-            <!-- CONTENT: HOME-CASE-ATJ-01 | Case study title | editable with approval -->
+            <!-- CONTENT: HOME-CASE-ATJ2-01 | Case study title | editable with approval -->
             <h3 class="h3-case-study case-card__title">
-              Inclusive Hiring Platform
+              ATJ DEI Audit
             </h3>
-            <!-- CONTENT: HOME-CASE-ATJ-DESC-01 | Case study description | editable with approval -->
+            <!-- CONTENT: HOME-CASE-ATJ2-DESC-01 | Case study description | editable with approval -->
             <p class="body-main case-card__description">
-              An ecosystem connecting inclusive employers with diverse
-              candidates. Ensuring accessible opportunities and decent
-              work for underrepresented groups.
+              Turned a heavy business process into a digital service,
+              companies complete a diagnostic and find out exactly
+              where they stand on readiness to hire veterans and
+              people with disabilities.
             </p>
+            <!-- CONTENT: placeholder tags, per Roman 2026-09-09 — will be replaced -->
             <div class="tag-row">
               <span class="tag">HR Tech</span>
-              <span class="tag">Inclusive Design</span>
+              <span class="tag">DEI</span>
+              <span class="tag">B2B SaaS</span>
               <span class="tag">Accessibility</span>
-              <span class="tag">B2C/B2B</span>
             </div>
           </div>
-          <div class="case-card__media">
-            <!-- IMAGE: HOME-ATJ-GLOW-01 | Decorative glow behind ATJ mockup | replaceable -->
+          <!-- Synced 2026-09-10: replaced the old raw-screenshot +
+               generic-laptop-frame composite with the new mockup image,
+               which already renders its own laptop + phone (real device
+               chrome baked in, not a separate overlay needed). -->
+          <div class="case-card__media case-card__media--atj2">
+            <!-- CONTENT: synced 2026-09-10 — own light-blue glow (not
+                 the shared ATJ1 orange one), sent behind the mockup -->
             <img loading="lazy"
               class="case-card__glow"
-              src="assets/home/atj-glow.svg"
+              src="assets/home/atj2-glow.svg"
               alt=""
               aria-hidden="true"
             />
-            <div class="atj-mockup-frame">
-              <!-- IMAGE: HOME-ATJ-MOCKUP-01 | ATJ case product mockup | replaceable -->
-              <img loading="lazy"
-                src="assets/home/atj-mockup.webp"
-                alt="Inclusive Hiring Platform — product screenshot"
-              />
-            </div>
+            <img loading="lazy"
+              src="assets/case-atj-2/figma/mockup-atj2.webp"
+              alt="ATJ DEI Audit shown on laptop and mobile"
+            />
           </div>
-          <a class="btn btn--primary case-card__cta" href="case-atj.html">
+          <a class="btn btn--primary case-card__cta" href="case-atj-2.html">
             View case
             <svg class="btn__icon" viewBox="0 0 21 11.547" fill="none" aria-hidden="true">
               <path
@@ -292,47 +298,45 @@
           </a>
         </article>
 
-        <!-- UI: HOME-CASE-ATJ2-01 | ATJ DEI Audit case study card | inspect/adjust -->
+        <!-- UI: HOME-CASE-ATJ-01 | ATJ case study card | inspect/adjust -->
+        <!-- 2026-09-12: swapped to position 3 per Roman (see the ATJ2
+             card above, now at position 1). -->
         <article class="case-card" data-reveal>
           <div class="case-card__intro">
-            <!-- CONTENT: HOME-CASE-ATJ2-01 | Case study title | editable with approval -->
+            <!-- CONTENT: HOME-CASE-ATJ-01 | Case study title | editable with approval -->
             <h3 class="h3-case-study case-card__title">
-              ATJ DEI Audit
+              Inclusive Hiring Platform
             </h3>
-            <!-- CONTENT: HOME-CASE-ATJ2-DESC-01 | Case study description | editable with approval -->
+            <!-- CONTENT: HOME-CASE-ATJ-DESC-01 | Case study description | editable with approval -->
             <p class="body-main case-card__description">
-              Turned a heavy business process into a digital service,
-              companies complete a diagnostic and find out exactly
-              where they stand on readiness to hire veterans and
-              people with disabilities.
+              An ecosystem connecting inclusive employers with diverse
+              candidates. Ensuring accessible opportunities and decent
+              work for underrepresented groups.
             </p>
-            <!-- CONTENT: placeholder tags, per Roman 2026-09-09 — will be replaced -->
             <div class="tag-row">
               <span class="tag">HR Tech</span>
-              <span class="tag">DEI</span>
-              <span class="tag">B2B SaaS</span>
+              <span class="tag">Inclusive Design</span>
               <span class="tag">Accessibility</span>
+              <span class="tag">B2C/B2B</span>
             </div>
           </div>
-          <!-- Synced 2026-09-10: replaced the old raw-screenshot +
-               generic-laptop-frame composite with the new mockup image,
-               which already renders its own laptop + phone (real device
-               chrome baked in, not a separate overlay needed). -->
-          <div class="case-card__media case-card__media--atj2">
-            <!-- CONTENT: synced 2026-09-10 — own light-blue glow (not
-                 the shared ATJ1 orange one), sent behind the mockup -->
+          <div class="case-card__media">
+            <!-- IMAGE: HOME-ATJ-GLOW-01 | Decorative glow behind ATJ mockup | replaceable -->
             <img loading="lazy"
               class="case-card__glow"
-              src="assets/home/atj2-glow.svg"
+              src="assets/home/atj-glow.svg"
               alt=""
               aria-hidden="true"
             />
-            <img loading="lazy"
-              src="assets/case-atj-2/figma/mockup-atj2.webp"
-              alt="ATJ DEI Audit shown on laptop and mobile"
-            />
+            <div class="atj-mockup-frame">
+              <!-- IMAGE: HOME-ATJ-MOCKUP-01 | ATJ case product mockup | replaceable -->
+              <img loading="lazy"
+                src="assets/home/atj-mockup.webp"
+                alt="Inclusive Hiring Platform — product screenshot"
+              />
+            </div>
           </div>
-          <a class="btn btn--primary case-card__cta" href="case-atj-2.html">
+          <a class="btn btn--primary case-card__cta" href="case-atj.html">
             View case
             <svg class="btn__icon" viewBox="0 0 21 11.547" fill="none" aria-hidden="true">
               <path
