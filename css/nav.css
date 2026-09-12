@@ -273,3 +273,174 @@
     width: 100%;
   }
 }
+
+/*
+  Nav popups (Case Studies / Feedbacks) — added 2026-09-12, per Figma
+  "Case pop up" (868:14474) and "Reviews" (868:14980). Matches Figma's
+  own design: a single translucent panel (no separate opaque scrim) so
+  the current page stays visible around it, per Roman — inset from the
+  header and viewport edges rather than true edge-to-edge fullscreen.
+  Wired up in js/nav.js.
+*/
+html.nav-popup-open {
+  overflow: hidden;
+}
+
+.nav-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 96px 24px 24px;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .nav-popup-overlay {
+    padding: 112px 40px 40px;
+  }
+}
+
+.nav-popup {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  max-height: 100%;
+  overflow: hidden;
+  background-color: rgba(19, 20, 20, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  .nav-popup {
+    border-radius: 24px;
+  }
+}
+
+.nav-popup__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  color: var(--color-white);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.nav-popup__close:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-popup__close svg {
+  width: 16px;
+  height: 16px;
+}
+
+.nav-popup__heading {
+  color: var(--color-white);
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+.nav-popup__body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Case Studies popup ---------- */
+
+.nav-popup__cases-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  gap: 20px;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.nav-popup-case {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 200px;
+  padding: 12px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.nav-popup-case:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.nav-popup-case__media {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.nav-popup-case__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.nav-popup-case__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.nav-popup-case__desc {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--color-light-gray);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---------- Feedbacks popup ---------- */
+/* .reviews-carousel is relocated here from its normal spot on the page
+   (and moved back on close) — reuses the exact same markup/JS/CSS
+   already driving it elsewhere, per Roman ("ті ж самі... крапки та
+   перемикачі"). This wrapper just centers it and caps its width. */
+.nav-popup__feedback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.nav-popup__feedback .reviews-carousel {
+  width: 100%;
+  max-width: 900px;
+}
