@@ -131,6 +131,13 @@
   text-decoration: underline;
 }
 
+/* Shows which popup (Case Studies / Feedbacks) is currently open, per
+   Roman — clicking it again while active is a no-op (see js/nav.js). */
+.nav-links__link.is-active {
+  color: var(--color-purple-light);
+  text-decoration: underline;
+}
+
 .nav-cta {
   display: inline-flex;
   align-items: center;
@@ -281,11 +288,15 @@
   the current page stays visible around it, per Roman — inset from the
   header and viewport edges rather than true edge-to-edge fullscreen.
   Wired up in js/nav.js.
-*/
-html.nav-popup-open {
-  overflow: hidden;
-}
 
+  2026-09-12 (correction): no scroll-lock on <html> — Roman wants the
+  page behind the popup to stay scrollable while it's open, and a
+  sticky-positioned .site-nav can misbehave (lose its stuck position)
+  under overflow:hidden on the root element in some browsers, which
+  read as the header "disappearing". The popup itself is
+  position:fixed, so it stays put on screen regardless of background
+  scroll either way.
+*/
 .nav-popup-overlay {
   position: fixed;
   inset: 0;
@@ -392,6 +403,15 @@ html.nav-popup-open {
   background-color: rgba(255, 255, 255, 0.06);
 }
 
+/*
+  Wraps a cloned .case-card__media node (see js/nav.js renderCaseCard)
+  — deliberately no img-specific rules here. Each case's own media
+  modifier class (.case-card__media--ridi, --yoy, --atj2, or Uniqkey's
+  .uniqkey-dashboard-frame/.uniqkey-laptop-frame — all in home.css,
+  loaded on every page) already sizes/positions its own images
+  correctly; this is just a plain frame around whatever composite that
+  produces, at this card's smaller scale.
+*/
 .nav-popup-case__media {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -400,11 +420,9 @@ html.nav-popup-open {
   background-color: rgba(255, 255, 255, 0.04);
 }
 
-.nav-popup-case__media img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
+.nav-popup-case__media .case-card__media {
+  max-width: none;
+  margin: 0;
 }
 
 .nav-popup-case__title {

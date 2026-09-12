@@ -84,8 +84,51 @@ document.addEventListener("DOMContentLoaded", function () {
     if (window.applyNbspTypography) window.applyNbspTypography(slide);
   }
 
+  /*
+    Fixed height sized to the tallest review, per Roman: quote length
+    varies a lot review to review (Taras's one-liner vs Olga's full
+    paragraph), and without this the carousel's height jumped on every
+    switch, which also shifted the prev/next arrows (centered against
+    the row via .reviews-carousel's align-items:center) up and down.
+    Measures each review's natural height in turn, keeps the max, then
+    lets CSS (justify-content:center on .review-slide) center the
+    actual content inside that fixed box — arrows then stay put too,
+    since the row height they're centered against no longer changes.
+    Re-measured on resize since text wrapping depends on width.
+  */
+  function measureMaxHeight() {
+    var savedMinHeight = slide.style.minHeight;
+    slide.style.minHeight = "0";
+    var savedName = nameEl.textContent;
+    var savedRole = roleEl.textContent;
+    var savedQuote = quoteEl.textContent;
+    var max = 0;
+    reviews.forEach(function (review) {
+      nameEl.textContent = review.name;
+      roleEl.textContent = review.role;
+      quoteEl.textContent = review.quote;
+      max = Math.max(max, slide.scrollHeight);
+    });
+    nameEl.textContent = savedName;
+    roleEl.textContent = savedRole;
+    quoteEl.textContent = savedQuote;
+    slide.style.minHeight = max + "px";
+  }
+
+  var resizeTimer;
+  function scheduleRemeasure() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(measureMaxHeight, 150);
+  }
+
   if (defaultIndex >= 0) {
     render(current);
+  }
+
+  measureMaxHeight();
+  window.addEventListener("resize", scheduleRemeasure);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(measureMaxHeight);
   }
 
   prevBtn.addEventListener("click", function () {

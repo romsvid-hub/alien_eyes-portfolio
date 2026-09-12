@@ -32,6 +32,13 @@ function initNavPopups() {
   var overlay = null;
   var feedbackTimer = null;
   var relocated = null; // { el, parent, next }[]
+  var activeLink = null;
+
+  function setActiveLink(link) {
+    if (activeLink) activeLink.classList.remove("is-active");
+    activeLink = link;
+    if (activeLink) activeLink.classList.add("is-active");
+  }
 
   function isHomePage() {
     var path = window.location.pathname;
@@ -55,6 +62,7 @@ function initNavPopups() {
     }
     document.documentElement.classList.remove("nav-popup-open");
     document.removeEventListener("keydown", onKeydown);
+    setActiveLink(null);
   }
 
   function onKeydown(e) {
@@ -98,22 +106,22 @@ function initNavPopups() {
 
     var desc = card.querySelector(".case-card__description");
     var media = card.querySelector(".case-card__media");
-    var img = media
-      ? media.querySelector("img:not(.case-card__glow)")
-      : null;
 
     var a = document.createElement("a");
     a.className = "nav-popup-case";
     a.href = link.getAttribute("href");
 
-    if (img) {
+    if (media) {
+      // Some cards (Uniqkey) compose their thumbnail from more than one
+      // absolutely-positioned/percentage-sized layer (glow + dashboard
+      // screenshot + laptop frame) rather than a single flattened
+      // image — cloning the whole .case-card__media node reuses that
+      // exact composite via the same CSS classes (already loaded via
+      // home.css on every page) instead of grabbing just one layer and
+      // showing an incomplete/wrong picture.
       var mediaWrap = document.createElement("div");
       mediaWrap.className = "nav-popup-case__media";
-      var imgEl = document.createElement("img");
-      imgEl.loading = "lazy";
-      imgEl.alt = "";
-      imgEl.src = img.getAttribute("src");
-      mediaWrap.appendChild(imgEl);
+      mediaWrap.appendChild(media.cloneNode(true));
       a.appendChild(mediaWrap);
     }
 
@@ -216,14 +224,20 @@ function initNavPopups() {
     if (/#case-studies$/.test(href)) {
       link.addEventListener("click", function (e) {
         e.preventDefault();
+        // Already open via this same button: no-op, per Roman — the
+        // button's active state is the only feedback needed.
+        if (link === activeLink) return;
         closeMobileMenu();
         openCasesPopup();
+        setActiveLink(link);
       });
     } else if (/#feedbacks$/.test(href)) {
       link.addEventListener("click", function (e) {
         e.preventDefault();
+        if (link === activeLink) return;
         closeMobileMenu();
         openFeedbacksPopup();
+        setActiveLink(link);
       });
     }
   });
