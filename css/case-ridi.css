@@ -1,16 +1,24 @@
 /*
   Ridi — Moto Navigator case study. Structure synced from Figma node
-  816:12955 (fileKey DU3fuTo8QXIJ0uMcI3jh91), 2026-09-11.
+  816:12955 (fileKey DU3fuTo8QXIJ0uMcI3jh91).
 
-  FIRST PASS — per Roman: focus on structure, not final. Most images
-  will be replaced, some text may change, and the whole page will be
-  translated to English later. No animations yet (no data-reveal, no
-  gradient/line effects like YOY/ATJ2) — added once content stabilizes.
+  2026-09-11: first pass — structure only, no animation.
+  2026-09-12: Roman's "final" design pass — new Hero, restructured Key
+  Decisions (GPS-lost dropped), real Research artifacts, wireframe links
+  + luminosity filter, and the site's animation system added:
+    - 3 animated "gray line" squiggles in Hero (same technique as YOY,
+      15% faster)
+    - Hero screens + Audience avatars "jump up" on entrance (bounce,
+      random order, driven by js/ridi-animations.js)
+    - Research Artifacts / IA / mascot / wireframe groups fade in
+      through a blur ("fog"), scroll-triggered
+    - wireframe links open the external Figma file in a new tab, scale
+      1.05x on hover; the "View wireframe flow ->" label brightens on
+      hover
 
-  Colors: local, case-scoped tokens taken from the MotoNavigator Figma
-  file (fileKey QEfcgZpb1hSHl99b1DW2G5, get_variable_defs on 1034:2234)
-  — never added to tokens.css. Fonts are the site's own (Sora/Inter),
-  NOT MotoNavigator's SF Pro, per Roman's explicit instruction.
+  Colors: exact hex values read off Figma via get_design_context this
+  pass (#121317 Key Decisions wrapper, #1c1d21 Core Features/UIKit/
+  Results-CTA cards) — not reused from the first-pass token guess.
 */
 
 .ridi-page {
@@ -22,9 +30,12 @@
   --ridi-bg: #151518;
   --ridi-tint: #1e1e23;
   --ridi-surface3: #27272d;
+  --ridi-panel-dark: #121317;
+  --ridi-card: #1c1d21;
   --ridi-accent: #ff8a1f;
-  --ridi-muted: #9898a5;
+  --ridi-muted: #b2b2b8;
   --ridi-border: #2e2e36;
+  --ridi-link: #8c76fc;
 }
 
 /* ---------- Shared primitives ---------- */
@@ -125,30 +136,74 @@
   color: var(--ridi-muted);
 }
 
-/* Placeholder box — used wherever no real asset exists yet */
-.ridi-placeholder {
-  background-color: var(--ridi-surface3);
-  border: 1px dashed var(--ridi-border);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 200px;
-  color: var(--ridi-muted);
-  font-family: var(--font-body);
-  font-size: 14px;
-  text-align: center;
-  padding: 16px;
+/* ---------- Fog-in (blur reveal), scroll-triggered ---------- */
+/* Applied to Research Artifacts / IA / mascot / wireframe groups.
+   .fog-init starts blurred+transparent; js/ridi-animations.js adds
+   .is-fogged-in via IntersectionObserver once the element is in view. */
+.fog-init {
+  opacity: 0;
+  filter: blur(24px);
+  transition: opacity 900ms ease-out, filter 900ms ease-out;
 }
 
-/* ---------- Hero (816:12956) ---------- */
+.fog-init.is-fogged-in {
+  opacity: 1;
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fog-init {
+    opacity: 1;
+    filter: none;
+    transition: none;
+  }
+}
+
+/* ---------- Bounce-in (jump up + settle), random order ---------- */
+/* .bounce-init starts hidden below; js/ridi-animations.js assigns a
+   random --bounce-delay (0.7s base + stagger) per item, then adds
+   .is-bounced-in to play the overshoot keyframe once. */
+.bounce-init {
+  opacity: 0;
+  transform: translateY(48px);
+}
+
+.bounce-init.is-bounced-in {
+  animation: ridi-bounce-in 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--bounce-delay, 0s);
+}
+
+@keyframes ridi-bounce-in {
+  0% {
+    opacity: 0;
+    transform: translateY(48px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bounce-init {
+    opacity: 1;
+    transform: none;
+  }
+  .bounce-init.is-bounced-in {
+    animation: none;
+  }
+}
+
+/* ---------- Hero (866:14394) ---------- */
 
 .ridi-hero {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  position: relative;
+  overflow: hidden;
   padding: 48px var(--page-px);
-  background-color: #0c0c0e;
 }
 
 @media (min-width: 1280px) {
@@ -161,40 +216,190 @@
 
 @media (min-width: 1024px) {
   .ridi-hero {
-    flex-direction: row;
-    align-items: flex-start;
     padding: 64px var(--page-px) 48px;
   }
 }
 
-.ridi-hero__media {
-  flex-shrink: 0;
-  max-width: 320px;
+.ridi-hero__bg {
+  position: absolute;
+  inset: 0;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+/* Roman: background map.jpg may be stretched/deformed if needed to
+   fill the frame — object-fit:cover above already avoids that in the
+   common case, fill is the deliberate fallback for unusual aspect
+   ratios. */
+
+.ridi-hero__lines {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.ridi-hero__line {
+  position: absolute;
+  overflow: visible;
+}
+
+.ridi-hero__line--1 {
+  left: 67%;
+  top: -40%;
+  width: 46%;
+  height: 105%;
+  transform: rotate(-141.16deg) scaleY(-1);
+}
+
+.ridi-hero__line--2 {
+  left: -12%;
+  top: -95%;
+  width: 116%;
+  height: 240%;
+  transform: rotate(-38.84deg);
+}
+
+.ridi-hero__line--3 {
+  left: -2%;
+  top: -22%;
+  width: 55%;
+  height: 145%;
+  transform: rotate(70.13deg) scaleY(-1);
+}
+
+/* "Hero gradient/lines for Ridi" — same technique as YOY/ATJ2's animated
+   lines, per Roman, sped up 15% (YOY's current 2.7s/3.7s -> ~2.3s/3.1s,
+   a third line added at ~2.8s for variety). */
+.ridi-hero__line path {
+  animation-name: ridi-line-wiggle-1;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.ridi-hero__line--1 path {
+  animation-name: ridi-line-wiggle-1;
+  animation-duration: 2.3s;
+}
+
+.ridi-hero__line--2 path {
+  animation-name: ridi-line-wiggle-2;
+  animation-duration: 3.1s;
+}
+
+.ridi-hero__line--3 path {
+  animation-name: ridi-line-wiggle-3;
+  animation-duration: 2.8s;
+}
+
+@keyframes ridi-line-wiggle-1 {
+  0%,
+  100% {
+    d: path("M6.00055 9.8113C35.1869 -10.3227 57.9417 52.9622 27.4215 113.99C-3.09863 175.019 112.136 109.046 176.812 128.742C241.487 148.438 21.3473 254.426 139.309 260.774C257.27 267.123 286.907 232.051 364.704 231.279C442.5 230.507 502.248 392.256 584.174 289.563");
+  }
+  33% {
+    d: path("M6.00055 9.8113C34.23 -9.13 66.43 52.28 27.58 115.74C-9.41 175.26 114.73 114.91 168.69 124.81C233.30 154.63 25.22 245.26 148.95 270.07C260.35 269.43 280.06 222.35 365.27 222.47C436.30 225.35 492.85 391.53 584.174 289.563");
+  }
+  66% {
+    d: path("M6.00055 9.8113C34.68 -7.17 61.27 45.81 17.64 111.49C-7.62 181.23 115.95 111.08 177.98 131.97C234.39 147.24 14.59 262.55 130.49 267.15C248.76 270.86 283.65 230.14 371.55 221.65C433.72 238.81 502.43 384.08 584.174 289.563");
+  }
+}
+
+@keyframes ridi-line-wiggle-2 {
+  0%,
+  100% {
+    d: path("M6.00055 14.7082C72.6865 -31.2948 124.677 113.301 54.944 252.74C-14.7896 392.179 248.503 241.442 396.276 286.444C544.048 331.446 41.0652 573.613 310.588 588.117C580.111 602.622 647.826 522.49 825.578 520.726C1003.33 518.961 1139.84 888.531 1327.03 653.895");
+  }
+  33% {
+    d: path("M6.00055 14.7082C64.01 -24.63 131.30 125.88 43.63 243.04C-27.49 382.28 256.93 228.13 397.40 276.14C536.66 328.98 53.22 577.52 293.11 580.05C567.39 615.99 658.98 533.51 837.33 529.54C1019.51 529.54 1131.08 901.13 1327.03 653.895");
+  }
+  66% {
+    d: path("M6.00055 14.7082C58.53 -24.00 130.15 129.15 46.70 243.95C-6.36 397.88 241.41 248.07 392.56 296.43C530.31 321.48 55.52 568.50 301.96 599.07C584.85 590.01 649.67 528.39 813.52 526.19C989.76 513.10 1124.84 877.89 1327.03 653.895");
+  }
+}
+
+@keyframes ridi-line-wiggle-3 {
+  0%,
+  100% {
+    d: path("M6.00055 10.8993C43.5188 -14.9824 72.7695 66.3686 33.5366 144.819C-5.6962 223.269 142.435 138.462 225.574 163.781C308.712 189.1 25.7283 325.345 177.365 333.506C329.001 341.666 367.099 296.583 467.104 295.59C567.109 294.598 643.914 502.522 749.227 370.513");
+  }
+  33% {
+    d: path("M6.00055 10.8993C55.62 -27.68 78.91 57.48 46.18 132.26C4.17 227.98 151.73 151.46 218.81 159.57C314.13 183.40 19.57 318.29 186.67 343.24C336.74 334.47 378.14 296.88 460.12 294.43C565.03 283.65 645.60 498.88 749.227 370.513");
+  }
+  66% {
+    d: path("M6.00055 10.8993C39.92 -15.49 70.61 64.98 31.18 148.92C-11.97 226.78 129.70 133.32 221.29 154.47C315.04 184.16 33.25 337.21 170.96 343.74C337.00 346.02 354.81 295.46 470.40 290.29C559.94 289.65 637.63 510.01 749.227 370.513");
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ridi-hero__line path {
+    animation: none;
+  }
+}
+
+.ridi-hero__body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .ridi-hero__body {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.ridi-hero__screens {
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 380px;
+  height: 340px;
   margin: 0 auto;
 }
 
 @media (min-width: 1024px) {
-  .ridi-hero__media {
+  .ridi-hero__screens {
     width: 548px;
     max-width: none;
+    height: 475px;
     margin: 0;
   }
 }
 
-.ridi-hero__media-frame {
-  position: relative;
-  aspect-ratio: 548 / 496;
+.ridi-hero__screen {
+  position: absolute;
+  width: 38%;
   border-radius: 16px;
   overflow: hidden;
-  background-color: var(--ridi-tint);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-.ridi-hero__media-frame img {
+.ridi-hero__screen img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
   display: block;
+}
+
+.ridi-hero__screen--1 {
+  left: 62%;
+  top: 4%;
+}
+
+.ridi-hero__screen--2 {
+  left: 4%;
+  top: 15%;
+}
+
+.ridi-hero__screen--3 {
+  left: 33%;
+  top: 10%;
+  z-index: 1;
 }
 
 .ridi-hero__content {
@@ -208,6 +413,24 @@
   .ridi-hero__content {
     gap: 24px;
     flex: 1;
+  }
+}
+
+.ridi-hero__title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ridi-hero__logo {
+  width: 56px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .ridi-hero__logo {
+    width: 72px;
   }
 }
 
@@ -234,9 +457,6 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  background-color: var(--ridi-tint);
-  border-radius: 12px;
-  padding: 20px;
 }
 
 .ridi-details li {
@@ -282,6 +502,30 @@
   margin: 0;
 }
 
+/* ---------- Research: Analogy logos (826:13247) ---------- */
+
+.ridi-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  margin-top: 24px;
+}
+
+.ridi-logos img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+}
+
+@media (min-width: 1024px) {
+  .ridi-logos img {
+    height: 40px;
+  }
+}
+
 /* ---------- Audience segmentation (816:13030) ---------- */
 
 .ridi-audience {
@@ -306,28 +550,64 @@
 }
 
 .ridi-audience__avatar {
-  width: 160px;
-  height: 160px;
+  width: 125px;
+  height: 126px;
   border-radius: 50%;
-  background-color: var(--ridi-surface3);
-  border: 1px dashed var(--ridi-border);
+  object-fit: cover;
 }
 
 .ridi-audience__item p {
-  color: var(--ridi-muted);
   margin: 0;
+}
+
+.ridi-audience__name {
+  color: var(--ridi-accent);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.ridi-audience__desc {
+  color: var(--ridi-muted);
+  font-size: 14px;
+}
+
+/* ---------- Research Artifacts / IA (816:13042, 816:13045) ---------- */
+
+.ridi-artifact-heading {
+  text-align: center;
+  color: #ffffff;
+  margin: 0 0 16px;
+}
+
+.ridi-artifact-media img {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
 }
 
 /* ---------- Key Decisions (816:13050) ---------- */
 
-.ridi-decision {
+.ridi-decisions-panel {
+  background-color: var(--ridi-panel-dark);
+  border-radius: 24px;
+  padding: 32px var(--page-px);
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.ridi-decision + .ridi-decision {
-  margin-top: 48px;
+@media (min-width: 1024px) {
+  .ridi-decisions-panel {
+    border-radius: 48px;
+    padding: 48px 80px;
+  }
+}
+
+.ridi-decision {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 0;
 }
 
 .ridi-decision h3 {
@@ -335,20 +615,59 @@
   margin: 0;
 }
 
-.ridi-decision__cards {
-  display: grid;
-  grid-template-columns: 1fr;
+.ridi-decision__body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .ridi-decision__body {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.ridi-decision__screens {
+  display: flex;
   gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.ridi-decision__screens img {
+  flex-shrink: 0;
+  width: 140px;
+  border-radius: 12px;
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .ridi-decision__screens {
+    overflow-x: visible;
+  }
+  .ridi-decision__screens img {
+    width: 180px;
+  }
+}
+
+.ridi-decision__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
 }
 
 @media (min-width: 1024px) {
   .ridi-decision__cards {
-    grid-template-columns: repeat(3, 1fr);
+    width: 280px;
+    flex-shrink: 0;
   }
 }
 
 .ridi-decision__card {
-  background-color: var(--ridi-tint);
+  background-color: var(--ridi-card);
   border-radius: 10px;
   padding: 16px;
 }
@@ -368,23 +687,33 @@
   line-height: 25px;
 }
 
-/* ---------- Core Features (816:13126) ---------- */
-
-.ridi-feature {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 24px;
-  border-radius: 16px;
-  background-color: var(--ridi-surface3);
+.ridi-gif-frame {
+  flex-shrink: 0;
+  width: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
 }
 
-.ridi-feature + .ridi-feature {
+.ridi-gif-frame img {
+  width: 100%;
+  display: block;
+}
+
+/* ---------- Core Features (816:13126) + UIKit (816:13105) + Results CTA (816:13149) ---------- */
+
+.ridi-card-block {
+  background-color: var(--ridi-card);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.ridi-card-block + .ridi-card-block {
   margin-top: 24px;
 }
 
 @media (min-width: 1024px) {
-  .ridi-feature + .ridi-feature {
+  .ridi-card-block + .ridi-card-block {
     margin-top: 48px;
   }
 }
@@ -398,19 +727,107 @@
   margin: 0;
 }
 
-/* ---------- UIKit (816:13105) ---------- */
+.ridi-feature__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  margin-top: 24px;
+}
+
+@media (min-width: 1024px) {
+  .ridi-feature__body {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.ridi-feature__ride img {
+  width: 180px;
+  border-radius: 12px;
+  display: block;
+}
+
+/* Wireframe screenshot + "View wireframe flow ->" link — both are real
+   external links (Figma prototype URL), opening in a new tab. Grayscale
+   via mix-blend-mode:luminosity, exactly as Figma's own export marks it. */
+.ridi-wireframe {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.ridi-wireframe__link {
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.ridi-wireframe__link:hover {
+  transform: scale(1.05);
+}
+
+.ridi-wireframe__link img {
+  width: 100%;
+  display: block;
+  /* Fixed: mix-blend-mode:luminosity (Figma's own export technique)
+     depends on what's painted behind the element and rendered as
+     still-color here — filter:grayscale is the reliable way to get an
+     actual black-and-white image regardless of backdrop. */
+  filter: grayscale(1);
+}
+
+.ridi-wireframe__cta {
+  color: var(--ridi-link);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 14px;
+  transition: filter 0.15s ease;
+}
+
+.ridi-wireframe__cta:hover {
+  filter: brightness(1.4);
+}
+
+.ridi-scenario3__rides {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.ridi-scenario3__rides img {
+  width: 180px;
+  border-radius: 12px;
+  display: block;
+}
+
+.ridi-scenario3__wireframe {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.ridi-scenario3__wireframe .ridi-wireframe {
+  max-width: 620px;
+  width: 100%;
+}
 
 .ridi-uikit__media img {
-  aspect-ratio: 548 / 320;
-  object-fit: contain;
-  background-color: var(--ridi-tint);
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
 }
 
 .ridi-mascot {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin-top: 48px;
+  margin-top: 24px;
 }
 
 @media (min-width: 1024px) {
@@ -427,14 +844,51 @@
 
 @media (min-width: 1024px) {
   .ridi-mascot__media {
-    width: 320px;
+    width: 360px;
   }
 }
 
 .ridi-mascot__media img {
-  border-radius: 16px;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+  border-radius: 12px;
+  width: 100%;
+  object-fit: contain;
+  background-color: var(--ridi-tint);
+  display: block;
+}
+
+/* ---------- Results CTA (816:13149) ---------- */
+
+.ridi-results-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.ridi-results-cta p {
+  color: #fffefe;
+  margin: 0;
+  font-size: 24px;
+}
+
+.ridi-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: #7b61ff;
+  border: 1px solid #4f4c61;
+  border-radius: 6px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  color: #fffefe;
+  transition: background-color 0.15s ease;
+}
+
+.ridi-btn-primary:hover {
+  background-color: #6a52e0;
 }
 
 /* ---------- What's Next (816:13164) ---------- */

@@ -57,38 +57,64 @@
     </nav>
 
     <main>
-      <!-- UI: CASE05-HERO-01 | Hero | matches Figma "Hero" (816:12956) -->
+      <!-- UI: CASE05-HERO-01 | Hero | matches Figma "Hero" (866:14394), synced 2026-09-12 -->
       <section class="ridi-hero">
-        <div class="ridi-hero__media">
-          <div class="ridi-hero__media-frame">
-            <img src="assets/case-ridi/hero-mockup.webp" alt="Ridi navigation app — suggested routes and live navigation screens" />
-          </div>
+        <img class="ridi-hero__bg" src="assets/case-ridi/hero-bg.webp" alt="" aria-hidden="true" />
+        <!-- "gray line" x3 — same wiggle technique as YOY/ATJ2's Hero lines, 15% faster -->
+        <div class="ridi-hero__lines" aria-hidden="true">
+          <svg class="ridi-hero__line ridi-hero__line--1" viewBox="0 0 590.175 329.71" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.00055 9.8113C35.1869 -10.3227 57.9417 52.9622 27.4215 113.99C-3.09863 175.019 112.136 109.046 176.812 128.742C241.487 148.438 21.3473 254.426 139.309 260.774C257.27 267.123 286.907 232.051 364.704 231.279C442.5 230.507 502.248 392.256 584.174 289.563" stroke="#D1D1D1" stroke-opacity="0.06" stroke-width="12" stroke-linecap="round" />
+          </svg>
+          <svg class="ridi-hero__line ridi-hero__line--2" viewBox="0 0 1333.03 737.914" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.00055 14.7082C72.6865 -31.2948 124.677 113.301 54.944 252.74C-14.7896 392.179 248.503 241.442 396.276 286.444C544.048 331.446 41.0652 573.613 310.588 588.117C580.111 602.622 647.826 522.49 825.578 520.726C1003.33 518.961 1139.84 888.531 1327.03 653.895" stroke="#D1D1D1" stroke-opacity="0.06" stroke-width="12" stroke-linecap="round" />
+          </svg>
+          <svg class="ridi-hero__line ridi-hero__line--3" viewBox="0 0 755.228 420.407" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.00055 10.8993C43.5188 -14.9824 72.7695 66.3686 33.5366 144.819C-5.6962 223.269 142.435 138.462 225.574 163.781C308.712 189.1 25.7283 325.345 177.365 333.506C329.001 341.666 367.099 296.583 467.104 295.59C567.109 294.598 643.914 502.522 749.227 370.513" stroke="#D1D1D1" stroke-opacity="0.06" stroke-width="12" stroke-linecap="round" />
+          </svg>
         </div>
-        <div class="ridi-hero__content">
-          <h1 class="ridi-hero__title">Ridi — Moto Navigator</h1>
-          <p class="body-large">Product &amp; UX/UI дизайн навігаційного концепту для мотоциклістів</p>
-          <p class="body-large ridi-hero__desc">
-            У мотоцикліста немає часу дивитися на екран. Я спроєктував навігатор, який читається
-            периферійним зором на швидкості, а не вимагає уваги.
-          </p>
-          <ul class="ridi-details">
-            <li><b>Роль:</b> Product/UX-UI дизайнер, сольно — research, IA, UX, дизайн-система, UI</li>
-            <li><b>Контекст:</b> особистий concept-проєкт, орієнтований на європейський ринок мотоподорожей</li>
-            <li><b>Стадія:</b> hi-fi концепт з дизайн-системою; жодного живого продукту немає</li>
-            <li><b>Інструменти:</b> Figma, Figma MCP, Claude, Gemini (мокап маскота)</li>
-            <li><b>Статус кейсу:</b> Concept · Personal project</li>
-          </ul>
+
+        <div class="ridi-hero__body">
+          <!-- "screens" — jump up on load, random order, per Roman -->
+          <div class="ridi-hero__screens" data-bounce-group="load">
+            <div class="ridi-hero__screen ridi-hero__screen--1">
+              <img src="assets/case-ridi/hero-screen-1.webp" alt="" />
+            </div>
+            <div class="ridi-hero__screen ridi-hero__screen--2">
+              <img src="assets/case-ridi/hero-screen-2.webp" alt="" />
+            </div>
+            <div class="ridi-hero__screen ridi-hero__screen--3">
+              <img src="assets/case-ridi/hero-screen-3.webp" alt="Ridi navigation screen with a route on the map" />
+            </div>
+          </div>
+
+          <div class="ridi-hero__content">
+            <div class="ridi-hero__title-row">
+              <img class="ridi-hero__logo" src="assets/case-ridi/ridi-logo.webp" alt="" aria-hidden="true" />
+              <h1 class="ridi-hero__title">Ridi</h1>
+            </div>
+            <p class="body-large ridi-hero__desc">Концепт навігаційного додатку для мотоциклістів</p>
+            <div class="tag-row">
+              <span class="tag">Mobile app</span>
+              <span class="tag">Road Navigation</span>
+              <span class="tag">AI Design</span>
+            </div>
+            <p class="body-large ridi-hero__desc">
+              У мотоцикліста немає часу дивитися на екран. Я спроєктував навігатор, який читається
+              периферійним зором на швидкості, а не вимагає уваги.
+            </p>
+            <ul class="ridi-details">
+              <li><b>Роль:</b> UX Designer, Product Owner</li>
+              <li><b>Pet Project</b></li>
+              <li><b>Tools:</b> Claude, Figma MCP, FigJam</li>
+              <li><b>Case status:</b> MVP, product exists in web version</li>
+            </ul>
+          </div>
         </div>
       </section>
 
       <!-- UI: CASE05-FACTS-01 | Three Facts | matches Figma "Three Facts" (816:12978) -->
       <section class="ridi-section ridi-section--tint">
         <h2 class="h2-section ridi-heading">Три факти замість метрик</h2>
-        <p class="body-large ridi-body-muted">
-          Продукту немає в природі як живого застосунку — це концепт-кейс, тож жодних product-метрик
-          тут бути не може. Замість них — цифри з реального research (10 інтерв'ю, 50 відповідей
-          опитування) і об'єктивні характеристики зробленого.
-        </p>
         <div class="ridi-facts">
           <div class="ridi-facts__card">
             <p class="body-main">70% опитаних скаржаться на перевантажені навігатори, 45% бракує кастомізації маршруту — звідси весь підхід продукту</p>
@@ -126,24 +152,21 @@
           <div>
             <h3 class="h3-case-study ridi-subheading">Role:</h3>
             <p class="body-large">
-              Проєкт вів одноосібно: research, information architecture, UX-сценарії, дизайн-система
-              та UI. Клієнта чи команди не було — це особистий concept-проєкт, і я прямо зазначаю це,
-              не видаючи його за комерційне замовлення.
+              Проєкт веду одноосібно як pet project: research, information architecture,
+              UX-сценарії, дизайн-система та UI. Клієнта чи команди не було — це concept-проєкт, і я
+              прямо зазначаю це, не видаючи його за комерційне замовлення.
             </p>
           </div>
           <div>
             <h3 class="h3-case-study ridi-subheading">Constraints:</h3>
             <p class="body-large">
-              Дослідження було польовим та опитувальним: 10 інтерв'ю і 50 відповідей. Це не масштабне
-              UX-тестування, тому проєкт залишається на concept-стадії, а рішення не слід сприймати як
-              валідовані на реальному продукті.
+              Дослідження було польовим та опитувальним: 10 інтерв'ю і 50 відповідей. Це не
+              масштабне UX-тестування, тому проєкт залишається на concept-стадії, а рішення не слід
+              сприймати як валідовані на реальному продукті.
             </p>
             <p class="body-large">
               Географія респондентів: Україна та частково Європа. Тому позиціювання орієнтоване на
-              європейський ринок мотоподорожей, а не на американський.
-            </p>
-            <p class="body-large">
-              Живого коду немає. Оцінку складності реалізації винесено окремо, у розділ «Що далі».
+              європейський ринок мотоподорожей, а не на інші регіони.
             </p>
           </div>
         </div>
@@ -155,15 +178,16 @@
         <div class="ridi-two-col">
           <div class="ridi-panel">
             <p class="body-large">
-              Існуючі навігатори або не для мотоциклістів (Google Maps, Waze — популярні, але не
+              Існуючі навігатори або не для мотоциклістів (Google Maps, Waze популярні, але не
               враховують контекст руху на мотоциклі), або незручні на швидкості (Rever вимагає
-              підписки на повний функціонал, Strava без мото-специфіки, Waze складний для новачків).
+              підписки на повний функціонал, Strava без мото-специфіки, Waze надто автомобеле
+              орієнтований).
             </p>
           </div>
           <p class="body-large">
             Дослідження підтвердило системність проблеми, не поодинокі скарги: перевантажені
-            інтерфейси, відсутність кастомізації маршруту, відсутність реакції на перешкоди в
-            реальному часі.
+            інтерфейси, відсутність кастомізації маршруту під стиль їзди, відсутність реакції на
+            перешкоди в реальному часі.
           </p>
         </div>
       </section>
@@ -177,8 +201,8 @@
             <ul class="ridi-list">
               <li>Особистий досвід у русі: кілька навігаційних застосунків протестовано наживо, за кермом</li>
               <li>10 інтерв'ю з мотоциклістами різних дисциплін (спорт / ендуро / сіті)</li>
-              <li>50 відповідей онлайн-опитування</li>
-              <li>Конкурентний аналіз: Strava, Rever, Google Maps, Waze, Garmin, komoot, Calimoto, Scenic</li>
+              <li>50 відповідей онлайн опитування</li>
+              <li>Конкурентний аналіз</li>
             </ul>
           </div>
           <div>
@@ -193,246 +217,281 @@
         </div>
 
         <div style="margin-top: 48px">
-          <h3 class="h3-case-study ridi-subheading">Analogy аналіз:</h3>
-          <p class="body-large ridi-body-muted">
-            Rever / EatSleepRIDE / DynoJet PowerCore / Scenic / Strava / Google Maps / Waze / Garmin /
-            komoot / Calimoto
-          </p>
+          <h3 class="h3-case-study ridi-subheading">Analogy які тестував у процесі:</h3>
+          <div class="ridi-logos">
+            <img loading="lazy" src="assets/case-ridi/analogy-logo-1.webp" alt="" />
+            <img loading="lazy" src="assets/case-ridi/analogy-logo-2.webp" alt="" />
+            <img loading="lazy" src="assets/case-ridi/analogy-logo-3.webp" alt="" />
+            <img loading="lazy" src="assets/case-ridi/analogy-logo-4.webp" alt="" />
+            <img loading="lazy" src="assets/case-ridi/analogy-logo-5.webp" alt="" />
+            <img loading="lazy" src="assets/case-ridi/analogy-logo-6.webp" alt="" />
+          </div>
         </div>
 
         <div style="margin-top: 48px">
           <h3 class="h3-case-study ridi-subheading">Сегментація аудиторії</h3>
-          <div class="ridi-audience">
+          <!-- "1"/"2"/"3" — jump up on scroll into view, random order, per Roman -->
+          <div class="ridi-audience" data-bounce-group="scroll">
             <div class="ridi-audience__item">
-              <div class="ridi-audience__avatar" aria-hidden="true"></div>
-              <p class="body-main">Мотолюбителі 70% (прості інструменти планування)</p>
+              <img class="ridi-audience__avatar" loading="lazy" src="assets/case-ridi/avatar-newbie.webp" alt="" />
+              <p class="ridi-audience__name">Новачки 10%</p>
+              <p class="ridi-audience__desc">(простий onboarding і рекомендації)</p>
             </div>
             <div class="ridi-audience__item">
-              <div class="ridi-audience__avatar" aria-hidden="true"></div>
-              <p class="body-main">досвідчені 20% (аналітика, статистика, спільноти)</p>
+              <img class="ridi-audience__avatar" loading="lazy" src="assets/case-ridi/avatar-enthusiast.webp" alt="" />
+              <p class="ridi-audience__name">Любителі 70%</p>
+              <p class="ridi-audience__desc">(прості інструменти планування)</p>
             </div>
             <div class="ridi-audience__item">
-              <div class="ridi-audience__avatar" aria-hidden="true"></div>
-              <p class="body-main">новачки 10% (простий onboarding і рекомендації)</p>
+              <img class="ridi-audience__avatar" loading="lazy" src="assets/case-ridi/avatar-experienced.webp" alt="" />
+              <p class="ridi-audience__name">Досвідчені 20%</p>
+              <p class="ridi-audience__desc">(аналітика, статистика, спільноти)</p>
             </div>
           </div>
         </div>
 
         <div style="margin-top: 48px">
-          <h3 class="h3-case-study ridi-subheading">Research Artifacts</h3>
-          <div class="ridi-placeholder" style="aspect-ratio: 1120 / 486">
-            JTBD / CJM / Personas — будуть додані окремим зображенням
+          <h3 class="ridi-artifact-heading h3-case-study">Отже, я використав дослідження і створив відповідні артифакти</h3>
+          <!-- fades in through blur ("з туману"), per Roman -->
+          <div class="ridi-artifact-media" data-fog>
+            <img loading="lazy" src="assets/case-ridi/research-artifacts.webp" alt="Research artifacts collage: User Personas, CJM, JTBD" />
           </div>
         </div>
 
         <div style="margin-top: 48px">
-          <h3 class="h3-case-study ridi-subheading">Інформаційна архітектура</h3>
-          <div class="ridi-media ridi-media--wide">
+          <h3 class="ridi-artifact-heading h3-case-study">Які згодом переосмислив у інформаційну архитектуру для чіткого розуміння логіки</h3>
+          <div class="ridi-artifact-media" data-fog>
             <img loading="lazy" src="assets/case-ridi/information-architecture.webp" alt="Ridi information architecture map" />
           </div>
         </div>
       </section>
 
       <!-- UI: CASE05-DECISIONS-01 | Key Decisions | matches Figma "Key Decisions" (816:13050) -->
-      <section class="ridi-section ridi-section--tint">
-        <h2 class="h2-section ridi-heading">Ключові рішення</h2>
-        <p class="body-large ridi-body-muted" style="margin-bottom: 24px">
-          Кожне рішення нижче прив'язане до контексту руху — це те, що відрізняє продуктове мислення
-          від «красивих екранів».
-        </p>
+      <section class="ridi-section">
+        <div class="ridi-decisions-panel">
+          <h1 class="ridi-heading" style="font-size: 40px">Ключові рішення</h1>
+          <p class="body-large">
+            Кожне рішення нижче прив'язане до контексту руху — це те, що відрізняє продуктове
+            мислення від «красивих екранів».
+          </p>
 
-        <div class="ridi-decision">
-          <h3 class="h3-case-study">Стан «Небезпека» у Ride Cluster</h3>
-          <div class="ridi-media">
-            <img loading="lazy" src="assets/case-ridi/decision-danger.webp" alt="Speed cluster in the Danger state, red glow around the capsule" />
+          <div class="ridi-decision">
+            <h3 class="h3-case-study">Стан «Небезпека» у Ride Cluster</h3>
+            <div class="ridi-decision__body">
+              <div class="ridi-decision__screens">
+                <img loading="lazy" src="assets/case-ridi/decision-danger-1.webp" alt="Ride cluster in Danger state, screen 1" />
+                <img loading="lazy" src="assets/case-ridi/decision-danger-2.webp" alt="Ride cluster in Danger state, screen 2" />
+                <img loading="lazy" src="assets/case-ridi/decision-danger-3.webp" alt="Ride cluster in Danger state, screen 3" />
+              </div>
+              <div class="ridi-decision__cards">
+                <div class="ridi-decision__card">
+                  <h4>Проблема</h4>
+                  <p>На швидкості читати цифру на спідометрі — це відволікання, яке коштує дорого. Стандартний UI показує перевищення тим самим кольором, що і норму.</p>
+                </div>
+                <div class="ridi-decision__card">
+                  <h4>Рішення</h4>
+                  <p>Великі цифри та сповіщення. При перевищенні швидкість стає червоною з червоним glow навколо капсули. Три рівні станів: Норма → Попередження → Небезпека.</p>
+                </div>
+                <div class="ridi-decision__card">
+                  <h4>Чому</h4>
+                  <p>Периферійним зором колір і світіння зчитуються швидше за цифру. Небезпечний стан має «кричати» ще до того, як водій встигне прочитати число.</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="ridi-decision__cards">
-            <div class="ridi-decision__card">
-              <h4>Проблема</h4>
-              <p>На швидкості читати цифру на спідометрі — це відволікання, яке коштує дорого. Стандартний UI показує перевищення тим самим кольором, що і норму.</p>
-            </div>
-            <div class="ridi-decision__card">
-              <h4>Рішення</h4>
-              <p>При перевищенні швидкість стає червоною з червоним glow навколо капсули. Три рівні станів: Норма → Попередження → Небезпека.</p>
-            </div>
-            <div class="ridi-decision__card">
-              <h4>Чому</h4>
-              <p>Периферійним зором колір і світіння зчитуються швидше за цифру. Небезпечний стан має «кричати» ще до того, як водій встигне прочитати число.</p>
-            </div>
-          </div>
-        </div>
 
-        <div class="ridi-decision">
-          <h3 class="h3-case-study">Автозум карти за швидкістю</h3>
-          <div class="ridi-media">
-            <img loading="lazy" src="assets/case-ridi/decision-autozoom.webp" alt="Map automatically zooming out as speed increases" />
+          <div class="ridi-decision">
+            <h3 class="h3-case-study">Автозум карти за швидкістю</h3>
+            <div class="ridi-decision__body">
+              <!-- Roman will drop a GIF into this frame later; static phone bezel for now -->
+              <div class="ridi-gif-frame">
+                <img loading="lazy" src="assets/case-ridi/decision-autozoom-frame.webp" alt="Phone frame — auto-zoom map demo (GIF coming soon)" />
+              </div>
+              <div class="ridi-decision__cards">
+                <div class="ridi-decision__card">
+                  <h4>Проблема</h4>
+                  <p>Стандартна карта тримає один масштаб незалежно від швидкості — на розгоні водій отримує замало контексту про дорогу попереду.</p>
+                </div>
+                <div class="ridi-decision__card">
+                  <h4>Рішення</h4>
+                  <p>Карта автоматично віддаляється на розгоні, даючи більше простору для реакції, і наближається на низькій швидкості для деталізації.</p>
+                </div>
+                <div class="ridi-decision__card">
+                  <h4>Чому</h4>
+                  <p>Це власна фіча, якої немає навіть у прямому орієнтирі Scenic, вона напряму випливає з інсайту «немає часу дивитись на екран».</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="ridi-decision__cards">
-            <div class="ridi-decision__card">
-              <h4>Проблема</h4>
-              <p>Стандартна карта тримає один масштаб незалежно від швидкості — на розгоні водій отримує замало контексту про дорогу попереду.</p>
-            </div>
-            <div class="ridi-decision__card">
-              <h4>Рішення</h4>
-              <p>Карта автоматично віддаляється на розгоні, даючи більше простору для реакції, і наближається на низькій швидкості для деталізації.</p>
-            </div>
-            <div class="ridi-decision__card">
-              <h4>Чому</h4>
-              <p>Це власна фіча, якої немає навіть у прямому орієнтирі Scenic — вона напряму випливає з інсайту «немає часу дивитись на екран».</p>
-            </div>
-          </div>
-        </div>
 
-        <div class="ridi-decision">
-          <h3 class="h3-case-study">GPS-lost стан замість приховування невизначеності</h3>
-          <div class="ridi-media">
-            <img loading="lazy" src="assets/case-ridi/decision-gps-lost.webp" alt="Rider puck turning gray with a growing halo when GPS signal is lost" />
-          </div>
-          <div class="ridi-decision__cards">
-            <div class="ridi-decision__card">
-              <h4>Проблема</h4>
-              <p>У тунелях і лісі (частий кейс ендуро-катання) GPS-сигнал губиться. Більшість навігаторів або зависають, або мовчки показують стару позицію як актуальну.</p>
-            </div>
-            <div class="ridi-decision__card">
-              <h4>Рішення</h4>
-              <p>Rider Puck сіріє, а ореол навколо нього росте — невизначеність позиції показана буквально, а не прихована.</p>
-            </div>
-            <div class="ridi-decision__card">
-              <h4>Чому</h4>
-              <p>Чесний UI під час втрати сигналу важливіший за ілюзію точності — водій має знати, що дані вже не свіжі, саме в той момент коли це критично.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="ridi-decision">
-          <h3 class="h3-case-study">Захист запису треку від випадкового завершення</h3>
-          <div class="ridi-media">
-            <img loading="lazy" src="assets/case-ridi/decision-track-protection.webp" alt="Pause moved into a separate tray, away from the Finish action" />
-          </div>
-          <div class="ridi-decision__cards">
-            <div class="ridi-decision__card">
-              <h4>Проблема</h4>
-              <p>Одна випадкова дотика під час руху може завершити й втратити запис 200-кілометрового треку — це найдорожча помилка в flow.</p>
-            </div>
-            <div class="ridi-decision__card">
-              <h4>Рішення</h4>
-              <p>Pause винесено в шторку окремо від Finish; завершення відбувається тільки через hold-to-finish (утримання), не одним тапом.</p>
-            </div>
-            <div class="ridi-decision__card">
-              <h4>Чому</h4>
-              <p>Патерн підглянутий у Strava навмисно: захист цінних даних важливіший за швидкість дії, коли ціна помилки — втрата всієї поїздки.</p>
+          <div class="ridi-decision">
+            <h3 class="h3-case-study">Захист запису треку від випадкового завершення</h3>
+            <div class="ridi-decision__body">
+              <div class="ridi-decision__cards">
+                <div class="ridi-decision__card">
+                  <h4>Проблема</h4>
+                  <p>Один випадковий дотик під час руху може завершити й втратити запис 200-кілометрового треку — це найдорожча помилка в flow.</p>
+                </div>
+                <div class="ridi-decision__card">
+                  <h4>Рішення</h4>
+                  <p>Pause винесено в шторку окремо від Finish; завершення відбувається тільки через hold-to-finish (утримання), не одним тапом.</p>
+                </div>
+                <div class="ridi-decision__card">
+                  <h4>Чому</h4>
+                  <p>Патерн підглянутий у Strava навмисно: захист цінних даних важливіший за швидкість дії, коли ціна помилки — втрата всієї поїздки.</p>
+                </div>
+              </div>
+              <div class="ridi-decision__screens">
+                <img loading="lazy" src="assets/case-ridi/decision-autosave-1.webp" alt="Track recording protection, screen 1" />
+                <img loading="lazy" src="assets/case-ridi/decision-autosave-2.webp" alt="Track recording protection, screen 2" />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <!-- UI: CASE05-UIKIT-01 | UI-Kit | matches Figma "UIKit" (816:13105) -->
-      <section class="ridi-section">
-        <h2 class="h2-section ridi-heading">UIKit</h2>
-        <div class="ridi-two-col">
-          <div>
-            <p class="body-large ridi-body-muted">
-              Компонентна бібліотека (29 компонентів на 4 колекціях токенів) і базові контроли з
-              офіційної Apple iOS 26 Liquid Glass — згенеровані через Claude і Figma MCP, я перевірив
-              результат і скоригував під продуктові потреби. Це інструментальна частина, не основна
-              робота.
-            </p>
-            <p class="body-large ridi-body-muted">
-              Основна робота в цьому кейсі — рішення, прив'язані до контексту руху (розділ «Ключові
-              рішення» вище): які стани потрібні на швидкості, як поводиться карта, як захищений запис
-              треку. Компоненти — лише матеріал, з якого це зібрано.
-            </p>
-            <p class="body-large ridi-body-muted">
-              Контраст праймері підняли свідомо: старий #FF6B00 давав 6.8:1 і провалював AAA, новий
-              #FF8A1F — 8.2:1, AAA пройдено. Touch targets 56–64px замість стандартних 44px HIG —
-              свідоме відхилення від гайдлайну, виправдане їздою в рукавичках.
-            </p>
+      <section class="ridi-section ridi-section--tint">
+        <div class="ridi-card-block">
+          <h2 class="h2-section ridi-heading">UIKit</h2>
+          <div class="ridi-two-col">
+            <div>
+              <p class="body-large ridi-body-muted">
+                Компонентна бібліотека (29 компонентів на 4 колекціях токенів) і базові контроли з
+                офіційної Apple iOS 26 Liquid Glass — згенеровані через Claude і Figma MCP, я
+                перевірив результат і скоригував під продуктові потреби. Це інструментальна частина,
+                не основна робота.
+              </p>
+              <p class="body-large ridi-body-muted">
+                Основна робота в цьому кейсі — рішення, прив'язані до контексту руху (розділ
+                «Ключові рішення» вище): які стани потрібні на швидкості, як поводиться карта, як
+                захищений запис треку. Компоненти — лише матеріал, з якого це зібрано.
+              </p>
+              <p class="body-large ridi-body-muted">
+                Контраст праймері підняли свідомо: старий #FF6B00 давав 6.8:1 і провалював AAA,
+                новий #FF8A1F — 8.2:1, AAA пройдено. Touch targets 56–64px замість стандартних 44px
+                HIG — свідоме відхилення від гайдлайну, виправдане їздою в рукавичках.
+              </p>
+            </div>
+            <div class="ridi-media ridi-uikit__media">
+              <img loading="lazy" src="assets/case-ridi/uikit-overview-2.webp" alt="Ridi UI Kit overview: components, tokens, and states" />
+            </div>
           </div>
-          <div class="ridi-media ridi-uikit__media">
-            <img loading="lazy" src="assets/case-ridi/uikit-overview.webp" alt="Ridi UI Kit overview: components, tokens, and states" />
-          </div>
-        </div>
 
-        <div class="ridi-mascot">
-          <div class="ridi-mascot__media">
-            <img loading="lazy" src="assets/case-ridi/mascot.webp" alt="Ridi mascot — a falcon in a racing helmet" />
-          </div>
-          <div>
-            <h3 class="h3-case-study ridi-subheading">Маскот (коротко)</h3>
-            <p class="body-large ridi-body-muted">
-              Сокіл — асоціація з навігацією (зір згори, точна траєкторія) і швидкістю. Два регістри:
-              плаский мінімальний силует для робочих знаків (маркер на карті, іконка застосунку) і
-              повноцінний 3D-персонаж для обкладинки кейсу.
-            </p>
+          <div class="ridi-mascot">
+            <!-- fades in through blur ("з туману"), per Roman -->
+            <div class="ridi-mascot__media" data-fog>
+              <img loading="lazy" src="assets/case-ridi/mascot-2.webp" alt="Ridi mascot — a falcon in a racing helmet" />
+            </div>
+            <div>
+              <h3 class="h3-case-study ridi-subheading">Маскот</h3>
+              <p class="body-large ridi-body-muted">
+                Сокіл — асоціація з навігацією (зір згори, точна траєкторія) і швидкістю. Два
+                регістри: плаский мінімальний силует для робочих знаків (маркер на карті, іконка
+                застосунку) і повноцінний 3D-персонаж для обкладинки кейсу.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- UI: CASE05-AI-01 | AI in process | matches Figma "AI in process" (816:13118) -->
-      <section class="ridi-section ridi-section--tint">
+      <section class="ridi-section">
         <h2 class="h2-section ridi-heading">AI у моєму процесі</h2>
         <p class="body-large ridi-body-muted" style="margin-bottom: 24px">
           UI Kit і базові компоненти описано вище, в UIKit — тут інше застосування:
         </p>
-        <div class="ridi-two-col" style="margin-bottom: 24px">
+        <div class="ridi-two-col">
           <p class="body-main ridi-body-muted">Компоненти генерувались поетапно через Figma MCP — каркас, варіанти, токенізація, далі ручне доопрацювання під продуктові стани (Небезпека, GPS-lost)</p>
           <p class="body-main ridi-body-muted">Перевірка контрасту й AAA-відповідності, рахунками, не на око</p>
         </div>
-        <p class="body-main ridi-body-muted" style="margin-bottom: 24px">Мокап маскота — ітерації промптів у Gemini, фінальний вибір і корекція вручну</p>
-        <p class="body-large">
-          Кожне рішення — які стани потрібні на швидкості, як захищений трек, коли карта зумиться —
-          ухвалював я. AI прискорив збірку, а не рішення.
-        </p>
       </section>
 
       <!-- UI: CASE05-FEATURES-01 | Core Features | matches Figma "Core Features" (816:13126) -->
       <section class="ridi-section">
         <h2 class="h2-section ridi-heading">Core Features</h2>
-        <p class="body-large" style="margin-bottom: 24px">Онбординг і чотири маршрутні сценарії — по кроках, з JTBD кожного.</p>
 
-        <div class="ridi-feature">
-          <div class="ridi-feature__text">
-            <h3 class="h3-case-study">Онбординг</h3>
-            <p class="body-main ridi-body-muted">Збирає стиль райдера один раз: рівень, стиль їзди, обсяг двигуна, дистанція. Дані наповнюють пресет, який підставляється у фільтри Сценарію 2 — менше кроків при кожній наступній побудові маршруту. Skip на кожному кроці, фінал — одразу згенерований маршрут, не порожнє «дякуємо».</p>
-          </div>
-          <div class="ridi-media ridi-media--wide">
-            <img loading="lazy" src="assets/case-ridi/onboarding.webp" alt="Ridi onboarding flow: rider level, style, engine size, distance" />
+        <div class="ridi-card-block">
+          <h3 class="h3-case-study">Онбординг</h3>
+          <p class="body-main ridi-body-muted">Збирає стиль райдера один раз: рівень, стиль їзди, обсяг двигуна, дистанція. Дані наповнюють пресет, який підставляється у фільтри Сценарію 2, менше кроків при кожній наступній побудові маршруту.</p>
+          <div class="ridi-media ridi-media--wide" style="margin-top: 24px">
+            <img loading="lazy" src="assets/case-ridi/onboarding-all.webp" alt="All Ridi onboarding screens" />
           </div>
         </div>
 
-        <div class="ridi-feature">
+        <div class="ridi-card-block">
           <div class="ridi-feature__text">
             <h3 class="h3-case-study">Сценарій 1 — Direct Route Planning</h3>
             <p class="body-main ridi-body-muted">Райдер хоче доїхати до конкретної точки найпрямішим шляхом, з опцією додати проміжні зупинки.</p>
           </div>
-          <div class="ridi-media ridi-media--wide">
-            <img loading="lazy" src="assets/case-ridi/scenario-1.webp" alt="Scenario 1 — direct route planning screens" />
+          <div class="ridi-feature__body">
+            <div class="ridi-feature__ride">
+              <img loading="lazy" src="assets/case-ridi/scenario1-ride.webp" alt="Scenario 1 screen" />
+            </div>
+            <!-- wireframe: real external link (Figma prototype), opens in new tab, grayscale + fog-in + hover scale -->
+            <div class="ridi-wireframe" data-fog>
+              <a class="ridi-wireframe__link" href="https://www.figma.com/design/zrUZB4ZGeNVnx52eqyIPxF/Ridi-wireframing?node-id=1-1338&t=gsIByTu6stTn5cu8-1" target="_blank" rel="noopener">
+                <img loading="lazy" src="assets/case-ridi/scenario1-wireframe.webp" alt="Scenario 1 wireframe flow" />
+              </a>
+              <a class="ridi-wireframe__cta" href="https://www.figma.com/design/zrUZB4ZGeNVnx52eqyIPxF/Ridi-wireframing?node-id=1-1338&t=gsIByTu6stTn5cu8-1" target="_blank" rel="noopener">View wireframe flow -&gt;</a>
+            </div>
           </div>
         </div>
 
-        <div class="ridi-feature">
+        <div class="ridi-card-block">
           <div class="ridi-feature__text">
             <h3 class="h3-case-study">Сценарій 2 — Custom Route Based on Preferences</h3>
             <p class="body-main ridi-body-muted">Райдер хоче покататись навколо поточної локації; застосунок пропонує маршрути під стиль і рівень (Rider Level, Style, Terrain, Distance, Area).</p>
           </div>
-          <div class="ridi-media ridi-media--wide">
-            <img loading="lazy" src="assets/case-ridi/scenario-2.webp" alt="Scenario 2 — custom route based on preferences screens" />
+          <div class="ridi-feature__body">
+            <div class="ridi-feature__ride">
+              <img loading="lazy" src="assets/case-ridi/scenario2-ride.webp" alt="Scenario 2 screen" />
+            </div>
+            <div class="ridi-wireframe" data-fog>
+              <a class="ridi-wireframe__link" href="https://www.figma.com/design/zrUZB4ZGeNVnx52eqyIPxF/Ridi-wireframing?node-id=1-2185&t=gsIByTu6stTn5cu8-1" target="_blank" rel="noopener">
+                <img loading="lazy" src="assets/case-ridi/scenario2-wireframe.webp" alt="Scenario 2 wireframe flow" />
+              </a>
+              <a class="ridi-wireframe__cta" href="https://www.figma.com/design/zrUZB4ZGeNVnx52eqyIPxF/Ridi-wireframing?node-id=1-2185&t=gsIByTu6stTn5cu8-1" target="_blank" rel="noopener">View wireframe flow -&gt;</a>
+            </div>
           </div>
         </div>
 
-        <div class="ridi-feature">
+        <div class="ridi-card-block">
           <div class="ridi-feature__text">
             <h3 class="h3-case-study">Сценарій 3 — Free Riding</h3>
             <p class="body-main ridi-body-muted">Старт без пункту призначення й маршруту → застосунок автоматично пише трек → наприкінці збереження й іменування.</p>
           </div>
-          <div class="ridi-media ridi-media--wide">
-            <img loading="lazy" src="assets/case-ridi/scenario-3.webp" alt="Scenario 3 — free riding screens" />
+          <div class="ridi-scenario3__rides">
+            <img loading="lazy" src="assets/case-ridi/scenario3-ride5.webp" alt="Scenario 3 screen 1" />
+            <img loading="lazy" src="assets/case-ridi/scenario3-ride7.webp" alt="Scenario 3 screen 2" />
+            <img loading="lazy" src="assets/case-ridi/scenario3-ride6.webp" alt="Scenario 3 screen 3" />
+          </div>
+          <div class="ridi-scenario3__wireframe">
+            <div class="ridi-wireframe" data-fog>
+              <a class="ridi-wireframe__link" href="https://www.figma.com/design/zrUZB4ZGeNVnx52eqyIPxF/Ridi-wireframing?node-id=1-3399&t=gsIByTu6stTn5cu8-1" target="_blank" rel="noopener">
+                <img loading="lazy" src="assets/case-ridi/scenario3-wireframe.webp" alt="Scenario 3 wireframe flow" />
+              </a>
+              <a class="ridi-wireframe__cta" href="https://www.figma.com/design/zrUZB4ZGeNVnx52eqyIPxF/Ridi-wireframing?node-id=1-3399&t=gsIByTu6stTn5cu8-1" target="_blank" rel="noopener">View wireframe flow -&gt;</a>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- UI: CASE05-RESULTS-01 | Results | matches Figma "Results" (816:13149) -->
+      <!-- UI: CASE05-RESULTS-CTA-01 | Results CTA | matches Figma "Results" (816:13149) -->
       <section class="ridi-section ridi-section--tint">
+        <div class="ridi-card-block ridi-results-cta">
+          <p class="h3-case-study">Бажаєте переглянути усі UX сценарії?</p>
+          <a class="ridi-btn-primary" href="https://www.figma.com/design/zrUZB4ZGeNVnx52eqyIPxF/Ridi-wireframing?node-id=0-1&t=gsIByTu6stTn5cu8-1" target="_blank" rel="noopener">
+            View all
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      <!-- UI: CASE05-RESULTS-01 | Results | matches Figma "Results" (856:13838) -->
+      <section class="ridi-section">
         <h2 class="h2-section ridi-heading">Results</h2>
         <div class="ridi-two-col">
           <div>
@@ -455,7 +514,7 @@
       </section>
 
       <!-- UI: CASE05-NEXT-01 | What's Next | matches Figma "What's Next" (816:13164) -->
-      <section class="ridi-section ridi-next">
+      <section class="ridi-section ridi-section--tint ridi-next">
         <h2 class="h2-section ridi-heading">What's Next</h2>
         <h3 class="h3-case-study ridi-subheading">План на реалізацію</h3>
         <p class="body-large ridi-body-muted">Lorem ipsum</p>
@@ -572,5 +631,6 @@
     <script src="js/nav.js"></script>
     <script src="js/reviews.js"></script>
     <script src="js/nbsp-typography.js"></script>
+    <script src="js/ridi-animations.js"></script>
   </body>
 </html>
