@@ -15,6 +15,32 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /*
+  Mobile "back to home" chevron (.nav-back, case-study pages only) —
+  per Roman: hitting back from a case study should return Home to the
+  exact scroll position it was at before, not the top. A plain
+  href="index.html" is a fresh forward navigation (browser reports its
+  performance-entry type as "navigate"), which js/home-scroll-restore.js
+  can't tell apart from a first-time visit — so prefer a genuine
+  history.back() when it's safe to assume that goes to Home (same-origin
+  referrer, real history to go back to), which the browser reports as
+  "back_forward" and lets that script restore correctly. Falls back to
+  the plain href for direct/bookmarked visits with no useful history.
+*/
+document.addEventListener("DOMContentLoaded", function () {
+  var navBack = document.querySelector(".nav-back");
+  if (!navBack) return;
+
+  navBack.addEventListener("click", function (e) {
+    var cameFromSameOrigin =
+      document.referrer && document.referrer.indexOf(location.origin) === 0;
+    if (cameFromSameOrigin && window.history.length > 1) {
+      e.preventDefault();
+      history.back();
+    }
+  });
+});
+
+/*
   Nav popups (Case Studies / Feedbacks) — added 2026-09-12, per Roman:
   clicking either link in the header, on ANY page, opens a popup on top
   of the current page instead of navigating/scrolling away.

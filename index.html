@@ -3,6 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Must run before the browser's own scroll restoration kicks in
+         (hence inline, in <head>, before anything else) — takes manual
+         control so js/home-scroll-restore.js can restore Home's exact
+         scroll position on back/forward without fighting the browser's
+         own attempt at the same thing. -->
+    <script>
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+    </script>
     <title>Alien Eyes — Roman Sviderskyi, Product Designer</title>
     <meta name="description" content="Roman Sviderskyi — Product Designer. I turn complex systems into interfaces people actually understand. Case studies in UX, design systems, and AI-driven product design." />
     <link rel="canonical" href="https://romsvid-hub.github.io/alien_eyes-portfolio/" />
@@ -552,5 +562,6 @@
     <script src="js/reveal.js"></script>
     <script src="js/hero-stars.js"></script>
     <script src="js/nbsp-typography.js"></script>
+    <script src="js/home-scroll-restore.js"></script>
   </body>
 </html>
