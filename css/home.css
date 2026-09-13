@@ -467,10 +467,12 @@
 }
 
 /*
-  3 columns (mobile + tablet) / 6 columns (desktop >=1280px) — per the
-  2026-08-25 grid spec: never 5+1, 4+2, or 2x3. Columns are fluid
-  (1fr), not a fixed px track, so the row always spans the full grid
-  width edge-to-edge without a fixed-width sub-container.
+  3 columns (mobile + tablet) / 5 columns (desktop >=1280px) — down
+  from 6 per Roman 2026-09-13 (hochurayu removed): 5 columns fills the
+  row edge-to-edge with the remaining logos stretched into its place
+  instead of leaving a gap. Columns are fluid (1fr), not a fixed px
+  track, so the row always spans the full grid width edge-to-edge
+  without a fixed-width sub-container.
 */
 .logos-grid {
   display: grid;
@@ -489,7 +491,7 @@
 
 @media (min-width: 1280px) {
   .logos-grid {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 
@@ -570,88 +572,6 @@
 .client-logo--softserve {
   background-size: 345.68% 424.66%;
   background-position: 54.351% 63.522%;
-}
-.client-logo--hochurayu {
-  background-size: 419.26% 515.05%;
-  background-position: 87.148% 62.734%;
-}
-
-/* ---------- Impact stats (2:13437) ---------- */
-
-/* UI: HOME-IMPACT-STATS-01 | Impact/stat numbers | inspect/adjust */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  border: 1px solid #363636;
-  border-radius: 8px;
-  max-width: 1120px;
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.stat-item {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  justify-content: center;
-  padding: 20px 16px;
-  min-height: 120px;
-  border-top: 1px solid #363636;
-}
-
-.stat-item:nth-child(-n + 2) {
-  border-top: none;
-}
-
-.stat-item:nth-child(odd) {
-  border-right: 1px solid #363636;
-}
-
-.stat-item__label {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.6;
-  letter-spacing: -0.0024px;
-  text-transform: uppercase;
-  color: var(--color-lines-dividers);
-}
-
-.stat-item__value {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 40px;
-  line-height: 1.2;
-  letter-spacing: -0.0112px;
-  color: var(--color-cta-purple);
-}
-
-@media (min-width: 1024px) {
-  .stats-grid {
-    grid-template-columns: repeat(4, 1fr);
-    min-height: 146px;
-  }
-
-  .stat-item {
-    min-height: 146px;
-    border-top: none;
-  }
-
-  .stat-item:nth-child(-n + 2) {
-    border-top: none;
-  }
-
-  .stat-item:nth-child(odd) {
-    border-right: none;
-  }
-
-  .stat-item:not(:first-child) {
-    border-left: 1px solid #363636;
-  }
-
-  .stat-item__value {
-    font-size: 56px;
-  }
 }
 
 /* ---------- Case studies (2:13454 ATJ, 2:13472 Uniqkey) ---------- */
