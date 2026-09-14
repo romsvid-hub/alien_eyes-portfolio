@@ -90,8 +90,13 @@
 */
 .nav-back {
   display: none;
-  width: 24px;
-  height: 24px;
+  /* Matches .nav-logo__icon's 40x40px box exactly (per Roman: every
+     page's header must be the same height as Home's) — this was 24x24,
+     16px shorter, making case-study headers visibly shorter than
+     Home's on mobile. The chevron itself stays its natural small size
+     (below), just centered in the taller box. */
+  width: 40px;
+  height: 40px;
   align-items: center;
   justify-content: center;
   color: var(--color-white);
@@ -257,7 +262,9 @@
   .site-nav.is-open .nav-menu {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    /* 32px per Roman (was 16px) — gap between every item in the open
+       mobile menu: the nav-links group and the Download CV button. */
+    gap: 32px;
     position: absolute;
     top: 100%;
     left: 0;
@@ -270,7 +277,9 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    /* 32px per Roman (was 16px) — same gap as above, between the
+       individual links (Case Studies / Feedbacks). */
+    gap: 32px;
   }
 
   /* Full width of the panel (716:12799's "Button Second" spans the

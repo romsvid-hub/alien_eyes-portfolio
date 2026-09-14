@@ -487,6 +487,13 @@
   margin-top: 24px;
 }
 
+@media (max-width: 767px) {
+  .ridi-logos {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
 .ridi-logos img {
   height: 32px;
   width: auto;

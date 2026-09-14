@@ -153,6 +153,21 @@
   color: var(--color-main-canvas);
 }
 
+/*
+  Fixed 2026-09-14 (Roman: tags read as "cut off" on desktop): the tag
+  row inherited .case-hero__content's max-width: 473px, clipping the
+  5th tag entirely since .tag-row's own overflow-x: auto has no visible
+  scroll affordance here. Freed from that cap so the row sizes to its
+  own content and all tags render on one line, as .tag-row's base
+  nowrap behavior already intends.
+*/
+@media (min-width: 768px) {
+  .case-hero__tags {
+    max-width: none;
+    width: max-content;
+  }
+}
+
 .case-hero__logo {
   position: relative;
   overflow: hidden;
@@ -670,14 +685,26 @@
   width: 12px;
   height: 60px;
   flex-shrink: 0;
-  /* Icon itself points right; rotate to point down while stages stack
-     vertically (base/tablet), then reset to its native right-pointing
-     orientation once the row goes horizontal at desktop. */
+}
+
+/*
+  Fixed 2026-09-14 (Roman: mobile arrows showed pointing sideways, not
+  down): .case-score__compare has data-reveal-group, and reveal.css's
+  .reveal-init.is-revealed { transform: none } (2 classes) was
+  outranking this rule's original 1-class selector once revealed,
+  wiping the rotation entirely regardless of source order. Requalified
+  at higher specificity (class + attribute + class) so the rotation
+  always wins over reveal.css's own transform, whichever loads last.
+  Icon itself points right; rotated 90deg clockwise to point down while
+  stages stack vertically (base/tablet), reset to its native
+  right-pointing orientation once the row goes horizontal at desktop.
+*/
+.case-score__compare[data-reveal-group] .case-score__arrow {
   transform: rotate(90deg);
 }
 
 @media (min-width: 1024px) {
-  .case-score__arrow {
+  .case-score__compare[data-reveal-group] .case-score__arrow {
     width: 25px;
     height: 100px;
     transform: none;

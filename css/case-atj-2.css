@@ -231,37 +231,45 @@
 
 .atj2-hero__media {
   flex: 1 1 50%;
-  aspect-ratio: 628 / 400;
   position: relative;
-  overflow: hidden;
+}
+
+/*
+  Fixed 2026-09-14 (Roman: the "Context icon" badge must read as glued
+  to the mockup, and mobile must show the mockup in full, not cropped):
+  the old mobile setup forced a 628:400 box with object-fit:cover,
+  which crops the (nearly square, 1200x1220) source image — and since
+  the badge was pinned to the CONTAINER's own corner rather than the
+  image's actual visible bounds, cropping shifted the image inside the
+  box while the badge stayed put, drifting the two apart. Now the
+  container has no forced ratio on mobile — it sizes to the image's own
+  intrinsic aspect ratio (img in normal flow, not absolutely
+  positioned), so the container's box always exactly matches the
+  image's rendered box, and the badge (still pinned to that same box's
+  top-left) stays visually locked to it at any width, showing the full
+  mockup with nothing cropped.
+*/
+.atj2-hero__media img:not(.atj2-hero__badge) {
+  position: static;
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 @media (min-width: 1024px) {
   .atj2-hero__media {
     aspect-ratio: auto;
+    overflow: hidden;
   }
-}
 
-/*
-  Mobile: object-fit:cover — safe default, no distortion, since Figma
-  only specified a crop for the desktop layout (a very different aspect
-  ratio from mobile's wide 628:400 box). Desktop: oversized-crop
-  percentages re-verified 2026-09-10 via get_design_context on 418:31417
-  ("mockup atj 2", 806:12747, container 526x485 — Roman resized this
-  container since the last check) — left:7.15%, top:-1.57%,
-  width:85.88%, height:94.68%.
-*/
-.atj2-hero__media img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-@media (min-width: 1024px) {
-  .atj2-hero__media img {
+  /*
+    Desktop: oversized-crop percentages verified 2026-09-10 via
+    get_design_context on 418:31417 ("mockup atj 2", 806:12747,
+    container 526x485) — left:7.15%, top:-1.57%, width:85.88%,
+    height:94.68%. Unchanged; only mobile's approach above changed.
+  */
+  .atj2-hero__media img:not(.atj2-hero__badge) {
+    position: absolute;
     left: 7.15%;
     top: -1.57%;
     width: 85.88%;
@@ -272,13 +280,10 @@
 }
 
 /*
-  New 2026-09-10 (get_design_context on 418:31417): the ATJ wordmark
-  badge sits flush top-left over the mockup, sized proportionally to the
-  same 526x485 container (151/526 wide, 66/485 tall) it's authored
-  against in Figma. Selector needs the .atj2-hero__media prefix to
-  out-specificity the generic `.atj2-hero__media img` crop rules above
-  (1 class + 1 tag) which would otherwise apply their oversized-crop
-  positioning to this image too.
+  The ATJ wordmark badge sits flush top-left over the mockup, sized
+  proportionally to the same 526x485 container (151/526 wide) it's
+  authored against in Figma — matches at any width since it's a % of
+  the same box the (now always full, uncropped) mockup fills.
 */
 .atj2-hero__media .atj2-hero__badge {
   position: absolute;
@@ -354,7 +359,11 @@
 
 .atj2-hero__meta-row {
   display: flex;
-  align-items: flex-start;
+  /* Fixed 2026-09-14 per Roman ("Mascot illustration"/"Meta list" —
+     Figma names, 418:31425/418:31426 — aligned to a shared center
+     line): was flex-start, sitting the mascot flush with the list's
+     top line instead of centered against the whole 3-line block. */
+  align-items: center;
   gap: 8px;
   margin-top: 24px;
 }

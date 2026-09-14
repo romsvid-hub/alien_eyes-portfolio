@@ -209,15 +209,13 @@
 }
 
 /* Screens strip: reused wherever the design shows 3 phone mockups in a
-   row. Scrolls horizontally below the desktop breakpoint instead of the
-   CSS Grid min-width:0 fix (documented in project_home_case_card_pattern)
-   since this is a flex strip of fixed-size images, not a grid item whose
-   track needs shrinking. */
+   row. Below the desktop breakpoint it stacks vertically and centers
+   (per Roman) instead of scrolling horizontally. */
 .yoy-screens {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 16px;
-  overflow-x: auto;
-  padding-bottom: 4px;
 }
 
 .yoy-screens img {
@@ -230,8 +228,13 @@
 
 @media (min-width: 1024px) {
   .yoy-screens {
+    flex-direction: row;
+    align-items: stretch;
     gap: 24px;
-    overflow-x: visible;
+    /* Safety net: 3 fixed-width screens can outgrow a narrow desktop
+       column right at this breakpoint — scroll instead of pushing the
+       page wide. */
+    overflow-x: auto;
   }
 
   .yoy-screens img {
@@ -661,8 +664,8 @@
   contained.
 */
 .yoy-row__mascot {
-  width: 70px;
-  height: 68px;
+  width: 142px;
+  height: 142px;
   border-radius: 50%;
   background-color: #2a2b2c;
   position: relative;
@@ -681,15 +684,30 @@
 /* ---------- Research / Approach (768:13294) ---------- */
 
 /*
-  Fixed 2026-09-10 (correction pass): logos stretch edge-to-edge of the
-  content column with equal spacing between them — space-between on a
-  single non-wrapping row, instead of the earlier wrap+gap cluster.
+  Fixed 2026-09-14: per Figma (768:13300) the row is a centered group with
+  a flat 32px gap, all logos sharing one vertical center line — not
+  stretched edge-to-edge. Mobile wraps to 2-per-row, still centered.
 */
 .yoy-logos {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  justify-content: center;
+  gap: 24px 32px;
+}
+
+@media (max-width: 767px) {
+  .yoy-logos {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .yoy-logos {
+    flex-wrap: nowrap;
+  }
 }
 
 /*

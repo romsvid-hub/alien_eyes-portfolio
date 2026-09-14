@@ -687,10 +687,12 @@
 }
 
 /*
-  Always a single horizontal row, never wrapping to a second line — per
-  Figma (Uniqkey hero "Frame 2147262425" etc.) and confirmed as the
-  standard for every case's tag row going forward. Narrow viewports
-  scroll horizontally instead of wrapping.
+  Desktop/tablet: a single horizontal row, never wrapping — per Figma
+  (Uniqkey hero "Frame 2147262425" etc.). Narrow viewports scroll
+  horizontally instead of wrapping — this was the standard until Roman
+  reversed it 2026-09-14: on mobile, tags must never be swipeable, they
+  should wrap to a new row instead (see the max-width:767px override
+  below). Desktop/tablet keep the original single-row/scroll behavior.
 */
 .tag-row {
   display: flex;
@@ -702,6 +704,20 @@
 
 .tag-row::-webkit-scrollbar {
   display: none;
+}
+
+@media (max-width: 767px) {
+  /*
+    Wrap instead of horizontal-scroll on mobile, per Roman — the same
+    `gap` value already governs both row-gap and column-gap once
+    wrapping is enabled, so wrapped rows land at the same spacing as
+    the horizontal gap between tags without any extra value to keep in
+    sync.
+  */
+  .tag-row {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
 }
 
 .tag {
