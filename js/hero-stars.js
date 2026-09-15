@@ -17,7 +17,10 @@
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  var STAR_COUNT = 42;
+  // 2026-09-15: bumped 42 -> 60 (denser field) alongside the streak
+  // shape + longer travel distance in home.css, per Roman's request to
+  // make the "flying through a tunnel" read more clearly.
+  var STAR_COUNT = 60;
   // 8s baseline -> sped up 25% (/1.25) -> slowed back down 10% (*1.1),
   // both per explicit request, in that order: 8 / 1.25 * 1.1 = 7.04.
   var BASE_DURATION = 7.04;
