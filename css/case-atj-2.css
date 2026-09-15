@@ -279,8 +279,15 @@
        aspect-ratio outright (aspect-ratio only computes a missing/auto
        dimension — it does nothing once stretch has already supplied
        one). Opting this item out of stretch is what lets aspect-ratio
-       actually apply. */
-    align-self: flex-start;
+       actually apply.
+
+       2026-09-15: center, not flex-start — per Roman, the image
+       column and the text column ("Hero content") should align on
+       their shared vertical center, matching Figma's own
+       Position/Align vertical centers on those two, not sit top-
+       aligned against each other.
+    */
+    align-self: center;
   }
 
   /*
