@@ -1,0 +1,109 @@
+/*
+  About Me (Figma fileKey DU3fuTo8QXIJ0uMcI3jh91, node 882:15401,
+  intro block 882:15405, ticker 882:15424) — verified via get_metadata +
+  get_design_context. Dark theme, no page-specific color tokens needed:
+  the default body background/text (base.css) already match.
+*/
+
+/* ---------- About Me intro ---------- */
+
+.about-hero {
+  padding: 48px var(--page-px) 0;
+}
+
+/*
+  739px reading column, independently centered in the full viewport —
+  not aligned to the site's standard 1120px content column. Confirmed
+  via Figma: the block sits at x=271 in a 1280-wide frame, right edge
+  at x=1010 (270px to the frame's own right edge) — near-dead-center,
+  not flush with the 80px page margin used everywhere else.
+*/
+.about-hero__inner {
+  max-width: 739px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.about-body {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.about-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---------- Pictures (running photo strip) ---------- */
+
+.about-pictures {
+  margin-top: 60px;
+  overflow: hidden;
+}
+
+.pictures-track {
+  overflow: hidden;
+  width: 100%;
+}
+
+/*
+  Classic seamless-loop marquee: the track holds the image set twice
+  back to back, then animates from translateX(0) to translateX(-50%)
+  (exactly one set's worth of width) — js/about-pictures.js measures
+  that width and sets --pictures-duration so the speed (px/s) stays
+  constant across screen sizes, since .photo-card's own width is
+  responsive (clamp). width:max-content lets the row overflow its
+  section instead of being squeezed to the viewport.
+*/
+.pictures-track__inner {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  will-change: transform;
+}
+
+.pictures-track__inner.is-animating {
+  animation: pictures-scroll var(--pictures-duration, 40s) linear infinite;
+}
+
+@keyframes pictures-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Per Roman's own spec — clicking a photo does nothing, purely decorative. */
+.photo-card {
+  width: clamp(160px, 18vw, 240px);
+  aspect-ratio: 3 / 2;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---------- Reviews section spacing override ---------- */
+
+/*
+  .case-reviews-cta reuses .home-section's default top padding
+  (64px/96px) everywhere else, which only collapses to 0 when the
+  immediately preceding sibling is also .home-section (see home.css).
+  .about-pictures isn't one (it's an intentionally edge-to-edge
+  strip), so this page sets the required 60px directly instead.
+*/
+.about-page .case-reviews-cta {
+  padding-top: 60px;
+}

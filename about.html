@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+    </script>
+    <title>About Me — Roman Sviderskyi | Alien Eyes Portfolio</title>
+    <meta name="description" content="Roman Sviderskyi — Product Designer. Mindset, workflow, and the life outside the screen that shapes how he designs." />
+    <link rel="canonical" href="https://romsvid-hub.github.io/alien_eyes-portfolio/about.html" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/favicon-180.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://romsvid-hub.github.io/alien_eyes-portfolio/about.html" />
+    <meta property="og:site_name" content="Alien Eyes" />
+    <meta property="og:title" content="About Me — Roman Sviderskyi, Product Designer" />
+    <meta property="og:description" content="Mindset, workflow, and the life outside the screen that shapes how Roman designs." />
+    <meta property="og:image" content="https://romsvid-hub.github.io/alien_eyes-portfolio/assets/home/og-image.jpg" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="About Me — Roman Sviderskyi, Product Designer" />
+    <meta name="twitter:description" content="Mindset, workflow, and the life outside the screen that shapes how Roman designs." />
+    <meta name="twitter:image" content="https://romsvid-hub.github.io/alien_eyes-portfolio/assets/home/og-image.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Sora:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/typography.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/buttons.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/about.css" />
+  </head>
+  <body class="about-page">
+    <!-- UI: GLOBAL-NAV-01 | Site navigation | shared component, reused unchanged -->
+    <nav class="site-nav">
+      <a class="nav-logo" href="index.html">
+        <span class="nav-logo__icon">
+          <img
+            class="nav-logo__avatar"
+            src="assets/icons/logo-avatar.png"
+            alt=""
+          />
+        </span>
+        <span class="nav-logo__text">Alien Eyes</span>
+      </a>
+      <a class="nav-back" href="index.html" aria-label="Back to home">
+        <svg viewBox="0 0 8 14" fill="none" aria-hidden="true">
+          <path
+            d="M7 1L1 7L7 13"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="square"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </a>
+
+      <div class="nav-menu">
+        <div class="nav-links">
+          <a class="nav-links__link" href="index.html#case-studies">Case Studies</a>
+          <a class="nav-links__link" href="about.html" aria-current="page">About Me</a>
+          <a class="nav-links__link" href="index.html#feedbacks">Feedbacks</a>
+        </div>
+
+        <a class="nav-cta" href="https://drive.google.com/file/d/1S9T2MrBgtyCmOAmEUzzGF_d9x98oMinj/view?usp=sharing" target="_blank" rel="noopener">Download CV</a>
+      </div>
+
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+    </nav>
+
+    <main>
+      <!-- UI: ABOUT-INTRO-01 | About Me title + body | matches Figma "About Me" (882:15405) -->
+      <section class="about-hero">
+        <div class="about-hero__inner">
+          <h1 class="h1-display about-title" data-reveal>About Me</h1>
+
+          <div class="about-body" data-reveal-group data-reveal-stagger="150">
+            <div class="about-block">
+              <h2 class="h3-case-study about-block__title">Mindset</h2>
+              <p class="body-main about-block__text">I think in structures and don&rsquo;t rush to solutions until I understand the context. First comes immersion, the environment, the team, what&rsquo;s already been done, and where the real problem actually lives. Only then do I open Figma. For me design is not about screens, it&rsquo;s about building something that keeps evolving after the first release.</p>
+            </div>
+
+            <div class="about-block">
+              <h2 class="h3-case-study about-block__title">Workflow</h2>
+              <p class="body-main about-block__text">I work as a user advocate: conducting live interviews, analyzing heatmaps and session recordings, forming hypotheses through JTBD and CJM. From there: IA, user flows, UI, and a Design System ready for handoff. I follow Double Diamond principles and when needed I organize roadmaps, break work into sprints, and run the process as a Scrum facilitator. The best solutions usually appear after the first iteration, when the product is live and generating real feedback.</p>
+            </div>
+
+            <div class="about-block">
+              <h2 class="h3-case-study about-block__title">Lifestyle</h2>
+              <p class="body-main about-block__text">Outside of work I&rsquo;m drawn to things that require focused hands: cycling and mountains to reset, Lego Technic and soldering for building, drawing with lines as a form of meditation. I believe the ability to assemble complex mechanisms and work with hardware makes me a better designer because design is also about how things work on the inside. I also play video games and consider it legitimate UX research.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: ABOUT-PICTURES-01 | Photo strip, right-to-left auto-scroll | matches Figma "Pictures" (882:15424) -->
+      <section class="about-pictures" aria-label="Photos">
+        <div class="pictures-track">
+          <div class="pictures-track__inner">
+            <div class="photo-card">
+              <img loading="lazy" src="About/Picture%201.png" alt="" />
+            </div>
+            <div class="photo-card">
+              <img loading="lazy" src="About/Picture%202.png" alt="" />
+            </div>
+            <div class="photo-card">
+              <img loading="lazy" src="About/Picture%203.png" alt="" />
+            </div>
+            <div class="photo-card">
+              <img loading="lazy" src="About/Picture%204.png" alt="" />
+            </div>
+            <div class="photo-card">
+              <img loading="lazy" src="About/Picture%205.png" alt="" />
+            </div>
+            <div class="photo-card">
+              <img loading="lazy" src="About/Picture%206.png" alt="" />
+            </div>
+            <div class="photo-card">
+              <img loading="lazy" src="About/Picture%207.png" alt="" />
+            </div>
+            <div class="photo-card">
+              <img loading="lazy" src="About/Picture%208.png" alt="" />
+            </div>
+            <div class="photo-card">
+              <img loading="lazy" src="About/Picture%209.png" alt="" />
+            </div>
+            <div class="photo-card">
+              <img loading="lazy" src="About/Picture%2010.png" alt="" />
+            </div>
+            <div class="photo-card">
+              <img loading="lazy" src="About/Picture%2011.png" alt="" />
+            </div>
+            <!-- Duplicate set, aria-hidden — seamless loop for the CSS marquee, not extra content. -->
+            <div class="photo-card" aria-hidden="true">
+              <img loading="lazy" src="About/Picture%201.png" alt="" />
+            </div>
+            <div class="photo-card" aria-hidden="true">
+              <img loading="lazy" src="About/Picture%202.png" alt="" />
+            </div>
+            <div class="photo-card" aria-hidden="true">
+              <img loading="lazy" src="About/Picture%203.png" alt="" />
+            </div>
+            <div class="photo-card" aria-hidden="true">
+              <img loading="lazy" src="About/Picture%204.png" alt="" />
+            </div>
+            <div class="photo-card" aria-hidden="true">
+              <img loading="lazy" src="About/Picture%205.png" alt="" />
+            </div>
+            <div class="photo-card" aria-hidden="true">
+              <img loading="lazy" src="About/Picture%206.png" alt="" />
+            </div>
+            <div class="photo-card" aria-hidden="true">
+              <img loading="lazy" src="About/Picture%207.png" alt="" />
+            </div>
+            <div class="photo-card" aria-hidden="true">
+              <img loading="lazy" src="About/Picture%208.png" alt="" />
+            </div>
+            <div class="photo-card" aria-hidden="true">
+              <img loading="lazy" src="About/Picture%209.png" alt="" />
+            </div>
+            <div class="photo-card" aria-hidden="true">
+              <img loading="lazy" src="About/Picture%2010.png" alt="" />
+            </div>
+            <div class="photo-card" aria-hidden="true">
+              <img loading="lazy" src="About/Picture%2011.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: HOME-REVIEWS-01 | Reviews carousel | shared component, reused unchanged -->
+      <section class="home-section case-reviews-cta" id="feedbacks">
+        <h2 class="h2-section reviews-heading" data-reveal>Reviews:</h2>
+        <div class="reviews-carousel" data-reveal>
+          <button
+            class="reviews-arrow reviews-arrow--prev"
+            type="button"
+            aria-label="Previous review"
+            aria-controls="review-slide"
+          >
+            <svg viewBox="0 0 49.5818 71.9599" fill="none" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M37.5211 4.0415C36.5477 4.0473 35.6104 4.44612 34.8971 5.15772L4.01164 35.9709C4.01081 35.9717 4.00974 35.9723 4.00857 35.9724L4.00252 35.9733C4.00025 35.9736 3.99942 35.9765 4.00116 35.978L4.00131 35.9781C4.00248 35.9791 4.00248 35.9809 4.00131 35.9819C3.99961 35.9833 4.00053 35.9861 4.00276 35.9863L4.00855 35.9867C4.00972 35.9868 4.01082 35.9873 4.01165 35.9881L34.8971 66.8022C35.6103 67.5138 36.5478 67.9126 37.5211 67.9185L44.5741 67.9599C45.4662 67.9651 45.9181 66.8882 45.2895 66.2552L15.9202 36.6847C15.5329 36.2947 15.5329 35.6653 15.9202 35.2753L45.2895 5.70474C45.9181 5.07179 45.4662 3.99483 44.5741 4.00007L37.5211 4.0415Z"
+              />
+            </svg>
+          </button>
+
+          <div class="review-slide" id="review-slide" aria-live="polite" aria-atomic="true">
+            <div>
+              <p class="h3-case-study review-slide__name">Sanne Øst</p>
+              <p class="body-large review-slide__role">
+                Chief Product Officer
+              </p>
+            </div>
+            <p class="body-main review-slide__quote">Roman is a very creative person. We worked together on the design of a password management application and came up with a great solution that was successfully launched. Roman loves to research the market and is always full of creative ideas. If you need fresh and unique eye on your product - Roman is the right person.</p>
+            <a
+              class="review-slide__link"
+              href="https://www.linkedin.com/in/romsvid/details/recommendations/"
+              target="_blank"
+              rel="noopener"
+            >
+              <img loading="lazy" src="assets/icons/icon-linkedin-small.svg" alt="" />
+              View in LinkedIn
+            </a>
+          </div>
+
+          <button
+            class="reviews-arrow reviews-arrow--next"
+            type="button"
+            aria-label="Next review"
+            aria-controls="review-slide"
+          >
+            <svg viewBox="0 0 49.5818 71.9599" fill="none" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M12.0609 4.04145C13.0343 4.04725 13.9716 4.44606 14.6849 5.15766L45.5704 35.9708C45.5712 35.9717 45.5723 35.9722 45.5734 35.9724L45.5795 35.9732C45.5818 35.9736 45.5826 35.9764 45.5809 35.9779L45.5807 35.978C45.5795 35.979 45.5795 35.9808 45.5807 35.9818C45.5824 35.9833 45.5815 35.9861 45.5793 35.9862L45.5735 35.9866C45.5723 35.9867 45.5712 35.9872 45.5704 35.988L14.6849 66.8022C13.9717 67.5137 13.0342 67.9125 12.0609 67.9184L5.00792 67.9598C4.11585 67.9651 3.66388 66.8881 4.29253 66.2552L33.6618 36.6846C34.0491 36.2947 34.0491 35.6652 33.6618 35.2752L4.29253 5.70469C3.66389 5.07174 4.11585 3.99478 5.00792 4.00002L12.0609 4.04145Z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="reviews-progress" aria-hidden="true">
+          <span class="reviews-progress__segment is-active"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+        </div>
+
+        <!-- UI: HOME-CTA-01 | CTA block | shared component, reused unchanged -->
+        <div class="cta-section" data-reveal>
+          <h2 class="h2-section cta-heading">
+            Ready to architect your next product?
+          </h2>
+          <p class="body-large cta-description">
+            Open for complex challenges and leadership roles. Select time
+            to call and hire me below.
+          </p>
+          <a
+            class="btn btn--primary"
+            href="https://calendar.app.google/CUCg9pmqeG8U3nfM7"
+            target="_blank"
+            rel="noopener"
+          >
+            Book a Call
+            <img loading="lazy"
+              class="btn__icon"
+              src="assets/icons/icon-arrow-right.svg"
+              alt=""
+            />
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- UI: GLOBAL-FOOTER-01 | Site footer | shared component, reused unchanged -->
+    <footer class="site-footer">
+      <img loading="lazy"
+        class="site-footer__bg"
+        src="assets/images/footer-bg.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <div class="site-footer__row site-footer__row--top">
+        <a class="nav-logo" href="index.html">
+          <span class="nav-logo__icon">
+            <img
+              class="nav-logo__avatar"
+              src="assets/icons/logo-avatar.png"
+              alt=""
+            />
+          </span>
+          <span class="nav-logo__text">Alien Eyes</span>
+        </a>
+
+        <div class="site-footer__social">
+          <a href="https://www.instagram.com/romsvid/" target="_blank" rel="noopener">
+            <img loading="lazy" src="assets/icons/social-instagram.svg" alt="Instagram" />
+          </a>
+          <a href="https://www.linkedin.com/in/romsvid/" target="_blank" rel="noopener">
+            <img loading="lazy" src="assets/icons/social-linkedin.svg" alt="LinkedIn" />
+          </a>
+          <a href="https://t.me/Rmsddddd" target="_blank" rel="noopener">
+            <img loading="lazy" src="assets/icons/social-telegram.svg" alt="Telegram" />
+          </a>
+        </div>
+      </div>
+
+      <div class="site-footer__row site-footer__row--bottom">
+        <p class="body-main site-footer__copyright">© 2026 Roman Sviderskyi</p>
+        <p class="body-main site-footer__contact">
+          +380 97 334 9540&nbsp;&nbsp;/&nbsp;&nbsp;<a
+            href="mailto:svidddrommm25@gmail.com"
+            >svidddrommm25@gmail.com</a
+          >
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+    <script src="js/reviews.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="js/about-pictures.js"></script>
+    <script src="js/nbsp-typography.js"></script>
+  </body>
+</html>
