@@ -168,6 +168,22 @@
   inset: 0;
   pointer-events: none;
   overflow: hidden;
+  /*
+    2026-09-15: travel distance as a custom property, not hardcoded in
+    the keyframe — the card is a small stacked box on mobile but a
+    much bigger (1120x636) box on desktop (min-width:1024px below), so
+    a single fixed distance either undershoots the desktop card (stars
+    stall in empty space, never reaching the edge) or overshoots the
+    mobile one. Comfortably past each card's own half-diagonal so
+    every star actually exits via the overflow:hidden clip.
+  */
+  --star-dist: 520px;
+}
+
+@media (min-width: 1024px) {
+  .hero-card__stars {
+    --star-dist: 820px;
+  }
 }
 
 /*
@@ -192,13 +208,20 @@
   animation-iteration-count: infinite;
 }
 
+@media (min-width: 1024px) {
+  .hero-card__star {
+    width: 20px;
+  }
+}
+
 /*
-  Opacity ramps in several steps (not a flat plateau) so stars read as
-  dim near the center — 40% dimmer than before at the 15% mark — and
-  gradually brighten as they travel outward, fading back out at the
-  end. transform only needs its two endpoints (0%/100%); the browser
-  interpolates it smoothly across the whole timeline regardless of how
-  many opacity-only stops sit in between.
+  Opacity ramps in on entry (dim near the center, brightening as it
+  travels out) but no longer ramps back down — per Roman, stars were
+  fading before they reached the edge. Now each star holds at peak
+  brightness until overflow:hidden physically clips it off past the
+  card's edge (guaranteed by --star-dist above reaching well past the
+  card's own half-diagonal), so the fade-to-0 → snap-back-to-center of
+  each animation loop happens off-screen instead of being visible.
 */
 @keyframes hero-star-warp {
   0% {
@@ -211,12 +234,9 @@
   55% {
     opacity: 0.78;
   }
-  85% {
-    opacity: 0.95;
-  }
   100% {
-    transform: translate(-50%, -50%) rotate(var(--angle)) translateX(460px) scale(1.9);
-    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateX(var(--star-dist)) scale(2.2);
+    opacity: 0.95;
   }
 }
 
