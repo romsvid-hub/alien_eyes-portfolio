@@ -257,9 +257,30 @@
 }
 
 @media (min-width: 1024px) {
+  /*
+    Fixed 2026-09-15 (Roman: the mockup was stretching): this container
+    used to just stretch-fill whatever height .atj2-hero__content
+    reached (align-items:stretch on .atj2-hero, aspect-ratio:auto
+    here) — harmless while the title was short, but once the title
+    grew to "One Questionnaire, Two Audiences" (3-4 lines instead of
+    1), the content column got taller, so the media box did too, and
+    the image's height:94.68% (a % of that now-taller box) stretched
+    it out of its own aspect ratio. Pinning the container to its
+    Figma-authored 526:485 ratio makes its size self-contained again —
+    the crop percentages below were authored against that exact ratio,
+    so this is what keeps the image at its own proportions regardless
+    of how tall the text column next to it gets.
+  */
   .atj2-hero__media {
-    aspect-ratio: auto;
+    aspect-ratio: 526 / 485;
     overflow: hidden;
+    /* .atj2-hero's align-items:stretch (row layout) gives every flex
+       item a definite cross-size by default, which overrides
+       aspect-ratio outright (aspect-ratio only computes a missing/auto
+       dimension — it does nothing once stretch has already supplied
+       one). Opting this item out of stretch is what lets aspect-ratio
+       actually apply. */
+    align-self: flex-start;
   }
 
   /*
