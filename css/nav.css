@@ -167,6 +167,15 @@
   color: var(--color-cta-purple);
 }
 
+/*
+  Added 2026-09-15 — hidden by default (desktop keeps a single header
+  button, Download CV); the mobile breakpoint below re-shows this one
+  as a second bottom button in the open menu, per Roman.
+*/
+.nav-cta--contact {
+  display: none;
+}
+
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -280,6 +289,18 @@
     /* 32px per Roman (was 16px) — same gap as above, between the
        individual links (Case Studies / Feedbacks). */
     gap: 32px;
+  }
+
+  /*
+    Mobile-only Contact Me button, per Roman: the open mobile menu
+    gets its own "Contact Me" as a second bottom button alongside
+    Download CV, opening the same contact popup as everywhere else
+    (js/nav.js) — desktop doesn't get an equivalent header button, on
+    purpose (see the .nav-cta--contact base rule above, in the
+    unconditional part of this stylesheet).
+  */
+  .nav-cta--contact {
+    display: inline-flex;
   }
 
   /* Full width of the panel (716:12799's "Button Second" spans the
@@ -470,4 +491,86 @@
 .nav-popup__feedback .reviews-carousel {
   width: 100%;
   max-width: 900px;
+}
+
+/* ---------- Contact popup ---------- */
+/* Added 2026-09-15 — "Contact Me" now offers a real choice of channel
+   (js/nav.js openContactPopup) instead of silently just being a
+   LinkedIn link. */
+.nav-popup__contact-wrap {
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-popup__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  overflow-y: auto;
+}
+
+.nav-popup-contact-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.04);
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.nav-popup-contact-link:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* LinkedIn carries the most context (experience, recommendations) for
+   this portfolio's audience — a touch more visual weight than
+   Telegram/Email, not a hard "recommended" label. */
+.nav-popup-contact-link--primary {
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.nav-popup-contact-link--primary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-popup-contact-link__icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.nav-popup-contact-link__icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.nav-popup-contact-link__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.nav-popup-contact-link__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.nav-popup-contact-link__desc {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--color-light-gray);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

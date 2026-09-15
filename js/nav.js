@@ -202,6 +202,94 @@ function initNavPopups() {
     }
   }
 
+  /*
+    Contact popup — added 2026-09-15, per Roman: "Contact Me" should
+    offer a real choice of channel instead of silently just being a
+    LinkedIn link, so the label matches what actually happens on
+    click. Triggered from every [data-popup="contact"] element on the
+    page (Hero, the bottom CTA section — replacing the old dead-ish
+    "Book a Call" — and the mobile menu's own Contact Me button), not
+    just one fixed header link, so this builds its own shell each time
+    rather than relocating existing DOM like openFeedbacksPopup does.
+  */
+  function openContactPopup() {
+    var content = buildShell();
+    content.className += " nav-popup__contact-wrap";
+
+    var heading = document.createElement("h2");
+    heading.className = "h2-section nav-popup__heading";
+    heading.textContent = "Contact Me:";
+    content.appendChild(heading);
+
+    var list = document.createElement("div");
+    list.className = "nav-popup__contact";
+    content.appendChild(list);
+
+    var channels = [
+      {
+        href: "https://www.linkedin.com/in/romsvid/",
+        icon: "assets/icons/social-linkedin.svg",
+        title: "LinkedIn",
+        desc: "My full experience, projects and recommendations.",
+        external: true,
+        primary: true,
+      },
+      {
+        href: "https://t.me/Rmsddddd",
+        icon: "assets/icons/social-telegram.svg",
+        title: "Telegram",
+        desc: "Fastest way to reach me directly.",
+        external: true,
+      },
+      {
+        href: "mailto:svidddrommm25@gmail.com",
+        icon: "assets/icons/social-email.svg",
+        title: "Email",
+        desc: "svidddrommm25@gmail.com",
+        external: false,
+      },
+    ];
+
+    channels.forEach(function (channel) {
+      var a = document.createElement("a");
+      a.className =
+        "nav-popup-contact-link" +
+        (channel.primary ? " nav-popup-contact-link--primary" : "");
+      a.href = channel.href;
+      if (channel.external) {
+        a.target = "_blank";
+        a.rel = "noopener";
+      }
+      // Closes the popup on click too — the destination opens in its
+      // own tab (LinkedIn/Telegram) or hands off to the OS mail client
+      // (Email), so there's nothing left for the popup to do here.
+      a.addEventListener("click", closePopup);
+
+      var iconWrap = document.createElement("div");
+      iconWrap.className = "nav-popup-contact-link__icon";
+      var img = document.createElement("img");
+      img.loading = "lazy";
+      img.src = channel.icon;
+      img.alt = "";
+      iconWrap.appendChild(img);
+      a.appendChild(iconWrap);
+
+      var body = document.createElement("div");
+      body.className = "nav-popup-contact-link__body";
+      var title = document.createElement("p");
+      title.className = "nav-popup-contact-link__title";
+      title.textContent = channel.title;
+      var desc = document.createElement("p");
+      desc.className = "nav-popup-contact-link__desc";
+      desc.textContent = channel.desc;
+      body.appendChild(title);
+      body.appendChild(desc);
+      a.appendChild(body);
+
+      list.appendChild(a);
+    });
+  }
+
   function openFeedbacksPopup() {
     var heading = document.querySelector(".reviews-heading");
     var carousel = document.querySelector(".reviews-carousel");
@@ -254,6 +342,11 @@ function initNavPopups() {
         // button's active state is the only feedback needed.
         if (link === activeLink) return;
         closeMobileMenu();
+        // Defensive: switching straight from one popup to another
+        // (e.g. Cases open, then Feedbacks clicked) previously left
+        // the first overlay's DOM behind since buildShell() always
+        // appends a fresh one — close whatever's open first.
+        closePopup();
         openCasesPopup();
         setActiveLink(link);
       });
@@ -262,9 +355,23 @@ function initNavPopups() {
         e.preventDefault();
         if (link === activeLink) return;
         closeMobileMenu();
+        closePopup();
         openFeedbacksPopup();
         setActiveLink(link);
       });
     }
+  });
+
+  // Contact popup — every [data-popup="contact"] trigger site-wide
+  // (Hero, the bottom CTA section, the mobile menu's own button), not
+  // just one header link, so it isn't part of the .nav-links__link
+  // active-state loop above.
+  document.querySelectorAll('[data-popup="contact"]').forEach(function (trigger) {
+    trigger.addEventListener("click", function (e) {
+      e.preventDefault();
+      closeMobileMenu();
+      closePopup();
+      openContactPopup();
+    });
   });
 }
