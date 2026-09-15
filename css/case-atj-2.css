@@ -256,6 +256,28 @@
   height: auto;
 }
 
+/*
+  The ATJ wordmark badge sits over the mockup's top-left corner, sized
+  proportionally to the same 526x485 container (151/526 wide) it's
+  authored against in Figma — matches at any width since it's a % of
+  the same box the (now always full, uncropped) mockup fills.
+
+  2026-09-15, per Roman: nudged off the flush corner — 8px right/8px
+  down on mobile, 16px right only on desktop (see the min-width:1024px
+  override below). Must sit before that media query in source order —
+  as an unconditional rule of equal specificity, it would otherwise
+  win over the desktop override regardless of viewport width.
+*/
+.atj2-hero__media .atj2-hero__badge {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  width: 28.7%;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+}
+
 @media (min-width: 1024px) {
   /*
     Fixed 2026-09-15 (Roman: the mockup was stretching): this container
@@ -305,22 +327,12 @@
     max-width: none;
     object-fit: unset;
   }
-}
 
-/*
-  The ATJ wordmark badge sits flush top-left over the mockup, sized
-  proportionally to the same 526x485 container (151/526 wide) it's
-  authored against in Figma — matches at any width since it's a % of
-  the same box the (now always full, uncropped) mockup fills.
-*/
-.atj2-hero__media .atj2-hero__badge {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 28.7%;
-  height: auto;
-  max-width: none;
-  object-fit: contain;
+  /* Desktop: 16px right only, per Roman — no vertical nudge here. */
+  .atj2-hero__media .atj2-hero__badge {
+    left: 16px;
+    top: 0;
+  }
 }
 
 .atj2-hero__content {
