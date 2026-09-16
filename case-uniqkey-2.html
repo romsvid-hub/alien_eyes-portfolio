@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Streamline UX for 2FA and Security | Alien Eyes</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/favicon-180.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/typography.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/buttons.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/case-uniqkey-2.css" />
+  </head>
+  <body class="uq2-page">
+    <!-- UI: GLOBAL-NAV-01 | Site navigation | shared component, reused unchanged -->
+    <nav class="site-nav site-nav--case">
+      <a class="nav-logo" href="index.html">
+        <span class="nav-logo__icon">
+          <img class="nav-logo__avatar" src="assets/icons/logo-avatar.png" alt="" />
+        </span>
+        <span class="nav-logo__text">Alien Eyes</span>
+      </a>
+      <a class="nav-back" href="index.html" aria-label="Back to home">
+        <svg viewBox="0 0 8 14" fill="none" aria-hidden="true">
+          <path
+            d="M7 1L1 7L7 13"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="square"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </a>
+
+      <div class="nav-menu">
+        <div class="nav-links">
+          <a class="nav-links__link" href="index.html#case-studies">Case Studies</a>
+          <a class="nav-links__link" href="about.html">About Me</a>
+          <a class="nav-links__link" href="index.html#feedbacks">Feedbacks</a>
+        </div>
+
+        <a class="nav-cta" href="https://drive.google.com/file/d/1S9T2MrBgtyCmOAmEUzzGF_d9x98oMinj/view?usp=sharing" target="_blank" rel="noopener">Download CV</a>
+        <a class="nav-cta nav-cta--contact" href="https://www.linkedin.com/in/romsvid/" target="_blank" rel="noopener" data-popup="contact">Contact Me</a>
+      </div>
+
+      <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+    </nav>
+
+    <main>
+      <!-- UI: CASE-UQ2-HERO-01 | Hero | matches Figma "Hero" (898:19946) -->
+      <section class="uq2-hero">
+        <div class="uq2-hero__media">
+          <img src="assets/case-uniqkey-2/hero.png" alt="Uniqkey mobile app: authentication request screen and saved services list" />
+        </div>
+        <div class="uq2-hero__content">
+          <div class="tag-row">
+            <span class="uq2-tag">Mobile app</span>
+            <span class="uq2-tag">2FA Authenticator</span>
+            <span class="uq2-tag">Enterprise Security</span>
+            <span class="uq2-tag">B2B SaaS</span>
+          </div>
+          <h1 class="uq2-hero__title">Streamline UX for 2FA and Security</h1>
+          <p class="body-large uq2-hero__desc">
+            In this case study, I showcase how I refined Uniqkey's mobile app UX to
+            streamline authentication and enhance secure access management.
+          </p>
+          <ul class="body-main uq2-hero__meta">
+            <li>Role: Product Designer</li>
+            <li>Team: Designer, Product Owner, Mobile developers.</li>
+            <li>Tools: Figma, Chat GPT</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- UI: CASE-UQ2-IMPACT-01 | Impact stats | matches Figma "Impact Stats Section" (898:21068) -->
+      <section class="uq2-section">
+        <p class="uq2-eyebrow" data-reveal>Impact:</p>
+        <div class="uq2-impact" data-reveal-group>
+          <div class="uq2-impact__item">
+            <p class="uq2-impact__value">+40%</p>
+            <p class="uq2-impact__label">Faster information findability, measured in usability testing after the first iteration</p>
+          </div>
+          <div class="uq2-impact__item">
+            <p class="uq2-impact__value">20%</p>
+            <p class="uq2-impact__label">of users didn't even notice what changed, only that the app got easier to use.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE-UQ2-SCOPE-01 | Product Scope | matches Figma "Product Scope Section" (903:21336) -->
+      <section class="uq2-section">
+        <p class="uq2-eyebrow" data-reveal>Product Scope</p>
+        <p class="body-large uq2-scope__intro" data-reveal>
+          The mobile app is one piece of a larger ecosystem. Corporate logins, permissions, and
+          password policies are set and managed by the admin on the Admin Portal, the mobile app
+          is where employees access and use that data day to day
+        </p>
+        <div class="uq2-scope__panel" data-reveal>
+          <img loading="lazy" src="assets/case-uniqkey-2/product-scope.png" alt="Admin portal dashboard, mobile app paired with the browser extension, and Partner Portal dashboard" />
+        </div>
+      </section>
+
+      <!-- UI: CASE-UQ2-CONTEXT-01 | Context | matches Figma "Context - Selection" (898:19985) -->
+      <section class="uq2-section">
+        <p class="h2-section uq2-eyebrow uq2-eyebrow--lg" data-reveal>Context</p>
+        <p class="body-large" data-reveal>
+          Uniqkey's mobile app is a password manager and 2FA companion to the Admin Portal — the
+          key to accessing both personal and corporate data. It had grown cluttered and
+          inconsistent as features piled up. I redesigned the core flows twice: once to fix
+          usability for existing users, once to adapt the same product for enterprise B2B teams.
+        </p>
+        <div class="uq2-context__media" data-reveal>
+          <img loading="lazy" src="assets/case-uniqkey-2/context-example.png" alt="Before and after comparison of the mobile app's core screens" />
+        </div>
+      </section>
+
+      <!-- UI: CASE-UQ2-MYSCOPE-01 | My Scope | matches Figma "My Scope - Selection" (898:20021) -->
+      <section class="uq2-section">
+        <p class="h2-section uq2-eyebrow uq2-eyebrow--lg" data-reveal>My Scope</p>
+        <div class="uq2-grid" data-reveal-group>
+          <div class="uq2-grid__col">
+            <h3>Role:</h3>
+            <p class="body-main">
+              I worked as a Product Designer on this flow for three years, continuously observing
+              users and implementing iterative improvements. This process included an audit of
+              the existing app, the first redesign iteration, usability testing, and a second
+              iteration to adapt the product for B2B customers.
+            </p>
+          </div>
+          <div class="uq2-grid__col">
+            <h3>Constraints:</h3>
+            <p class="body-main">
+              The main constraint was that this is a live product with a massive active user
+              base, ranging from large enterprises to government agencies. We couldn't introduce
+              drastic functional changes; instead, we had to implement updates smoothly without
+              disrupting the users' workflow or causing confusion.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE-UQ2-CHALLENGE-01 | The Challenge | matches Figma "Challenge - Section" (898:20044) -->
+      <section class="uq2-section uq2-section--panel">
+        <div class="uq2-panel" data-reveal>
+          <div class="uq2-panel__inner">
+            <p class="uq2-panel__eyebrow">The Challenge</p>
+            <div class="uq2-challenge__content">
+              <div class="uq2-challenge__card">
+                <p>
+                  The primary challenge was balancing the fast-paced business stakeholders'
+                  demand to display all services upfront with the critical need to prevent
+                  cognitive and system overload. By conducting a user flow study, I successfully
+                  advocated for prioritizing only the essential data and proposed a gradual
+                  rollout of complex features, such as advanced filtering and role-based sharing.
+                </p>
+                <p>
+                  This strategic negotiation aligned our vision and established a clear roadmap
+                  for non-disruptive improvements.
+                </p>
+              </div>
+              <div class="uq2-challenge__context">
+                <h3>Goals coming out of that conversation:</h3>
+                <ul>
+                  <li>Prioritize essential elements to prevent overload.</li>
+                  <li>Reduce risks associated with filtering and sharing options.</li>
+                  <li>Allow controlled access with new restrictions.</li>
+                  <li>Introduce changes step by step for gradual adoption</li>
+                  <li>Reduce cognitive load while improving control and efficiency</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE-UQ2-BEFORE-01 | Before | matches Figma "Before column" (899:21118) -->
+      <section class="uq2-section">
+        <p class="h2-section uq2-eyebrow uq2-eyebrow--lg" data-reveal>Before:</p>
+        <p class="body-large uq2-before__lead" data-reveal>
+          Essential navigation tools and search fields were buried in an unstructured list,
+          making the app confusing to use.
+        </p>
+        <div class="uq2-before__media" data-reveal>
+          <img loading="lazy" src="assets/case-uniqkey-2/before.png" alt="Original app: navigation and search buried in an unstructured list" />
+        </div>
+      </section>
+
+      <!-- UI: CASE-UQ2-RESEARCH-01 | Research | matches Figma "Research - Selection" (898:20062) -->
+      <section class="uq2-section">
+        <p class="h2-section uq2-eyebrow uq2-eyebrow--lg" data-reveal>Research</p>
+        <p class="body-large" data-reveal>
+          Support team feedback showed that simple usability tweaks would be enough, so I started
+          with a heuristic analysis.
+        </p>
+
+        <p class="uq2-research__label">Pain points for users:</p>
+        <div class="uq2-cards" data-reveal-group>
+          <div class="uq2-card">
+            <h4>Undefined App State on Launch</h4>
+            <p>
+              Users expected to see an immediate login request popup upon opening the app.
+              Instead, they were presented with a list of saved services in the first few
+              seconds, causing confusion.
+            </p>
+          </div>
+          <div class="uq2-card">
+            <h4>Unclear Steps When Missing Push Notifications</h4>
+            <p>
+              If users missed a push notification, they had to manually trigger it again. This
+              resulted in receiving all missed notifications at once, with the relevant one
+              buried at the bottom, increasing cognitive load and delaying access.
+            </p>
+          </div>
+          <div class="uq2-card">
+            <h4>Lack of Clear Visibility for Important Updates</h4>
+            <p>
+              Users struggled to find security-related changes, check access to stored
+              passwords, or manage permissions efficiently.
+            </p>
+          </div>
+        </div>
+
+        <p class="uq2-research__label">Additional Features for Product Enhancement:</p>
+        <div class="uq2-cards uq2-cards--2col" data-reveal-group>
+          <div class="uq2-card">
+            <p>
+              Optimizing the authentication process for fast and intuitive confirmation via
+              mobile, ensuring seamless user access to the service.
+            </p>
+          </div>
+          <div class="uq2-card">
+            <p>
+              Introducing new features, such as adding payment cards and notes, improving data
+              filtering and sorting for better management of sensitive information.
+            </p>
+          </div>
+          <div class="uq2-card">
+            <p>
+              Enhancing app navigation by implementing a bottom navigation menu for easier access
+              to core features like the Security Dashboard, profile management, and access
+              settings.
+            </p>
+          </div>
+          <div class="uq2-card">
+            <p>
+              Improving push notifications, ensuring that every action or status change is
+              accompanied by a notification, keeping users updated with the latest security
+              changes.
+            </p>
+          </div>
+          <div class="uq2-card">
+            <p>
+              Adding different access levels, allowing more flexible permission management and
+              restrictions, enhancing security and control over data.
+            </p>
+          </div>
+          <div class="uq2-card">
+            <p>
+              Implementing onboarding to introduce users to the process, as it was previously
+              absent. This will help them understand key actions and discover new features
+              efficiently.
+            </p>
+          </div>
+        </div>
+
+        <p class="uq2-research__label">Analogs referenced:</p>
+        <div class="uq2-logos" data-reveal-group>
+          <img loading="lazy" class="uq2-logos__item" src="assets/case-uniqkey-2/logo-lastpass.png" alt="LastPass" />
+          <img loading="lazy" class="uq2-logos__item" src="assets/case-uniqkey-2/logo-keeper.png" alt="Keeper" />
+          <img loading="lazy" class="uq2-logos__item" src="assets/case-uniqkey-2/logo-nordpass.png" alt="NordPass" />
+          <img loading="lazy" class="uq2-logos__item" src="assets/case-uniqkey-2/logo-1password.png" alt="1Password" />
+          <img loading="lazy" class="uq2-logos__item" src="assets/case-uniqkey-2/logo-dashlane.png" alt="Dashlane" />
+        </div>
+      </section>
+
+      <!-- UI: CASE-UQ2-SOLUTION-01 | Key Solution | matches Figma "Key Solution - Section" (898:20103) -->
+      <section class="uq2-section uq2-section--panel">
+        <div class="uq2-panel" data-reveal>
+          <div class="uq2-panel__inner">
+            <p class="uq2-panel__eyebrow">Key Solutions</p>
+            <p class="uq2-panel__title">B2B: Access Rights and Department Filtering</p>
+            <div class="uq2-panel__media">
+              <img loading="lazy" src="assets/case-uniqkey-2/key-solution-flow.png" alt="Flow: filtering logins by department, then opening a detailed login view with 2FA code and sharing tags" />
+            </div>
+            <div class="uq2-decision uq2-decision--on-blue" data-reveal-group>
+              <div class="uq2-decision__grid">
+                <div class="uq2-decision__card">
+                  <h4>Problem</h4>
+                  <p>
+                    Enterprise clients (such as government and financial institutions) require
+                    department-level access control and expect a more formal, restrained
+                    aesthetic, elements that were missing in the first version.
+                  </p>
+                </div>
+                <div class="uq2-decision__card">
+                  <h4>Solution</h4>
+                  <p>
+                    I made the design more restrained and formal, feeling more like a structured
+                    document rather than a bright B2C product, and implemented a robust B2B
+                    filtering system. As shown in the flow, users can apply department filters
+                    (e.g., Department A/B → Development/Management/Finance) to navigate the list.
+                    Selecting an item opens a detailed login view featuring a 2FA code, password
+                    visibility with a "Very strong password" indicator, custom notes, and sharing
+                    tags. I also designed this structure to support granular permissions, such as
+                    Full/Limited access and time restrictions.
+                  </p>
+                </div>
+                <div class="uq2-decision__card">
+                  <h4>Why?</h4>
+                  <p>
+                    This wasn't just a rebranding, but a recalibration for a specific business and
+                    bureaucratic audience that often thinks in terms of processes and legalities.
+                    A formal appearance and granular access control are strict requirements for
+                    corporate buyers, not merely aesthetic whims.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE-UQ2-FEATURES-01 | Other Core Features | matches Figma "Section — Other Core Features" (898:20213) -->
+      <section class="uq2-section">
+        <p class="h2-section uq2-eyebrow uq2-eyebrow--lg" data-reveal>Other Features</p>
+        <div class="uq2-features">
+          <div data-reveal>
+            <h3 class="h3-case-study uq2-feature__title">Onboarding and Gradual Feature Introduction</h3>
+            <div class="uq2-decision" data-reveal-group>
+              <div class="uq2-decision__grid">
+                <div class="uq2-decision__card">
+                  <h4>Problem</h4>
+                  <p>There was no onboarding process at all. New features and steps remained unclear without proper explanation.</p>
+                </div>
+                <div class="uq2-decision__card">
+                  <h4>Solution</h4>
+                  <p>We introduced a startup onboarding checklist (Password generator, pair with extension, add login, request credential, enable trusted browser) accompanied by a progress bar (e.g., showing 25% completion).</p>
+                </div>
+                <div class="uq2-decision__card">
+                  <h4>Why?</h4>
+                  <p>A progress bar allows new users to track their mastery of features and keeps experienced users informed about new updates—all without making them feel like they are being forced through a mandatory tutorial.</p>
+                </div>
+              </div>
+            </div>
+            <div class="uq2-feature__media" style="margin-top: 24px">
+              <img loading="lazy" src="assets/case-uniqkey-2/onboarding.png" alt="Startup onboarding checklist with a completion progress bar" />
+            </div>
+          </div>
+
+          <div data-reveal>
+            <h3 class="h3-case-study uq2-feature__title">Notifications</h3>
+            <div class="uq2-decision" data-reveal-group>
+              <div class="uq2-decision__grid">
+                <div class="uq2-decision__card">
+                  <h4>Problem</h4>
+                  <p>Push notifications were getting lost. Missed notifications had to be triggered manually, which caused all missed alerts to arrive at once in a single batch, burying the most critical one among the rest.</p>
+                </div>
+                <div class="uq2-decision__card">
+                  <h4>Solution</h4>
+                  <p>A dedicated notification feed with a clear status for each event (e.g., access granted/revoked, access requested, access expiring). This ensures updates are always visible within the app, not just at the moment a push notification is sent.</p>
+                </div>
+                <div class="uq2-decision__card">
+                  <h4>Why?</h4>
+                  <p>The system should explicitly communicate changes in its state rather than relying on the user catching a temporary push notification in time.</p>
+                </div>
+              </div>
+            </div>
+            <div class="uq2-feature__media" style="margin-top: 24px">
+              <img loading="lazy" src="assets/case-uniqkey-2/notifications.png" alt="Notification feed with status for each security event" />
+            </div>
+          </div>
+
+          <div data-reveal>
+            <h3 class="h3-case-study uq2-feature__title">Also, Mobile Working Together with Web Extension</h3>
+            <p class="body-main uq2-feature__body">
+              A password copied from the browser extension still needs confirmation from the
+              mobile app, the same push-approval flow already shown above (login request, source
+              clearly labeled, Approve/Deny). The extension handles the day-to-day copy-paste;
+              the phone stays the actual key.
+            </p>
+            <div class="uq2-feature__media">
+              <img loading="lazy" src="assets/case-uniqkey-2/extension.png" alt="Browser extension login request approved from the mobile app" />
+            </div>
+          </div>
+
+          <div data-reveal>
+            <h3 class="h3-case-study uq2-feature__title">The Shift</h3>
+            <p class="body-main uq2-feature__body">
+              Two moments where the redesign is easiest to see at a glance.
+            </p>
+            <!-- Placeholder per Roman — images to be added later. -->
+            <div class="uq2-placeholder">Will be soon</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE-UQ2-RESULTS-01 | Results | matches Figma "Section — Results" (898:20259) -->
+      <section class="uq2-section uq2-section--panel">
+        <div class="uq2-panel" data-reveal>
+          <div class="uq2-panel__inner">
+            <div class="uq2-results">
+              <h2>Results</h2>
+              <p class="uq2-results__lead">
+                +40% faster information retrieval: Users found what they needed quicker,
+                resulting in increased overall satisfaction.
+              </p>
+              <p class="uq2-results__lead">
+                Zero friction from updates: 20% of users didn't notice specific changes, and
+                there were no complaints, proving that the interface simplification was smooth
+                and didn't break their familiar workflow.
+              </p>
+              <h3>Team &amp; Business Impact:</h3>
+              <ul>
+                <li>
+                  <strong>35% revenue growth:</strong> Revenue increased by 35% during this
+                  development period (achieved as a combined result of the entire team's effort
+                  and overall growth factors, not solely due to design).
+                </li>
+                <li><strong>Market expansion:</strong> The product successfully expanded beyond Scandinavia into new European markets.</li>
+                <li><strong>Industry recognition:</strong> Established presence at international cybersecurity summits.</li>
+                <li>
+                  <strong>Ecosystem integration:</strong> The app is a core part of the Uniqkey
+                  product ecosystem. You can learn more about the product in detail here:
+                  <a href="case-uniqkey.html">Admin side</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: HOME-REVIEWS-01 | Reviews carousel | shared component, reused unchanged -->
+      <section class="home-section case-reviews-cta" id="feedbacks">
+        <h2 class="h2-section reviews-heading" data-reveal>Reviews:</h2>
+        <div class="reviews-carousel" data-reveal>
+          <button
+            class="reviews-arrow reviews-arrow--prev"
+            type="button"
+            aria-label="Previous review"
+            aria-controls="review-slide"
+          >
+            <svg viewBox="0 0 49.5818 71.9599" fill="none" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M37.5211 4.0415C36.5477 4.0473 35.6104 4.44612 34.8971 5.15772L4.01164 35.9709C4.01081 35.9717 4.00974 35.9723 4.00857 35.9724L4.00252 35.9733C4.00025 35.9736 3.99942 35.9765 4.00116 35.978L4.00131 35.9781C4.00248 35.9791 4.00248 35.9809 4.00131 35.9819C3.99961 35.9833 4.00053 35.9861 4.00276 35.9863L4.00855 35.9867C4.00972 35.9868 4.01082 35.9873 4.01165 35.9881L34.8971 66.8022C35.6103 67.5138 36.5478 67.9126 37.5211 67.9185L44.5741 67.9599C45.4662 67.9651 45.9181 66.8882 45.2895 66.2552L15.9202 36.6847C15.5329 36.2947 15.5329 35.6653 15.9202 35.2753L45.2895 5.70474C45.9181 5.07179 45.4662 3.99483 44.5741 4.00007L37.5211 4.0415Z"
+              />
+            </svg>
+          </button>
+
+          <div class="review-slide" id="review-slide" aria-live="polite" aria-atomic="true" data-default-review="Sanne Øst">
+            <div>
+              <p class="h3-case-study review-slide__name">Sanne Øst</p>
+              <p class="body-large review-slide__role">Chief Product Officer</p>
+            </div>
+            <p class="body-main review-slide__quote">
+              Roman is a very creative person. We worked together on the design of a password
+              management application and came up with a great solution that was successfully
+              launched. Roman loves to research the market and is always full of creative ideas. If
+              you need fresh and unique eye on your product - Roman is the right person.
+            </p>
+          </div>
+
+          <button
+            class="reviews-arrow reviews-arrow--next"
+            type="button"
+            aria-label="Next review"
+            aria-controls="review-slide"
+          >
+            <svg viewBox="0 0 49.5818 71.9599" fill="none" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M12.0609 4.04145C13.0343 4.04725 13.9716 4.44606 14.6849 5.15766L45.5704 35.9708C45.5712 35.9717 45.5723 35.9722 45.5734 35.9724L45.5795 35.9732C45.5818 35.9736 45.5826 35.9764 45.5809 35.9779L45.5807 35.978C45.5795 35.979 45.5795 35.9808 45.5807 35.9818C45.5824 35.9833 45.5815 35.9861 45.5793 35.9862L45.5735 35.9866C45.5723 35.9867 45.5712 35.9872 45.5704 35.988L14.6849 66.8022C13.9717 67.5137 13.0342 67.9125 12.0609 67.9184L5.00792 67.9598C4.11585 67.9651 3.66388 66.8881 4.29253 66.2552L33.6618 36.6846C34.0491 36.2947 34.0491 35.6652 33.6618 35.2752L4.29253 5.70469C3.66389 5.07174 4.11585 3.99478 5.00792 4.00002L12.0609 4.04145Z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="reviews-progress" aria-hidden="true">
+          <span class="reviews-progress__segment is-active"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+          <span class="reviews-progress__segment"></span>
+        </div>
+
+        <!-- UI: HOME-CTA-01 | CTA block | shared component, reused unchanged -->
+        <div class="cta-section" data-reveal>
+          <h2 class="h2-section cta-heading">Ready to architect your next product?</h2>
+          <p class="body-large cta-description">
+            Whatever's easiest for you — reach out and let's talk.
+          </p>
+          <a
+            class="btn btn--primary"
+            href="https://www.linkedin.com/in/romsvid/" data-popup="contact"
+            target="_blank"
+            rel="noopener"
+          >
+            Contact Me
+            <img loading="lazy" class="btn__icon" src="assets/icons/icon-arrow-right.svg" alt="" />
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- UI: GLOBAL-FOOTER-01 | Site footer | shared component, reused unchanged -->
+    <footer class="site-footer">
+      <img loading="lazy" class="site-footer__bg" src="assets/images/footer-bg.svg" alt="" aria-hidden="true" />
+      <div class="site-footer__row site-footer__row--top">
+        <a class="nav-logo" href="index.html">
+          <span class="nav-logo__icon">
+            <img class="nav-logo__avatar" src="assets/icons/logo-avatar.png" alt="" />
+          </span>
+          <span class="nav-logo__text">Alien Eyes</span>
+        </a>
+
+        <div class="site-footer__social">
+          <a href="https://www.instagram.com/romsvid/" target="_blank" rel="noopener">
+            <img loading="lazy" src="assets/icons/social-instagram.svg" alt="Instagram" />
+          </a>
+          <a href="https://www.linkedin.com/in/romsvid/" target="_blank" rel="noopener">
+            <img loading="lazy" src="assets/icons/social-linkedin.svg" alt="LinkedIn" />
+          </a>
+          <a href="https://t.me/Rmsddddd" target="_blank" rel="noopener">
+            <img loading="lazy" src="assets/icons/social-telegram.svg" alt="Telegram" />
+          </a>
+        </div>
+      </div>
+
+      <div class="site-footer__row site-footer__row--bottom">
+        <p class="body-main site-footer__copyright">© 2026 Roman Sviderskyi</p>
+        <p class="body-main site-footer__contact">
+          +380 97 334 9540&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:svidddrommm25@gmail.com"
+            >svidddrommm25@gmail.com</a
+          >
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+    <script src="js/reviews.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="js/nbsp-typography.js"></script>
+  </body>
+</html>

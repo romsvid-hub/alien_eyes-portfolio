@@ -898,6 +898,15 @@
   object-fit: contain;
 }
 
+/* Uniqkey 2 — same simple contained-image approach as --yoy/--ridi;
+   Un_hero is a transparent-background phone mockup composite. */
+.case-card__media--uq2 img {
+  position: static;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 /*
   ATJ2 — added 2026-09-10 alongside the new laptop+phone mockup image,
   which already renders its own device chrome (unlike the old raw

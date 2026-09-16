@@ -1,0 +1,749 @@
+/*
+  Uniqkey 2 Case Study — "Streamline UX for 2FA and Security" (Figma
+  fileKey DU3fuTo8QXIJ0uMcI3jh91, node 898:19945, "Uniqkey 2 Case —
+  rebuilt from code"). Verified via get_metadata + get_design_context on
+  898:19946 (Hero), 898:21068 (Impact), 903:21336 (Product Scope),
+  898:20044 (Challenge), 898:20107 (Key Solution).
+
+  Light-theme case, same branding exception as case-study.css (Uniqkey
+  1) — confirmed in Figma (#f7f7f7 canvas, #181413 text, Uniqkey blue
+  accents), not a deviation. Structurally this case reuses ATJ2's own
+  patterns almost verbatim (Roman: "макет побудований на базі ATJ 2") —
+  hero gradient card, decision (Problem/Solution/Why) cards, section
+  eyebrow, challenge/results blue panels — just recolored for Uniqkey's
+  light theme instead of ATJ2's dark-on-tint one. Case-specific only:
+  does not touch home.css/nav.css/footer.css/tokens.css/case-study.css.
+*/
+
+.uq2-page {
+  background-color: var(--color-main-canvas);
+  color: var(--color-deep-text);
+}
+
+:root {
+  --uq2-accent-dark: #3d5bae;
+}
+
+/* ---------- Shared primitives ---------- */
+
+.uq2-section {
+  padding: 48px var(--page-px);
+}
+
+@media (min-width: 1280px) {
+  .uq2-section {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.uq2-section--panel {
+  padding: 0;
+}
+
+.uq2-eyebrow {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--h3-size);
+  line-height: 1.2;
+  letter-spacing: var(--h3-letter-spacing);
+  color: var(--color-subtle-text);
+  margin: 0 0 16px;
+}
+
+.uq2-eyebrow--lg {
+  font-size: var(--h2-size);
+  line-height: 1.2;
+  color: var(--uq2-accent-dark);
+}
+
+@media (min-width: 1024px) {
+  .uq2-eyebrow--lg {
+    margin-bottom: 24px;
+  }
+}
+
+/* Empty slot awaiting a future image — Roman's own "will be soon" note
+   in Figma, not a missing asset to chase down now. */
+.uq2-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 200px;
+  background-color: #ececec;
+  border: 1px dashed #b3b3b3;
+  border-radius: 8px;
+  color: #8a8a8a;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: center;
+  padding: 16px;
+}
+
+/* ---------- Hero ---------- */
+
+/*
+  Same "Hero gradient for YOY and ATJ2" pattern (Roman's own name),
+  verified via get_design_context as the literal same gradient angle/
+  colors on this Hero too — confirms this case reuses ATJ2's hero
+  mechanics. To make static: delete the animation line + @keyframes.
+*/
+.uq2-hero {
+  margin: 24px var(--page-px) 48px;
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 32px 20px;
+  background: linear-gradient(246.48deg, #e4e5e5 0%, #d9d9da 50%, #e4e5e5 100%);
+  background-size: 200% 200%;
+  animation: uq2-hero-gradient-flow 14s ease-in-out infinite;
+}
+
+@keyframes uq2-hero-gradient-flow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .uq2-hero {
+    animation: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .uq2-hero {
+    border-bottom-left-radius: 48px;
+    border-bottom-right-radius: 48px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    flex-direction: row;
+    align-items: center;
+    gap: 46px;
+    padding: 24px 80px;
+    min-height: 557px;
+  }
+}
+
+.uq2-hero__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .uq2-hero__media {
+    /* flex (not a fixed width): lets this column shrink at narrower
+       desktop widths (1024-1279px) so the text column next to it
+       always keeps enough room — a fixed 526px width was eating
+       almost the entire row at 1024px, leaving the title column too
+       narrow for its own text to wrap in. Caps out at 526px via
+       max-width once there's enough space. */
+    flex: 1 1 526px;
+    max-width: 526px;
+    width: auto;
+  }
+}
+
+/*
+  Natural aspect-ratio flow (no absolute-percentage crop math) — Un_hero
+  is a simple portrait phone mockup, not a wide composite needing
+  Figma-exact crop percentages the way ATJ2's laptop mockup did, so
+  there's no equivalent stretching risk to design around.
+*/
+.uq2-hero__media img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(-10px 10px 6px rgba(203, 203, 203, 0.35));
+}
+
+@media (min-width: 1024px) {
+  .uq2-hero__media img {
+    max-width: 390px;
+  }
+}
+
+.uq2-hero__content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .uq2-hero__content {
+    gap: 24px;
+  }
+}
+
+.uq2-tag {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 4px 10px;
+  background-color: transparent;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.0028px;
+  color: var(--color-subtle-text);
+}
+
+.uq2-hero__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 1.1;
+  letter-spacing: var(--h1-letter-spacing);
+  color: var(--uq2-accent-dark);
+  margin: 16px 0 0;
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 1024px) {
+  .uq2-hero__title {
+    font-size: 64px;
+  }
+}
+
+.uq2-hero__desc {
+  color: var(--color-dark-alien);
+  max-width: 548px;
+  margin: 12px 0 0;
+}
+
+.uq2-hero__meta {
+  margin: 24px 0 0;
+  padding-left: 24px;
+  color: var(--color-dark-alien);
+}
+
+.uq2-hero__meta li + li {
+  margin-top: 8px;
+}
+
+/* ---------- Impact stats ---------- */
+
+.uq2-impact {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .uq2-impact {
+    flex-direction: row;
+    gap: 24px;
+  }
+}
+
+.uq2-impact__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+@media (min-width: 640px) {
+  .uq2-impact__item {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+}
+
+.uq2-impact__value {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--color-unibrand);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+  .uq2-impact__value {
+    font-size: 64px;
+  }
+}
+
+.uq2-impact__label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--color-subtle-text);
+  margin: 0;
+  min-width: 0;
+}
+
+/* ---------- Product Scope ---------- */
+
+.uq2-scope__intro {
+  color: var(--color-deep-text);
+  max-width: 739px;
+  margin: 0 0 24px;
+}
+
+.uq2-scope__panel {
+  background-color: var(--color-white);
+  border-radius: 8px;
+  box-shadow: 2px 2px 18px rgba(24, 20, 19, 0.12);
+  padding: 16px;
+}
+
+.uq2-scope__panel img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- Context / My Scope (two-column, plain text) ---------- */
+
+.uq2-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .uq2-grid {
+    flex-direction: row;
+  }
+}
+
+.uq2-grid__col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.uq2-grid__col h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--color-deep-text);
+  margin: 0;
+}
+
+.uq2-grid__col p {
+  color: var(--color-deep-text);
+  margin: 0;
+}
+
+.uq2-context__media {
+  margin-top: 24px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.uq2-context__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- Before ---------- */
+
+.uq2-before__lead {
+  color: var(--color-subtle-text);
+  margin: 8px 0 24px;
+}
+
+.uq2-before__media {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 2px 2px 18px rgba(24, 20, 19, 0.12);
+}
+
+.uq2-before__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- Research: pain points / feature cards ---------- */
+
+.uq2-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .uq2-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.uq2-cards--2col {
+  gap: 16px 16px;
+}
+
+@media (min-width: 768px) {
+  .uq2-cards--2col {
+    grid-template-rows: repeat(2, auto);
+  }
+}
+
+.uq2-card {
+  background-color: var(--color-white);
+  border-radius: 12px;
+  box-shadow: 2px 2px 18px rgba(24, 20, 19, 0.1);
+  padding: 20px;
+}
+
+.uq2-card h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--color-deep-text);
+  margin: 0 0 12px;
+}
+
+.uq2-card p {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-subtle-text);
+  margin: 0;
+}
+
+.uq2-research__label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--color-deep-text);
+  margin: 40px 0 16px;
+}
+
+.uq2-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 24px 32px;
+}
+
+@media (min-width: 1024px) {
+  .uq2-logos {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+}
+
+.uq2-logos__item {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+}
+
+@media (min-width: 1024px) {
+  .uq2-logos__item {
+    height: 36px;
+  }
+}
+
+/* ---------- Key Solution / blue panels (Challenge, Key Solution, Results) ---------- */
+
+.uq2-panel {
+  background-color: var(--uq2-accent-dark);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .uq2-panel {
+    border-radius: 48px;
+  }
+}
+
+.uq2-panel__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .uq2-panel__inner {
+    padding: 40px 32px 60px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .uq2-panel__inner {
+    gap: 24px;
+    padding: 48px 0 80px;
+  }
+}
+
+.uq2-panel__eyebrow {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1.2;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.uq2-panel__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.2;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.uq2-panel__media {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.uq2-panel__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Challenge's own two-column content (white card + blue context list) */
+.uq2-challenge__content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .uq2-challenge__content {
+    flex-direction: row;
+  }
+}
+
+.uq2-challenge__card {
+  background-color: var(--color-white);
+  border-radius: 16px;
+  padding: 24px;
+  flex: 1 1 55%;
+}
+
+.uq2-challenge__card p {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--color-deep-text);
+  margin: 0;
+}
+
+.uq2-challenge__card p + p {
+  margin-top: 16px;
+}
+
+.uq2-challenge__context {
+  flex: 1 1 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.uq2-challenge__context h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.uq2-challenge__context ul {
+  margin: 0;
+  padding-left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.uq2-challenge__context li {
+  list-style: disc;
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--color-white);
+}
+
+/* ---------- Decision cards (Problem / Solution / Why) ---------- */
+
+.uq2-decision__grid {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  .uq2-decision__grid {
+    flex-direction: row;
+    gap: 24px;
+  }
+}
+
+.uq2-decision__card {
+  padding: 16px 0;
+  border-top: 1px solid var(--color-light-gray);
+}
+
+@media (min-width: 1024px) {
+  .uq2-decision__card {
+    flex: 1;
+    padding: 20px;
+    border-top: none;
+    border-left: 1px solid var(--color-light-gray);
+  }
+
+  .uq2-decision__card:first-child {
+    border-left: none;
+  }
+}
+
+.uq2-decision__card h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--color-deep-text);
+  margin: 0 0 8px;
+}
+
+.uq2-decision__card p {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 25px;
+  color: var(--color-dark-gray);
+  margin: 0;
+}
+
+/* On-blue variant — decision cards inside a .uq2-panel */
+.uq2-decision--on-blue .uq2-decision__card {
+  border-color: var(--color-white);
+}
+
+.uq2-decision--on-blue .uq2-decision__card h4 {
+  color: var(--color-white);
+}
+
+.uq2-decision--on-blue .uq2-decision__card p {
+  color: rgba(255, 254, 254, 0.85);
+}
+
+/* ---------- Other Core Features ---------- */
+
+.uq2-features {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.uq2-feature__title {
+  color: var(--color-deep-text);
+  margin: 0 0 16px;
+}
+
+.uq2-feature__body {
+  color: var(--color-subtle-text);
+  margin: 0 0 24px;
+  max-width: 739px;
+}
+
+.uq2-feature__media {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 2px 2px 18px rgba(24, 20, 19, 0.1);
+}
+
+.uq2-feature__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- Results ---------- */
+
+.uq2-results {
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.uq2-results h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 40px;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.uq2-results__lead {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.uq2-results__lead + .uq2-results__lead {
+  margin-top: 8px;
+}
+
+.uq2-results h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--color-white);
+  margin: 8px 0 0;
+}
+
+.uq2-results ul {
+  margin: 0;
+  padding-left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.uq2-results li {
+  list-style: disc;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 25px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.uq2-results li a {
+  color: var(--color-white);
+  text-decoration: underline;
+}
+
+.uq2-results li strong {
+  color: var(--color-white);
+}
