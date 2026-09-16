@@ -408,19 +408,27 @@
 
 /* ---------- Case Studies popup ---------- */
 
+/*
+  2026-09-17, per Roman: one horizontal row for every case, scrolling
+  sideways instead of wrapping to multiple rows — the swipe is an
+  accepted trade-off. flex-wrap:wrap -> nowrap + overflow-x:auto;
+  cards need flex-shrink:0 so scrolling replaces shrinking.
+*/
 .nav-popup__cases-grid {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: flex-start;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
   gap: 20px;
-  overflow-y: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
   min-height: 0;
+  padding-bottom: 4px;
 }
 
 .nav-popup-case {
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   gap: 10px;
   width: 200px;
   padding: 12px;

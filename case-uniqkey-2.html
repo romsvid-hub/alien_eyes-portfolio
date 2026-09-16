@@ -75,7 +75,7 @@
             <span class="uq2-tag">Enterprise Security</span>
             <span class="uq2-tag">B2B SaaS</span>
           </div>
-          <h1 class="uq2-hero__title">Streamline UX for 2FA and Security</h1>
+          <h1 class="uq2-hero__title">Streamline UX<br />for 2FA and<br />Security</h1>
           <p class="body-large uq2-hero__desc">
             In this case study, I showcase how I refined Uniqkey's mobile app UX to
             streamline authentication and enhance secure access management.
@@ -240,41 +240,42 @@
         <div class="uq2-cards uq2-cards--2col" data-reveal-group>
           <div class="uq2-card">
             <p>
-              Optimizing the authentication process for fast and intuitive confirmation via
-              mobile, ensuring seamless user access to the service.
+              <strong>Optimizing the authentication process</strong> for fast and intuitive
+              confirmation via mobile, ensuring seamless user access to the service.
             </p>
           </div>
           <div class="uq2-card">
             <p>
-              Introducing new features, such as adding payment cards and notes, improving data
-              filtering and sorting for better management of sensitive information.
+              <strong>Introducing new features</strong>, such as adding payment cards and notes,
+              improving data filtering and sorting for better management of sensitive
+              information.
             </p>
           </div>
           <div class="uq2-card">
             <p>
-              Enhancing app navigation by implementing a bottom navigation menu for easier access
-              to core features like the Security Dashboard, profile management, and access
-              settings.
+              <strong>Enhancing app navigation</strong> by implementing a bottom navigation menu
+              for easier access to core features like the Security Dashboard, profile
+              management, and access settings.
             </p>
           </div>
           <div class="uq2-card">
             <p>
-              Improving push notifications, ensuring that every action or status change is
-              accompanied by a notification, keeping users updated with the latest security
-              changes.
+              <strong>Improving push notifications</strong>, ensuring that every action or status
+              change is accompanied by a notification, keeping users updated with the latest
+              security changes.
             </p>
           </div>
           <div class="uq2-card">
             <p>
-              Adding different access levels, allowing more flexible permission management and
-              restrictions, enhancing security and control over data.
+              <strong>Adding different access levels</strong>, allowing more flexible permission
+              management and restrictions, enhancing security and control over data.
             </p>
           </div>
           <div class="uq2-card">
             <p>
-              Implementing onboarding to introduce users to the process, as it was previously
-              absent. This will help them understand key actions and discover new features
-              efficiently.
+              <strong>Implementing onboarding</strong> to introduce users to the process, as it
+              was previously absent. This will help them understand key actions and discover new
+              features efficiently.
             </p>
           </div>
         </div>
@@ -293,7 +294,7 @@
       <section class="uq2-section uq2-section--panel">
         <div class="uq2-panel" data-reveal>
           <div class="uq2-panel__inner">
-            <p class="uq2-panel__eyebrow">Key Solutions</p>
+            <p class="uq2-panel__eyebrow uq2-panel__eyebrow--h1">Key Solutions</p>
             <p class="uq2-panel__title">B2B: Access Rights and Department Filtering</p>
             <div class="uq2-panel__media">
               <img loading="lazy" src="assets/case-uniqkey-2/key-solution-flow.png" alt="Flow: filtering logins by department, then opening a detailed login view with 2FA code and sharing tags" />
@@ -404,8 +405,27 @@
             <p class="body-main uq2-feature__body">
               Two moments where the redesign is easiest to see at a glance.
             </p>
-            <!-- Placeholder per Roman — images to be added later. -->
-            <div class="uq2-placeholder">Will be soon</div>
+            <!-- Interactive before/after comparison slider, per Roman
+                 (node 916:34103 + his own gap edit on 907:32287) —
+                 drag the handle to compare. js/case-uniqkey-2-shift.js -->
+            <div class="uq2-shift" data-before-after>
+              <div class="uq2-shift__before">
+                <img loading="lazy" src="assets/case-uniqkey-2/shift-before.png" alt="Before: unstructured, hard-to-navigate password list" />
+              </div>
+              <div class="uq2-shift__after" data-shift-after>
+                <img loading="lazy" src="assets/case-uniqkey-2/shift-after.png" alt="After: structured, categorized password list" />
+              </div>
+              <span class="uq2-shift__badge uq2-shift__badge--before">Before</span>
+              <span class="uq2-shift__badge uq2-shift__badge--after">After</span>
+              <div class="uq2-shift__divider" data-shift-divider>
+                <span class="uq2-shift__handle" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M9 6L3 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M15 6L21 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -436,7 +456,8 @@
                 <li><strong>Industry recognition:</strong> Established presence at international cybersecurity summits.</li>
                 <li>
                   <strong>Ecosystem integration:</strong> The app is a core part of the Uniqkey
-                  product ecosystem. You can learn more about the product in detail here:
+                  product ecosystem.<br />
+                  You can learn more about the product in detail here:
                   <a href="case-uniqkey.html">Admin side</a>
                 </li>
               </ul>
@@ -556,5 +577,6 @@
     <script src="js/reviews.js"></script>
     <script src="js/reveal.js"></script>
     <script src="js/nbsp-typography.js"></script>
+    <script src="js/case-uniqkey-2-shift.js"></script>
   </body>
 </html>
