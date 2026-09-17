@@ -682,9 +682,6 @@
     border-left: 1px solid var(--color-light-gray);
   }
 
-  .uq2-decision__card:first-child {
-    border-left: none;
-  }
 }
 
 .uq2-decision__card h4 {
