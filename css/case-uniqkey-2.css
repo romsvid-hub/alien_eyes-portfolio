@@ -30,6 +30,7 @@
 */
 .uq2-page .case-reviews-cta {
   background-color: var(--color-dark-alien);
+  margin-top: 48px;
 }
 
 :root {
