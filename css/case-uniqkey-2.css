@@ -20,6 +20,18 @@
   color: var(--color-deep-text);
 }
 
+/*
+  Fixed 2026-09-17 (Roman: "footer" area was white, should be dark like
+  every other page) — the shared Reviews/CTA component (home.css)
+  assumes a dark backdrop and has no background of its own; on the
+  dark-theme pages it just inherits <body>. This page's body is light
+  (Uniqkey's own branding exception), so this section needs its own
+  dark panel, same fix already applied on Uniqkey 1 (case-study.css).
+*/
+.uq2-page .case-reviews-cta {
+  background-color: var(--color-dark-alien);
+}
+
 :root {
   --uq2-accent-dark: #3d5bae;
   --uq2-accent: #475fa9;
@@ -255,9 +267,15 @@
   margin: 12px 0 0;
 }
 
+/*
+  Fixed 2026-09-17 (Roman: meta row should line up flush-left with
+  "Hero heading group" above it) — the list's own default padding-left
+  (bullet indent, invisible since list-style is none sitewide) was
+  still shifting its text ~24px right of the title/tags/description.
+*/
 .uq2-hero__meta {
   margin: 24px 0 0;
-  padding-left: 24px;
+  padding-left: 0;
   color: var(--color-dark-alien);
 }
 
@@ -796,7 +814,7 @@
 .uq2-shift {
   position: relative;
   width: 100%;
-  aspect-ratio: 1336 / 883;
+  aspect-ratio: 1283 / 848;
   border-radius: 12px;
   overflow: hidden;
   cursor: ew-resize;
@@ -878,6 +896,14 @@
   height: 22px;
 }
 
-.uq2-shift.is-dragging {
-  cursor: grabbing;
+/* Desktop-only manual line break, per Roman (Results "Zero friction" copy). */
+.uq2-break-desktop {
+  display: none;
 }
+
+@media (min-width: 1280px) {
+  .uq2-break-desktop {
+    display: inline;
+  }
+}
+
