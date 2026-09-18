@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Clean URL: GitHub Pages can't do server-side redirects, so when
-         the page is opened as /index.html, swap the address bar to /
-         (no reload, hash/query kept). Canonical tag already says "/". -->
+         the page is opened with .html (or /index.html), swap the address
+         bar to the extensionless form (no reload, query/hash kept). -->
     <script>
       (function () {
         var p = location.pathname;
-        if (/\/index\.html$/.test(p)) {
-          history.replaceState(null, "", p.replace(/index\.html$/, "") + location.search + location.hash);
+        if (/\.html$/.test(p)) {
+          history.replaceState(null, "", p.replace(/index\.html$/, "").replace(/\.html$/, "") + location.search + location.hash);
         }
       })();
     </script>
@@ -112,7 +112,7 @@
       <div class="nav-menu">
         <div class="nav-links">
           <a class="nav-links__link" href="#case-studies">Case Studies</a>
-          <a class="nav-links__link" href="about.html">About Me</a>
+          <a class="nav-links__link" href="about">About Me</a>
           <a class="nav-links__link" href="#feedbacks">Feedbacks</a>
         </div>
 
@@ -259,7 +259,7 @@
               alt="ATJ DEI Audit shown on laptop and mobile"
             />
           </div>
-          <a class="btn btn--primary case-card__cta" href="case-atj-2.html">
+          <a class="btn btn--primary case-card__cta" href="case-atj-2">
             View case
             <svg class="btn__icon" viewBox="0 0 21 11.547" fill="none" aria-hidden="true">
               <path
@@ -298,7 +298,7 @@
               alt="Uniqkey mobile app: authentication request screen and saved services list"
             />
           </div>
-          <a class="btn btn--primary case-card__cta" href="case-uniqkey-2.html">
+          <a class="btn btn--primary case-card__cta" href="case-uniqkey-2">
             View case
             <svg class="btn__icon" viewBox="0 0 21 11.547" fill="none" aria-hidden="true">
               <path
@@ -347,7 +347,7 @@
               />
             </div>
           </div>
-          <a class="btn btn--primary case-card__cta" href="case-atj.html">
+          <a class="btn btn--primary case-card__cta" href="case-atj">
             View case
             <svg class="btn__icon" viewBox="0 0 21 11.547" fill="none" aria-hidden="true">
               <path
@@ -402,7 +402,7 @@
               <img loading="lazy" src="assets/home/uniqkey-macbook-frame.png" alt="" />
             </div>
           </div>
-          <a class="btn btn--primary case-card__cta" href="case-uniqkey.html">
+          <a class="btn btn--primary case-card__cta" href="case-uniqkey">
             View case
             <svg class="btn__icon" viewBox="0 0 21 11.547" fill="none" aria-hidden="true">
               <path
@@ -437,7 +437,7 @@
           <div class="case-card__media case-card__media--yoy">
             <img loading="lazy" src="assets/case-yoy/mobmocup.webp" alt="YOY! Events organizer flow shown on a phone" />
           </div>
-          <a class="btn btn--primary case-card__cta" href="case-yoy.html">
+          <a class="btn btn--primary case-card__cta" href="case-yoy">
             View case
             <svg class="btn__icon" viewBox="0 0 21 11.547" fill="none" aria-hidden="true">
               <path
@@ -475,7 +475,7 @@
           <!-- 2026-09-12: case is far enough along now — Roman asked for the
                same active accent styling as the other case cards, dropping
                the earlier deliberately-muted/disabled look. -->
-          <a class="btn btn--primary case-card__cta" href="case-ridi.html">
+          <a class="btn btn--primary case-card__cta" href="case-ridi">
             View case
             <svg class="btn__icon" viewBox="0 0 21 11.547" fill="none" aria-hidden="true">
               <path fill="currentColor" d="M21 5.7735L11 0V11.547L21 5.7735ZM0 5.7735V6.7735H12V5.7735V4.7735H0V5.7735Z" />

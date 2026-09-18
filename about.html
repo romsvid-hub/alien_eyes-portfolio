@@ -3,6 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Clean URL: GitHub Pages can't do server-side redirects, so when
+         the page is opened with .html (or /index.html), swap the address
+         bar to the extensionless form (no reload, query/hash kept). -->
+    <script>
+      (function () {
+        var p = location.pathname;
+        if (/\.html$/.test(p)) {
+          history.replaceState(null, "", p.replace(/index\.html$/, "").replace(/\.html$/, "") + location.search + location.hash);
+        }
+      })();
+    </script>
     <script>
       if ("scrollRestoration" in history) {
         history.scrollRestoration = "manual";
@@ -10,13 +21,13 @@
     </script>
     <title>About Me — Roman Sviderskyi | Alien Eyes Portfolio</title>
     <meta name="description" content="Roman Sviderskyi — Product Designer. Mindset, workflow, and the life outside the screen that shapes how he designs." />
-    <link rel="canonical" href="https://alieneyes.ink/about.html" />
+    <link rel="canonical" href="https://alieneyes.ink/about" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/favicon-180.png" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://alieneyes.ink/about.html" />
+    <meta property="og:url" content="https://alieneyes.ink/about" />
     <meta property="og:site_name" content="Alien Eyes" />
     <meta property="og:title" content="About Me — Roman Sviderskyi, Product Designer" />
     <meta property="og:description" content="Mindset, workflow, and the life outside the screen that shapes how Roman designs." />
@@ -80,7 +91,7 @@
       <div class="nav-menu">
         <div class="nav-links">
           <a class="nav-links__link" href="./#case-studies">Case Studies</a>
-          <a class="nav-links__link" href="about.html" aria-current="page">About Me</a>
+          <a class="nav-links__link" href="about" aria-current="page">About Me</a>
           <a class="nav-links__link" href="./#feedbacks">Feedbacks</a>
         </div>
 

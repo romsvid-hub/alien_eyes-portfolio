@@ -3,6 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Clean URL: GitHub Pages can't do server-side redirects, so when
+         the page is opened with .html (or /index.html), swap the address
+         bar to the extensionless form (no reload, query/hash kept). -->
+    <script>
+      (function () {
+        var p = location.pathname;
+        if (/\.html$/.test(p)) {
+          history.replaceState(null, "", p.replace(/index\.html$/, "").replace(/\.html$/, "") + location.search + location.hash);
+        }
+      })();
+    </script>
     <title>Ridi — Moto Navigator | Alien Eyes</title>
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png" />
@@ -55,7 +66,7 @@
       <div class="nav-menu">
         <div class="nav-links">
           <a class="nav-links__link" href="./#case-studies">Case Studies</a>
-          <a class="nav-links__link" href="about.html">About Me</a>
+          <a class="nav-links__link" href="about">About Me</a>
           <a class="nav-links__link" href="./#feedbacks">Feedbacks</a>
         </div>
 
