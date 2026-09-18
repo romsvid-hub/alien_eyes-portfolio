@@ -3,6 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Clean URL: GitHub Pages can't do server-side redirects, so when
+         the page is opened as /index.html, swap the address bar to /
+         (no reload, hash/query kept). Canonical tag already says "/". -->
+    <script>
+      (function () {
+        var p = location.pathname;
+        if (/\/index\.html$/.test(p)) {
+          history.replaceState(null, "", p.replace(/index\.html$/, "") + location.search + location.hash);
+        }
+      })();
+    </script>
     <!-- Must run before the browser's own scroll restoration kicks in
          (hence inline, in <head>, before anything else) — takes manual
          control so js/home-scroll-restore.js can restore Home's exact
@@ -72,7 +83,7 @@
   <body>
     <!-- UI: GLOBAL-NAV-01 | Site navigation | inspect/adjust -->
     <nav class="site-nav">
-      <a class="nav-logo" href="index.html">
+      <a class="nav-logo" href="./">
         <span class="nav-logo__icon">
           <!-- IMAGE: GLOBAL-NAV-LOGO-01 | Site logo mark (Nav) | replaceable -->
           <img
@@ -86,7 +97,7 @@
       <!-- Mobile-only, case-study pages only (716:12726) — hidden here
            via .nav-back's default display:none; only .site-nav--case
            pages show it instead of the logo. -->
-      <a class="nav-back" href="index.html" aria-label="Back to home">
+      <a class="nav-back" href="./" aria-label="Back to home">
         <svg viewBox="0 0 8 14" fill="none" aria-hidden="true">
           <path
             d="M7 1L1 7L7 13"
@@ -570,7 +581,7 @@
         aria-hidden="true"
       />
       <div class="site-footer__row site-footer__row--top">
-        <a class="nav-logo" href="index.html">
+        <a class="nav-logo" href="./">
           <span class="nav-logo__icon">
             <!-- IMAGE: GLOBAL-FOOTER-LOGO-01 | Site logo mark (Footer) | replaceable -->
             <img
