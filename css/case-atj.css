@@ -58,8 +58,13 @@
   color: var(--color-atj-accent);
 }
 
+.atj-uikit__note {
+  color: var(--color-subtle-text);
+  margin: -8px 0 16px;
+}
+
 .atj-eyebrow--research {
-  color: #bb5337;
+  color: #c44323;
 }
 
 /* "Case-trick" pattern (see case-study.css for the same technique on the
@@ -456,7 +461,7 @@
 
 .atj-research__stat {
   display: inline-flex;
-  background-color: #bb5337;
+  background-color: #c44323;
   color: var(--color-white);
   font-family: "Manrope", var(--font-body);
   font-weight: 700;
@@ -485,7 +490,7 @@
 }
 
 .atj-research__card--featured {
-  background-color: #bb5337;
+  background-color: #c44323;
 }
 
 .atj-research__card--featured .atj-research__title,
@@ -702,7 +707,7 @@
 }
 
 .atj-mvp__band {
-  background-color: #bb5337;
+  background-color: #c44323;
   padding: 40px var(--page-px) 48px;
 }
 

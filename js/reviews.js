@@ -46,6 +46,7 @@ var reviews = [
 ];
 
 document.addEventListener("DOMContentLoaded", function () {
+  var carousel = document.querySelector(".reviews-carousel");
   var slide = document.querySelector(".review-slide");
   var prevBtn = document.querySelector(".reviews-arrow--prev");
   var nextBtn = document.querySelector(".reviews-arrow--next");
@@ -54,6 +55,13 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!slide || !prevBtn || !nextBtn) {
     return;
   }
+
+  // Opt-in per page via data-auto-scroll on .reviews-carousel (currently
+  // case-ridi.html and case-yoy.html only, per Roman — the carousel
+  // itself is a shared component reused unchanged on every page, so
+  // auto-advance stays off everywhere else unless a page asks for it).
+  var autoScrollEnabled =
+    !!carousel && carousel.hasAttribute("data-auto-scroll") && reviews.length > 1;
 
   var nameEl = slide.querySelector(".review-slide__name");
   var roleEl = slide.querySelector(".review-slide__role");
@@ -131,13 +139,64 @@ document.addEventListener("DOMContentLoaded", function () {
     document.fonts.ready.then(measureMaxHeight);
   }
 
+  // Transition-aware slide change: on auto-scroll pages this fades/slides
+  // the old review out (CSS transition on .review-slide, see home.css),
+  // swaps the text once it's invisible, then fades the new one in. Other
+  // pages keep the original instant swap — same render(), no animation.
+  var TRANSITION_MS = 400;
+  var transitioning = false;
+  function goTo(index) {
+    if (!autoScrollEnabled) {
+      current = index;
+      render(current);
+      return;
+    }
+    if (transitioning) return;
+    transitioning = true;
+    slide.classList.add("is-transitioning");
+    setTimeout(function () {
+      current = index;
+      render(current);
+      // Force reflow so the browser registers the "hidden" state before
+      // removing it, otherwise the fade-in transition wouldn't run.
+      void slide.offsetWidth;
+      slide.classList.remove("is-transitioning");
+      transitioning = false;
+    }, TRANSITION_MS);
+  }
+
   prevBtn.addEventListener("click", function () {
-    current = (current - 1 + reviews.length) % reviews.length;
-    render(current);
+    goTo((current - 1 + reviews.length) % reviews.length);
+    resetAutoScroll();
   });
 
   nextBtn.addEventListener("click", function () {
-    current = (current + 1) % reviews.length;
-    render(current);
+    goTo((current + 1) % reviews.length);
+    resetAutoScroll();
   });
+
+  // Auto-scroll every 7s, paused on hover — per Roman, only where the
+  // page opts in via data-auto-scroll (see autoScrollEnabled above).
+  var autoScrollTimer = null;
+  function startAutoScroll() {
+    if (!autoScrollEnabled || autoScrollTimer) return;
+    autoScrollTimer = setInterval(function () {
+      goTo((current + 1) % reviews.length);
+    }, 7000);
+  }
+  function stopAutoScroll() {
+    clearInterval(autoScrollTimer);
+    autoScrollTimer = null;
+  }
+  function resetAutoScroll() {
+    if (!autoScrollEnabled) return;
+    stopAutoScroll();
+    startAutoScroll();
+  }
+
+  if (autoScrollEnabled) {
+    startAutoScroll();
+    carousel.addEventListener("mouseenter", stopAutoScroll);
+    carousel.addEventListener("mouseleave", startAutoScroll);
+  }
 });

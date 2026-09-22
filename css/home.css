@@ -1104,6 +1104,19 @@
   }
 }
 
+/*
+  Smooth sliding, opt-in only (see js/reviews.js autoScrollEnabled) —
+  the shared carousel markup/behavior stays instant-swap everywhere else.
+*/
+.reviews-carousel[data-auto-scroll] .review-slide {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.reviews-carousel[data-auto-scroll] .review-slide.is-transitioning {
+  opacity: 0;
+  transform: translateX(-16px);
+}
+
 .review-slide__link {
   display: inline-flex;
   align-items: center;

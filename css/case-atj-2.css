@@ -127,6 +127,11 @@
   color: var(--atj2-accent);
 }
 
+.atj2-uikit__note {
+  color: var(--color-subtle-text);
+  margin: -8px 0 16px;
+}
+
 @media (min-width: 1024px) {
   .atj2-eyebrow--lg {
     margin-bottom: 24px;

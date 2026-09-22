@@ -817,6 +817,14 @@
   font-weight: 700;
 }
 
+.case-shift__footnote {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--color-subtle-text);
+  margin: 12px 0 0;
+}
+
 /*
   "The Shift" inside Dashboard 2 (plain, no panel) — same heading+columns
   pattern as .case-score__outro above: a subtle-text heading followed by
