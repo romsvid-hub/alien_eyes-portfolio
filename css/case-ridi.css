@@ -93,6 +93,15 @@
   gap: 24px;
 }
 
+/*
+  Shared 48px block-to-block spacing (Research's Analogs/Audience/
+  Artifacts blocks) — replaces 4 identical inline style="margin-top:
+  48px" attributes with one class, per Roman.
+*/
+.ridi-block--spaced {
+  margin-top: 48px;
+}
+
 @media (min-width: 1024px) {
   .ridi-two-col {
     grid-template-columns: 1fr 1fr;
