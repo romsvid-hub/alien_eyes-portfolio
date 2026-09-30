@@ -87,3 +87,46 @@ h3,
     line-height: 1.2;
   }
 }
+
+/*
+  Case-study section heading rhythm (2026-10-01, Roman: distances
+  between title/subtitle/text varied section to section, most visibly
+  on Ridi — e.g. the "Onboarding" card had 0px between its h3 and body
+  text while the adjacent "Scenario 1" card had 12px, for what's
+  visually the same relationship). Canonical vertical gaps for the
+  eyebrow -> title -> subtitle -> body pattern repeated across every
+  case study's own content sections (NOT the Hero, which keeps its own
+  separate spacing). Each case's own class (.atj-eyebrow, .ridi-heading,
+  etc.) still owns color/font — these three own only the gap to
+  whatever follows, added as a second class alongside them, so changing
+  the rhythm site-wide means editing these three rules once.
+
+  - eyebrow (small label, only where one sits above a separate title):
+    8px
+  - title (a section's own H2-equivalent heading, whether that's a
+    real h2 or an eyebrow-styled label acting as the section's title):
+    16px mobile, 24px desktop
+  - subtitle (h3, one level below the section title): 8px
+
+  Where a parent already spaced this via flex `gap` instead of a
+  margin, that gap was set to 0 and the child given the matching cs-*
+  class instead, so there's exactly one mechanism per instance, not
+  both stacked on top of each other.
+*/
+.cs-eyebrow {
+  margin: 0 0 8px;
+}
+
+.cs-title {
+  margin: 0 0 16px;
+}
+
+@media (min-width: 1024px) {
+  .cs-title {
+    margin-bottom: 24px;
+  }
+}
+
+.cs-subtitle {
+  margin: 0 0 8px;
+}

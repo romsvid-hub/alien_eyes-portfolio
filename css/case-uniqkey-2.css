@@ -65,7 +65,16 @@
   line-height: 1.2;
   letter-spacing: var(--h3-letter-spacing);
   color: var(--color-subtle-text);
-  margin: 0 0 16px;
+}
+
+/*
+  "Impact:" is the only remaining plain (non--lg, non-.cs-title) use of
+  this class — its own stats grid isn't plain text, so it's out of the
+  shared section-heading rhythm (see typography.css .cs-title) and keeps
+  its original fixed 16px instead.
+*/
+.uq2-impact-heading {
+  margin-bottom: 16px;
 }
 
 .uq2-eyebrow--lg {

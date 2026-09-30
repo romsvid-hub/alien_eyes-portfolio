@@ -129,7 +129,6 @@
 
 .atj2-uikit__note {
   color: var(--color-subtle-text);
-  margin: -8px 0 16px;
 }
 
 @media (min-width: 1024px) {
@@ -462,7 +461,10 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+}
+
+.atj2-context__col p + p {
+  margin-top: 16px;
 }
 
 .atj2-context__col h3 {
@@ -470,7 +472,6 @@
   font-weight: 700;
   font-size: 24px;
   color: var(--color-deep-text);
-  margin: 0;
 }
 
 .atj2-context__col p {
@@ -614,7 +615,10 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+}
+
+.atj2-scope__col p + p {
+  margin-top: 16px;
 }
 
 .atj2-scope__col h3 {
@@ -622,7 +626,6 @@
   font-weight: 700;
   font-size: 24px;
   color: var(--color-deep-text);
-  margin: 0;
 }
 
 .atj2-scope__col p {
@@ -710,7 +713,6 @@
 .atj2-challenge {
   display: flex;
   flex-direction: column;
-  gap: 24px;
   max-width: 1120px;
   margin-left: auto;
   margin-right: auto;
@@ -779,7 +781,6 @@
   font-weight: 700;
   font-size: 24px;
   color: var(--color-deep-text);
-  margin: 0 0 16px;
 }
 
 .atj2-challenge__card p {
@@ -835,7 +836,6 @@
   flex: 1 1 40.45%;
   display: flex;
   flex-direction: column;
-  gap: 16px;
 }
 
 @media (min-width: 1024px) {
@@ -852,7 +852,6 @@
   font-weight: 700;
   font-size: 24px;
   color: var(--color-white);
-  margin: 0;
 }
 
 .atj2-challenge__context ul {

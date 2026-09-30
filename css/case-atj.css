@@ -49,7 +49,15 @@
   line-height: 1.2;
   letter-spacing: var(--h3-letter-spacing);
   color: var(--color-subtle-text);
-  margin: 0 0 16px;
+}
+
+/*
+  Section-heading rhythm (see .cs-title/.cs-subtitle in typography.css)
+  replaces this class's own margin everywhere except the Hero, which is
+  out of that system's scope and keeps its original 16px unchanged.
+*/
+.atj-hero__content .atj-eyebrow {
+  margin-bottom: 16px;
 }
 
 .atj-eyebrow--lg {
@@ -60,7 +68,6 @@
 
 .atj-uikit__note {
   color: var(--color-subtle-text);
-  margin: -8px 0 16px;
 }
 
 .atj-eyebrow--research {
@@ -242,23 +249,26 @@
 .atj-context__copy {
   display: flex;
   flex-direction: column;
-  gap: 24px;
 }
 
 /*
   Figma (2:13832) shows a large 168px gap between the icon and the
   CONTEXT heading, not the uniform 24px used elsewhere in this column —
-  verified via get_design_context frame offset.
+  verified via get_design_context frame offset. Used to be the parent's
+  24px gap plus this margin; the gap is gone now (title-to-body below
+  is the shared .cs-title rhythm instead, see typography.css), so 24px
+  was folded directly into these numbers to keep the icon-to-title
+  distance exactly as it was (48+24=72, 168+24=192).
 */
 .atj-context__icon {
   width: 100px;
   height: auto;
-  margin-bottom: 48px;
+  margin-bottom: 72px;
 }
 
 @media (min-width: 1024px) {
   .atj-context__icon {
-    margin-bottom: 168px;
+    margin-bottom: 192px;
   }
 }
 
@@ -702,7 +712,6 @@
 .atj-scope {
   display: flex;
   flex-direction: column;
-  gap: 16px;
   max-width: 1026px;
   margin-bottom: 48px;
 }
@@ -855,7 +864,6 @@
 
 .atj-smartfilters__heading {
   color: var(--color-white);
-  margin: 0 0 24px;
 }
 
 .atj-smartfilters__intro {
@@ -1182,7 +1190,6 @@
 .atj-jobcard__intro {
   display: flex;
   flex-direction: column;
-  gap: 16px;
 }
 
 /* "Dynamic States" copy + the GitHub note read as one group (tighter
@@ -1196,7 +1203,6 @@
 
 .atj-jobcard__heading {
   color: var(--color-atj-accent);
-  margin: 0;
 }
 
 .atj-jobcard__intro p.body-large {

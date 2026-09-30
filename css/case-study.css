@@ -59,7 +59,6 @@
   line-height: 1.2;
   letter-spacing: var(--h3-letter-spacing);
   color: var(--color-subtle-text);
-  margin: 0 0 16px;
 }
 
 .case-eyebrow--gold {
@@ -441,7 +440,6 @@
 
 .case-firstgen__heading {
   color: var(--color-unibrand);
-  margin: -12px 0 16px;
 }
 
 .case-firstgen__caption {
@@ -498,7 +496,7 @@
 
 .case-feedback__heading {
   color: var(--color-unibrand);
-  margin: 8px 0 24px;
+  margin-top: 8px;
 }
 
 .case-feedback__list {
@@ -593,7 +591,7 @@
 
 .case-approach__heading {
   color: var(--color-unibrand);
-  margin: 8px 0 24px;
+  margin-top: 8px;
 }
 
 .case-approach__intro {
@@ -733,7 +731,6 @@
 
 .case-score__outro-heading {
   color: var(--color-subtle-text);
-  margin: 0 0 24px;
 }
 
 .case-score__outro-cols {
@@ -811,7 +808,6 @@
 
 .case-shift__heading {
   color: #efefef;
-  margin: 0 0 8px;
 }
 
 .case-shift__text {
@@ -851,7 +847,6 @@
 
 .case-shift-outro-heading {
   color: var(--color-subtle-text);
-  margin: 0 0 16px;
 }
 
 .case-shift-outro-cols {
