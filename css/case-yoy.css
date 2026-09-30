@@ -262,24 +262,27 @@
   .yoy-panel--dark, so the gradient (and its animation) moved onto the
   pseudo-element instead of the element's own background.
 */
+/*
+  Unified 2026-09-30 (Roman: match the flat, rounded-corner "floating
+  card" hero style already used on ATJ 2 / Uniqkey 2 / Ridi) — was a
+  full-bleed edge-to-edge banner via a 100vw ::before breakout; now a
+  real inset card, so the gradient moved directly onto .yoy-hero's own
+  background and the breakout pseudo-element is gone. overflow:hidden
+  (needed to clip the rounded corners) also clips .yoy-hero__lines'
+  own 100vw breakout below — those decorative lines no longer reach the
+  true viewport edge, just the card's own edge, which is an acceptable
+  tradeoff for joining the shared card pattern.
+*/
 .yoy-hero {
   position: relative;
   z-index: 0;
   display: flex;
   flex-direction: column;
   gap: 24px;
+  margin: 24px var(--page-px) 48px;
+  border-radius: 24px;
+  overflow: hidden;
   padding: 48px var(--page-px);
-}
-
-.yoy-hero::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 100vw;
-  margin-left: -50vw;
   background: linear-gradient(120.11deg, #111111 0%, #222222 50%, #111111 100%);
   background-size: 200% 200%;
   animation: yoy-hero-gradient-flow 14s ease-in-out infinite;
@@ -296,7 +299,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .yoy-hero::before {
+  .yoy-hero {
     animation: none;
   }
 }
@@ -311,6 +314,7 @@
 
 @media (min-width: 1024px) {
   .yoy-hero {
+    border-radius: 48px;
     flex-direction: row;
     align-items: flex-start;
     padding: 64px var(--page-px) 48px;

@@ -101,13 +101,20 @@
 
 /* ---------- Hero (2:14461) ---------- */
 
+/*
+  Unified 2026-09-30 (Roman: match the flat, rounded-corner "floating
+  card" hero style already used on ATJ 2 / Uniqkey 2 / Ridi) — was a
+  full-bleed banner flush to the viewport edges with only its bottom
+  corners rounded; now inset on all sides with all 4 corners rounded,
+  same margin/radius convention as the other heroes.
+*/
 .case-hero {
   position: relative;
   overflow: hidden;
-  border-bottom-left-radius: 24px;
-  border-bottom-right-radius: 24px;
+  margin: 24px var(--page-px) 48px;
+  border-radius: 24px;
   background-color: #ececec;
-  padding: 96px var(--page-px) 48px;
+  padding: 64px var(--page-px) 48px;
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -115,9 +122,18 @@
 
 @media (min-width: 1024px) {
   .case-hero {
+    border-radius: 48px;
     min-height: 653px;
     padding: 24px var(--page-px) 0 var(--page-px);
     justify-content: center;
+  }
+}
+
+@media (min-width: 1280px) {
+  .case-hero {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 

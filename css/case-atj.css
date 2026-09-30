@@ -101,19 +101,55 @@
 
 /* ---------- Hero (2:13813) ---------- */
 
+/*
+  Unified 2026-09-30 (Roman: match the flat, rounded-corner "floating
+  card" hero style already used on ATJ 2 / Uniqkey 2 / Ridi) — same
+  margin/radius/overflow shape and the same shared neutral gradient fill
+  as .atj2-hero (this hero had no background of its own before). The
+  mockup now bleeds to the card's own edges (no padding around it,
+  mirroring .atj2-hero__media) while only the text content gets internal
+  padding — see .atj-hero__content below.
+*/
 .atj-hero {
   display: flex;
   flex-direction: column-reverse;
-  gap: 32px;
-  padding: 32px var(--page-px) 48px;
+  margin: 24px var(--page-px) 48px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: linear-gradient(246.48deg, #e4e5e5 0%, #d9d9da 50%, #e4e5e5 100%);
+  background-size: 200% 200%;
+  animation: atj-hero-gradient-flow 14s ease-in-out infinite;
+}
+
+@keyframes atj-hero-gradient-flow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atj-hero {
+    animation: none;
+  }
 }
 
 @media (min-width: 1024px) {
   .atj-hero {
+    border-radius: 48px;
     flex-direction: row;
-    align-items: center;
-    gap: 24px;
-    padding: 24px var(--page-px) 48px;
+    align-items: stretch;
+  }
+}
+
+@media (min-width: 1280px) {
+  .atj-hero {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -142,7 +178,14 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding: 32px var(--page-px) 40px;
   flex: 1 1 45%;
+}
+
+@media (min-width: 1024px) {
+  .atj-hero__content {
+    padding: 48px;
+  }
 }
 
 .atj-hero__title {
