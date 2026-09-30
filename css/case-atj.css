@@ -158,6 +158,21 @@
     flex-direction: row;
     align-items: stretch;
   }
+
+  /*
+    Fixed 2026-10-01 (Roman: the mockup looked stretched/deformed
+    vertically) — .atj-hero's align-items:stretch (row layout) gives
+    every flex item a definite cross-size by default, which overrides
+    aspect-ratio outright (aspect-ratio only computes a missing/auto
+    dimension — it does nothing once stretch has already supplied one).
+    Opting this item out of stretch is what lets aspect-ratio actually
+    apply, and centers the now-correctly-proportioned mockup against
+    the text column's height instead of stretching to match it — same
+    fix as .atj2-hero__media in case-atj-2.css.
+  */
+  .atj-hero__mockup-frame {
+    align-self: center;
+  }
 }
 
 @media (min-width: 1280px) {
