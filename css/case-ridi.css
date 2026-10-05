@@ -35,7 +35,7 @@
   --ridi-accent: #ff8a1f;
   --ridi-muted: #b2b2b8;
   --ridi-border: #2e2e36;
-  --ridi-link: #8c76fc;
+  --ridi-link: #bcaeff;
 }
 
 /* ---------- Shared primitives ---------- */
@@ -1047,7 +1047,7 @@
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  background-color: #7b61ff;
+  background-color: #5238cf;
   border: 1px solid #4f4c61;
   border-radius: 6px;
   font-family: var(--font-display);
@@ -1058,5 +1058,5 @@
 }
 
 .ridi-btn-primary:hover {
-  background-color: #6a52e0;
+  background-color: #452cb8;
 }
