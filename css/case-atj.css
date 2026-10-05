@@ -95,13 +95,13 @@
   look already used on ATJ 2's Hero) — was a neutral gray outline/text,
   now uses ATJ 1's own accent (#c44323, --color-atj-accent) for the
   border and text, with a light tint fill in the same recipe as
-  .atj2-tag (border + tint bg + accent text).
+  .atj2-tag (border + accent text, no fill).
 */
 .atj-tag {
   display: inline-flex;
   align-items: center;
   padding: 4px 10px;
-  background-color: rgba(196, 67, 35, 0.08);
+  background-color: transparent;
   border: 1px solid var(--color-atj-accent);
   /* Fixed 2026-09-09: was 6px — verified via Figma "Tag" component
      (2:13460), cornerRadius is 16px, same everywhere on the site. */
