@@ -228,10 +228,59 @@
         <!-- CONTENT: HOME-CASE-STUDIES-01 | Section heading | editable with approval -->
         <h2 class="h2-section case-studies-heading" data-reveal>Case Studies:</h2>
 
-        <!-- UI: HOME-CASE-ATJ2-01 | ATJ DEI Audit case study card | inspect/adjust -->
-        <!-- 2026-09-12: swapped to position 1 per Roman — "почитанися з
-             нового", start with the newer ATJ case. -->
+        <!-- UI: HOME-CASE-ATJ-01 | ATJ case study card | inspect/adjust -->
+        <!-- 2026-10-05: position 1 per Roman (order: ATJ, ATJ2, Uniqkey 2,
+             Uniqkey). Checkerboard is tracked by position, not by case. -->
         <article class="case-card" data-reveal>
+          <div class="case-card__intro">
+            <!-- CONTENT: HOME-CASE-ATJ-01 | Case study title | editable with approval -->
+            <h3 class="h3-case-study case-card__title">
+              Inclusive Hiring Platform
+            </h3>
+            <!-- CONTENT: HOME-CASE-ATJ-DESC-01 | Case study description | editable with approval -->
+            <p class="body-main case-card__description">
+              An ecosystem connecting inclusive employers with diverse
+              candidates. Ensuring accessible opportunities and decent
+              work for underrepresented groups.
+            </p>
+            <div class="tag-row">
+              <span class="tag">HR Tech</span>
+              <span class="tag">Inclusive Design</span>
+              <span class="tag">Accessibility</span>
+              <span class="tag">B2B</span>
+            </div>
+          </div>
+          <div class="case-card__media">
+            <!-- IMAGE: HOME-ATJ-GLOW-01 | Decorative glow behind ATJ mockup | replaceable -->
+            <img loading="lazy"
+              class="case-card__glow"
+              src="assets/home/atj-glow.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <div class="atj-mockup-frame">
+              <!-- IMAGE: HOME-ATJ-MOCKUP-01 | ATJ case product mockup | replaceable -->
+              <img loading="lazy"
+                src="assets/home/atj-mockup.webp"
+                alt="Inclusive Hiring Platform — product screenshot"
+              />
+            </div>
+          </div>
+          <a class="btn btn--primary case-card__cta" href="case-atj">
+            View case
+            <svg class="btn__icon" viewBox="0 0 21 11.547" fill="none" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M21 5.7735L11 0V11.547L21 5.7735ZM0 5.7735V6.7735H12V5.7735V4.7735H0V5.7735Z"
+              />
+            </svg>
+          </a>
+        </article>
+
+        <!-- UI: HOME-CASE-ATJ2-01 | ATJ DEI Audit case study card | inspect/adjust -->
+        <!-- 2026-10-05: now position 2 per Roman (order: ATJ, ATJ2,
+             Uniqkey 2, Uniqkey) — even, so case-card--reverse. -->
+        <article class="case-card case-card--reverse" data-reveal>
           <div class="case-card__intro">
             <!-- CONTENT: HOME-CASE-ATJ2-01 | Case study title | editable with approval -->
             <h3 class="h3-case-study case-card__title">
@@ -281,12 +330,10 @@
         </article>
 
         <!-- UI: HOME-CASE-UQ2-01 | Uniqkey 2 case study card | matches Figma "Uniqkey 2 Case" (898:19945) -->
-        <!-- 2026-09-16: inserted at position 2 per Roman, pushing every
-             card below it one slot and flipping their checkerboard
-             (case-card--reverse) to match — alternation is tracked by
-             position, not by which case it is (same rule already noted
-             on YOY/Ridi below). -->
-        <article class="case-card case-card--reverse" data-reveal>
+        <!-- 2026-10-05: now position 3 per Roman — odd, so no
+             case-card--reverse (alternation is tracked by position, not
+             by which case it is, same rule as YOY/Ridi below). -->
+        <article class="case-card" data-reveal>
           <div class="case-card__intro">
             <h3 class="h3-case-study case-card__title">
               Streamline UX for 2FA and Security
@@ -319,59 +366,8 @@
           </a>
         </article>
 
-        <!-- UI: HOME-CASE-ATJ-01 | ATJ case study card | inspect/adjust -->
-        <!-- 2026-09-16: now at position 3 (Uniqkey 2 inserted above it
-             at position 2 — see that card's comment). -->
-        <article class="case-card" data-reveal>
-          <div class="case-card__intro">
-            <!-- CONTENT: HOME-CASE-ATJ-01 | Case study title | editable with approval -->
-            <h3 class="h3-case-study case-card__title">
-              Inclusive Hiring Platform
-            </h3>
-            <!-- CONTENT: HOME-CASE-ATJ-DESC-01 | Case study description | editable with approval -->
-            <p class="body-main case-card__description">
-              An ecosystem connecting inclusive employers with diverse
-              candidates. Ensuring accessible opportunities and decent
-              work for underrepresented groups.
-            </p>
-            <div class="tag-row">
-              <span class="tag">HR Tech</span>
-              <span class="tag">Inclusive Design</span>
-              <span class="tag">Accessibility</span>
-              <span class="tag">B2B</span>
-            </div>
-          </div>
-          <div class="case-card__media">
-            <!-- IMAGE: HOME-ATJ-GLOW-01 | Decorative glow behind ATJ mockup | replaceable -->
-            <img loading="lazy"
-              class="case-card__glow"
-              src="assets/home/atj-glow.svg"
-              alt=""
-              aria-hidden="true"
-            />
-            <div class="atj-mockup-frame">
-              <!-- IMAGE: HOME-ATJ-MOCKUP-01 | ATJ case product mockup | replaceable -->
-              <img loading="lazy"
-                src="assets/home/atj-mockup.webp"
-                alt="Inclusive Hiring Platform — product screenshot"
-              />
-            </div>
-          </div>
-          <a class="btn btn--primary case-card__cta" href="case-atj">
-            View case
-            <svg class="btn__icon" viewBox="0 0 21 11.547" fill="none" aria-hidden="true">
-              <path
-                fill="currentColor"
-                d="M21 5.7735L11 0V11.547L21 5.7735ZM0 5.7735V6.7735H12V5.7735V4.7735H0V5.7735Z"
-              />
-            </svg>
-          </a>
-        </article>
-
         <!-- UI: HOME-CASE-UNIQKEY-01 | Uniqkey case study card | inspect/adjust -->
-        <!-- 2026-09-16: now at position 4 (see the ATJ card's comment
-             above) — gained case-card--reverse to match, position 4 is
-             even. -->
+        <!-- 2026-10-05: position 4 per Roman — even, case-card--reverse. -->
         <article class="case-card case-card--reverse" data-reveal>
           <div class="case-card__intro">
             <!-- CONTENT: HOME-CASE-UNIQKEY-01 | Case study title | editable with approval -->

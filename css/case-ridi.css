@@ -102,6 +102,13 @@
   margin-top: 48px;
 }
 
+/* Audience segmentation reads as its own beat: 96px above (separating it
+   from Research/Analogs) and 96px below (before the artifacts). */
+.ridi-block--spaced.ridi-block--audience,
+.ridi-block--audience + .ridi-block--spaced {
+  margin-top: 96px;
+}
+
 @media (min-width: 1024px) {
   .ridi-two-col {
     grid-template-columns: 1fr 1fr;
