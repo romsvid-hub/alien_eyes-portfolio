@@ -127,7 +127,7 @@ function initNavPopups() {
 
   function renderCaseCard(card) {
     var title = card.querySelector(".case-card__title");
-    var link = card.querySelector(".case-card__cta");
+    var link = card.querySelector(".case-card__link");
     if (!title || !link) return null;
 
     var desc = card.querySelector(".case-card__description");

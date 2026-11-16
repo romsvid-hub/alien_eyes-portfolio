@@ -622,6 +622,19 @@
   Hero fix.
 */
 .case-card {
+  max-width: 1120px;
+  margin: 0 auto;
+  position: relative;
+  isolation: isolate;
+  border-radius: 24px;
+}
+
+/*
+  The whole card is ONE link (no nested links): .case-card__link carries
+  the grid that used to sit on .case-card itself, and "View case" inside
+  is a plain <span class="btn"> that only looks like a button.
+*/
+.case-card__link {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
@@ -629,8 +642,87 @@
     "media"
     "actions";
   gap: 32px;
-  max-width: 1120px;
-  margin: 0 auto;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/*
+  Card hover / focus / pressed surface — Figma "Article:margin" hover
+  state 983:37005: a rounded (24px) rect tinted rgba(123,97,255,.05) with
+  a 1px rgba(123,97,255,.1) border. It reaches up to 80px past the 1120px
+  content on each side (the card's Figma frame is the 1280px page width),
+  never closer than 24px to the viewport edge.
+*/
+.case-card::before {
+  --card-bleed: max(0px, min(80px, calc((100vw - 100%) / 2 - 24px)));
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--card-bleed) * -1);
+  right: calc(var(--card-bleed) * -1);
+  z-index: -1;
+  border: 1px solid transparent;
+  border-radius: 24px;
+  background-color: transparent;
+  pointer-events: none;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+@media (hover: hover) {
+  .case-card:hover::before {
+    background-color: rgba(123, 97, 255, 0.05);
+    border-color: rgba(123, 97, 255, 0.1);
+  }
+}
+
+/* keyboard focus looks like hover (plus a real outline for visibility) */
+.case-card:has(.case-card__link:focus-visible)::before {
+  background-color: rgba(123, 97, 255, 0.05);
+  border-color: rgba(123, 97, 255, 0.1);
+}
+
+.case-card__link:focus-visible {
+  outline: 2px solid #7b61ff;
+  outline-offset: 8px;
+  border-radius: 24px;
+}
+
+/* pressed: a slightly stronger tint and a tiny shrink (Figma has no
+   separate pressed state). `scale` is its own property, so it doesn't
+   fight the scroll-reveal's transform. */
+.case-card:active::before {
+  background-color: rgba(123, 97, 255, 0.1);
+  border-color: rgba(123, 97, 255, 0.16);
+}
+
+.case-card:active {
+  scale: 0.99;
+}
+
+.case-card.reveal-init {
+  transition:
+    opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 650ms cubic-bezier(0.16, 1, 0.3, 1),
+    scale 150ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-card::before {
+    transition: none;
+  }
+
+  .case-card.reveal-init {
+    transition: none;
+  }
+
+  .case-card:active {
+    scale: none;
+  }
 }
 
 /*
@@ -960,7 +1052,7 @@
     the button is a separate grid item from intro rather than nested
     inside a shared wrapper.
   */
-  .case-card {
+  .case-card__link {
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas:
       "intro media"
@@ -997,7 +1089,7 @@
     margin-top: 8px;
   }
 
-  .case-card--reverse {
+  .case-card--reverse .case-card__link {
     grid-template-areas:
       "media intro"
       "media actions";
