@@ -259,7 +259,8 @@
 @media (min-width: 1024px) {
   .ridi-hero {
     border-radius: 48px;
-    padding: 64px var(--page-px) 48px;
+    /* 48px right inset (Figma): text column from x=652 is 580px wide */
+    padding: 64px 48px 48px var(--page-px);
   }
 }
 
@@ -443,18 +444,6 @@
   gap: 16px;
 }
 
-.ridi-hero__logo {
-  width: 56px;
-  height: auto;
-  flex-shrink: 0;
-}
-
-@media (min-width: 1024px) {
-  .ridi-hero__logo {
-    width: 72px;
-  }
-}
-
 .ridi-hero__title {
   color: var(--ridi-accent);
   font-size: 40px;
@@ -468,27 +457,25 @@
 }
 
 .ridi-hero__desc {
+  /* Figma hero description: Inter Regular 18/28 */
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
   color: #ffffff;
 }
 
-.ridi-details {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+/* Case meta block (css/case-meta.css): description colour; the content
+   column's 24px gap + the block's 24px top padding give Figma's 48px
+   (mobile gap is 20px, hence the small extra margin there) */
+.ridi-hero {
+  --case-meta-color: #ffffff;
+  --case-meta-mt: 4px;
 }
 
-.ridi-details li {
-  color: var(--ridi-muted);
-  font-size: 16px;
-  line-height: 25px;
-}
-
-.ridi-details b {
-  color: var(--ridi-accent);
-  font-weight: 500;
+@media (min-width: 1024px) {
+  .ridi-hero {
+    --case-meta-mt: 0;
+  }
 }
 
 /* ---------- Research: Analogy logos (826:13247) ---------- */
