@@ -1200,13 +1200,21 @@
   Smooth sliding, opt-in only (see js/reviews.js autoScrollEnabled) —
   the shared carousel markup/behavior stays instant-swap everywhere else.
 */
-.reviews-carousel[data-auto-scroll] .review-slide {
+.reviews-carousel[data-auto-scroll] .review-slide,
+.reviews-carousel[data-case-reviews] .review-slide {
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.reviews-carousel[data-auto-scroll] .review-slide.is-transitioning {
+.reviews-carousel[data-auto-scroll] .review-slide.is-transitioning,
+.reviews-carousel[data-case-reviews] .review-slide.is-transitioning {
   opacity: 0;
   transform: translateX(-16px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reviews-carousel[data-case-reviews] .review-slide {
+    transition: none;
+  }
 }
 
 .review-slide__link {
@@ -1275,6 +1283,25 @@
 .reviews-progress__segment.is-active {
   background-color: var(--color-cta-purple);
   transform: scale(1.25);
+}
+
+/* ---------- Related case block (bottom of every case page) ---------- */
+
+/*
+  Sits between Reviews and the CTA inside .case-reviews-cta. js/related-case.js
+  fills it with the Home card of the paired case (same .case-card markup, so
+  the whole card is one link with the same hover / focus / pressed states).
+*/
+.related-case {
+  padding-top: 80px;
+}
+
+.related-case[hidden] {
+  display: none;
+}
+
+.related-case .case-card {
+  margin-top: 0;
 }
 
 /* ---------- CTA (2:13505) ---------- */

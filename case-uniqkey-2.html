@@ -517,7 +517,7 @@
       <!-- UI: HOME-REVIEWS-01 | Reviews carousel | shared component, reused unchanged -->
       <section class="home-section case-reviews-cta" id="feedbacks">
         <h2 class="h2-section reviews-heading" data-reveal>Reviews:</h2>
-        <div class="reviews-carousel" data-reveal>
+        <div class="reviews-carousel" data-case-reviews data-reveal>
           <button
             class="reviews-arrow reviews-arrow--prev"
             type="button"
@@ -567,6 +567,9 @@
           <span class="reviews-progress__segment"></span>
           <span class="reviews-progress__segment"></span>
         </div>
+
+        <!-- UI: CASE-RELATED-01 | Related case (filled by js/related-case.js from the Home card of the paired case) -->
+        <div class="related-case" data-related-case hidden></div>
 
         <!-- UI: HOME-CTA-01 | CTA block | shared component, reused unchanged -->
         <div class="cta-section" data-reveal>
@@ -623,6 +626,7 @@
 
     <script src="js/nav.js"></script>
     <script src="js/case-nav.js" defer></script>
+    <script src="js/related-case.js" defer></script>
     <script src="js/reviews.js"></script>
     <script src="js/reveal.js"></script>
     <script src="js/nbsp-typography.js"></script>
