@@ -233,25 +233,8 @@
        edge without needing outer padding on .uq2-hero itself (which
        was double-insetting both sides at once — see .uq2-hero__media's
        comment above). */
-    padding-right: 80px;
+    padding-right: 48px;
   }
-}
-
-/* Same tinted-pill tag as ATJ2 (.atj2-tag), recolored to Uniqkey's own
-   accent — per Roman. */
-.uq2-tag {
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-  padding: 4px 10px;
-  background-color: var(--uq2-tint);
-  border: 1px solid var(--uq2-accent);
-  border-radius: 16px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: -0.0028px;
-  color: var(--uq2-accent-dark);
 }
 
 .uq2-hero__title {
@@ -272,25 +255,20 @@
 }
 
 .uq2-hero__desc {
+  /* Figma hero description: Inter Regular 18/28 */
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
   color: var(--color-dark-alien);
   max-width: 548px;
   margin: 12px 0 0;
 }
 
-/*
-  Fixed 2026-09-17 (Roman: meta row should line up flush-left with
-  "Hero heading group" above it) — the list's own default padding-left
-  (bullet indent, invisible since list-style is none sitewide) was
-  still shifting its text ~24px right of the title/tags/description.
-*/
-.uq2-hero__meta {
-  margin: 24px 0 0;
-  padding-left: 0;
-  color: var(--color-dark-alien);
-}
-
-.uq2-hero__meta li + li {
-  margin-top: 8px;
+/* Case meta block (css/case-meta.css): description colour; the content
+   column's 24px gap + the block's 24px top padding give Figma's 48px */
+.uq2-hero {
+  --case-meta-color: var(--color-dark-alien);
+  --case-meta-mt: 0;
 }
 
 /* ---------- Impact stats ---------- */
