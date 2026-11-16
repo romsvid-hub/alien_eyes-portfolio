@@ -2,8 +2,9 @@
   Case nav / Sticky behaviour (css/case-nav.css, Figma 987:4210).
 
   - Show: the bar is hidden while the hero (first <section> of <main>) is
-    visible and fades in once the hero has scrolled up under the site
-    header. Hide again when the hero comes back. (IntersectionObserver.)
+    visible and fades in once the hero has scrolled up out of sight under
+    the site header + this bar. Hide again when the hero comes back.
+    (IntersectionObserver.)
   - Active item: the mapped section that covers a thin line just below
     the header + bar. (IntersectionObserver on a 1px band.) Sections that
     aren't mapped leave the previous item active.
@@ -53,14 +54,15 @@
 
   function observeHero() {
     if (heroObserver) heroObserver.disconnect();
-    var h = headerHeight();
+    // the hero counts as gone once it is entirely under the header + this bar
+    var cover = headerHeight() + BAR;
     heroObserver = new IntersectionObserver(
       function (entries) {
         var e = entries[entries.length - 1];
-        var gone = !e.isIntersecting && e.boundingClientRect.bottom <= h + 1;
+        var gone = !e.isIntersecting && e.boundingClientRect.bottom <= cover + 1;
         nav.classList.toggle("is-visible", gone);
       },
-      { rootMargin: "-" + h + "px 0px 0px 0px", threshold: 0 }
+      { rootMargin: "-" + cover + "px 0px 0px 0px", threshold: 0 }
     );
     heroObserver.observe(hero);
   }
