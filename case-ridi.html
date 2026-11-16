@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="css/reveal.css" />
     <link rel="stylesheet" href="css/case-ridi.css" />
     <link rel="stylesheet" href="css/case-meta.css" />
+    <link rel="stylesheet" href="css/case-nav.css" />
     <!-- Microsoft Clarity analytics -->
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
@@ -80,6 +81,22 @@
         <span class="nav-toggle__bar"></span>
         <span class="nav-toggle__bar"></span>
       </button>
+    </nav>
+
+    <!-- UI: CASE-NAV-01 | Sticky case section nav | Figma "Case nav / Sticky" (987:4210); css/case-nav.css + js/case-nav.js -->
+    <nav class="case-nav" aria-label="Case sections" data-case-nav>
+      <a class="case-nav__item case-nav__back" href="/#case-studies">
+        <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
+        Home
+      </a>
+      <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+      <a class="case-nav__item" href="#cs-context" data-case-target="cs-context">Context</a>
+      <a class="case-nav__item" href="#cs-challenge" data-case-target="cs-challenge">Challenge</a>
+      <a class="case-nav__item" href="#cs-research" data-case-target="cs-research">Research</a>
+      <a class="case-nav__item" href="#cs-key-decisions" data-case-target="cs-key-decisions">Key Decisions</a>
+      <a class="case-nav__item" href="#cs-core-features" data-case-target="cs-core-features">Core Features</a>
+      <a class="case-nav__item" href="#cs-results" data-case-target="cs-results">Results</a>
+      <p class="case-nav__role"><b>Role:</b> <span>UX Designer, Product Owner</span></p>
     </nav>
 
     <main>
@@ -143,7 +160,7 @@
       </section>
 
       <!-- UI: CASE05-OVERVIEW-01 | Overview | matches Figma "Overview" (816:12988) -->
-      <section class="ridi-section">
+      <section id="cs-context" data-case-section class="ridi-section">
         <h2 class="h2-section ridi-heading" data-reveal>Overview</h2>
         <div class="ridi-two-col" data-reveal-group>
           <p class="body-large">
@@ -189,7 +206,7 @@
       </section>
 
       <!-- UI: CASE05-CHALLENGE-01 | The Challenge | matches Figma "The Challenge" (816:13004) -->
-      <section class="ridi-section ridi-section--tint">
+      <section id="cs-challenge" data-case-section class="ridi-section ridi-section--tint">
         <h2 class="h2-section ridi-heading" data-reveal>The Challenge</h2>
         <div class="ridi-two-col" data-reveal-group>
           <div class="ridi-panel ridi-panel--accent">
@@ -209,7 +226,7 @@
       </section>
 
       <!-- UI: CASE05-RESEARCH-01 | Research | matches Figma "Research" (816:13010) -->
-      <section class="ridi-section">
+      <section id="cs-research" data-case-section class="ridi-section">
         <h2 class="h2-section ridi-heading" data-reveal>Research</h2>
         <div class="ridi-two-col" data-reveal-group>
           <div>
@@ -289,7 +306,7 @@
       </section>
 
       <!-- UI: CASE05-DECISIONS-01 | Key Decisions | matches Figma "Key Decisions" (816:13050) -->
-      <section class="ridi-section">
+      <section id="cs-key-decisions" data-case-section class="ridi-section">
         <div class="ridi-decisions-panel">
           <h1 class="ridi-heading" style="font-size: 40px" data-reveal>Solution</h1>
           <p class="body-large" data-reveal>
@@ -376,7 +393,7 @@
       </section>
 
       <!-- UI: CASE05-FEATURES-01 | Core Features | matches Figma "Core Features" (816:13126) -->
-      <section class="ridi-section">
+      <section id="cs-core-features" data-case-section class="ridi-section">
         <h2 class="h2-section ridi-heading" data-reveal>Core Features</h2>
 
         <div class="ridi-card-block" data-reveal>
@@ -504,7 +521,7 @@
       </section>
 
       <!-- UI: CASE05-RESULTS-01 | Results | matches Figma "Results" (856:13838) -->
-      <section class="ridi-section">
+      <section id="cs-results" data-case-section class="ridi-section">
         <h2 class="h2-section ridi-heading" data-reveal>Results</h2>
         <div class="ridi-two-col" data-reveal-group>
           <div>
@@ -634,6 +651,7 @@
     </footer>
 
     <script src="js/nav.js"></script>
+    <script src="js/case-nav.js" defer></script>
     <script src="js/reviews.js"></script>
     <script src="js/reveal.js"></script>
     <script src="js/nbsp-typography.js"></script>

@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="css/reveal.css" />
     <link rel="stylesheet" href="css/case-atj-2.css" />
     <link rel="stylesheet" href="css/case-meta.css" />
+    <link rel="stylesheet" href="css/case-nav.css" />
     <!-- Microsoft Clarity analytics -->
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
@@ -82,6 +83,22 @@
       </button>
     </nav>
 
+    <!-- UI: CASE-NAV-01 | Sticky case section nav | Figma "Case nav / Sticky" (987:4210); css/case-nav.css + js/case-nav.js -->
+    <nav class="case-nav" aria-label="Case sections" data-case-nav>
+      <a class="case-nav__item case-nav__back" href="/#case-studies">
+        <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
+        Home
+      </a>
+      <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+      <a class="case-nav__item" href="#cs-context" data-case-target="cs-context">Context</a>
+      <a class="case-nav__item" href="#cs-challenge" data-case-target="cs-challenge">Challenge</a>
+      <a class="case-nav__item" href="#cs-research" data-case-target="cs-research">Research</a>
+      <a class="case-nav__item" href="#cs-key-decisions" data-case-target="cs-key-decisions">Key Decisions</a>
+      <a class="case-nav__item" href="#cs-core-features" data-case-target="cs-core-features">Core Features</a>
+      <a class="case-nav__item" href="#cs-results" data-case-target="cs-results">Results</a>
+      <p class="case-nav__role"><b>Role:</b> <span>Lead UX Designer</span></p>
+    </nav>
+
     <main>
       <!-- UI: CASE03-HERO-01 | Hero | matches Figma "Hero" (418:31417), synced 2026-09-10 -->
       <section class="atj2-hero" data-reveal>
@@ -122,7 +139,7 @@
       </section>
 
       <!-- UI: CASE03-CONTEXT-01 | Context (Source / Goal) | matches Figma "Context - Selection" (418:31428) -->
-      <section class="atj2-section">
+      <section id="cs-context" data-case-section class="atj2-section">
         <p class="atj2-eyebrow atj2-eyebrow--lg" data-reveal>Context</p>
         <div class="atj2-context__grid" data-reveal-group>
           <div class="atj2-context__col">
@@ -269,7 +286,7 @@
       </section>
 
       <!-- UI: CASE03-CHALLENGE-01 | The Challenge | matches Figma "Challenge - Section" (418:31487) -->
-      <section class="atj2-section atj2-section--challenge">
+      <section id="cs-challenge" data-case-section class="atj2-section atj2-section--challenge">
         <div class="atj2-challenge" data-reveal>
           <p class="atj2-challenge__eyebrow">The Challenge</p>
           <div class="atj2-challenge__content">
@@ -304,7 +321,7 @@
       </section>
 
       <!-- UI: CASE03-RESEARCH-01 | Research | matches Figma "Research - Selection" (418:31505) -->
-      <section class="atj2-section">
+      <section id="cs-research" data-case-section class="atj2-section">
         <p class="atj2-eyebrow atj2-eyebrow--lg" data-reveal>Research</p>
         <div class="atj2-research__grid" data-reveal-group>
           <div>
@@ -377,7 +394,7 @@
       </section>
 
       <!-- UI: CASE03-SOLUTIONS-01 | Key Solutions — single continuous panel | matches Figma "Solution - Section" (418:31546) -->
-      <section class="atj2-section">
+      <section id="cs-key-decisions" data-case-section class="atj2-section">
         <div class="atj2-solutions">
           <div class="atj2-solutions__heading" data-reveal>
             <h2>Key Solutions</h2>
@@ -740,7 +757,7 @@
       </section>
 
       <!-- UI: CASE03-FEATURES-01 | Other Core Features | matches Figma "Section — Other Core Features" (418:31640) -->
-      <section class="atj2-section">
+      <section id="cs-core-features" data-case-section class="atj2-section">
         <p class="atj2-eyebrow atj2-eyebrow--lg" data-reveal>Other Core Features</p>
         <div class="atj2-features">
           <div class="atj2-features__row" data-reveal>
@@ -852,7 +869,7 @@
       </section>
 
       <!-- UI: CASE03-RESULTS-01 | Results | matches Figma "Section — Results" (418:31692) -->
-      <section class="atj2-section">
+      <section id="cs-results" data-case-section class="atj2-section">
         <div class="atj2-results" data-reveal>
           <div class="atj2-results__text">
             <h2>Results</h2>
@@ -1036,6 +1053,7 @@
     </footer>
 
     <script src="js/nav.js"></script>
+    <script src="js/case-nav.js" defer></script>
     <script src="js/reviews.js"></script>
     <script src="js/questionnaire-scroll.js"></script>
     <script src="js/smb-scroll.js"></script>

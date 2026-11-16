@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="css/home.css" />
     <link rel="stylesheet" href="css/case-atj.css" />
     <link rel="stylesheet" href="css/case-meta.css" />
+    <link rel="stylesheet" href="css/case-nav.css" />
     <link rel="stylesheet" href="css/reveal.css" />
     <!--
       Tailwind CDN — scoped to the Job Card showcase only (see
@@ -91,6 +92,22 @@
         <span class="nav-toggle__bar"></span>
         <span class="nav-toggle__bar"></span>
       </button>
+    </nav>
+
+    <!-- UI: CASE-NAV-01 | Sticky case section nav | Figma "Case nav / Sticky" (987:4210); css/case-nav.css + js/case-nav.js -->
+    <nav class="case-nav" aria-label="Case sections" data-case-nav>
+      <a class="case-nav__item case-nav__back" href="/#case-studies">
+        <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
+        Home
+      </a>
+      <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+      <a class="case-nav__item" href="#cs-context" data-case-target="cs-context">Context</a>
+      <a class="case-nav__item" href="#cs-challenge" data-case-target="cs-challenge">Challenge</a>
+      <a class="case-nav__item" href="#cs-research" data-case-target="cs-research">Research</a>
+      <a class="case-nav__item" href="#cs-key-decisions" data-case-target="cs-key-decisions">Key Decisions</a>
+      <a class="case-nav__item" href="#cs-core-features" data-case-target="cs-core-features">Core Features</a>
+      <a class="case-nav__item" href="#cs-results" data-case-target="cs-results">Results</a>
+      <p class="case-nav__role"><b>Role:</b> <span>Product Designer</span></p>
     </nav>
 
     <main>
@@ -162,7 +179,7 @@
       </section>
 
       <!-- UI: CASE02-CONTEXT-01 | Context section | inspect/adjust -->
-      <section class="atj-section atj-context" data-reveal-group>
+      <section id="cs-context" data-case-section class="atj-section atj-context" data-reveal-group>
         <div class="atj-context__text">
           <div class="atj-context__copy">
           <p class="atj-eyebrow atj-eyebrow--lg cs-title">CONTEXT</p>
@@ -180,7 +197,7 @@
       </section>
 
       <!-- UI: CASE02-RESEARCH-01 | Research stats | inspect/adjust -->
-      <section class="atj-section">
+      <section id="cs-research" data-case-section class="atj-section">
         <div class="atj-research">
           <p class="atj-eyebrow atj-eyebrow--research atj-eyebrow--lg cc-trick cs-title">RESEARCH:</p>
           <p class="body-large atj-research__intro">
@@ -233,7 +250,7 @@
       </section>
 
       <!-- UI: CASE02-INSIGHT-01 | The insight changed everything | inspect/adjust -->
-      <section class="atj-section atj-insight">
+      <section id="cs-challenge" data-case-section class="atj-section atj-insight">
         <p class="atj-eyebrow cc-trick" data-reveal>The insight changed everything</p>
         <div class="atj-insight__row" data-reveal-group>
           <!-- IMAGE: CASE02-INSIGHT-IMAGE-01 | Insight illustration | replaceable -->
@@ -350,7 +367,7 @@
       </section>
 
       <!-- UI: CASE02-MVP-01 | Key MVP contribution gallery | inspect/adjust -->
-      <section class="atj-mvp">
+      <section id="cs-key-decisions" data-case-section class="atj-mvp">
         <div class="atj-mvp__band">
           <h2 class="h1-display atj-mvp__heading" data-reveal>Key MVP Contribution</h2>
           <!--
@@ -850,7 +867,7 @@
       </section>
 
       <!-- UI: CASE02-SCREENS-01 | Other impact screens | inspect/adjust -->
-      <section class="atj-screens">
+      <section id="cs-core-features" data-case-section class="atj-screens">
         <h2 class="h2-section atj-screens__heading" data-reveal>Other impact screens</h2>
 
         <div class="atj-screens__row" data-reveal>
@@ -985,7 +1002,7 @@
       </section>
 
       <!-- UI: CASE02-RESULTS-01 | Results | matches Figma "Section — Results" (477:38551) -->
-      <section class="atj-section" data-reveal>
+      <section id="cs-results" data-case-section class="atj-section" data-reveal>
         <p class="atj-eyebrow atj-eyebrow--lg cs-title">Results</p>
         <p class="body-large atj-final__text">
           What we delivered wasn't a set of screens. It was a hiring system
@@ -1126,6 +1143,7 @@
     </footer>
 
     <script src="js/nav.js"></script>
+    <script src="js/case-nav.js" defer></script>
     <script src="js/reviews.js"></script>
     <script src="js/reveal.js"></script>
     <script src="js/jobcard-scroll.js"></script>

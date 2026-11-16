@@ -1,0 +1,161 @@
+/*
+  Case nav / Sticky — Figma component 987:4210 (file DU3fuTo8QXIJ0uMcI3jh91).
+
+  A section nav shared by every case page. Hidden while the hero is on
+  screen; once the hero has scrolled away it fades in directly under the
+  site header (top = header height, set by js/case-nav.js as
+  --case-nav-top) and stays put. Left: "Home" back link + divider.
+  Then anchors to the case's existing sections. Right: the case role.
+  Behaviour: js/case-nav.js. Markup lives in each case page.
+*/
+.case-nav {
+  position: fixed;
+  top: var(--case-nav-top, 59px);
+  left: 0;
+  right: 0;
+  z-index: 99;
+  box-sizing: border-box;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 0 var(--page-px);
+  background-color: rgba(19, 20, 20, 0.9);
+  border-top: 1px solid rgba(255, 254, 254, 0.08);
+  border-bottom: 1px solid rgba(255, 254, 254, 0.08);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 22px;
+  /* the row can scroll sideways on narrow screens; hide the scrollbar */
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease,
+    visibility 0s linear 200ms;
+}
+
+.case-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.case-nav.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease,
+    visibility 0s;
+}
+
+.case-nav__item {
+  box-sizing: border-box;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 13px 0 11px;
+  overflow: hidden;
+  border-bottom: 2px solid transparent;
+  color: rgba(255, 254, 254, 0.6);
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    color 150ms ease,
+    border-color 150ms ease;
+}
+
+.case-nav__item:hover,
+.case-nav__item:focus-visible {
+  color: #fffefe;
+}
+
+.case-nav__item:focus-visible {
+  outline: 2px solid rgba(123, 97, 255, 0.7);
+  outline-offset: -4px;
+}
+
+.case-nav__item[aria-current="true"] {
+  color: #fffefe;
+  border-bottom-color: #7b61ff;
+}
+
+.case-nav__chevron {
+  display: block;
+  flex: none;
+  width: 10px;
+  height: 28px;
+}
+
+.case-nav__divider {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 0;
+  height: 27px;
+}
+
+.case-nav__divider img {
+  flex: none;
+  display: block;
+  width: 27px;
+  height: 1px;
+  transform: rotate(90deg);
+}
+
+.case-nav__role {
+  flex: none;
+  display: flex;
+  gap: 6px;
+  margin: 0 0 0 auto;
+  color: rgba(255, 254, 254, 0.6);
+  white-space: nowrap;
+}
+
+.case-nav__role b {
+  font-weight: 600;
+}
+
+.case-nav__role span {
+  font-weight: 400;
+}
+
+/* Anchored sections stop below the header + this bar */
+[data-case-section] {
+  scroll-margin-top: calc(var(--case-nav-top, 59px) + 48px + 8px);
+}
+
+@media (max-width: 1199px) {
+  .case-nav {
+    gap: 20px;
+  }
+}
+
+/* Mobile: no role, one scrollable row of items */
+@media (max-width: 767px) {
+  .case-nav {
+    gap: 24px;
+  }
+
+  .case-nav__role {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-nav,
+  .case-nav.is-visible {
+    transition: none;
+    transform: none;
+  }
+}

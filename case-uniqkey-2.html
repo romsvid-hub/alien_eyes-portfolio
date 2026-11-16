@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="css/reveal.css" />
     <link rel="stylesheet" href="css/case-uniqkey-2.css" />
     <link rel="stylesheet" href="css/case-meta.css" />
+    <link rel="stylesheet" href="css/case-nav.css" />
     <!-- Microsoft Clarity analytics -->
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
@@ -80,6 +81,22 @@
         <span class="nav-toggle__bar"></span>
         <span class="nav-toggle__bar"></span>
       </button>
+    </nav>
+
+    <!-- UI: CASE-NAV-01 | Sticky case section nav | Figma "Case nav / Sticky" (987:4210); css/case-nav.css + js/case-nav.js -->
+    <nav class="case-nav" aria-label="Case sections" data-case-nav>
+      <a class="case-nav__item case-nav__back" href="/#case-studies">
+        <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
+        Home
+      </a>
+      <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+      <a class="case-nav__item" href="#cs-context" data-case-target="cs-context">Context</a>
+      <a class="case-nav__item" href="#cs-challenge" data-case-target="cs-challenge">Challenge</a>
+      <a class="case-nav__item" href="#cs-research" data-case-target="cs-research">Research</a>
+      <a class="case-nav__item" href="#cs-key-decisions" data-case-target="cs-key-decisions">Key Decisions</a>
+      <a class="case-nav__item" href="#cs-core-features" data-case-target="cs-core-features">Core Features</a>
+      <a class="case-nav__item" href="#cs-results" data-case-target="cs-results">Results</a>
+      <p class="case-nav__role"><b>Role:</b> <span>Product Designer</span></p>
     </nav>
 
     <main>
@@ -148,7 +165,7 @@
       </section>
 
       <!-- UI: CASE-UQ2-CONTEXT-01 | Context | matches Figma "Context - Selection" (898:19985) -->
-      <section class="uq2-section">
+      <section id="cs-context" data-case-section class="uq2-section">
         <p class="h2-section uq2-eyebrow uq2-eyebrow--lg" data-reveal>Context</p>
         <p class="body-large" data-reveal>
           Uniqkey's mobile app is a password manager and 2FA companion to the Admin Portal — the
@@ -187,7 +204,7 @@
       </section>
 
       <!-- UI: CASE-UQ2-CHALLENGE-01 | The Challenge | matches Figma "Challenge - Section" (898:20044) -->
-      <section class="uq2-section uq2-section--panel">
+      <section id="cs-challenge" data-case-section class="uq2-section uq2-section--panel">
         <div class="uq2-panel" data-reveal>
           <div class="uq2-panel__inner">
             <p class="uq2-panel__eyebrow">The Challenge</p>
@@ -233,7 +250,7 @@
       </section>
 
       <!-- UI: CASE-UQ2-RESEARCH-01 | Research | matches Figma "Research - Selection" (898:20062) -->
-      <section class="uq2-section">
+      <section id="cs-research" data-case-section class="uq2-section">
         <p class="h2-section uq2-eyebrow uq2-eyebrow--lg" data-reveal>Research</p>
         <p class="body-large" data-reveal>
           Support team feedback showed that simple usability tweaks would be enough, so I started
@@ -322,7 +339,7 @@
       </section>
 
       <!-- UI: CASE-UQ2-SOLUTION-01 | Key Solution | matches Figma "Key Solution - Section" (898:20103) -->
-      <section class="uq2-section uq2-section--panel">
+      <section id="cs-key-decisions" data-case-section class="uq2-section uq2-section--panel">
         <div class="uq2-panel" data-reveal>
           <div class="uq2-panel__inner">
             <p class="uq2-panel__eyebrow uq2-panel__eyebrow--h1">Key Solutions</p>
@@ -369,7 +386,7 @@
       </section>
 
       <!-- UI: CASE-UQ2-FEATURES-01 | Other Core Features | matches Figma "Section — Other Core Features" (898:20213) -->
-      <section class="uq2-section">
+      <section id="cs-core-features" data-case-section class="uq2-section">
         <p class="h2-section uq2-eyebrow uq2-eyebrow--lg" data-reveal>Other Features</p>
         <div class="uq2-features">
           <div data-reveal>
@@ -461,7 +478,7 @@
       </section>
 
       <!-- UI: CASE-UQ2-RESULTS-01 | Results | matches Figma "Section — Results" (898:20259) -->
-      <section class="uq2-section uq2-section--panel">
+      <section id="cs-results" data-case-section class="uq2-section uq2-section--panel">
         <div class="uq2-panel" data-reveal>
           <div class="uq2-panel__inner">
             <div class="uq2-results">
@@ -605,6 +622,7 @@
     </footer>
 
     <script src="js/nav.js"></script>
+    <script src="js/case-nav.js" defer></script>
     <script src="js/reviews.js"></script>
     <script src="js/reveal.js"></script>
     <script src="js/nbsp-typography.js"></script>

@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="css/home.css" />
     <link rel="stylesheet" href="css/case-study.css" />
     <link rel="stylesheet" href="css/case-meta.css" />
+    <link rel="stylesheet" href="css/case-nav.css" />
     <link rel="stylesheet" href="css/reveal.css" />
     <!-- Microsoft Clarity analytics -->
     <script type="text/javascript">
@@ -80,6 +81,21 @@
         <span class="nav-toggle__bar"></span>
         <span class="nav-toggle__bar"></span>
       </button>
+    </nav>
+
+    <!-- UI: CASE-NAV-01 | Sticky case section nav | Figma "Case nav / Sticky" (987:4210); css/case-nav.css + js/case-nav.js -->
+    <nav class="case-nav" aria-label="Case sections" data-case-nav>
+      <a class="case-nav__item case-nav__back" href="/#case-studies">
+        <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
+        Home
+      </a>
+      <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+      <a class="case-nav__item" href="#cs-context" data-case-target="cs-context">Context</a>
+      <a class="case-nav__item" href="#cs-challenge" data-case-target="cs-challenge">Challenge</a>
+      <a class="case-nav__item" href="#cs-research" data-case-target="cs-research">Research</a>
+      <a class="case-nav__item" href="#cs-key-decisions" data-case-target="cs-key-decisions">Key Decisions</a>
+      <a class="case-nav__item" href="#cs-core-features" data-case-target="cs-core-features">Core Features</a>
+      <p class="case-nav__role"><b>Role:</b> <span>Product Designer</span></p>
     </nav>
 
     <main>
@@ -150,7 +166,7 @@
       </section>
 
       <!-- UI: CASE01-SCOPE-01 | Product scope card | inspect/adjust -->
-      <section class="case-section case-scope">
+      <section id="cs-context" data-case-section class="case-section case-scope">
         <p class="case-eyebrow" data-reveal>Product SCOPE</p>
         <!-- IMAGE: CASE01-SCOPE-MOCKUP-01 | Admin portal, extension/mobile and iPhone device mockups | replaceable
              Column labels (Admin portal / Extension and Mobile App / Partner
@@ -171,7 +187,7 @@
       </section>
 
       <!-- UI: CASE01-CHALLENGE-01 | Story / challenge / context | inspect/adjust -->
-      <section class="case-section case-challenge-wrap">
+      <section id="cs-challenge" data-case-section class="case-section case-challenge-wrap">
         <div class="case-bleed case-challenge" data-reveal-group>
           <div class="case-challenge__intro">
             <p class="case-eyebrow case-eyebrow--gold cc-trick cs-eyebrow">This is the story of</p>
@@ -240,7 +256,7 @@
            js/notif-reveal.js + .notif-anim in css/case-study.css. Each card
            animates on every crossing (not once), so it reads as messages
            arriving/clearing rather than a page-load reveal. -->
-      <section class="case-section case-feedback">
+      <section id="cs-research" data-case-section class="case-section case-feedback">
         <div class="case-feedback__row">
           <div class="case-feedback__left">
             <p class="case-eyebrow cc-trick cs-eyebrow">Different roles,</p>
@@ -330,7 +346,7 @@
       </section>
 
       <!-- UI: CASE01-SCORE-01 | Redesigned average security score comparison | inspect/adjust -->
-      <section class="case-section case-score">
+      <section id="cs-key-decisions" data-case-section class="case-section case-score">
         <p class="case-eyebrow cc-trick cs-eyebrow" data-reveal>Redesigned</p>
         <h2 class="h2-section case-score__heading" data-reveal>AVERAGE SECURITY SCORE</h2>
 
@@ -583,7 +599,7 @@
            transition on switch, normal page-scroll flow, width capped to
            the same content column as the rest of the case study. See
            js/case-other-carousel.js. Expect further revisions. -->
-      <section class="case-section case-other">
+      <section id="cs-core-features" data-case-section class="case-section case-other">
         <h2 class="h2-section case-other__heading" data-reveal>Other Screens</h2>
         <div class="case-other-carousel" data-reveal data-other-carousel>
           <div class="case-other-carousel__text">
@@ -845,6 +861,7 @@
     </footer>
 
     <script src="js/nav.js"></script>
+    <script src="js/case-nav.js" defer></script>
     <script src="js/reviews.js"></script>
     <script src="js/reveal.js"></script>
     <script src="js/notif-reveal.js"></script>
