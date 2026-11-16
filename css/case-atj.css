@@ -1346,17 +1346,7 @@
 .atj-final__text {
   color: var(--color-dark-alien);
   max-width: 643px;
-  margin: 0 0 16px;
-}
-
-.atj-final__medium-note {
-  color: var(--color-dark-alien);
   margin: 0;
-}
-
-.atj-final__medium-note a {
-  color: var(--color-atj-accent);
-  text-decoration: underline;
 }
 
 /* ---------- Reviews + CTA (shared component reused unchanged) ---------- */
