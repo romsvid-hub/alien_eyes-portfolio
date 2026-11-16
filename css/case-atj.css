@@ -218,6 +218,33 @@
   }
 }
 
+/*
+  Desktop columns as in Figma (hero 982:22968, 1280px card): mockup
+  column 628px, text column starts at 652px (24px gap) and is 580px wide
+  with a 48px right inset, so the Case meta block gets Figma's width.
+  The laptop keeps its Figma size (594px node) and position inside the
+  column: the crop percentages below are re-derived for the 628px frame
+  (aspect ratio unchanged), desktop only — mobile keeps the originals.
+*/
+@media (min-width: 1024px) {
+  .atj-hero__mockup-frame {
+    flex: 0 0 49.0625%;
+  }
+
+  .atj-hero__mockup {
+    left: -20.25%;
+    top: -31.6%;
+    width: 147%;
+    height: 166.4%;
+  }
+
+  .atj-hero__content {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 48px 48px 48px 24px;
+  }
+}
+
 .atj-hero__title {
   font-family: var(--font-display);
   font-weight: 800;
@@ -283,27 +310,6 @@
   flex-direction: column;
 }
 
-/*
-  Figma (2:13832) shows a large 168px gap between the icon and the
-  CONTEXT heading, not the uniform 24px used elsewhere in this column —
-  verified via get_design_context frame offset. Used to be the parent's
-  24px gap plus this margin; the gap is gone now (title-to-body below
-  is the shared .cs-title rhythm instead, see typography.css), so 24px
-  was folded directly into these numbers to keep the icon-to-title
-  distance exactly as it was (48+24=72, 168+24=192).
-*/
-.atj-context__icon {
-  width: 100px;
-  height: auto;
-  margin-bottom: 72px;
-}
-
-@media (min-width: 1024px) {
-  .atj-context__icon {
-    margin-bottom: 192px;
-  }
-}
-
 .atj-context__body {
   color: var(--color-deep-text);
   max-width: 480px;
@@ -321,44 +327,6 @@
 @media (min-width: 1024px) {
   .atj-context__image {
     max-width: 55%;
-  }
-}
-
-/* ---------- My role in team (2:13855) ---------- */
-
-.atj-role {
-  padding: 24px var(--page-px);
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.atj-role__items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 24px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 18px;
-  letter-spacing: -0.0036px;
-  color: var(--color-atj-accent);
-}
-
-/*
-  Figma (472:4159) lays the eyebrow out as the row's own first item,
-  not stacked above it, with the row space-between across the full
-  column: "My role in team:" flush left, "Presentation to
-  stakeholders." flush right, the rest evenly gapped between. Desktop
-  only — mobile keeps the eyebrow-then-wrapped-pills stack.
-*/
-.atj-role__label {
-  margin: 0;
-}
-
-@media (min-width: 1024px) {
-  .atj-role__items {
-    flex-wrap: nowrap;
-    justify-content: space-between;
   }
 }
 
