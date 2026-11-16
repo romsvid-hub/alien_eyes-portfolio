@@ -317,7 +317,8 @@
     border-radius: 48px;
     flex-direction: row;
     align-items: flex-start;
-    padding: 64px var(--page-px) 48px;
+    /* 48px right inset (Figma): text column from x=652 is 580px wide */
+    padding: 64px 48px 48px var(--page-px);
   }
 }
 
@@ -507,30 +508,6 @@
   }
 }
 
-/*
-  Placeholder tags, added 2026-09-09 (Roman: "all tags are a template,
-  I'll replace them later"). Own yellow-tinted chip, matching this
-  case's own accent instead of the generic gray .tag (css/home.css) —
-  same visual language as .yoy-facts__card's border. Radius verified
-  against Figma's shared "Tag" component (2:13460): 16px, same as every
-  other tag on the site.
-*/
-.yoy-tag {
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-  padding: 4px 10px;
-  background-color: rgba(255, 184, 0, 0.12);
-  border: 1px solid rgba(255, 184, 0, 0.3);
-  border-radius: 16px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: -0.0028px;
-  color: var(--yoy-accent);
-  white-space: nowrap;
-}
-
 .yoy-hero__title-row {
   display: flex;
   flex-direction: column;
@@ -550,33 +527,25 @@
 }
 
 .yoy-hero__desc {
+  /* Figma hero description: Inter Regular 18/28 */
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
   color: #fffefe;
 }
 
-/*
-  Synced 2026-09-10: Figma's Meta list is now a plain bulleted <ul>
-  (get_design_context on 796:12776) — was a boxed dt/dd table before.
-  No background/border on the list itself in the current design; it
-  just sits on the hero's own (now gradient) background.
-*/
-.yoy-details {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+/* Case meta block (css/case-meta.css): description colour; the content
+   column's 24px gap + the block's 24px top padding give Figma's 48px
+   (mobile gap is 20px, hence the small extra margin there) */
+.yoy-hero {
+  --case-meta-color: #fffefe;
+  --case-meta-mt: 4px;
 }
 
-.yoy-details li {
-  color: var(--yoy-muted);
-  font-size: 16px;
-  line-height: 25px;
-}
-
-.yoy-details b {
-  color: var(--yoy-accent);
-  font-weight: 500;
+@media (min-width: 1024px) {
+  .yoy-hero {
+    --case-meta-mt: 0;
+  }
 }
 
 /* ---------- Three Facts (768:13259) ---------- */
