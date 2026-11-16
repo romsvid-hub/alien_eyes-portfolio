@@ -239,8 +239,7 @@
 }
 
 /*
-  Fixed 2026-09-14 (Roman: the "Context icon" badge must read as glued
-  to the mockup, and mobile must show the mockup in full, not cropped):
+  Fixed 2026-09-14 (Roman: mobile must show the mockup in full, not cropped):
   the old mobile setup forced a 628:400 box with object-fit:cover,
   which crops the (nearly square, 1200x1220) source image — and since
   the badge was pinned to the CONTAINER's own corner rather than the
@@ -253,33 +252,11 @@
   top-left) stays visually locked to it at any width, showing the full
   mockup with nothing cropped.
 */
-.atj2-hero__media img:not(.atj2-hero__badge) {
+.atj2-hero__media img {
   position: static;
   display: block;
   width: 100%;
   height: auto;
-}
-
-/*
-  The ATJ wordmark badge sits over the mockup's top-left corner, sized
-  proportionally to the same 526x485 container (151/526 wide) it's
-  authored against in Figma — matches at any width since it's a % of
-  the same box the (now always full, uncropped) mockup fills.
-
-  2026-09-15, per Roman: nudged off the flush corner — 8px right/8px
-  down on mobile, 16px right only on desktop (see the min-width:1024px
-  override below). Must sit before that media query in source order —
-  as an unconditional rule of equal specificity, it would otherwise
-  win over the desktop override regardless of viewport width.
-*/
-.atj2-hero__media .atj2-hero__badge {
-  position: absolute;
-  left: 8px;
-  top: 8px;
-  width: 28.7%;
-  height: auto;
-  max-width: none;
-  object-fit: contain;
 }
 
 @media (min-width: 1024px) {
@@ -322,7 +299,7 @@
     container 526x485) — left:7.15%, top:-1.57%, width:85.88%,
     height:94.68%. Unchanged; only mobile's approach above changed.
   */
-  .atj2-hero__media img:not(.atj2-hero__badge) {
+  .atj2-hero__media img {
     position: absolute;
     left: 7.15%;
     top: -1.57%;
@@ -330,12 +307,6 @@
     height: 94.68%;
     max-width: none;
     object-fit: unset;
-  }
-
-  /* Desktop: 16px right only, per Roman — no vertical nudge here. */
-  .atj2-hero__media .atj2-hero__badge {
-    left: 16px;
-    top: 0;
   }
 }
 

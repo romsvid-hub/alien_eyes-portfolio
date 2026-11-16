@@ -111,12 +111,7 @@
 
 /* ---------- Hero ---------- */
 
-/*
-  Same "Hero gradient for YOY and ATJ2" pattern (Roman's own name),
-  verified via get_design_context as the literal same gradient angle/
-  colors on this Hero too — confirms this case reuses ATJ2's hero
-  mechanics. To make static: delete the animation line + @keyframes.
-*/
+/* Hero background: solid #3d5bae, as in Figma (982:24215) */
 .uq2-hero {
   margin: 24px var(--page-px) 48px;
   border-radius: 24px;
@@ -126,25 +121,7 @@
   align-items: center;
   gap: 32px;
   padding: 32px 20px;
-  background: linear-gradient(246.48deg, #e4e5e5 0%, #d9d9da 50%, #e4e5e5 100%);
-  background-size: 200% 200%;
-  animation: uq2-hero-gradient-flow 14s ease-in-out infinite;
-}
-
-@keyframes uq2-hero-gradient-flow {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .uq2-hero {
-    animation: none;
-  }
+  background: #3d5bae;
 }
 
 @media (min-width: 1280px) {
@@ -243,7 +220,7 @@
   font-size: 40px;
   line-height: 1.1;
   letter-spacing: var(--h1-letter-spacing);
-  color: var(--uq2-accent-dark);
+  color: #ffffff;
   margin: 16px 0 0;
   overflow-wrap: break-word;
 }
@@ -251,6 +228,9 @@
 @media (min-width: 1280px) {
   .uq2-hero__title {
     font-size: 64px;
+    /* Figma title box is 583px (container 631 - 48 inset): "Streamline UX
+       for" is 580.08px wide, so it needs these 3px to stay on one line */
+    margin-right: -3px;
   }
 }
 
@@ -259,7 +239,7 @@
   font-size: 18px;
   font-weight: 400;
   line-height: 28px;
-  color: var(--color-dark-alien);
+  color: #ffffff;
   max-width: 548px;
   margin: 12px 0 0;
 }
@@ -267,7 +247,7 @@
 /* Case meta block (css/case-meta.css): description colour; the content
    column's 24px gap + the block's 24px top padding give Figma's 48px */
 .uq2-hero {
-  --case-meta-color: var(--color-dark-alien);
+  --case-meta-color: #ffffff;
   --case-meta-mt: 0;
 }
 

@@ -51,15 +51,6 @@
   color: var(--color-subtle-text);
 }
 
-/*
-  Section-heading rhythm (see .cs-title/.cs-subtitle in typography.css)
-  replaces this class's own margin everywhere except the Hero, which is
-  out of that system's scope and keeps its original 16px unchanged.
-*/
-.atj-hero__content .atj-eyebrow {
-  margin-bottom: 16px;
-}
-
 .atj-eyebrow--lg {
   font-size: var(--h2-size);
   line-height: 1.2;
@@ -246,6 +237,8 @@
 }
 
 .atj-hero__title {
+  /* Figma: "Inclusive / Hiring Platform" on two lines (title box 510px) */
+  max-width: 510px;
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 40px;
