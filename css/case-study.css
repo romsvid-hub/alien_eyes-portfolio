@@ -123,7 +123,12 @@
   .case-hero {
     border-radius: 48px;
     min-height: 653px;
-    padding: 24px var(--page-px) 0 var(--page-px);
+    /* Figma: mockup on the left, text column from x=652 of the 1280px card
+       (50.94%), 48px right inset => 580px wide Case meta block. The block
+       grows the card's height; nothing is clipped. */
+    /* padding % would resolve against the parent (page) width, so derive the
+       card's own width: min(1280px, 100vw - 2 * page gutter) */
+    padding: 48px 48px 48px calc(min(1280px, 100vw - 2 * var(--page-px)) * 0.509375);
     justify-content: center;
   }
 }
@@ -160,52 +165,9 @@
 
 @media (min-width: 1024px) {
   .case-hero__content {
-    gap: 48px;
-  }
-}
-
-.case-hero__tags .tag {
-  color: var(--color-main-canvas);
-}
-
-/*
-  Fixed 2026-09-14 (Roman: tags read as "cut off" on desktop): the tag
-  row inherited .case-hero__content's max-width: 473px, clipping the
-  5th tag entirely since .tag-row's own overflow-x: auto has no visible
-  scroll affordance here. Freed from that cap so the row sizes to its
-  own content and all tags render on one line, as .tag-row's base
-  nowrap behavior already intends.
-*/
-@media (min-width: 768px) {
-  .case-hero__tags {
+    gap: 24px;
     max-width: none;
-    width: max-content;
   }
-}
-
-.case-hero__logo {
-  position: relative;
-  overflow: hidden;
-  width: 120px;
-  height: 26px;
-  mix-blend-mode: luminosity;
-  opacity: 0.5;
-}
-
-@media (min-width: 768px) {
-  .case-hero__logo {
-    width: 167px;
-    height: 36px;
-  }
-}
-
-.case-hero__logo img {
-  position: absolute;
-  left: -155.69%;
-  top: -338.11%;
-  width: 396.99%;
-  height: 1002.46%;
-  max-width: none;
 }
 
 .case-hero__title {
@@ -226,7 +188,18 @@
 }
 
 .case-hero__subhead {
+  /* Figma hero description: Inter Regular 18/28 */
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
   color: #d9d9d9;
+}
+
+/* Case meta block (css/case-meta.css): description colour; the content
+   column's 24px gap + the block's 24px top padding give Figma's 48px */
+.case-hero {
+  --case-meta-color: #d9d9d9;
+  --case-meta-mt: 0;
 }
 
 .case-hero__mockup {
@@ -239,12 +212,15 @@
 }
 
 @media (min-width: 1024px) {
+  /* Figma hero 982:24756: iMac 533px wide at x=47 of the 1280px card,
+     vertically centred in the card */
   .case-hero__mockup {
     position: absolute;
-    right: var(--page-px);
-    bottom: 0;
-    width: 591px;
-    max-width: 46.17%; /* 591/1280 per Figma — was 42%, which shrank the mockup below spec at the 1280px breakpoint */
+    left: 3.6719%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 41.6406%;
+    max-width: none;
     align-self: auto;
   }
 }
