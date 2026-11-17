@@ -1447,7 +1447,7 @@
 }
 
 .review-slide__role {
-  color: var(--color-light-gray);
+  color: var(--color-gray-on-dark);
 }
 
 .review-slide__quote {
@@ -1587,6 +1587,6 @@
 }
 
 .cta-description {
-  color: var(--color-light-gray);
+  color: var(--color-gray-on-dark);
   max-width: 480px;
 }

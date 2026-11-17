@@ -143,6 +143,9 @@
         </div>
       </section>
 
+      <!-- 24px spacer between the hero and the nav bar (Figma: spacer before instance 1019:37670); it sits before the nav, the IntersectionObserver sentinel is injected between the two -->
+      <div class="case-nav-spacer" aria-hidden="true"></div>
+
       <!-- UI: CASE-NAV-01 | Case section nav: in flow under the hero (and Impact), sticks under the header | Figma "Case nav / Sticky" (987:4210); css/case-nav.css + js/case-nav.js -->
       <nav class="case-nav" aria-label="Case sections" data-case-nav data-case="ridi">
         <div class="case-nav__lead">
@@ -620,7 +623,7 @@
             Whatever's easiest for you — reach out and let's talk.
           </p>
           <a
-            class="btn btn--primary"
+            class="btn btn--primary btn--contact"
             href="https://www.linkedin.com/in/romsvid/" data-popup="contact"
             target="_blank"
             rel="noopener"

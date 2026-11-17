@@ -66,6 +66,11 @@
   display: none;
 }
 
+/* 24px of air above the bar where the design has a spacer (Ridi: Figma 1019:37670) */
+.case-nav-spacer {
+  height: 24px;
+}
+
 /* zero-height marker just above the bar: the IntersectionObserver in
    js/case-nav.js watches it to know when the bar has stuck. */
 .case-nav__sentinel {

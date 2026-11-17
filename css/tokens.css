@@ -49,6 +49,12 @@
     3+ times, not invented.
   */
   --color-cta-purple: #7b61ff;
+  /* WCAG AA (4.5:1) variants for specific cases; the global tokens above stay
+     as they are because they are used elsewhere (borders, light backgrounds,
+     nav popup, footer, accents). */
+  --color-gray-on-dark: #8c8c8c; /* 4.62:1 on #242424 (review role, CTA text) */
+  --color-cta-contact: #7357ff; /* 4.60:1 with white text ("Contact Me" button) */
+  --color-cta-contact-hover: #6351ba; /* hover/active: same darkening as #7b61ff -> #6a5aba */
 
   /* Typography — font families */
   --font-display: "Sora", sans-serif;
