@@ -203,6 +203,22 @@
   border-bottom-color: var(--case-accent);
 }
 
+/*
+  Inline state (not stuck): the bar is only an "Agenda:" - all items share one
+  colour (the case's own full-strength text colour, --case-nav-fg) and there is
+  no underline / active highlight. Tracking and navigating come back once the
+  bar is stuck under the header (Figma 1019:37479, updated 2026-11-17).
+*/
+.case-nav:not(.is-stuck) .case-nav__item,
+.case-nav:not(.is-stuck) .case-nav__item:hover,
+.case-nav:not(.is-stuck) .case-nav__item[aria-current="true"] {
+  color: var(--case-nav-fg);
+}
+
+.case-nav:not(.is-stuck) .case-nav__item[aria-current="true"] {
+  border-bottom-color: transparent;
+}
+
 .case-nav__chevron {
   display: block;
   flex: none;
