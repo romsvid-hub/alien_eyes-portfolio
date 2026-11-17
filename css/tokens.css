@@ -35,6 +35,11 @@
   --color-unibrand: #3072f5;
   --color-atj-accent: #c44323;
 
+  /* Vertical inner padding of case-study sections (top and bottom), so two
+     neighbouring plain sections are 2x apart (128px). Used by ATJ 2,
+     Uniqkey 2, YOY and Ridi only (2026-11-17). */
+  --case-section-py: 64px;
+
   /*
     Raw hex observed repeatedly on Home (2:13410) — hero/CTA buttons,
     impact-stat numbers, reviews progress bar. Not a named Figma

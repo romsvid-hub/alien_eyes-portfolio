@@ -39,7 +39,7 @@
 /* ---------- Shared primitives ---------- */
 
 .atj2-section {
-  padding: 48px var(--page-px);
+  padding: var(--case-section-py) var(--page-px);
 }
 
 /* Composition-width cap: Figma's desktop frame is 1280px wide (1120px

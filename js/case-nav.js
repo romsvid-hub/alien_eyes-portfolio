@@ -1,21 +1,21 @@
 /*
   Case nav / Sticky behaviour (css/case-nav.css, Figma 987:4210).
 
-  - Show: the bar is hidden while the hero (first <section> of <main>) is
-    visible and fades in once the hero has scrolled up out of sight under
-    the site header + this bar. Hide again when the hero comes back.
-    (IntersectionObserver.)
-  - Active item: the mapped section that covers a thin line just below
-    the header + bar. (IntersectionObserver on a 1px band.) Sections that
-    aren't mapped leave the previous item active.
+  - The bar lives in the page flow under the hero (and the Impact block)
+    and sticks under the site header via CSS position: sticky.
+    Here: .is-stuck is toggled once its top reaches the sticky offset
+    (shows "Home" and the role; the unstuck bar shows only the items).
+  - Active item: of the mapped sections, the last one whose top has
+    passed a reading line just below header + bar. Item order is never
+    changed, the highlight just follows the scroll position, whatever the
+    order of the sections in the page.
   - Click: smooth scroll to the section (instant with reduced motion);
     css scroll-margin-top keeps its heading clear of header + bar.
   Without JS the links still work as plain anchors.
 */
 (function () {
   var nav = document.querySelector("[data-case-nav]");
-  var hero = document.querySelector("main > section");
-  if (!nav || !hero || !("IntersectionObserver" in window)) return;
+  if (!nav) return;
 
   var header = document.querySelector(".site-nav");
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -23,7 +23,7 @@
   var LINE_GAP = 96; // the "reading line" sits this far below the bar
 
   var links = [].slice.call(nav.querySelectorAll("a[data-case-target]"));
-  var byId = {};
+  var targets = [];
   links.forEach(function (a) {
     var id = a.getAttribute("data-case-target");
     var el = document.getElementById(id);
@@ -31,63 +31,44 @@
       a.parentNode.removeChild(a);
       return;
     }
-    byId[id] = a;
+    targets.push({ id: id, el: el, link: a });
   });
 
   function headerHeight() {
     return header ? Math.round(header.getBoundingClientRect().height) : 59;
   }
 
+  var top = 59;
+
   function setTop() {
-    document.documentElement.style.setProperty("--case-nav-top", headerHeight() + "px");
+    top = headerHeight();
+    document.documentElement.style.setProperty("--case-nav-top", top + "px");
   }
 
   function setActive(id) {
-    Object.keys(byId).forEach(function (key) {
-      if (key === id) byId[key].setAttribute("aria-current", "true");
-      else byId[key].removeAttribute("aria-current");
+    targets.forEach(function (t) {
+      if (t.id === id) t.link.setAttribute("aria-current", "true");
+      else t.link.removeAttribute("aria-current");
     });
   }
 
-  var heroObserver = null;
-  var spyObserver = null;
+  function update() {
+    // stuck: the bar has reached its sticky offset under the header
+    nav.classList.toggle("is-stuck", nav.getBoundingClientRect().top <= top + 0.5);
 
-  function observeHero() {
-    if (heroObserver) heroObserver.disconnect();
-    // the hero counts as gone once it is entirely under the header + this bar
-    var cover = headerHeight() + BAR;
-    heroObserver = new IntersectionObserver(
-      function (entries) {
-        var e = entries[entries.length - 1];
-        var gone = !e.isIntersecting && e.boundingClientRect.bottom <= cover + 1;
-        nav.classList.toggle("is-visible", gone);
-      },
-      { rootMargin: "-" + cover + "px 0px 0px 0px", threshold: 0 }
-    );
-    heroObserver.observe(hero);
-  }
-
-  function observeSections() {
-    if (spyObserver) spyObserver.disconnect();
-    var line = headerHeight() + BAR + LINE_GAP;
-    var vh = window.innerHeight;
-    spyObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) setActive(e.target.id);
-        });
-      },
-      { rootMargin: "-" + line + "px 0px -" + Math.max(vh - line - 1, 0) + "px 0px", threshold: 0 }
-    );
-    Object.keys(byId).forEach(function (id) {
-      spyObserver.observe(document.getElementById(id));
+    // scroll spy: the last mapped section that has reached the reading line.
+    // Before the first one the bar is "unstuck" and nothing is active.
+    var line = top + BAR + LINE_GAP;
+    var active = null;
+    var best = -Infinity;
+    targets.forEach(function (t) {
+      var y = t.el.getBoundingClientRect().top;
+      if (y <= line && y > best) {
+        best = y;
+        active = t.id;
+      }
     });
-  }
-
-  function init() {
-    setTop();
-    observeHero();
-    observeSections();
+    setActive(active);
   }
 
   links.forEach(function (a) {
@@ -98,15 +79,16 @@
       ev.preventDefault();
       el.scrollIntoView({ behavior: reduce.matches ? "auto" : "smooth", block: "start" });
       if (history.replaceState) history.replaceState(null, "", "#" + id);
-      setActive(id);
     });
   });
 
-  var resizeTimer;
+  // a handful of getBoundingClientRect calls per scroll event: cheap enough to run directly
+  window.addEventListener("scroll", update, { passive: true });
   window.addEventListener("resize", function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(init, 150);
+    setTop();
+    update();
   });
 
-  init();
+  setTop();
+  update();
 })();

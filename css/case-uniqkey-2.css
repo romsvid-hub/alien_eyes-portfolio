@@ -43,7 +43,7 @@
 /* ---------- Shared primitives ---------- */
 
 .uq2-section {
-  padding: 48px var(--page-px);
+  padding: var(--case-section-py) var(--page-px);
 }
 
 @media (min-width: 1280px) {

@@ -1,20 +1,27 @@
 /*
   Case nav / Sticky — Figma component 987:4210 (file DU3fuTo8QXIJ0uMcI3jh91).
 
-  A section nav shared by every case page. Hidden while the hero is on
-  screen; once the hero has scrolled away it fades in directly under the
-  site header (top = header height, set by js/case-nav.js as
-  --case-nav-top) and stays put. Left: "Home" back link + divider.
-  Then anchors to the case's existing sections. Right: the case role.
+  A section nav shared by every case page. Sits in the page flow right
+  under the hero (under the Impact block where a case has one) and sticks
+  under the site header when scrolled to it (position: sticky; top =
+  header height, set by js/case-nav.js as --case-nav-top). Not stuck: only
+  the section items. Stuck: "Home" back link + divider on the left, the case
+  role on the right. Active underline = --case-accent.
   Behaviour: js/case-nav.js. Markup lives in each case page.
 */
 .case-nav {
-  position: fixed;
+  /* Active-item underline colour: the case accent (Figma variable
+     case/accent, collection "Case theme"). Set per case below. */
+  --case-accent: #7b61ff;
+
+  /* In the flow of the page, right under the hero (and the Impact block
+     if the case has one). When the page scrolls it up to the site header
+     it sticks there (position: sticky). js/case-nav.js adds .is-stuck then. */
+  position: sticky;
   top: var(--case-nav-top, 59px);
-  left: 0;
-  right: 0;
   z-index: 99;
   box-sizing: border-box;
+  width: 100%;
   height: 48px;
   display: flex;
   align-items: center;
@@ -29,29 +36,65 @@
   /* the row can scroll sideways on narrow screens; hide the scrollbar */
   overflow-x: auto;
   scrollbar-width: none;
-
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-8px);
-  pointer-events: none;
-  transition:
-    opacity 200ms ease,
-    transform 200ms ease,
-    visibility 0s linear 200ms;
 }
 
 .case-nav::-webkit-scrollbar {
   display: none;
 }
 
-.case-nav.is-visible {
+/* Accent per case (Figma "Case theme" / case/accent) */
+.case-nav[data-case="atj"] {
+  --case-accent: #c44323;
+}
+
+.case-nav[data-case="atj2"] {
+  --case-accent: #3d5bae;
+}
+
+.case-nav[data-case="uniqkey2"],
+.case-nav[data-case="uniqkey"] {
+  --case-accent: #475fa9;
+}
+
+.case-nav[data-case="yoy"] {
+  --case-accent: #ffb800;
+}
+
+.case-nav[data-case="ridi"] {
+  --case-accent: #ff8a1f;
+}
+
+/*
+  "Home" + divider: shown only while the bar is stuck (Figma description of
+  987:4210: role and Home appear when stuck). Collapsed, it takes no room
+  (the negative margin eats the flex gap) so the items sit at the left edge.
+*/
+.case-nav__lead {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  max-width: 0;
+  margin-right: -32px;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    max-width 200ms ease,
+    margin-right 200ms ease,
+    opacity 200ms ease,
+    visibility 0s linear 200ms;
+}
+
+.case-nav.is-stuck .case-nav__lead {
+  max-width: 160px;
+  margin-right: 0;
   opacity: 1;
   visibility: visible;
-  transform: none;
-  pointer-events: auto;
   transition:
+    max-width 200ms ease,
+    margin-right 200ms ease,
     opacity 200ms ease,
-    transform 200ms ease,
     visibility 0s;
 }
 
@@ -86,7 +129,7 @@
 
 .case-nav__item[aria-current="true"] {
   color: #fffefe;
-  border-bottom-color: #7b61ff;
+  border-bottom-color: var(--case-accent);
 }
 
 .case-nav__chevron {
@@ -120,6 +163,20 @@
   margin: 0 0 0 auto;
   color: rgba(255, 254, 254, 0.6);
   white-space: nowrap;
+  /* only when stuck */
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 200ms ease,
+    visibility 0s linear 200ms;
+}
+
+.case-nav.is-stuck .case-nav__role {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 200ms ease,
+    visibility 0s;
 }
 
 .case-nav__role b {
@@ -153,9 +210,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .case-nav,
-  .case-nav.is-visible {
+  .case-nav__lead,
+  .case-nav.is-stuck .case-nav__lead,
+  .case-nav__role,
+  .case-nav.is-stuck .case-nav__role {
     transition: none;
-    transform: none;
   }
 }

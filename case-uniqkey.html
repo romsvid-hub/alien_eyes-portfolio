@@ -83,21 +83,6 @@
       </button>
     </nav>
 
-    <!-- UI: CASE-NAV-01 | Sticky case section nav | Figma "Case nav / Sticky" (987:4210); css/case-nav.css + js/case-nav.js -->
-    <nav class="case-nav" aria-label="Case sections" data-case-nav>
-      <a class="case-nav__item case-nav__back" href="/#case-studies">
-        <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
-        Home
-      </a>
-      <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
-      <a class="case-nav__item" href="#cs-context" data-case-target="cs-context">Context</a>
-      <a class="case-nav__item" href="#cs-challenge" data-case-target="cs-challenge">Challenge</a>
-      <a class="case-nav__item" href="#cs-research" data-case-target="cs-research">Research</a>
-      <a class="case-nav__item" href="#cs-key-decisions" data-case-target="cs-key-decisions">Key Decisions</a>
-      <a class="case-nav__item" href="#cs-core-features" data-case-target="cs-core-features">Core Features</a>
-      <p class="case-nav__role"><b>Role:</b> <span>Product Designer</span></p>
-    </nav>
-
     <main>
       <!-- UI: CASE01-HERO-01 | Hero layout | inspect/adjust -->
       <section class="case-hero" data-reveal>
@@ -165,6 +150,24 @@
         </div>
       </section>
 
+      <!-- UI: CASE-NAV-01 | Case section nav: in flow under the hero (and Impact), sticks under the header | Figma "Case nav / Sticky" (987:4210); css/case-nav.css + js/case-nav.js -->
+      <nav class="case-nav" aria-label="Case sections" data-case-nav data-case="uniqkey">
+        <div class="case-nav__lead">
+          <a class="case-nav__item case-nav__back" href="/#case-studies">
+            <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
+            Home
+          </a>
+          <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+        </div>
+        <a class="case-nav__item" href="#cs-context" data-case-target="cs-context">Context</a>
+        <a class="case-nav__item" href="#cs-challenge" data-case-target="cs-challenge">Challenge</a>
+        <a class="case-nav__item" href="#cs-research" data-case-target="cs-research">Research</a>
+        <a class="case-nav__item" href="#cs-key-decisions" data-case-target="cs-key-decisions">Key Decisions</a>
+        <a class="case-nav__item" href="#cs-core-features" data-case-target="cs-core-features">Core Features</a>
+        <a class="case-nav__item" href="#cs-results" data-case-target="cs-results">Results</a>
+        <p class="case-nav__role"><b>Role:</b> <span>Product Designer</span></p>
+      </nav>
+
       <!-- UI: CASE01-SCOPE-01 | Product scope card | inspect/adjust -->
       <section id="cs-context" data-case-section class="case-section case-scope">
         <p class="case-eyebrow" data-reveal>Product SCOPE</p>
@@ -190,7 +193,8 @@
       <section id="cs-challenge" data-case-section class="case-section case-challenge-wrap">
         <div class="case-bleed case-challenge" data-reveal-group>
           <div class="case-challenge__intro">
-            <p class="case-eyebrow case-eyebrow--gold cc-trick cs-eyebrow">This is the story of</p>
+            <!-- was: "This is the story of" (renamed 2026-11-17) -->
+            <p class="case-eyebrow case-eyebrow--gold cc-trick cs-eyebrow">Challenge.</p>
             <h2 class="h2-section case-challenge__heading">
               Admin portal<br />Dashboard evolution.
             </h2>
@@ -259,7 +263,8 @@
       <section id="cs-research" data-case-section class="case-section case-feedback">
         <div class="case-feedback__row">
           <div class="case-feedback__left">
-            <p class="case-eyebrow cc-trick cs-eyebrow">Different roles,</p>
+            <!-- was: "Different roles," (renamed 2026-11-17) -->
+            <p class="case-eyebrow cc-trick cs-eyebrow">Research.</p>
             <h2 class="h2-section case-feedback__heading cs-title">ONE UNIFIED FEEDBACK</h2>
             <ul class="case-feedback__list body-large">
               <li>Bulky widgets hinder key info perception.</li>
@@ -347,7 +352,8 @@
 
       <!-- UI: CASE01-SCORE-01 | Redesigned average security score comparison | inspect/adjust -->
       <section id="cs-key-decisions" data-case-section class="case-section case-score">
-        <p class="case-eyebrow cc-trick cs-eyebrow" data-reveal>Redesigned</p>
+        <!-- was: "Redesigned" (renamed 2026-11-17) -->
+        <p class="case-eyebrow cc-trick cs-eyebrow" data-reveal>Key decisions.</p>
         <h2 class="h2-section case-score__heading" data-reveal>AVERAGE SECURITY SCORE</h2>
 
         <div class="case-score__issue" data-reveal>
@@ -662,7 +668,7 @@
           </div>
         </div>
 
-        <div class="case-awards" data-reveal>
+        <div id="cs-results" data-case-section class="case-awards" data-reveal>
           <p class="h2-section case-awards__heading">Product Awards at the Time.</p>
           <!-- IMAGE: CASE01-AWARDS-BANNER-01 | Product awards banner texture (decorative, no award logos present in Figma) | decorative -->
           <div class="case-awards__banner-frame">
@@ -724,7 +730,7 @@
           <p>
             Prototype:
             <a
-              href="https://www.figma.com/proto/Fi2Pu6xu0jrd8qV1dZNloz/Admin-Portal?node-id=1-55172&viewport=723%2C767%2C0.1&t=37Y4K4rtAnpwjuNp-1&scaling=min-zoom&content-scaling=fixed&page-id=1%3A6"
+              href="https://www.figma.com/proto/DU3fuTo8QXIJ0uMcI3jh91/Copy-portfolio?node-id=977-9190&viewport=181%2C57%2C0.12&t=2gQDvb95MWzUd7Uk-1&scaling=min-zoom&content-scaling=fixed&page-id=977%3A4210"
               target="_blank"
               rel="noopener"
               >Dashboard prototype</a

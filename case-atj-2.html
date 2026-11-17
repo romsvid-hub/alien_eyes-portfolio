@@ -83,22 +83,6 @@
       </button>
     </nav>
 
-    <!-- UI: CASE-NAV-01 | Sticky case section nav | Figma "Case nav / Sticky" (987:4210); css/case-nav.css + js/case-nav.js -->
-    <nav class="case-nav" aria-label="Case sections" data-case-nav>
-      <a class="case-nav__item case-nav__back" href="/#case-studies">
-        <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
-        Home
-      </a>
-      <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
-      <a class="case-nav__item" href="#cs-context" data-case-target="cs-context">Context</a>
-      <a class="case-nav__item" href="#cs-challenge" data-case-target="cs-challenge">Challenge</a>
-      <a class="case-nav__item" href="#cs-research" data-case-target="cs-research">Research</a>
-      <a class="case-nav__item" href="#cs-key-decisions" data-case-target="cs-key-decisions">Key Decisions</a>
-      <a class="case-nav__item" href="#cs-core-features" data-case-target="cs-core-features">Core Features</a>
-      <a class="case-nav__item" href="#cs-results" data-case-target="cs-results">Results</a>
-      <p class="case-nav__role"><b>Role:</b> <span>Lead UX Designer</span></p>
-    </nav>
-
     <main>
       <!-- UI: CASE03-HERO-01 | Hero | matches Figma "Hero" (418:31417), synced 2026-09-10 -->
       <section class="atj2-hero" data-reveal>
@@ -137,6 +121,24 @@
           </dl>
         </div>
       </section>
+
+      <!-- UI: CASE-NAV-01 | Case section nav: in flow under the hero (and Impact), sticks under the header | Figma "Case nav / Sticky" (987:4210); css/case-nav.css + js/case-nav.js -->
+      <nav class="case-nav" aria-label="Case sections" data-case-nav data-case="atj2">
+        <div class="case-nav__lead">
+          <a class="case-nav__item case-nav__back" href="/#case-studies">
+            <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
+            Home
+          </a>
+          <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+        </div>
+        <a class="case-nav__item" href="#cs-context" data-case-target="cs-context">Context</a>
+        <a class="case-nav__item" href="#cs-challenge" data-case-target="cs-challenge">Challenge</a>
+        <a class="case-nav__item" href="#cs-research" data-case-target="cs-research">Research</a>
+        <a class="case-nav__item" href="#cs-key-decisions" data-case-target="cs-key-decisions">Key Decisions</a>
+        <a class="case-nav__item" href="#cs-core-features" data-case-target="cs-core-features">Core Features</a>
+        <a class="case-nav__item" href="#cs-results" data-case-target="cs-results">Results</a>
+        <p class="case-nav__role"><b>Role:</b> <span>Lead UX Designer</span></p>
+      </nav>
 
       <!-- UI: CASE03-CONTEXT-01 | Context (Source / Goal) | matches Figma "Context - Selection" (418:31428) -->
       <section id="cs-context" data-case-section class="atj2-section">
@@ -247,40 +249,6 @@
               at the hypothesis and user-flow stage and was not
               implemented in the MVP.
             </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- UI: CASE03-DECISION-ACCESSIBILITY-01 | Key Decisions – Accessibility | matches Figma "Key Decision - Section" (418:31474) -->
-      <section class="atj2-section">
-        <p class="h2-section atj2-decision__heading" data-reveal>Key Decisions - Accessibility</p>
-        <div class="atj2-decision">
-          <div class="atj2-decision__grid" data-reveal-group>
-            <div class="atj2-decision__card">
-              <h4>Problem</h4>
-              <p>
-                The audit is taken by people of varying technical skill
-                and ability; legal terminology and visual noise raise
-                anxiety and the risk of dropping out midway.
-              </p>
-            </div>
-            <div class="atj2-decision__card">
-              <h4>Solution</h4>
-              <p>
-                Minimum 4.5:1 text contrast, visible focus indicators on
-                every interactive element for progress and errors, and no
-                jarring animations or flashes between steps.
-              </p>
-            </div>
-            <div class="atj2-decision__card">
-              <h4>Why?</h4>
-              <p>
-                A product about inclusivity that isn't itself accessible
-                undermines its own stated mission — this isn't a separate
-                checkbox, it's a direct consequence of the project's own
-                theme.
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -397,7 +365,8 @@
       <section id="cs-key-decisions" data-case-section class="atj2-section">
         <div class="atj2-solutions">
           <div class="atj2-solutions__heading" data-reveal>
-            <h2>Key Solutions</h2>
+            <!-- was: "Key Solutions" (renamed 2026-11-17) -->
+            <h2>Key Decisions</h2>
           </div>
 
           <!-- Onboarding & Screening -->
@@ -710,6 +679,41 @@
         </div>
       </section>
 
+      <!-- UI: CASE03-DECISION-ACCESSIBILITY-01 | Key Decisions – Accessibility | matches Figma "Key Decision - Section" (418:31474) -->
+      <section class="atj2-section">
+        <!-- was: "Key Decisions - Accessibility" (renamed 2026-11-17) -->
+        <p class="h2-section atj2-decision__heading" data-reveal>Accessibility</p>
+        <div class="atj2-decision">
+          <div class="atj2-decision__grid" data-reveal-group>
+            <div class="atj2-decision__card">
+              <h4>Problem</h4>
+              <p>
+                The audit is taken by people of varying technical skill
+                and ability; legal terminology and visual noise raise
+                anxiety and the risk of dropping out midway.
+              </p>
+            </div>
+            <div class="atj2-decision__card">
+              <h4>Solution</h4>
+              <p>
+                Minimum 4.5:1 text contrast, visible focus indicators on
+                every interactive element for progress and errors, and no
+                jarring animations or flashes between steps.
+              </p>
+            </div>
+            <div class="atj2-decision__card">
+              <h4>Why?</h4>
+              <p>
+                A product about inclusivity that isn't itself accessible
+                undermines its own stated mission — this isn't a separate
+                checkbox, it's a direct consequence of the project's own
+                theme.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- UI: CASE03-UIKIT-01 | Design System / AI usage | matches Figma "UI Kit - Selection" (418:31630) -->
       <section class="atj2-section">
         <p class="atj2-eyebrow atj2-eyebrow--lg" data-reveal>Design System / AI usage</p>
@@ -758,7 +762,8 @@
 
       <!-- UI: CASE03-FEATURES-01 | Other Core Features | matches Figma "Section — Other Core Features" (418:31640) -->
       <section id="cs-core-features" data-case-section class="atj2-section">
-        <p class="atj2-eyebrow atj2-eyebrow--lg" data-reveal>Other Core Features</p>
+        <!-- was: "Other Core Features" (renamed 2026-11-17) -->
+        <p class="atj2-eyebrow atj2-eyebrow--lg" data-reveal>Core Features</p>
         <div class="atj2-features">
           <div class="atj2-features__row" data-reveal>
             <div class="atj2-features__text">

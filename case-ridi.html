@@ -83,22 +83,6 @@
       </button>
     </nav>
 
-    <!-- UI: CASE-NAV-01 | Sticky case section nav | Figma "Case nav / Sticky" (987:4210); css/case-nav.css + js/case-nav.js -->
-    <nav class="case-nav" aria-label="Case sections" data-case-nav>
-      <a class="case-nav__item case-nav__back" href="/#case-studies">
-        <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
-        Home
-      </a>
-      <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
-      <a class="case-nav__item" href="#cs-context" data-case-target="cs-context">Context</a>
-      <a class="case-nav__item" href="#cs-challenge" data-case-target="cs-challenge">Challenge</a>
-      <a class="case-nav__item" href="#cs-research" data-case-target="cs-research">Research</a>
-      <a class="case-nav__item" href="#cs-key-decisions" data-case-target="cs-key-decisions">Key Decisions</a>
-      <a class="case-nav__item" href="#cs-core-features" data-case-target="cs-core-features">Core Features</a>
-      <a class="case-nav__item" href="#cs-results" data-case-target="cs-results">Results</a>
-      <p class="case-nav__role"><b>Role:</b> <span>UX Designer, Product Owner</span></p>
-    </nav>
-
     <main>
       <!-- UI: CASE05-HERO-01 | Hero | matches Figma "Hero" (866:14394), synced 2026-09-12 -->
       <section class="ridi-hero" data-reveal>
@@ -159,9 +143,28 @@
         </div>
       </section>
 
+      <!-- UI: CASE-NAV-01 | Case section nav: in flow under the hero (and Impact), sticks under the header | Figma "Case nav / Sticky" (987:4210); css/case-nav.css + js/case-nav.js -->
+      <nav class="case-nav" aria-label="Case sections" data-case-nav data-case="ridi">
+        <div class="case-nav__lead">
+          <a class="case-nav__item case-nav__back" href="/#case-studies">
+            <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
+            Home
+          </a>
+          <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+        </div>
+        <a class="case-nav__item" href="#cs-context" data-case-target="cs-context">Context</a>
+        <a class="case-nav__item" href="#cs-challenge" data-case-target="cs-challenge">Challenge</a>
+        <a class="case-nav__item" href="#cs-research" data-case-target="cs-research">Research</a>
+        <a class="case-nav__item" href="#cs-key-decisions" data-case-target="cs-key-decisions">Key Decisions</a>
+        <a class="case-nav__item" href="#cs-core-features" data-case-target="cs-core-features">Core Features</a>
+        <a class="case-nav__item" href="#cs-results" data-case-target="cs-results">Results</a>
+        <p class="case-nav__role"><b>Role:</b> <span>UX Designer, Product Owner</span></p>
+      </nav>
+
       <!-- UI: CASE05-OVERVIEW-01 | Overview | matches Figma "Overview" (816:12988) -->
       <section id="cs-context" data-case-section class="ridi-section">
-        <h2 class="h2-section ridi-heading" data-reveal>Overview</h2>
+        <!-- was: "Overview" (renamed 2026-11-17) -->
+        <h2 class="h2-section ridi-heading" data-reveal>Context</h2>
         <div class="ridi-two-col" data-reveal-group>
           <p class="body-large">
             Ridi is a navigation app concept for motorcyclists (iOS), covering three rider types:
@@ -308,7 +311,8 @@
       <!-- UI: CASE05-DECISIONS-01 | Key Decisions | matches Figma "Key Decisions" (816:13050) -->
       <section id="cs-key-decisions" data-case-section class="ridi-section">
         <div class="ridi-decisions-panel">
-          <h1 class="ridi-heading" style="font-size: 40px" data-reveal>Solution</h1>
+          <!-- was: "Solution" (renamed 2026-11-17) -->
+          <h1 class="ridi-heading" style="font-size: 40px" data-reveal>Key Decisions</h1>
           <p class="body-large" data-reveal>
             Every decision below is tied to the context of riding, which is what separates
             product thinking from «pretty screens».
@@ -443,7 +447,8 @@
 
         <div class="ridi-card-block" data-reveal>
           <div class="ridi-feature__text">
-            <h3 class="h3-case-study cs-subtitle">Scenario 3: Free Riding</h3>
+            <!-- was: "Scenario 3: Free Riding" (renamed 2026-11-17) -->
+            <h3 class="h3-case-study cs-subtitle">Scenario 2: Free Riding</h3>
             <p class="body-main ridi-body-muted">Start with no destination or route → the app automatically records the track → save and name it at the end.</p>
           </div>
           <div class="ridi-scenario3__rides">
