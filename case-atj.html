@@ -165,17 +165,25 @@
       <!-- UI: CASE-NAV-01 | Case section nav: in flow under the hero (and Impact), sticks under the header | Figma "Case nav / Sticky" (987:4210); css/case-nav.css + js/case-nav.js -->
       <nav class="case-nav" aria-label="Case sections" data-case-nav data-case="atj">
         <div class="case-nav__lead">
-          <a class="case-nav__item case-nav__back" href="/#case-studies">
-            <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
-            Home
-          </a>
-          <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+          <!-- inline state: "Agenda:" (case accent), no arrow, no role -->
+          <div class="case-nav__agenda" aria-hidden="true">
+            <span class="case-nav__agenda-label">Agenda:</span>
+            <span class="case-nav__divider"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+          </div>
+          <!-- stuck state (standard component 987:4210): arrow + Home + divider -->
+          <div class="case-nav__home">
+            <a class="case-nav__item case-nav__back" href="/#case-studies">
+              <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
+              Home
+            </a>
+            <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+          </div>
         </div>
         <a class="case-nav__item" href="#cs-context" data-case-target="cs-context">Context</a>
         <a class="case-nav__item" href="#cs-challenge" data-case-target="cs-challenge">Challenge</a>
         <a class="case-nav__item" href="#cs-research" data-case-target="cs-research">Research</a>
         <a class="case-nav__item" href="#cs-key-decisions" data-case-target="cs-key-decisions">Key Decisions</a>
-        <a class="case-nav__item" href="#cs-core-features" data-case-target="cs-core-features">Core Features</a>
+        <a class="case-nav__item" href="#cs-core-features" data-case-target="cs-core-features">Other Features</a>
         <a class="case-nav__item" href="#cs-results" data-case-target="cs-results">Results</a>
         <p class="case-nav__role"><b>Role:</b> <span>Product Designer</span></p>
       </nav>
@@ -184,7 +192,7 @@
       <section id="cs-context" data-case-section class="atj-section atj-context" data-reveal-group>
         <div class="atj-context__text">
           <div class="atj-context__copy">
-          <p class="atj-eyebrow atj-eyebrow--lg cs-title">CONTEXT</p>
+          <p class="atj-eyebrow atj-eyebrow--lg cs-title">Context</p>
           <p class="body-main atj-context__body">
             A Ukrainian organization building an ecosystem to connect
             inclusive employers with diverse candidates. What existed
@@ -196,6 +204,32 @@
         </div>
         <!-- IMAGE: CASE02-CONTEXT-IMAGE-01 | Context photo | replaceable -->
         <img loading="lazy" class="atj-context__image" src="assets/case-atj/context-image.webp" alt="A veteran candidate in a wheelchair shaking hands with an employer" />
+      </section>
+
+      <!-- UI: CASE02-INSIGHT-01 | The insight changed everything | inspect/adjust -->
+      <section id="cs-challenge" data-case-section class="atj-section atj-insight">
+        <!-- was: "The insight changed everything" (renamed 2026-11-17) -->
+        <p class="atj-eyebrow cc-trick" data-reveal>Challenge. The insight changed everything</p>
+        <div class="atj-insight__row" data-reveal-group>
+          <!-- IMAGE: CASE02-INSIGHT-IMAGE-01 | Insight illustration | replaceable -->
+          <div class="atj-insight__image-frame">
+            <img loading="lazy" class="atj-insight__image" src="assets/case-atj/insight-image.webp" alt="Insight research illustration" />
+          </div>
+          <div class="body-main atj-insight__text">
+            <p>
+              Standard platforms expect employers to become inclusive on
+              their own.
+            </p>
+            <p>
+              Candidates with specific needs must open every job to check
+              accessibility conditions.
+            </p>
+            <p>
+              The issue is not bad intent. It's that the system doesn't make
+              inclusion visible before first contact.
+            </p>
+          </div>
+        </div>
       </section>
 
       <!-- UI: CASE02-RESEARCH-01 | Research stats | inspect/adjust -->
@@ -247,36 +281,6 @@
               <p class="atj-research__stat">4%</p>
               <p class="atj-research__note">of non-working people say it's by choice</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- UI: CASE02-INSIGHT-01 | The insight changed everything | inspect/adjust -->
-      <section id="cs-challenge" data-case-section class="atj-section atj-insight">
-        <!-- was: "The insight changed everything" (renamed 2026-11-17) -->
-        <p class="atj-eyebrow cc-trick" data-reveal>Challenge. The insight changed everything</p>
-        <div class="atj-insight__row" data-reveal-group>
-          <!-- IMAGE: CASE02-INSIGHT-IMAGE-01 | Insight illustration | replaceable -->
-          <div class="atj-insight__image-frame">
-            <img loading="lazy" class="atj-insight__image" src="assets/case-atj/insight-image.webp" alt="Insight research illustration" />
-          </div>
-          <div class="body-main atj-insight__text">
-            <p>
-              Standard platforms expect employers to become inclusive on
-              their own.
-            </p>
-            <p>
-              Candidates with specific needs must open every job to check
-              accessibility conditions.
-            </p>
-            <p>
-              The issue is not bad intent. It's that the system doesn't make
-              inclusion visible before first contact.
-            </p>
-            <p>
-              Solution: make inclusion structural, embedded into every
-              touchpoint, not an optional add-on.
-            </p>
           </div>
         </div>
       </section>
@@ -370,7 +374,7 @@
       </section>
 
       <!-- UI: CASE02-MVP-01 | Key MVP contribution gallery | inspect/adjust -->
-      <section id="cs-core-features" data-case-section class="atj-mvp">
+      <section id="cs-key-decisions" data-case-section class="atj-mvp">
         <div class="atj-mvp__band">
           <h2 class="h1-display atj-mvp__heading" data-reveal>Key MVP Contribution</h2>
           <!--
@@ -452,7 +456,7 @@
       </section>
 
       <!-- UI: CASE02-SMARTFILTERS-01 | Matching by smart filters | inspect/adjust -->
-      <section id="cs-key-decisions" data-case-section class="atj-section atj-smartfilters">
+      <section id="cs-core-features" data-case-section class="atj-section atj-smartfilters">
         <h2 class="h2-section atj-smartfilters__heading cs-title" data-reveal>Matching by Smart Filters</h2>
         <div class="atj-smartfilters__intro body-main" data-reveal>
           <p>

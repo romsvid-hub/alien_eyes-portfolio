@@ -153,24 +153,32 @@
       <!-- UI: CASE-NAV-01 | Case section nav: in flow under the hero (and Impact), sticks under the header | Figma "Case nav / Sticky" (987:4210); css/case-nav.css + js/case-nav.js -->
       <nav class="case-nav" aria-label="Case sections" data-case-nav data-case="uniqkey">
         <div class="case-nav__lead">
-          <a class="case-nav__item case-nav__back" href="/#case-studies">
-            <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
-            Home
-          </a>
-          <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+          <!-- inline state: "Agenda:" (case accent), no arrow, no role -->
+          <div class="case-nav__agenda" aria-hidden="true">
+            <span class="case-nav__agenda-label">Agenda:</span>
+            <span class="case-nav__divider"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+          </div>
+          <!-- stuck state (standard component 987:4210): arrow + Home + divider -->
+          <div class="case-nav__home">
+            <a class="case-nav__item case-nav__back" href="/#case-studies">
+              <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
+              Home
+            </a>
+            <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+          </div>
         </div>
         <a class="case-nav__item" href="#cs-context" data-case-target="cs-context">Context</a>
         <a class="case-nav__item" href="#cs-challenge" data-case-target="cs-challenge">Challenge</a>
         <a class="case-nav__item" href="#cs-research" data-case-target="cs-research">Research</a>
         <a class="case-nav__item" href="#cs-key-decisions" data-case-target="cs-key-decisions">Key Decisions</a>
-        <a class="case-nav__item" href="#cs-core-features" data-case-target="cs-core-features">Core Features</a>
         <a class="case-nav__item" href="#cs-results" data-case-target="cs-results">Results</a>
         <p class="case-nav__role"><b>Role:</b> <span>Product Designer</span></p>
       </nav>
 
       <!-- UI: CASE01-SCOPE-01 | Product scope card | inspect/adjust -->
       <section id="cs-context" data-case-section class="case-section case-scope">
-        <p class="case-eyebrow" data-reveal>Product SCOPE</p>
+        <!-- was: "Product SCOPE" (renamed 2026-11-17, Figma: "Context") -->
+        <p class="case-eyebrow" data-reveal>Context</p>
         <!-- IMAGE: CASE01-SCOPE-MOCKUP-01 | Admin portal, extension/mobile and iPhone device mockups | replaceable
              Column labels (Admin portal / Extension and Mobile App / Partner
              Portal) and the card background were removed — they're already
@@ -233,7 +241,7 @@
 
         <div class="case-bleed case-firstgen" data-reveal>
           <p class="case-eyebrow cc-trick cs-eyebrow">First-gen</p>
-          <p class="h3-case-study case-firstgen__heading cs-title">DASHBOARD</p>
+          <p class="h3-case-study case-firstgen__heading cs-title">Dashboard</p>
           <p class="body-main case-firstgen__caption">
             Before my redesign: the interface I inherited, not the one I designed.
           </p>
@@ -265,7 +273,7 @@
           <div class="case-feedback__left">
             <!-- was: "Different roles," (renamed 2026-11-17) -->
             <p class="case-eyebrow cc-trick cs-eyebrow">Research.</p>
-            <h2 class="h2-section case-feedback__heading cs-title">ONE UNIFIED FEEDBACK</h2>
+            <h2 class="h2-section case-feedback__heading cs-title">One unified feedback</h2>
             <ul class="case-feedback__list body-large">
               <li>Bulky widgets hinder key info perception.</li>
               <li>Admin panel is complex and time-consuming.</li>
@@ -332,7 +340,7 @@
 
       <!-- UI: CASE01-APPROACH-01 | Approach | inspect/adjust -->
       <section class="case-section case-approach">
-        <h2 class="h2-section case-approach__heading cs-title" data-reveal>HOW I APPROACHED IT</h2>
+        <h2 class="h2-section case-approach__heading cs-title" data-reveal>How I approached it</h2>
         <p class="body-main case-approach__intro" data-reveal>
           Working closely with the Product Owner, and with strategic input
           from the Chief Product Officer, I built the information
@@ -354,7 +362,7 @@
       <section id="cs-key-decisions" data-case-section class="case-section case-score">
         <!-- was: "Redesigned" (renamed 2026-11-17) -->
         <p class="case-eyebrow cc-trick cs-eyebrow" data-reveal>Key decisions.</p>
-        <h2 class="h2-section case-score__heading" data-reveal>AVERAGE SECURITY SCORE</h2>
+        <h2 class="h2-section case-score__heading" data-reveal>Average security score</h2>
 
         <div class="case-score__issue" data-reveal>
           <p class="body-large case-score__issue-text">
@@ -448,7 +456,7 @@
       <section class="case-bleed case-dash1">
         <div class="case-dash1__white">
           <p class="case-eyebrow cs-eyebrow" data-reveal>After, Iteration 1</p>
-          <h2 class="h2-section case-dash__admin-heading cs-title" data-reveal>ADMIN DASHBOARD</h2>
+          <h2 class="h2-section case-dash__admin-heading cs-title" data-reveal>Admin dashboard</h2>
           <p class="body-main case-dash1__intro" data-reveal>
             The new dashboard is the entry point to
             organizational security designed around one question:<br />
@@ -482,7 +490,7 @@
         </div>
 
         <div class="case-dash1__blue">
-          <h2 class="h2-section case-dash1__blue-heading" data-reveal>KEY CHANGES</h2>
+          <h2 class="h2-section case-dash1__blue-heading" data-reveal>Key changes</h2>
           <div class="case-dash1__cards" data-reveal-group>
             <div class="case-keychange">
               <p class="h3-case-study">Security Score</p>
@@ -516,7 +524,7 @@
       <!-- UI: CASE01-DASH2-01 | Redesigned dashboard 2/2 | inspect/adjust -->
       <section class="case-section case-dash2">
         <p class="case-eyebrow cs-eyebrow" data-reveal>After, Iteration 2 (final)</p>
-        <h2 class="h2-section case-dash__admin-heading cs-title" data-reveal>ADMIN DASHBOARD</h2>
+        <h2 class="h2-section case-dash__admin-heading cs-title" data-reveal>Admin dashboard</h2>
         <p class="body-main case-dash2__intro" data-reveal>
           Navigation improved, but the visual
           system still felt overly consumer-oriented for enterprise buyers
@@ -561,7 +569,8 @@
         <!-- Plain, no panel — same heading+columns pattern as the
              "Score is now a connected indicator" outro above
              (case-score__outro / -heading / -cols). -->
-        <div class="case-shift-outro" data-reveal>
+        <!-- "Results" nav item: from "The Shift" to the end of the case (Other Screens, awards, design system, prototype links), before Reviews -->
+        <div id="cs-results" data-case-section class="case-shift-outro" data-reveal>
           <p class="h3-case-study case-shift-outro-heading cs-subtitle">The Shift</p>
           <div class="case-shift-outro-cols body-main">
             <p>
@@ -605,7 +614,7 @@
            transition on switch, normal page-scroll flow, width capped to
            the same content column as the rest of the case study. See
            js/case-other-carousel.js. Expect further revisions. -->
-      <section id="cs-core-features" data-case-section class="case-section case-other">
+      <section class="case-section case-other">
         <h2 class="h2-section case-other__heading" data-reveal>Other Screens</h2>
         <div class="case-other-carousel" data-reveal data-other-carousel>
           <div class="case-other-carousel__text">
@@ -668,7 +677,7 @@
           </div>
         </div>
 
-        <div id="cs-results" data-case-section class="case-awards" data-reveal>
+        <div class="case-awards" data-reveal>
           <p class="h2-section case-awards__heading">Product Awards at the Time.</p>
           <!-- IMAGE: CASE01-AWARDS-BANNER-01 | Product awards banner texture (decorative, no award logos present in Figma) | decorative -->
           <div class="case-awards__banner-frame">

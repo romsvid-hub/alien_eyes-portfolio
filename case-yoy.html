@@ -162,11 +162,19 @@
       <!-- UI: CASE-NAV-01 | Case section nav: in flow under the hero (and Impact), sticks under the header | Figma "Case nav / Sticky" (987:4210); css/case-nav.css + js/case-nav.js -->
       <nav class="case-nav" aria-label="Case sections" data-case-nav data-case="yoy">
         <div class="case-nav__lead">
-          <a class="case-nav__item case-nav__back" href="/#case-studies">
-            <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
-            Home
-          </a>
-          <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+          <!-- inline state: "Agenda:" (case accent), no arrow, no role -->
+          <div class="case-nav__agenda" aria-hidden="true">
+            <span class="case-nav__agenda-label">Agenda:</span>
+            <span class="case-nav__divider"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+          </div>
+          <!-- stuck state (standard component 987:4210): arrow + Home + divider -->
+          <div class="case-nav__home">
+            <a class="case-nav__item case-nav__back" href="/#case-studies">
+              <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
+              Home
+            </a>
+            <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+          </div>
         </div>
         <a class="case-nav__item" href="#cs-context" data-case-target="cs-context">Context</a>
         <a class="case-nav__item" href="#cs-challenge" data-case-target="cs-challenge">Challenge</a>
@@ -179,7 +187,8 @@
 
       <!-- UI: CASE04-OVERVIEW-01 | Overview | matches Figma "Overview" (768:13269) -->
       <section id="cs-context" data-case-section class="yoy-section">
-        <h2 class="h2-section yoy-heading" data-reveal>Overview</h2>
+        <!-- was: "Overview" (renamed 2026-11-17) -->
+        <h2 class="h2-section yoy-heading" data-reveal>Context</h2>
         <div class="yoy-two-col" data-reveal-group>
           <p class="body-large">
             Yoy! Events is a Ukrainian platform for events and communities for the IT/business scene:
@@ -197,7 +206,7 @@
 
       <!-- UI: CASE04-SCOPE-01 | My Scope | matches Figma "My Scope" (768:13274) -->
       <section class="yoy-section">
-        <h2 class="h2-section yoy-heading" data-reveal>My Scope</h2>
+        <h2 class="h2-section yoy-heading yoy-heading--scope" data-reveal>My Scope</h2>
         <div class="yoy-two-col" data-reveal-group>
           <div>
             <h3 class="h3-case-study yoy-subheading">Source:</h3>

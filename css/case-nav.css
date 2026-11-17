@@ -4,15 +4,28 @@
   A section nav shared by every case page. Sits in the page flow right
   under the hero (under the Impact block where a case has one) and sticks
   under the site header when scrolled to it (position: sticky; top =
-  header height, set by js/case-nav.js as --case-nav-top). Not stuck: only
-  the section items. Stuck: "Home" back link + divider on the left, the case
-  role on the right. Active underline = --case-accent.
-  Behaviour: js/case-nav.js. Markup lives in each case page.
+  header height, set by js/case-nav.js as --case-nav-top).
+
+  Two states, same 48px height (no jump):
+  - inline (not stuck): "Agenda:" in --case-accent + the items, on the page
+    background of the case (Figma instances 1019:37479 / 37504 / 37527 /
+    37573 / 37641 / 37670). Colours come from --case-nav-* set per case.
+  - stuck (under the header): the standard component 987:4210 on dark glass:
+    "<- Home" + divider on the left (the arrow only here), the case role on
+    the right.
+  The switch is driven by a sentinel + IntersectionObserver (js/case-nav.js,
+  class .is-stuck). Active underline = --case-accent.
 */
 .case-nav {
-  /* Active-item underline colour: the case accent (Figma variable
-     case/accent, collection "Case theme"). Set per case below. */
+  /* Active-item underline + "Agenda:" colour: the case accent (Figma
+     variable case/accent, collection "Case theme"). Set per case below. */
   --case-accent: #7b61ff;
+
+  /* Inline state (default): the case page background. Per-case values below. */
+  --case-nav-bg: #f7f7f7;
+  --case-nav-fg: #595959;
+  --case-nav-muted: rgba(89, 89, 89, 0.6);
+  --case-nav-border: rgba(89, 89, 89, 0.08);
 
   /* In the flow of the page, right under the hero (and the Impact block
      if the case has one). When the page scrolls it up to the site header
@@ -27,22 +40,42 @@
   align-items: center;
   gap: 32px;
   padding: 0 var(--page-px);
-  background-color: rgba(19, 20, 20, 0.9);
-  border-top: 1px solid rgba(255, 254, 254, 0.08);
-  border-bottom: 1px solid rgba(255, 254, 254, 0.08);
+  background-color: var(--case-nav-bg);
+  border-top: 1px solid var(--case-nav-border);
+  border-bottom: 1px solid var(--case-nav-border);
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 22px;
   /* the row can scroll sideways on narrow screens; hide the scrollbar */
   overflow-x: auto;
   scrollbar-width: none;
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease;
+}
+
+/* Stuck: the standard component (987:4210), dark glass under the header */
+.case-nav.is-stuck {
+  --case-nav-bg: rgba(19, 20, 20, 0.9);
+  --case-nav-fg: #fffefe;
+  --case-nav-muted: rgba(255, 254, 254, 0.6);
+  --case-nav-border: rgba(255, 254, 254, 0.08);
 }
 
 .case-nav::-webkit-scrollbar {
   display: none;
 }
 
-/* Accent per case (Figma "Case theme" / case/accent) */
+/* zero-height marker just above the bar: the IntersectionObserver in
+   js/case-nav.js watches it to know when the bar has stuck. */
+.case-nav__sentinel {
+  height: 1px;
+  margin-bottom: -1px;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* Accent + inline-state colours per case (Figma instances of 987:4210) */
 .case-nav[data-case="atj"] {
   --case-accent: #c44323;
 }
@@ -56,46 +89,84 @@
   --case-accent: #475fa9;
 }
 
+/* dark cases: inline bar on the dark page background */
 .case-nav[data-case="yoy"] {
   --case-accent: #ffb800;
+  --case-nav-bg: #242424;
+  --case-nav-fg: #ffffff;
+  --case-nav-muted: rgba(207, 207, 207, 0.6);
 }
 
 .case-nav[data-case="ridi"] {
   --case-accent: #ff8a1f;
+  --case-nav-bg: #151518;
+  --case-nav-fg: #ffffff;
+  --case-nav-muted: rgba(207, 207, 207, 0.6);
+}
+
+/* the stuck state is always the standard dark bar, whatever the case */
+.case-nav.is-stuck[data-case] {
+  --case-nav-bg: rgba(19, 20, 20, 0.9);
+  --case-nav-fg: #fffefe;
+  --case-nav-muted: rgba(255, 254, 254, 0.6);
+  --case-nav-border: rgba(255, 254, 254, 0.08);
 }
 
 /*
-  "Home" + divider: shown only while the bar is stuck (Figma description of
-  987:4210: role and Home appear when stuck). Collapsed, it takes no room
-  (the negative margin eats the flex gap) so the items sit at the left edge.
+  Left slot. Two groups share the same grid cell, so the items never move:
+  - .case-nav__agenda: "Agenda:" + divider, inline state;
+  - .case-nav__home: "<- Home" + divider, stuck state (the arrow lives only
+    in the stuck bar, per Figma).
 */
 .case-nav__lead {
   flex: none;
+  display: grid;
+  align-items: center;
+}
+
+.case-nav__agenda,
+.case-nav__home {
+  grid-area: 1 / 1;
   display: flex;
   align-items: center;
   gap: 32px;
-  max-width: 0;
-  margin-right: -32px;
-  overflow: hidden;
+  transition:
+    opacity 200ms ease,
+    visibility 0s;
+}
+
+.case-nav__agenda-label {
+  color: var(--case-accent);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.case-nav[data-case="atj2"] .case-nav__agenda-label {
+  font-weight: 700; /* Figma: Inter Bold in this instance */
+}
+
+.case-nav__home {
   opacity: 0;
   visibility: hidden;
   transition:
-    max-width 200ms ease,
-    margin-right 200ms ease,
     opacity 200ms ease,
     visibility 0s linear 200ms;
 }
 
-.case-nav.is-stuck .case-nav__lead {
-  max-width: 160px;
-  margin-right: 0;
+.case-nav.is-stuck .case-nav__home {
   opacity: 1;
   visibility: visible;
   transition:
-    max-width 200ms ease,
-    margin-right 200ms ease,
     opacity 200ms ease,
     visibility 0s;
+}
+
+.case-nav.is-stuck .case-nav__agenda {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 200ms ease,
+    visibility 0s linear 200ms;
 }
 
 .case-nav__item {
@@ -108,7 +179,7 @@
   padding: 13px 0 11px;
   overflow: hidden;
   border-bottom: 2px solid transparent;
-  color: rgba(255, 254, 254, 0.6);
+  color: var(--case-nav-muted);
   font-weight: 600;
   white-space: nowrap;
   text-decoration: none;
@@ -119,7 +190,7 @@
 
 .case-nav__item:hover,
 .case-nav__item:focus-visible {
-  color: #fffefe;
+  color: var(--case-nav-fg);
 }
 
 .case-nav__item:focus-visible {
@@ -128,7 +199,7 @@
 }
 
 .case-nav__item[aria-current="true"] {
-  color: #fffefe;
+  color: var(--case-nav-fg);
   border-bottom-color: var(--case-accent);
 }
 
@@ -161,7 +232,7 @@
   display: flex;
   gap: 6px;
   margin: 0 0 0 auto;
-  color: rgba(255, 254, 254, 0.6);
+  color: var(--case-nav-muted);
   white-space: nowrap;
   /* only when stuck */
   opacity: 0;
@@ -187,9 +258,10 @@
   font-weight: 400;
 }
 
-/* Anchored sections stop below the header + this bar */
+/* Anchored sections stop flush below the header + this bar (their top then
+   sits within 1px of the scroll-spy line in js/case-nav.js) */
 [data-case-section] {
-  scroll-margin-top: calc(var(--case-nav-top, 59px) + 48px + 8px);
+  scroll-margin-top: calc(var(--case-nav-top, 59px) + 48px);
 }
 
 @media (max-width: 1199px) {
@@ -210,8 +282,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .case-nav__lead,
-  .case-nav.is-stuck .case-nav__lead,
+  .case-nav,
+  .case-nav__agenda,
+  .case-nav__home,
+  .case-nav.is-stuck .case-nav__agenda,
+  .case-nav.is-stuck .case-nav__home,
   .case-nav__role,
   .case-nav.is-stuck .case-nav__role {
     transition: none;

@@ -79,6 +79,11 @@
   }
 }
 
+.yoy-heading--scope {
+  /* Figma 1019:37667: "My Scope" is 40px on a 48px line (the other H2 are 40/40) */
+  line-height: 48px;
+}
+
 .yoy-heading--spaced {
   margin-top: 32px;
 }
@@ -206,6 +211,12 @@
 
 .yoy-section--tint > .yoy-label + .yoy-media {
   margin-top: 0;
+}
+
+/* Figma (982:25517 -> 982:25520): "Before:" sits flush on its image, 0 gap
+   (synced 2026-11-17; was 16px) */
+.yoy-section--tint > .yoy-label {
+  margin-bottom: 0;
 }
 
 /* Screens strip: reused wherever the design shows 3 phone mockups in a
@@ -859,6 +870,12 @@
   margin-top: 24px;
 }
 
+/* Core Features: 16px between the intro line and the first card (Roman,
+   2026-11-17); Figma's first card also has 16px top padding (982:25650) */
+.yoy-section > p.body-large + .yoy-feature {
+  margin-top: 16px;
+}
+
 @media (min-width: 1024px) {
   .yoy-feature + .yoy-feature {
     margin-top: 48px;
@@ -866,6 +883,10 @@
 }
 
 @media (min-width: 1024px) {
+  .yoy-section > p.body-large + .yoy-feature {
+    padding-top: 16px;
+  }
+
   .yoy-feature {
     flex-direction: row;
     align-items: center;

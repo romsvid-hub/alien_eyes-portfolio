@@ -138,23 +138,32 @@
       <!-- UI: CASE-NAV-01 | Case section nav: in flow under the hero (and Impact), sticks under the header | Figma "Case nav / Sticky" (987:4210); css/case-nav.css + js/case-nav.js -->
       <nav class="case-nav" aria-label="Case sections" data-case-nav data-case="uniqkey2">
         <div class="case-nav__lead">
-          <a class="case-nav__item case-nav__back" href="/#case-studies">
-            <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
-            Home
-          </a>
-          <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+          <!-- inline state: "Agenda:" (case accent), no arrow, no role -->
+          <div class="case-nav__agenda" aria-hidden="true">
+            <span class="case-nav__agenda-label">Agenda:</span>
+            <span class="case-nav__divider"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+          </div>
+          <!-- stuck state (standard component 987:4210): arrow + Home + divider -->
+          <div class="case-nav__home">
+            <a class="case-nav__item case-nav__back" href="/#case-studies">
+              <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
+              Home
+            </a>
+            <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+          </div>
         </div>
         <a class="case-nav__item" href="#cs-context" data-case-target="cs-context">Context</a>
         <a class="case-nav__item" href="#cs-challenge" data-case-target="cs-challenge">Challenge</a>
         <a class="case-nav__item" href="#cs-research" data-case-target="cs-research">Research</a>
-        <a class="case-nav__item" href="#cs-key-decisions" data-case-target="cs-key-decisions">Key Decisions</a>
-        <a class="case-nav__item" href="#cs-core-features" data-case-target="cs-core-features">Core Features</a>
+        <a class="case-nav__item" href="#cs-key-decisions" data-case-target="cs-key-decisions">Key Solutions</a>
+        <a class="case-nav__item" href="#cs-core-features" data-case-target="cs-core-features">Other Features</a>
         <a class="case-nav__item" href="#cs-results" data-case-target="cs-results">Results</a>
         <p class="case-nav__role"><b>Role:</b> <span>Product Designer</span></p>
       </nav>
 
       <!-- UI: CASE-UQ2-SCOPE-01 | Product Scope | matches Figma "Product Scope Section" (903:21336) -->
-      <section class="uq2-section">
+      <!-- "Context" nav item = Product Scope + Context + My Scope, up to The Challenge: the anchor sits on the first of them -->
+      <section id="cs-context" data-case-section class="uq2-section">
         <p class="uq2-eyebrow cs-title" data-reveal>Product Scope</p>
         <p class="body-large uq2-scope__intro" data-reveal>
           The mobile app is one piece of a larger ecosystem. Corporate logins, permissions,<br />
@@ -167,7 +176,7 @@
       </section>
 
       <!-- UI: CASE-UQ2-CONTEXT-01 | Context | matches Figma "Context - Selection" (898:19985) -->
-      <section id="cs-context" data-case-section class="uq2-section">
+      <section class="uq2-section">
         <p class="h2-section uq2-eyebrow uq2-eyebrow--lg" data-reveal>Context</p>
         <p class="body-large" data-reveal>
           Uniqkey's mobile app is a password manager and 2FA companion to the Admin Portal — the
