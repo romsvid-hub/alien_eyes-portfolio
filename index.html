@@ -179,8 +179,8 @@
       <!-- UI: HOME-CLIENT-LOGOS-01 | Client logos section | inspect/adjust -->
       <section class="home-section logos-section">
         <!-- CONTENT: HOME-CLIENT-LOGOS-01 | Section heading | editable with approval -->
-        <p class="h2-section logos-heading" data-reveal>I worked with:</p>
-        <div class="logos-grid" data-reveal-group>
+        <p class="h2-section logos-heading home-col" data-reveal>I worked with:</p>
+        <div class="logos-grid home-col" data-reveal-group>
           <!-- LINK: HOME-CLIENT-LOGO-01 | ALL TOGETHER JOBS -->
           <a
             class="client-logo client-logo--atj"
@@ -226,8 +226,8 @@
 
       <!-- UI: HOME-EXPERTISE-01 | Expertise section | matches Figma 1000:4315 -->
       <section class="home-section expertise-section" id="expertise">
-        <h2 class="h2-section expertise-heading" data-reveal>Expertise:</h2>
-        <ul class="expertise-grid" data-reveal-group>
+        <h2 class="h2-section expertise-heading home-col" data-reveal>Expertise:</h2>
+        <ul class="expertise-grid home-col" data-reveal-group>
           <li class="expertise-item">
             <svg class="expertise-item__icon" aria-hidden="true" focusable="false" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8 8H40C41.6569 8 43 9.34315 43 11V37C43 38.6569 41.6569 40 40 40H8C6.34315 40 5 38.6569 5 37V11C5 9.34315 6.34315 8 8 8Z" stroke-width="2" stroke="currentColor"/>
@@ -270,12 +270,12 @@
 
       <section class="home-section" id="case-studies">
         <!-- CONTENT: HOME-CASE-STUDIES-01 | Section heading | editable with approval -->
-        <h2 class="h2-section case-studies-heading" data-reveal>Case Studies:</h2>
+        <h2 class="h2-section case-studies-heading home-col" data-reveal>Case Studies:</h2>
 
         <!-- UI: HOME-CASE-ATJ-01 | ATJ case study card | inspect/adjust -->
         <!-- 2026-10-05: position 1 per Roman (order: ATJ, ATJ2, Uniqkey 2,
              Uniqkey). Checkerboard is tracked by position, not by case. -->
-        <article class="case-card" data-reveal>
+        <article class="case-card home-col" data-reveal>
           <a class="case-card__link" href="case-atj" aria-label="View case: Inclusive Hiring Platform">
           <div class="case-card__intro">
             <!-- CONTENT: HOME-CASE-ATJ-01 | Case study title | editable with approval -->
@@ -317,7 +317,7 @@
             </div>
           </div>
           <span class="btn btn--primary case-card__cta">
-            view case study
+            View case study
             <svg class="btn__icon" viewBox="0 0 21 11.547" fill="none" aria-hidden="true">
               <path
                 fill="currentColor"
@@ -331,7 +331,7 @@
         <!-- UI: HOME-CASE-ATJ2-01 | ATJ DEI Audit case study card | inspect/adjust -->
         <!-- 2026-10-05: now position 2 per Roman (order: ATJ, ATJ2,
              Uniqkey 2, Uniqkey) — even, so case-card--reverse. -->
-        <article class="case-card case-card--reverse" data-reveal>
+        <article class="case-card case-card--reverse home-col" data-reveal>
           <a class="case-card__link" href="case-atj-2" aria-label="View case: One Questionnaire, Two Audiences">
           <div class="case-card__intro">
             <!-- CONTENT: HOME-CASE-ATJ2-01 | Case study title | editable with approval -->
@@ -376,7 +376,7 @@
             />
           </div>
           <span class="btn btn--primary case-card__cta">
-            view case study
+            View case study
             <svg class="btn__icon" viewBox="0 0 21 11.547" fill="none" aria-hidden="true">
               <path
                 fill="currentColor"
@@ -391,7 +391,7 @@
         <!-- 2026-10-05: now position 3 per Roman — odd, so no
              case-card--reverse (alternation is tracked by position, not
              by which case it is, same rule as YOY/Ridi below). -->
-        <article class="case-card" data-reveal>
+        <article class="case-card home-col" data-reveal>
           <a class="case-card__link" href="case-uniqkey-2" aria-label="View case: Streamline UX for 2FA and Security">
           <div class="case-card__intro">
             <div class="case-card__heading">
@@ -413,13 +413,20 @@
             </div>
           </div>
           <div class="case-card__media case-card__media--uq2">
+            <!-- IMAGE: HOME-UNIQKEY2-GLOW-01 | Decorative glow behind the Uniqkey 2 card image (Figma ellipse, 2026-11-17) | replaceable -->
+            <img loading="lazy"
+              class="case-card__glow"
+              src="assets/home/uniqkey2-glow.svg"
+              alt=""
+              aria-hidden="true"
+            />
             <img loading="lazy"
               src="assets/case-uniqkey-2/hero.png"
               alt="Uniqkey mobile app: authentication request screen and saved services list"
             />
           </div>
           <span class="btn btn--primary case-card__cta">
-            view case study
+            View case study
             <svg class="btn__icon" viewBox="0 0 21 11.547" fill="none" aria-hidden="true">
               <path
                 fill="currentColor"
@@ -432,7 +439,7 @@
 
         <!-- UI: HOME-CASE-UNIQKEY-01 | Uniqkey case study card | inspect/adjust -->
         <!-- 2026-10-05: position 4 per Roman — even, case-card--reverse. -->
-        <article class="case-card case-card--reverse" data-reveal>
+        <article class="case-card case-card--reverse home-col" data-reveal>
           <a class="case-card__link" href="case-uniqkey" aria-label="View case: From Numbers To Decisions.">
           <div class="case-card__intro">
             <!-- CONTENT: HOME-CASE-UNIQKEY-01 | Case study title | editable with approval -->
@@ -479,7 +486,7 @@
             </div>
           </div>
           <span class="btn btn--primary case-card__cta">
-            view case study
+            View case study
             <svg class="btn__icon" viewBox="0 0 21 11.547" fill="none" aria-hidden="true">
               <path
                 fill="currentColor"
@@ -494,7 +501,7 @@
         <!-- 2026-09-16: now at position 5 (Uniqkey 2 inserted at position
              2 shifted everything below it by one) — dropped
              case-card--reverse to match, position 5 is odd. -->
-        <article class="case-card" data-reveal>
+        <article class="case-card home-col" data-reveal>
           <a class="case-card__link" href="case-yoy" aria-label="View case: YOY! Events">
           <div class="case-card__intro">
             <!-- CONTENT: HOME-CASE-YOY-01 | Case study title | editable with approval -->
@@ -520,10 +527,17 @@
             </div>
           </div>
           <div class="case-card__media case-card__media--yoy">
+            <!-- IMAGE: HOME-YOY-GLOW-01 | Decorative glow behind the YOY card image (Figma ellipse, 2026-11-17) | replaceable -->
+            <img loading="lazy"
+              class="case-card__glow"
+              src="assets/home/yoy-glow.svg"
+              alt=""
+              aria-hidden="true"
+            />
             <img loading="lazy" src="assets/case-yoy/mobmocup.webp" alt="YOY! Events organizer flow shown on a phone" />
           </div>
           <span class="btn btn--primary case-card__cta">
-            view case study
+            View case study
             <svg class="btn__icon" viewBox="0 0 21 11.547" fill="none" aria-hidden="true">
               <path
                 fill="currentColor"
@@ -537,7 +551,7 @@
         <!-- UI: HOME-CASE-RIDI-01 | Ridi case study card | inspect/adjust -->
         <!-- 2026-09-16: now at position 6 (see YOY's comment above) —
              gained case-card--reverse to match, position 6 is even. -->
-        <article class="case-card case-card--reverse" data-reveal>
+        <article class="case-card case-card--reverse home-col" data-reveal>
           <a class="case-card__link" href="case-ridi" aria-label="View case: Ridi">
           <div class="case-card__intro">
             <!-- CONTENT: HOME-CASE-RIDI-01 | Case study title | editable with approval -->
@@ -564,13 +578,20 @@
                cover" export instead of the plain "Coming soon"
                placeholder — drops the dashed outline too. -->
           <div class="case-card__media case-card__media--ridi">
+            <!-- IMAGE: HOME-RIDI-GLOW-01 | Decorative glow behind the Ridi card image (Figma ellipse, 2026-11-17) | replaceable -->
+            <img loading="lazy"
+              class="case-card__glow"
+              src="assets/home/ridi-glow.svg"
+              alt=""
+              aria-hidden="true"
+            />
             <img loading="lazy" src="assets/case-ridi/hero-screens-cover.webp" alt="Ridi app screens: Danger state alert, route planning map, and turn-by-turn navigation" />
           </div>
           <!-- 2026-09-12: case is far enough along now — Roman asked for the
                same active accent styling as the other case cards, dropping
                the earlier deliberately-muted/disabled look. -->
           <span class="btn btn--primary case-card__cta">
-            view case study
+            View case study
             <svg class="btn__icon" viewBox="0 0 21 11.547" fill="none" aria-hidden="true">
               <path fill="currentColor" d="M21 5.7735L11 0V11.547L21 5.7735ZM0 5.7735V6.7735H12V5.7735V4.7735H0V5.7735Z" />
             </svg>
@@ -581,8 +602,8 @@
 
       <!-- UI: HOME-EXPERIENCE-01 | Experience section | matches Figma 1004:4408 -->
       <section class="home-section experience-section" id="experience">
-        <h2 class="h2-section experience-heading" data-reveal>Experience:</h2>
-        <ol class="experience-list" data-reveal-group data-reveal-stagger="60">
+        <h2 class="h2-section experience-heading home-col" data-reveal>Experience:</h2>
+        <ol class="experience-list home-col" data-reveal-group data-reveal-stagger="60">
           <li class="experience-row">
             <p class="experience-row__years">2025 – Now</p>
             <p class="experience-row__role">UI/UX Designer · <span class="experience-row__company">Independent</span></p>

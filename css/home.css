@@ -56,6 +56,20 @@
   padding-top: 0;
 }
 
+/*
+  Shared content column of the Home sections below the hero ("I worked
+  with:", Expertise, Case Studies, Experience): grid columns 2-11 of the
+  "Alien Desktop" grid (12 columns, 80px margin, 24px gutter, 1440 wide) =
+  x 189-1251, 1062px wide, centred in the section. Narrower than that it
+  just fills the section's content box (tablet / mobile margins above).
+  The hero keeps its own 1120px column.
+*/
+.home-col {
+  width: 100%;
+  max-width: 1062px;
+  margin-inline: auto;
+}
+
 /* ---------- Hero (2:13414) ---------- */
 
 /*
@@ -489,9 +503,6 @@
 
 .logos-heading {
   color: var(--color-white);
-  max-width: 1120px;
-  margin: 0 auto;
-  width: 100%;
 }
 
 /*
@@ -506,9 +517,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  max-width: 1120px;
-  margin: 0 auto;
-  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -605,16 +613,15 @@
 /* ---------- Expertise (Figma 1000:4315) ---------- */
 
 /*
-  Same 1120px content column as "I worked with:" / "Case Studies:" /
-  "Experience:" so all four share one left and right edge (Figma pads
-  Expertise 189/160 and Experience 160/160 — aligned to Case Studies here).
+  Same .home-col content column (grid columns 2-11, x 189-1251) as
+  "I worked with:" / "Case Studies:" / "Experience:", so all four share one
+  left and right edge.
 */
 /* UI: HOME-EXPERTISE-01 | Expertise section | inspect/adjust */
 .expertise-heading,
 .experience-heading {
   color: var(--color-white);
-  max-width: 1120px;
-  margin: 0 auto 40px;
+  margin-block: 0 40px;
 }
 
 /* Figma: icons start 56px below the heading text (items block has its own
@@ -629,8 +636,7 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
-  max-width: 1120px;
-  margin: 0 auto;
+  margin-block: 0;
   padding: 0;
   list-style: none;
 }
@@ -685,9 +691,19 @@
 /* ---------- Experience (Figma 1004:4408) ---------- */
 
 /* UI: HOME-EXPERIENCE-01 | Experience list | inspect/adjust */
+/* Full-width #131414 band, 48px above and below (Figma 1004:4408); the
+   section after it ("Reviews:") starts 32px below the band (Figma). */
+.home-section.experience-section {
+  background-color: #131414;
+  padding-block: 48px;
+}
+
+.experience-section + .home-section {
+  padding-top: 32px;
+}
+
 .experience-list {
-  max-width: 1120px;
-  margin: 0 auto;
+  margin-block: 0;
   padding: 0;
   list-style: none;
 }
@@ -754,8 +770,7 @@
 /* UI: HOME-CASE-STUDIES-01 | Case study cards (shared layout) | inspect/adjust */
 .case-studies-heading {
   color: var(--color-white);
-  max-width: 1120px;
-  margin: 0 auto 32px;
+  margin-block: 0 32px;
 }
 
 /*
@@ -769,8 +784,6 @@
   Hero fix.
 */
 .case-card {
-  max-width: 1120px;
-  margin: 0 auto;
   position: relative;
   isolation: isolate;
   border-radius: 24px;
@@ -1076,7 +1089,10 @@
 
 .case-card__media--atj .case-card__glow,
 .case-card__media--atj2 .case-card__glow,
-.case-card__media--uniqkey .case-card__glow {
+.case-card__media--uq2 .case-card__glow,
+.case-card__media--uniqkey .case-card__glow,
+.case-card__media--yoy .case-card__glow,
+.case-card__media--ridi .case-card__glow {
   width: 79.19%;
   transform: translate(-50%, -50%);
 }
@@ -1084,6 +1100,9 @@
 .case-card__media--atj .case-card__glow { top: 50.07%; }
 .case-card__media--atj2 .case-card__glow { top: 51.3%; }
 .case-card__media--uniqkey .case-card__glow { top: 48.12%; }
+.case-card__media--uq2 .case-card__glow { top: 48.12%; }
+.case-card__media--yoy .case-card__glow { top: 50.05%; }
+.case-card__media--ridi .case-card__glow { top: 50.05%; }
 
 .atj-mockup-frame {
   position: absolute;
@@ -1205,7 +1224,7 @@
   aspect-ratio: 519 / 493;
 }
 
-.case-card__media--yoy img {
+.case-card__media--yoy img:not(.case-card__glow) {
   position: absolute;
   left: 5.81%;
   top: 0;
@@ -1217,7 +1236,7 @@
 
 /* Uniqkey 2 — same simple contained-image approach as --yoy/--ridi;
    Un_hero is a transparent-background phone mockup composite. */
-.case-card__media--uq2 img {
+.case-card__media--uq2 img:not(.case-card__glow) {
   position: absolute;
   left: 12.65%;
   top: 3.516%;
@@ -1257,7 +1276,7 @@
   same as .case-card__media--yoy/--atj2. No outline/border (Roman:
   remove the outline that was there).
 */
-.case-card__media--ridi img {
+.case-card__media--ridi img:not(.case-card__glow) {
   position: static;
   width: 100%;
   height: 100%;
@@ -1287,10 +1306,9 @@
     inside a shared wrapper.
   */
   .case-card__link {
-    /* Figma columns are 519px; they sit on the section's left / right
-       edges (same 1120px column as the other sections), not centred. */
-    grid-template-columns: repeat(2, minmax(0, 519px));
-    justify-content: space-between;
+    /* 1062px column = 519 + 24 + 519 (Figma): two equal columns, text
+       column on the section's left edge. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-areas:
       "intro media"
       "actions media";
