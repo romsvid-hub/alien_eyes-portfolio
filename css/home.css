@@ -692,6 +692,10 @@
   list-style: none;
 }
 
+.experience-row:first-child {
+  border-top: 0;
+}
+
 .experience-row {
   display: grid;
   grid-template-columns: 120px 420px minmax(0, 1fr);
