@@ -456,6 +456,9 @@
   border-radius: 10px;
   overflow: hidden;
   background-color: rgba(255, 255, 255, 0.04);
+  /* media boxes are no longer all square (home.css): centre them in the tile */
+  display: flex;
+  align-items: center;
 }
 
 .nav-popup-case__media .case-card__media {
