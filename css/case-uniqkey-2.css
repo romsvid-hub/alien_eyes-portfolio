@@ -248,6 +248,9 @@
    column's 24px gap + the block's 24px top padding give Figma's 48px */
 .uq2-hero {
   --case-meta-color: #ffffff;
+  /* WCAG AA (QA #1, D13): solid colour instead of 72% white on #3d5bae */
+  --case-meta-dd-color: #e6e6e6;
+  --case-meta-dd-opacity: 1;
   --case-meta-mt: 0;
 }
 

@@ -13,8 +13,8 @@
   - stuck (under the header): the standard component 987:4210 on dark glass:
     "<- Home" + divider on the left (the arrow only here), the case role on
     the right.
-  The switch is driven by a sentinel + IntersectionObserver (js/case-nav.js,
-  class .is-stuck). Active underline = --case-accent.
+  The switch is driven by the bar's own scroll position (js/case-nav.js,
+  class .is-stuck). Active underline (stuck state) = --case-accent.
 */
 .case-nav {
   /* Active-item underline + "Agenda:" colour: the case accent (Figma
@@ -71,15 +71,6 @@
   height: 24px;
 }
 
-/* zero-height marker just above the bar: the IntersectionObserver in
-   js/case-nav.js watches it to know when the bar has stuck. */
-.case-nav__sentinel {
-  height: 1px;
-  margin-bottom: -1px;
-  pointer-events: none;
-  visibility: hidden;
-}
-
 /* Accent + inline-state colours per case (Figma instances of 987:4210) */
 .case-nav[data-case="atj"] {
   --case-accent: #c44323;
@@ -87,6 +78,9 @@
 
 .case-nav[data-case="atj2"] {
   --case-accent: #3d5bae;
+  /* the underline is only seen on the dark stuck bar, where #3d5bae is 2.91:1;
+     a lighter tint of the same blue gives >= 3:1 (QA #1, D16) */
+  --case-underline: #4a69be;
 }
 
 .case-nav[data-case="uniqkey2"],
@@ -199,13 +193,15 @@
 }
 
 .case-nav__item:focus-visible {
-  outline: 2px solid rgba(123, 97, 255, 0.7);
+  /* solid ring in the bar's own text colour: >= 3:1 on the light, the dark
+     and the stuck bar (QA #1, D16) */
+  outline: 2px solid var(--case-nav-fg);
   outline-offset: -4px;
 }
 
 .case-nav__item[aria-current="true"] {
   color: var(--case-nav-fg);
-  border-bottom-color: var(--case-accent);
+  border-bottom-color: var(--case-underline, var(--case-accent));
 }
 
 /*
@@ -288,6 +284,14 @@
 @media (max-width: 1199px) {
   .case-nav {
     gap: 20px;
+  }
+}
+
+/* Below 1024 the role no longer fits next to the items (it ran out of the
+   viewport at 768): it is hidden there (QA #1, D9) */
+@media (max-width: 1023px) {
+  .case-nav__role {
+    display: none;
   }
 }
 

@@ -54,6 +54,7 @@
      nav popup, footer, accents). */
   --color-gray-on-dark: #8c8c8c; /* 4.62:1 on #242424 (review role, CTA text) */
   --color-cta-contact: #7357ff; /* 4.60:1 with white text ("Contact Me" button) */
+  --color-purple-on-dark: #7e64ff; /* 4.53:1 on #131414 (Experience company names); #7b61ff is 4.39:1 */
   --color-cta-contact-hover: #6351ba; /* hover/active: same darkening as #7b61ff -> #6a5aba */
 
   /* Typography — font families */

@@ -444,6 +444,18 @@
   gap: 16px;
 }
 
+.ridi-hero__logo {
+  width: 56px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .ridi-hero__logo {
+    width: 72px;
+  }
+}
+
 .ridi-hero__title {
   color: var(--ridi-accent);
   font-size: 40px;

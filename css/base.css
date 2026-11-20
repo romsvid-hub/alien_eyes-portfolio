@@ -29,6 +29,17 @@ img {
   display: block;
 }
 
+/*
+  Images carry width/height attributes (QA #1, D7) so the browser reserves
+  their space before they load and the layout does not jump (nav jumps landed
+  off-target). The attributes only give the aspect ratio: wherever CSS sizes
+  an image by width, its height must follow it. :where() keeps specificity at
+  zero, so any class rule that sets a height still wins.
+*/
+:where(img[width][height]) {
+  height: auto;
+}
+
 a {
   color: inherit;
   text-decoration: none;

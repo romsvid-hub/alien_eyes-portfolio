@@ -252,11 +252,33 @@
   top-left) stays visually locked to it at any width, showing the full
   mockup with nothing cropped.
 */
-.atj2-hero__media img {
+.atj2-hero__media img:not(.atj2-hero__badge) {
   position: static;
   display: block;
   width: 100%;
   height: auto;
+}
+
+/*
+  The ATJ wordmark badge sits over the mockup's top-left corner, sized
+  proportionally to the same 526x485 container (151/526 wide) it's
+  authored against in Figma — matches at any width since it's a % of
+  the same box the (now always full, uncropped) mockup fills.
+
+  2026-09-15, per Roman: nudged off the flush corner — 8px right/8px
+  down on mobile, 16px right only on desktop (see the min-width:1024px
+  override below). Must sit before that media query in source order —
+  as an unconditional rule of equal specificity, it would otherwise
+  win over the desktop override regardless of viewport width.
+*/
+.atj2-hero__media .atj2-hero__badge {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  width: 28.7%;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
 }
 
 @media (min-width: 1024px) {
@@ -299,7 +321,7 @@
     container 526x485) — left:7.15%, top:-1.57%, width:85.88%,
     height:94.68%. Unchanged; only mobile's approach above changed.
   */
-  .atj2-hero__media img {
+  .atj2-hero__media img:not(.atj2-hero__badge) {
     position: absolute;
     left: 7.15%;
     top: -1.57%;
@@ -307,6 +329,12 @@
     height: 94.68%;
     max-width: none;
     object-fit: unset;
+  }
+
+  /* Desktop: 16px right only, per Roman — no vertical nudge here. */
+  .atj2-hero__media .atj2-hero__badge {
+    left: 16px;
+    top: 0;
   }
 }
 
@@ -352,6 +380,40 @@
   color: var(--color-deep-text);
   max-width: 548px;
   margin: 0;
+}
+
+.atj2-hero__meta-row {
+  display: flex;
+  /* Fixed 2026-09-14 per Roman ("Mascot illustration"/"Meta list" —
+     Figma names, 418:31425/418:31426 — aligned to a shared center
+     line): was flex-start, sitting the mascot flush with the list's
+     top line instead of centered against the whole 3-line block. */
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+@media (min-width: 1024px) {
+  .atj2-hero__meta-row {
+    gap: 0;
+  }
+}
+
+.atj2-hero__mascot {
+  width: 56px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .atj2-hero__mascot {
+    width: 71px;
+  }
+}
+
+.atj2-hero__meta-row .case-meta {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 /* Case meta block (css/case-meta.css): description colour; the content

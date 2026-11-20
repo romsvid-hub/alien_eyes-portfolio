@@ -244,7 +244,15 @@ document.addEventListener("DOMContentLoaded", function () {
       hovering = false;
       startAutoScroll();
     });
-    carousel.addEventListener("focusin", function () {
+    carousel.addEventListener("focusin", function (ev) {
+      // pause on focus only for keyboard focus (:focus-visible): after a mouse
+      // click the button keeps focus, and that must not freeze the autoplay
+      // for good (QA #1, D23). Browsers without :focus-visible count as keyboard.
+      var keyboardFocus = true;
+      try {
+        keyboardFocus = ev.target.matches(":focus-visible");
+      } catch (e) {}
+      if (!keyboardFocus) return;
       focused = true;
       stopAutoScroll();
     });

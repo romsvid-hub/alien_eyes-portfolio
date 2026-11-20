@@ -743,7 +743,8 @@
 }
 
 .experience-row__company {
-  color: var(--color-cta-purple);
+  /* WCAG AA (QA #1, D15): a hair lighter than --color-cta-purple (4.39:1) */
+  color: var(--color-purple-on-dark);
 }
 
 .experience-row__text {
@@ -1589,4 +1590,19 @@
 .cta-description {
   color: var(--color-gray-on-dark);
   max-width: 480px;
+}
+
+/*
+  QA #1 / D11: the stuck case nav's "Home" link goes to /#case-studies; the
+  heading must not land under the sticky header (59px on desktop, 56px
+  below 1024) -> header height + 24px of air.
+*/
+#case-studies {
+  scroll-margin-top: 83px;
+}
+
+@media (max-width: 1023px) {
+  #case-studies {
+    scroll-margin-top: 80px;
+  }
 }

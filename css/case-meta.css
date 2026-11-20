@@ -38,7 +38,10 @@
   min-width: 0;
   margin: 0;
   font-weight: 400;
-  opacity: 0.72;
+  /* Default: 72% of the block colour. Heroes whose background makes that
+     fail WCAG AA (Uniqkey, Uniqkey 2) set a solid colour instead. */
+  color: var(--case-meta-dd-color, inherit);
+  opacity: var(--case-meta-dd-opacity, 0.72);
 }
 
 /* Narrow screens: label sits above its value */

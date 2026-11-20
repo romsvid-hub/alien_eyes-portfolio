@@ -210,31 +210,10 @@
 }
 
 /*
-  Desktop columns as in Figma (hero 982:22968, 1280px card): mockup
-  column 628px, text column starts at 652px (24px gap) and is 580px wide
-  with a 48px right inset, so the Case meta block gets Figma's width.
-  The laptop keeps its Figma size (594px node) and position inside the
-  column: the crop percentages below are re-derived for the 628px frame
-  (aspect ratio unchanged), desktop only — mobile keeps the originals.
+  QA #1 / D5 (2026-11-20): the laptop frame keeps main's geometry (55% of the
+  card = 704px at 1440, original crop percentages), so the laptop is no
+  longer clipped. An earlier narrower 628px frame is reverted.
 */
-@media (min-width: 1024px) {
-  .atj-hero__mockup-frame {
-    flex: 0 0 49.0625%;
-  }
-
-  .atj-hero__mockup {
-    left: -20.25%;
-    top: -31.6%;
-    width: 147%;
-    height: 166.4%;
-  }
-
-  .atj-hero__content {
-    flex: 1 1 0;
-    min-width: 0;
-    padding: 48px 48px 48px 24px;
-  }
-}
 
 .atj-hero__title {
   /* Figma: "Inclusive / Hiring Platform" on two lines (title box 510px) */
@@ -301,6 +280,27 @@
 .atj-context__copy {
   display: flex;
   flex-direction: column;
+}
+
+/*
+  Figma (2:13832) shows a large 168px gap between the icon and the
+  CONTEXT heading, not the uniform 24px used elsewhere in this column —
+  verified via get_design_context frame offset. Used to be the parent's
+  24px gap plus this margin; the gap is gone now (title-to-body below
+  is the shared .cs-title rhythm instead, see typography.css), so 24px
+  was folded directly into these numbers to keep the icon-to-title
+  distance exactly as it was (48+24=72, 168+24=192).
+*/
+.atj-context__icon {
+  width: 100px;
+  height: auto;
+  margin-bottom: 72px;
+}
+
+@media (min-width: 1024px) {
+  .atj-context__icon {
+    margin-bottom: 192px;
+  }
 }
 
 .atj-context__body {
