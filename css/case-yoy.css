@@ -90,7 +90,8 @@
 
 @media (min-width: 1024px) {
   .yoy-heading--spaced {
-    margin-top: 48px;
+    /* 80px between big blocks (Figma 982:25563, 2026-11-22) */
+    margin-top: 80px;
   }
 }
 
@@ -878,8 +879,10 @@
 
 @media (min-width: 1024px) {
   .yoy-feature + .yoy-feature {
-    margin-top: 48px;
+    /* 80px between features (Figma 982:25707-25711, 2026-11-22) */
+    margin-top: 80px;
   }
+
 }
 
 @media (min-width: 1024px) {
@@ -1012,6 +1015,13 @@
   align-items: flex-start;
   gap: 24px;
   margin-top: 40px;
+}
+
+/* Results: 80px before the focus row on desktop (Figma 982:25744) */
+@media (min-width: 1024px) {
+  .yoy-results__focus {
+    margin-top: 80px;
+  }
 }
 
 @media (min-width: 1024px) {
