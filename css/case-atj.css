@@ -1027,40 +1027,48 @@
   text-shadow: 0 0 8px rgba(196, 67, 35, 0.45);
 }
 
-/* Link (982:22842): one-time #C44323 light sweep left-to-right when it
-   scrolls into view (reveal.js adds .is-revealed; skipped entirely
-   under prefers-reduced-motion because reveal.js never runs) */
+/* Link (982:22842): text shimmer on first reveal — a light peach glint
+   runs through the letters left-to-right, twice (~1.5s each), then the
+   link is static. The glint is a copy of the text (::after, from
+   data-text) filled with a moving gradient and clipped to the glyphs.
+   reveal.js adds .is-revealed; nothing runs under prefers-reduced-motion
+   because reveal.js never runs. */
 .atj-jobcard-showcase__note a.reveal-init {
   opacity: 1;
   transform: none;
 }
 
-.atj-jobcard-showcase__note a::after {
-  content: "";
+.atj-jobcard-showcase__note a[data-text]::after {
+  content: attr(data-text);
   position: absolute;
   inset: 0;
-  width: 60%;
-  background: linear-gradient(90deg, transparent, rgba(196, 67, 35, 0.35), transparent);
-  transform: translateX(-120%);
+  padding: inherit;
+  white-space: nowrap;
+  color: transparent;
+  background-image: linear-gradient(
+    100deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 214, 200, 0.95) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
   pointer-events: none;
-}
-
-.atj-jobcard-showcase__note a.is-revealed {
-  animation: atj-link-glow 1600ms ease-out 200ms 1;
+  opacity: 0;
 }
 
 .atj-jobcard-showcase__note a.is-revealed::after {
-  animation: atj-link-sweep 1400ms cubic-bezier(0.4, 0, 0.2, 1) 200ms 1;
+  animation: atj-link-shimmer 1500ms ease-in-out 200ms 2;
 }
 
-@keyframes atj-link-sweep {
-  from { transform: translateX(-120%); }
-  to { transform: translateX(220%); }
-}
-
-@keyframes atj-link-glow {
-  0%, 100% { text-shadow: none; }
-  45% { text-shadow: 0 0 12px rgba(196, 67, 35, 0.6); }
+@keyframes atj-link-shimmer {
+  0% { background-position: 100% 0; opacity: 1; }
+  100% { background-position: 0% 0; opacity: 1; }
 }
 
 .atj-jobcard-showcase__grid {
