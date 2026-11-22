@@ -36,8 +36,9 @@
   --color-atj-accent: #c44323;
 
   /* Vertical inner padding of case-study sections (top and bottom), so two
-     neighbouring plain sections are 2x apart (128px). Used by ATJ 2,
-     Uniqkey 2, YOY and Ridi only (2026-11-17). */
+     neighbouring plain sections are 2x apart. Used by all case pages
+     (ATJ, ATJ 2, Uniqkey, Uniqkey 2, YOY, Ridi) on desktop. 64px on mobile; 80px from 1024px (vertical rhythm
+     update 2026-11-22, see the media query after :root). */
   --case-section-py: 64px;
 
   /*
@@ -91,4 +92,12 @@
   --ui-caption-weight: 600;
   --ui-caption-line-height: 100%;
   --ui-caption-letter-spacing: -0.02px;
+}
+
+/* Case vertical rhythm (2026-11-22): sections and big blocks 80px apart
+   on desktop */
+@media (min-width: 1024px) {
+  :root {
+    --case-section-py: 80px;
+  }
 }
