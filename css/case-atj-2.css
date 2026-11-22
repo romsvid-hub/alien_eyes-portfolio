@@ -540,6 +540,12 @@
 
 /* ---------- Facts (4-column stat header) ---------- */
 
+/* Impact (982:23736): "Impact:" label sits 24px inside the section top
+   and 24px above the facts grid */
+.atj2-impact .atj2-eyebrow {
+  margin: 24px 0 24px;
+}
+
 .atj2-facts {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
