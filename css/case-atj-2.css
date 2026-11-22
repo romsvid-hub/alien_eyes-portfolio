@@ -259,27 +259,6 @@
   height: auto;
 }
 
-/*
-  The ATJ wordmark badge sits over the mockup's top-left corner, sized
-  proportionally to the same 526x485 container (151/526 wide) it's
-  authored against in Figma — matches at any width since it's a % of
-  the same box the (now always full, uncropped) mockup fills.
-
-  2026-09-15, per Roman: nudged off the flush corner — 8px right/8px
-  down on mobile, 16px right only on desktop (see the min-width:1024px
-  override below). Must sit before that media query in source order —
-  as an unconditional rule of equal specificity, it would otherwise
-  win over the desktop override regardless of viewport width.
-*/
-.atj2-hero__media .atj2-hero__badge {
-  position: absolute;
-  left: 8px;
-  top: 8px;
-  width: 28.7%;
-  height: auto;
-  max-width: none;
-  object-fit: contain;
-}
 
 @media (min-width: 1024px) {
   /*
@@ -329,12 +308,6 @@
     height: 94.68%;
     max-width: none;
     object-fit: unset;
-  }
-
-  /* Desktop: 16px right only, per Roman — no vertical nudge here. */
-  .atj2-hero__media .atj2-hero__badge {
-    left: 16px;
-    top: 0;
   }
 }
 
@@ -705,7 +678,7 @@
     /* Figma exact: 48px top, 80px bottom. Horizontal is 0 because
        max-width:1120px + margin:auto already center it within the
        edge-to-edge outer panel. */
-    padding: 48px 0 80px;
+    padding: 80px 0;
   }
 }
 
@@ -993,7 +966,7 @@
 
 @media (min-width: 1024px) {
   .atj2-solutions__heading {
-    padding: 48px 80px 0;
+    padding: 80px 80px 0;
   }
 }
 
@@ -1022,8 +995,8 @@
 
 @media (min-width: 1024px) {
   .atj2-solution {
-    padding: 48px 80px;
-    gap: 48px;
+    padding: 48px 80px 80px;
+    gap: 80px;
   }
 
   /* Figma's 3 solution groups sit back-to-back with no extra gap between
@@ -1340,6 +1313,12 @@
   display: flex;
   flex-direction: column;
   gap: 48px;
+}
+
+@media (min-width: 1024px) {
+  .atj2-features {
+    gap: 80px;
+  }
 }
 
 .atj2-features__row {
@@ -2125,4 +2104,13 @@
 
 .case-reviews-cta {
   background-color: var(--color-dark-alien);
+}
+
+/* Vertical rhythm 2026-11-22 (Figma 982:23234): Research sub-blocks
+   (Methods / Analogs / Hypotheses) 48px apart on desktop */
+@media (min-width: 1024px) {
+  .atj2-research__grid,
+  .atj2-logos {
+    margin-bottom: 48px;
+  }
 }
