@@ -31,7 +31,8 @@
 
 @media (min-width: 1024px) {
   .case-section {
-    padding: 48px var(--page-px) 64px;
+    /* 80px vertical rhythm (2026-11-22), shared token */
+    padding: var(--case-section-py) var(--page-px);
   }
 }
 
@@ -1178,6 +1179,14 @@
 .case-awards {
   margin-bottom: 64px;
   filter: drop-shadow(2px 2px 9px rgba(24, 20, 19, 0.12));
+}
+
+/* 80px between big blocks on desktop (Figma 982:24688 / 982:24609) */
+@media (min-width: 1024px) {
+  .case-other-carousel,
+  .case-awards {
+    margin-bottom: 80px;
+  }
 }
 
 .case-awards__heading {
