@@ -399,18 +399,6 @@
   }
 }
 
-.atj2-hero__mascot {
-  width: 56px;
-  height: auto;
-  flex-shrink: 0;
-}
-
-@media (min-width: 1024px) {
-  .atj2-hero__mascot {
-    width: 71px;
-  }
-}
-
 .atj2-hero__meta-row .case-meta {
   flex: 1 1 auto;
   min-width: 0;
