@@ -39,6 +39,23 @@ audience.
    existing case study text.
 9. Explain the reasoning behind recommendations, not just the suggestion.
 
+## Figma file hygiene (from Roman, 2026-11-22)
+
+Roman is the live author of the content and design. References: the
+"Updates" page (layout) and the live site https://alieneyes.ink/ (code).
+
+1. Do not create pages, frames, or copies of case studies in the portfolio
+   Figma file without Roman's direct request.
+2. If a technical draft is needed (experiment, measurement, snapshot), warn
+   Roman first in one line: what, why, where.
+3. If he agrees, name the draft with the prefix "TEMP · CC ·", keep it on a
+   separate page "TEMP · Claude Code", and delete it as soon as it is no
+   longer needed.
+4. After every change in Figma, report briefly which pages or frames were
+   created, changed, or deleted (with node ids).
+5. Do not change the "Updates" page without Roman's request. It is his
+   working layout.
+
 ## Docs in this repo
 
 - `docs/Portfolio_Data_Inventory.md` — snapshot of case studies, node IDs,
