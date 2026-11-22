@@ -109,6 +109,16 @@
   margin-top: 96px;
 }
 
+/* Desktop: every Research block 80px apart, the audience beat included
+   (Figma 982:26016/26027/26058/26064, vertical rhythm 2026-11-22) */
+@media (min-width: 1024px) {
+  .ridi-block--spaced,
+  .ridi-block--spaced.ridi-block--audience,
+  .ridi-block--audience + .ridi-block--spaced {
+    margin-top: 80px;
+  }
+}
+
 @media (min-width: 1024px) {
   .ridi-two-col {
     grid-template-columns: 1fr 1fr;
@@ -842,7 +852,8 @@
 
 @media (min-width: 1024px) {
   .ridi-card-block + .ridi-card-block {
-    margin-top: 48px;
+    /* 80px between big blocks (Figma 982:26210/26211, 2026-11-22) */
+    margin-top: 80px;
   }
 }
 
