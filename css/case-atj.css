@@ -282,27 +282,6 @@
   flex-direction: column;
 }
 
-/*
-  Figma (2:13832) shows a large 168px gap between the icon and the
-  CONTEXT heading, not the uniform 24px used elsewhere in this column —
-  verified via get_design_context frame offset. Used to be the parent's
-  24px gap plus this margin; the gap is gone now (title-to-body below
-  is the shared .cs-title rhythm instead, see typography.css), so 24px
-  was folded directly into these numbers to keep the icon-to-title
-  distance exactly as it was (48+24=72, 168+24=192).
-*/
-.atj-context__icon {
-  width: 100px;
-  height: auto;
-  margin-bottom: 72px;
-}
-
-@media (min-width: 1024px) {
-  .atj-context__icon {
-    margin-bottom: 192px;
-  }
-}
-
 .atj-context__body {
   color: var(--color-deep-text);
   max-width: 480px;
@@ -559,11 +538,18 @@
   get a livelier spring/overshoot ease instead of the site's default
   fade+rise, so they feel like they're landing on the line as it grows.
 */
+/* Connector (982:22536) grows left-to-right like a chart line: a
+   clip-path wipe, no fade or slide. Triggered by the first card's reveal,
+   since a fully clipped element never counts as visible to the observer. */
 .atj-research__connector.reveal-init {
-  transform: translateX(-32px);
-  transition:
-    transform 900ms ease,
-    opacity 500ms ease;
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1800ms cubic-bezier(0.45, 0, 0.2, 1);
+}
+
+.atj-research__grid:has(> .is-revealed) .atj-research__connector.reveal-init {
+  clip-path: inset(0 0 0 0);
 }
 
 .atj-research__card.reveal-init {
@@ -725,6 +711,7 @@
 
 .atj-scope__image {
   display: block;
+  margin-top: 24px;
   border-radius: 16px;
   overflow: hidden;
 }
@@ -1015,10 +1002,61 @@
 }
 
 .atj-jobcard-showcase__note a {
+  position: relative;
+  overflow: hidden;
+  margin: -2px -4px;
+  padding: 2px 4px;
+  border-radius: 4px;
   font-family: monospace;
   font-weight: 700;
   color: var(--color-atj-accent);
   text-decoration: underline;
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    text-shadow 200ms ease;
+}
+
+.atj-jobcard-showcase__note a:hover,
+.atj-jobcard-showcase__note a:focus-visible {
+  background-color: rgba(196, 67, 35, 0.08);
+  text-shadow: 0 0 8px rgba(196, 67, 35, 0.45);
+}
+
+/* Link (982:22842): one-time #C44323 light sweep left-to-right when it
+   scrolls into view (reveal.js adds .is-revealed; skipped entirely
+   under prefers-reduced-motion because reveal.js never runs) */
+.atj-jobcard-showcase__note a.reveal-init {
+  opacity: 1;
+  transform: none;
+}
+
+.atj-jobcard-showcase__note a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 60%;
+  background: linear-gradient(90deg, transparent, rgba(196, 67, 35, 0.35), transparent);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+.atj-jobcard-showcase__note a.is-revealed {
+  animation: atj-link-glow 1600ms ease-out 200ms 1;
+}
+
+.atj-jobcard-showcase__note a.is-revealed::after {
+  animation: atj-link-sweep 1400ms cubic-bezier(0.4, 0, 0.2, 1) 200ms 1;
+}
+
+@keyframes atj-link-sweep {
+  from { transform: translateX(-120%); }
+  to { transform: translateX(220%); }
+}
+
+@keyframes atj-link-glow {
+  0%, 100% { text-shadow: none; }
+  45% { text-shadow: 0 0 12px rgba(196, 67, 35, 0.6); }
 }
 
 .atj-jobcard-showcase__grid {
