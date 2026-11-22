@@ -1022,16 +1022,8 @@
   font-weight: 700;
   color: var(--color-atj-accent);
   text-decoration: underline;
+  /* Hover: only the cursor changes (pointing hand), no highlight */
   cursor: pointer;
-  transition:
-    background-color 200ms ease,
-    text-shadow 200ms ease;
-}
-
-.atj-jobcard-showcase__note a:hover,
-.atj-jobcard-showcase__note a:focus-visible {
-  background-color: rgba(196, 67, 35, 0.08);
-  text-shadow: 0 0 8px rgba(196, 67, 35, 0.45);
 }
 
 /* Link (982:22842): text shimmer — a light peach glint runs through the
