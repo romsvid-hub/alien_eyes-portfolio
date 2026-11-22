@@ -489,6 +489,18 @@
   }
 }
 
+/* LastPass reduced in Figma (982:23998, 203x34) for visual balance:
+   34/41 of the shared logo height */
+.uq2-logos__item--lastpass {
+  height: 27px;
+}
+
+@media (min-width: 1024px) {
+  .uq2-logos__item--lastpass {
+    height: 34px;
+  }
+}
+
 /* ---------- Key Solution / blue panels (Challenge, Key Solution, Results) ---------- */
 
 .uq2-panel {
