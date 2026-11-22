@@ -1027,16 +1027,11 @@
   text-shadow: 0 0 8px rgba(196, 67, 35, 0.45);
 }
 
-/* Link (982:22842): text shimmer on first reveal — a light peach glint
-   runs through the letters left-to-right, twice (~1.5s each), then the
-   link is static. The glint is a copy of the text (::after, from
+/* Link (982:22842): text shimmer — a light peach glint runs through the
+   letters left-to-right every 1.5s, endlessly, while the link's section
+   is on screen (js/link-shimmer.js toggles .is-shimmering). The glint is a copy of the text (::after, from
    data-text) filled with a moving gradient and clipped to the glyphs.
-   reveal.js adds .is-revealed; nothing runs under prefers-reduced-motion
-   because reveal.js never runs. */
-.atj-jobcard-showcase__note a.reveal-init {
-  opacity: 1;
-  transform: none;
-}
+   Nothing runs under prefers-reduced-motion. */
 
 .atj-jobcard-showcase__note a[data-text]::after {
   content: attr(data-text);
@@ -1062,8 +1057,8 @@
   opacity: 0;
 }
 
-.atj-jobcard-showcase__note a.is-revealed::after {
-  animation: atj-link-shimmer 1500ms ease-in-out 200ms 2;
+.atj-jobcard-showcase__note a.is-shimmering::after {
+  animation: atj-link-shimmer 1500ms ease-in-out infinite;
 }
 
 @keyframes atj-link-shimmer {
@@ -1419,4 +1414,26 @@
 */
 .case-reviews-cta {
   background-color: var(--color-dark-alien);
+}
+
+/* ---------- Vertical rhythm per Figma (2026-11-22, desktop) ---------- */
+@media (min-width: 1024px) {
+  /* Research: personas -> "Overall scope of work" 80px (982:22673 pt80) */
+  .atj-section > .atj-scope {
+    margin-top: 80px;
+  }
+
+  /* FigJam link (982:22678): 48px above and below the board image */
+  .atj-scope__image {
+    margin-top: 48px;
+    margin-bottom: 48px;
+  }
+
+  /* Design System / AI usage (982:22872): 24px gap between every block,
+     on top of each block's own spacing */
+  .atj-section:has(> .atj-uikit__grid) {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
 }
