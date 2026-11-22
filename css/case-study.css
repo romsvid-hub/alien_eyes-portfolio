@@ -171,31 +171,6 @@
   }
 }
 
-.case-hero__logo {
-  position: relative;
-  overflow: hidden;
-  width: 120px;
-  height: 26px;
-  mix-blend-mode: luminosity;
-  opacity: 0.5;
-}
-
-@media (min-width: 768px) {
-  .case-hero__logo {
-    width: 167px;
-    height: 36px;
-  }
-}
-
-.case-hero__logo img {
-  position: absolute;
-  left: -155.69%;
-  top: -338.11%;
-  width: 396.99%;
-  height: 1002.46%;
-  max-width: none;
-}
-
 .case-hero__title {
   font-family: var(--font-display);
   font-weight: 800;
@@ -257,7 +232,6 @@
 /* ---------- Impact stats (2:14497) ---------- */
 
 .case-impact {
-  background-color: #ececec;
   padding: 32px var(--page-px) 48px;
 }
 
@@ -1211,10 +1185,14 @@
   margin: 0 0 24px;
 }
 
+/* Reduced in Figma (982:24606: 888 x 160.7, centered) for sharper
+   badges; same crop, transparent, no background behind it */
 .case-awards__banner-frame {
   position: relative;
   overflow: hidden;
   width: 100%;
+  max-width: 888px;
+  margin-inline: auto;
   aspect-ratio: 1072 / 194;
   border-radius: 8px;
 }
