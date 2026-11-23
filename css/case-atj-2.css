@@ -678,7 +678,7 @@
     /* Figma exact: 48px top, 80px bottom. Horizontal is 0 because
        max-width:1120px + margin:auto already center it within the
        edge-to-edge outer panel. */
-    padding: 80px 0;
+    padding: var(--space-section) 0;
   }
 }
 
@@ -966,7 +966,7 @@
 
 @media (min-width: 1024px) {
   .atj2-solutions__heading {
-    padding: 80px 80px 0;
+    padding: var(--space-section) 80px 0;
   }
 }
 
@@ -995,8 +995,8 @@
 
 @media (min-width: 1024px) {
   .atj2-solution {
-    padding: 48px 80px 80px;
-    gap: 80px;
+    padding: var(--space-block) 80px var(--space-section);
+    gap: var(--space-section);
   }
 
   /* Figma's 3 solution groups sit back-to-back with no extra gap between
@@ -1317,7 +1317,7 @@
 
 @media (min-width: 1024px) {
   .atj2-features {
-    gap: 80px;
+    gap: var(--space-section);
   }
 }
 
