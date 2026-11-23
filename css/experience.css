@@ -16,7 +16,14 @@
 */
 
 .exp {
+  /* the row (hover fill, dividers, click area) reaches 24px past the text
+     column on both sides; text itself stays on the column edge */
+  --exp-bleed: min(24px, var(--page-px, 24px));
+  position: relative;
+  margin-inline: calc(-1 * var(--exp-bleed));
+  padding-inline: var(--exp-bleed);
   border-top: 1px solid rgba(255, 254, 254, 0.08);
+  transition: background-color 0.15s ease-out;
 }
 
 .exp:first-child {
@@ -28,13 +35,11 @@
 }
 
 .exp__head {
-  position: relative;
   display: grid;
   grid-template-columns: 420px minmax(0, 1fr) 24px;
   column-gap: var(--space-stack);
   align-items: start;
   padding-block: var(--space-stack);
-  transition: background-color 0.15s ease-out;
 }
 
 .exp__title {
@@ -148,11 +153,11 @@
   display: block;
 }
 
-.is-enhanced .exp__head:hover {
+.is-enhanced .exp:hover {
   background-color: rgba(255, 254, 254, 0.03);
 }
 
-.is-enhanced .exp__head:hover .exp__chev {
+.is-enhanced .exp:hover .exp__chev {
   opacity: 1;
 }
 
@@ -303,7 +308,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .exp__head,
+  .exp,
   .exp__chev,
   .is-enhanced .exp__fold,
   .is-enhanced .exp:not(.is-open) .exp__fold--panel,
@@ -313,10 +318,6 @@
 }
 
 /* ---- About page: same component in the 930px text column (Figma 999:37338) ---- */
-
-.experience-section--about {
-  padding-bottom: var(--space-section);
-}
 
 .experience-section--about .home-col {
   max-width: 930px;

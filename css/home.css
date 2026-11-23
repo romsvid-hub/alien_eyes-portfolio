@@ -691,15 +691,22 @@
 /* ---------- Experience (Figma 1004:4408) ---------- */
 
 /* UI: HOME-EXPERIENCE-01 | Experience list | inspect/adjust */
-/* Full-width #131414 band, 48px above and below (Figma 1004:4408); the
-   section after it ("Reviews:") starts 32px below the band (Figma). */
+/* Full-width band, 80px above and below its content and 80px to the
+   neighbouring sections (Roman, 2026-11-23). Colour: --color-surface-band
+   (was neutral #131414, which clashed with the purple-tinted page #110e15). */
 .home-section.experience-section {
-  background-color: #131414;
-  padding-block: 48px;
+  background-color: var(--color-surface-band);
+  padding-block: var(--space-section);
 }
 
+/* 80px above the band (was the previous section's 96px) */
+.home-section:has(+ .experience-section) {
+  padding-bottom: var(--space-section);
+}
+
+/* 80px below the band (was 32px) */
 .experience-section + .home-section {
-  padding-top: 32px;
+  padding-top: var(--space-section);
 }
 
 .experience-list {

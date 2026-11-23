@@ -72,7 +72,8 @@
      nav popup, footer, accents). */
   --color-gray-on-dark: #8c8c8c; /* 4.62:1 on #242424 (review role, CTA text) */
   --color-cta-contact: #7357ff; /* 4.60:1 with white text ("Contact Me" button) */
-  --color-purple-on-dark: #7e64ff; /* 4.53:1 on #131414 (Experience company names); #7b61ff is 4.39:1 */
+  --color-purple-on-dark: #8a72ff; /* 5.01:1 on the Experience band #1a1624 (links, arrow hover); was #7e64ff, #7b61ff is 4.2:1 there */
+  --color-surface-band: #1a1624; /* Experience band: same hue as the page #110e15, one step lighter (was neutral #131414) */
   --color-cta-contact-hover: #6351ba; /* hover/active: same darkening as #7b61ff -> #6a5aba */
 
   /* Typography — font families */
