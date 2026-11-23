@@ -708,63 +708,7 @@
   list-style: none;
 }
 
-.experience-row:first-child {
-  border-top: 0;
-}
-
-.experience-row {
-  display: grid;
-  grid-template-columns: 120px 420px minmax(0, 1fr);
-  gap: 24px;
-  align-items: start;
-  padding: 20px 0;
-  border-top: 1px solid rgba(255, 254, 254, 0.08);
-}
-
-.experience-row__years,
-.experience-row__role,
-.experience-row__text {
-  margin: 0;
-}
-
-.experience-row__years {
-  font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 24px;
-  color: rgba(255, 254, 254, 0.6);
-}
-
-.experience-row__role {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-  color: var(--color-white);
-}
-
-.experience-row__company {
-  /* WCAG AA (QA #1, D15): a hair lighter than --color-cta-purple (4.39:1) */
-  color: var(--color-purple-on-dark);
-}
-
-.experience-row__text {
-  font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 24px;
-  color: rgba(255, 254, 254, 0.72);
-}
-
-/* years + role on one line, description under them */
-@media (max-width: 767px) {
-  .experience-row {
-    grid-template-columns: 96px minmax(0, 1fr);
-    gap: 4px 16px;
-  }
-
-  .experience-row__text {
-    grid-column: 1 / -1;
-  }
-}
+/* Rows, panels and the accordion behaviour: css/experience.css */
 
 /* ---------- Case studies (2:13454 ATJ, 2:13472 Uniqkey) ---------- */
 
