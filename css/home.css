@@ -692,8 +692,8 @@
 
 /* UI: HOME-EXPERIENCE-01 | Experience list | inspect/adjust */
 /* Full-width band, 80px above and below its content and 80px to the
-   neighbouring sections (Roman, 2026-11-23). Colour: --color-surface-band
-   (was neutral #131414, which clashed with the purple-tinted page #110e15). */
+   neighbouring sections (Roman, 2026-11-23). Colour: --color-surface-band,
+   neutral dark grey (was #131414; #7B61FF needs a darker grey to pass AA). */
 .home-section.experience-section {
   background-color: var(--color-surface-band);
   padding-block: var(--space-section);
