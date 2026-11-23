@@ -308,7 +308,7 @@
 */
 @media (min-width: 1024px) {
   .case-scope {
-    padding-top: 80px;
+    padding-top: var(--space-section);
   }
 }
 
@@ -1185,7 +1185,7 @@
 @media (min-width: 1024px) {
   .case-other-carousel,
   .case-awards {
-    margin-bottom: 80px;
+    margin-bottom: var(--space-section);
   }
 }
 
