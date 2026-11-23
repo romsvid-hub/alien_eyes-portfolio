@@ -35,11 +35,28 @@
   --color-unibrand: #3072f5;
   --color-atj-accent: #c44323;
 
+  /*
+    Vertical rhythm scale of the case pages (Figma "Updates" page, 2026-11-23).
+    Desktop values; they scale down proportionally below (see the media
+    queries after :root): 80 -> 56 on tablets (<1024) and 48 on phones (<768).
+      --space-section  sections (top and bottom padding) and big blocks
+      --space-reviews  Reviews section top and bottom
+      --space-block    inside a section: between sub-blocks
+      --space-stack    inside a block: title -> text, text -> image, cards
+      --space-gap      small gaps (labels, captions)
+      --space-tight    tightest gap (icon + text, list items)
+  */
+  --space-section: 80px;
+  --space-reviews: 96px;
+  --space-block: 48px;
+  --space-stack: 24px;
+  --space-gap: 16px;
+  --space-tight: 8px;
+
   /* Vertical inner padding of case-study sections (top and bottom), so two
      neighbouring plain sections are 2x apart. Used by all case pages
-     (ATJ, ATJ 2, Uniqkey, Uniqkey 2, YOY, Ridi) on desktop. 64px on mobile; 80px from 1024px (vertical rhythm
-     update 2026-11-22, see the media query after :root). */
-  --case-section-py: 64px;
+     (ATJ, ATJ 2, Uniqkey, Uniqkey 2, YOY, Ridi). */
+  --case-section-py: var(--space-section);
 
   /*
     Raw hex observed repeatedly on Home (2:13410) — hero/CTA buttons,
@@ -94,10 +111,23 @@
   --ui-caption-letter-spacing: -0.02px;
 }
 
-/* Case vertical rhythm (2026-11-22): sections and big blocks 80px apart
-   on desktop */
-@media (min-width: 1024px) {
+/* Case vertical rhythm: the scale above shrinks proportionally on smaller
+   screens (x0.7 on tablets, x0.6 on phones; rounded to 4px). The earlier
+   "64px on mobile" is replaced by 56 / 48. */
+@media (max-width: 1023px) {
   :root {
-    --case-section-py: 80px;
+    --space-section: 56px;
+    --space-reviews: 68px;
+    --space-block: 36px;
+    --space-stack: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --space-section: 48px;
+    --space-reviews: 56px;
+    --space-block: 32px;
+    --space-stack: 20px;
   }
 }
