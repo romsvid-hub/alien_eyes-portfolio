@@ -91,6 +91,17 @@
   color: inherit;
 }
 
+/* Colophon after the copyright (same style, "·" divider); under it on phones */
+@media (max-width: 767px) {
+  .site-footer__sep {
+    display: none;
+  }
+
+  .site-footer__colophon {
+    display: block;
+  }
+}
+
 @media (max-width: 768px) {
   .site-footer {
     padding: 24px;

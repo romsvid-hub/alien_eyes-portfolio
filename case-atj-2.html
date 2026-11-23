@@ -33,6 +33,9 @@
     <link rel="stylesheet" href="css/home.css" />
     <link rel="stylesheet" href="css/reveal.css" />
     <link rel="stylesheet" href="css/case-atj-2.css" />
+    <link rel="stylesheet" href="css/case-meta.css" />
+    <link rel="stylesheet" href="css/case-nav.css" />
+    <link rel="stylesheet" href="css/link-shimmer.css" />
     <!-- Microsoft Clarity analytics -->
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
@@ -85,19 +88,8 @@
       <!-- UI: CASE03-HERO-01 | Hero | matches Figma "Hero" (418:31417), synced 2026-09-10 -->
       <section class="atj2-hero" data-reveal>
         <div class="atj2-hero__media">
-          <img src="assets/case-atj-2/figma/mockup-atj2.webp" alt="ATJ DEI Audit shown on laptop and mobile" />
-          <!-- CONTENT: synced 2026-09-10 — "Context icon" (418:31417), the
-               All Together Jobs wordmark, overlaid top-left on the mockup -->
-          <img loading="lazy" class="atj2-hero__badge" src="assets/case-atj-2/figma/atj-logo-badge.svg" alt="All Together Jobs" />
-        </div>
+          <img src="assets/case-atj-2/figma/mockup-atj2.webp" alt="ATJ DEI Audit shown on laptop and mobile" />        </div>
         <div class="atj2-hero__content">
-          <!-- CONTENT: synced 2026-09-10 — real tags, replacing the placeholder -->
-          <div class="tag-row">
-            <span class="atj2-tag">HR Tech</span>
-            <span class="atj2-tag">Inclusive Design</span>
-            <span class="atj2-tag">Accessibility</span>
-            <span class="atj2-tag">B2B</span>
-          </div>
           <h1 class="atj2-hero__title">One Questionnaire, Two Audiences</h1>
           <p class="body-large atj2-hero__desc">
             Turned a heavy business process into a digital service,
@@ -106,19 +98,90 @@
             disabilities.
           </p>
           <div class="atj2-hero__meta-row">
-            <!-- IMAGE: mascot icon | draft asset from Figma -->
-            <img loading="lazy" class="atj2-hero__mascot" src="assets/case-atj-2/figma/hero-mascot.webp" alt="" aria-hidden="true" />
-            <ul class="atj2-hero__meta">
-              <li>Role: Lead UX Designer</li>
-              <li>Team: DEI methodologist, developer, UX copywriter</li>
-              <li>Tools: Claude, Figma, FigJam</li>
-            </ul>
+            <!-- Case meta: text and links as in Figma (QA/Updates page, hero data block, 2026-11-23) -->
+            <dl class="case-meta">
+              <div class="case-meta__row">
+                <dt>Role:</dt>
+                <dd>Lead UX Designer</dd>
+              </div>
+              <div class="case-meta__row">
+                <dt>Status:</dt>
+                <dd>Shipped, implemented by the client's developer</dd>
+              </div>
+              <div class="case-meta__row">
+                <dt>Service Link:</dt>
+                <!-- new row (2026-11-23) -->
+                <dd><a href="https://alltogether.jobs/company-diagnostic" target="_blank" rel="noopener">company-diagnostic</a> (Landing page by another team)</dd>
+              </div>
+              <div class="case-meta__row">
+                <dt>Duration:</dt>
+                <!-- was: "4 months (within a 1-year contract)" (2026-11-23) -->
+                <dd>4 months</dd>
+              </div>
+              <div class="case-meta__row">
+                <dt>Team:</dt>
+                <dd>DEI methodologist, developer, UX copywriter (+me)</dd>
+              </div>
+              <div class="case-meta__row">
+                <dt>My responsibilities:</dt>
+                <!-- was: "Questionnaire concept &amp; UX architecture; methodology stakeholder alignment; UX writing &amp; developer collaboration; graphic design briefs" (2026-11-23) -->
+                <dd>Questionnaire concept &amp; UX architecture; methodology stakeholder alignment; UX writing &amp; developer collaboration.</dd>
+              </div>
+            </dl>
           </div>
         </div>
       </section>
 
+      <!-- UI: CASE03-IMPACT-01 | Impact | Figma "Section:margin" (982:23736): Hero, Impact, Case nav, Context -->
+      <section class="atj2-section atj2-impact">
+        <p class="atj2-eyebrow" data-reveal>Impact:</p>
+        <div class="atj2-facts" data-reveal-group>
+          <div class="atj2-facts__item">
+            <h3>~300 Questions</h3>
+            <p class="body-main">In total audit form</p>
+          </div>
+          <div class="atj2-facts__item">
+            <h3>Two Product Tracks</h3>
+            <p class="body-main">Enterprise, and Small Medium Business,</p>
+          </div>
+          <div class="atj2-facts__item">
+            <h3>18 User interviews</h3>
+            <p class="body-main">7 Enterprise, + 11 SMB</p>
+          </div>
+          <div class="atj2-facts__item">
+            <h3>4 Key Decisions</h3>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE-NAV-01 | Case section nav: in flow under the hero (and Impact), sticks under the header | Figma "Case nav / Sticky" (987:4210); css/case-nav.css + js/case-nav.js -->
+      <nav class="case-nav" aria-label="Case sections" data-case-nav data-case="atj2">
+        <div class="case-nav__lead">
+          <!-- inline state: "Agenda:" (case accent), no arrow, no role -->
+          <div class="case-nav__agenda" aria-hidden="true">
+            <span class="case-nav__agenda-label">Agenda:</span>
+            <span class="case-nav__divider"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+          </div>
+          <!-- stuck state (standard component 987:4210): arrow + Home + divider -->
+          <div class="case-nav__home">
+            <a class="case-nav__item case-nav__back" href="/#case-studies">
+              <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
+              Home
+            </a>
+            <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+          </div>
+        </div>
+        <a class="case-nav__item" href="#cs-context" data-case-target="cs-context">Context</a>
+        <a class="case-nav__item" href="#cs-challenge" data-case-target="cs-challenge">Challenge</a>
+        <a class="case-nav__item" href="#cs-research" data-case-target="cs-research">Research</a>
+        <a class="case-nav__item" href="#cs-key-decisions" data-case-target="cs-key-decisions">Key Decisions</a>
+        <a class="case-nav__item" href="#cs-core-features" data-case-target="cs-core-features">Core Features</a>
+        <a class="case-nav__item" href="#cs-results" data-case-target="cs-results">Results</a>
+        <p class="case-nav__role"><b>Role:</b> <span>Lead UX Designer</span></p>
+      </nav>
+
       <!-- UI: CASE03-CONTEXT-01 | Context (Source / Goal) | matches Figma "Context - Selection" (418:31428) -->
-      <section class="atj2-section">
+      <section id="cs-context" data-case-section class="atj2-section">
         <p class="atj2-eyebrow atj2-eyebrow--lg" data-reveal>Context</p>
         <div class="atj2-context__grid" data-reveal-group>
           <div class="atj2-context__col">
@@ -158,7 +221,7 @@
             <p class="body-main">Raw table data dumped straight on the user.</p>
             <div class="atj2-heroselect__media">
               <!-- IMAGE: composite illustration (messy sheet + annotations + mascot) | draft asset from Figma -->
-              <img loading="lazy" src="assets/case-atj-2/figma/contrast-before.webp" alt="Raw, unstructured questionnaire in a Google Sheet, annotated as hard to track and navigate" />
+              <img loading="lazy" width="1680" height="875" src="assets/case-atj-2/figma/contrast-before.webp" alt="Raw, unstructured questionnaire in a Google Sheet, annotated as hard to track and navigate" />
             </div>
           </div>
           <div class="atj2-heroselect__block">
@@ -166,31 +229,10 @@
             <p class="body-main">The complex questionnaire became a modular system.</p>
             <div class="atj2-heroselect__after-media">
               <!-- IMAGE: modular audit body screenshot | draft asset from Figma -->
-              <img loading="lazy" class="atj2-heroselect__main" src="assets/case-atj-2/figma/contrast-after-main.webp" alt="Modular audit body with sidebar, progress and welcome message" />
+              <img loading="lazy" width="1200" height="866" class="atj2-heroselect__main" src="assets/case-atj-2/figma/contrast-after-main.webp" alt="Modular audit body with sidebar, progress and welcome message" />
               <!-- IMAGE: mascot accent | draft asset from Figma -->
-              <img loading="lazy" class="atj2-heroselect__accent" src="assets/case-atj-2/figma/contrast-after-accent.webp" alt="" aria-hidden="true" />
+              <img loading="lazy" width="800" height="1101" class="atj2-heroselect__accent" src="assets/case-atj-2/figma/contrast-after-accent.webp" alt="" aria-hidden="true" />
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- UI: CASE03-FACTS-01 | Facts | matches Figma "Facts - Selection" (418:31451) -->
-      <section class="atj2-section">
-        <div class="atj2-facts" data-reveal-group>
-          <div class="atj2-facts__item">
-            <h3>~300 Questions</h3>
-            <p class="body-main">In total audit form</p>
-          </div>
-          <div class="atj2-facts__item">
-            <h3>Two Product Tracks</h3>
-            <p class="body-main">Enterprise, and Small Medium Business,</p>
-          </div>
-          <div class="atj2-facts__item">
-            <h3>18 User interviews</h3>
-            <p class="body-main">7 Enterprise, + 11 SMB</p>
-          </div>
-          <div class="atj2-facts__item">
-            <h3>4 Key Decisions</h3>
           </div>
         </div>
       </section>
@@ -230,42 +272,8 @@
         </div>
       </section>
 
-      <!-- UI: CASE03-DECISION-ACCESSIBILITY-01 | Key Decisions – Accessibility | matches Figma "Key Decision - Section" (418:31474) -->
-      <section class="atj2-section">
-        <p class="h2-section atj2-decision__heading" data-reveal>Key Decisions - Accessibility</p>
-        <div class="atj2-decision">
-          <div class="atj2-decision__grid" data-reveal-group>
-            <div class="atj2-decision__card">
-              <h4>Problem</h4>
-              <p>
-                The audit is taken by people of varying technical skill
-                and ability; legal terminology and visual noise raise
-                anxiety and the risk of dropping out midway.
-              </p>
-            </div>
-            <div class="atj2-decision__card">
-              <h4>Solution</h4>
-              <p>
-                Minimum 4.5:1 text contrast, visible focus indicators on
-                every interactive element for progress and errors, and no
-                jarring animations or flashes between steps.
-              </p>
-            </div>
-            <div class="atj2-decision__card">
-              <h4>Why?</h4>
-              <p>
-                A product about inclusivity that isn't itself accessible
-                undermines its own stated mission — this isn't a separate
-                checkbox, it's a direct consequence of the project's own
-                theme.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- UI: CASE03-CHALLENGE-01 | The Challenge | matches Figma "Challenge - Section" (418:31487) -->
-      <section class="atj2-section atj2-section--challenge">
+      <section id="cs-challenge" data-case-section class="atj2-section atj2-section--challenge">
         <div class="atj2-challenge" data-reveal>
           <p class="atj2-challenge__eyebrow">The Challenge</p>
           <div class="atj2-challenge__content">
@@ -281,10 +289,10 @@
                 Business (SMB).</strong>
               </p>
               <!-- IMAGE: browser sheet accent (top-right, near-flush per Figma "Mascot accent shape", formerly "Before 1") | draft asset from Figma -->
-              <img loading="lazy" class="atj2-challenge__illustration" src="assets/case-atj-2/figma/challenge-sheet-badge.png" alt="" aria-hidden="true" />
+              <img loading="lazy" width="157" height="179" class="atj2-challenge__illustration" src="assets/case-atj-2/figma/challenge-sheet-badge.png" alt="" aria-hidden="true" />
               <!-- IMAGE: mascot accent — intentionally overflows the card's right/bottom edge per
                    Figma "Mascot illustration" (formerly "ChatGPT Image 7 серп. 2026 р., 13_19_51 1"); clipped by the gradient block -->
-              <img loading="lazy" class="atj2-challenge__mascot" src="assets/case-atj-2/figma/challenge-mascot-crop.webp" alt="" aria-hidden="true" />
+              <img loading="lazy" width="600" height="600" class="atj2-challenge__mascot" src="assets/case-atj-2/figma/challenge-mascot-crop.webp" alt="" aria-hidden="true" />
             </div>
             <div class="atj2-challenge__context">
               <h3 class="cs-subtitle">Audit of the initial state:</h3>
@@ -300,7 +308,7 @@
       </section>
 
       <!-- UI: CASE03-RESEARCH-01 | Research | matches Figma "Research - Selection" (418:31505) -->
-      <section class="atj2-section">
+      <section id="cs-research" data-case-section class="atj2-section">
         <p class="atj2-eyebrow atj2-eyebrow--lg" data-reveal>Research</p>
         <div class="atj2-research__grid" data-reveal-group>
           <div>
@@ -329,19 +337,19 @@
         <p class="atj2-research__label">Analogs referenced:</p>
         <div class="atj2-logos" data-reveal-group>
           <a class="atj2-logos__item" href="https://business.diia.gov.ua/home/inclusion" target="_blank" rel="noopener">
-            <img loading="lazy" src="assets/case-atj-2/figma/logo-diia.png" alt="Diia Business" />
+            <img loading="lazy" width="224" height="76" src="assets/case-atj-2/figma/logo-diia.png" alt="Diia Business" />
           </a>
           <a class="atj2-logos__item" href="https://cei.org.ua/" target="_blank" rel="noopener">
-            <img loading="lazy" src="assets/case-atj-2/figma/logo-cei.png" alt="CEI" />
+            <img loading="lazy" width="224" height="76" src="assets/case-atj-2/figma/logo-cei.png" alt="CEI" />
           </a>
           <a class="atj2-logos__item" href="https://www.opsizo.eu/sat-emp.php" target="_blank" rel="noopener">
-            <img loading="lazy" src="assets/case-atj-2/figma/logo-opsizo.png" alt="Opsizo" />
+            <img loading="lazy" width="224" height="76" src="assets/case-atj-2/figma/logo-opsizo.png" alt="Opsizo" />
           </a>
           <a class="atj2-logos__item" href="https://www.cultureamp.com/" target="_blank" rel="noopener">
-            <img loading="lazy" src="assets/case-atj-2/figma/logo-cultureamp.png" alt="Culture Amp" />
+            <img loading="lazy" width="224" height="76" src="assets/case-atj-2/figma/logo-cultureamp.png" alt="Culture Amp" />
           </a>
           <a class="atj2-logos__item" href="https://diversio.com/" target="_blank" rel="noopener">
-            <img loading="lazy" src="assets/case-atj-2/figma/logo-diversio.png" alt="Diversio" />
+            <img loading="lazy" width="224" height="76" src="assets/case-atj-2/figma/logo-diversio.png" alt="Diversio" />
           </a>
         </div>
 
@@ -364,19 +372,20 @@
 
         <div class="atj2-research__images" data-reveal-group>
           <!-- IMAGE: Hypothesis Canvas board | draft asset from Figma -->
-          <div><img loading="lazy" src="assets/case-atj-2/figma/research-wf1.webp" alt="Hypothesis Canvas board — rejected and merged hypotheses" /></div>
+          <div><img loading="lazy" width="2200" height="1878" src="assets/case-atj-2/figma/research-wf1.webp" alt="Hypothesis Canvas board — rejected and merged hypotheses" /></div>
           <!-- IMAGE: mid-stage architecture flow diagram | draft asset from Figma -->
-          <div><img loading="lazy" src="assets/case-atj-2/figma/research-wf2.webp" alt="Mid-stage architectural construction flow diagram" /></div>
+          <div><img loading="lazy" width="2200" height="1841" src="assets/case-atj-2/figma/research-wf2.webp" alt="Mid-stage architectural construction flow diagram" /></div>
           <!-- IMAGE: final deep-structure wireflow diagram | draft asset from Figma -->
-          <div><img loading="lazy" src="assets/case-atj-2/figma/research-wf3.webp" alt="Final deep structure wireflow diagram" /></div>
+          <div><img loading="lazy" width="2200" height="1841" src="assets/case-atj-2/figma/research-wf3.webp" alt="Final deep structure wireflow diagram" /></div>
         </div>
       </section>
 
       <!-- UI: CASE03-SOLUTIONS-01 | Key Solutions — single continuous panel | matches Figma "Solution - Section" (418:31546) -->
-      <section class="atj2-section">
+      <section id="cs-key-decisions" data-case-section class="atj2-section">
         <div class="atj2-solutions">
           <div class="atj2-solutions__heading" data-reveal>
-            <h2>Key Solutions</h2>
+            <!-- was: "Key Solutions" (renamed 2026-11-17) -->
+            <h2>Key Decisions</h2>
           </div>
 
           <!-- Onboarding & Screening -->
@@ -420,7 +429,7 @@
               <h3>Onboarding</h3>
               <p>Explains time and steps, and clarify other specifics before the user starts.</p>
               <div class="atj2-solution__filmstrip">
-                <img loading="lazy" src="assets/case-atj-2/figma/onboarding-filmstrip.webp" alt="Onboarding flow: diagnostic overview, side panel and glossary explanation, assessment levels, and organization-tailoring questions — steps 1 to 4 of 4" />
+                <img loading="lazy" width="2200" height="1051" src="assets/case-atj-2/figma/onboarding-filmstrip.webp" alt="Onboarding flow: diagnostic overview, side panel and glossary explanation, assessment levels, and organization-tailoring questions — steps 1 to 4 of 4" />
               </div>
             </div>
 
@@ -428,7 +437,7 @@
               <h3>Side menu</h3>
               <p>Shows only the sections relevant to this organization — the rest stays out of view.</p>
               <div class="atj2-solution__filmstrip">
-                <img loading="lazy" src="assets/case-atj-2/figma/menu-filmstrip.webp" alt="Section menu with progress and completed sections, and a single diagnostic question screen" />
+                <img loading="lazy" width="2200" height="1051" src="assets/case-atj-2/figma/menu-filmstrip.webp" alt="Section menu with progress and completed sections, and a single diagnostic question screen" />
               </div>
             </div>
           </div>
@@ -487,32 +496,32 @@
                        beneath it scrolls, per node 433:31783. -->
                   <div class="atj2-questionnaire__chrome" aria-hidden="true">
                     <div class="atj2-questionnaire__topbar">
-                      <span class="atj2-questionnaire__dot atj2-questionnaire__dot--close"><img loading="lazy" src="assets/case-atj-2/chrome/btn-close.svg" alt="" /></span>
-                      <span class="atj2-questionnaire__dot atj2-questionnaire__dot--min"><img loading="lazy" src="assets/case-atj-2/chrome/btn-minimise.svg" alt="" /></span>
-                      <span class="atj2-questionnaire__dot atj2-questionnaire__dot--zoom"><img loading="lazy" src="assets/case-atj-2/chrome/btn-zoom.svg" alt="" /></span>
+                      <span class="atj2-questionnaire__dot atj2-questionnaire__dot--close"><img loading="lazy" width="9" height="9" src="assets/case-atj-2/chrome/btn-close.svg" alt="" /></span>
+                      <span class="atj2-questionnaire__dot atj2-questionnaire__dot--min"><img loading="lazy" width="9" height="9" src="assets/case-atj-2/chrome/btn-minimise.svg" alt="" /></span>
+                      <span class="atj2-questionnaire__dot atj2-questionnaire__dot--zoom"><img loading="lazy" width="9" height="9" src="assets/case-atj-2/chrome/btn-zoom.svg" alt="" /></span>
                       <span class="atj2-questionnaire__tab">
-                        <img loading="lazy" class="atj2-questionnaire__tab-bg" src="assets/case-atj-2/chrome/tab-shape.svg" alt="" />
-                        <img loading="lazy" class="atj2-questionnaire__favicon" src="assets/case-atj-2/chrome/favicon.png" alt="" />
+                        <img loading="lazy" width="200" height="26" class="atj2-questionnaire__tab-bg" src="assets/case-atj-2/chrome/tab-shape.svg" alt="" />
+                        <img loading="lazy" width="144" height="144" class="atj2-questionnaire__favicon" src="assets/case-atj-2/chrome/favicon.png" alt="" />
                         <span class="atj2-questionnaire__tab-title">Alltogether.jobs</span>
-                        <img loading="lazy" class="atj2-questionnaire__tab-close" src="assets/case-atj-2/chrome/close.svg" alt="" />
+                        <img loading="lazy" width="8" height="8" class="atj2-questionnaire__tab-close" src="assets/case-atj-2/chrome/close.svg" alt="" />
                       </span>
-                      <img loading="lazy" class="atj2-questionnaire__newtab" src="assets/case-atj-2/chrome/new-tab.svg" alt="" />
-                      <img loading="lazy" class="atj2-questionnaire__tabs-arrow" src="assets/case-atj-2/chrome/tabs-arrow.svg" alt="" />
+                      <img loading="lazy" width="11" height="11" class="atj2-questionnaire__newtab" src="assets/case-atj-2/chrome/new-tab.svg" alt="" />
+                      <img loading="lazy" width="7" height="4" class="atj2-questionnaire__tabs-arrow" src="assets/case-atj-2/chrome/tabs-arrow.svg" alt="" />
                     </div>
                     <div class="atj2-questionnaire__addressbar">
-                      <img loading="lazy" class="atj2-questionnaire__back" src="assets/case-atj-2/chrome/back-arrow.svg" alt="" />
-                      <img loading="lazy" class="atj2-questionnaire__forward" src="assets/case-atj-2/chrome/forward-arrow.svg" alt="" />
-                      <img loading="lazy" class="atj2-questionnaire__refresh" src="assets/case-atj-2/chrome/refresh.svg" alt="" />
+                      <img loading="lazy" width="10" height="9" class="atj2-questionnaire__back" src="assets/case-atj-2/chrome/back-arrow.svg" alt="" />
+                      <img loading="lazy" width="10" height="9" class="atj2-questionnaire__forward" src="assets/case-atj-2/chrome/forward-arrow.svg" alt="" />
+                      <img loading="lazy" width="10" height="10" class="atj2-questionnaire__refresh" src="assets/case-atj-2/chrome/refresh.svg" alt="" />
                       <span class="atj2-questionnaire__pill">
-                        <img loading="lazy" class="atj2-questionnaire__padlock" src="assets/case-atj-2/chrome/padlock.svg" alt="" />
+                        <img loading="lazy" width="6" height="8" class="atj2-questionnaire__padlock" src="assets/case-atj-2/chrome/padlock.svg" alt="" />
                         <span class="atj2-questionnaire__url">alltogether.jobs</span>
-                        <img loading="lazy" class="atj2-questionnaire__share" src="assets/case-atj-2/chrome/share-1.svg" alt="" />
-                        <img loading="lazy" class="atj2-questionnaire__share2" src="assets/case-atj-2/chrome/share-2.svg" alt="" />
-                        <img loading="lazy" class="atj2-questionnaire__star" src="assets/case-atj-2/chrome/favourite.svg" alt="" />
+                        <img loading="lazy" width="32" height="32" class="atj2-questionnaire__share" src="assets/case-atj-2/chrome/share-1.svg" alt="" />
+                        <img loading="lazy" width="8" height="10" class="atj2-questionnaire__share2" src="assets/case-atj-2/chrome/share-2.svg" alt="" />
+                        <img loading="lazy" width="12" height="11" class="atj2-questionnaire__star" src="assets/case-atj-2/chrome/favourite.svg" alt="" />
                       </span>
                     </div>
-                    <img loading="lazy" class="atj2-questionnaire__avatar" src="assets/case-atj-2/chrome/avatar.png" alt="" />
-                    <img loading="lazy" class="atj2-questionnaire__menu" src="assets/case-atj-2/chrome/menu.svg" alt="" />
+                    <img loading="lazy" width="35" height="35" class="atj2-questionnaire__avatar" src="assets/case-atj-2/chrome/avatar.png" alt="" />
+                    <img loading="lazy" width="2" height="10" class="atj2-questionnaire__menu" src="assets/case-atj-2/chrome/menu.svg" alt="" />
                   </div>
                   <div class="atj2-questionnaire__scroll">
                   <div class="atj2-questionnaire__body" data-q-body aria-hidden="true">
@@ -614,8 +623,8 @@
               <h3>Questionnaire (Diagnostic)</h3>
               <p>One section per screen, with progress and navigation always visible — no wall of questions to scroll through.</p>
               <div class="atj2-solution__filmstrip">
-                <!-- IMAGE: one raster asset still contains Ukrainian text ("Розпочати") — kept as-is per instruction; swap in an English version when available -->
-                <img loading="lazy" src="assets/case-atj-2/figma/questionnaire-filmstrip.webp" alt="Choose your sections screen, congratulations on starting your diagnosis, a section question screen, and the diagnostic terms glossary sidebar" />
+                <!-- IMAGE: Figma "Image - Questionnaire 1" (replaced 2026-11-22) -->
+                <img loading="lazy" width="2200" height="1051" src="assets/case-atj-2/figma/Image%20-%20Questionnaire%201.webp" alt="Choose your sections screen, congratulations on starting your diagnosis, a section question screen, and the diagnostic terms glossary sidebar" />
               </div>
             </div>
           </div>
@@ -660,7 +669,7 @@
               <h3>Enterprise Result</h3>
               <p>Shows an overall percentage score.</p>
               <div class="atj2-solution__wide atj2-solution__wide--flat">
-                <img loading="lazy" src="assets/case-atj-2/figma/enterprise-result.webp" alt="Enterprise result screen with an overall percentage score, strengths, growth areas and recommendations" />
+                <img loading="lazy" width="2200" height="1787" src="assets/case-atj-2/figma/enterprise-result.webp" alt="Enterprise result screen with an overall percentage score, strengths, growth areas and recommendations" />
               </div>
             </div>
 
@@ -675,15 +684,50 @@
               <div class="atj2-smb-mockup">
                 <div class="atj2-smb-mockup__phone atj2-smb-mockup__phone--left">
                   <div class="atj2-smb-mockup__viewport">
-                    <img loading="lazy" class="atj2-smb-mockup__body" data-smb-body src="assets/case-atj-2/figma/smb-result-left.webp" alt="SMB result screen: level summary, strengths, growth areas, and section recommendations" />
+                    <img loading="lazy" width="804" height="4260" class="atj2-smb-mockup__body" data-smb-body src="assets/case-atj-2/figma/smb-result-left.webp" alt="SMB result screen: level summary, strengths, growth areas, and section recommendations" />
                   </div>
                 </div>
                 <div class="atj2-smb-mockup__phone atj2-smb-mockup__phone--right">
                   <div class="atj2-smb-mockup__viewport">
-                    <img loading="lazy" class="atj2-smb-mockup__body" data-smb-body src="assets/case-atj-2/figma/smb-result-right.webp" alt="Diagnostics dashboard: badge, strengths, growth areas, and completed diagnostics list" />
+                    <img loading="lazy" width="804" height="5086" class="atj2-smb-mockup__body" data-smb-body src="assets/case-atj-2/figma/smb-result-right.webp" alt="Diagnostics dashboard: badge, strengths, growth areas, and completed diagnostics list" />
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UI: CASE03-DECISION-ACCESSIBILITY-01 | Key Decisions – Accessibility | matches Figma "Key Decision - Section" (418:31474) -->
+      <section class="atj2-section">
+        <!-- was: "Key Decisions - Accessibility" (renamed 2026-11-17) -->
+        <p class="h2-section atj2-decision__heading" data-reveal>Accessibility</p>
+        <div class="atj2-decision">
+          <div class="atj2-decision__grid" data-reveal-group>
+            <div class="atj2-decision__card">
+              <h4>Problem</h4>
+              <p>
+                The audit is taken by people of varying technical skill
+                and ability; legal terminology and visual noise raise
+                anxiety and the risk of dropping out midway.
+              </p>
+            </div>
+            <div class="atj2-decision__card">
+              <h4>Solution</h4>
+              <p>
+                Minimum 4.5:1 text contrast, visible focus indicators on
+                every interactive element for progress and errors, and no
+                jarring animations or flashes between steps.
+              </p>
+            </div>
+            <div class="atj2-decision__card">
+              <h4>Why?</h4>
+              <p>
+                A product about inclusivity that isn't itself accessible
+                undermines its own stated mission — this isn't a separate
+                checkbox, it's a direct consequence of the project's own
+                theme.
+              </p>
             </div>
           </div>
         </div>
@@ -721,7 +765,7 @@
         <!-- IMAGE: design-system foundation sheet | draft asset from Figma -->
         <div class="atj2-uikit__illustration" data-reveal>
           <a href="https://www.figma.com/design/a42eTgy6hzjmFWrVymHdfG/ATJ-copy-_Main_design_file?node-id=1-6&t=juXXjvmDWBSKsdZh-1" target="_blank" rel="noopener">
-            <img loading="lazy" src="assets/case-atj-2/figma/uikit-illustration1-fixed.webp" alt="Design system foundation: radius, colors, typography, spacing, layout, icons, tone of voice" />
+            <img loading="lazy" width="1120" height="241" src="assets/case-atj-2/figma/uikit-illustration1-fixed.webp" alt="Design system foundation: radius, colors, typography, spacing, layout, icons, tone of voice" />
           </a>
         </div>
         <p class="atj2-uikit__link">Foundation - <a href="https://www.figma.com/design/a42eTgy6hzjmFWrVymHdfG/ATJ-copy-_Main_design_file?node-id=1-6&t=juXXjvmDWBSKsdZh-1" target="_blank" rel="noopener">Link</a></p>
@@ -729,15 +773,16 @@
         <!-- IMAGE: design-system components sheet | draft asset from Figma -->
         <div class="atj2-uikit__illustration" data-reveal>
           <a href="https://www.figma.com/design/a42eTgy6hzjmFWrVymHdfG/ATJ-copy-_Main_design_file?node-id=1-10&t=juXXjvmDWBSKsdZh-1" target="_blank" rel="noopener">
-            <img loading="lazy" src="assets/case-atj-2/figma/uikit-illustration2-fixed.webp" alt="Design system components: buttons, inputs, form elements, modals, navigation, tags, tabs, radio, checkbox" />
+            <img loading="lazy" width="1120" height="240" src="assets/case-atj-2/figma/uikit-illustration2-fixed.webp" alt="Design system components: buttons, inputs, form elements, modals, navigation, tags, tabs, radio, checkbox" />
           </a>
         </div>
         <p class="atj2-uikit__link">Components - <a href="https://www.figma.com/design/a42eTgy6hzjmFWrVymHdfG/ATJ-copy-_Main_design_file?node-id=1-10&t=juXXjvmDWBSKsdZh-1" target="_blank" rel="noopener">Link</a></p>
       </section>
 
       <!-- UI: CASE03-FEATURES-01 | Other Core Features | matches Figma "Section — Other Core Features" (418:31640) -->
-      <section class="atj2-section">
-        <p class="atj2-eyebrow atj2-eyebrow--lg" data-reveal>Other Core Features</p>
+      <section id="cs-core-features" data-case-section class="atj2-section">
+        <!-- was: "Other Core Features" (renamed 2026-11-17) -->
+        <p class="atj2-eyebrow atj2-eyebrow--lg" data-reveal>Core Features</p>
         <div class="atj2-features">
           <div class="atj2-features__row" data-reveal>
             <div class="atj2-features__text">
@@ -754,28 +799,28 @@
               <!-- Reproduced as HTML/CSS status cards, not a flat image — Figma builds this from a live component library. Icons are real exported assets. -->
               <div class="atj2-notif" data-notif-stagger>
                 <div class="atj2-notif__card atj2-notif__card--info">
-                  <span class="atj2-notif__icon-wrap"><img loading="lazy" src="assets/case-atj-2/figma/icon-info.svg" alt="" /></span>
+                  <span class="atj2-notif__icon-wrap"><img loading="lazy" width="20" height="20" src="assets/case-atj-2/figma/icon-info.svg" alt="" /></span>
                   <div>
                     <p class="atj2-notif__title">Your answers are saved for 30 days</p>
                     <p class="atj2-notif__text">Complete the diagnostic within this time so you don't have to start over.</p>
                   </div>
                 </div>
                 <div class="atj2-notif__card atj2-notif__card--warning">
-                  <span class="atj2-notif__icon-wrap"><img loading="lazy" src="assets/case-atj-2/figma/icon-warning.svg" alt="" /></span>
+                  <span class="atj2-notif__icon-wrap"><img loading="lazy" width="20" height="20" src="assets/case-atj-2/figma/icon-warning.svg" alt="" /></span>
                   <div>
                     <p class="atj2-notif__title">Please note</p>
                     <p class="atj2-notif__text">You have an unfinished section 3 «Digital accessibility». You can return to it at any time.</p>
                   </div>
                 </div>
                 <div class="atj2-notif__card atj2-notif__card--info">
-                  <span class="atj2-notif__icon-wrap"><img loading="lazy" src="assets/case-atj-2/figma/icon-scale.svg" alt="" /></span>
+                  <span class="atj2-notif__icon-wrap"><img loading="lazy" width="20" height="20" src="assets/case-atj-2/figma/icon-scale.svg" alt="" /></span>
                   <div>
                     <p class="atj2-notif__title">A veteran is a person discharged from military service, regardless of combat participation. We also include people with combat experience in this category, even if they do not have official status as a veteran.</p>
                     <p class="atj2-notif__text">Definitions within the diagnostic</p>
                   </div>
                 </div>
                 <div class="atj2-notif__card atj2-notif__card--success">
-                  <span class="atj2-notif__icon-wrap"><img loading="lazy" src="assets/case-atj-2/figma/icon-check.svg" alt="" /></span>
+                  <span class="atj2-notif__icon-wrap"><img loading="lazy" width="20" height="20" src="assets/case-atj-2/figma/icon-check.svg" alt="" /></span>
                   <p class="atj2-notif__title">The «Metrics monitoring» section is complete. Thank you for your time and attention to this topic.</p>
                 </div>
               </div>
@@ -784,7 +829,7 @@
 
           <div class="atj2-features__row" data-reveal>
             <div class="atj2-features__media">
-              <img loading="lazy" src="assets/case-atj-2/figma/survey-body.webp" alt="Audit body with sidebar, welcome message and section progress" />
+              <img loading="lazy" width="1600" height="1156" src="assets/case-atj-2/figma/survey-body.webp" alt="Audit body with sidebar, welcome message and section progress" />
             </div>
             <div class="atj2-features__text">
               <p class="h3-case-study atj2-features__title">Survey body</p>
@@ -811,13 +856,13 @@
               </p>
             </div>
             <div class="atj2-features__media">
-              <img loading="lazy" src="assets/case-atj-2/figma/multiuser.webp" alt="Screen showing colleagues' answers differ, with a discrepancy resolution flow" />
+              <img loading="lazy" width="1600" height="1109" src="assets/case-atj-2/figma/multiuser.webp" alt="Screen showing colleagues' answers differ, with a discrepancy resolution flow" />
             </div>
           </div>
 
           <div class="atj2-features__row" data-reveal>
             <div class="atj2-features__media">
-              <img loading="lazy" src="assets/case-atj-2/figma/term-glossary-filmstrip.webp" alt="Inline glossary — typing a term into the search field, and the term definition shown inline" />
+              <img loading="lazy" width="2200" height="1590" src="assets/case-atj-2/figma/term-glossary-filmstrip.webp" alt="Inline glossary — typing a term into the search field, and the term definition shown inline" />
             </div>
             <div class="atj2-features__text">
               <p class="h3-case-study atj2-features__title">Term Glossary</p>
@@ -841,14 +886,14 @@
               </p>
             </div>
             <div class="atj2-features__media">
-              <img loading="lazy" src="assets/case-atj-2/figma/diagnostic-cabinet.webp" alt="Diagnostics dashboard with current result, in-progress and completed diagnostics" />
+              <img loading="lazy" width="1600" height="1457" src="assets/case-atj-2/figma/diagnostic-cabinet.webp" alt="Diagnostics dashboard with current result, in-progress and completed diagnostics" />
             </div>
           </div>
         </div>
       </section>
 
       <!-- UI: CASE03-RESULTS-01 | Results | matches Figma "Section — Results" (418:31692) -->
-      <section class="atj2-section">
+      <section id="cs-results" data-case-section class="atj2-section">
         <div class="atj2-results" data-reveal>
           <div class="atj2-results__text">
             <h2>Results</h2>
@@ -873,7 +918,7 @@
             </p>
           </div>
           <!-- IMAGE: mascot illustration | draft asset from Figma -->
-          <img loading="lazy" class="atj2-results__mascot" src="assets/case-atj-2/figma/results-mascot.png" alt="" aria-hidden="true" />
+          <img loading="lazy" width="300" height="414" class="atj2-results__mascot" src="assets/case-atj-2/figma/results-mascot.png" alt="" aria-hidden="true" />
         </div>
       </section>
 
@@ -914,7 +959,7 @@
       <!-- UI: HOME-REVIEWS-01 | Reviews carousel | shared component, reused unchanged -->
       <section class="home-section case-reviews-cta" id="feedbacks">
         <h2 class="h2-section reviews-heading" data-reveal>Reviews:</h2>
-        <div class="reviews-carousel" data-reveal>
+        <div class="reviews-carousel" data-case-reviews data-reveal>
           <button
             class="reviews-arrow reviews-arrow--prev"
             type="button"
@@ -929,7 +974,7 @@
             </svg>
           </button>
 
-          <div class="review-slide" id="review-slide" aria-live="polite" aria-atomic="true" data-default-review="Olga Novykova">
+          <div class="review-slide" id="review-slide" aria-live="polite" aria-atomic="true" data-default-review="Olga Novykova" data-priority-reviews="Olga Novykova|Taras Chudnyi">
             <div>
               <p class="h3-case-study review-slide__name">Olga Novykova</p>
               <p class="body-large review-slide__role">CEO &amp; Founder</p>
@@ -950,7 +995,7 @@
               target="_blank"
               rel="noopener"
             >
-              <img loading="lazy" src="assets/icons/icon-linkedin-small.svg" alt="" />
+              <img loading="lazy" width="16" height="16" src="assets/icons/icon-linkedin-small.svg" alt="" />
               View in LinkedIn
             </a>
           </div>
@@ -978,6 +1023,9 @@
           <span class="reviews-progress__segment"></span>
         </div>
 
+        <!-- UI: CASE-RELATED-01 | Related case (filled by js/related-case.js from the Home card of the paired case) -->
+        <div class="related-case" data-related-case hidden></div>
+
         <!-- UI: HOME-CTA-01 | CTA block | shared component, reused unchanged -->
         <div class="cta-section" data-reveal>
           <h2 class="h2-section cta-heading">Ready to architect your next product?</h2>
@@ -985,13 +1033,13 @@
             Whatever's easiest for you — reach out and let's talk.
           </p>
           <a
-            class="btn btn--primary"
+            class="btn btn--primary btn--contact"
             href="https://www.linkedin.com/in/romsvid/" data-popup="contact"
             target="_blank"
             rel="noopener"
           >
             Contact Me
-            <img loading="lazy" class="btn__icon" src="assets/icons/icon-arrow-right.svg" alt="" />
+            <img loading="lazy" width="16" height="16" class="btn__icon" src="assets/icons/icon-arrow-right.svg" alt="" />
           </a>
         </div>
       </section>
@@ -999,7 +1047,7 @@
 
     <!-- UI: GLOBAL-FOOTER-01 | Site footer | shared component, reused unchanged -->
     <footer class="site-footer">
-      <img loading="lazy" class="site-footer__bg" src="assets/images/footer-bg.svg" alt="" aria-hidden="true" />
+      <img loading="lazy" width="1280" height="256" class="site-footer__bg" src="assets/images/footer-bg.svg" alt="" aria-hidden="true" />
       <div class="site-footer__row site-footer__row--top">
         <a class="nav-logo" href="./">
           <span class="nav-logo__icon">
@@ -1010,19 +1058,20 @@
 
         <div class="site-footer__social">
           <a href="https://www.instagram.com/romsvid/" target="_blank" rel="noopener">
-            <img loading="lazy" src="assets/icons/social-instagram.svg" alt="Instagram" />
+            <img loading="lazy" width="24" height="24" src="assets/icons/social-instagram.svg" alt="Instagram" />
           </a>
           <a href="https://www.linkedin.com/in/romsvid/" target="_blank" rel="noopener">
-            <img loading="lazy" src="assets/icons/social-linkedin.svg" alt="LinkedIn" />
+            <img loading="lazy" width="24" height="24" src="assets/icons/social-linkedin.svg" alt="LinkedIn" />
           </a>
           <a href="https://t.me/Rmsddddd" target="_blank" rel="noopener">
-            <img loading="lazy" src="assets/icons/social-telegram.svg" alt="Telegram" />
+            <img loading="lazy" width="24" height="24" src="assets/icons/social-telegram.svg" alt="Telegram" />
           </a>
         </div>
       </div>
 
       <div class="site-footer__row site-footer__row--bottom">
-        <p class="body-main site-footer__copyright">© 2026 Roman Sviderskyi</p>
+        <!-- new (2026-11-23): colophon next to the copyright; was: "© 2026 Roman Sviderskyi" only -->
+        <p class="body-main site-footer__copyright">© 2026 Roman Sviderskyi<span class="site-footer__sep" aria-hidden="true"> · </span><span class="site-footer__colophon">Designed and hand-coded by me · Built with Claude Code</span></p>
         <p class="body-main site-footer__contact">
           +380 97 334 9540&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:svidddrommm25@gmail.com"
             >svidddrommm25@gmail.com</a
@@ -1032,6 +1081,9 @@
     </footer>
 
     <script src="js/nav.js"></script>
+    <script src="js/case-nav.js" defer></script>
+    <script src="js/link-shimmer.js" defer></script>
+    <script src="js/related-case.js" defer></script>
     <script src="js/reviews.js"></script>
     <script src="js/questionnaire-scroll.js"></script>
     <script src="js/smb-scroll.js"></script>

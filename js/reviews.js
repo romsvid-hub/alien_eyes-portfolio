@@ -45,6 +45,13 @@ var reviews = [
   },
 ];
 
+// Auto-advance interval for the case-study carousels (ms). Was a fixed 7000
+// (7s) before, and only on case-yoy / case-ridi.
+var REVIEWS_INTERVAL_MS = 8000;
+
+// Reviews that are not tied to one case (shown right after a case's own ones).
+var NEUTRAL_REVIEWS = ["Natalia Zaverukha"];
+
 document.addEventListener("DOMContentLoaded", function () {
   var carousel = document.querySelector(".reviews-carousel");
   var slide = document.querySelector(".review-slide");
@@ -60,8 +67,22 @@ document.addEventListener("DOMContentLoaded", function () {
   // case-ridi.html and case-yoy.html only, per Roman — the carousel
   // itself is a shared component reused unchanged on every page, so
   // auto-advance stays off everywhere else unless a page asks for it).
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  // Case-study pages opt in with data-case-reviews on .reviews-carousel
+  // (Home does not, so its behaviour is untouched): the review tied to the
+  // case's client (data-default-review on .review-slide, if any) comes first,
+  // the rest in random order on every load; the carousel auto-advances every
+  // REVIEWS_INTERVAL_MS, pausing on hover, on focus inside it and while the
+  // tab is hidden. With prefers-reduced-motion it never auto-advances
+  // (arrows and dots still work).
+  var caseMode = !!carousel && carousel.hasAttribute("data-case-reviews");
+
   var autoScrollEnabled =
-    !!carousel && carousel.hasAttribute("data-auto-scroll") && reviews.length > 1;
+    !!carousel &&
+    (carousel.hasAttribute("data-auto-scroll") || caseMode) &&
+    reviews.length > 1 &&
+    !(caseMode && reduceMotion.matches);
 
   var nameEl = slide.querySelector(".review-slide__name");
   var roleEl = slide.querySelector(".review-slide__role");
@@ -77,6 +98,32 @@ document.addEventListener("DOMContentLoaded", function () {
     ? reviews.findIndex(function (r) { return r.name === defaultName; })
     : -1;
   var current = defaultIndex >= 0 ? defaultIndex : 0;
+
+  if (caseMode) {
+    // Order on case pages (Roman, 2026-11-23): the case's own reviews first, in
+    // the order given by data-priority-reviews="A|B|C" on .review-slide (most
+    // senior first); then the neutral reviews (NEUTRAL_REVIEWS); then everything
+    // else in random order. Pages without a priority list (YOY, Ridi) start with
+    // the neutral ones.
+    var priorityAttr = slide.getAttribute("data-priority-reviews");
+    var priorityNames = priorityAttr ? priorityAttr.split("|") : defaultName ? [defaultName] : [];
+    var byName = function (n) { return reviews.filter(function (r) { return r.name === n; })[0]; };
+    var head = [];
+    priorityNames.concat(NEUTRAL_REVIEWS).forEach(function (n) {
+      var r = byName(n);
+      if (r && head.indexOf(r) < 0) head.push(r);
+    });
+    var rest = reviews.filter(function (r) { return head.indexOf(r) < 0; });
+    for (var i = rest.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = rest[i];
+      rest[i] = rest[j];
+      rest[j] = tmp;
+    }
+    reviews = head.concat(rest);
+    defaultIndex = 0;
+    current = 0;
+  }
 
   function render(index) {
     var review = reviews[index];
@@ -175,14 +222,22 @@ document.addEventListener("DOMContentLoaded", function () {
     resetAutoScroll();
   });
 
-  // Auto-scroll every 7s, paused on hover — per Roman, only where the
-  // page opts in via data-auto-scroll (see autoScrollEnabled above).
+  // Auto-advance every REVIEWS_INTERVAL_MS, only where the page opts in
+  // (data-auto-scroll or data-case-reviews, see autoScrollEnabled above).
+  // Paused while the pointer is over the carousel, while focus is inside
+  // it, and while the tab is hidden.
   var autoScrollTimer = null;
+  var hovering = false;
+  var focused = false;
+
+  function canRun() {
+    return autoScrollEnabled && !hovering && !focused && !document.hidden;
+  }
   function startAutoScroll() {
-    if (!autoScrollEnabled || autoScrollTimer) return;
+    if (!canRun() || autoScrollTimer) return;
     autoScrollTimer = setInterval(function () {
       goTo((current + 1) % reviews.length);
-    }, 7000);
+    }, REVIEWS_INTERVAL_MS);
   }
   function stopAutoScroll() {
     clearInterval(autoScrollTimer);
@@ -196,7 +251,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (autoScrollEnabled) {
     startAutoScroll();
-    carousel.addEventListener("mouseenter", stopAutoScroll);
-    carousel.addEventListener("mouseleave", startAutoScroll);
+    carousel.addEventListener("mouseenter", function () {
+      hovering = true;
+      stopAutoScroll();
+    });
+    carousel.addEventListener("mouseleave", function () {
+      hovering = false;
+      startAutoScroll();
+    });
+    carousel.addEventListener("focusin", function (ev) {
+      // pause on focus only for keyboard focus (:focus-visible): after a mouse
+      // click the button keeps focus, and that must not freeze the autoplay
+      // for good (QA #1, D23). Browsers without :focus-visible count as keyboard.
+      var keyboardFocus = true;
+      try {
+        keyboardFocus = ev.target.matches(":focus-visible");
+      } catch (e) {}
+      if (!keyboardFocus) return;
+      focused = true;
+      stopAutoScroll();
+    });
+    carousel.addEventListener("focusout", function (ev) {
+      if (ev.relatedTarget && carousel.contains(ev.relatedTarget)) return;
+      focused = false;
+      startAutoScroll();
+    });
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) stopAutoScroll();
+      else startAutoScroll();
+    });
   }
 });

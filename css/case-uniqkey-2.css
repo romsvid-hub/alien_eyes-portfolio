@@ -43,7 +43,7 @@
 /* ---------- Shared primitives ---------- */
 
 .uq2-section {
-  padding: 48px var(--page-px);
+  padding: var(--case-section-py) var(--page-px);
 }
 
 @media (min-width: 1280px) {
@@ -111,12 +111,7 @@
 
 /* ---------- Hero ---------- */
 
-/*
-  Same "Hero gradient for YOY and ATJ2" pattern (Roman's own name),
-  verified via get_design_context as the literal same gradient angle/
-  colors on this Hero too — confirms this case reuses ATJ2's hero
-  mechanics. To make static: delete the animation line + @keyframes.
-*/
+/* Hero background: solid #3d5bae, as in Figma (982:24215) */
 .uq2-hero {
   margin: 24px var(--page-px) 48px;
   border-radius: 24px;
@@ -126,25 +121,7 @@
   align-items: center;
   gap: 32px;
   padding: 32px 20px;
-  background: linear-gradient(246.48deg, #e4e5e5 0%, #d9d9da 50%, #e4e5e5 100%);
-  background-size: 200% 200%;
-  animation: uq2-hero-gradient-flow 14s ease-in-out infinite;
-}
-
-@keyframes uq2-hero-gradient-flow {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .uq2-hero {
-    animation: none;
-  }
+  background: #3d5bae;
 }
 
 @media (min-width: 1280px) {
@@ -233,25 +210,8 @@
        edge without needing outer padding on .uq2-hero itself (which
        was double-insetting both sides at once — see .uq2-hero__media's
        comment above). */
-    padding-right: 80px;
+    padding-right: 48px;
   }
-}
-
-/* Same tinted-pill tag as ATJ2 (.atj2-tag), recolored to Uniqkey's own
-   accent — per Roman. */
-.uq2-tag {
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-  padding: 4px 10px;
-  background-color: var(--uq2-tint);
-  border: 1px solid var(--uq2-accent);
-  border-radius: 16px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: -0.0028px;
-  color: var(--uq2-accent-dark);
 }
 
 .uq2-hero__title {
@@ -260,7 +220,7 @@
   font-size: 40px;
   line-height: 1.1;
   letter-spacing: var(--h1-letter-spacing);
-  color: var(--uq2-accent-dark);
+  color: #ffffff;
   margin: 16px 0 0;
   overflow-wrap: break-word;
 }
@@ -268,29 +228,30 @@
 @media (min-width: 1280px) {
   .uq2-hero__title {
     font-size: 64px;
+    /* Figma title box is 583px (container 631 - 48 inset): "Streamline UX
+       for" is 580.08px wide, so it needs these 3px to stay on one line */
+    margin-right: -3px;
   }
 }
 
 .uq2-hero__desc {
-  color: var(--color-dark-alien);
+  /* Figma hero description: Inter Regular 18/28 */
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #ffffff;
   max-width: 548px;
   margin: 12px 0 0;
 }
 
-/*
-  Fixed 2026-09-17 (Roman: meta row should line up flush-left with
-  "Hero heading group" above it) — the list's own default padding-left
-  (bullet indent, invisible since list-style is none sitewide) was
-  still shifting its text ~24px right of the title/tags/description.
-*/
-.uq2-hero__meta {
-  margin: 24px 0 0;
-  padding-left: 0;
-  color: var(--color-dark-alien);
-}
-
-.uq2-hero__meta li + li {
-  margin-top: 8px;
+/* Case meta block (css/case-meta.css): description colour; the content
+   column's 24px gap + the block's 24px top padding give Figma's 48px */
+.uq2-hero {
+  --case-meta-color: #ffffff;
+  /* WCAG AA (QA #1, D13): solid colour instead of 72% white on #3d5bae */
+  --case-meta-dd-color: #e6e6e6;
+  --case-meta-dd-opacity: 1;
+  --case-meta-mt: 0;
 }
 
 /* ---------- Impact stats ---------- */
@@ -528,6 +489,18 @@
   }
 }
 
+/* LastPass reduced in Figma (982:23998, 203x34) for visual balance:
+   34/41 of the shared logo height */
+.uq2-logos__item--lastpass {
+  height: 27px;
+}
+
+@media (min-width: 1024px) {
+  .uq2-logos__item--lastpass {
+    height: 34px;
+  }
+}
+
 /* ---------- Key Solution / blue panels (Challenge, Key Solution, Results) ---------- */
 
 .uq2-panel {
@@ -560,7 +533,14 @@
 @media (min-width: 1024px) {
   .uq2-panel__inner {
     gap: 24px;
-    padding: 48px 0 80px;
+    /* 80px vertical rhythm (2026-11-22, Figma 23896/24012/24135) */
+    padding: var(--space-section) 0;
+  }
+
+  /* Key Solutions: eyebrow + title stay 24px apart; the blocks after
+     the title are 80px apart (Figma 982:24012 gap 80): 24 + 56 */
+  #cs-key-decisions .uq2-panel__title ~ * {
+    margin-top: 56px;
   }
 }
 
@@ -731,6 +711,17 @@
   gap: 64px;
 }
 
+@media (min-width: 1024px) {
+  .uq2-features {
+    gap: var(--space-section);
+  }
+
+  /* Research sub-blocks 80px apart (Figma 982:23950 / 982:23974) */
+  .uq2-research__label {
+    margin-top: var(--space-section);
+  }
+}
+
 .uq2-feature__title {
   color: var(--color-deep-text);
   margin: 0 0 16px;
@@ -745,6 +736,14 @@
 .uq2-feature__media {
   border-radius: 12px;
   overflow: hidden;
+}
+
+/* Figma 982:24108: the large Extension + Mobile screenshot sits 80px under its
+   description (24px margin + 56px padding; padding so the margins don't collapse) */
+@media (min-width: 1024px) {
+  .uq2-feature__media--spaced {
+    padding-top: calc(var(--space-section) - var(--space-stack));
+  }
 }
 
 .uq2-feature__media img {

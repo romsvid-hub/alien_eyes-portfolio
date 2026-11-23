@@ -1,0 +1,75 @@
+/*
+  Case meta — the details block under a case-study hero description
+  (Role / Status / Duration / Team / My responsibilities).
+  Source: Figma "Case meta" layers (file DU3fuTo8QXIJ0uMcI3jh91, page 981:19832).
+
+  Shared by every case hero; only the colour comes from the case itself:
+  set --case-meta-color on the hero (same value as the hero description).
+  Labels use that colour at 100%, values at 72% opacity (no new colours).
+*/
+.case-meta {
+  --case-meta-gap: 16px;
+  margin: var(--case-meta-mt, 8px) 0 0;
+  padding: 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--case-meta-color, inherit);
+  overflow-wrap: break-word;
+}
+
+.case-meta__row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--case-meta-gap);
+}
+
+.case-meta dt {
+  flex: 0 0 148px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.case-meta dd {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  font-weight: 400;
+  /* Default: 72% of the block colour. Heroes whose background makes that
+     fail WCAG AA (Uniqkey, Uniqkey 2) set a solid colour instead. */
+  color: var(--case-meta-dd-color, inherit);
+  opacity: var(--case-meta-dd-opacity, 0.72);
+}
+
+/* Narrow screens: label sits above its value */
+@media (max-width: 479px) {
+  .case-meta__row {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .case-meta dt {
+    flex-basis: auto;
+  }
+}
+
+/* Links in a value (Company website, Live app, Prototype ...): same colour as
+   the text (Figma: underlined, no accent colour), opens in a new tab */
+.case-meta dd a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.case-meta dd a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.case-meta dd a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  border-radius: 2px;
+}

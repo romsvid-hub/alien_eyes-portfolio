@@ -56,6 +56,20 @@
   padding-top: 0;
 }
 
+/*
+  Shared content column of the Home sections below the hero ("I worked
+  with:", Expertise, Case Studies, Experience): grid columns 2-11 of the
+  "Alien Desktop" grid (12 columns, 80px margin, 24px gutter, 1440 wide) =
+  x 189-1251, 1062px wide, centred in the section. Narrower than that it
+  just fills the section's content box (tablet / mobile margins above).
+  The hero keeps its own 1120px column.
+*/
+.home-col {
+  width: 100%;
+  max-width: 1062px;
+  margin-inline: auto;
+}
+
 /* ---------- Hero (2:13414) ---------- */
 
 /*
@@ -489,9 +503,6 @@
 
 .logos-heading {
   color: var(--color-white);
-  max-width: 1120px;
-  margin: 0 auto;
-  width: 100%;
 }
 
 /*
@@ -506,9 +517,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  max-width: 1120px;
-  margin: 0 auto;
-  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -602,13 +610,119 @@
   background-position: 54.351% 63.522%;
 }
 
+/* ---------- Expertise (Figma 1000:4315) ---------- */
+
+/*
+  Same .home-col content column (grid columns 2-11, x 189-1251) as
+  "I worked with:" / "Case Studies:" / "Experience:", so all four share one
+  left and right edge.
+*/
+/* UI: HOME-EXPERTISE-01 | Expertise section | inspect/adjust */
+.expertise-heading,
+.experience-heading {
+  color: var(--color-white);
+  margin-block: 0 40px;
+}
+
+/* Figma: icons start 56px below the heading text (items block has its own
+   16px top padding), vs 40px for the Experience list */
+@media (min-width: 768px) {
+  .expertise-heading {
+    margin-bottom: 56px;
+  }
+}
+
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin-block: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.expertise-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+}
+
+.expertise-item__icon {
+  display: block;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  color: var(--color-cta-purple);
+}
+
+.expertise-item__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--color-white);
+}
+
+.expertise-item__text {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: rgba(255, 254, 254, 0.72);
+}
+
+@media (max-width: 767px) {
+  .expertise-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 24px;
+  }
+}
+
+@media (max-width: 479px) {
+  .expertise-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Experience (Figma 1004:4408) ---------- */
+
+/* UI: HOME-EXPERIENCE-01 | Experience list | inspect/adjust */
+/* Full-width band, 80px above and below its content and 80px to the
+   neighbouring sections (Roman, 2026-11-23). Colour: --color-surface-band,
+   neutral dark grey (was #131414; #7B61FF needs a darker grey to pass AA). */
+.home-section.experience-section {
+  background-color: var(--color-surface-band);
+  padding-block: var(--space-section);
+}
+
+/* 80px above the band (was the previous section's 96px) */
+.home-section:has(+ .experience-section) {
+  padding-bottom: var(--space-section);
+}
+
+/* 80px below the band (was 32px) */
+.experience-section + .home-section {
+  padding-top: var(--space-section);
+}
+
+.experience-list {
+  margin-block: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Rows, panels and the accordion behaviour: css/experience.css */
+
 /* ---------- Case studies (2:13454 ATJ, 2:13472 Uniqkey) ---------- */
 
 /* UI: HOME-CASE-STUDIES-01 | Case study cards (shared layout) | inspect/adjust */
 .case-studies-heading {
   color: var(--color-white);
-  max-width: 1120px;
-  margin: 0 auto 32px;
+  margin-block: 0 32px;
 }
 
 /*
@@ -622,6 +736,17 @@
   Hero fix.
 */
 .case-card {
+  position: relative;
+  isolation: isolate;
+  border-radius: 24px;
+}
+
+/*
+  The whole card is ONE link (no nested links): .case-card__link carries
+  the grid that used to sit on .case-card itself, and "View case" inside
+  is a plain <span class="btn"> that only looks like a button.
+*/
+.case-card__link {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
@@ -629,8 +754,87 @@
     "media"
     "actions";
   gap: 32px;
-  max-width: 1120px;
-  margin: 0 auto;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/*
+  Card hover / focus / pressed surface — Figma "Article:margin" hover
+  state 983:37005: a rounded (24px) rect tinted rgba(123,97,255,.05) with
+  a 1px rgba(123,97,255,.1) border. It reaches up to 80px past the 1120px
+  content on each side (the card's Figma frame is the 1280px page width),
+  never closer than 24px to the viewport edge.
+*/
+.case-card::before {
+  --card-bleed: max(0px, min(80px, calc((100vw - 100%) / 2 - 24px)));
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--card-bleed) * -1);
+  right: calc(var(--card-bleed) * -1);
+  z-index: -1;
+  border: 1px solid transparent;
+  border-radius: 24px;
+  background-color: transparent;
+  pointer-events: none;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+@media (hover: hover) {
+  .case-card:hover::before {
+    background-color: rgba(123, 97, 255, 0.05);
+    border-color: rgba(123, 97, 255, 0.1);
+  }
+}
+
+/* keyboard focus looks like hover (plus a real outline for visibility) */
+.case-card:has(.case-card__link:focus-visible)::before {
+  background-color: rgba(123, 97, 255, 0.05);
+  border-color: rgba(123, 97, 255, 0.1);
+}
+
+.case-card__link:focus-visible {
+  outline: 2px solid #7b61ff;
+  outline-offset: 8px;
+  border-radius: 24px;
+}
+
+/* pressed: a slightly stronger tint and a tiny shrink (Figma has no
+   separate pressed state). `scale` is its own property, so it doesn't
+   fight the scroll-reveal's transform. */
+.case-card:active::before {
+  background-color: rgba(123, 97, 255, 0.1);
+  border-color: rgba(123, 97, 255, 0.16);
+}
+
+.case-card:active {
+  scale: 0.99;
+}
+
+.case-card.reveal-init {
+  transition:
+    opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 650ms cubic-bezier(0.16, 1, 0.3, 1),
+    scale 150ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-card::before {
+    transition: none;
+  }
+
+  .case-card.reveal-init {
+    transition: none;
+  }
+
+  .case-card:active {
+    scale: none;
+  }
 }
 
 /*
@@ -704,10 +908,60 @@
 */
 .case-card__cta {
   grid-area: actions;
+  /* 43px tall (8 + 25 + 8 + 2px border), Figma "Link" */
+  line-height: 25px;
 }
 
 .case-card__title {
   color: var(--color-white);
+}
+
+/* title with the company / project type under it (Figma "Title", gap 2) */
+.case-card__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.case-card__company {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: rgba(255, 254, 254, 0.6);
+}
+
+/* key metrics: value (Sora Bold 24/32, purple) over a label (Inter 14/22) */
+.case-card__metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 48px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-card__metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.case-card__metric-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--color-cta-purple);
+}
+
+.case-card__metric-label {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: rgba(255, 254, 254, 0.6);
 }
 
 .case-card__description {
@@ -775,31 +1029,58 @@
   oversized, offset inner <img> (matches get_design_context's own
   inner width/height/left/top %) to reproduce Figma's crop exactly.
 */
+/*
+  2026-11-17: media boxes now follow the new Figma "Case item" frames
+  (982:22306, 1011:4378/4426/4471/4519/4565): 519px wide, each with its own
+  height (367 / 487 / 519 / 519 / 493 / 519) and its own image crop, all
+  expressed as % of that box. Glow = the 411px ellipse frame, centred.
+*/
+.case-card__media--atj {
+  aspect-ratio: 519 / 367;
+}
+
+.case-card__media--atj .case-card__glow,
+.case-card__media--atj2 .case-card__glow,
+.case-card__media--uq2 .case-card__glow,
+.case-card__media--uniqkey .case-card__glow,
+.case-card__media--yoy .case-card__glow,
+.case-card__media--ridi .case-card__glow {
+  width: 79.19%;
+  transform: translate(-50%, -50%);
+}
+
+.case-card__media--atj .case-card__glow { top: 50.07%; }
+.case-card__media--atj2 .case-card__glow { top: 51.3%; }
+.case-card__media--uniqkey .case-card__glow { top: 48.12%; }
+.case-card__media--uq2 .case-card__glow { top: 48.12%; }
+.case-card__media--yoy .case-card__glow { top: 50.05%; }
+.case-card__media--ridi .case-card__glow { top: 50.05%; }
+
 .atj-mockup-frame {
   position: absolute;
-  left: 0;
-  top: 13.16%;
-  width: 100%;
-  height: 66.41%;
+  left: 2.505%;
+  top: 6.063%;
+  width: 94.99%;
+  height: 87.74%;
   overflow: hidden;
   z-index: 1;
 }
 
 .atj-mockup-frame img {
   position: absolute;
-  width: 133.98%;
-  height: 151.44%;
-  left: -13.18%;
-  top: -19.34%;
+  width: 149.05%;
+  height: 171.15%;
+  left: -25.87%;
+  top: -35.98%;
   max-width: none;
 }
 
 .uniqkey-dashboard-frame {
   position: absolute;
-  left: 14.88%;
-  top: 24.41%;
-  width: 70.56%;
-  height: 46.8%;
+  left: 12.662%;
+  top: 22.84%;
+  width: 75.01%;
+  height: 49.75%;
   overflow: hidden;
   z-index: 1;
 }
@@ -815,10 +1096,10 @@
 
 .uniqkey-laptop-frame {
   position: absolute;
-  left: 5.66%;
-  top: 23.05%;
-  width: 88.69%;
-  height: 52.39%;
+  left: 2.86%;
+  top: 21.396%;
+  width: 94.28%;
+  height: 55.7%;
   overflow: hidden;
   z-index: 2;
 }
@@ -891,19 +1172,28 @@
   (a transparent-background composite PNG) shows directly on the card,
   same simple contained-image approach as .case-card__media--atj2 below.
 */
-.case-card__media--yoy img {
-  position: static;
-  width: 100%;
-  height: 100%;
+.case-card__media--yoy {
+  aspect-ratio: 519 / 493;
+}
+
+.case-card__media--yoy img:not(.case-card__glow) {
+  position: absolute;
+  left: 5.81%;
+  top: 0;
+  width: 88.37%;
+  height: 104.9%;
+  max-width: none;
   object-fit: contain;
 }
 
 /* Uniqkey 2 — same simple contained-image approach as --yoy/--ridi;
    Un_hero is a transparent-background phone mockup composite. */
-.case-card__media--uq2 img {
-  position: static;
-  width: 100%;
-  height: 100%;
+.case-card__media--uq2 img:not(.case-card__glow) {
+  position: absolute;
+  left: 12.65%;
+  top: 3.516%;
+  width: 75.25%;
+  height: 93.64%;
   object-fit: contain;
 }
 
@@ -915,11 +1205,18 @@
   .case-card__media--yoy above, keeping the existing accent glow behind
   it for visual consistency with the ATJ1/Uniqkey cards.
 */
+.case-card__media--atj2 {
+  aspect-ratio: 519 / 486.8;
+  overflow: hidden;
+}
+
 .case-card__media--atj2 img:not(.case-card__glow) {
-  position: static;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  position: absolute;
+  left: 0.82%;
+  top: -6.57%;
+  width: 98.36%;
+  height: 106.61%;
+  max-width: none;
 }
 
 /*
@@ -931,7 +1228,7 @@
   same as .case-card__media--yoy/--atj2. No outline/border (Roman:
   remove the outline that was there).
 */
-.case-card__media--ridi img {
+.case-card__media--ridi img:not(.case-card__glow) {
   position: static;
   width: 100%;
   height: 100%;
@@ -960,13 +1257,16 @@
     the button is a separate grid item from intro rather than nested
     inside a shared wrapper.
   */
-  .case-card {
-    grid-template-columns: repeat(2, 1fr);
+  .case-card__link {
+    /* 1062px column = 519 + 24 + 519 (Figma): two equal columns, text
+       column on the section's left edge. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-areas:
       "intro media"
       "actions media";
     align-items: center;
     gap: 24px;
+    padding-block: 24px;
   }
 
   /*
@@ -994,10 +1294,11 @@
 
   .case-card__cta {
     align-self: start;
-    margin-top: 8px;
+    justify-self: start;
+    width: 274px;
   }
 
-  .case-card--reverse {
+  .case-card--reverse .case-card__link {
     grid-template-areas:
       "media intro"
       "media actions";
@@ -1006,6 +1307,15 @@
   .case-card__media {
     grid-row: 1 / 3;
     max-width: none;
+  }
+
+  /* Figma: each Case item carries its own 24px top/bottom padding, no gap */
+  .case-card + .case-card {
+    margin-top: 0;
+  }
+
+  .case-studies-heading {
+    margin-bottom: 16px;
   }
 }
 
@@ -1089,7 +1399,7 @@
 }
 
 .review-slide__role {
-  color: var(--color-light-gray);
+  color: var(--color-gray-on-dark);
 }
 
 .review-slide__quote {
@@ -1108,13 +1418,21 @@
   Smooth sliding, opt-in only (see js/reviews.js autoScrollEnabled) —
   the shared carousel markup/behavior stays instant-swap everywhere else.
 */
-.reviews-carousel[data-auto-scroll] .review-slide {
+.reviews-carousel[data-auto-scroll] .review-slide,
+.reviews-carousel[data-case-reviews] .review-slide {
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.reviews-carousel[data-auto-scroll] .review-slide.is-transitioning {
+.reviews-carousel[data-auto-scroll] .review-slide.is-transitioning,
+.reviews-carousel[data-case-reviews] .review-slide.is-transitioning {
   opacity: 0;
   transform: translateX(-16px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reviews-carousel[data-case-reviews] .review-slide {
+    transition: none;
+  }
 }
 
 .review-slide__link {
@@ -1185,6 +1503,25 @@
   transform: scale(1.25);
 }
 
+/* ---------- Related case block (bottom of every case page) ---------- */
+
+/*
+  Sits between Reviews and the CTA inside .case-reviews-cta. js/related-case.js
+  fills it with the Home card of the paired case (same .case-card markup, so
+  the whole card is one link with the same hover / focus / pressed states).
+*/
+.related-case {
+  padding-top: 80px;
+}
+
+.related-case[hidden] {
+  display: none;
+}
+
+.related-case .case-card {
+  margin-top: 0;
+}
+
 /* ---------- CTA (2:13505) ---------- */
 
 /* UI: HOME-CTA-01 | CTA block | inspect/adjust */
@@ -1202,6 +1539,21 @@
 }
 
 .cta-description {
-  color: var(--color-light-gray);
+  color: var(--color-gray-on-dark);
   max-width: 480px;
+}
+
+/*
+  QA #1 / D11: the stuck case nav's "Home" link goes to /#case-studies; the
+  heading must not land under the sticky header (59px on desktop, 56px
+  below 1024) -> header height + 24px of air.
+*/
+#case-studies {
+  scroll-margin-top: 83px;
+}
+
+@media (max-width: 1023px) {
+  #case-studies {
+    scroll-margin-top: 80px;
+  }
 }

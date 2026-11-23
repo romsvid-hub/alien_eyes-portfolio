@@ -33,6 +33,9 @@
     <link rel="stylesheet" href="css/home.css" />
     <link rel="stylesheet" href="css/reveal.css" />
     <link rel="stylesheet" href="css/case-yoy.css" />
+    <link rel="stylesheet" href="css/case-meta.css" />
+    <link rel="stylesheet" href="css/case-nav.css" />
+    <link rel="stylesheet" href="css/link-shimmer.css" />
     <!-- Microsoft Clarity analytics -->
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
@@ -106,28 +109,40 @@
           </div>
         </div>
         <div class="yoy-hero__content">
-          <div class="tag-row">
-            <span class="yoy-tag">Mobile app</span>
-            <span class="yoy-tag">Events Platform</span>
-            <span class="yoy-tag">AI Design</span>
-          </div>
           <h1 class="yoy-hero__title">YOY! Events</h1>
           <p class="body-large yoy-hero__desc">
             A product for events and communities, built technology-first.
             I rebuilt it around what the organizer actually needs to do.
           </p>
-          <!-- CONTENT: synced 2026-09-10 — Figma's Meta list is now a plain
-               bulleted list (was a 5-row label/value table); "Stage:" row
-               was dropped and "Role:" shortened. Figma's raw text has
-               "Роль:"/"Інструменти:" (Ukrainian) — translated to
-               Role:/Tools: to match the rest of the page; the Client/Tools
-               values themselves were already English. -->
-          <ul class="yoy-details">
-            <li><b>Role:</b> UX Designer</li>
-            <li><b>Client:</b> Product Owner, also the developer building it</li>
-            <li><b>Tools:</b> Claude, Figma MCP, FigJam</li>
-            <li><b>Case status:</b> MVP, product exists in web version</li>
-          </ul>
+          <!-- Case meta: text and links as in Figma (QA/Updates page, hero data block, 2026-11-23) -->
+          <dl class="case-meta">
+            <div class="case-meta__row">
+              <dt>Role:</dt>
+              <!-- was: "UX Designer" (2026-11-23) -->
+              <dd>UX Designer (solo)</dd>
+            </div>
+            <div class="case-meta__row">
+              <dt>Status:</dt>
+              <dd>MVP, live in web version</dd>
+            </div>
+            <div class="case-meta__row">
+              <dt>Live product:</dt>
+              <!-- new row (2026-11-23) -->
+              <dd><a href="https://yoy.events/events" target="_blank" rel="noopener">yoy.events</a></dd>
+            </div>
+            <div class="case-meta__row">
+              <dt>Duration:</dt>
+              <dd>1 month</dd>
+            </div>
+            <div class="case-meta__row">
+              <dt>Team:</dt>
+              <dd>Solo designer; client is the Product Owner, also the developer building it</dd>
+            </div>
+            <div class="case-meta__row">
+              <dt>My responsibilities:</dt>
+              <dd>Research; information architecture and user flows; design system and UI; developer handoff</dd>
+            </div>
+          </dl>
         </div>
       </section>
 
@@ -152,9 +167,37 @@
         </div>
       </section>
 
+      <!-- UI: CASE-NAV-01 | Case section nav: in flow under the hero (and Impact), sticks under the header | Figma "Case nav / Sticky" (987:4210); css/case-nav.css + js/case-nav.js -->
+      <nav class="case-nav" aria-label="Case sections" data-case-nav data-case="yoy">
+        <div class="case-nav__lead">
+          <!-- inline state: "Agenda:" (case accent), no arrow, no role -->
+          <div class="case-nav__agenda" aria-hidden="true">
+            <span class="case-nav__agenda-label">Agenda:</span>
+            <span class="case-nav__divider"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+          </div>
+          <!-- stuck state (standard component 987:4210): arrow + Home + divider -->
+          <div class="case-nav__home">
+            <a class="case-nav__item case-nav__back" href="/#case-studies">
+              <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
+              Home
+            </a>
+            <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+          </div>
+        </div>
+        <a class="case-nav__item" href="#cs-context" data-case-target="cs-context">Context</a>
+        <a class="case-nav__item" href="#cs-challenge" data-case-target="cs-challenge">Challenge</a>
+        <a class="case-nav__item" href="#cs-research" data-case-target="cs-research">Research</a>
+        <a class="case-nav__item" href="#cs-key-decisions" data-case-target="cs-key-decisions">Key Decisions</a>
+        <a class="case-nav__item" href="#cs-core-features" data-case-target="cs-core-features">Core Features</a>
+        <a class="case-nav__item" href="#cs-results" data-case-target="cs-results">Results</a>
+        <!-- was: "UX Designer" (renamed 2026-11-17) -->
+        <p class="case-nav__role"><b>Role:</b> <span>UX Designer (solo)</span></p>
+      </nav>
+
       <!-- UI: CASE04-OVERVIEW-01 | Overview | matches Figma "Overview" (768:13269) -->
-      <section class="yoy-section">
-        <h2 class="h2-section yoy-heading" data-reveal>Overview</h2>
+      <section id="cs-context" data-case-section class="yoy-section">
+        <!-- was: "Overview" (renamed 2026-11-17) -->
+        <h2 class="h2-section yoy-heading" data-reveal>Context</h2>
         <div class="yoy-two-col" data-reveal-group>
           <p class="body-large">
             Yoy! Events is a Ukrainian platform for events and communities for the IT/business scene:
@@ -172,7 +215,7 @@
 
       <!-- UI: CASE04-SCOPE-01 | My Scope | matches Figma "My Scope" (768:13274) -->
       <section class="yoy-section">
-        <h2 class="h2-section yoy-heading" data-reveal>My Scope</h2>
+        <h2 class="h2-section yoy-heading yoy-heading--scope" data-reveal>My Scope</h2>
         <div class="yoy-two-col" data-reveal-group>
           <div>
             <h3 class="h3-case-study yoy-subheading">Source:</h3>
@@ -200,10 +243,10 @@
       </section>
 
       <!-- UI: CASE04-CHALLENGE-01 | The Challenge | matches Figma "The Challenge" (768:13283) -->
-      <section class="yoy-section yoy-section--tint">
+      <section id="cs-challenge" data-case-section class="yoy-section yoy-section--tint">
         <p class="h3-case-study yoy-label" data-reveal>Before:</p>
         <div class="yoy-media yoy-media--wide" data-reveal>
-          <img loading="lazy" src="assets/case-yoy/before-screenshot.webp" alt="The live MVP before the redesign" />
+          <img loading="lazy" width="1600" height="838" src="assets/case-yoy/before-screenshot.webp" alt="The live MVP before the redesign" />
         </div>
         <div class="yoy-panel" data-reveal>
           <h2 class="h2-section yoy-heading">The Challenge</h2>
@@ -223,13 +266,13 @@
         </div>
         <div class="yoy-row" data-reveal-group>
           <div class="yoy-media">
-            <img loading="lazy" src="assets/case-yoy/yoy-maps-1.webp" alt="Mapping the current organizer flow with the client" />
+            <img loading="lazy" width="1600" height="1186" src="assets/case-yoy/yoy-maps-1.webp" alt="Mapping the current organizer flow with the client" />
           </div>
           <!-- CONTENT: synced 2026-09-10 — "content" + "mascot" (806:12939),
                added as-is, no special treatment (per Roman: leave it be) -->
           <div class="yoy-row__content">
             <div class="yoy-row__mascot" aria-hidden="true">
-              <img loading="lazy" src="assets/case-yoy/mascot-peek.webp" alt="" />
+              <img loading="lazy" width="400" height="400" src="assets/case-yoy/mascot-peek.webp" alt="" />
             </div>
             <p class="body-main yoy-row__text">
               There was a lot that didn't make sense, I had to sit down with the client and go through
@@ -241,7 +284,7 @@
       </section>
 
       <!-- UI: CASE04-RESEARCH-01 | Research + Approach | matches Figma "Research - Approach" (768:13294) -->
-      <section class="yoy-section yoy-research">
+      <section id="cs-research" data-case-section class="yoy-section yoy-research">
         <h2 class="h2-section yoy-heading" data-reveal>Research</h2>
         <p class="body-large" data-reveal>
           Went through the live product, findings: fragmented flows, networking as a dead end,
@@ -256,11 +299,11 @@
              sit directly on the section's own dark background (no light box
              behind them), confirmed via pixel sampling. -->
         <div class="yoy-logos" data-reveal-group>
-          <img loading="lazy" class="yoy-logos__item" src="assets/case-yoy/logo-eventbrite.webp" alt="Eventbrite" />
-          <img loading="lazy" class="yoy-logos__item" src="assets/case-yoy/logo-luma.webp" alt="Luma" />
-          <img loading="lazy" class="yoy-logos__item" src="assets/case-yoy/logo-tito.webp" alt="Tito" />
-          <img loading="lazy" class="yoy-logos__item" src="assets/case-yoy/logo-skiddle.webp" alt="Skiddle" />
-          <img loading="lazy" class="yoy-logos__item" src="assets/case-yoy/logo-creatorstore.webp" alt="creatorstore.co" />
+          <img loading="lazy" width="323" height="60" class="yoy-logos__item" src="assets/case-yoy/logo-eventbrite.webp" alt="Eventbrite" />
+          <img loading="lazy" width="249" height="92" class="yoy-logos__item" src="assets/case-yoy/logo-luma.webp" alt="Luma" />
+          <img loading="lazy" width="149" height="66" class="yoy-logos__item" src="assets/case-yoy/logo-tito.webp" alt="Tito" />
+          <img loading="lazy" width="281" height="104" class="yoy-logos__item" src="assets/case-yoy/logo-skiddle.webp" alt="Skiddle" />
+          <img loading="lazy" width="344" height="66" class="yoy-logos__item" src="assets/case-yoy/logo-creatorstore.webp" alt="creatorstore.co" />
         </div>
         <p class="body-large yoy-body-muted" data-reveal>
           In the per-ticket pattern, the organizer can't see the full sales picture, it's scattered
@@ -293,14 +336,14 @@
         <!-- CONTENT: synced 2026-09-10 — hover-linked to the live FigJam board -->
         <div class="yoy-media yoy-media--wide yoy-media--linked" data-reveal>
           <a href="https://www.figma.com/board/H1DRhmcVqHuqJOGVtP3qfC/yoy-maps?node-id=280-1281&t=oYnc1f4jAi59G3zz-1" target="_blank" rel="noopener" aria-label="Open the full flow map in FigJam (opens in a new tab)">
-            <img loading="lazy" src="assets/case-yoy/yoy-maps-deep-1.webp" alt="Deep-dive flow mapping for the event-creation architecture" />
+            <img loading="lazy" width="2240" height="1220" src="assets/case-yoy/yoy-maps-deep-1.webp" alt="Deep-dive flow mapping for the event-creation architecture" />
             <span class="yoy-media__hint">Open full map <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
           </a>
         </div>
       </section>
 
       <!-- UI: CASE04-DECISIONS-01 | Key Decisions | matches Figma "Key Decisions" (768:13317) -->
-      <section class="yoy-section">
+      <section id="cs-key-decisions" data-case-section class="yoy-section">
         <div class="yoy-panel yoy-panel--dark">
           <p class="h3-case-study yoy-label" data-reveal>After:</p>
           <h2 class="h2-section yoy-heading" data-reveal>Key Decisions</h2>
@@ -337,9 +380,9 @@
               </div>
               <!-- CONTENT: synced 2026-09-10 — real screens, replacing the placeholder -->
               <div class="yoy-screens">
-                <img loading="lazy" src="assets/case-yoy/tickets-1.webp" alt="Ticket wave list" />
-                <img loading="lazy" src="assets/case-yoy/tickets-2.webp" alt="Ticket wave configuration" />
-                <img loading="lazy" src="assets/case-yoy/tickets-3.webp" alt="Adding a new ticket wave" />
+                <img loading="lazy" width="461" height="940" src="assets/case-yoy/tickets-1.webp" alt="Ticket wave list" />
+                <img loading="lazy" width="461" height="940" src="assets/case-yoy/tickets-2.webp" alt="Ticket wave configuration" />
+                <img loading="lazy" width="461" height="940" src="assets/case-yoy/tickets-3.webp" alt="Adding a new ticket wave" />
               </div>
             </div>
           </div>
@@ -379,8 +422,8 @@
               </div>
               <!-- CONTENT: synced 2026-09-10 — real screens, replacing the placeholder -->
               <div class="yoy-screens">
-                <img loading="lazy" src="assets/case-yoy/networking-1.webp" alt="Networking tag entry during event setup" />
-                <img loading="lazy" src="assets/case-yoy/networking-2.webp" alt="Event page with the networking layer enabled" />
+                <img loading="lazy" width="461" height="940" src="assets/case-yoy/networking-1.webp" alt="Networking tag entry during event setup" />
+                <img loading="lazy" width="461" height="940" src="assets/case-yoy/networking-2.webp" alt="Event page with the networking layer enabled" />
               </div>
             </div>
           </div>
@@ -388,7 +431,7 @@
       </section>
 
       <!-- UI: CASE04-FEATURES-01 | Core Features | matches Figma "Core Features" (768:13355) -->
-      <section class="yoy-section">
+      <section id="cs-core-features" data-case-section class="yoy-section">
         <h2 class="h2-section yoy-heading" data-reveal>Core Features</h2>
         <p class="body-large" data-reveal>The organizer's path from an empty state to a published event, step by step.</p>
 
@@ -399,8 +442,8 @@
           </div>
           <!-- CONTENT: synced 2026-09-10 — real screens, replacing the placeholder -->
           <div class="yoy-screens">
-            <img loading="lazy" src="assets/case-yoy/creating-a-community-1.webp" alt="Create-community form" />
-            <img loading="lazy" src="assets/case-yoy/creating-a-community-2.webp" alt="Create-community form with manager invite" />
+            <img loading="lazy" width="461" height="940" src="assets/case-yoy/creating-a-community-1.webp" alt="Create-community form" />
+            <img loading="lazy" width="461" height="940" src="assets/case-yoy/creating-a-community-2.webp" alt="Create-community form with manager invite" />
           </div>
         </div>
 
@@ -417,7 +460,7 @@
           </div>
           <!-- CONTENT: synced 2026-09-10 (correction pass) — real screen, replacing the placeholder -->
           <div class="yoy-screens">
-            <img loading="lazy" src="assets/case-yoy/community-created.webp" alt="Community created confirmation" />
+            <img loading="lazy" width="461" height="940" src="assets/case-yoy/community-created.webp" alt="Community created confirmation" />
           </div>
         </div>
 
@@ -430,7 +473,7 @@
           </div>
           <!-- CONTENT: synced 2026-09-10 (correction pass) — real screen, replacing the placeholder -->
           <div class="yoy-screens">
-            <img loading="lazy" src="assets/case-yoy/basic-event-information.webp" alt="Basic event information form" />
+            <img loading="lazy" width="461" height="940" src="assets/case-yoy/basic-event-information.webp" alt="Basic event information form" />
           </div>
         </div>
 
@@ -441,7 +484,7 @@
           </div>
           <!-- CONTENT: synced 2026-09-10 (correction pass) — real screen, replacing the placeholder -->
           <div class="yoy-screens">
-            <img loading="lazy" src="assets/case-yoy/fields-to-fill-in.webp" alt="Optional fields selection screen" />
+            <img loading="lazy" width="461" height="940" src="assets/case-yoy/fields-to-fill-in.webp" alt="Optional fields selection screen" />
           </div>
         </div>
 
@@ -452,7 +495,7 @@
           </div>
           <!-- CONTENT: synced 2026-09-10 (correction pass) — real screen, replacing the placeholder -->
           <div class="yoy-screens">
-            <img loading="lazy" src="assets/case-yoy/preview-screen.webp" alt="Event preview screen" />
+            <img loading="lazy" width="461" height="940" src="assets/case-yoy/preview-screen.webp" alt="Event preview screen" />
           </div>
         </div>
 
@@ -463,8 +506,8 @@
           </div>
           <!-- CONTENT: synced 2026-09-10 — real screens, replacing the placeholder -->
           <div class="yoy-screens">
-            <img loading="lazy" src="assets/case-yoy/event-published-1.webp" alt="Published event page, organizer mode" />
-            <img loading="lazy" src="assets/case-yoy/event-published-2.webp" alt="Published event page, attendee mode" />
+            <img loading="lazy" width="461" height="940" src="assets/case-yoy/event-published-1.webp" alt="Published event page, organizer mode" />
+            <img loading="lazy" width="461" height="940" src="assets/case-yoy/event-published-2.webp" alt="Published event page, attendee mode" />
           </div>
         </div>
       </section>
@@ -493,13 +536,13 @@
             </p>
           </div>
           <div class="yoy-media yoy-uikit__media">
-            <img loading="lazy" src="assets/case-yoy/uikit-overview.webp" alt="YOY! Events UI Kit overview: components, tokens, and states" />
+            <img loading="lazy" width="822" height="410" src="assets/case-yoy/uikit-overview.webp" alt="YOY! Events UI Kit overview: components, tokens, and states" />
           </div>
         </div>
       </section>
 
       <!-- UI: CASE04-RESULTS-01 | Results | matches Figma "Results" (768:13414) -->
-      <section class="yoy-section yoy-section--tint">
+      <section id="cs-results" data-case-section class="yoy-section yoy-section--tint">
         <div class="yoy-panel yoy-panel--accent" data-reveal>
           <h2 class="h2-section">Results</h2>
           <div class="yoy-two-col">
@@ -529,7 +572,7 @@
              overflows the disc past the left edge, per Roman — don't clip it -->
         <div class="yoy-results__focus" data-reveal>
           <div class="yoy-results__mascot" aria-hidden="true">
-            <img loading="lazy" src="assets/case-yoy/mascot-rocket.webp" alt="" />
+            <img loading="lazy" width="400" height="400" src="assets/case-yoy/mascot-rocket.webp" alt="" />
           </div>
           <div class="yoy-results__body">
             <p class="body-main yoy-body-muted">My focus: the mobile app.<br />The client's MVP currently prioritizes the web version.</p>
@@ -559,7 +602,7 @@
       <!-- UI: HOME-REVIEWS-01 | Reviews carousel | shared component, reused unchanged -->
       <section class="home-section case-reviews-cta" id="feedbacks">
         <h2 class="h2-section reviews-heading" data-reveal>Reviews:</h2>
-        <div class="reviews-carousel" data-auto-scroll data-reveal>
+        <div class="reviews-carousel" data-case-reviews data-reveal>
           <button
             class="reviews-arrow reviews-arrow--prev"
             type="button"
@@ -574,7 +617,7 @@
             </svg>
           </button>
 
-          <div class="review-slide" id="review-slide" aria-live="polite" aria-atomic="true" data-default-review="Olga Novykova">
+          <div class="review-slide" id="review-slide" aria-live="polite" aria-atomic="true">
             <div>
               <p class="h3-case-study review-slide__name">Olga Novykova</p>
               <p class="body-large review-slide__role">CEO &amp; Founder</p>
@@ -595,7 +638,7 @@
               target="_blank"
               rel="noopener"
             >
-              <img loading="lazy" src="assets/icons/icon-linkedin-small.svg" alt="" />
+              <img loading="lazy" width="16" height="16" src="assets/icons/icon-linkedin-small.svg" alt="" />
               View in LinkedIn
             </a>
           </div>
@@ -623,6 +666,9 @@
           <span class="reviews-progress__segment is-active"></span>
         </div>
 
+        <!-- UI: CASE-RELATED-01 | Related case (filled by js/related-case.js from the Home card of the paired case) -->
+        <div class="related-case" data-related-case hidden></div>
+
         <!-- UI: HOME-CTA-01 | CTA block | shared component, reused unchanged -->
         <div class="cta-section" data-reveal>
           <h2 class="h2-section cta-heading">Ready to architect your next product?</h2>
@@ -630,13 +676,13 @@
             Whatever's easiest for you — reach out and let's talk.
           </p>
           <a
-            class="btn btn--primary"
+            class="btn btn--primary btn--contact"
             href="https://www.linkedin.com/in/romsvid/" data-popup="contact"
             target="_blank"
             rel="noopener"
           >
             Contact Me
-            <img loading="lazy" class="btn__icon" src="assets/icons/icon-arrow-right.svg" alt="" />
+            <img loading="lazy" width="16" height="16" class="btn__icon" src="assets/icons/icon-arrow-right.svg" alt="" />
           </a>
         </div>
       </section>
@@ -644,7 +690,7 @@
 
     <!-- UI: GLOBAL-FOOTER-01 | Site footer | shared component, reused unchanged -->
     <footer class="site-footer">
-      <img loading="lazy" class="site-footer__bg" src="assets/images/footer-bg.svg" alt="" aria-hidden="true" />
+      <img loading="lazy" width="1280" height="256" class="site-footer__bg" src="assets/images/footer-bg.svg" alt="" aria-hidden="true" />
       <div class="site-footer__row site-footer__row--top">
         <a class="nav-logo" href="./">
           <span class="nav-logo__icon">
@@ -655,19 +701,20 @@
 
         <div class="site-footer__social">
           <a href="https://www.instagram.com/romsvid/" target="_blank" rel="noopener">
-            <img loading="lazy" src="assets/icons/social-instagram.svg" alt="Instagram" />
+            <img loading="lazy" width="24" height="24" src="assets/icons/social-instagram.svg" alt="Instagram" />
           </a>
           <a href="https://www.linkedin.com/in/romsvid/" target="_blank" rel="noopener">
-            <img loading="lazy" src="assets/icons/social-linkedin.svg" alt="LinkedIn" />
+            <img loading="lazy" width="24" height="24" src="assets/icons/social-linkedin.svg" alt="LinkedIn" />
           </a>
           <a href="https://t.me/Rmsddddd" target="_blank" rel="noopener">
-            <img loading="lazy" src="assets/icons/social-telegram.svg" alt="Telegram" />
+            <img loading="lazy" width="24" height="24" src="assets/icons/social-telegram.svg" alt="Telegram" />
           </a>
         </div>
       </div>
 
       <div class="site-footer__row site-footer__row--bottom">
-        <p class="body-main site-footer__copyright">© 2026 Roman Sviderskyi</p>
+        <!-- new (2026-11-23): colophon next to the copyright; was: "© 2026 Roman Sviderskyi" only -->
+        <p class="body-main site-footer__copyright">© 2026 Roman Sviderskyi<span class="site-footer__sep" aria-hidden="true"> · </span><span class="site-footer__colophon">Designed and hand-coded by me · Built with Claude Code</span></p>
         <p class="body-main site-footer__contact">
           +380 97 334 9540&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:svidddrommm25@gmail.com"
             >svidddrommm25@gmail.com</a
@@ -677,6 +724,9 @@
     </footer>
 
     <script src="js/nav.js"></script>
+    <script src="js/case-nav.js" defer></script>
+    <script src="js/link-shimmer.js" defer></script>
+    <script src="js/related-case.js" defer></script>
     <script src="js/reviews.js"></script>
     <script src="js/reveal.js"></script>
     <script src="js/nbsp-typography.js"></script>

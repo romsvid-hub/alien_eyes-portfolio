@@ -46,6 +46,20 @@
   border-color: #433a70;
 }
 
+/* WCAG AA variant of the primary button (white text 4.6:1): "Contact Me" and
+   the "View case study" button on the case cards (QA #1, D14) */
+.btn--contact,
+.case-card__cta.btn--primary {
+  background-color: var(--color-cta-contact);
+}
+
+.btn--contact:hover,
+.btn--contact:active,
+.case-card__cta.btn--primary:hover,
+.case-card__cta.btn--primary:active {
+  background-color: var(--color-cta-contact-hover);
+}
+
 .btn--secondary {
   background-color: #151515;
   border-color: #2a2a2a;

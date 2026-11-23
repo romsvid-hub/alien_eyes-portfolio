@@ -31,7 +31,8 @@
 
 @media (min-width: 1024px) {
   .atj-section {
-    padding: 64px var(--page-px);
+    /* 80px vertical rhythm (2026-11-22), shared token */
+    padding: var(--case-section-py) var(--page-px);
   }
 }
 
@@ -49,15 +50,6 @@
   line-height: 1.2;
   letter-spacing: var(--h3-letter-spacing);
   color: var(--color-subtle-text);
-}
-
-/*
-  Section-heading rhythm (see .cs-title/.cs-subtitle in typography.css)
-  replaces this class's own margin everywhere except the Hero, which is
-  out of that system's scope and keeps its original 16px unchanged.
-*/
-.atj-hero__content .atj-eyebrow {
-  margin-bottom: 16px;
 }
 
 .atj-eyebrow--lg {
@@ -218,7 +210,15 @@
   }
 }
 
+/*
+  QA #1 / D5 (2026-11-20): the laptop frame keeps main's geometry (55% of the
+  card = 704px at 1440, original crop percentages), so the laptop is no
+  longer clipped. An earlier narrower 628px frame is reverted.
+*/
+
 .atj-hero__title {
+  /* Figma: "Inclusive / Hiring Platform" on two lines (title box 510px) */
+  max-width: 510px;
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 40px;
@@ -239,7 +239,16 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  /* Figma hero description: Inter Regular 18/28 */
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
   color: var(--color-deep-text);
+}
+
+/* Case meta block (css/case-meta.css) takes the description's colour */
+.atj-hero {
+  --case-meta-color: var(--color-deep-text);
 }
 
 .atj-hero__desc p {
@@ -274,27 +283,6 @@
   flex-direction: column;
 }
 
-/*
-  Figma (2:13832) shows a large 168px gap between the icon and the
-  CONTEXT heading, not the uniform 24px used elsewhere in this column —
-  verified via get_design_context frame offset. Used to be the parent's
-  24px gap plus this margin; the gap is gone now (title-to-body below
-  is the shared .cs-title rhythm instead, see typography.css), so 24px
-  was folded directly into these numbers to keep the icon-to-title
-  distance exactly as it was (48+24=72, 168+24=192).
-*/
-.atj-context__icon {
-  width: 100px;
-  height: auto;
-  margin-bottom: 72px;
-}
-
-@media (min-width: 1024px) {
-  .atj-context__icon {
-    margin-bottom: 192px;
-  }
-}
-
 .atj-context__body {
   color: var(--color-deep-text);
   max-width: 480px;
@@ -312,44 +300,6 @@
 @media (min-width: 1024px) {
   .atj-context__image {
     max-width: 55%;
-  }
-}
-
-/* ---------- My role in team (2:13855) ---------- */
-
-.atj-role {
-  padding: 24px var(--page-px);
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.atj-role__items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 24px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 18px;
-  letter-spacing: -0.0036px;
-  color: var(--color-atj-accent);
-}
-
-/*
-  Figma (472:4159) lays the eyebrow out as the row's own first item,
-  not stacked above it, with the row space-between across the full
-  column: "My role in team:" flush left, "Presentation to
-  stakeholders." flush right, the rest evenly gapped between. Desktop
-  only — mobile keeps the eyebrow-then-wrapped-pills stack.
-*/
-.atj-role__label {
-  margin: 0;
-}
-
-@media (min-width: 1024px) {
-  .atj-role__items {
-    flex-wrap: nowrap;
-    justify-content: space-between;
   }
 }
 
@@ -589,11 +539,22 @@
   get a livelier spring/overshoot ease instead of the site's default
   fade+rise, so they feel like they're landing on the line as it grows.
 */
+/* Research scatter (982:22610): the line and the cards play together,
+   as soon as the scatter scrolls in. The first card the observer reveals
+   starts the whole group (:has), so nothing waits for its own turn and
+   the area is never left blank.
+   Line (982:22536): grows left-to-right like a chart line (clip-path
+   wipe, 1100ms). Cards: pop in left-to-right alongside it, 110ms apart
+   (0-660ms), so each lands as the line reaches it. */
 .atj-research__connector.reveal-init {
-  transform: translateX(-32px);
-  transition:
-    transform 900ms ease,
-    opacity 500ms ease;
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1100ms cubic-bezier(0.45, 0, 0.2, 1);
+}
+
+.atj-research__grid:has(> .is-revealed) .atj-research__connector.reveal-init {
+  clip-path: inset(0 0 0 0);
 }
 
 .atj-research__card.reveal-init {
@@ -601,6 +562,12 @@
   transition:
     opacity 600ms cubic-bezier(0.34, 1.56, 0.64, 1),
     transform 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition-delay: calc((var(--reveal-index, 1) - 1) * 110ms);
+}
+
+.atj-research__grid:has(> .is-revealed) .atj-research__card.reveal-init {
+  opacity: 1;
+  transform: none;
 }
 
 /* ---------- The insight changed everything (2:13940) ---------- */
@@ -755,6 +722,7 @@
 
 .atj-scope__image {
   display: block;
+  margin-top: 32px;
   border-radius: 16px;
   overflow: hidden;
 }
@@ -1045,10 +1013,56 @@
 }
 
 .atj-jobcard-showcase__note a {
+  position: relative;
+  overflow: hidden;
+  margin: -2px -4px;
+  padding: 2px 4px;
+  border-radius: 4px;
   font-family: monospace;
   font-weight: 700;
   color: var(--color-atj-accent);
   text-decoration: underline;
+  /* Hover: only the cursor changes (pointing hand), no highlight */
+  cursor: pointer;
+}
+
+/* Link (982:22842): text shimmer — a light peach glint runs through the
+   letters left-to-right every 1.5s, endlessly, while the link's section
+   is on screen (js/link-shimmer.js toggles .is-shimmering). The glint is a copy of the text (::after, from
+   data-text) filled with a moving gradient and clipped to the glyphs.
+   Nothing runs under prefers-reduced-motion. */
+
+.atj-jobcard-showcase__note a[data-text]::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  padding: inherit;
+  white-space: nowrap;
+  color: transparent;
+  background-image: linear-gradient(
+    100deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 214, 200, 0.95) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.atj-jobcard-showcase__note a.is-shimmering::after {
+  animation: atj-link-shimmer 1500ms ease-in-out infinite;
+}
+
+@keyframes atj-link-shimmer {
+  0% { background-position: 100% 0; opacity: 1; }
+  100% { background-position: 0% 0; opacity: 1; }
 }
 
 .atj-jobcard-showcase__grid {
@@ -1133,7 +1147,8 @@
 .atj-jobcard__pin-inner {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  /* was: 48px (Roman, 2026-11-23: more room under "The card is designed so candidates ...") */
+  gap: var(--space-section);
 }
 
 .atj-jobcard__row {
@@ -1252,6 +1267,15 @@
   display: flex;
   flex-direction: column;
   gap: 48px;
+}
+
+/* 80px vertical rhythm on desktop (Figma 982:22845: 80/80, gap 80) */
+@media (min-width: 1024px) {
+  .atj-screens {
+    padding-top: var(--space-section);
+    padding-bottom: var(--space-section);
+    gap: var(--space-section);
+  }
 }
 
 .atj-screens__heading {
@@ -1376,17 +1400,7 @@
 .atj-final__text {
   color: var(--color-dark-alien);
   max-width: 643px;
-  margin: 0 0 16px;
-}
-
-.atj-final__medium-note {
-  color: var(--color-dark-alien);
   margin: 0;
-}
-
-.atj-final__medium-note a {
-  color: var(--color-atj-accent);
-  text-decoration: underline;
 }
 
 /* ---------- Reviews + CTA (shared component reused unchanged) ---------- */
@@ -1400,4 +1414,26 @@
 */
 .case-reviews-cta {
   background-color: var(--color-dark-alien);
+}
+
+/* ---------- Vertical rhythm per Figma (2026-11-22, desktop) ---------- */
+@media (min-width: 1024px) {
+  /* Research: personas -> "Overall scope of work" 80px (982:22673 pt80) */
+  .atj-section > .atj-scope {
+    margin-top: var(--space-section);
+  }
+
+  /* FigJam link (982:22678): 48px above and below the board image */
+  .atj-scope__image {
+    margin-top: 48px;
+    margin-bottom: 48px;
+  }
+
+  /* Design System / AI usage (982:22872): 24px gap between every block,
+     on top of each block's own spacing */
+  .atj-section:has(> .atj-uikit__grid) {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
 }

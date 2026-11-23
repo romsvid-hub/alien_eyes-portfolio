@@ -32,6 +32,9 @@
     <link rel="stylesheet" href="css/buttons.css" />
     <link rel="stylesheet" href="css/home.css" />
     <link rel="stylesheet" href="css/case-atj.css" />
+    <link rel="stylesheet" href="css/case-meta.css" />
+    <link rel="stylesheet" href="css/case-nav.css" />
+    <link rel="stylesheet" href="css/link-shimmer.css" />
     <link rel="stylesheet" href="css/reveal.css" />
     <!--
       Tailwind CDN — scoped to the Job Card showcase only (see
@@ -104,26 +107,45 @@
           />
         </div>
         <div class="atj-hero__content">
-          <div class="tag-row">
-            <span class="atj-tag">HR Tech</span>
-            <span class="atj-tag">Inclusive Design</span>
-            <span class="atj-tag">Accessibility</span>
-            <span class="atj-tag">B2B</span>
-          </div>
-          <p class="atj-eyebrow">Inclusive AI-Driven</p>
-          <h1 class="atj-hero__title">Hiring<br />Platform</h1>
+          <!-- was: eyebrow "Inclusive AI-Driven" + h1 "Hiring<br />Platform" (renamed 2026-11-17) -->
+          <h1 class="atj-hero__title">Inclusive Hiring Platform</h1>
           <div class="body-main atj-hero__desc">
-            <p>
-              In Ukraine, millions of people — veterans, people with
-              disabilities, IDPs, mothers returning to work face structural
-              barriers to employment.
-            </p>
             <p>
               I helped design ATJ: an inclusive hiring platform that embeds
               fairness into the product's foundation not as a feature, but
               as the architecture itself.
             </p>
           </div>
+          <!-- Case meta: text and links as in Figma (QA/Updates page, hero data block, 2026-11-23) -->
+          <dl class="case-meta">
+            <div class="case-meta__row">
+              <dt>Role:</dt>
+              <dd>Product Designer</dd>
+            </div>
+            <div class="case-meta__row">
+              <dt>Status:</dt>
+              <!-- was: "Design delivered to the client" (2026-11-23) -->
+              <dd>Design system shipped; pages in progress</dd>
+            </div>
+            <div class="case-meta__row">
+              <dt>Company website:</dt>
+              <!-- new row (2026-11-23) -->
+              <dd><a href="https://www.alltogether.jobs/" target="_blank" rel="noopener">alltogether.jobs</a> (Web design by another team)</dd>
+            </div>
+            <div class="case-meta__row">
+              <dt>Duration:</dt>
+              <!-- was: "3 months (within a 1-year contract)" (2026-11-23) -->
+              <dd>3 months</dd>
+            </div>
+            <div class="case-meta__row">
+              <dt>Team:</dt>
+              <dd>Design team of 4 (me + 3 designers)</dd>
+            </div>
+            <div class="case-meta__row">
+              <dt>My responsibilities:</dt>
+              <dd>User interviews; Jobs Catalog page; Job Card component; Presentation to stakeholders</dd>
+            </div>
+          </dl>
         </div>
       </section>
 
@@ -150,13 +172,38 @@
         </div>
       </section>
 
+      <!-- UI: CASE-NAV-01 | Case section nav: in flow under the hero (and Impact), sticks under the header | Figma "Case nav / Sticky" (987:4210); css/case-nav.css + js/case-nav.js -->
+      <nav class="case-nav" aria-label="Case sections" data-case-nav data-case="atj">
+        <div class="case-nav__lead">
+          <!-- inline state: "Agenda:" (case accent), no arrow, no role -->
+          <div class="case-nav__agenda" aria-hidden="true">
+            <span class="case-nav__agenda-label">Agenda:</span>
+            <span class="case-nav__divider"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+          </div>
+          <!-- stuck state (standard component 987:4210): arrow + Home + divider -->
+          <div class="case-nav__home">
+            <a class="case-nav__item case-nav__back" href="/#case-studies">
+              <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
+              Home
+            </a>
+            <span class="case-nav__divider" aria-hidden="true"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
+          </div>
+        </div>
+        <a class="case-nav__item" href="#cs-context" data-case-target="cs-context">Context</a>
+        <a class="case-nav__item" href="#cs-challenge" data-case-target="cs-challenge">Challenge</a>
+        <a class="case-nav__item" href="#cs-research" data-case-target="cs-research">Research</a>
+        <a class="case-nav__item" href="#cs-key-decisions" data-case-target="cs-key-decisions">Key Decisions</a>
+        <a class="case-nav__item" href="#cs-core-features" data-case-target="cs-core-features">Other Features</a>
+        <a class="case-nav__item" href="#cs-results" data-case-target="cs-results">Results</a>
+        <p class="case-nav__role"><b>Role:</b> <span>Product Designer</span></p>
+      </nav>
+
       <!-- UI: CASE02-CONTEXT-01 | Context section | inspect/adjust -->
-      <section class="atj-section atj-context" data-reveal-group>
+      <section id="cs-context" data-case-section class="atj-section atj-context" data-reveal-group>
         <div class="atj-context__text">
-          <!-- IMAGE: CASE02-CONTEXT-ICON-01 | Decorative logo mark | decorative -->
-          <img loading="lazy" class="atj-context__icon" src="assets/case-atj/context-icon.svg" alt="" aria-hidden="true" />
           <div class="atj-context__copy">
-          <p class="atj-eyebrow atj-eyebrow--lg cs-title">CONTEXT</p>
+          <!-- was: "CONTEXT" (renamed 2026-11-17) -->
+          <p class="atj-eyebrow atj-eyebrow--lg cs-title">Context</p>
           <p class="body-main atj-context__body">
             A Ukrainian organization building an ecosystem to connect
             inclusive employers with diverse candidates. What existed
@@ -167,24 +214,41 @@
           </div>
         </div>
         <!-- IMAGE: CASE02-CONTEXT-IMAGE-01 | Context photo | replaceable -->
-        <img loading="lazy" class="atj-context__image" src="assets/case-atj/context-image.webp" alt="A veteran candidate in a wheelchair shaking hands with an employer" />
+        <img loading="lazy" width="1398" height="842" class="atj-context__image" src="assets/case-atj/context-image.webp" alt="A veteran candidate in a wheelchair shaking hands with an employer" />
       </section>
 
-      <!-- UI: CASE02-ROLE-01 | My role in team | inspect/adjust -->
-      <section class="atj-section">
-        <div class="atj-role" data-reveal>
-          <div class="atj-role__items">
-            <p class="atj-eyebrow atj-role__label cc-trick">My role in team:</p>
-            <span>User interviews;</span>
-            <span>Jobs Catalog page;</span>
-            <span>Job Card component;</span>
-            <span>Presentation to stakeholders.</span>
+      <!-- UI: CASE02-INSIGHT-01 | The insight changed everything | inspect/adjust -->
+      <section id="cs-challenge" data-case-section class="atj-section atj-insight">
+        <!-- was: "The insight changed everything" (renamed 2026-11-17) -->
+        <p class="atj-eyebrow cc-trick" data-reveal>Challenge. The insight changed everything</p>
+        <div class="atj-insight__row" data-reveal-group>
+          <!-- IMAGE: CASE02-INSIGHT-IMAGE-01 | Insight illustration | replaceable -->
+          <div class="atj-insight__image-frame">
+            <img loading="lazy" width="1600" height="1429" class="atj-insight__image" src="assets/case-atj/insight-image.webp" alt="Insight research illustration" />
+          </div>
+          <div class="body-main atj-insight__text">
+            <p>
+              Standard platforms expect employers to become inclusive on
+              their own.
+            </p>
+            <p>
+              Candidates with specific needs must open every job to check
+              accessibility conditions.
+            </p>
+            <p>
+              The issue is not bad intent. It's that the system doesn't make
+              inclusion visible before first contact.
+            </p>
+            <p>
+              Solution: make inclusion structural, embedded into every
+              touchpoint, not an optional add-on.
+            </p>
           </div>
         </div>
       </section>
 
       <!-- UI: CASE02-RESEARCH-01 | Research stats | inspect/adjust -->
-      <section class="atj-section">
+      <section id="cs-research" data-case-section class="atj-section">
         <div class="atj-research">
           <p class="atj-eyebrow atj-eyebrow--research atj-eyebrow--lg cc-trick cs-title">RESEARCH:</p>
           <p class="body-large atj-research__intro">
@@ -196,7 +260,7 @@
           </p>
           <div class="atj-research__grid" data-reveal-group>
             <!-- IMAGE: CASE02-RESEARCH-CONNECTOR-01 | Decorative wavy connector line | decorative -->
-            <img loading="lazy" class="atj-research__connector" src="assets/case-atj/research-connector.svg" alt="" aria-hidden="true" />
+            <img loading="lazy" width="1359" height="477" class="atj-research__connector" src="assets/case-atj/research-connector.svg" alt="" aria-hidden="true" />
             <div class="atj-research__card atj-research__card--1">
               <p class="atj-research__title">Veterans Unemployment Rate</p>
               <p class="atj-research__stat">1.3M+</p>
@@ -236,35 +300,6 @@
         </div>
       </section>
 
-      <!-- UI: CASE02-INSIGHT-01 | The insight changed everything | inspect/adjust -->
-      <section class="atj-section atj-insight">
-        <p class="atj-eyebrow cc-trick" data-reveal>The insight changed everything</p>
-        <div class="atj-insight__row" data-reveal-group>
-          <!-- IMAGE: CASE02-INSIGHT-IMAGE-01 | Insight illustration | replaceable -->
-          <div class="atj-insight__image-frame">
-            <img loading="lazy" class="atj-insight__image" src="assets/case-atj/insight-image.webp" alt="Insight research illustration" />
-          </div>
-          <div class="body-main atj-insight__text">
-            <p>
-              Standard platforms expect employers to become inclusive on
-              their own.
-            </p>
-            <p>
-              Candidates with specific needs must open every job to check
-              accessibility conditions.
-            </p>
-            <p>
-              The issue is not bad intent. It's that the system doesn't make
-              inclusion visible before first contact.
-            </p>
-            <p>
-              Solution: make inclusion structural, embedded into every
-              touchpoint, not an optional add-on.
-            </p>
-          </div>
-        </div>
-      </section>
-
       <!-- UI: CASE02-PAINPOINTS-01 | Candidate pain point cards | inspect/adjust -->
       <section class="atj-section">
         <div class="atj-painpoints" data-reveal-group>
@@ -275,7 +310,7 @@
                 <p class="atj-painpoint__role">Military veteran</p>
               </div>
               <!-- IMAGE: CASE02-AVATAR-01 | Alexander Savchuk avatar | replaceable -->
-              <img loading="lazy" class="atj-painpoint__avatar" src="assets/case-atj/avatar-alexander.png" alt="" />
+              <img loading="lazy" width="64" height="64" class="atj-painpoint__avatar" src="assets/case-atj/avatar-alexander.png" alt="" />
             </div>
             <div class="atj-painpoint__divider"></div>
             <p class="atj-painpoint__quote">
@@ -290,7 +325,7 @@
                 <p class="atj-painpoint__role">Mom after maternity leave</p>
               </div>
               <!-- IMAGE: CASE02-AVATAR-02 | Kateryna Lubarska avatar | replaceable -->
-              <img loading="lazy" class="atj-painpoint__avatar" src="assets/case-atj/avatar-kateryna.png" alt="" />
+              <img loading="lazy" width="64" height="64" class="atj-painpoint__avatar" src="assets/case-atj/avatar-kateryna.png" alt="" />
             </div>
             <div class="atj-painpoint__divider"></div>
             <p class="atj-painpoint__quote">
@@ -305,7 +340,7 @@
                 <p class="atj-painpoint__role">Person with a disability</p>
               </div>
               <!-- IMAGE: CASE02-AVATAR-03 | Anna Dubinska avatar | replaceable -->
-              <img loading="lazy" class="atj-painpoint__avatar" src="assets/case-atj/avatar-anna.png" alt="" />
+              <img loading="lazy" width="64" height="64" class="atj-painpoint__avatar" src="assets/case-atj/avatar-anna.png" alt="" />
             </div>
             <div class="atj-painpoint__divider"></div>
             <p class="atj-painpoint__quote">
@@ -336,7 +371,7 @@
             rel="noopener"
           >
             <!-- IMAGE: CASE02-SCOPE-FIGJAM-01 | FigJam research board screenshot | replaceable -->
-            <img loading="lazy"
+            <img loading="lazy" width="1680" height="806"
               src="assets/case-atj/scope-of-work-figjam.webp"
               alt="FigJam research board: stakeholder interviews, competitor analysis, JTBD, value proposition map, CJMs, brainstorming and prioritisation"
             />
@@ -354,7 +389,7 @@
       </section>
 
       <!-- UI: CASE02-MVP-01 | Key MVP contribution gallery | inspect/adjust -->
-      <section class="atj-mvp">
+      <section id="cs-key-decisions" data-case-section class="atj-mvp">
         <div class="atj-mvp__band">
           <h2 class="h1-display atj-mvp__heading" data-reveal>Key MVP Contribution</h2>
           <!--
@@ -366,9 +401,9 @@
             and matches their prepared source exactly.
           -->
           <div class="atj-mvp__gallery" data-reveal-group>
-            <img loading="lazy" class="atj-mvp__slide-img" src="assets/case-atj/mvp-slide-onboarding.webp" alt="Onboarding: select needs for a comfortable work environment, choose interview format, create or upload a resume" />
-            <img loading="lazy" class="atj-mvp__slide-img" src="assets/case-atj/mvp-slide-filters.webp" alt="Personalised filters: employers set a real salary range, shown against matching job cards" />
-            <img loading="lazy" class="atj-mvp__slide-img" src="assets/case-atj/mvp-slide-benefits.webp" alt="Inclusive benefits: accessibility and benefits tags shown clearly on a job card" />
+            <img loading="lazy" width="2200" height="1238" class="atj-mvp__slide-img" src="assets/case-atj/mvp-slide-onboarding.webp" alt="Onboarding: select needs for a comfortable work environment, choose interview format, create or upload a resume" />
+            <img loading="lazy" width="2200" height="1238" class="atj-mvp__slide-img" src="assets/case-atj/mvp-slide-filters.webp" alt="Personalised filters: employers set a real salary range, shown against matching job cards" />
+            <img loading="lazy" width="2200" height="1238" class="atj-mvp__slide-img" src="assets/case-atj/mvp-slide-benefits.webp" alt="Inclusive benefits: accessibility and benefits tags shown clearly on a job card" />
           </div>
         </div>
         <div class="atj-mvp__contribution" data-reveal>
@@ -379,7 +414,7 @@
           </p>
         </div>
         <!-- IMAGE: CASE02-MVP-BOTTOM-01 | Decorative bottom illustration | decorative -->
-        <img loading="lazy" class="atj-mvp__bottom-deco" src="assets/case-atj/mvp-decorative-bottom.webp" alt="" aria-hidden="true" />
+        <img loading="lazy" width="2200" height="881" class="atj-mvp__bottom-deco" src="assets/case-atj/mvp-decorative-bottom.webp" alt="" aria-hidden="true" />
       </section>
 
       <!-- UI: CASE02-CONTRIB-01 | Contribution highlights grid | inspect/adjust -->
@@ -387,7 +422,7 @@
         <div class="atj-contrib__grid" data-reveal-group>
           <div class="atj-contrib__item">
             <!-- IMAGE: CASE02-CONTRIB-ICON-01 | Primary focus icon | replaceable -->
-            <img loading="lazy" class="atj-contrib__icon--primary" src="assets/case-atj/icon-primary-focus.webp" alt="" />
+            <img loading="lazy" width="356" height="356" class="atj-contrib__icon--primary" src="assets/case-atj/icon-primary-focus.webp" alt="" />
             <div>
               <p class="h3-case-study atj-accent-blue">Primary Focus:</p>
               <p class="body-main">
@@ -398,7 +433,7 @@
           </div>
           <div class="atj-contrib__item">
             <!-- IMAGE: CASE02-CONTRIB-ICON-02 | Accessibility tags icon | replaceable -->
-            <img loading="lazy" class="atj-contrib__icon--accessibility" src="assets/case-atj/icon-accessibility-tags.webp" alt="" />
+            <img loading="lazy" width="356" height="356" class="atj-contrib__icon--accessibility" src="assets/case-atj/icon-accessibility-tags.webp" alt="" />
             <div>
               <p class="h3-case-study atj-accent-blue">Accessibility Tags:</p>
               <p class="body-main">
@@ -410,7 +445,7 @@
           </div>
           <div class="atj-contrib__item">
             <!-- IMAGE: CASE02-CONTRIB-ICON-03 | Dynamic card icon | replaceable -->
-            <img loading="lazy" src="assets/case-atj/icon-dynamic-card.webp" alt="" />
+            <img loading="lazy" width="366" height="356" src="assets/case-atj/icon-dynamic-card.webp" alt="" />
             <div>
               <p class="h3-case-study atj-accent-blue">Dynamic Card:</p>
               <p class="body-main">
@@ -422,7 +457,7 @@
           </div>
           <div class="atj-contrib__item">
             <!-- IMAGE: CASE02-CONTRIB-ICON-04 | CV selector icon | replaceable -->
-            <img loading="lazy" class="atj-contrib__icon--cvselector" src="assets/case-atj/icon-cv-selector.webp" alt="" />
+            <img loading="lazy" width="356" height="356" class="atj-contrib__icon--cvselector" src="assets/case-atj/icon-cv-selector.webp" alt="" />
             <div>
               <p class="h3-case-study atj-accent-blue">CV Selector:</p>
               <p class="body-main">
@@ -436,7 +471,7 @@
       </section>
 
       <!-- UI: CASE02-SMARTFILTERS-01 | Matching by smart filters | inspect/adjust -->
-      <section class="atj-section atj-smartfilters">
+      <section id="cs-core-features" data-case-section class="atj-section atj-smartfilters">
         <h2 class="h2-section atj-smartfilters__heading cs-title" data-reveal>Matching by Smart Filters</h2>
         <div class="atj-smartfilters__intro body-main" data-reveal>
           <p>
@@ -465,7 +500,7 @@
         -->
         <div class="atj-smartfilters__composition" data-reveal>
           <!-- IMAGE: CASE02-SMARTFILTERS-SCREEN-01 | Jobs catalog page screenshot | replaceable -->
-          <img loading="lazy" class="atj-smartfilters__screen" src="assets/case-atj/smartfilters-home.webp" alt="ATJ Jobs Catalog page with smart filters" />
+          <img loading="lazy" width="2200" height="2756" class="atj-smartfilters__screen" src="assets/case-atj/smartfilters-home.webp" alt="ATJ Jobs Catalog page with smart filters" />
           <div class="atj-smartfilters__blocks">
             <div>
               <p class="h3-case-study atj-smartfilters__block-title">The Problem:</p>
@@ -844,7 +879,7 @@
             </p>
             <div class="atj-jobcard-showcase__note">
               <span>Live component, not a screenshot — full state set built from</span>
-              <a href="https://github.com/romsvid-hub/job-card-tailwind" target="_blank" rel="noopener">github.com/romsvid-hub/job-card-tailwind</a>
+              <a href="https://github.com/romsvid-hub/job-card-tailwind" target="_blank" rel="noopener" data-shimmer data-text="github.com/romsvid-hub/job-card-tailwind">github.com/romsvid-hub/job-card-tailwind</a>
             </div>
           </div>
         </div>
@@ -868,14 +903,14 @@
           </div>
           <!-- IMAGE: CASE02-SCREENS-01 | Create CV at onboarding screenshot | replaceable -->
           <div class="atj-screens__image atj-screens__image--createcv">
-            <img loading="lazy" src="assets/case-atj/screens-create-cv-cropped.webp" alt="Create CV at onboarding screen" />
+            <img loading="lazy" width="1600" height="1003" src="assets/case-atj/screens-create-cv-cropped.webp" alt="Create CV at onboarding screen" />
           </div>
         </div>
 
         <div class="atj-screens__row" data-reveal>
           <!-- IMAGE: CASE02-SCREENS-02 | Job page with accessibility tags screenshot | replaceable -->
           <div class="atj-screens__image atj-screens__image--jobpage">
-            <img loading="lazy" src="assets/case-atj/screens-job-page-cropped.webp" alt="Job page with accessibility tags shown first" />
+            <img loading="lazy" width="1600" height="975" src="assets/case-atj/screens-job-page-cropped.webp" alt="Job page with accessibility tags shown first" />
           </div>
           <div class="atj-screens__text">
             <p class="h3-case-study atj-screens__title">Job Page with Accessibility Tags First</p>
@@ -899,7 +934,7 @@
           </div>
           <!-- IMAGE: CASE02-SCREENS-03 | CV selector screenshot | replaceable -->
           <div class="atj-screens__image atj-screens__image--selectcv">
-            <img loading="lazy" src="assets/case-atj/screens-select-cv-cropped.webp" alt="CV selector screen" />
+            <img loading="lazy" width="1600" height="1015" src="assets/case-atj/screens-select-cv-cropped.webp" alt="CV selector screen" />
           </div>
         </div>
       </section>
@@ -948,7 +983,7 @@
             target="_blank"
             rel="noopener"
           >
-            <img loading="lazy"
+            <img loading="lazy" width="1120" height="241"
               src="assets/case-atj-2/figma/uikit-illustration1-fixed.webp"
               alt="Design system foundation: radius, colors, typography, spacing, layout, icons, tone of voice"
             />
@@ -971,7 +1006,7 @@
             target="_blank"
             rel="noopener"
           >
-            <img loading="lazy"
+            <img loading="lazy" width="1120" height="240"
               src="assets/case-atj-2/figma/uikit-illustration2-fixed.webp"
               alt="Design system components: buttons, inputs, form elements, text area, toggle, photo, modals, navigation, tags, tabs, pagination, radio, checkbox"
             />
@@ -989,7 +1024,7 @@
       </section>
 
       <!-- UI: CASE02-RESULTS-01 | Results | matches Figma "Section — Results" (477:38551) -->
-      <section class="atj-section" data-reveal>
+      <section id="cs-results" data-case-section class="atj-section" data-reveal>
         <p class="atj-eyebrow atj-eyebrow--lg cs-title">Results</p>
         <p class="body-large atj-final__text">
           What we delivered wasn't a set of screens. It was a hiring system
@@ -997,22 +1032,12 @@
           card, every touchpoint. Ready for development. Ready to scale.
           Ready to matter.
         </p>
-        <p class="body-main atj-final__medium-note">
-          There's also a
-          <a
-            href="https://medium.com/offgrid-design-community/all-together-jobs-%D1%96%D0%BD%D0%BA%D0%BB%D1%8E%D0%B7%D0%B8%D0%B2%D0%BD%D0%B0-%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D0%B0-%D0%B4%D0%BB%D1%8F-%D0%BF%D0%BE%D1%88%D1%83%D0%BA%D1%83-%D1%80%D0%BE%D0%B1%D0%BE%D1%82%D0%B8-94a5fbd5189d"
-            target="_blank"
-            rel="noopener"
-            >Medium article</a
-          >
-          covering the collaborative work in more detail.
-        </p>
       </section>
 
       <!-- UI: HOME-REVIEWS-01 | Reviews carousel | inspect/adjust (shared component, reused unchanged) -->
       <section class="home-section case-reviews-cta" id="feedbacks">
         <h2 class="h2-section reviews-heading">Reviews:</h2>
-        <div class="reviews-carousel">
+        <div class="reviews-carousel" data-case-reviews>
           <button
             class="reviews-arrow reviews-arrow--prev"
             type="button"
@@ -1027,7 +1052,7 @@
             </svg>
           </button>
 
-          <div class="review-slide" id="review-slide" aria-live="polite" aria-atomic="true" data-default-review="Olga Novykova">
+          <div class="review-slide" id="review-slide" aria-live="polite" aria-atomic="true" data-default-review="Olga Novykova" data-priority-reviews="Olga Novykova|Taras Chudnyi">
             <div>
               <p class="h3-case-study review-slide__name">Olga Novykova</p>
               <p class="body-large review-slide__role">CEO &amp; Founder</p>
@@ -1048,7 +1073,7 @@
               target="_blank"
               rel="noopener"
             >
-              <img loading="lazy" src="assets/icons/icon-linkedin-small.svg" alt="" />
+              <img loading="lazy" width="16" height="16" src="assets/icons/icon-linkedin-small.svg" alt="" />
               View in LinkedIn
             </a>
           </div>
@@ -1076,6 +1101,9 @@
           <span class="reviews-progress__segment"></span>
         </div>
 
+        <!-- UI: CASE-RELATED-01 | Related case (filled by js/related-case.js from the Home card of the paired case) -->
+        <div class="related-case" data-related-case hidden></div>
+
         <!-- UI: HOME-CTA-01 | CTA block | inspect/adjust (shared component, reused unchanged) -->
         <div class="cta-section">
           <h2 class="h2-section cta-heading">Ready to architect your next product?</h2>
@@ -1083,13 +1111,13 @@
             Whatever's easiest for you — reach out and let's talk.
           </p>
           <a
-            class="btn btn--primary"
+            class="btn btn--primary btn--contact"
             href="https://www.linkedin.com/in/romsvid/" data-popup="contact"
             target="_blank"
             rel="noopener"
           >
             Contact Me
-            <img loading="lazy" class="btn__icon" src="assets/icons/icon-arrow-right.svg" alt="" />
+            <img loading="lazy" width="16" height="16" class="btn__icon" src="assets/icons/icon-arrow-right.svg" alt="" />
           </a>
         </div>
       </section>
@@ -1097,7 +1125,7 @@
 
     <!-- UI: GLOBAL-FOOTER-01 | Site footer | inspect/adjust (shared component, reused unchanged) -->
     <footer class="site-footer">
-      <img loading="lazy" class="site-footer__bg" src="assets/images/footer-bg.svg" alt="" aria-hidden="true" />
+      <img loading="lazy" width="1280" height="256" class="site-footer__bg" src="assets/images/footer-bg.svg" alt="" aria-hidden="true" />
       <div class="site-footer__row site-footer__row--top">
         <a class="nav-logo" href="./">
           <span class="nav-logo__icon">
@@ -1108,19 +1136,20 @@
 
         <div class="site-footer__social">
           <a href="https://www.instagram.com/romsvid/" target="_blank" rel="noopener">
-            <img loading="lazy" src="assets/icons/social-instagram.svg" alt="Instagram" />
+            <img loading="lazy" width="24" height="24" src="assets/icons/social-instagram.svg" alt="Instagram" />
           </a>
           <a href="https://www.linkedin.com/in/romsvid/" target="_blank" rel="noopener">
-            <img loading="lazy" src="assets/icons/social-linkedin.svg" alt="LinkedIn" />
+            <img loading="lazy" width="24" height="24" src="assets/icons/social-linkedin.svg" alt="LinkedIn" />
           </a>
           <a href="https://t.me/Rmsddddd" target="_blank" rel="noopener">
-            <img loading="lazy" src="assets/icons/social-telegram.svg" alt="Telegram" />
+            <img loading="lazy" width="24" height="24" src="assets/icons/social-telegram.svg" alt="Telegram" />
           </a>
         </div>
       </div>
 
       <div class="site-footer__row site-footer__row--bottom">
-        <p class="body-main site-footer__copyright">© 2026 Roman Sviderskyi</p>
+        <!-- new (2026-11-23): colophon next to the copyright; was: "© 2026 Roman Sviderskyi" only -->
+        <p class="body-main site-footer__copyright">© 2026 Roman Sviderskyi<span class="site-footer__sep" aria-hidden="true"> · </span><span class="site-footer__colophon">Designed and hand-coded by me · Built with Claude Code</span></p>
         <p class="body-main site-footer__contact">
           +380 97 334 9540&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:svidddrommm25@gmail.com"
             >svidddrommm25@gmail.com</a
@@ -1130,8 +1159,11 @@
     </footer>
 
     <script src="js/nav.js"></script>
+    <script src="js/case-nav.js" defer></script>
+    <script src="js/related-case.js" defer></script>
     <script src="js/reviews.js"></script>
     <script src="js/reveal.js"></script>
+    <script src="js/link-shimmer.js"></script>
     <script src="js/jobcard-scroll.js"></script>
     <script src="js/nbsp-typography.js"></script>
   </body>

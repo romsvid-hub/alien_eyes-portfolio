@@ -36,6 +36,29 @@
   --color-atj-accent: #c44323;
 
   /*
+    Vertical rhythm scale of the case pages (Figma "Updates" page, 2026-11-23).
+    Desktop values; they scale down proportionally below (see the media
+    queries after :root): 80 -> 56 on tablets (<1024) and 48 on phones (<768).
+      --space-section  sections (top and bottom padding) and big blocks
+      --space-reviews  Reviews section top and bottom
+      --space-block    inside a section: between sub-blocks
+      --space-stack    inside a block: title -> text, text -> image, cards
+      --space-gap      small gaps (labels, captions)
+      --space-tight    tightest gap (icon + text, list items)
+  */
+  --space-section: 80px;
+  --space-reviews: 96px;
+  --space-block: 48px;
+  --space-stack: 24px;
+  --space-gap: 16px;
+  --space-tight: 8px;
+
+  /* Vertical inner padding of case-study sections (top and bottom), so two
+     neighbouring plain sections are 2x apart. Used by all case pages
+     (ATJ, ATJ 2, Uniqkey, Uniqkey 2, YOY, Ridi). */
+  --case-section-py: var(--space-section);
+
+  /*
     Raw hex observed repeatedly on Home (2:13410) — hero/CTA buttons,
     impact-stat numbers, reviews progress bar. Not a named Figma
     variable (confirmed via get_variable_defs — see
@@ -44,6 +67,14 @@
     3+ times, not invented.
   */
   --color-cta-purple: #7b61ff;
+  /* WCAG AA (4.5:1) variants for specific cases; the global tokens above stay
+     as they are because they are used elsewhere (borders, light backgrounds,
+     nav popup, footer, accents). */
+  --color-gray-on-dark: #8c8c8c; /* 4.62:1 on #242424 (review role, CTA text) */
+  --color-cta-contact: #7357ff; /* 4.60:1 with white text ("Contact Me" button) */
+  --color-purple-on-dark: #7b61ff; /* the brand accent: 4.74:1 on the Experience band #090909 (4.53:1 with the row hover fill) */
+  --color-surface-band: #090909; /* Experience band: neutral dark grey, dark enough for #7B61FF to pass AA at rest and on hover (was #131414: 4.39:1; tried #1a1624, rejected by Roman) */
+  --color-cta-contact-hover: #6351ba; /* hover/active: same darkening as #7b61ff -> #6a5aba */
 
   /* Typography — font families */
   --font-display: "Sora", sans-serif;
@@ -79,4 +110,25 @@
   --ui-caption-weight: 600;
   --ui-caption-line-height: 100%;
   --ui-caption-letter-spacing: -0.02px;
+}
+
+/* Case vertical rhythm: the scale above shrinks proportionally on smaller
+   screens (x0.7 on tablets, x0.6 on phones; rounded to 4px). The earlier
+   "64px on mobile" is replaced by 56 / 48. */
+@media (max-width: 1023px) {
+  :root {
+    --space-section: 56px;
+    --space-reviews: 68px;
+    --space-block: 36px;
+    --space-stack: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --space-section: 48px;
+    --space-reviews: 56px;
+    --space-block: 32px;
+    --space-stack: 20px;
+  }
 }

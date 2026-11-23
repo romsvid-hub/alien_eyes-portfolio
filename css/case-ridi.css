@@ -41,7 +41,7 @@
 /* ---------- Shared primitives ---------- */
 
 .ridi-section {
-  padding: 48px var(--page-px);
+  padding: var(--case-section-py) var(--page-px);
 }
 
 @media (min-width: 1280px) {
@@ -107,6 +107,31 @@
 .ridi-block--spaced.ridi-block--audience,
 .ridi-block--audience + .ridi-block--spaced {
   margin-top: 96px;
+}
+
+/* Figma (982:26016, 26027, 26058, 26064): each Research block container has
+   extra bottom padding - 24px under the analog logos, 16px under the audience,
+   the artifacts and the information architecture - on top of the 80px between
+   blocks (desktop; QA Updates page 2026-11-23). */
+@media (min-width: 1024px) {
+  .ridi-block--spaced:has(.ridi-logos) {
+    padding-bottom: var(--space-stack);
+  }
+
+  .ridi-block--audience,
+  .ridi-block--spaced:has(.ridi-artifact-media) {
+    padding-bottom: var(--space-gap);
+  }
+}
+
+/* Desktop: every Research block 80px apart, the audience beat included
+   (Figma 982:26016/26027/26058/26064, vertical rhythm 2026-11-22) */
+@media (min-width: 1024px) {
+  .ridi-block--spaced,
+  .ridi-block--spaced.ridi-block--audience,
+  .ridi-block--audience + .ridi-block--spaced {
+    margin-top: var(--space-section);
+  }
 }
 
 @media (min-width: 1024px) {
@@ -259,7 +284,8 @@
 @media (min-width: 1024px) {
   .ridi-hero {
     border-radius: 48px;
-    padding: 64px var(--page-px) 48px;
+    /* 48px right inset (Figma): text column from x=652 is 580px wide */
+    padding: 64px 48px 48px var(--page-px);
   }
 }
 
@@ -468,27 +494,25 @@
 }
 
 .ridi-hero__desc {
+  /* Figma hero description: Inter Regular 18/28 */
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
   color: #ffffff;
 }
 
-.ridi-details {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+/* Case meta block (css/case-meta.css): description colour; the content
+   column's 24px gap + the block's 24px top padding give Figma's 48px
+   (mobile gap is 20px, hence the small extra margin there) */
+.ridi-hero {
+  --case-meta-color: #ffffff;
+  --case-meta-mt: 4px;
 }
 
-.ridi-details li {
-  color: var(--ridi-muted);
-  font-size: 16px;
-  line-height: 25px;
-}
-
-.ridi-details b {
-  color: var(--ridi-accent);
-  font-weight: 500;
+@media (min-width: 1024px) {
+  .ridi-hero {
+    --case-meta-mt: 0;
+  }
 }
 
 /* ---------- Research: Analogy logos (826:13247) ---------- */
@@ -843,7 +867,8 @@
 
 @media (min-width: 1024px) {
   .ridi-card-block + .ridi-card-block {
-    margin-top: 48px;
+    /* 80px between big blocks (Figma 982:26210/26211, 2026-11-22) */
+    margin-top: var(--space-section);
   }
 }
 

@@ -39,7 +39,7 @@
 /* ---------- Shared primitives ---------- */
 
 .atj2-section {
-  padding: 48px var(--page-px);
+  padding: var(--case-section-py) var(--page-px);
 }
 
 /* Composition-width cap: Figma's desktop frame is 1280px wide (1120px
@@ -68,7 +68,8 @@
    Facts-specific override, not a change to .atj2-section itself. */
 .atj2-section:has(> .atj2-facts) {
   padding-top: 70px;
-  padding-bottom: 32px;
+  /* was: 32px (Roman, 2026-11-23: more room under the Impact blocks) */
+  padding-bottom: var(--space-block);
 }
 
 /* "Key Solutions" (the blue .atj2-solutions panel) is an edge-to-edge
@@ -239,8 +240,7 @@
 }
 
 /*
-  Fixed 2026-09-14 (Roman: the "Context icon" badge must read as glued
-  to the mockup, and mobile must show the mockup in full, not cropped):
+  Fixed 2026-09-14 (Roman: mobile must show the mockup in full, not cropped):
   the old mobile setup forced a 628:400 box with object-fit:cover,
   which crops the (nearly square, 1200x1220) source image — and since
   the badge was pinned to the CONTAINER's own corner rather than the
@@ -260,27 +260,6 @@
   height: auto;
 }
 
-/*
-  The ATJ wordmark badge sits over the mockup's top-left corner, sized
-  proportionally to the same 526x485 container (151/526 wide) it's
-  authored against in Figma — matches at any width since it's a % of
-  the same box the (now always full, uncropped) mockup fills.
-
-  2026-09-15, per Roman: nudged off the flush corner — 8px right/8px
-  down on mobile, 16px right only on desktop (see the min-width:1024px
-  override below). Must sit before that media query in source order —
-  as an unconditional rule of equal specificity, it would otherwise
-  win over the desktop override regardless of viewport width.
-*/
-.atj2-hero__media .atj2-hero__badge {
-  position: absolute;
-  left: 8px;
-  top: 8px;
-  width: 28.7%;
-  height: auto;
-  max-width: none;
-  object-fit: contain;
-}
 
 @media (min-width: 1024px) {
   /*
@@ -331,12 +310,6 @@
     max-width: none;
     object-fit: unset;
   }
-
-  /* Desktop: 16px right only, per Roman — no vertical nudge here. */
-  .atj2-hero__media .atj2-hero__badge {
-    left: 16px;
-    top: 0;
-  }
 }
 
 .atj2-hero__content {
@@ -348,35 +321,13 @@
   padding: 32px 24px 40px;
 }
 
+/* Desktop: text starts 12px into the 640px column (x=652 in the 1280px
+   card, as in Figma) with a 48px right inset, so the Case meta block is
+   580px wide like Figma's. */
 @media (min-width: 1024px) {
   .atj2-hero__content {
-    padding: 48px;
+    padding: 48px 48px 48px 12px;
   }
-}
-
-/*
-  Placeholder tags, added 2026-09-09 (Roman: "all tags are a template,
-  I'll replace them later"). Own light-theme chip instead of reusing the
-  dark-page .tag (css/home.css) — this page's background is light
-  (.atj2-page), so .tag's near-white text on a translucent gray fill
-  would read as low-contrast here. Radius verified against Figma's
-  shared "Tag" component (2:13460): 16px, same as every other tag on
-  the site.
-*/
-.atj2-tag {
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-  padding: 4px 10px;
-  background-color: var(--atj2-tint);
-  border: 1px solid var(--atj2-accent);
-  border-radius: 16px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: -0.0028px;
-  color: var(--atj2-accent-dark);
-  white-space: nowrap;
 }
 
 .atj2-hero__title {
@@ -396,6 +347,10 @@
 }
 
 .atj2-hero__desc {
+  /* Figma hero description: Inter Regular 18/28 */
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
   color: var(--color-deep-text);
   max-width: 548px;
   margin: 0;
@@ -418,29 +373,16 @@
   }
 }
 
-.atj2-hero__mascot {
-  width: 56px;
-  height: auto;
-  flex-shrink: 0;
+.atj2-hero__meta-row .case-meta {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
-@media (min-width: 1024px) {
-  .atj2-hero__mascot {
-    width: 71px;
-  }
-}
-
-.atj2-hero__meta {
-  margin: 0;
-  padding-left: 20px;
-  color: var(--color-deep-text);
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 25px;
-}
-
-.atj2-hero__meta li {
-  list-style: disc;
+/* Case meta block (css/case-meta.css): description colour; the content
+   column's own 24px gap + the block's 24px top padding give Figma's 48px */
+.atj2-hero {
+  --case-meta-color: var(--color-deep-text);
+  --case-meta-mt: 0;
 }
 
 /* ---------- Context (Source / Goal) ---------- */
@@ -571,6 +513,12 @@
 }
 
 /* ---------- Facts (4-column stat header) ---------- */
+
+/* Impact (982:23736): "Impact:" label sits 24px inside the section top
+   and 24px above the facts grid */
+.atj2-impact .atj2-eyebrow {
+  margin: 24px 0 24px;
+}
 
 .atj2-facts {
   display: grid;
@@ -731,7 +679,7 @@
     /* Figma exact: 48px top, 80px bottom. Horizontal is 0 because
        max-width:1120px + margin:auto already center it within the
        edge-to-edge outer panel. */
-    padding: 48px 0 80px;
+    padding: var(--space-section) 0;
   }
 }
 
@@ -958,7 +906,8 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-bottom: 32px;
+  /* was: 32px (Roman, 2026-11-23: text -> image 48px everywhere) */
+  margin-bottom: var(--space-block);
 }
 
 @media (min-width: 1024px) {
@@ -1019,7 +968,7 @@
 
 @media (min-width: 1024px) {
   .atj2-solutions__heading {
-    padding: 48px 80px 0;
+    padding: var(--space-section) 80px 0;
   }
 }
 
@@ -1048,8 +997,8 @@
 
 @media (min-width: 1024px) {
   .atj2-solution {
-    padding: 48px 80px;
-    gap: 48px;
+    padding: var(--space-block) 80px var(--space-section);
+    gap: var(--space-section);
   }
 
   /* Figma's 3 solution groups sit back-to-back with no extra gap between
@@ -1094,6 +1043,12 @@
   font-size: 16px;
   color: var(--color-white);
   margin: 0;
+}
+
+/* text -> its image / mockup: 48px (--space-block). The block's own gap is 12px,
+   so +36. was: 12px (Roman, 2026-11-23: more room under every caption) */
+.atj2-solution__media-block > p + * {
+  margin-top: calc(var(--space-block) - 12px);
 }
 
 .atj2-solution__row {
@@ -1366,6 +1321,12 @@
   display: flex;
   flex-direction: column;
   gap: 48px;
+}
+
+@media (min-width: 1024px) {
+  .atj2-features {
+    gap: var(--space-section);
+  }
 }
 
 .atj2-features__row {
@@ -2151,4 +2112,13 @@
 
 .case-reviews-cta {
   background-color: var(--color-dark-alien);
+}
+
+/* Vertical rhythm 2026-11-22 (Figma 982:23234): Research sub-blocks
+   (Methods / Analogs / Hypotheses) 48px apart on desktop */
+@media (min-width: 1024px) {
+  .atj2-research__grid,
+  .atj2-logos {
+    margin-bottom: 48px;
+  }
 }

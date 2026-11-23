@@ -1,0 +1,324 @@
+/*
+  Experience accordion (Home + About).
+  Collapsed row: Figma 1104:337 (About copy: 1101:5365). Expanded state is
+  not in Figma: built from the same tokens (fonts, colours, --space-* scale).
+
+  Markup per row (js/experience-accordion.js adds .is-enhanced to the list):
+    li.exp
+      .exp__head            position: relative; the button's ::after covers it,
+                            so a click anywhere on the row toggles the panel
+        .exp__title         role + company link, dates
+        button.exp__toggle  chevron; aria-expanded / aria-controls
+        .exp__body          summary (collapsed) and panel (expanded), swapped
+  The company link sits above the button's overlay (position: relative;
+  z-index: 1), so it opens the company site and does not toggle the row.
+  Without JS the panels are simply shown (no summary, no chevron).
+*/
+
+.exp {
+  /* the row (hover fill, dividers, click area) reaches 24px past the text
+     column on both sides; text itself stays on the column edge */
+  --exp-bleed: min(24px, var(--page-px, 24px));
+  position: relative;
+  margin-inline: calc(-1 * var(--exp-bleed));
+  padding-inline: var(--exp-bleed);
+  border-top: 1px solid rgba(255, 254, 254, 0.08);
+  transition: background-color 0.15s ease-out;
+}
+
+.exp:first-child {
+  border-top: 0;
+}
+
+.exp:last-child {
+  border-bottom: 1px solid rgba(255, 254, 254, 0.08);
+}
+
+.exp__head {
+  display: grid;
+  grid-template-columns: 420px minmax(0, 1fr) 24px;
+  column-gap: var(--space-stack);
+  align-items: start;
+  padding-block: var(--space-stack);
+}
+
+.exp__title {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.exp__role,
+.exp__dates,
+.exp__summary,
+.exp__note,
+.exp__links,
+.exp__role-line,
+.exp__role-text {
+  margin: 0;
+}
+
+.exp__role {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-white);
+  overflow-wrap: anywhere;
+}
+
+.exp__dates {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 20px;
+  color: rgba(255, 254, 254, 0.6);
+}
+
+/* purple means a link, and only a link */
+.exp__company,
+.exp__case {
+  position: relative;
+  z-index: 1;
+  color: var(--color-purple-on-dark);
+  text-decoration: none;
+}
+
+.exp__company:hover,
+.exp__case:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.exp__company:focus-visible,
+.exp__case:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ---- toggle: a 24px chevron whose ::after stretches over the whole row ---- */
+
+.exp__toggle {
+  grid-column: 3;
+  grid-row: 1;
+  display: none;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.exp__toggle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.exp__toggle:focus-visible {
+  outline: none;
+}
+
+.exp__toggle:focus-visible::after {
+  outline: 2px solid var(--color-white);
+  outline-offset: -2px;
+}
+
+.exp__chev {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 24px;
+  height: 24px;
+  color: var(--color-white);
+  opacity: 0.6;
+  transition: opacity 0.15s ease-out, color 0.15s ease-out, transform 0.22s ease-out;
+}
+
+.exp__chev-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.is-enhanced .exp__toggle {
+  display: block;
+}
+
+.is-enhanced .exp:hover {
+  background-color: rgba(255, 254, 254, 0.03);
+}
+
+.is-enhanced .exp:hover .exp__chev {
+  opacity: 1;
+}
+
+/* hovering the arrow itself: accent colour */
+.is-enhanced .exp__chev:hover {
+  opacity: 1;
+  color: var(--color-purple-on-dark);
+}
+
+.is-enhanced .exp.is-open .exp__chev {
+  transform: rotate(180deg);
+}
+
+/* ---- summary <-> panel: one column, the old text folds away, the new one unfolds ---- */
+
+.exp__body {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+}
+
+.exp__fold {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.exp__fold-in {
+  min-height: 0;
+  overflow: hidden;
+  /* room for focus rings inside the clipped box */
+  padding: 4px;
+  margin: -4px;
+}
+
+.exp__summary {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 24px;
+  color: rgba(255, 254, 254, 0.72);
+}
+
+/* no JS: everything is visible, the summary is redundant */
+.exp__fold--summary {
+  display: none;
+}
+
+.is-enhanced .exp__fold--summary {
+  display: grid;
+}
+
+.is-enhanced .exp__fold {
+  transition: grid-template-rows 0.22s ease-out, opacity 0.22s ease-out, visibility 0s linear 0s;
+}
+
+.is-enhanced .exp:not(.is-open) .exp__fold--panel,
+.is-enhanced .exp.is-open .exp__fold--summary {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition: grid-template-rows 0.22s ease-out, opacity 0.22s ease-out, visibility 0s linear 0.22s;
+}
+
+.exp__panel {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 24px;
+  color: rgba(255, 254, 254, 0.72);
+}
+
+.exp__list {
+  margin: 0;
+  padding: 0 0 0 20px;
+  list-style: disc;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-tight);
+}
+
+.exp__list li::marker {
+  color: rgba(255, 254, 254, 0.6);
+}
+
+.exp__links {
+  margin-top: var(--space-gap);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-tight) var(--space-stack);
+}
+
+.exp__note {
+  margin-top: var(--space-gap);
+  color: rgba(255, 254, 254, 0.6);
+}
+
+/* "4 roles": four short lines, no bullets */
+.exp__roles {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-tight);
+}
+
+.exp__role-line strong {
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+.exp__role-line strong .exp__company {
+  font-weight: 700;
+}
+
+.exp__role-dates {
+  color: rgba(255, 254, 254, 0.6);
+}
+
+/* ---- phones: title over summary, chevron top right, panel full width ---- */
+
+@media (max-width: 767px) {
+  .exp__head {
+    grid-template-columns: minmax(0, 1fr) 24px;
+    column-gap: var(--space-gap);
+    row-gap: var(--space-tight);
+  }
+
+  .exp__title {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .exp__toggle {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .exp__body {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .exp__panel {
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exp,
+  .exp__chev,
+  .is-enhanced .exp__fold,
+  .is-enhanced .exp:not(.is-open) .exp__fold--panel,
+  .is-enhanced .exp.is-open .exp__fold--summary {
+    transition: none;
+  }
+}
+
+/* ---- About page: same component in the 930px text column (Figma 999:37338) ---- */
+
+.experience-section--about .home-col {
+  max-width: 930px;
+}

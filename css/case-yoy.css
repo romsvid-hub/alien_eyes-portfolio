@@ -44,7 +44,7 @@
 /* ---------- Shared primitives ---------- */
 
 .yoy-section {
-  padding: 48px var(--page-px);
+  padding: var(--case-section-py) var(--page-px);
 }
 
 @media (min-width: 1280px) {
@@ -79,13 +79,21 @@
   }
 }
 
+.yoy-heading--scope {
+  /* Figma 1019:37667: "My Scope" is 40px on a 48px line (the other H2 are 40/40) */
+  line-height: 48px;
+  /* was: 24px (Roman, 2026-11-23: more room between "My Scope" and "Source:") */
+  margin-bottom: var(--space-block);
+}
+
 .yoy-heading--spaced {
   margin-top: 32px;
 }
 
 @media (min-width: 1024px) {
   .yoy-heading--spaced {
-    margin-top: 48px;
+    /* 80px between big blocks (Figma 982:25563, 2026-11-22) */
+    margin-top: var(--space-section);
   }
 }
 
@@ -204,8 +212,21 @@
   margin-top: 32px;
 }
 
+/* The Challenge: 80px above and below the panel (Roman, 2026-11-23; was 32px) */
+.yoy-section--tint > .yoy-media + .yoy-panel,
+.yoy-section--tint > .yoy-panel + .yoy-row {
+  margin-top: var(--space-section);
+}
+
 .yoy-section--tint > .yoy-label + .yoy-media {
   margin-top: 0;
+}
+
+/* Figma (982:25517 -> 982:25520): "Before:" sits flush on its image, 0 gap
+   (synced 2026-11-17; was 16px) */
+.yoy-section--tint > .yoy-label {
+  /* was: 0 (Roman, 2026-11-23: 48px between "Before:" and the screenshot) */
+  margin-bottom: var(--space-block);
 }
 
 /* Screens strip: reused wherever the design shows 3 phone mockups in a
@@ -317,7 +338,8 @@
     border-radius: 48px;
     flex-direction: row;
     align-items: flex-start;
-    padding: 64px var(--page-px) 48px;
+    /* 48px right inset (Figma): text column from x=652 is 580px wide */
+    padding: 64px 48px 48px var(--page-px);
   }
 }
 
@@ -507,30 +529,6 @@
   }
 }
 
-/*
-  Placeholder tags, added 2026-09-09 (Roman: "all tags are a template,
-  I'll replace them later"). Own yellow-tinted chip, matching this
-  case's own accent instead of the generic gray .tag (css/home.css) —
-  same visual language as .yoy-facts__card's border. Radius verified
-  against Figma's shared "Tag" component (2:13460): 16px, same as every
-  other tag on the site.
-*/
-.yoy-tag {
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-  padding: 4px 10px;
-  background-color: rgba(255, 184, 0, 0.12);
-  border: 1px solid rgba(255, 184, 0, 0.3);
-  border-radius: 16px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: -0.0028px;
-  color: var(--yoy-accent);
-  white-space: nowrap;
-}
-
 .yoy-hero__title-row {
   display: flex;
   flex-direction: column;
@@ -550,33 +548,25 @@
 }
 
 .yoy-hero__desc {
+  /* Figma hero description: Inter Regular 18/28 */
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
   color: #fffefe;
 }
 
-/*
-  Synced 2026-09-10: Figma's Meta list is now a plain bulleted <ul>
-  (get_design_context on 796:12776) — was a boxed dt/dd table before.
-  No background/border on the list itself in the current design; it
-  just sits on the hero's own (now gradient) background.
-*/
-.yoy-details {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+/* Case meta block (css/case-meta.css): description colour; the content
+   column's 24px gap + the block's 24px top padding give Figma's 48px
+   (mobile gap is 20px, hence the small extra margin there) */
+.yoy-hero {
+  --case-meta-color: #fffefe;
+  --case-meta-mt: 4px;
 }
 
-.yoy-details li {
-  color: var(--yoy-muted);
-  font-size: 16px;
-  line-height: 25px;
-}
-
-.yoy-details b {
-  color: var(--yoy-accent);
-  font-weight: 500;
+@media (min-width: 1024px) {
+  .yoy-hero {
+    --case-meta-mt: 0;
+  }
 }
 
 /* ---------- Three Facts (768:13259) ---------- */
@@ -750,6 +740,20 @@
   margin-top: 32px;
 }
 
+/* Roman, 2026-11-23 (was 32px for all five): 80px between the big blocks
+   (Research | Analogs and benchmarking | JTBD and gaps), 48px between a text
+   and the visual under / over it. */
+.yoy-research > .yoy-subheading,
+.yoy-research > .yoy-body-muted + .yoy-panel {
+  margin-top: var(--space-section);
+}
+
+.yoy-research > .yoy-logos,
+.yoy-research > .yoy-logos + .yoy-body-muted,
+.yoy-research > .yoy-two-col + .yoy-media {
+  margin-top: var(--space-block);
+}
+
 /* ---------- Key Decisions (768:13317) ---------- */
 
 /*
@@ -890,13 +894,25 @@
   margin-top: 24px;
 }
 
-@media (min-width: 1024px) {
-  .yoy-feature + .yoy-feature {
-    margin-top: 48px;
-  }
+/* Core Features: 16px between the intro line and the first card (Roman,
+   2026-11-17); Figma's first card also has 16px top padding (982:25650) */
+.yoy-section > p.body-large + .yoy-feature {
+  margin-top: 16px;
 }
 
 @media (min-width: 1024px) {
+  .yoy-feature + .yoy-feature {
+    /* 80px between features (Figma 982:25707-25711, 2026-11-22) */
+    margin-top: var(--space-section);
+  }
+
+}
+
+@media (min-width: 1024px) {
+  .yoy-section > p.body-large + .yoy-feature {
+    padding-top: 16px;
+  }
+
   .yoy-feature {
     flex-direction: row;
     align-items: center;
@@ -1022,6 +1038,13 @@
   align-items: flex-start;
   gap: 24px;
   margin-top: 40px;
+}
+
+/* Results: 80px before the focus row on desktop (Figma 982:25744) */
+@media (min-width: 1024px) {
+  .yoy-results__focus {
+    margin-top: var(--space-section);
+  }
 }
 
 @media (min-width: 1024px) {

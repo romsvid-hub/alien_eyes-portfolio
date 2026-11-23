@@ -19,7 +19,8 @@
   not flush with the 80px page margin used everywhere else.
 */
 .about-hero__inner {
-  max-width: 739px;
+  /* was: 739px (Roman widened the text column in Figma 999:37342: 930px) */
+  max-width: 930px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -42,6 +43,8 @@
 
 .about-pictures {
   margin-top: 60px;
+  /* 80px to the Experience band (Figma 999:37338: photos end 988, band starts 1068) */
+  margin-bottom: var(--space-section);
   overflow: hidden;
 }
 
@@ -98,12 +101,9 @@
 /* ---------- Reviews section spacing override ---------- */
 
 /*
-  .case-reviews-cta reuses .home-section's default top padding
-  (64px/96px) everywhere else, which only collapses to 0 when the
-  immediately preceding sibling is also .home-section (see home.css).
-  .about-pictures isn't one (it's an intentionally edge-to-edge
-  strip), so this page sets the required 60px directly instead.
+  Reviews now follow the Experience band, 80px below it (Figma: band ends
+  1858, Reviews start 1938). was: 60px directly under the photo strip.
 */
-.about-page .case-reviews-cta {
-  padding-top: 60px;
+.about-page .experience-section + .case-reviews-cta {
+  padding-top: var(--space-section);
 }
