@@ -109,13 +109,28 @@
   margin-top: 96px;
 }
 
+/* Figma (982:26016, 26027, 26058, 26064): each Research block container has
+   extra bottom padding - 24px under the analog logos, 16px under the audience,
+   the artifacts and the information architecture - on top of the 80px between
+   blocks (desktop; QA Updates page 2026-11-23). */
+@media (min-width: 1024px) {
+  .ridi-block--spaced:has(.ridi-logos) {
+    padding-bottom: var(--space-stack);
+  }
+
+  .ridi-block--audience,
+  .ridi-block--spaced:has(.ridi-artifact-media) {
+    padding-bottom: var(--space-gap);
+  }
+}
+
 /* Desktop: every Research block 80px apart, the audience beat included
    (Figma 982:26016/26027/26058/26064, vertical rhythm 2026-11-22) */
 @media (min-width: 1024px) {
   .ridi-block--spaced,
   .ridi-block--spaced.ridi-block--audience,
   .ridi-block--audience + .ridi-block--spaced {
-    margin-top: 80px;
+    margin-top: var(--space-section);
   }
 }
 
@@ -853,7 +868,7 @@
 @media (min-width: 1024px) {
   .ridi-card-block + .ridi-card-block {
     /* 80px between big blocks (Figma 982:26210/26211, 2026-11-22) */
-    margin-top: 80px;
+    margin-top: var(--space-section);
   }
 }
 
