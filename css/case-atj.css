@@ -1271,9 +1271,9 @@
 /* 80px vertical rhythm on desktop (Figma 982:22845: 80/80, gap 80) */
 @media (min-width: 1024px) {
   .atj-screens {
-    padding-top: 80px;
-    padding-bottom: 80px;
-    gap: 80px;
+    padding-top: var(--space-section);
+    padding-bottom: var(--space-section);
+    gap: var(--space-section);
   }
 }
 
@@ -1419,7 +1419,7 @@
 @media (min-width: 1024px) {
   /* Research: personas -> "Overall scope of work" 80px (982:22673 pt80) */
   .atj-section > .atj-scope {
-    margin-top: 80px;
+    margin-top: var(--space-section);
   }
 
   /* FigJam link (982:22678): 48px above and below the board image */

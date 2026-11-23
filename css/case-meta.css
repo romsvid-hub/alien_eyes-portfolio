@@ -55,3 +55,21 @@
     flex-basis: auto;
   }
 }
+
+/* Links in a value (Company website, Live app, Prototype ...): same colour as
+   the text (Figma: underlined, no accent colour), opens in a new tab */
+.case-meta dd a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.case-meta dd a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.case-meta dd a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
