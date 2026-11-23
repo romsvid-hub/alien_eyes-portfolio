@@ -1,0 +1,57 @@
+/*
+  Text-link shimmer for the links inside case studies (Roman, 2026-11-23).
+  The same effect as the job-card-tailwind link on /case-atj (see
+  .atj-jobcard-showcase__note a in case-atj.css): a glint runs through the
+  letters left to right every 1.5s while the link's section is on screen.
+  js/link-shimmer.js marks the links (data-shimmer-auto, data-text) and
+  sets --glint to a colour that shows on the link's own text colour;
+  .is-shimmering is toggled while the section is in view. Nothing runs
+  under prefers-reduced-motion.
+*/
+/* stays an inline box (no inline-block / overflow: that would lift the link off
+   the baseline of the text next to it); the glint copy sits on the same box */
+a[data-shimmer-auto] {
+  position: relative;
+}
+
+a[data-shimmer-auto][data-text]::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  white-space: nowrap;
+  /* the link is an inline box: its height is the font's content area, so the
+     copy needs 'normal' too or it sits a couple of px lower */
+  line-height: normal;
+  color: transparent;
+  background-image: linear-gradient(
+    100deg,
+    transparent 0%,
+    transparent 40%,
+    var(--glint, rgba(255, 255, 255, 0.95)) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  pointer-events: none;
+  opacity: 0;
+  text-decoration: none;
+}
+
+a[data-shimmer-auto].is-shimmering::after {
+  animation: case-link-shimmer 1500ms ease-in-out infinite;
+}
+
+@keyframes case-link-shimmer {
+  0% { background-position: 100% 0; opacity: 1; }
+  100% { background-position: 0% 0; opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a[data-shimmer-auto].is-shimmering::after {
+    animation: none;
+  }
+}

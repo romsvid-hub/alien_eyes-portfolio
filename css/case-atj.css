@@ -1147,7 +1147,8 @@
 .atj-jobcard__pin-inner {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  /* was: 48px (Roman, 2026-11-23: more room under "The card is designed so candidates ...") */
+  gap: var(--space-section);
 }
 
 .atj-jobcard__row {

@@ -68,7 +68,8 @@
    Facts-specific override, not a change to .atj2-section itself. */
 .atj2-section:has(> .atj2-facts) {
   padding-top: 70px;
-  padding-bottom: 32px;
+  /* was: 32px (Roman, 2026-11-23: more room under the Impact blocks) */
+  padding-bottom: var(--space-block);
 }
 
 /* "Key Solutions" (the blue .atj2-solutions panel) is an edge-to-edge
@@ -905,7 +906,8 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-bottom: 32px;
+  /* was: 32px (Roman, 2026-11-23: text -> image 48px everywhere) */
+  margin-bottom: var(--space-block);
 }
 
 @media (min-width: 1024px) {
@@ -1041,6 +1043,12 @@
   font-size: 16px;
   color: var(--color-white);
   margin: 0;
+}
+
+/* text -> its image / mockup: 48px (--space-block). The block's own gap is 12px,
+   so +36. was: 12px (Roman, 2026-11-23: more room under every caption) */
+.atj2-solution__media-block > p + * {
+  margin-top: calc(var(--space-block) - 12px);
 }
 
 .atj2-solution__row {

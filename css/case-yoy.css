@@ -82,6 +82,8 @@
 .yoy-heading--scope {
   /* Figma 1019:37667: "My Scope" is 40px on a 48px line (the other H2 are 40/40) */
   line-height: 48px;
+  /* was: 24px (Roman, 2026-11-23: more room between "My Scope" and "Source:") */
+  margin-bottom: var(--space-block);
 }
 
 .yoy-heading--spaced {
@@ -210,6 +212,12 @@
   margin-top: 32px;
 }
 
+/* The Challenge: 80px above and below the panel (Roman, 2026-11-23; was 32px) */
+.yoy-section--tint > .yoy-media + .yoy-panel,
+.yoy-section--tint > .yoy-panel + .yoy-row {
+  margin-top: var(--space-section);
+}
+
 .yoy-section--tint > .yoy-label + .yoy-media {
   margin-top: 0;
 }
@@ -217,7 +225,8 @@
 /* Figma (982:25517 -> 982:25520): "Before:" sits flush on its image, 0 gap
    (synced 2026-11-17; was 16px) */
 .yoy-section--tint > .yoy-label {
-  margin-bottom: 0;
+  /* was: 0 (Roman, 2026-11-23: 48px between "Before:" and the screenshot) */
+  margin-bottom: var(--space-block);
 }
 
 /* Screens strip: reused wherever the design shows 3 phone mockups in a
@@ -729,6 +738,20 @@
 .yoy-research > .yoy-body-muted + .yoy-panel,
 .yoy-research > .yoy-two-col + .yoy-media {
   margin-top: 32px;
+}
+
+/* Roman, 2026-11-23 (was 32px for all five): 80px between the big blocks
+   (Research | Analogs and benchmarking | JTBD and gaps), 48px between a text
+   and the visual under / over it. */
+.yoy-research > .yoy-subheading,
+.yoy-research > .yoy-body-muted + .yoy-panel {
+  margin-top: var(--space-section);
+}
+
+.yoy-research > .yoy-logos,
+.yoy-research > .yoy-logos + .yoy-body-muted,
+.yoy-research > .yoy-two-col + .yoy-media {
+  margin-top: var(--space-block);
 }
 
 /* ---------- Key Decisions (768:13317) ---------- */

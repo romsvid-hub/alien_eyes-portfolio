@@ -49,6 +49,9 @@ var reviews = [
 // (7s) before, and only on case-yoy / case-ridi.
 var REVIEWS_INTERVAL_MS = 8000;
 
+// Reviews that are not tied to one case (shown right after a case's own ones).
+var NEUTRAL_REVIEWS = ["Natalia Zaverukha"];
+
 document.addEventListener("DOMContentLoaded", function () {
   var carousel = document.querySelector(".reviews-carousel");
   var slide = document.querySelector(".review-slide");
@@ -97,15 +100,27 @@ document.addEventListener("DOMContentLoaded", function () {
   var current = defaultIndex >= 0 ? defaultIndex : 0;
 
   if (caseMode) {
-    var first = defaultIndex >= 0 ? reviews[defaultIndex] : null;
-    var rest = reviews.filter(function (r) { return r !== first; });
+    // Order on case pages (Roman, 2026-11-23): the case's own reviews first, in
+    // the order given by data-priority-reviews="A|B|C" on .review-slide (most
+    // senior first); then the neutral reviews (NEUTRAL_REVIEWS); then everything
+    // else in random order. Pages without a priority list (YOY, Ridi) start with
+    // the neutral ones.
+    var priorityAttr = slide.getAttribute("data-priority-reviews");
+    var priorityNames = priorityAttr ? priorityAttr.split("|") : defaultName ? [defaultName] : [];
+    var byName = function (n) { return reviews.filter(function (r) { return r.name === n; })[0]; };
+    var head = [];
+    priorityNames.concat(NEUTRAL_REVIEWS).forEach(function (n) {
+      var r = byName(n);
+      if (r && head.indexOf(r) < 0) head.push(r);
+    });
+    var rest = reviews.filter(function (r) { return head.indexOf(r) < 0; });
     for (var i = rest.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
       var tmp = rest[i];
       rest[i] = rest[j];
       rest[j] = tmp;
     }
-    reviews = first ? [first].concat(rest) : rest;
+    reviews = head.concat(rest);
     defaultIndex = 0;
     current = 0;
   }
