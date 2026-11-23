@@ -534,7 +534,7 @@
   .uq2-panel__inner {
     gap: 24px;
     /* 80px vertical rhythm (2026-11-22, Figma 23896/24012/24135) */
-    padding: 80px 0;
+    padding: var(--space-section) 0;
   }
 
   /* Key Solutions: eyebrow + title stay 24px apart; the blocks after
@@ -713,12 +713,12 @@
 
 @media (min-width: 1024px) {
   .uq2-features {
-    gap: 80px;
+    gap: var(--space-section);
   }
 
   /* Research sub-blocks 80px apart (Figma 982:23950 / 982:23974) */
   .uq2-research__label {
-    margin-top: 80px;
+    margin-top: var(--space-section);
   }
 }
 
@@ -736,6 +736,14 @@
 .uq2-feature__media {
   border-radius: 12px;
   overflow: hidden;
+}
+
+/* Figma 982:24108: the large Extension + Mobile screenshot sits 80px under its
+   description (24px margin + 56px padding; padding so the margins don't collapse) */
+@media (min-width: 1024px) {
+  .uq2-feature__media--spaced {
+    padding-top: calc(var(--space-section) - var(--space-stack));
+  }
 }
 
 .uq2-feature__media img {
