@@ -91,7 +91,7 @@
 @media (min-width: 1024px) {
   .yoy-heading--spaced {
     /* 80px between big blocks (Figma 982:25563, 2026-11-22) */
-    margin-top: 80px;
+    margin-top: var(--space-section);
   }
 }
 
@@ -880,7 +880,7 @@
 @media (min-width: 1024px) {
   .yoy-feature + .yoy-feature {
     /* 80px between features (Figma 982:25707-25711, 2026-11-22) */
-    margin-top: 80px;
+    margin-top: var(--space-section);
   }
 
 }
@@ -1020,7 +1020,7 @@
 /* Results: 80px before the focus row on desktop (Figma 982:25744) */
 @media (min-width: 1024px) {
   .yoy-results__focus {
-    margin-top: 80px;
+    margin-top: var(--space-section);
   }
 }
 
