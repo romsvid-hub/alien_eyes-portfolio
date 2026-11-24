@@ -52,16 +52,11 @@
     <link rel="stylesheet" href="css/link-shimmer.css" />
     <link rel="stylesheet" href="css/reveal.css" />
     <!--
-      Tailwind CDN — scoped to the Job Card showcase only (see
-      "Live component" note in that section). Not used anywhere else on
-      this site, which is otherwise plain hand-written CSS on purpose.
-      preflight:false stops Tailwind's base reset from touching this
-      page's own typography/base styles outside the showcase.
+      Tailwind utilities for the Job Card showcase only (see "Live component" note in that
+      section): css/job-card-tailwind.css is built once from this page (no runtime CDN script).
+      Not used anywhere else on this site, which is otherwise plain hand-written CSS on purpose.
     -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = { corePlugins: { preflight: false } };
-    </script>
+    <link rel="stylesheet" href="css/job-card-tailwind.css" />
     <!-- Microsoft Clarity analytics -->
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
@@ -616,7 +611,7 @@
         <div class="atj-jobcard-showcase">
           <!--
             Live component, not a screenshot: all 7 states from
-            github.com/romsvid-hub/job-card-tailwind (Tailwind CDN),
+            github.com/romsvid-hub/job-card-tailwind (Tailwind),
             extended from the repo's single "Default"-ish state to the
             full Figma state set (node 761:17614, ATJ copy — Main design
             file), verified via get_design_context. Mobile only now
