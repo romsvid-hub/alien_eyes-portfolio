@@ -518,3 +518,12 @@
     display: none;
   }
 }
+
+/* Figma: "Contact me" and "View case study" are 274x43 */
+@media (min-width: 1024px) {
+  .page-home .hero-actions .btn,
+  .page-home .case-card__cta {
+    min-width: 274px;
+    justify-content: center;
+  }
+}
