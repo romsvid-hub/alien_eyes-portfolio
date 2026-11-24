@@ -38,6 +38,8 @@
   /* 2px dots, 24px step, white 13% */
   background-image: radial-gradient(circle at 12px 12px, rgba(255, 255, 255, 0.13) 1px, transparent 1.4px);
   background-size: 24px 24px;
+  /* layer opacity 75% (Roman, 2026-11-24) */
+  opacity: 0.75;
 }
 
 /* ---------- layout: 1200px content, 120px on the sides at 1440 ---------- */
@@ -111,21 +113,60 @@
 
 .page-home .hero-card {
   max-width: var(--hm-content);
+}
+
+/*
+  Tilt + light spot, shared by the hero card and the six case cards (js/home-motion.js sets
+  --hm-tilt-x / --hm-tilt-y / --mx / --my and .is-hovered while the cursor is over a card).
+  The transform exists only while a card is hovered, so no card sits on its own 3D layer
+  the rest of the time. The scroll-reveal sets transform: none on revealed elements (same
+  specificity, loaded later), hence the longer selectors.
+*/
+.page-home .hero-card,
+.page-home .case-card {
   --hm-tilt-x: 0deg;
   --hm-tilt-y: 0deg;
   --mx: 50%;
   --my: 50%;
-  transform: perspective(1200px) rotateX(var(--hm-tilt-x)) rotateY(var(--hm-tilt-y));
-  transition: transform 0.35s ease-out;
 }
 
-/* the scroll-reveal sets transform: none on revealed elements (same specificity, loaded later):
-   the tilt has to win over it once the card has been revealed */
 .page-home .hero-card.reveal-init.is-revealed {
-  transform: perspective(1200px) rotateX(var(--hm-tilt-x)) rotateY(var(--hm-tilt-y));
   transition:
     opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.35s ease-out;
+}
+
+.page-home .case-card.reveal-init.is-revealed {
+  transition:
+    opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.35s ease-out,
+    scale 150ms ease;
+}
+
+.page-home .hero-card.reveal-init.is-revealed.is-hovered,
+.page-home .case-card.reveal-init.is-revealed.is-hovered {
+  transform: perspective(1200px) rotateX(var(--hm-tilt-x)) rotateY(var(--hm-tilt-y));
+}
+
+/* light spot on the case cards (the hero card uses its ::after; the cards' ::after is the sphere) */
+.page-home .case-card::before,
+.page-home .case-card:hover::before,
+.page-home .case-card:active::before {
+  display: block;
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle 320px at var(--mx) var(--my), rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0) 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.page-home .case-card.is-hovered::before {
+  opacity: 1;
 }
 
 /* the dark photo texture is gone: the card is glass */
@@ -349,10 +390,6 @@
 }
 
 /* Figma: no tinted hover surface any more, the glass card itself is the surface */
-.page-home .case-card::before {
-  display: none;
-}
-
 @media (hover: hover) {
   .page-home .case-card:hover {
     border-color: rgba(123, 97, 255, 0.35);
@@ -520,13 +557,13 @@
     animation: none;
   }
 
-  .page-home .hero-card,
-  .page-home .hero-card.reveal-init.is-revealed {
+  .page-home .hero-card.reveal-init.is-revealed.is-hovered,
+  .page-home .case-card.reveal-init.is-revealed.is-hovered {
     transform: none;
-    transition: none;
   }
 
-  .page-home .hero-card::after {
+  .page-home .hero-card::after,
+  .page-home .case-card::before {
     display: none;
   }
 }
