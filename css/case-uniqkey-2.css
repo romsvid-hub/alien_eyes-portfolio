@@ -58,6 +58,16 @@
   padding: 0;
 }
 
+/* F8 / Figma: Product Scope starts 24px below the Context block (was 80px) */
+.uq2-section--scope {
+  padding-top: 24px;
+}
+
+/* F9 / Figma: 128px from the end of the Challenge panel to "Before:" (was 80px) */
+.uq2-section--before {
+  padding-top: calc(var(--space-section) + var(--space-block));
+}
+
 .uq2-eyebrow {
   font-family: var(--font-display);
   font-weight: 700;
@@ -369,7 +379,8 @@
 }
 
 .uq2-context__media {
-  margin-top: 24px;
+  /* F8 / Figma: 80px between the Context text and the screenshot (was 24px) */
+  margin-top: var(--space-section);
   border-radius: 8px;
   overflow: hidden;
 }

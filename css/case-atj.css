@@ -368,6 +368,9 @@
 @media (min-width: 1024px) {
   .atj-context__image {
     max-width: 55%;
+    /* F11 / Figma 982:22511: 704x400.7 (was the photo's own ratio, 704x424), cropped by object-fit: cover */
+    aspect-ratio: 704 / 400.703;
+    align-self: center;
   }
 }
 
@@ -857,6 +860,22 @@
 
 .atj-mvp__contribution {
   padding: 48px var(--page-px) 16px;
+}
+
+/* F12 / Figma 982:22699: "My contribution:" starts 80px below the gallery (was 48px) and the
+   decoration under it is clipped 32px at the section's end (section 3108.6px, as before) */
+@media (min-width: 1024px) {
+  .atj-mvp__contribution {
+    padding-top: var(--space-section);
+  }
+
+  .atj-mvp {
+    overflow: hidden;
+  }
+
+  .atj-mvp__bottom-deco {
+    margin-bottom: -32px;
+  }
 }
 
 .atj-mvp__contribution-text {

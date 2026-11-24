@@ -444,7 +444,8 @@
   .atj2-heroselect {
     border-radius: 48px;
     padding: 48px 80px 0;
-    gap: 48px;
+    /* F12 / Figma 1022:4577: 24px between the Before and After columns (was 48px) */
+    gap: 24px;
   }
 }
 
@@ -683,7 +684,8 @@
     /* Figma exact: 48px top, 80px bottom. Horizontal is 0 because
        max-width:1120px + margin:auto already center it within the
        edge-to-edge outer panel. */
-    padding: var(--space-section) 0;
+    /* F12 / Figma 982:23195: 48px below the cards (was 80px; the section is 500px high) */
+    padding: var(--space-section) 0 var(--space-block);
   }
 }
 
@@ -823,6 +825,13 @@
 }
 
 /* ---------- Research ---------- */
+
+/* F12 / Figma 982:23234: 48px from the "Research" heading to the first block (was 24px) */
+@media (min-width: 1024px) {
+  #cs-research > .atj2-eyebrow {
+    margin-bottom: var(--space-block);
+  }
+}
 
 .atj2-research__intro {
   color: var(--color-dark-alien);
