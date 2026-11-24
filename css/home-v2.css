@@ -263,8 +263,14 @@
   padding: 20px;
   border: 1px solid transparent;
   border-radius: 20px;
-  opacity: 0.45;
   gap: 12px;
+}
+
+/* Figma dims items 02-04 to 45%; 65% keeps their body text at WCAG AA (4.5:1) on #110E15.
+   Specificity beats .reveal-init.is-revealed { opacity: 1 } from reveal.css. */
+.page-home .expertise-grid .expertise-item.reveal-init.is-revealed:not(:first-child),
+.page-home .expertise-grid .expertise-item:not(:first-child) {
+  opacity: 0.65;
 }
 
 .page-home .expertise-item::before {
@@ -355,6 +361,12 @@
 
 .page-home .case-card:has(.case-card__link:focus-visible) {
   border-color: rgba(123, 97, 255, 0.6);
+  /* the link's own outline would be clipped by the card's overflow: hidden */
+  box-shadow: 0 0 0 2px var(--color-white, #fffefe);
+}
+
+.page-home .case-card__link:focus-visible {
+  outline: none;
 }
 
 /* the old per-case coloured glows are replaced by the corner spheres */
@@ -401,7 +413,7 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   .page-home .experience-section {
     display: grid;
     grid-template-columns: 320px minmax(0, 1fr);
