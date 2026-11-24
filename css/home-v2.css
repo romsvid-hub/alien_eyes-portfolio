@@ -1,0 +1,520 @@
+/*
+  Home 2 (Figma "Alien Eyes Portfolio - Home 2", node 1126:5413). Loaded only on
+  index.html, after home.css; everything is scoped to body.page-home, so the case
+  pages, About and the shared files are not touched.
+
+  Values come from the file itself (read through the Figma MCP, 2026-11-24):
+  page #110E15, one accent #7B61FF, glass = white 3.5% fill + white 9% 1px stroke +
+  blur 24 + radius 32, nav = #110E15 70% + blur 16 + white 6% line, glow spheres =
+  radial #B49CFF -> #7B61FF -> transparent, 'Deco / UFO' instances (5) with their own
+  size / opacity / tilt. Animations: transform and opacity only.
+*/
+
+.page-home {
+  --hm-bg: #110e15;
+  --hm-accent: #7b61ff;
+  --hm-accent-soft: #b49cff;
+  --hm-glass-fill: rgba(255, 255, 255, 0.035);
+  --hm-glass-line: rgba(255, 255, 255, 0.09);
+  --hm-line-soft: rgba(255, 255, 255, 0.06);
+  --hm-content: 1200px;
+
+  /* one accent: every other purple / blue / orange token resolves to it on Home */
+  --color-purple-light: var(--hm-accent);
+  --color-cta-purple: var(--hm-accent);
+  --color-purple-on-dark: var(--hm-accent);
+
+  background-color: var(--hm-bg);
+}
+
+/* ---------- dot grid: fixed layer over the whole viewport (Figma 1134:784) ---------- */
+
+.page-home::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* 2px dots, 24px step, white 13% */
+  background-image: radial-gradient(circle at 12px 12px, rgba(255, 255, 255, 0.13) 1px, transparent 1.4px);
+  background-size: 24px 24px;
+}
+
+/* ---------- layout: 1200px content, 120px on the sides at 1440 ---------- */
+
+.page-home .home-section {
+  padding-inline: max(var(--page-px), calc((100vw - var(--hm-content)) / 2));
+}
+
+.page-home .home-col {
+  max-width: var(--hm-content);
+}
+
+.page-home main {
+  position: relative;
+}
+
+/* ---------- navigation ---------- */
+
+.page-home .site-nav {
+  background-color: rgba(17, 14, 21, 0.7);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--hm-line-soft);
+}
+
+/* ---------- footer: no own background, a thin top line ---------- */
+
+.page-home .site-footer {
+  background-color: transparent;
+  border-top: 1px solid var(--hm-line-soft);
+}
+
+.page-home .site-footer__bg {
+  display: none;
+}
+
+/* ---------- glass (hero card and the six case cards) ---------- */
+
+.page-home .hero-card,
+.page-home .case-card {
+  background-color: var(--hm-glass-fill);
+  border: 1px solid var(--hm-glass-line);
+  border-radius: 32px;
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+}
+
+/* ---------- glow spheres ---------- */
+
+.hm-sphere {
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* ---------- hero (Figma 1134:322) ---------- */
+
+.page-home .hero-section {
+  padding-top: 24px;
+  padding-bottom: 48px;
+}
+
+@media (min-width: 1024px) {
+  .page-home .hero-section {
+    padding-top: 40px;
+    padding-bottom: 96px;
+  }
+}
+
+.page-home .hero-card {
+  max-width: var(--hm-content);
+  --hm-tilt-x: 0deg;
+  --hm-tilt-y: 0deg;
+  --mx: 50%;
+  --my: 50%;
+  transform: perspective(1200px) rotateX(var(--hm-tilt-x)) rotateY(var(--hm-tilt-y));
+  transition: transform 0.35s ease-out;
+}
+
+/* the scroll-reveal sets transform: none on revealed elements (same specificity, loaded later):
+   the tilt has to win over it once the card has been revealed */
+.page-home .hero-card.reveal-init.is-revealed {
+  transform: perspective(1200px) rotateX(var(--hm-tilt-x)) rotateY(var(--hm-tilt-y));
+  transition:
+    opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.35s ease-out;
+}
+
+/* the dark photo texture is gone: the card is glass */
+.page-home .hero-card__texture {
+  display: none;
+}
+
+/* light spot that follows the cursor (--mx / --my) */
+.page-home .hero-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle 280px at var(--mx) var(--my), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 70%);
+  transition: opacity 0.3s ease-out;
+}
+
+.page-home .hero-card.is-hovered::after {
+  opacity: 1;
+}
+
+@media (min-width: 1024px) {
+  .page-home .hero-card {
+    min-height: 636px;
+    /* photo 520px + 48px breathing room; Figma 1200 card: 652px */
+    padding: 48px 572px 48px 48px;
+  }
+
+  @media (min-width: 1440px) {
+    .page-home .hero-card {
+      padding-right: 652px;
+    }
+  }
+
+  /* Figma 1134:400: portrait 520x535 at (680, 100), flush with the card's right and bottom */
+  .page-home .hero-card__photo {
+    top: 100px;
+    right: 0;
+    bottom: 0;
+    width: 520px;
+  }
+}
+
+/* Figma 1134:790 (620px at 560,40) and 1134:791 (380px at -120,360): paint opacity x stop alpha */
+.hm-sphere--hero-a {
+  left: 560px;
+  top: 40px;
+  width: 620px;
+  height: 620px;
+  background: radial-gradient(circle closest-side, rgba(180, 156, 255, 0.055) 0%, rgba(123, 97, 255, 0.033) 45%, rgba(123, 97, 255, 0) 100%);
+  animation: hm-drift-a 16s ease-in-out infinite;
+}
+
+.hm-sphere--hero-b {
+  left: -120px;
+  top: 360px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle closest-side, rgba(180, 156, 255, 0.25) 0%, rgba(123, 97, 255, 0.15) 45%, rgba(123, 97, 255, 0) 100%);
+  animation: hm-drift-b 13s ease-in-out -4s infinite;
+}
+
+@keyframes hm-drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 1; }
+  50% { transform: translate3d(-40px, 24px, 0) scale(1.1); opacity: 0.75; }
+}
+
+@keyframes hm-drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 1; }
+  50% { transform: translate3d(36px, -28px, 0) scale(1.14); opacity: 0.7; }
+}
+
+/* ---------- client logos ---------- */
+
+@media (min-width: 1024px) {
+  .page-home .logos-section {
+    padding-bottom: 0;
+  }
+}
+
+/* ---------- Expertise: progress line + numbered items (Figma 1134:411) ---------- */
+
+.page-home .expertise-section {
+  position: relative;
+}
+
+.page-home .expertise-grid {
+  position: relative;
+  counter-reset: hm-ex;
+}
+
+@media (min-width: 1024px) {
+  .page-home .expertise-section {
+    padding-top: 140px;
+    padding-bottom: 140px;
+  }
+
+  .page-home .expertise-heading {
+    margin-bottom: 40px;
+    padding-left: 40px;
+  }
+
+  .page-home .expertise-grid {
+    margin-top: 80px;
+    gap: 12px;
+  }
+}
+
+/* track and active segment, 40px above the items (desktop) */
+.page-home .expertise-grid::before {
+  display: none;
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -40px;
+  height: 2px;
+  border-radius: 2px;
+  background:
+    linear-gradient(90deg, rgba(123, 97, 255, 0.2), var(--hm-accent)) left / 270px 2px no-repeat,
+    rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 1024px) {
+  .page-home .expertise-grid::before {
+    display: block;
+  }
+}
+
+.page-home .expertise-item {
+  position: relative;
+  counter-increment: hm-ex;
+  padding: 20px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  opacity: 0.45;
+  gap: 12px;
+}
+
+.page-home .expertise-item::before {
+  content: counter(hm-ex, decimal-leading-zero);
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 0.08em;
+  color: rgba(255, 254, 254, 0.7);
+  margin-bottom: 0;
+}
+
+.page-home .expertise-item:first-child {
+  opacity: 1;
+  border-color: rgba(123, 97, 255, 0.35);
+  background: linear-gradient(135deg, rgba(123, 97, 255, 0.22), rgba(123, 97, 255, 0.02) 90%);
+}
+
+.page-home .expertise-item:first-child::before {
+  color: var(--hm-accent);
+}
+
+/* ---------- Case Studies: 1200 wide, 120px between, a sphere in each card's corner ---------- */
+
+.page-home #case-studies {
+  position: relative;
+  padding-top: 0;
+  padding-bottom: 40px;
+}
+
+.page-home .case-studies-heading {
+  margin-bottom: 48px;
+}
+
+@media (min-width: 1024px) {
+  .page-home .case-studies-heading {
+    margin-bottom: 120px;
+  }
+}
+
+.page-home .case-card {
+  overflow: hidden;
+  padding: 0 16px;
+  margin-top: 0;
+}
+
+.page-home .case-card + .case-card {
+  margin-top: 48px;
+}
+
+@media (min-width: 768px) {
+  .page-home .case-card {
+    padding-inline: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-home .case-card {
+    padding-inline: 57px;
+  }
+
+  .page-home .case-card + .case-card {
+    margin-top: 120px;
+  }
+}
+
+.page-home .case-card__link {
+  padding-block: 24px;
+}
+
+@media (min-width: 1024px) {
+  .page-home .case-card__link {
+    column-gap: 48px;
+    padding-block: 49px;
+  }
+}
+
+/* Figma: no tinted hover surface any more, the glass card itself is the surface */
+.page-home .case-card::before {
+  display: none;
+}
+
+@media (hover: hover) {
+  .page-home .case-card:hover {
+    border-color: rgba(123, 97, 255, 0.35);
+  }
+}
+
+.page-home .case-card:has(.case-card__link:focus-visible) {
+  border-color: rgba(123, 97, 255, 0.6);
+}
+
+/* the old per-case coloured glows are replaced by the corner spheres */
+.page-home .case-card__glow {
+  display: none;
+}
+
+.page-home .case-card::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle closest-side, rgba(180, 156, 255, 0.5) 0%, rgba(123, 97, 255, 0.3) 45%, rgba(123, 97, 255, 0) 100%);
+  top: var(--hm-sphere-y, 257px);
+  left: -140px;
+}
+
+.page-home .case-card:nth-of-type(even)::after {
+  left: auto;
+  right: -140px;
+}
+
+/* sphere heights from the Figma cards (top of the card -> top of the sphere) */
+.page-home .case-card:nth-of-type(1) { --hm-sphere-y: 257px; }
+.page-home .case-card:nth-of-type(2) { --hm-sphere-y: 257px; }
+.page-home .case-card:nth-of-type(3) { --hm-sphere-y: 105px; }
+.page-home .case-card:nth-of-type(4) { --hm-sphere-y: 225px; }
+.page-home .case-card:nth-of-type(5) { --hm-sphere-y: 231px; }
+.page-home .case-card:nth-of-type(6) { --hm-sphere-y: 257px; }
+
+/* ---------- Experience: two columns, heading left, roles right (Figma 1134:650) ---------- */
+
+.page-home .home-section.experience-section {
+  background-color: transparent;
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .page-home .home-section.experience-section {
+    padding-block: 140px 76px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-home .experience-section {
+    display: grid;
+    grid-template-columns: 320px minmax(0, 1fr);
+    column-gap: 64px;
+    align-items: start;
+  }
+
+  .page-home .experience-section .experience-heading {
+    margin: 0;
+    padding: 0;
+  }
+
+  .page-home .experience-section .experience-list {
+    margin: 0;
+    max-width: none;
+  }
+
+  /* rows are 816 wide with the text 24px inside (Figma: Title x=24, chevron x=768) */
+  .page-home .exp {
+    margin-inline: 0;
+    padding-inline: 24px;
+  }
+
+  .page-home .exp__head {
+    grid-template-columns: 260px minmax(0, 1fr) 24px;
+  }
+}
+
+.page-home .experience-section + .home-section {
+  padding-top: 80px;
+}
+
+/* ---------- 'Deco / UFO' (Figma component 1134:812), absolutely placed by the content edges ---------- */
+
+.hm-ufo {
+  position: absolute;
+  z-index: 2;
+  display: none;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* the Figma positions are relative to the 1200px content centred in 1440px: only from 1440 */
+@media (min-width: 1440px) {
+  .hm-ufo {
+    display: block;
+  }
+}
+
+.hm-ufo--1 {
+  /* Figma Home 2 'Deco / UFO': 72x38.4, opacity 0.4, rotation 10deg (Figma counts counter-clockwise) */
+  width: 72px;
+  height: 38.4px;
+  left: calc(50% - 720px + 72.79px);
+  top: 73.21px;
+  opacity: 0.4;
+  transform: rotate(-10deg);
+}
+
+.hm-ufo--2 {
+  /* Figma Home 2 'Deco / UFO': 132x70.4, opacity 0.45, rotation -12deg (Figma counts counter-clockwise) */
+  width: 132px;
+  height: 70.4px;
+  left: calc(50% - 720px + 1265.88px);
+  top: 358.20px;
+  opacity: 0.45;
+  transform: rotate(12deg);
+}
+
+.hm-ufo--3 {
+  /* Figma Home 2 'Deco / UFO': 96x51.2, opacity 0.35, rotation 6deg (Figma counts counter-clockwise) */
+  width: 96px;
+  height: 51.2px;
+  left: calc(50% - 720px + 42.41px);
+  top: 1870.13px;
+  opacity: 0.35;
+  transform: rotate(-6deg);
+}
+
+.hm-ufo--4 {
+  /* Figma Home 2 'Deco / UFO': 84x44.8, opacity 0.4, rotation -6deg (Figma counts counter-clockwise) */
+  width: 84px;
+  height: 44.8px;
+  left: calc(50% - 720px + 1252.11px);
+  top: 3379.52px;
+  opacity: 0.4;
+  transform: rotate(6deg);
+}
+
+.hm-ufo--5 {
+  /* Figma Home 2 'Deco / UFO': 120x64, opacity 0.45, rotation 8deg (Figma counts counter-clockwise) */
+  width: 120px;
+  height: 64px;
+  left: calc(50% - 720px + 93.87px);
+  top: 175.29px;
+  opacity: 0.45;
+  transform: rotate(-8deg);
+}
+
+/* ---------- reduced motion: no drift, no tilt, no light spot ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .hm-sphere {
+    animation: none;
+  }
+
+  .page-home .hero-card,
+  .page-home .hero-card.reveal-init.is-revealed {
+    transform: none;
+    transition: none;
+  }
+
+  .page-home .hero-card::after {
+    display: none;
+  }
+}
