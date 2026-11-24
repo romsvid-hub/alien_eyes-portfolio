@@ -130,9 +130,11 @@
     border-radius: 48px;
     flex-direction: row;
     align-items: center;
-    gap: 46px;
+    /* Figma 982:23807: media column 625px + 24px gap + text column 631px (583px after the 48px inset) */
+    gap: 24px;
     padding: 24px 0;
-    min-height: 557px;
+    /* was: 557px (F4: 673px as in Figma 982:23807) */
+    min-height: 673px;
     /* Card capped at Figma's own 1280px frame width and centered, same
        pattern as ATJ2 — page-px stops mattering once this max-width
        takes over, since auto margins override it. The 80px column
@@ -166,11 +168,10 @@
 */
 @media (min-width: 1280px) {
   .uq2-hero__media {
-    flex: 0 0 526px;
-    width: 526px;
-    /* Margin (not padding) — this box's own content stays exactly
-       526px, just shifted right from the card's edge. */
-    margin-left: 80px;
+    /* Figma 982:23807: 625px column, the 470px image centred in it (was 526px + 80px margin) */
+    flex: 0 0 625px;
+    width: 625px;
+    margin-left: 0;
   }
 }
 
@@ -228,9 +229,9 @@
 @media (min-width: 1280px) {
   .uq2-hero__title {
     font-size: 64px;
-    /* Figma title box is 583px (container 631 - 48 inset): "Streamline UX
-       for" is 580.08px wide, so it needs these 3px to stay on one line */
-    margin-right: -3px;
+    /* Figma title box is 583px (631 - 48 inset): "Streamline UX for" is
+       580.08px wide and fits without the old -3px hack now the column is 583px */
+    margin-right: 0;
   }
 }
 
@@ -240,7 +241,8 @@
   font-weight: 400;
   line-height: 28px;
   color: #ffffff;
-  max-width: 548px;
+  /* Figma 982:23825: 583px (the text column), was 548px */
+  max-width: 583px;
   margin: 12px 0 0;
 }
 

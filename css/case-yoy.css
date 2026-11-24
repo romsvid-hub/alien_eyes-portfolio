@@ -526,6 +526,8 @@
   .yoy-hero__content {
     gap: 24px;
     flex: 1;
+    /* Figma 982:25443: text column 548px (was 580px) */
+    max-width: 548px;
   }
 }
 

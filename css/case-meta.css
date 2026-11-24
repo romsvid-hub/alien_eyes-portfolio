@@ -73,3 +73,18 @@
   outline-offset: 2px;
   border-radius: 2px;
 }
+
+/*
+  Manual line breaks from the Figma hero texts (Roman, 2026-11-24: the line
+  breaks are part of the design). Only from 1024px; below that the text wraps
+  by itself.
+*/
+.br-desktop {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .br-desktop {
+    display: inline;
+  }
+}

@@ -210,6 +210,68 @@
   }
 }
 
+/* Round 2 (Roman, 2026-11-24, F2): from 1440px the hero follows Figma 982:22968 —
+   laptop column 628px, text column from x=652, 580px wide (title on two lines,
+   lead 480px), hero 673px high. Below 1440 the proportional layout above stays. */
+.atj-hero__laptop {
+  position: absolute;
+  inset: 0;
+}
+
+.atj-hero__laptop .atj-hero__mockup {
+  left: -13.18%;
+  top: -19.34%;
+  width: 133.98%;
+  height: 151.44%;
+}
+
+@media (min-width: 1440px) {
+  .atj-hero {
+    min-height: 673px;
+    align-items: center;
+  }
+
+  .atj-hero__mockup-frame {
+    flex: 0 0 628px;
+    width: 628px;
+    height: 574px;
+    aspect-ratio: auto;
+    margin-right: 24px;
+  }
+
+  /* Figma: laptop window 594x392 at (46.56, 99.5) in the 628x574 column */
+  .atj-hero__laptop {
+    left: 46.56px;
+    top: 99.5px;
+    right: auto;
+    bottom: auto;
+    width: 594px;
+    height: 392px;
+    overflow: hidden;
+  }
+
+  .atj-hero__laptop .atj-hero__mockup {
+    left: -28.62%;
+    top: -38.55%;
+    width: 154.04%;
+    height: 175.06%;
+  }
+
+  .atj-hero__content {
+    flex: 0 0 628px;
+    align-self: stretch;
+    padding: 48px 48px 48px 0;
+  }
+
+  .atj-hero__title {
+    max-width: none;
+  }
+
+  .atj-hero__desc {
+    max-width: 480px;
+  }
+}
+
 /*
   QA #1 / D5 (2026-11-20): the laptop frame keeps main's geometry (55% of the
   card = 704px at 1440, original crop percentages), so the laptop is no
@@ -232,6 +294,12 @@
   .atj-hero__title {
     font-size: var(--h1-size);
     line-height: 74px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .atj-hero__title {
+    max-width: none;
   }
 }
 

@@ -281,11 +281,20 @@
   }
 }
 
+
 @media (min-width: 1024px) {
   .ridi-hero {
     border-radius: 48px;
     /* 48px right inset (Figma): text column from x=652 is 580px wide */
     padding: 64px 48px 48px var(--page-px);
+  }
+}
+
+/* Figma 982:25895: 113px above and 85px below the 475px image => 673px hero,
+   the same height as the other cases (was ~587px) */
+@media (min-width: 1280px) {
+  .ridi-hero {
+    padding: 113px var(--page-px) 85px;
   }
 }
 
@@ -460,6 +469,8 @@
   .ridi-hero__content {
     gap: 24px;
     flex: 1;
+    /* Figma 982:25900: text column 548px */
+    max-width: 548px;
   }
 }
 

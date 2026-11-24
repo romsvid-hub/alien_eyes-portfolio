@@ -124,7 +124,8 @@
 @media (min-width: 1024px) {
   .case-hero {
     border-radius: 48px;
-    min-height: 653px;
+    /* was: 653px (F4: 673px as in Figma 982:24288) */
+    min-height: 673px;
     /* Figma: mockup on the left, text column from x=652 of the 1280px card
        (50.94%), 48px right inset => 580px wide Case meta block. The block
        grows the card's height; nothing is clipped. */
@@ -143,13 +144,11 @@
   }
 }
 
-.case-hero__bg,
 .case-hero__overlay {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
 }
 
 .case-hero__overlay {
@@ -168,7 +167,9 @@
 @media (min-width: 1024px) {
   .case-hero__content {
     gap: 24px;
-    max-width: none;
+    /* Figma 982:24306 / 24309 / 24310: title, lead and data block are 548px wide
+       (was the whole 580px column) */
+    max-width: 548px;
   }
 }
 
