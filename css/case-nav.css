@@ -74,18 +74,23 @@
 /* Accent + inline-state colours per case (Figma instances of 987:4210) */
 .case-nav[data-case="atj"] {
   --case-accent: #c44323;
+  /* P9: underline on the dark stuck bar >= 3:1 (was the accent, 2.8:1) */
+  --case-underline: #cb5133;
 }
 
 .case-nav[data-case="atj2"] {
   --case-accent: #3d5bae;
   /* the underline is only seen on the dark stuck bar, where #3d5bae is 2.91:1;
      a lighter tint of the same blue gives >= 3:1 (QA #1, D16) */
-  --case-underline: #4a69be;
+  /* P9 (round 2): #4a69be was 2.74:1 on the stuck bar over a light page */
+  --case-underline: #5f79bf;
 }
 
 .case-nav[data-case="uniqkey2"],
 .case-nav[data-case="uniqkey"] {
   --case-accent: #475fa9;
+  /* P9: underline on the dark stuck bar >= 3:1 (the accent is 2.35:1) */
+  --case-underline: #6479b9;
 }
 
 /* dark cases: inline bar on the dark page background */

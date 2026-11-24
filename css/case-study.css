@@ -826,6 +826,14 @@
   margin-top: 48px;
 }
 
+/* P5: this anchor is a block without padding of its own, so the "Results" item used to land
+   with "The Shift" flush under the bar. It now lands --case-anchor-gap (80px) lower, like the
+   sections whose heading sits 80px below their top (js/case-nav.js reads the variable). */
+.case-shift-outro[data-case-section] {
+  --case-anchor-gap: var(--space-section);
+  scroll-margin-top: calc(var(--case-nav-top, 59px) + 48px + var(--space-section));
+}
+
 .case-shift-outro-heading {
   color: var(--color-subtle-text);
 }

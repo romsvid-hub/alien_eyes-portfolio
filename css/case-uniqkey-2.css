@@ -482,10 +482,18 @@
 
 /* Gap re-verified via get_design_context after Roman's own resize
    pass in Figma on 898:20074 — 48px, up from the earlier 24-32px. */
+/* P12 (round 2): one row of five logos needs ~1034px; below 1280px the row wraps (at 1024px it
+   overflowed by 6px) */
 @media (min-width: 1024px) {
   .uq2-logos {
-    flex-wrap: nowrap;
     justify-content: center;
+    gap: 24px 48px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .uq2-logos {
+    flex-wrap: nowrap;
     gap: 48px;
   }
 }

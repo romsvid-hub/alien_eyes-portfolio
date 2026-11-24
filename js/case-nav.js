@@ -86,8 +86,15 @@
     return y;
   }
 
+  // Optional extra room above an anchor that has no padding of its own
+  // (CSS custom property --case-anchor-gap on the anchor element)
+  function anchorTop(el) {
+    var gap = parseFloat(getComputedStyle(el).getPropertyValue("--case-anchor-gap")) || 0;
+    return docTop(el) - gap;
+  }
+
   function landing(el) {
-    return Math.max(0, Math.round(docTop(el) - (top + BAR)));
+    return Math.max(0, Math.round(anchorTop(el) - (top + BAR)));
   }
 
   var activeId = null;
@@ -130,7 +137,7 @@
     var line = window.pageYOffset + top + BAR + 1;
     var active = targets[0].id; // before the first anchor: the first item
     for (var i = 0; i < targets.length; i++) {
-      if (docTop(targets[i].el) <= line) active = targets[i].id;
+      if (anchorTop(targets[i].el) <= line) active = targets[i].id;
     }
     setActive(active, stuck && !wasStuck);
   }
