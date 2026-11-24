@@ -222,6 +222,10 @@
        was double-insetting both sides at once — see .uq2-hero__media's
        comment above). */
     padding-right: 48px;
+    /* Figma 982:23810: the text column is 593px high and centred in the 673px card, its
+       content starts at the top of it (y=40), not centred */
+    min-height: 593px;
+    justify-content: flex-start;
   }
 }
 

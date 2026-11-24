@@ -504,6 +504,14 @@
   }
 }
 
+@media (min-width: 1280px) {
+  /* Figma 982:25918 breaks the lead after "vision" (text box 548px, Figma's Inter is a hair
+     wider than the browser's): a 536px measure gives the same three lines */
+  .ridi-hero__desc:last-of-type {
+    max-width: 536px;
+  }
+}
+
 .ridi-hero__desc {
   /* Figma hero description: Inter Regular 18/28 */
   font-size: 18px;

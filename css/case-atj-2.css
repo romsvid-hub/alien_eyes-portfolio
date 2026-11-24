@@ -330,6 +330,19 @@
   }
 }
 
+/* Round 2: Figma 982:23031 is a fixed 673px card whose text column (616px of content) is
+   centred and overflows the 48px insets; so from 1280px: 673px high, 24px insets (was ~711px) */
+@media (min-width: 1280px) {
+  .atj2-hero {
+    min-height: 673px;
+  }
+
+  .atj2-hero__content {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}
+
 .atj2-hero__title {
   font-family: var(--font-display);
   font-weight: 800;
