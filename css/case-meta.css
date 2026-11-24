@@ -88,3 +88,35 @@
     display: inline;
   }
 }
+
+/* Round 2 (R3): no one-word last lines in the hero text on narrow screens
+   (text-wrap: pretty; browsers without it just wrap as before) */
+.case-meta dd,
+.atj-hero__desc p,
+.atj2-hero__desc,
+.uq2-hero__desc,
+.case-hero__subhead,
+.yoy-hero__desc,
+.ridi-hero__desc {
+  text-wrap: pretty;
+}
+
+/* ...and balanced lines (headline and lead) below the 1440 layout, where the columns are narrower
+   than in Figma; at 1440 the Figma line breaks apply as they are */
+@media (max-width: 1439px) {
+  .atj-hero__title,
+  .atj2-hero__title,
+  .uq2-hero__title,
+  .case-hero__title,
+  .yoy-hero__title,
+  .ridi-hero__title,
+  .atj-hero__desc p,
+  .atj2-hero__desc,
+  .uq2-hero__desc,
+  .case-hero__subhead,
+  .yoy-hero__desc,
+  .ridi-hero__desc,
+  .case-meta dd {
+    text-wrap: balance;
+  }
+}

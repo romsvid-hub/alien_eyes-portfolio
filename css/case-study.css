@@ -250,6 +250,19 @@
   }
 }
 
+/* Round 2 (R1): "−27%" (true minus sign) is wider than "27%" was, and the fourth item spilled
+   out of the 4-column grid at 1024-1119px (22px horizontal scroll). Tighter gap and a smaller
+   number only in that range. */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .case-impact__grid {
+    gap: 24px;
+  }
+
+  .case-impact__value {
+    font-size: 52px;
+  }
+}
+
 /*
   Figma (2:14497) lays the number and label side by side (row), not
   stacked — verified via screenshot. That's only comfortable once each
