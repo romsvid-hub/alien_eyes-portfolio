@@ -1125,7 +1125,7 @@
 }
 
 .atj-jobcard-showcase__note a.is-shimmering::after {
-  animation: atj-link-shimmer 1500ms ease-in-out infinite;
+  animation: atj-link-shimmer 1500ms ease-in-out 3; /* was: infinite */
 }
 
 @keyframes atj-link-shimmer {

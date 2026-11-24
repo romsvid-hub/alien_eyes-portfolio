@@ -2,7 +2,7 @@
   Text-link shimmer for the links inside case studies (Roman, 2026-11-23).
   The same effect as the job-card-tailwind link on /case-atj (see
   .atj-jobcard-showcase__note a in case-atj.css): a glint runs through the
-  letters left to right every 1.5s while the link's section is on screen.
+  letters left to right 3 times (1.5s each) when the link's section comes into view, then it stops.
   js/link-shimmer.js marks the links (data-shimmer-auto, data-text) and
   sets --glint to a colour that shows on the link's own text colour;
   .is-shimmering is toggled while the section is in view. Nothing runs
@@ -42,7 +42,8 @@ a[data-shimmer-auto][data-text]::after {
 }
 
 a[data-shimmer-auto].is-shimmering::after {
-  animation: case-link-shimmer 1500ms ease-in-out infinite;
+  /* 3 passes, then it stops (was: endless). It plays again when the section comes into view again. */
+  animation: case-link-shimmer 1500ms ease-in-out 3;
 }
 
 @keyframes case-link-shimmer {
