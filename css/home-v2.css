@@ -27,19 +27,31 @@
   background-color: var(--hm-bg);
 }
 
-/* ---------- dot grid: fixed layer over the whole viewport (Figma 1134:784) ---------- */
+/* ---------- dot grid: only behind Case Studies and Experience (Figma 1134:784) ---------- */
 
+/*
+  One fixed layer for the whole viewport (it stays put while scrolling), shown only behind
+  #case-studies and #experience: every other block of the page covers it with the page
+  colour itself, which looks like no background at all. Not done by clipping the layer per
+  section (clip-path), because then the glass cards can no longer blur the dots under them.
+*/
 .page-home::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  /* 2px dots, 24px step, white 13% */
-  background-image: radial-gradient(circle at 12px 12px, rgba(255, 255, 255, 0.13) 1px, transparent 1.4px);
+  /* 2px dots, 24px step, white 9.75% (13% less a quarter: Roman, 2026-11-25) */
+  background-image: radial-gradient(circle at 12px 12px, rgba(255, 255, 255, 0.0975) 1px, transparent 1.4px);
   background-size: 24px 24px;
-  /* layer opacity 75% (Roman, 2026-11-24) */
-  opacity: 0.75;
+}
+
+.page-home .hero-section,
+.page-home .logos-section,
+.page-home .expertise-section,
+.page-home #feedbacks,
+.page-home .site-footer {
+  background-color: var(--hm-bg);
 }
 
 /* ---------- layout: 1200px content, 120px on the sides at 1440 ---------- */
@@ -68,7 +80,6 @@
 /* ---------- footer: no own background, a thin top line ---------- */
 
 .page-home .site-footer {
-  background-color: transparent;
   border-top: 1px solid var(--hm-line-soft);
 }
 
