@@ -131,7 +131,8 @@
        grows the card's height; nothing is clipped. */
     /* padding % would resolve against the parent (page) width, so derive the
        card's own width: min(1280px, 100vw - 2 * page gutter) */
-    padding: 48px 48px 48px calc(min(1280px, 100vw - 2 * var(--page-px)) * 0.509375);
+    /* 70px top / 40px bottom: Figma has the title at y=70 inside the 673px card */
+    padding: 70px 48px 40px calc(min(1280px, 100vw - 2 * var(--page-px)) * 0.509375);
     justify-content: center;
   }
 }
@@ -223,7 +224,7 @@
   .case-hero__mockup {
     position: absolute;
     left: 3.6719%;
-    top: 50%;
+    top: calc(50% + 14px);
     transform: translateY(-50%);
     width: 41.6406%;
     max-width: none;
