@@ -93,3 +93,9 @@
     padding: 24px;
   }
 }
+
+/* the whole bottom of a case page (reviews, next case, call to action) sits on the same
+   surface as on Home, so that block and the footer read as one, as there (Roman, 2026-11-26) */
+main .home-section.case-reviews-cta {
+  background-color: #110e15;
+}
