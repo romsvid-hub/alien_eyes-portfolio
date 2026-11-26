@@ -288,6 +288,16 @@
   }
 }
 
+/* four in a row is too narrow here for the label beside the number (they ran into each
+   other from 1024 to about 1290px): the label goes under it */
+@media (min-width: 1024px) and (max-width: 1299px) {
+  .case-impact__item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
 .case-impact__value {
   font-family: var(--font-display);
   font-weight: 400;
