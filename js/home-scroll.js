@@ -48,9 +48,15 @@
       el: cases,
       sharp: true,
       targets: function () { return all("#case-studies > .case-studies-heading").concat(cards); },
-      enter: function () { return all("#case-studies > .case-studies-heading").concat(cards.slice(0, 1)); }
+      // the heading has its own entrance (js/home-enter.js)
+      enter: function () { return cards.slice(0, 1); }
     },
-    { el: experience, sharp: true, targets: function () { return all("#experience > .experience-heading, #experience > .experience-list"); } },
+    {
+      el: experience,
+      sharp: true,
+      targets: function () { return all("#experience > .experience-heading, #experience > .experience-list"); },
+      enter: function () { return all("#experience > .experience-list"); }
+    },
     // the reviews can be lent to a header popup, so the finale's children are looked up each time
     { el: finale, end: footer, sharp: true, targets: function () { return all("#feedbacks > *, .site-footer > .site-footer__row"); } }
   ];
