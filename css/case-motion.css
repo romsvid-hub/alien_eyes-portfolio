@@ -101,6 +101,47 @@ body .ridi-hero.is-hovered {
   opacity: 1;
 }
 
+/* ---------- B3: Impact on the whole screen ---------- */
+
+html.cs-slides {
+  --cs-nav: 59px;
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: var(--cs-nav);
+}
+
+html.cs-slides.nav-popup-open {
+  scroll-snap-type: none;
+}
+
+html.cs-slides .cs-hero {
+  scroll-snap-align: start;
+  scroll-margin-top: 24px; /* its top margin: the stop is the top of the page */
+}
+
+html.cs-slides .cs-impact {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - var(--cs-nav));
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/*
+  Everything from the case nav to the end of the page is one big snap area (js sizes it).
+  An area taller than the screen can be scrolled freely, so the long case text is never
+  pulled anywhere; its start is the stop where the nav is under the header.
+*/
+.cs-rest {
+  position: absolute;
+  left: 0;
+  width: 1px;
+  pointer-events: none;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
 @media (prefers-reduced-motion: reduce) {
   body .case-hero.is-hovered,
   body .atj-hero.is-hovered,
