@@ -263,7 +263,8 @@
           if (!entry.isIntersecting) armed.set(entry.target, true);
           else if (share >= 0.25 && armed.get(entry.target)) {
             armed.set(entry.target, false);
-            if (started) shootIn([entry.target]);
+            // blocks with their own entrance (js/title-enter.js) stay where they are
+            if (started && !entry.target.hasAttribute("data-enter")) shootIn([entry.target]);
           }
         });
         started = true;

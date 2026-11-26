@@ -36,3 +36,14 @@
     transition: none;
   }
 }
+
+/* title and rows waiting for their entrance (js/title-enter.js); no CSS transition while
+   waiting or entering, or it would override the entrance */
+.he-wait {
+  opacity: 0 !important;
+}
+
+.he-wait,
+.he-enter {
+  transition: none !important;
+}

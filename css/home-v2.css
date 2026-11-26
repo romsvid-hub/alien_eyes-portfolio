@@ -536,15 +536,3 @@
     justify-content: center;
   }
 }
-
-/* waiting for its entrance (js/home-enter.js) */
-.page-home .he-wait,
-.page-home .expertise-grid .expertise-item.he-wait {
-  opacity: 0 !important;
-}
-
-.page-home .he-wait,
-.page-home .he-enter,
-html.hm-slides .page-home .expertise-grid.has-active .expertise-item.he-enter {
-  transition: none !important;
-}

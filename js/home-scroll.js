@@ -48,7 +48,7 @@
       el: cases,
       sharp: true,
       targets: function () { return all("#case-studies > .case-studies-heading").concat(cards); },
-      // the heading has its own entrance (js/home-enter.js)
+      // the heading has its own entrance (js/title-enter.js)
       enter: function () { return cards.slice(0, 1); }
     },
     {
