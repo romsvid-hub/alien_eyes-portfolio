@@ -247,7 +247,8 @@
 
 /* ---- phones: title over summary, chevron top right, panel full width ---- */
 
-@media (max-width: 767px) {
+/* P8 (round 2): the stacked layout now runs up to 1023px (was 767px): at 768px the summary column was only ~220px wide */
+@media (max-width: 1023px) {
   .exp__head {
     grid-template-columns: minmax(0, 1fr) 24px;
     column-gap: var(--space-gap);
@@ -276,7 +277,7 @@
 
 /* two-column rows: the summary is at least as tall as a three-line title, so the panel
    starts 88px under the row's top, as in Figma */
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .exp.is-open .exp__fold--summary {
     min-height: 72px;
   }

@@ -58,6 +58,16 @@
   padding: 0;
 }
 
+/* F8 / Figma: Product Scope starts 24px below the Context block (was 80px) */
+.uq2-section--scope {
+  padding-top: 24px;
+}
+
+/* F9 / Figma: 128px from the end of the Challenge panel to "Before:" (was 80px) */
+.uq2-section--before {
+  padding-top: calc(var(--space-section) + var(--space-block));
+}
+
 .uq2-eyebrow {
   font-family: var(--font-display);
   font-weight: 700;
@@ -130,9 +140,11 @@
     border-radius: 48px;
     flex-direction: row;
     align-items: center;
-    gap: 46px;
+    /* Figma 982:23807: media column 625px + 24px gap + text column 631px (583px after the 48px inset) */
+    gap: 24px;
     padding: 24px 0;
-    min-height: 557px;
+    /* was: 557px (F4: 673px as in Figma 982:23807) */
+    min-height: 673px;
     /* Card capped at Figma's own 1280px frame width and centered, same
        pattern as ATJ2 — page-px stops mattering once this max-width
        takes over, since auto margins override it. The 80px column
@@ -166,11 +178,10 @@
 */
 @media (min-width: 1280px) {
   .uq2-hero__media {
-    flex: 0 0 526px;
-    width: 526px;
-    /* Margin (not padding) — this box's own content stays exactly
-       526px, just shifted right from the card's edge. */
-    margin-left: 80px;
+    /* Figma 982:23807: 625px column, the 470px image centred in it (was 526px + 80px margin) */
+    flex: 0 0 625px;
+    width: 625px;
+    margin-left: 0;
   }
 }
 
@@ -211,6 +222,10 @@
        was double-insetting both sides at once — see .uq2-hero__media's
        comment above). */
     padding-right: 48px;
+    /* Figma 982:23810: the text column is 593px high and centred in the 673px card, its
+       content starts at the top of it (y=40), not centred */
+    min-height: 593px;
+    justify-content: flex-start;
   }
 }
 
@@ -228,9 +243,9 @@
 @media (min-width: 1280px) {
   .uq2-hero__title {
     font-size: 64px;
-    /* Figma title box is 583px (container 631 - 48 inset): "Streamline UX
-       for" is 580.08px wide, so it needs these 3px to stay on one line */
-    margin-right: -3px;
+    /* Figma title box is 583px (631 - 48 inset): "Streamline UX for" is
+       580.08px wide and fits without the old -3px hack now the column is 583px */
+    margin-right: 0;
   }
 }
 
@@ -240,7 +255,8 @@
   font-weight: 400;
   line-height: 28px;
   color: #ffffff;
-  max-width: 548px;
+  /* Figma 982:23825: 583px (the text column), was 548px */
+  max-width: 583px;
   margin: 12px 0 0;
 }
 
@@ -367,7 +383,8 @@
 }
 
 .uq2-context__media {
-  margin-top: 24px;
+  /* F8 / Figma: 80px between the Context text and the screenshot (was 24px) */
+  margin-top: var(--space-section);
   border-radius: 8px;
   overflow: hidden;
 }
@@ -469,10 +486,18 @@
 
 /* Gap re-verified via get_design_context after Roman's own resize
    pass in Figma on 898:20074 — 48px, up from the earlier 24-32px. */
+/* P12 (round 2): one row of five logos needs ~1034px; below 1280px the row wraps (at 1024px it
+   overflowed by 6px) */
 @media (min-width: 1024px) {
   .uq2-logos {
-    flex-wrap: nowrap;
     justify-content: center;
+    gap: 24px 48px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .uq2-logos {
+    flex-wrap: nowrap;
     gap: 48px;
   }
 }

@@ -14,10 +14,25 @@
         }
       })();
     </script>
-    <title>ATJ — Inclusive AI-Driven Hiring Platform | Alien Eyes</title>
+    <title>Inclusive Hiring Platform | Alien Eyes</title>
+    <meta name="description" content="I helped design ATJ: an inclusive hiring platform that embeds fairness into the product's foundation not as a feature, but as the architecture itself." />
+    <link rel="canonical" href="https://alieneyes.ink/case-atj" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/favicon-180.png" />
+
+    <!-- Open Graph / LinkedIn / Facebook preview -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://alieneyes.ink/case-atj" />
+    <meta property="og:site_name" content="Alien Eyes" />
+    <meta property="og:title" content="Inclusive Hiring Platform" />
+    <meta property="og:description" content="I helped design ATJ: an inclusive hiring platform that embeds fairness into the product's foundation not as a feature, but as the architecture itself." />
+    <meta property="og:image" content="https://alieneyes.ink/assets/case-atj/hero-mockup.webp" />
+    <meta property="og:image:alt" content="ATJ platform shown on a laptop" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Inclusive Hiring Platform" />
+    <meta name="twitter:description" content="I helped design ATJ: an inclusive hiring platform that embeds fairness into the product's foundation not as a feature, but as the architecture itself." />
+    <meta name="twitter:image" content="https://alieneyes.ink/assets/case-atj/hero-mockup.webp" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -37,16 +52,11 @@
     <link rel="stylesheet" href="css/link-shimmer.css" />
     <link rel="stylesheet" href="css/reveal.css" />
     <!--
-      Tailwind CDN — scoped to the Job Card showcase only (see
-      "Live component" note in that section). Not used anywhere else on
-      this site, which is otherwise plain hand-written CSS on purpose.
-      preflight:false stops Tailwind's base reset from touching this
-      page's own typography/base styles outside the showcase.
+      Tailwind utilities for the Job Card showcase only (see "Live component" note in that
+      section): css/job-card-tailwind.css is built once from this page (no runtime CDN script).
+      Not used anywhere else on this site, which is otherwise plain hand-written CSS on purpose.
     -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = { corePlugins: { preflight: false } };
-    </script>
+    <link rel="stylesheet" href="css/job-card-tailwind.css" />
     <!-- Microsoft Clarity analytics -->
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
@@ -100,20 +110,20 @@
       <section class="atj-hero" data-reveal>
         <!-- IMAGE: CASE02-HERO-MOCKUP-01 | Laptop mockup of ATJ platform | replaceable -->
         <div class="atj-hero__mockup-frame">
-          <img
-            class="atj-hero__mockup"
-            src="assets/case-atj/hero-mockup.webp"
-            alt="ATJ platform shown on a laptop"
-          />
+          <div class="atj-hero__laptop">
+            <img
+              class="atj-hero__mockup"
+              src="assets/case-atj/hero-mockup.webp"
+              alt="ATJ platform shown on a laptop"
+            />
+          </div>
         </div>
         <div class="atj-hero__content">
-          <!-- was: eyebrow "Inclusive AI-Driven" + h1 "Hiring<br />Platform" (renamed 2026-11-17) -->
-          <h1 class="atj-hero__title">Inclusive Hiring Platform</h1>
+          <h1 class="atj-hero__title">Inclusive <br class="br-desktop" />Hiring Platform</h1>
           <div class="body-main atj-hero__desc">
             <p>
               I helped design ATJ: an inclusive hiring platform that embeds
-              fairness into the product's foundation not as a feature, but
-              as the architecture itself.
+              fairness into the product's foundation not <br class="br-desktop" />as a feature, but as the architecture itself.
             </p>
           </div>
           <!-- Case meta: text and links as in Figma (QA/Updates page, hero data block, 2026-11-23) -->
@@ -124,22 +134,19 @@
             </div>
             <div class="case-meta__row">
               <dt>Status:</dt>
-              <!-- was: "Design delivered to the client" (2026-11-23) -->
-              <dd>Design system shipped; pages in progress</dd>
+              <dd>Design system shipped; Pages in progress</dd>
             </div>
             <div class="case-meta__row">
               <dt>Company website:</dt>
-              <!-- new row (2026-11-23) -->
               <dd><a href="https://www.alltogether.jobs/" target="_blank" rel="noopener">alltogether.jobs</a> (Web design by another team)</dd>
             </div>
             <div class="case-meta__row">
               <dt>Duration:</dt>
-              <!-- was: "3 months (within a 1-year contract)" (2026-11-23) -->
               <dd>3 months</dd>
             </div>
             <div class="case-meta__row">
               <dt>Team:</dt>
-              <dd>Design team of 4 (me + 3 designers)</dd>
+              <dd>Design team of 4 (Me + 3 designers)</dd>
             </div>
             <div class="case-meta__row">
               <dt>My responsibilities:</dt>
@@ -202,7 +209,6 @@
       <section id="cs-context" data-case-section class="atj-section atj-context" data-reveal-group>
         <div class="atj-context__text">
           <div class="atj-context__copy">
-          <!-- was: "CONTEXT" (renamed 2026-11-17) -->
           <p class="atj-eyebrow atj-eyebrow--lg cs-title">Context</p>
           <p class="body-main atj-context__body">
             A Ukrainian organization building an ecosystem to connect
@@ -219,7 +225,6 @@
 
       <!-- UI: CASE02-INSIGHT-01 | The insight changed everything | inspect/adjust -->
       <section id="cs-challenge" data-case-section class="atj-section atj-insight">
-        <!-- was: "The insight changed everything" (renamed 2026-11-17) -->
         <p class="atj-eyebrow cc-trick" data-reveal>Challenge. The insight changed everything</p>
         <div class="atj-insight__row" data-reveal-group>
           <!-- IMAGE: CASE02-INSIGHT-IMAGE-01 | Insight illustration | replaceable -->
@@ -277,17 +282,17 @@
               <p class="atj-research__note">are employed (vs. up to 50% in Europe).</p>
             </div>
             <div class="atj-research__card atj-research__card--4">
-              <p class="atj-research__title">Nationwide Talent Shortage</p>
+              <p class="atj-research__title">Talent shortage</p>
               <p class="atj-research__stat">75%</p>
               <p class="atj-research__note">of employers face a constant workforce shortage.</p>
             </div>
             <div class="atj-research__card atj-research__card--5">
-              <p class="atj-research__title">Nationwide Talent Shortage</p>
+              <p class="atj-research__title">Underused 50+ workforce</p>
               <p class="atj-research__stat">27%</p>
               <p class="atj-research__note">of people over 50 are employed.</p>
             </div>
             <div class="atj-research__card atj-research__card--6">
-              <p class="atj-research__title">Nationwide Talent Shortage</p>
+              <p class="atj-research__title">IDP women out of work</p>
               <p class="atj-research__stat">56%</p>
               <p class="atj-research__note">of unemployed IDPs are women</p>
             </div>
@@ -600,7 +605,7 @@
         <div class="atj-jobcard-showcase">
           <!--
             Live component, not a screenshot: all 7 states from
-            github.com/romsvid-hub/job-card-tailwind (Tailwind CDN),
+            github.com/romsvid-hub/job-card-tailwind (Tailwind),
             extended from the repo's single "Default"-ish state to the
             full Figma state set (node 761:17614, ATJ copy — Main design
             file), verified via get_design_context. Mobile only now
@@ -1106,17 +1111,15 @@
 
         <!-- UI: HOME-CTA-01 | CTA block | inspect/adjust (shared component, reused unchanged) -->
         <div class="cta-section">
-          <h2 class="h2-section cta-heading">Ready to architect your next product?</h2>
+          <h2 class="h2-section cta-heading">Need fresh eyes on a complex product?</h2>
           <p class="body-large cta-description">
-            Whatever's easiest for you — reach out and let's talk.
+            Open to Product Designer roles and selected projects · Remote
           </p>
           <a
             class="btn btn--primary btn--contact"
-            href="https://www.linkedin.com/in/romsvid/" data-popup="contact"
-            target="_blank"
-            rel="noopener"
+            href="mailto:svidddrommm25@gmail.com?subject=Let%27s%20schedule%20a%20call"
           >
-            Contact Me
+            Let's schedule a call
             <img loading="lazy" width="16" height="16" class="btn__icon" src="assets/icons/icon-arrow-right.svg" alt="" />
           </a>
         </div>
@@ -1148,7 +1151,6 @@
       </div>
 
       <div class="site-footer__row site-footer__row--bottom">
-        <!-- new (2026-11-23): colophon next to the copyright; was: "© 2026 Roman Sviderskyi" only -->
         <p class="body-main site-footer__copyright">© 2026 Roman Sviderskyi<span class="site-footer__sep" aria-hidden="true"> · </span><span class="site-footer__colophon">Designed and hand-coded by me · Built with Claude Code</span></p>
         <p class="body-main site-footer__contact">
           +380 97 334 9540&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:svidddrommm25@gmail.com"
