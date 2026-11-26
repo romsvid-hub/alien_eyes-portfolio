@@ -186,39 +186,45 @@ document.addEventListener("DOMContentLoaded", function () {
     document.fonts.ready.then(measureMaxHeight);
   }
 
-  // Transition-aware slide change: on auto-scroll pages this fades/slides
-  // the old review out (CSS transition on .review-slide, see home.css),
-  // swaps the text once it's invisible, then fades the new one in. Other
-  // pages keep the original instant swap — same render(), no animation.
-  var TRANSITION_MS = 400;
-  var transitioning = false;
-  function goTo(index) {
-    if (!autoScrollEnabled) {
-      current = index;
+  // Slide change: the old review leaves one way, the new one arrives from the other.
+  // direction 1 = forward (next arrow, autoplay): out to the left, in from the right;
+  // -1 = back. Short (about 0.3s), transform and opacity only; instant with reduced motion.
+  var OUT_MS = 100;
+  var IN_MS = 190;
+  var SHIFT = 28; // px
+  var slideAnimation = null;
+
+  function goTo(index, direction) {
+    current = index; // at once, so quick clicks add up
+    if (slideAnimation) slideAnimation.cancel();
+    if (reduceMotion.matches || !slide.animate) {
       render(current);
       return;
     }
-    if (transitioning) return;
-    transitioning = true;
-    slide.classList.add("is-transitioning");
-    setTimeout(function () {
-      current = index;
+    slideAnimation = slide.animate(
+      [{ opacity: 0, transform: "translateX(" + -direction * SHIFT + "px)" }],
+      { duration: OUT_MS, easing: "ease-in", fill: "forwards" }
+    );
+    slideAnimation.onfinish = function () {
       render(current);
-      // Force reflow so the browser registers the "hidden" state before
-      // removing it, otherwise the fade-in transition wouldn't run.
-      void slide.offsetWidth;
-      slide.classList.remove("is-transitioning");
-      transitioning = false;
-    }, TRANSITION_MS);
+      slideAnimation.cancel();
+      slideAnimation = slide.animate(
+        [
+          { opacity: 0, transform: "translateX(" + direction * SHIFT + "px)" },
+          { opacity: 1, transform: "translateX(0)" }
+        ],
+        { duration: IN_MS, easing: "cubic-bezier(0.16, 1, 0.3, 1)" }
+      );
+    };
   }
 
   prevBtn.addEventListener("click", function () {
-    goTo((current - 1 + reviews.length) % reviews.length);
+    goTo((current - 1 + reviews.length) % reviews.length, -1);
     resetAutoScroll();
   });
 
   nextBtn.addEventListener("click", function () {
-    goTo((current + 1) % reviews.length);
+    goTo((current + 1) % reviews.length, 1);
     resetAutoScroll();
   });
 
@@ -236,7 +242,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function startAutoScroll() {
     if (!canRun() || autoScrollTimer) return;
     autoScrollTimer = setInterval(function () {
-      goTo((current + 1) % reviews.length);
+      goTo((current + 1) % reviews.length, 1);
     }, REVIEWS_INTERVAL_MS);
   }
   function stopAutoScroll() {
