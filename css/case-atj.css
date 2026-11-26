@@ -1536,3 +1536,20 @@
     padding-bottom: max(240px, 48vh);
   }
 }
+
+/* contrast (WCAG AA), 2026-11-26: the pale tint on the red band was 3.5:1, the grey names
+   3.7:1, white on the small grey tag 2.8:1 */
+.atj-smartfilters__intro,
+.atj-smartfilters__intro p,
+.atj-smartfilters__block-text,
+.atj-screens__body {
+  color: #ffffff;
+}
+
+.atj-painpoint__name {
+  color: #6b6b6b;
+}
+
+.atj-research__tag {
+  background-color: #6f737b;
+}

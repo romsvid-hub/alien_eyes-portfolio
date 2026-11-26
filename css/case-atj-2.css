@@ -2148,3 +2148,12 @@
     margin-bottom: 48px;
   }
 }
+
+/* contrast (WCAG AA), 2026-11-26: was 4.0:1 and 4.45:1 */
+.atj2-uikit__link a {
+  color: #2563d9;
+}
+
+.atj2-notif__text {
+  color: #616772;
+}

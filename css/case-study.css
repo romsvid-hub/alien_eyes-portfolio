@@ -345,7 +345,7 @@
 }
 
 .case-challenge {
-  background: linear-gradient(115.6deg, rgb(48, 114, 245) 36.6%, rgb(37, 95, 210) 94.9%);
+  background: linear-gradient(115.6deg, rgb(43, 106, 230) 36.6%, rgb(37, 95, 210) 94.9%); /* was rgb(48,114,245): white text 4.3:1 */
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -1331,4 +1331,25 @@
    above, one and a bit below) */
 .case-section:has(> .case-shift--panel:only-child) {
   padding-top: 8px;
+}
+
+/* contrast (WCAG AA), 2026-11-26: pale blue text on the brand blue was 3.7-4.2:1; the text is
+   now white and The shift plaque a shade deeper. The links were 4.0:1 */
+.case-challenge__context,
+.case-challenge__context p,
+.case-challenge__context strong {
+  color: #ffffff;
+}
+
+.case-shift--panel {
+  background-color: #2b6ae6;
+}
+
+.case-shift--panel .case-shift__text,
+.case-shift--panel .case-shift__text strong {
+  color: #ffffff;
+}
+
+.case-livefiles__links a {
+  color: #2563d9;
 }
