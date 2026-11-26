@@ -1524,3 +1524,15 @@
     gap: 24px;
   }
 }
+
+/* room after the job card, so that the "Live component" link under it can be noticed before
+   "Other impact screens" comes into view */
+.atj-jobcard {
+  padding-bottom: 160px;
+}
+
+@media (min-width: 1024px) {
+  .atj-jobcard {
+    padding-bottom: max(240px, 48vh);
+  }
+}

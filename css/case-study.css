@@ -1326,3 +1326,9 @@
 .case-reviews-cta {
   background-color: var(--color-dark-alien);
 }
+
+/* "The shift" plaque: the same air above it as below (it used to get two section paddings
+   above, one and a bit below) */
+.case-section:has(> .case-shift--panel:only-child) {
+  padding-top: 8px;
+}
