@@ -1,0 +1,113 @@
+/*
+  Motion on the six case pages (loaded after the case styles and reveal.css):
+  B1  the hero leans towards the cursor like the Home cards, with a glow in a darker shade
+      of its own background (js/card-motion.js);
+  B3  the Impact block under the hero takes the whole screen (js/case-slides.js, only on
+      pages that have one, from 1024px, without prefers-reduced-motion);
+  B4  the related-case block under the reviews looks and moves like the Home case cards.
+  Only transform and opacity animate.
+*/
+
+/* ---------- B1: hero tilt + glow ---------- */
+
+.case-hero,
+.atj-hero,
+.atj2-hero,
+.uq2-hero,
+.yoy-hero,
+.ridi-hero {
+  position: relative;
+  isolation: isolate; /* keeps the glow above the hero's own background, below its content */
+  --hm-tilt-x: 0deg;
+  --hm-tilt-y: 0deg;
+  transition: transform 0.35s ease-out;
+}
+
+/* the scroll reveal keeps its fade; its transform shares the tilt's timing */
+.case-hero.reveal-init.is-revealed,
+.atj-hero.reveal-init.is-revealed,
+.atj2-hero.reveal-init.is-revealed,
+.yoy-hero.reveal-init.is-revealed,
+.ridi-hero.reveal-init.is-revealed {
+  transition:
+    opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.35s ease-out;
+}
+
+body .case-hero.is-hovered,
+body .atj-hero.is-hovered,
+body .atj2-hero.is-hovered,
+body .uq2-hero.is-hovered,
+body .yoy-hero.is-hovered,
+body .ridi-hero.is-hovered {
+  transform: perspective(1200px) rotateX(var(--hm-tilt-x)) rotateY(var(--hm-tilt-y));
+}
+
+/*
+  Glow = the hero's main background colour about 23% darker (measured on the page).
+  Size, blur and easing as the Home Glow sphere (620px, blur 30px CSS).
+*/
+.atj-hero,
+.atj2-hero {
+  --glow-rgb: 168, 168, 169; /* #dadadb -> #a8a8a9 */
+}
+
+.uq2-hero {
+  --glow-rgb: 47, 70, 134; /* #3d5bae -> #2f4686 */
+}
+
+/* the glow sits under the 30% overlay: this ends up 23% darker than the overlaid #33478b */
+.case-hero {
+  --glow-rgb: 44, 66, 128;
+}
+
+.yoy-hero {
+  --glow-rgb: 22, 22, 22; /* #1c1c1c -> #161616 */
+}
+
+.ridi-hero {
+  --glow-rgb: 22, 22, 24; /* #1d1d1f -> #161618 */
+}
+
+.case-hero > .hm-sphere--follow,
+.atj-hero > .hm-sphere--follow,
+.atj2-hero > .hm-sphere--follow,
+.uq2-hero > .hm-sphere--follow,
+.yoy-hero > .hm-sphere--follow,
+.ridi-hero > .hm-sphere--follow {
+  position: absolute;
+  left: calc(50% - 310px);
+  top: calc(50% - 310px);
+  z-index: -1;
+  width: 620px;
+  height: 620px;
+  margin: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle closest-side, rgb(var(--glow-rgb)) 0%, rgba(var(--glow-rgb), 0.6) 45%, rgba(var(--glow-rgb), 0) 100%);
+  -webkit-filter: blur(30px);
+  filter: blur(30px);
+  opacity: 0; /* at rest the hero is exactly as designed */
+  transition: opacity 0.5s ease-out;
+  will-change: transform;
+}
+
+.case-hero.is-hovered > .hm-sphere--follow,
+.atj-hero.is-hovered > .hm-sphere--follow,
+.atj2-hero.is-hovered > .hm-sphere--follow,
+.uq2-hero.is-hovered > .hm-sphere--follow,
+.yoy-hero.is-hovered > .hm-sphere--follow,
+.ridi-hero.is-hovered > .hm-sphere--follow {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body .case-hero.is-hovered,
+  body .atj-hero.is-hovered,
+  body .atj2-hero.is-hovered,
+  body .uq2-hero.is-hovered,
+  body .yoy-hero.is-hovered,
+  body .ridi-hero.is-hovered {
+    transform: none;
+  }
+}

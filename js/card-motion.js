@@ -1,5 +1,5 @@
 /*
-  Pointer motion shared by every page (styles: css/card-motion.css, css/home-v2.css, nav.css):
+  Pointer motion shared by every page (styles: css/home-v2.css, css/case-motion.css, nav.css):
   - tilt: the surface leans towards the cursor (max 4deg, CSS transition on its transform);
   - glow: a sphere (.hm-sphere--follow) follows the cursor with a little lag and drifts back
     to its layout place when the cursor leaves; the surface clips it.
