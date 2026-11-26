@@ -1104,3 +1104,14 @@
 .ridi-btn-primary:hover {
   background-color: #452cb8;
 }
+
+/* heading + first card are one block (js/case-slides.js): keep the usual gap to the next card */
+.ridi-core-first + .ridi-card-block {
+  margin-top: 24px;
+}
+
+@media (min-width: 1024px) {
+  .ridi-core-first + .ridi-card-block {
+    margin-top: var(--space-section);
+  }
+}

@@ -140,18 +140,44 @@ html.cs-slides .cs-impact {
   scroll-snap-stop: always;
 }
 
+/* the blocks that take the whole screen further down (js/case-slides.js gives them air) */
+html.cs-slides [data-focus] {
+  box-sizing: border-box;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* they are snap targets: no 28px rise from the scroll reveal */
+html.cs-slides [data-focus].reveal-init {
+  transform: none;
+}
+
 /*
-  Everything from the case nav to the end of the page is one big snap area (js sizes it).
-  An area taller than the screen can be scrolled freely, so the long case text is never
-  pulled anywhere; its start is the stop where the nav is under the header.
+  Each stretch of reading between two stops is one big snap area (js sizes it). An area
+  taller than the screen can be scrolled freely, so long text is never pulled anywhere.
+  The end mark is the stop for its last screenful (coming back up from the next block).
 */
-.cs-rest {
+.cs-rest,
+.cs-end,
+.cs-pin {
   position: absolute;
   left: 0;
   width: 1px;
   pointer-events: none;
+}
+
+.cs-rest {
   scroll-snap-align: start;
   scroll-snap-stop: always;
+}
+
+.cs-end {
+  scroll-snap-align: end;
+  scroll-snap-stop: always; /* or Page Down would jump past the last screenful */
+}
+
+.cs-pin {
+  scroll-snap-align: start;
 }
 
 /* ---------- B4: related case = a Home case card on the dot grid ---------- */

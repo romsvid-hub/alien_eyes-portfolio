@@ -1,23 +1,40 @@
 /*
-  B3: on case pages with an Impact block (the section right before the case nav), that block
-  takes the whole screen, like "I worked with:" on Home (css/case-motion.css). From 1024px
-  (and 600px of height) without prefers-reduced-motion. Ridi has no Impact block: nothing
-  happens there. Runs before js/case-nav.js, which measures the final layout.
+  Full-screen blocks on case pages (css/case-motion.css), from 1024px (and 600px of height)
+  without prefers-reduced-motion:
+  - the Impact block under the hero (the section right before the case nav), like
+    "I worked with:" on Home. Ridi has none;
+  - every block marked data-focus further down (Challenge, Results and a few more):
+    centred on the screen with enough air around it that nothing else shows at its stop.
+  Runs before js/case-nav.js, which measures the final layout.
 
-  Stops are native CSS scroll snapping: top of the page, Impact, and the case nav; from the
-  nav down the page scrolls freely. Snapping is switched on only after the page has loaded:
-  while it is loading, the browser puts the reader back where they were (reload, Back), and
-  snapping at that moment would pull them to Impact instead. This script only
-  - sizes the snap area that makes the rest of the page free (.cs-rest);
-  - fades the hero and Impact as they leave, so one of them is in focus at a time;
-  - lets the case nav and the first section shoot in after Impact;
+  Stops are native CSS scroll snapping: the top of the page, Impact and every focus block.
+  The reading in between stays free: each stretch between two stops is one big snap area
+  (.cs-rest), which scrolls freely when it is taller than the screen, plus an end mark
+  (.cs-end) so that scrolling back up lands on its last screenful, not at its start. Each
+  case-nav item that is not a focus block has a stop of its own (.cs-pin).
+  Snapping is switched on only after the page has loaded: while it is loading, the browser
+  puts the reader back where they were (reload, Back), and snapping at that moment would
+  pull them somewhere else. This script only
+  - gives each focus block its air and tells case-nav.js where its stop is;
+  - places the snap areas;
+  - fades the hero and Impact as they leave, lets the case nav and the first section shoot
+    in after Impact, and does the same for a focus block that arrives;
   - brings a keyboard-focused element into view if its block is still faded.
 */
 (function () {
   var caseNav = document.querySelector("[data-case-nav]");
   var hero = document.querySelector("main > section");
-  var impact = caseNav && caseNav.previousElementSibling;
-  if (!hero || !impact || impact === hero || impact.tagName !== "SECTION") return;
+  if (!caseNav || !hero) return;
+  var impact = caseNav.previousElementSibling;
+  if (impact === hero || !impact || impact.tagName !== "SECTION") impact = null;
+  var blocks = [].slice.call(document.querySelectorAll("main [data-focus]"));
+  var anchors = [].slice
+    .call(caseNav.querySelectorAll("a[data-case-target]"))
+    .map(function (link) {
+      return document.getElementById(link.getAttribute("data-case-target"));
+    })
+    .filter(Boolean);
+  if (!impact && !blocks.length) return;
 
   var next = caseNav.nextElementSibling;
   var header = document.querySelector(".site-nav");
@@ -26,10 +43,10 @@
 
   var root = document.documentElement;
   var query = window.matchMedia("(min-width: 1024px) and (min-height: 600px) and (prefers-reduced-motion: no-preference)");
-  var rest = document.createElement("div");
-  rest.className = "cs-rest";
-  rest.setAttribute("aria-hidden", "true");
+  var marks = []; // the snap areas and end marks, reused between measurements
+  var arrivals = null;
 
+  var BAR = 48; // height of the case nav under the header
   var active = false;
   var frame = 0;
   var shown = true;
@@ -67,16 +84,85 @@
     return y;
   }
 
+  function mark(index, kind, top, height) {
+    var el = marks[index];
+    if (!el) {
+      el = marks[index] = document.createElement("div");
+      el.setAttribute("aria-hidden", "true");
+    }
+    el.className = kind;
+    el.style.top = Math.round(top) + "px";
+    el.style.height = Math.max(1, Math.round(height)) + "px";
+    if (el.parentNode !== document.body) document.body.appendChild(el);
+  }
+
+  function px(value) {
+    return parseFloat(value) || 0;
+  }
+
+  /*
+    Air around a focus block, so that at its stop it is alone on the screen, in the middle.
+    A plain section gets it as padding (its own background stretches with it); a rounded
+    card gets it as margin (the card keeps its shape). A block taller than the screen only
+    gets a little air and scrolls inside.
+  */
+  function giveAir(block, room) {
+    var style = getComputedStyle(block);
+    var card = block.hmCard;
+    if (card === undefined) card = block.hmCard = px(style.borderTopLeftRadius) > 0;
+    var content = card ? block.offsetHeight : block.offsetHeight - px(style.paddingTop) - px(style.paddingBottom);
+    var air = Math.max(24, Math.floor((room - content) / 2));
+    var value = air + "px";
+    var first = card ? "marginTop" : "paddingTop";
+    var second = card ? "marginBottom" : "paddingBottom";
+    if (block.style[first] !== value) {
+      block.style[first] = value;
+      block.style[second] = value;
+    }
+    var outside = card ? air : 0;
+    block.style.scrollMarginTop = BAR + outside + "px";
+    // js/case-nav.js: an anchor on this block has to land on the same spot as its stop
+    block.style.setProperty("--case-anchor-gap", outside + "px");
+    return outside;
+  }
+
   function measure() {
     // a header popup borrows the reviews, so the page is shorter for a while: keep the free
-    // area as it is, or closing the popup would leave the reader higher up
+    // areas as they are, or closing the popup would leave the reader higher up
     if (root.classList.contains("nav-popup-open")) return;
-    root.style.setProperty("--cs-nav", header.offsetHeight + "px");
+    var head = header.offsetHeight;
+    var room = window.innerHeight - head - BAR;
+    root.style.setProperty("--cs-nav", head + "px");
+
+    var outsides = blocks.map(function (block) {
+      return giveAir(block, room);
+    });
+
     // the nav is sticky, so its natural top is read from the block above it
-    var top = docTop(impact) + impact.offsetHeight;
+    var start = impact ? docTop(impact) + impact.offsetHeight : 0;
+    var count = 0;
+    blocks.forEach(function (block, i) {
+      var top = docTop(block) - outsides[i];
+      var bottom = docTop(block) + block.offsetHeight + outsides[i];
+      if (top - start > 2) {
+        mark(count++, "cs-rest", start, top - start);
+        if (top - start > room + 1) mark(count++, "cs-end", top - 1, 1);
+      }
+      if (bottom - top > room + 2) mark(count++, "cs-end", bottom - 1, 1);
+      start = bottom - BAR;
+    });
     var end = docTop(footer) + footer.offsetHeight;
-    rest.style.top = top + "px";
-    rest.style.height = Math.max(0, end - top) + "px";
+    mark(count++, "cs-rest", start, end - start);
+    // every case-nav item gets a stop of its own, so a jump to it is never pulled elsewhere
+    anchors.forEach(function (anchor) {
+      if (anchor.hasAttribute("data-focus")) return;
+      var gap = px(getComputedStyle(anchor).getPropertyValue("--case-anchor-gap"));
+      mark(count++, "cs-pin", docTop(anchor) - gap - BAR, 1);
+    });
+    while (marks.length > count) {
+      var extra = marks.pop();
+      if (extra.parentNode) extra.parentNode.removeChild(extra);
+    }
   }
 
   function opacityFor(top, bottom, view, navHeight) {
@@ -107,7 +193,7 @@
 
   function update() {
     frame = 0;
-    if (!active) return;
+    if (!active || !impact) return;
     var navHeight = header.offsetHeight;
     var view = window.innerHeight - navHeight;
     var popup = root.classList.contains("nav-popup-open");
@@ -143,7 +229,7 @@
   function onFocus(event) {
     var target = event.target;
     if (!active || !target.matches || !target.matches(":focus-visible")) return;
-    var block = hero.contains(target) ? hero : impact.contains(target) ? impact : null;
+    var block = hero.contains(target) ? hero : impact && impact.contains(target) ? impact : null;
     if (!block) return;
     window.requestAnimationFrame(function () {
       window.requestAnimationFrame(function () {
@@ -165,15 +251,41 @@
     return box.bottom > window.innerHeight || box.top < header.offsetHeight;
   }
 
+  // a focus block that comes onto an empty screen shoots in, like Impact and the nav
+  function watchArrivals() {
+    if (!("IntersectionObserver" in window)) return;
+    var armed = new WeakMap();
+    var started = false;
+    arrivals = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          var share = entry.intersectionRect.height / Math.max(1, Math.min(entry.boundingClientRect.height, window.innerHeight));
+          if (!entry.isIntersecting) armed.set(entry.target, true);
+          else if (share >= 0.25 && armed.get(entry.target)) {
+            armed.set(entry.target, false);
+            if (started) shootIn([entry.target]);
+          }
+        });
+        started = true;
+      },
+      { threshold: [0, 0.25, 0.5] }
+    );
+    blocks.forEach(function (block) {
+      arrivals.observe(block);
+    });
+  }
+
   function enable() {
     if (active) return;
     active = true;
     first = true;
     root.classList.add("cs-slides");
-    hero.classList.add("cs-hero");
-    impact.classList.add("cs-impact");
-    document.body.appendChild(rest);
+    if (impact) {
+      hero.classList.add("cs-hero");
+      impact.classList.add("cs-impact");
+    }
     measure();
+    watchArrivals();
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", relayout, { passive: true });
     window.addEventListener("load", relayout);
@@ -196,11 +308,22 @@
     window.removeEventListener("load", snapSoon);
     root.style.removeProperty("--cs-nav");
     hero.classList.remove("cs-hero");
-    impact.classList.remove("cs-impact");
-    [hero, impact, caseNav, next].forEach(function (element) {
-      element.style.removeProperty("opacity");
+    if (impact) {
+      impact.classList.remove("cs-impact");
+      [hero, impact, caseNav, next].forEach(function (element) {
+        element.style.removeProperty("opacity");
+      });
+    }
+    blocks.forEach(function (block) {
+      ["padding-top", "padding-bottom", "margin-top", "margin-bottom", "scroll-margin-top", "--case-anchor-gap"].forEach(function (name) {
+        block.style.removeProperty(name);
+      });
     });
-    if (rest.parentNode) rest.parentNode.removeChild(rest);
+    marks.forEach(function (el) {
+      if (el.parentNode) el.parentNode.removeChild(el);
+    });
+    marks = [];
+    if (arrivals) arrivals.disconnect();
     window.removeEventListener("scroll", schedule);
     window.removeEventListener("resize", relayout);
     window.removeEventListener("load", relayout);
