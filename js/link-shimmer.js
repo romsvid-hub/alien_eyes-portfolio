@@ -1,7 +1,7 @@
 /*
-  Endless text shimmer for links marked [data-shimmer] (ATJ job-card
-  link, Figma 982:22842). The glint loops (css: .is-shimmering) only
-  while the link's section is on screen, and stops when it leaves.
+  Text shimmer for links marked [data-shimmer] (ATJ job-card link, Figma
+  982:22842). The glint runs 3 passes (css: .is-shimmering) when the link's
+  section comes into view, then stops; it plays again on the next entry.
   Does nothing under prefers-reduced-motion.
 */
 (function () {

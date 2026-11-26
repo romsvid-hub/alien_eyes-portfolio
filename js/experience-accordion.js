@@ -15,9 +15,12 @@
     Array.prototype.forEach.call(rows, function (row) {
       var btn = row.querySelector(".exp__toggle");
       if (!btn) return;
+      // "Show details: Role at Company" <-> "Hide details: Role at Company" (P10)
+      var what = (btn.getAttribute("aria-label") || "").replace(/^(Show|Hide) details: /, "");
       function set(open) {
         row.classList.toggle("is-open", open);
         btn.setAttribute("aria-expanded", open ? "true" : "false");
+        if (what) btn.setAttribute("aria-label", (open ? "Hide" : "Show") + " details: " + what);
       }
       set(row.classList.contains("is-open"));
       btn.addEventListener("click", function () {

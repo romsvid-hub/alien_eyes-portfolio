@@ -9,7 +9,7 @@
                             so a click anywhere on the row toggles the panel
         .exp__title         role + company link, dates
         button.exp__toggle  chevron; aria-expanded / aria-controls
-        .exp__body          summary (collapsed) and panel (expanded), swapped
+        .exp__body          summary (always shown) and panel (unfolds under it)
   The company link sits above the button's overlay (position: relative;
   z-index: 1), so it opens the company site and does not toggle the row.
   Without JS the panels are simply shown (no summary, no chevron).
@@ -55,9 +55,7 @@
 .exp__dates,
 .exp__summary,
 .exp__note,
-.exp__links,
-.exp__role-line,
-.exp__role-text {
+.exp__links {
   margin: 0;
 }
 
@@ -171,7 +169,7 @@
   transform: rotate(180deg);
 }
 
-/* ---- summary <-> panel: one column, the old text folds away, the new one unfolds ---- */
+/* ---- summary + panel: one column; the panel unfolds under the summary (Figma 1166:339) ---- */
 
 .exp__body {
   grid-column: 2;
@@ -199,21 +197,11 @@
   color: rgba(255, 254, 254, 0.72);
 }
 
-/* no JS: everything is visible, the summary is redundant */
-.exp__fold--summary {
-  display: none;
-}
-
-.is-enhanced .exp__fold--summary {
-  display: grid;
-}
-
 .is-enhanced .exp__fold {
   transition: grid-template-rows 0.22s ease-out, opacity 0.22s ease-out, visibility 0s linear 0s;
 }
 
-.is-enhanced .exp:not(.is-open) .exp__fold--panel,
-.is-enhanced .exp.is-open .exp__fold--summary {
+.is-enhanced .exp:not(.is-open) .exp__fold--panel {
   grid-template-rows: 0fr;
   opacity: 0;
   visibility: hidden;
@@ -224,39 +212,15 @@
   position: relative;
   z-index: 1;
   max-width: 720px;
+  padding-top: var(--space-gap);
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 24px;
   color: rgba(255, 254, 254, 0.72);
 }
 
+/* Figma bullets are "•  text": wrapped lines start flush with the column */
 .exp__list {
-  margin: 0;
-  padding: 0 0 0 20px;
-  list-style: disc;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-tight);
-}
-
-.exp__list li::marker {
-  color: rgba(255, 254, 254, 0.6);
-}
-
-.exp__links {
-  margin-top: var(--space-gap);
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-tight) var(--space-stack);
-}
-
-.exp__note {
-  margin-top: var(--space-gap);
-  color: rgba(255, 254, 254, 0.6);
-}
-
-/* "4 roles": four short lines, no bullets */
-.exp__roles {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -265,22 +229,26 @@
   gap: var(--space-tight);
 }
 
-.exp__role-line strong {
-  font-weight: 700;
-  color: var(--color-white);
+.exp__list li::before {
+  content: "\2022\00a0\00a0";
 }
 
-.exp__role-line strong .exp__company {
-  font-weight: 700;
+.exp__links {
+  margin-top: var(--space-tight);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px var(--space-stack);
 }
 
-.exp__role-dates {
+.exp__note {
+  margin-top: var(--space-gap);
   color: rgba(255, 254, 254, 0.6);
 }
 
 /* ---- phones: title over summary, chevron top right, panel full width ---- */
 
-@media (max-width: 767px) {
+/* P8 (round 2): the stacked layout now runs up to 1023px (was 767px): at 768px the summary column was only ~220px wide */
+@media (max-width: 1023px) {
   .exp__head {
     grid-template-columns: minmax(0, 1fr) 24px;
     column-gap: var(--space-gap);
@@ -307,18 +275,93 @@
   }
 }
 
+/* two-column rows: the summary is at least as tall as a three-line title, so the panel
+   starts 88px under the row's top, as in Figma */
+@media (min-width: 1024px) {
+  .exp.is-open .exp__fold--summary {
+    min-height: 72px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .exp,
   .exp__chev,
   .is-enhanced .exp__fold,
-  .is-enhanced .exp:not(.is-open) .exp__fold--panel,
-  .is-enhanced .exp.is-open .exp__fold--summary {
+  .is-enhanced .exp:not(.is-open) .exp__fold--panel {
     transition: none;
   }
 }
 
-/* ---- About page: same component in the 930px text column (Figma 999:37338) ---- */
+/* ---- the section itself: the same on Home and About (Home 2, Figma 1134:650) ---- */
 
-.experience-section--about .home-col {
-  max-width: 930px;
+.home-section.experience-section {
+  --color-purple-on-dark: #7b61ff;
+  position: relative;
+  padding-inline: max(var(--page-px), calc((100vw - 1200px) / 2));
+}
+
+.experience-section .home-col {
+  max-width: 1200px;
+}
+
+.home-section.experience-section + .home-section {
+  padding-top: 80px;
+}
+
+/* two columns from 1024px: heading left (it stays while the list moves), rows right */
+@media (min-width: 1024px) {
+  .experience-section {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    column-gap: 32px;
+    align-items: start;
+  }
+
+  .experience-section .experience-heading {
+    margin: 0;
+    padding: 0;
+    font-size: 32px;
+  }
+
+  .experience-section .experience-list {
+    margin: 0;
+    max-width: none;
+  }
+
+  .experience-section .exp {
+    margin-inline: 0;
+    padding-inline: 16px;
+  }
+
+  .experience-section .exp__head {
+    grid-template-columns: 220px minmax(0, 1fr) 24px;
+  }
+}
+
+/* rows are 816 wide with the text 24px inside (Figma: Title x=24, chevron x=768) */
+@media (min-width: 1200px) {
+  .experience-section {
+    grid-template-columns: 320px minmax(0, 1fr);
+    column-gap: 64px;
+  }
+
+  .experience-section .experience-heading {
+    font-size: var(--h2-size, 40px);
+  }
+
+  .experience-section .exp {
+    padding-inline: 24px;
+  }
+
+  .experience-section .exp__head {
+    grid-template-columns: 260px minmax(0, 1fr) 24px;
+  }
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .experience-section .experience-heading {
+    position: sticky;
+    top: 139px; /* header 59px + the section's 80px */
+    align-self: start;
+  }
 }

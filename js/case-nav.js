@@ -3,10 +3,9 @@
 
   - Stuck state: the bar lives in the page flow under the hero (and the
     Impact block) and sticks under the site header via CSS position: sticky.
-    It counts as stuck as soon as its own top (getBoundingClientRect) has
-    reached the header height: .is-stuck is set (Home + role, dark bar).
-    Before that the bar is inline ("Agenda:", the case's own colours).
-    Both states are 48px tall, so nothing jumps. The state is re-read on
+    It counts as stuck as soon as its own top (getBoundingClientRect) has reached the
+    header height: .is-stuck is set (the bar looks the same either way; the class tells
+    when to keep the active item in view on narrow screens). The state is re-read on
     scroll (rAF + a trailing timer), after a click on an item, on hashchange
     and on load, so a jump that skips the whole band can't leave it stale.
   - Scroll spy: the active item is the LAST anchor (in item order) whose top
@@ -86,8 +85,15 @@
     return y;
   }
 
+  // Optional extra room above an anchor that has no padding of its own
+  // (CSS custom property --case-anchor-gap on the anchor element)
+  function anchorTop(el) {
+    var gap = parseFloat(getComputedStyle(el).getPropertyValue("--case-anchor-gap")) || 0;
+    return docTop(el) - gap;
+  }
+
   function landing(el) {
-    return Math.max(0, Math.round(docTop(el) - (top + BAR)));
+    return Math.max(0, Math.round(anchorTop(el) - (top + BAR)));
   }
 
   var activeId = null;
@@ -130,7 +136,7 @@
     var line = window.pageYOffset + top + BAR + 1;
     var active = targets[0].id; // before the first anchor: the first item
     for (var i = 0; i < targets.length; i++) {
-      if (docTop(targets[i].el) <= line) active = targets[i].id;
+      if (anchorTop(targets[i].el) <= line) active = targets[i].id;
     }
     setActive(active, stuck && !wasStuck);
   }

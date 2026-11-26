@@ -14,6 +14,8 @@
 (function () {
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion) return;
+  // Home on desktop runs its own scroll scenario (js/home-scroll.js): no second reveal on top
+  if (document.documentElement.classList.contains('hm-slides')) return;
 
   var targets = [];
 
@@ -52,5 +54,16 @@
   targets.forEach(function (el) {
     el.classList.add('reveal-init');
     observer.observe(el);
+  });
+
+  // keyboard focus must never land on something still invisible (a control near the bottom
+  // edge is focused without scrolling, so the observer would not fire for it)
+  document.addEventListener('focusin', function (event) {
+    for (var el = event.target; el && el.classList; el = el.parentElement) {
+      if (el.classList.contains('reveal-init') && !el.classList.contains('is-revealed')) {
+        el.classList.add('is-revealed');
+        observer.unobserve(el);
+      }
+    }
   });
 })();

@@ -124,13 +124,15 @@
 @media (min-width: 1024px) {
   .case-hero {
     border-radius: 48px;
-    min-height: 653px;
+    /* was: 653px (F4: 673px as in Figma 982:24288) */
+    min-height: 673px;
     /* Figma: mockup on the left, text column from x=652 of the 1280px card
        (50.94%), 48px right inset => 580px wide Case meta block. The block
        grows the card's height; nothing is clipped. */
     /* padding % would resolve against the parent (page) width, so derive the
        card's own width: min(1280px, 100vw - 2 * page gutter) */
-    padding: 48px 48px 48px calc(min(1280px, 100vw - 2 * var(--page-px)) * 0.509375);
+    /* 70px top / 40px bottom: Figma has the title at y=70 inside the 673px card */
+    padding: 70px 48px 40px calc(min(1280px, 100vw - 2 * var(--page-px)) * 0.509375);
     justify-content: center;
   }
 }
@@ -143,13 +145,11 @@
   }
 }
 
-.case-hero__bg,
 .case-hero__overlay {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
 }
 
 .case-hero__overlay {
@@ -168,7 +168,9 @@
 @media (min-width: 1024px) {
   .case-hero__content {
     gap: 24px;
-    max-width: none;
+    /* Figma 982:24306 / 24309 / 24310: title, lead and data block are 548px wide
+       (was the whole 580px column) */
+    max-width: 548px;
   }
 }
 
@@ -222,7 +224,7 @@
   .case-hero__mockup {
     position: absolute;
     left: 3.6719%;
-    top: 50%;
+    top: calc(50% + 14px);
     transform: translateY(-50%);
     width: 41.6406%;
     max-width: none;
@@ -249,6 +251,19 @@
   }
 }
 
+/* Round 2 (R1): "−27%" (true minus sign) is wider than "27%" was, and the fourth item spilled
+   out of the 4-column grid at 1024-1119px (22px horizontal scroll). Tighter gap and a smaller
+   number only in that range. */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .case-impact__grid {
+    gap: 24px;
+  }
+
+  .case-impact__value {
+    font-size: 52px;
+  }
+}
+
 /*
   Figma (2:14497) lays the number and label side by side (row), not
   stacked — verified via screenshot. That's only comfortable once each
@@ -270,6 +285,16 @@
     align-items: center;
     gap: 16px;
     padding: 16px 16px 16px 0;
+  }
+}
+
+/* four in a row is too narrow here for the label beside the number (they ran into each
+   other from 1024 to about 1290px): the label goes under it */
+@media (min-width: 1024px) and (max-width: 1299px) {
+  .case-impact__item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
 }
 
@@ -330,7 +355,7 @@
 }
 
 .case-challenge {
-  background: linear-gradient(115.6deg, rgb(48, 114, 245) 36.6%, rgb(37, 95, 210) 94.9%);
+  background: linear-gradient(115.6deg, rgb(43, 106, 230) 36.6%, rgb(37, 95, 210) 94.9%); /* was rgb(48,114,245): white text 4.3:1 */
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -825,6 +850,14 @@
   margin-top: 48px;
 }
 
+/* P5: this anchor is a block without padding of its own, so the "Results" item used to land
+   with "The Shift" flush under the bar. It now lands --case-anchor-gap (80px) lower, like the
+   sections whose heading sits 80px below their top (js/case-nav.js reads the variable). */
+.case-shift-outro[data-case-section] {
+  --case-anchor-gap: var(--space-section);
+  scroll-margin-top: calc(var(--case-nav-top, 59px) + 48px + var(--space-section));
+}
+
 .case-shift-outro-heading {
   color: var(--color-subtle-text);
 }
@@ -1302,4 +1335,31 @@
 */
 .case-reviews-cta {
   background-color: var(--color-dark-alien);
+}
+
+/* "The shift" plaque: the same air above it as below (it used to get two section paddings
+   above, one and a bit below) */
+.case-section:has(> .case-shift--panel:only-child) {
+  padding-top: 8px;
+}
+
+/* contrast (WCAG AA), 2026-11-26: pale blue text on the brand blue was 3.7-4.2:1; the text is
+   now white and The shift plaque a shade deeper. The links were 4.0:1 */
+.case-challenge__context,
+.case-challenge__context p,
+.case-challenge__context strong {
+  color: #ffffff;
+}
+
+.case-shift--panel {
+  background-color: #2b6ae6;
+}
+
+.case-shift--panel .case-shift__text,
+.case-shift--panel .case-shift__text strong {
+  color: #ffffff;
+}
+
+.case-livefiles__links a {
+  color: #2563d9;
 }

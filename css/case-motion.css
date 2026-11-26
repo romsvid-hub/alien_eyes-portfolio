@@ -1,0 +1,324 @@
+/*
+  Motion on the six case pages (loaded after the case styles and reveal.css):
+  B1  the hero leans towards the cursor like the Home cards, with a glow in a darker shade
+      of its own background (js/card-motion.js);
+  B3  the Impact block under the hero takes the whole screen (js/case-slides.js, only on
+      pages that have one, from 1024px, without prefers-reduced-motion);
+  B4  the related-case block under the reviews looks and moves like the Home case cards.
+  Only transform and opacity animate.
+*/
+
+/* ---------- B1: hero tilt + glow ---------- */
+
+.case-hero,
+.atj-hero,
+.atj2-hero,
+.uq2-hero,
+.yoy-hero,
+.ridi-hero {
+  position: relative;
+  isolation: isolate; /* keeps the glow above the hero's own background, below its content */
+  --hm-tilt-x: 0deg;
+  --hm-tilt-y: 0deg;
+  transition: transform 0.35s ease-out;
+}
+
+/* the scroll reveal keeps its fade; its transform shares the tilt's timing */
+.case-hero.reveal-init.is-revealed,
+.atj-hero.reveal-init.is-revealed,
+.atj2-hero.reveal-init.is-revealed,
+.yoy-hero.reveal-init.is-revealed,
+.ridi-hero.reveal-init.is-revealed {
+  transition:
+    opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.35s ease-out;
+}
+
+body .case-hero.is-hovered,
+body .atj-hero.is-hovered,
+body .atj2-hero.is-hovered,
+body .uq2-hero.is-hovered,
+body .yoy-hero.is-hovered,
+body .ridi-hero.is-hovered {
+  transform: perspective(1200px) rotateX(var(--hm-tilt-x)) rotateY(var(--hm-tilt-y));
+}
+
+/*
+  Glow = a clean half-tone of the hero's own colour, only slightly deeper (Roman,
+  2026-11-26: a darker grey of the same colour looked dirty). Blues keep their hue and gain
+  saturation; the grey heroes get a light periwinkle, so the headline stays above 3:1 under
+  the glow. Size, blur and easing as the Home Glow sphere (620px, blur 30px CSS).
+*/
+.atj-hero,
+.atj2-hero {
+  --glow-rgb: 190, 199, 228; /* on #dadadb: about 8% deeper, cool, not grey */
+}
+
+.uq2-hero {
+  --glow-rgb: 42, 76, 172; /* #3d5bae -> #2a4cac */
+}
+
+/* the glow sits under the 30% overlay, which dims it to the matching half-tone */
+.case-hero {
+  --glow-rgb: 52, 90, 196;
+}
+
+.yoy-hero {
+  --glow-rgb: 22, 22, 22; /* #1c1c1c -> #161616 */
+}
+
+.ridi-hero {
+  --glow-rgb: 22, 22, 24; /* #1d1d1f -> #161618 */
+}
+
+.case-hero > .hm-sphere--follow,
+.atj-hero > .hm-sphere--follow,
+.atj2-hero > .hm-sphere--follow,
+.uq2-hero > .hm-sphere--follow,
+.yoy-hero > .hm-sphere--follow,
+.ridi-hero > .hm-sphere--follow {
+  position: absolute;
+  left: calc(50% - 310px);
+  top: calc(50% - 310px);
+  z-index: -1;
+  width: 620px;
+  height: 620px;
+  margin: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle closest-side, rgb(var(--glow-rgb)) 0%, rgba(var(--glow-rgb), 0.6) 45%, rgba(var(--glow-rgb), 0) 100%);
+  -webkit-filter: blur(30px);
+  filter: blur(30px);
+  opacity: 0; /* at rest the hero is exactly as designed */
+  transition: opacity 0.5s ease-out;
+  will-change: transform;
+}
+
+.case-hero.is-hovered > .hm-sphere--follow,
+.atj-hero.is-hovered > .hm-sphere--follow,
+.atj2-hero.is-hovered > .hm-sphere--follow,
+.uq2-hero.is-hovered > .hm-sphere--follow,
+.yoy-hero.is-hovered > .hm-sphere--follow,
+.ridi-hero.is-hovered > .hm-sphere--follow {
+  opacity: 1;
+}
+
+/* ---------- B3: Impact on the whole screen ---------- */
+
+html.cs-slides {
+  --cs-nav: 59px;
+  scroll-padding-top: var(--cs-nav);
+}
+
+/* added once the page has loaded (js/case-slides.js) */
+html.cs-slides.cs-snap {
+  scroll-snap-type: y mandatory;
+}
+
+html.cs-slides.nav-popup-open {
+  scroll-snap-type: none;
+}
+
+html.cs-slides .cs-hero {
+  scroll-snap-align: start;
+  scroll-margin-top: 24px; /* its top margin: the stop is the top of the page */
+}
+
+/* no 28px rise on the hero here: it is a snap target, and the rise made the page open 28px
+   down on low windows */
+html.cs-slides .cs-hero.reveal-init:not(.is-hovered) {
+  transform: none;
+}
+
+html.cs-slides .cs-impact {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - var(--cs-nav));
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* the blocks that take the whole screen further down (js/case-slides.js gives them air) */
+html.cs-slides [data-focus] {
+  box-sizing: border-box;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* they are snap targets: no 28px rise from the scroll reveal */
+html.cs-slides [data-focus].reveal-init {
+  transform: none;
+}
+
+/*
+  Each stretch of reading between two stops is one big snap area (js sizes it). An area
+  taller than the screen can be scrolled freely, so long text is never pulled anywhere.
+  The end mark is the stop for its last screenful (coming back up from the next block).
+*/
+.cs-rest,
+.cs-end,
+.cs-pin {
+  position: absolute;
+  left: 0;
+  width: 1px;
+  pointer-events: none;
+}
+
+.cs-rest {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.cs-end {
+  scroll-snap-align: end;
+  scroll-snap-stop: always; /* or Page Down would jump past the last screenful */
+}
+
+.cs-pin {
+  scroll-snap-align: start;
+}
+
+/* ---------- B4: related case = a Home case card on the dot grid ---------- */
+
+.related-case {
+  position: relative;
+  /* own stacking context: without it the dots end up under the background of the
+     section around this block (ATJ and Uniqkey cases) and cannot be seen */
+  isolation: isolate;
+  padding-bottom: 80px;
+  --color-cta-purple: #7b61ff;
+  --color-purple-light: #7b61ff;
+  --color-purple-on-dark: #7b61ff;
+}
+
+/*
+  As behind the Home case cards: 2px dots, 24px step, white 9.75%, pinned to the screen
+  (the card scrolls over them) and blurred away under the glass. Not done with clip-path
+  or a fixed layer inside this block: then the card stops blurring the dots.
+*/
+.related-case::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 50vw);
+  right: calc(50% - 50vw);
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 12px 12px, rgba(255, 255, 255, 0.0975) 1px, transparent 1.4px);
+  background-size: 24px 24px;
+  background-attachment: fixed;
+}
+
+/* the full-width dot layer must never add a sideways scroll (classic scrollbars) */
+main {
+  overflow-x: clip;
+}
+
+.related-case .case-card {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 32px;
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  --hm-tilt-x: 0deg;
+  --hm-tilt-y: 0deg;
+  transition:
+    transform 0.35s ease-out,
+    scale 150ms ease;
+}
+
+.related-case .case-card.is-hovered {
+  transform: perspective(1200px) rotateX(var(--hm-tilt-x)) rotateY(var(--hm-tilt-y));
+}
+
+.related-case .case-card::before,
+.related-case .case-card:hover::before,
+.related-case .case-card__glow {
+  display: none;
+}
+
+/* the Home glow sphere: in the card's right corner at rest, follows the cursor */
+.related-case .case-card > .hm-sphere--follow {
+  position: absolute;
+  right: -140px;
+  top: 257px;
+  z-index: -1;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle closest-side, rgba(180, 156, 255, 0.5) 0%, rgba(123, 97, 255, 0.3) 45%, rgba(123, 97, 255, 0) 100%);
+  -webkit-filter: blur(30px);
+  filter: blur(30px);
+  will-change: transform;
+}
+
+/* the card's side air sits on the link, so the whole card stays clickable */
+.related-case .case-card__link {
+  padding: 24px 16px;
+}
+
+.related-case .case-card:has(.case-card__link:focus-visible) {
+  border-color: rgba(123, 97, 255, 0.6);
+  box-shadow: 0 0 0 2px #fffefe;
+}
+
+.related-case .case-card__link:focus-visible {
+  outline: none;
+}
+
+@media (hover: hover) {
+  .related-case .case-card:hover {
+    border-color: rgba(123, 97, 255, 0.35);
+  }
+}
+
+@media (min-width: 768px) {
+  .related-case .case-card__link {
+    padding-inline: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .related-case .case-card__link {
+    column-gap: 48px;
+    padding: 49px 57px;
+  }
+
+  .related-case .case-card__cta {
+    min-width: 274px;
+    justify-content: center;
+  }
+
+  .related-case .case-card .tag-row {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+}
+
+/* one height for the case cards everywhere: the Home cards are 618px at this width */
+@media (min-width: 1280px) {
+  .related-case .case-card__link {
+    min-height: 616px;
+    align-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body .case-hero.is-hovered,
+  body .atj-hero.is-hovered,
+  body .atj2-hero.is-hovered,
+  body .uq2-hero.is-hovered,
+  body .yoy-hero.is-hovered,
+  body .ridi-hero.is-hovered,
+  .related-case .case-card.is-hovered {
+    transform: none;
+  }
+}

@@ -15,9 +15,24 @@
       })();
     </script>
     <title>YOY! Events — Product &amp; UX/UI Design for a Live MVP | Alien Eyes</title>
+    <meta name="description" content="A product for events and communities, built technology-first. I rebuilt it around what the organizer actually needs to do." />
+    <link rel="canonical" href="https://alieneyes.ink/case-yoy" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/favicon-180.png" />
+
+    <!-- Open Graph / LinkedIn / Facebook preview -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://alieneyes.ink/case-yoy" />
+    <meta property="og:site_name" content="Alien Eyes" />
+    <meta property="og:title" content="YOY! Events — Product &amp; UX/UI Design for a Live MVP" />
+    <meta property="og:description" content="A product for events and communities, built technology-first. I rebuilt it around what the organizer actually needs to do." />
+    <meta property="og:image" content="https://alieneyes.ink/assets/case-yoy/mobmocup.webp" />
+    <meta property="og:image:alt" content="YOY! Events organizer flow shown on a phone" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="YOY! Events — Product &amp; UX/UI Design for a Live MVP" />
+    <meta name="twitter:description" content="A product for events and communities, built technology-first. I rebuilt it around what the organizer actually needs to do." />
+    <meta name="twitter:image" content="https://alieneyes.ink/assets/case-yoy/mobmocup.webp" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -32,6 +47,7 @@
     <link rel="stylesheet" href="css/buttons.css" />
     <link rel="stylesheet" href="css/home.css" />
     <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/case-motion.css" />
     <link rel="stylesheet" href="css/case-yoy.css" />
     <link rel="stylesheet" href="css/case-meta.css" />
     <link rel="stylesheet" href="css/case-nav.css" />
@@ -73,7 +89,7 @@
           <a class="nav-links__link" href="./#feedbacks">Feedbacks</a>
         </div>
 
-        <a class="nav-cta" href="https://drive.google.com/file/d/1QByF4QWFRCB6rfUKweG46cHFlifFM2Lz/view?usp=sharing" target="_blank" rel="noopener">Download CV</a>
+        <a class="nav-cta" href="https://drive.google.com/file/d/1dcRzMRLaueTGMyELJ3sAAG5vIocyNce9/view?usp=sharing" target="_blank" rel="noopener">Download CV</a>
         <a class="nav-cta nav-cta--contact" href="https://www.linkedin.com/in/romsvid/" target="_blank" rel="noopener" data-popup="contact">Contact Me</a>
       </div>
 
@@ -118,7 +134,6 @@
           <dl class="case-meta">
             <div class="case-meta__row">
               <dt>Role:</dt>
-              <!-- was: "UX Designer" (2026-11-23) -->
               <dd>UX Designer (solo)</dd>
             </div>
             <div class="case-meta__row">
@@ -127,7 +142,6 @@
             </div>
             <div class="case-meta__row">
               <dt>Live product:</dt>
-              <!-- new row (2026-11-23) -->
               <dd><a href="https://yoy.events/events" target="_blank" rel="noopener">yoy.events</a></dd>
             </div>
             <div class="case-meta__row">
@@ -136,11 +150,11 @@
             </div>
             <div class="case-meta__row">
               <dt>Team:</dt>
-              <dd>Solo designer; client is the Product Owner, also the developer building it</dd>
+              <dd>Solo designer; client is the Product Owner, <br class="br-desktop" />also the developer building it</dd>
             </div>
             <div class="case-meta__row">
               <dt>My responsibilities:</dt>
-              <dd>Research; information architecture and user flows; design system and UI; developer handoff</dd>
+              <dd>Research; information architecture and user flows; <br class="br-desktop" />Design system and UI; Developer handoff</dd>
             </div>
           </dl>
         </div>
@@ -170,12 +184,7 @@
       <!-- UI: CASE-NAV-01 | Case section nav: in flow under the hero (and Impact), sticks under the header | Figma "Case nav / Sticky" (987:4210); css/case-nav.css + js/case-nav.js -->
       <nav class="case-nav" aria-label="Case sections" data-case-nav data-case="yoy">
         <div class="case-nav__lead">
-          <!-- inline state: "Agenda:" (case accent), no arrow, no role -->
-          <div class="case-nav__agenda" aria-hidden="true">
-            <span class="case-nav__agenda-label">Agenda:</span>
-            <span class="case-nav__divider"><img src="assets/icons/case-nav-divider.svg" alt="" /></span>
-          </div>
-          <!-- stuck state (standard component 987:4210): arrow + Home + divider -->
+          <!-- standard component 987:4210: arrow + Home + divider -->
           <div class="case-nav__home">
             <a class="case-nav__item case-nav__back" href="/#case-studies">
               <img class="case-nav__chevron" src="assets/icons/case-nav-chevron.svg" alt="" aria-hidden="true" />
@@ -190,13 +199,11 @@
         <a class="case-nav__item" href="#cs-key-decisions" data-case-target="cs-key-decisions">Key Decisions</a>
         <a class="case-nav__item" href="#cs-core-features" data-case-target="cs-core-features">Core Features</a>
         <a class="case-nav__item" href="#cs-results" data-case-target="cs-results">Results</a>
-        <!-- was: "UX Designer" (renamed 2026-11-17) -->
         <p class="case-nav__role"><b>Role:</b> <span>UX Designer (solo)</span></p>
       </nav>
 
       <!-- UI: CASE04-OVERVIEW-01 | Overview | matches Figma "Overview" (768:13269) -->
       <section id="cs-context" data-case-section class="yoy-section">
-        <!-- was: "Overview" (renamed 2026-11-17) -->
         <h2 class="h2-section yoy-heading" data-reveal>Context</h2>
         <div class="yoy-two-col" data-reveal-group>
           <p class="body-large">
@@ -248,7 +255,7 @@
         <div class="yoy-media yoy-media--wide" data-reveal>
           <img loading="lazy" width="1600" height="838" src="assets/case-yoy/before-screenshot.webp" alt="The live MVP before the redesign" />
         </div>
-        <div class="yoy-panel" data-reveal>
+        <div class="yoy-panel" data-reveal data-focus>
           <h2 class="h2-section yoy-heading">The Challenge</h2>
           <div class="yoy-two-col">
             <p class="body-large">
@@ -542,7 +549,7 @@
       </section>
 
       <!-- UI: CASE04-RESULTS-01 | Results | matches Figma "Results" (768:13414) -->
-      <section id="cs-results" data-case-section class="yoy-section yoy-section--tint">
+      <section id="cs-results" data-case-section class="yoy-section yoy-section--tint" data-focus>
         <div class="yoy-panel yoy-panel--accent" data-reveal>
           <h2 class="h2-section">Results</h2>
           <div class="yoy-two-col">
@@ -671,17 +678,15 @@
 
         <!-- UI: HOME-CTA-01 | CTA block | shared component, reused unchanged -->
         <div class="cta-section" data-reveal>
-          <h2 class="h2-section cta-heading">Ready to architect your next product?</h2>
+          <h2 class="h2-section cta-heading">Need fresh eyes on a complex product?</h2>
           <p class="body-large cta-description">
-            Whatever's easiest for you — reach out and let's talk.
+            Open to Product Designer roles and selected projects · Remote
           </p>
           <a
             class="btn btn--primary btn--contact"
-            href="https://www.linkedin.com/in/romsvid/" data-popup="contact"
-            target="_blank"
-            rel="noopener"
+            href="mailto:svidddrommm25@gmail.com?subject=Let%27s%20schedule%20a%20call"
           >
-            Contact Me
+            Let's schedule a call
             <img loading="lazy" width="16" height="16" class="btn__icon" src="assets/icons/icon-arrow-right.svg" alt="" />
           </a>
         </div>
@@ -690,7 +695,6 @@
 
     <!-- UI: GLOBAL-FOOTER-01 | Site footer | shared component, reused unchanged -->
     <footer class="site-footer">
-      <img loading="lazy" width="1280" height="256" class="site-footer__bg" src="assets/images/footer-bg.svg" alt="" aria-hidden="true" />
       <div class="site-footer__row site-footer__row--top">
         <a class="nav-logo" href="./">
           <span class="nav-logo__icon">
@@ -713,7 +717,6 @@
       </div>
 
       <div class="site-footer__row site-footer__row--bottom">
-        <!-- new (2026-11-23): colophon next to the copyright; was: "© 2026 Roman Sviderskyi" only -->
         <p class="body-main site-footer__copyright">© 2026 Roman Sviderskyi<span class="site-footer__sep" aria-hidden="true"> · </span><span class="site-footer__colophon">Designed and hand-coded by me · Built with Claude Code</span></p>
         <p class="body-main site-footer__contact">
           +380 97 334 9540&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:svidddrommm25@gmail.com"
@@ -724,10 +727,13 @@
     </footer>
 
     <script src="js/nav.js"></script>
+    <script src="js/card-motion.js"></script>
+    <script src="js/case-slides.js" defer></script>
     <script src="js/case-nav.js" defer></script>
     <script src="js/link-shimmer.js" defer></script>
     <script src="js/related-case.js" defer></script>
     <script src="js/reviews.js"></script>
+    <script src="js/title-enter.js"></script>
     <script src="js/reveal.js"></script>
     <script src="js/nbsp-typography.js"></script>
   </body>

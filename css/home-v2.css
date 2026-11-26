@@ -1,0 +1,538 @@
+/*
+  Home 2 (Figma "Alien Eyes Portfolio - Home 2", node 1126:5413). Loaded only on
+  index.html, after home.css; everything is scoped to body.page-home, so the case
+  pages, About and the shared files are not touched.
+
+  Values come from the file itself (read through the Figma MCP, 2026-11-24):
+  page #110E15, one accent #7B61FF, glass = white 3.5% fill + white 9% 1px stroke +
+  blur 24 + radius 32, nav = #110E15 70% + blur 16 + white 6% line, glow spheres =
+  radial #B49CFF -> #7B61FF -> transparent, 'Deco / UFO' instances (5) with their own
+  size / opacity / tilt. Animations: transform and opacity only.
+*/
+
+.page-home {
+  --hm-bg: #110e15;
+  --hm-accent: #7b61ff;
+  --hm-accent-soft: #b49cff;
+  --hm-glass-fill: rgba(255, 255, 255, 0.035);
+  --hm-glass-line: rgba(255, 255, 255, 0.09);
+  --hm-line-soft: rgba(255, 255, 255, 0.06);
+  --hm-content: 1200px;
+
+  /* one accent: every other purple / blue / orange token resolves to it on Home */
+  --color-purple-light: var(--hm-accent);
+  --color-cta-purple: var(--hm-accent);
+  --color-purple-on-dark: var(--hm-accent);
+
+  background-color: var(--hm-bg);
+}
+
+/* ---------- dot grid: behind Case Studies and Experience (Figma 1134:784), plus the hero as a test ---------- */
+
+/*
+  One fixed layer for the whole viewport (it stays put while scrolling), shown only behind
+  #case-studies, #experience and, as a test (Roman, 2026-11-26), the hero: to undo the test,
+  add .page-home .hero-section back to the list of covered blocks below. Every other block of
+  the page covers it with the page colour itself, which looks like no background at all. Not
+  done by clipping the layer per section (clip-path), because then the glass cards can no
+  longer blur the dots under them.
+*/
+.page-home::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* 2px dots, 24px step, white 9.75% (13% less a quarter: Roman, 2026-11-25) */
+  background-image: radial-gradient(circle at 12px 12px, rgba(255, 255, 255, 0.0975) 1px, transparent 1.4px);
+  background-size: 24px 24px;
+}
+
+.page-home .logos-section,
+.page-home .expertise-section,
+.page-home #feedbacks {
+  background-color: var(--hm-bg);
+}
+
+/* ---------- layout: 1200px content, 120px on the sides at 1440 ---------- */
+
+.page-home .home-section {
+  padding-inline: max(var(--page-px), calc((100vw - var(--hm-content)) / 2));
+}
+
+.page-home .home-col {
+  max-width: var(--hm-content);
+}
+
+.page-home main {
+  position: relative;
+}
+
+/* ---------- navigation ---------- */
+
+.page-home .site-nav {
+  background-color: rgba(17, 14, 21, 0.7);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--hm-line-soft);
+}
+
+/* ---------- glass (hero card and the six case cards) ---------- */
+
+.page-home .hero-card,
+.page-home .case-card {
+  background-color: var(--hm-glass-fill);
+  border: 1px solid var(--hm-glass-line);
+  border-radius: 32px;
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+}
+
+/* ---------- glow spheres ---------- */
+
+.hm-sphere {
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/*
+  The sphere that follows the cursor (js/home-motion.js moves it with transform): Figma
+  1134:790 (hero, 620px) and 1134:792 (case cards, 520px): radial #B49CFF 50% -> #7B61FF 30%
+  at 45% -> transparent, layer blur 60 (Figma's radius is twice the CSS blur radius).
+*/
+.hm-sphere--follow {
+  background: radial-gradient(circle closest-side, rgba(180, 156, 255, 0.5) 0%, rgba(123, 97, 255, 0.3) 45%, rgba(123, 97, 255, 0) 100%);
+  -webkit-filter: blur(30px);
+  filter: blur(30px);
+}
+
+/* ---------- hero (Figma 1134:322) ---------- */
+
+.page-home .hero-section {
+  padding-top: 24px;
+  padding-bottom: 48px;
+}
+
+@media (min-width: 1024px) {
+  .page-home .hero-section {
+    padding-top: 40px;
+    padding-bottom: 96px;
+  }
+}
+
+.page-home .hero-card {
+  max-width: var(--hm-content);
+}
+
+/*
+  Tilt, shared by the hero card and the six case cards (js/home-motion.js sets
+  --hm-tilt-x / --hm-tilt-y and .is-hovered while the cursor is over a card).
+  The transform exists only while a card is hovered, so no card sits on its own 3D layer
+  the rest of the time. The scroll-reveal sets transform: none on revealed elements (same
+  specificity, loaded later), hence the longer selectors.
+*/
+.page-home .hero-card,
+.page-home .case-card {
+  --hm-tilt-x: 0deg;
+  --hm-tilt-y: 0deg;
+}
+
+.page-home .hero-card.reveal-init.is-revealed {
+  transition:
+    opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.35s ease-out;
+}
+
+.page-home .case-card.reveal-init.is-revealed {
+  transition:
+    opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.35s ease-out,
+    scale 150ms ease;
+}
+
+.page-home .hero-card.is-hovered,
+.page-home .case-card.is-hovered {
+  transform: perspective(1200px) rotateX(var(--hm-tilt-x)) rotateY(var(--hm-tilt-y));
+}
+
+/* the dark photo texture is gone: the card is glass */
+.page-home .hero-card__texture {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .page-home .hero-card {
+    min-height: 636px;
+    /* photo 520px + 48px breathing room; Figma 1200 card: 652px */
+    padding: 48px 572px 48px 48px;
+  }
+
+  @media (min-width: 1440px) {
+    .page-home .hero-card {
+      padding-right: 652px;
+    }
+  }
+
+  /* Figma 1134:400: portrait 520x535 at (680, 100), flush with the card's right and bottom */
+  .page-home .hero-card__photo {
+    top: 100px;
+    right: 0;
+    bottom: 0;
+    width: 520px;
+  }
+}
+
+/*
+  Figma 1134:790 (620px at 560,40) and 1134:791 (380px at -120,360). 1134:790 has its paint
+  at 10% on top of 55% / 33% stops, i.e. 5.5% / 3.3%: that is the sphere at rest (the shared
+  50% / 30% gradient at opacity .11). Under the cursor it comes up to the full gradient.
+*/
+.hm-sphere--hero-a {
+  left: 560px;
+  top: 40px;
+  width: 620px;
+  height: 620px;
+  opacity: 0.11;
+  transition: opacity 0.5s ease-out;
+}
+
+.page-home .hero-card.is-hovered .hm-sphere--hero-a {
+  opacity: 1;
+}
+
+.hm-sphere--hero-b {
+  left: -120px;
+  top: 360px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle closest-side, rgba(180, 156, 255, 0.25) 0%, rgba(123, 97, 255, 0.15) 45%, rgba(123, 97, 255, 0) 100%);
+}
+
+/* the small hero sphere drifts on desktop only; on touch and narrow screens it stands still */
+@media (min-width: 1024px) and (hover: hover) {
+  .hm-sphere--hero-b {
+    animation: hm-drift-b 13s ease-in-out -4s infinite;
+  }
+}
+
+@keyframes hm-drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 1; }
+  50% { transform: translate3d(36px, -28px, 0) scale(1.14); opacity: 0.7; }
+}
+
+/* ---------- client logos ---------- */
+
+@media (min-width: 1024px) {
+  .page-home .logos-section {
+    padding-bottom: 0;
+  }
+}
+
+/* ---------- Expertise: progress line + numbered items (Figma 1134:411) ---------- */
+
+.page-home .expertise-section {
+  position: relative;
+}
+
+.page-home .expertise-grid {
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .page-home .expertise-section {
+    padding-top: 140px;
+    padding-bottom: 140px;
+  }
+
+  .page-home .expertise-heading {
+    margin-bottom: 40px;
+    padding-left: 40px;
+  }
+
+  .page-home .expertise-grid {
+    margin-top: 80px;
+    gap: 12px;
+  }
+}
+
+/* track and active segment, 40px above the items (desktop) */
+.page-home .expertise-grid::before {
+  display: none;
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -40px;
+  height: 2px;
+  border-radius: 2px;
+  background:
+    linear-gradient(90deg, rgba(123, 97, 255, 0.2), var(--hm-accent)) left / 270px 2px no-repeat,
+    rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 1024px) {
+  .page-home .expertise-grid::before {
+    display: block;
+  }
+}
+
+.page-home .expertise-item {
+  position: relative;
+  justify-content: center; /* equal-height blocks, content in the middle */
+  padding: 24px 20px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  gap: 12px;
+}
+
+/* Figma dims items 02-04 to 45%; 65% keeps their body text at WCAG AA (4.5:1) on #110E15.
+   Specificity beats .reveal-init.is-revealed { opacity: 1 } from reveal.css. */
+.page-home .expertise-grid .expertise-item.reveal-init.is-revealed:not(:first-child),
+.page-home .expertise-grid .expertise-item:not(:first-child) {
+  opacity: 0.65;
+}
+
+.page-home .expertise-item:first-child {
+  opacity: 1;
+  border-color: rgba(123, 97, 255, 0.35);
+  background: linear-gradient(135deg, rgba(123, 97, 255, 0.22), rgba(123, 97, 255, 0.02) 90%);
+}
+
+/* ---------- Case Studies: 1200 wide, 120px between, a sphere in each card's corner ---------- */
+
+.page-home #case-studies {
+  position: relative;
+  padding-top: 0;
+  padding-bottom: 40px;
+}
+
+/* the heading sits in the same grid as the cards: its space to the first card is written
+   as a margin on top of the grid's gap */
+.page-home .case-studies-heading {
+  margin-bottom: 0;
+}
+
+/*
+  All six cards have one height, the tallest one's (grid rows of equal size), and each
+  card's content sits on its middle line.
+*/
+.page-home #case-studies {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto;
+  grid-auto-rows: 1fr;
+  --hm-card-gap: 48px;
+  row-gap: var(--hm-card-gap);
+  align-content: start;
+}
+
+@media (min-width: 1024px) {
+  .page-home #case-studies {
+    --hm-card-gap: 120px;
+  }
+}
+
+.page-home #case-studies > .home-col,
+.page-home #case-studies > .case-card {
+  width: 100%;
+  margin-inline: auto;
+}
+
+.page-home .case-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+  margin-top: 0;
+}
+
+.page-home .case-card__link {
+  flex: 1;
+  align-content: center;
+}
+
+.page-home .case-card + .case-card {
+  margin-top: 0;
+}
+
+/* the card's side air sits on the link, so the whole card stays clickable */
+@media (min-width: 768px) {
+  .page-home .case-card__link {
+    padding-inline: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+}
+
+.page-home .case-card__link {
+  padding-block: 24px;
+}
+
+@media (max-width: 767px) {
+  .page-home .case-card__link {
+    padding-inline: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-home .case-card__link {
+    column-gap: 48px;
+    padding: 49px 57px;
+  }
+}
+
+/* the glass card's side padding leaves a narrow text column below 1440: tags wrap instead of
+   being cut off */
+@media (min-width: 1024px) {
+  .page-home .case-card .tag-row {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+}
+
+/* Figma: no tinted hover surface any more, the glass card itself is the surface */
+@media (hover: hover) {
+  .page-home .case-card:hover {
+    border-color: rgba(123, 97, 255, 0.35);
+  }
+}
+
+.page-home .case-card:has(.case-card__link:focus-visible) {
+  border-color: rgba(123, 97, 255, 0.6);
+  /* the link's own outline would be clipped by the card's overflow: hidden */
+  box-shadow: 0 0 0 2px var(--color-white, #fffefe);
+}
+
+.page-home .case-card__link:focus-visible {
+  outline: none;
+}
+
+/* the old per-case coloured glows are replaced by the corner spheres */
+.page-home .case-card__glow {
+  display: none;
+}
+
+/* home.css paints a tinted hover surface on ::before: the glass card is the surface here */
+.page-home .case-card::before {
+  display: none;
+}
+
+.page-home .hm-sphere--card {
+  width: 520px;
+  height: 520px;
+  top: var(--hm-sphere-y, 257px);
+  left: -140px;
+}
+
+.page-home .case-card:nth-of-type(even) .hm-sphere--card {
+  left: auto;
+  right: -140px;
+}
+
+/* sphere heights from the Figma cards (top of the card -> top of the sphere) */
+.page-home .case-card:nth-of-type(1) { --hm-sphere-y: 257px; }
+.page-home .case-card:nth-of-type(2) { --hm-sphere-y: 257px; }
+.page-home .case-card:nth-of-type(3) { --hm-sphere-y: 105px; }
+.page-home .case-card:nth-of-type(4) { --hm-sphere-y: 225px; }
+.page-home .case-card:nth-of-type(5) { --hm-sphere-y: 231px; }
+.page-home .case-card:nth-of-type(6) { --hm-sphere-y: 257px; }
+
+/* ---------- Experience: layout in css/experience.css (shared with About) ---------- */
+
+/* transparent: the fixed dot grid shows through */
+.page-home .home-section.experience-section {
+  background-color: transparent;
+}
+
+/* ---------- 'Deco / UFO' (Figma component 1134:812), absolutely placed by the content edges ---------- */
+
+.hm-ufo {
+  position: absolute;
+  z-index: 2;
+  display: none;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* the Figma positions are relative to the 1200px content centred in 1440px: only from 1440 */
+@media (min-width: 1440px) {
+  .hm-ufo {
+    display: block;
+  }
+}
+
+.hm-ufo--1 {
+  /* Figma Home 2 'Deco / UFO': 72x38.4, opacity 0.4, rotation 10deg (Figma counts counter-clockwise) */
+  width: 72px;
+  height: 38.4px;
+  left: calc(50% - 720px + 72.79px);
+  top: 73.21px;
+  opacity: 0.4;
+  transform: rotate(-10deg);
+}
+
+.hm-ufo--2 {
+  /* Figma Home 2 'Deco / UFO': 132x70.4, opacity 0.45, rotation -12deg (Figma counts counter-clockwise) */
+  width: 132px;
+  height: 70.4px;
+  left: calc(50% - 720px + 1265.88px);
+  top: 358.20px;
+  opacity: 0.45;
+  transform: rotate(12deg);
+}
+
+.hm-ufo--3 {
+  /* Figma Home 2 'Deco / UFO': 96x51.2, opacity 0.35, rotation 6deg (Figma counts counter-clockwise) */
+  width: 96px;
+  height: 51.2px;
+  left: calc(50% - 720px + 42.41px);
+  top: 1870.13px;
+  opacity: 0.35;
+  transform: rotate(-6deg);
+}
+
+.hm-ufo--4 {
+  /* Figma Home 2 'Deco / UFO': 84x44.8, opacity 0.4, rotation -6deg (Figma counts counter-clockwise) */
+  width: 84px;
+  height: 44.8px;
+  left: calc(50% - 720px + 1252.11px);
+  top: 3379.52px;
+  opacity: 0.4;
+  transform: rotate(6deg);
+}
+
+.hm-ufo--5 {
+  /* Figma Home 2 'Deco / UFO': 120x64, opacity 0.45, rotation 8deg (Figma counts counter-clockwise) */
+  width: 120px;
+  height: 64px;
+  left: calc(50% - 720px + 93.87px);
+  top: 66px;
+  opacity: 0.45;
+  transform: rotate(-8deg);
+}
+
+/* ---------- reduced motion: no drift, no tilt, spheres stay in place ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .hm-sphere {
+    animation: none;
+  }
+
+  .page-home .hero-card.is-hovered,
+  .page-home .case-card.is-hovered {
+    transform: none;
+  }
+}
+
+/* Figma: "Contact me" and "View case study" are 274x43 */
+@media (min-width: 1024px) {
+  .page-home .hero-actions .btn,
+  .page-home .case-card__cta {
+    min-width: 274px;
+    justify-content: center;
+  }
+}

@@ -322,6 +322,50 @@
   margin: 0;
 }
 
+/* intro under the headline: lead + domains (Figma 1165:339); Home only */
+.hero-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hero-intro__lead,
+.hero-intro__domains {
+  margin: 0;
+}
+
+.hero-intro__lead {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 26px;
+  color: rgba(255, 254, 254, 0.72);
+}
+
+.hero-intro__domains {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 20px;
+  color: #9b86ff;
+}
+
+/* the manual line break from Figma (1165:340) applies from 1024px only */
+.hero-intro .br-desktop {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .hero-intro .br-desktop {
+    display: inline;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-intro__lead {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
 .hero-actions {
   grid-area: actions;
   display: flex;
@@ -1411,27 +1455,6 @@
 @media (max-width: 767px) {
   .review-slide__quote {
     font-size: 14px;
-  }
-}
-
-/*
-  Smooth sliding, opt-in only (see js/reviews.js autoScrollEnabled) —
-  the shared carousel markup/behavior stays instant-swap everywhere else.
-*/
-.reviews-carousel[data-auto-scroll] .review-slide,
-.reviews-carousel[data-case-reviews] .review-slide {
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.reviews-carousel[data-auto-scroll] .review-slide.is-transitioning,
-.reviews-carousel[data-case-reviews] .review-slide.is-transitioning {
-  opacity: 0;
-  transform: translateX(-16px);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reviews-carousel[data-case-reviews] .review-slide {
-    transition: none;
   }
 }
 

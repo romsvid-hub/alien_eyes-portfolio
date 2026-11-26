@@ -8,32 +8,18 @@
   1280px-wide frame; reimplemented here as a responsive flex layout
   that preserves the same visual arrangement (logo+social row, then
   copyright+contact row) at the same 80px page margin used elsewhere.
+
+  One look on every page, the Home 2 one (Roman, 2026-11-26): page colour
+  #110e15 and a thin top line, no background graphic. Don't restyle it per page.
 */
 
 /* UI: GLOBAL-FOOTER-01 | Site footer | inspect/adjust */
 .site-footer {
   position: relative;
   overflow: hidden;
-  background-color: var(--color-deep-text);
+  background-color: #110e15;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
   padding: 24px 80px;
-}
-
-/*
-  Fixed 2026-08-25: was fixed at 1280px and centered, so it never
-  reached the screen edges below 1280px viewports (clipped by
-  .site-footer's overflow:hidden) and left empty space beyond 1280px
-  on wider screens. The source SVG is preserveAspectRatio="none" (a
-  plain stroked rectangle), so stretching it to 100% width is safe —
-  no distortion risk the way a photo would have.
-*/
-.site-footer__bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 256px;
-  z-index: 0;
-  pointer-events: none;
 }
 
 .site-footer__row {
@@ -106,4 +92,10 @@
   .site-footer {
     padding: 24px;
   }
+}
+
+/* the whole bottom of a case page (reviews, next case, call to action) sits on the same
+   surface as on Home, so that block and the footer read as one, as there (Roman, 2026-11-26) */
+main .home-section.case-reviews-cta {
+  background-color: #110e15;
 }

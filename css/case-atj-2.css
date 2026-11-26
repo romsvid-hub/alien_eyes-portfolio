@@ -330,6 +330,19 @@
   }
 }
 
+/* Round 2: Figma 982:23031 is a fixed 673px card whose text column (616px of content) is
+   centred and overflows the 48px insets; so from 1280px: 673px high, 24px insets (was ~711px) */
+@media (min-width: 1280px) {
+  .atj2-hero {
+    min-height: 673px;
+  }
+
+  .atj2-hero__content {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}
+
 .atj2-hero__title {
   font-family: var(--font-display);
   font-weight: 800;
@@ -343,6 +356,8 @@
 @media (min-width: 1024px) {
   .atj2-hero__title {
     font-size: 64px;
+    /* Figma 982:23065: title box 544px */
+    max-width: 544px;
   }
 }
 
@@ -352,7 +367,8 @@
   font-weight: 400;
   line-height: 28px;
   color: var(--color-deep-text);
-  max-width: 548px;
+  /* Figma 982:23068: 544px (was 548px) */
+  max-width: 544px;
   margin: 0;
 }
 
@@ -364,7 +380,8 @@
      top line instead of centered against the whole 3-line block. */
   align-items: center;
   gap: 8px;
-  margin-top: 24px;
+  /* was: 24px (R/F1: lead -> data block is 48px = 24 gap + 24 block padding) */
+  margin-top: 0;
 }
 
 @media (min-width: 1024px) {
@@ -440,7 +457,8 @@
   .atj2-heroselect {
     border-radius: 48px;
     padding: 48px 80px 0;
-    gap: 48px;
+    /* F12 / Figma 1022:4577: 24px between the Before and After columns (was 48px) */
+    gap: 24px;
   }
 }
 
@@ -679,7 +697,8 @@
     /* Figma exact: 48px top, 80px bottom. Horizontal is 0 because
        max-width:1120px + margin:auto already center it within the
        edge-to-edge outer panel. */
-    padding: var(--space-section) 0;
+    /* F12 / Figma 982:23195: 48px below the cards (was 80px; the section is 500px high) */
+    padding: var(--space-section) 0 var(--space-block);
   }
 }
 
@@ -819,6 +838,13 @@
 }
 
 /* ---------- Research ---------- */
+
+/* F12 / Figma 982:23234: 48px from the "Research" heading to the first block (was 24px) */
+@media (min-width: 1024px) {
+  #cs-research > .atj2-eyebrow {
+    margin-bottom: var(--space-block);
+  }
+}
 
 .atj2-research__intro {
   color: var(--color-dark-alien);
@@ -2121,4 +2147,13 @@
   .atj2-logos {
     margin-bottom: 48px;
   }
+}
+
+/* contrast (WCAG AA), 2026-11-26: was 4.0:1 and 4.45:1 */
+.atj2-uikit__link a {
+  color: #2563d9;
+}
+
+.atj2-notif__text {
+  color: #616772;
 }
