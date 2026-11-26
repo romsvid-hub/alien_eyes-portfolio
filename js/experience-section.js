@@ -7,6 +7,9 @@
   scenario on Home and the other scripts see the finished markup. Behaviour:
   js/experience-accordion.js, styles: css/experience.css. Without JavaScript the section
   shows its heading and the CV link (<noscript> in the page).
+
+  When done, the script takes its own tag out of the page: styles that look at what comes
+  right after the section (spacing, the Reviews stop on Home) need the next section there.
 */
 (function () {
   var script = document.currentScript;
@@ -158,4 +161,5 @@
         </ul>
       `
   );
+  script.parentNode.removeChild(script);
 })();
