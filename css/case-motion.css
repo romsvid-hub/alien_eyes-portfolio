@@ -146,28 +146,37 @@ html.cs-slides .cs-impact {
 
 .related-case {
   position: relative;
+  /* own stacking context: without it the dots end up under the background of the
+     section around this block (ATJ and Uniqkey cases) and cannot be seen */
+  isolation: isolate;
+  padding-bottom: 80px;
   --color-cta-purple: #7b61ff;
   --color-purple-light: #7b61ff;
   --color-purple-on-dark: #7b61ff;
 }
 
-/* full-width dot grid (Home: 2px dots, 24px step, white 9.75%) */
+/*
+  As behind the Home case cards: 2px dots, 24px step, white 9.75%, pinned to the screen
+  (the card scrolls over them) and blurred away under the glass. Not done with clip-path
+  or a fixed layer inside this block: then the card stops blurring the dots.
+*/
 .related-case::before {
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 50%;
-  width: 100vw;
-  margin-left: -50vw;
+  left: calc(50% - 50vw);
+  right: calc(50% - 50vw);
   z-index: -1;
   pointer-events: none;
   background-image: radial-gradient(circle at 12px 12px, rgba(255, 255, 255, 0.0975) 1px, transparent 1.4px);
   background-size: 24px 24px;
+  background-attachment: fixed;
 }
 
-.related-case {
-  padding-bottom: 80px;
+/* the full-width dot layer must never add a sideways scroll (classic scrollbars) */
+main {
+  overflow-x: clip;
 }
 
 .related-case .case-card {
