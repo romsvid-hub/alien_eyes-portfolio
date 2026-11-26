@@ -58,6 +58,7 @@ function initNavPopups() {
   var overlay = null;
   var feedbackTimer = null;
   var relocated = null; // { el, parent, next }[]
+  var scrollBefore = 0; // where the page was before blocks were lent to a popup
   var activeLink = null;
 
   function setActiveLink(link) {
@@ -76,6 +77,7 @@ function initNavPopups() {
       clearInterval(feedbackTimer);
       feedbackTimer = null;
     }
+    var returned = !!relocated;
     if (relocated) {
       relocated.forEach(function (item) {
         item.parent.insertBefore(item.el, item.next);
@@ -87,6 +89,9 @@ function initNavPopups() {
       overlay = null;
     }
     document.documentElement.classList.remove("nav-popup-open");
+    // while the reviews were away the page was shorter, which moves a reader who was
+    // near the bottom: put them back
+    if (returned) window.scrollTo({ top: scrollBefore, behavior: "instant" });
     document.removeEventListener("keydown", onKeydown);
     setActiveLink(null);
   }
@@ -298,8 +303,11 @@ function initNavPopups() {
     var progress = document.querySelector(".reviews-progress");
     if (!heading || !carousel) return;
 
+    scrollBefore = window.pageYOffset;
     var content = buildShell();
     content.className += " nav-popup__feedback";
+    // the same cursor glow as in the Case Studies popup (js/card-motion.js)
+    content.parentNode.className += " nav-popup--feedbacks";
 
     relocated = [
       { el: heading, parent: heading.parentNode, next: heading.nextSibling },

@@ -474,15 +474,17 @@
 }
 
 /*
-  Cursor glow inside the Case Studies popup: the colours of the Home Glow sphere, a bit
+  Cursor glow inside the Case Studies and Feedbacks popups: the colours of the Home Glow sphere, a bit
   weaker (35% / 20%) so the text stays readable; clipped by the panel. Mouse only
   (js/card-motion.js creates and moves it), no tilt.
 */
-.nav-popup--cases {
+.nav-popup--cases,
+.nav-popup--feedbacks {
   isolation: isolate;
 }
 
-.nav-popup--cases > .hm-sphere--follow {
+.nav-popup--cases > .hm-sphere--follow,
+.nav-popup--feedbacks > .hm-sphere--follow {
   position: absolute;
   left: calc(50% - 260px);
   top: calc(50% - 260px);
@@ -499,12 +501,14 @@
   will-change: transform;
 }
 
-.nav-popup--cases.is-hovered > .hm-sphere--follow {
+.nav-popup--cases.is-hovered > .hm-sphere--follow,
+.nav-popup--feedbacks.is-hovered > .hm-sphere--follow {
   opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nav-popup--cases > .hm-sphere--follow {
+  .nav-popup--cases > .hm-sphere--follow,
+  .nav-popup--feedbacks > .hm-sphere--follow {
     display: none;
   }
 }
@@ -570,6 +574,15 @@
 .nav-popup__feedback .reviews-carousel {
   width: 100%;
   max-width: 900px;
+}
+
+/* under the cursor glow the name and the role need lighter colours to stay readable */
+.nav-popup__feedback .review-slide__name {
+  color: #b49cff;
+}
+
+.nav-popup__feedback .review-slide__role {
+  color: #bdbdbd;
 }
 
 /* ---------- Contact popup ---------- */

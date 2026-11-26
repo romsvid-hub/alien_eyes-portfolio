@@ -7,7 +7,7 @@
   Surfaces:
     Home hero and case cards, the related-case card      tilt + glow
     case study heroes                                    tilt + glow (in the case's own dark tone)
-    the "Case Studies" popup of the header               glow only
+    the "Case Studies" and "Feedbacks" header popups     glow only
   A sphere that is not in the markup is created on first hover.
 
   Mouse only, from 1024px, never with prefers-reduced-motion. Elements are picked up on first
@@ -16,7 +16,7 @@
 */
 (function () {
   var TILT = ".hero-card, .case-card, .case-hero, .atj-hero, .atj2-hero, .uq2-hero, .yoy-hero, .ridi-hero";
-  var FLAT = ".nav-popup--cases";
+  var FLAT = ".nav-popup--cases, .nav-popup--feedbacks";
   var SURFACE = TILT + ", " + FLAT;
 
   var pointer = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 1024px)");
