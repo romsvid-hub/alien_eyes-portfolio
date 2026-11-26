@@ -437,50 +437,11 @@
 .page-home .case-card:nth-of-type(5) { --hm-sphere-y: 231px; }
 .page-home .case-card:nth-of-type(6) { --hm-sphere-y: 257px; }
 
-/* ---------- Experience: two columns, heading left, roles right (Figma 1134:650) ---------- */
+/* ---------- Experience: layout in css/experience.css (shared with About) ---------- */
 
+/* transparent: the fixed dot grid shows through */
 .page-home .home-section.experience-section {
   background-color: transparent;
-  position: relative;
-}
-
-@media (min-width: 1024px) {
-  .page-home .home-section.experience-section {
-    padding-block: 140px 76px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .page-home .experience-section {
-    display: grid;
-    grid-template-columns: 320px minmax(0, 1fr);
-    column-gap: 64px;
-    align-items: start;
-  }
-
-  .page-home .experience-section .experience-heading {
-    margin: 0;
-    padding: 0;
-  }
-
-  .page-home .experience-section .experience-list {
-    margin: 0;
-    max-width: none;
-  }
-
-  /* rows are 816 wide with the text 24px inside (Figma: Title x=24, chevron x=768) */
-  .page-home .exp {
-    margin-inline: 0;
-    padding-inline: 24px;
-  }
-
-  .page-home .exp__head {
-    grid-template-columns: 260px minmax(0, 1fr) 24px;
-  }
-}
-
-.page-home .experience-section + .home-section {
-  padding-top: 80px;
 }
 
 /* ---------- 'Deco / UFO' (Figma component 1134:812), absolutely placed by the content edges ---------- */

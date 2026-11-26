@@ -292,8 +292,76 @@
   }
 }
 
-/* ---- About page: same component in the 930px text column (Figma 999:37338) ---- */
+/* ---- the section itself: the same on Home and About (Home 2, Figma 1134:650) ---- */
 
-.experience-section--about .home-col {
-  max-width: 930px;
+.home-section.experience-section {
+  --color-purple-on-dark: #7b61ff;
+  position: relative;
+  padding-inline: max(var(--page-px), calc((100vw - 1200px) / 2));
+}
+
+.experience-section .home-col {
+  max-width: 1200px;
+}
+
+.home-section.experience-section + .home-section {
+  padding-top: 80px;
+}
+
+/* two columns from 1024px: heading left (it stays while the list moves), rows right */
+@media (min-width: 1024px) {
+  .experience-section {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    column-gap: 32px;
+    align-items: start;
+  }
+
+  .experience-section .experience-heading {
+    margin: 0;
+    padding: 0;
+    font-size: 32px;
+  }
+
+  .experience-section .experience-list {
+    margin: 0;
+    max-width: none;
+  }
+
+  .experience-section .exp {
+    margin-inline: 0;
+    padding-inline: 16px;
+  }
+
+  .experience-section .exp__head {
+    grid-template-columns: 220px minmax(0, 1fr) 24px;
+  }
+}
+
+/* rows are 816 wide with the text 24px inside (Figma: Title x=24, chevron x=768) */
+@media (min-width: 1200px) {
+  .experience-section {
+    grid-template-columns: 320px minmax(0, 1fr);
+    column-gap: 64px;
+  }
+
+  .experience-section .experience-heading {
+    font-size: var(--h2-size, 40px);
+  }
+
+  .experience-section .exp {
+    padding-inline: 24px;
+  }
+
+  .experience-section .exp__head {
+    grid-template-columns: 260px minmax(0, 1fr) 24px;
+  }
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .experience-section .experience-heading {
+    position: sticky;
+    top: 139px; /* header 59px + the section's 80px */
+    align-self: start;
+  }
 }

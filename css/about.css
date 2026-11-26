@@ -107,3 +107,22 @@
 .about-page .experience-section + .case-reviews-cta {
   padding-top: var(--space-section);
 }
+
+/* ---------- Experience: the Home 2 surface (page colour + dot grid) ---------- */
+
+/* the dots stand still like on Home: a fixed layer clipped to this section */
+.about-page .home-section.experience-section {
+  background-color: #110e15;
+  clip-path: inset(0);
+  isolation: isolate;
+}
+
+.about-page .experience-section::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 12px 12px, rgba(255, 255, 255, 0.0975) 1px, transparent 1.4px);
+  background-size: 24px 24px;
+}
