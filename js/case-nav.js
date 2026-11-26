@@ -3,10 +3,9 @@
 
   - Stuck state: the bar lives in the page flow under the hero (and the
     Impact block) and sticks under the site header via CSS position: sticky.
-    It counts as stuck as soon as its own top (getBoundingClientRect) has
-    reached the header height: .is-stuck is set (Home + role, dark bar).
-    Before that the bar is inline ("Agenda:", the case's own colours).
-    Both states are 48px tall, so nothing jumps. The state is re-read on
+    It counts as stuck as soon as its own top (getBoundingClientRect) has reached the
+    header height: .is-stuck is set (the bar looks the same either way; the class tells
+    when to keep the active item in view on narrow screens). The state is re-read on
     scroll (rAF + a trailing timer), after a click on an item, on hashchange
     and on load, so a jump that skips the whole band can't leave it stale.
   - Scroll spy: the active item is the LAST anchor (in item order) whose top

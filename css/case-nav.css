@@ -1,35 +1,25 @@
 /*
   Case nav / Sticky — Figma component 987:4210 (file DU3fuTo8QXIJ0uMcI3jh91).
 
-  A section nav shared by every case page. Sits in the page flow right
-  under the hero (under the Impact block where a case has one) and sticks
-  under the site header when scrolled to it (position: sticky; top =
-  header height, set by js/case-nav.js as --case-nav-top).
-
-  Two states, same 48px height (no jump):
-  - inline (not stuck): "Agenda:" in --case-accent + the items, on the page
-    background of the case (Figma instances 1019:37479 / 37504 / 37527 /
-    37573 / 37641 / 37670). Colours come from --case-nav-* set per case.
-  - stuck (under the header): the standard component 987:4210 on dark glass:
-    "<- Home" + divider on the left (the arrow only here), the case role on
-    the right.
-  The switch is driven by the bar's own scroll position (js/case-nav.js,
-  class .is-stuck). Active underline (stuck state) = --case-accent.
+  A section nav shared by every case page. Sits in the page flow right under the hero
+  (under the Impact block where a case has one) and sticks under the site header when
+  scrolled to it (position: sticky; top = header height, set by js/case-nav.js as
+  --case-nav-top). It has one look everywhere, the standard component on dark glass:
+  "<- Home" + divider on the left, the items, the case role on the right. (The former
+  in-page "Agenda:" form was removed, Roman, 2026-11-26.) Active underline = case accent.
 */
 .case-nav {
-  /* Active-item underline + "Agenda:" colour: the case accent (Figma
-     variable case/accent, collection "Case theme"). Set per case below. */
+  /* Active-item underline: the case accent (Figma variable case/accent, collection
+     "Case theme"). Set per case below. */
   --case-accent: #7b61ff;
 
-  /* Inline state (default): the case page background. Per-case values below. */
-  --case-nav-bg: #f7f7f7;
-  --case-nav-fg: #595959;
-  --case-nav-muted: rgba(89, 89, 89, 0.6);
-  --case-nav-border: rgba(89, 89, 89, 0.08);
+  --case-nav-bg: rgba(19, 20, 20, 0.9);
+  --case-nav-fg: #fffefe;
+  --case-nav-muted: rgba(255, 254, 254, 0.6);
+  --case-nav-border: rgba(255, 254, 254, 0.08);
 
-  /* In the flow of the page, right under the hero (and the Impact block
-     if the case has one). When the page scrolls it up to the site header
-     it sticks there (position: sticky). js/case-nav.js adds .is-stuck then. */
+  /* In the flow of the page; when the page scrolls it up to the site header it sticks
+     there (position: sticky). */
   position: sticky;
   top: var(--case-nav-top, 59px);
   z-index: 99;
@@ -49,17 +39,6 @@
   /* the row can scroll sideways on narrow screens; hide the scrollbar */
   overflow-x: auto;
   scrollbar-width: none;
-  transition:
-    background-color 200ms ease,
-    border-color 200ms ease;
-}
-
-/* Stuck: the standard component (987:4210), dark glass under the header */
-.case-nav.is-stuck {
-  --case-nav-bg: rgba(19, 20, 20, 0.9);
-  --case-nav-fg: #fffefe;
-  --case-nav-muted: rgba(255, 254, 254, 0.6);
-  --case-nav-border: rgba(255, 254, 254, 0.08);
 }
 
 .case-nav::-webkit-scrollbar {
@@ -71,106 +50,46 @@
   height: 24px;
 }
 
-/* Accent + inline-state colours per case (Figma instances of 987:4210) */
+/* Accent per case (Figma instances of 987:4210) */
 .case-nav[data-case="atj"] {
   --case-accent: #c44323;
-  /* P9: underline on the dark stuck bar >= 3:1 (was the accent, 2.8:1) */
+  /* P9: underline on the dark bar >= 3:1 (was the accent, 2.8:1) */
   --case-underline: #cb5133;
 }
 
 .case-nav[data-case="atj2"] {
   --case-accent: #3d5bae;
-  /* the underline is only seen on the dark stuck bar, where #3d5bae is 2.91:1;
-     a lighter tint of the same blue gives >= 3:1 (QA #1, D16) */
-  /* P9 (round 2): #4a69be was 2.74:1 on the stuck bar over a light page */
+  /* on the dark bar #3d5bae is 2.91:1; a lighter tint of the same blue gives >= 3:1
+     (QA #1, D16; round 2 P9: #4a69be was 2.74:1 over a light page) */
   --case-underline: #5f79bf;
 }
 
 .case-nav[data-case="uniqkey2"],
 .case-nav[data-case="uniqkey"] {
   --case-accent: #475fa9;
-  /* P9: underline on the dark stuck bar >= 3:1 (the accent is 2.35:1) */
+  /* P9: underline on the dark bar >= 3:1 (the accent is 2.35:1) */
   --case-underline: #6479b9;
 }
 
-/* dark cases: inline bar on the dark page background */
 .case-nav[data-case="yoy"] {
   --case-accent: #ffb800;
-  --case-nav-bg: #242424;
-  --case-nav-fg: #ffffff;
-  --case-nav-muted: rgba(207, 207, 207, 0.6);
 }
 
 .case-nav[data-case="ridi"] {
   --case-accent: #ff8a1f;
-  --case-nav-bg: #151518;
-  --case-nav-fg: #ffffff;
-  --case-nav-muted: rgba(207, 207, 207, 0.6);
 }
 
-/* the stuck state is always the standard dark bar, whatever the case */
-.case-nav.is-stuck[data-case] {
-  --case-nav-bg: rgba(19, 20, 20, 0.9);
-  --case-nav-fg: #fffefe;
-  --case-nav-muted: rgba(255, 254, 254, 0.6);
-  --case-nav-border: rgba(255, 254, 254, 0.08);
-}
-
-/*
-  Left slot. Two groups share the same grid cell, so the items never move:
-  - .case-nav__agenda: "Agenda:" + divider, inline state;
-  - .case-nav__home: "<- Home" + divider, stuck state (the arrow lives only
-    in the stuck bar, per Figma).
-*/
+/* left slot: "<- Home" + divider */
 .case-nav__lead {
   flex: none;
-  display: grid;
+  display: flex;
   align-items: center;
 }
 
-.case-nav__agenda,
 .case-nav__home {
-  grid-area: 1 / 1;
   display: flex;
   align-items: center;
   gap: 32px;
-  transition:
-    opacity 200ms ease,
-    visibility 0s;
-}
-
-.case-nav__agenda-label {
-  color: var(--case-accent);
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.case-nav[data-case="atj2"] .case-nav__agenda-label {
-  font-weight: 700; /* Figma: Inter Bold in this instance */
-}
-
-.case-nav__home {
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity 200ms ease,
-    visibility 0s linear 200ms;
-}
-
-.case-nav.is-stuck .case-nav__home {
-  opacity: 1;
-  visibility: visible;
-  transition:
-    opacity 200ms ease,
-    visibility 0s;
-}
-
-.case-nav.is-stuck .case-nav__agenda {
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity 200ms ease,
-    visibility 0s linear 200ms;
 }
 
 .case-nav__item {
@@ -209,22 +128,6 @@
   border-bottom-color: var(--case-underline, var(--case-accent));
 }
 
-/*
-  Inline state (not stuck): the bar is only an "Agenda:" - all items share one
-  colour (the case's own full-strength text colour, --case-nav-fg) and there is
-  no underline / active highlight. Tracking and navigating come back once the
-  bar is stuck under the header (Figma 1019:37479, updated 2026-11-17).
-*/
-.case-nav:not(.is-stuck) .case-nav__item,
-.case-nav:not(.is-stuck) .case-nav__item:hover,
-.case-nav:not(.is-stuck) .case-nav__item[aria-current="true"] {
-  color: var(--case-nav-fg);
-}
-
-.case-nav:not(.is-stuck) .case-nav__item[aria-current="true"] {
-  border-bottom-color: transparent;
-}
-
 .case-nav__chevron {
   display: block;
   flex: none;
@@ -256,20 +159,6 @@
   margin: 0 0 0 auto;
   color: var(--case-nav-muted);
   white-space: nowrap;
-  /* only when stuck */
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity 200ms ease,
-    visibility 0s linear 200ms;
-}
-
-.case-nav.is-stuck .case-nav__role {
-  opacity: 1;
-  visibility: visible;
-  transition:
-    opacity 200ms ease,
-    visibility 0s;
 }
 
 .case-nav__role b {
@@ -308,17 +197,5 @@
 
   .case-nav__role {
     display: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .case-nav,
-  .case-nav__agenda,
-  .case-nav__home,
-  .case-nav.is-stuck .case-nav__agenda,
-  .case-nav.is-stuck .case-nav__home,
-  .case-nav__role,
-  .case-nav.is-stuck .case-nav__role {
-    transition: none;
   }
 }
