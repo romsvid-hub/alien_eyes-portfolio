@@ -228,6 +228,12 @@ html.hm-slides .page-home #case-studies .case-card:first-of-type {
   }
 }
 
+/* while someone is opening rows, the end of Experience is not a stop: the page would follow
+   it down and pull the clicked row from under the cursor (js/home-scroll.js) */
+html.hm-slides .page-home .experience-section.is-exploring::after {
+  scroll-snap-align: none;
+}
+
 /* ---------- Experience: the heading stays, the list moves ---------- */
 
 html.hm-slides .page-home .home-section.experience-section {

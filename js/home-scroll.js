@@ -55,6 +55,21 @@
     { el: finale, end: footer, sharp: true, targets: function () { return all("#feedbacks > *, .site-footer > .site-footer__row"); } }
   ];
 
+  // opening or closing an Experience row must not move the page (css/home-scroll.css);
+  // the end stop comes back once the section is off the screen
+  experience.addEventListener(
+    "click",
+    function (event) {
+      if (event.target.closest && event.target.closest(".exp__toggle")) experience.classList.add("is-exploring");
+    },
+    true
+  );
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      if (!entries[entries.length - 1].isIntersecting) experience.classList.remove("is-exploring");
+    }).observe(experience);
+  }
+
   var active = false;
   var frame = 0;
   var first = true;

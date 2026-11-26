@@ -5,7 +5,9 @@
   happens there. Runs before js/case-nav.js, which measures the final layout.
 
   Stops are native CSS scroll snapping: top of the page, Impact, and the case nav; from the
-  nav down the page scrolls freely. This script only
+  nav down the page scrolls freely. Snapping is switched on only after the page has loaded:
+  while it is loading, the browser puts the reader back where they were (reload, Back), and
+  snapping at that moment would pull them to Impact instead. This script only
   - sizes the snap area that makes the rest of the page free (.cs-rest);
   - fades the hero and Impact as they leave, so one of them is in focus at a time;
   - lets the case nav and the first section shoot in after Impact;
@@ -34,6 +36,28 @@
   var first = true;
   var observer = null;
 
+  function snapOn() {
+    if (active) root.classList.add("cs-snap");
+  }
+
+  // two frames later: after the browser has restored the position and the page is laid out;
+  // and not before the hero has stopped moving (its stop is measured where it is drawn)
+  function snapSoon() {
+    window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(function () {
+        // only the movement counts: some heroes also have a background that loops for ever
+        var moving = (hero.getAnimations ? hero.getAnimations() : []).filter(function (animation) {
+          return animation.transitionProperty === "transform";
+        });
+        Promise.all(
+          moving.map(function (animation) {
+            return animation.finished.catch(function () {});
+          })
+        ).then(snapOn);
+      });
+    });
+  }
+
   function docTop(element) {
     var y = 0;
     while (element) {
@@ -44,6 +68,9 @@
   }
 
   function measure() {
+    // a header popup borrows the reviews, so the page is shorter for a while: keep the free
+    // area as it is, or closing the popup would leave the reader higher up
+    if (root.classList.contains("nav-popup-open")) return;
     root.style.setProperty("--cs-nav", header.offsetHeight + "px");
     // the nav is sticky, so its natural top is read from the block above it
     var top = docTop(impact) + impact.offsetHeight;
@@ -61,13 +88,20 @@
   function shootIn(elements) {
     elements.forEach(function (element) {
       if (!element.animate) return;
-      element.animate(
+      var entry = element.animate(
         [
           { opacity: 0, translate: "0 140px" },
           { opacity: 1, translate: "0 0" }
         ],
         { duration: 480, easing: "cubic-bezier(0.16, 1, 0.3, 1)" }
       );
+      // js/case-nav.js reads where the bar is on scroll; while it is flying in, that is
+      // not where it ends up, so ask for one more reading once it has landed
+      if (element === caseNav) {
+        entry.onfinish = function () {
+          window.dispatchEvent(new Event("scroll"));
+        };
+      }
     });
   }
 
@@ -113,12 +147,22 @@
     if (!block) return;
     window.requestAnimationFrame(function () {
       window.requestAnimationFrame(function () {
-        if (parseFloat(getComputedStyle(block).opacity) < 0.9) {
+        if (parseFloat(getComputedStyle(block).opacity) < 0.9 || offScreen(target)) {
           if (block === hero) window.scrollTo(0, 0);
           else impact.scrollIntoView({ block: "start" });
+          // a hero taller than the window: go on down to the focused element
+          if (offScreen(target)) {
+            var below = target.getBoundingClientRect().bottom - window.innerHeight + 24;
+            window.scrollBy({ top: below, behavior: "instant" });
+          }
         }
       });
     });
+  }
+
+  function offScreen(element) {
+    var box = element.getBoundingClientRect();
+    return box.bottom > window.innerHeight || box.top < header.offsetHeight;
   }
 
   function enable() {
@@ -138,6 +182,8 @@
       observer.observe(document.querySelector("main"));
       observer.observe(footer);
     }
+    if (document.readyState === "complete") snapSoon();
+    else window.addEventListener("load", snapSoon);
     update();
   }
 
@@ -146,7 +192,8 @@
     active = false;
     window.cancelAnimationFrame(frame);
     frame = 0;
-    root.classList.remove("cs-slides");
+    root.classList.remove("cs-slides", "cs-snap");
+    window.removeEventListener("load", snapSoon);
     root.style.removeProperty("--cs-nav");
     hero.classList.remove("cs-hero");
     impact.classList.remove("cs-impact");

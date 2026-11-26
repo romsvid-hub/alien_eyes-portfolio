@@ -55,4 +55,15 @@
     el.classList.add('reveal-init');
     observer.observe(el);
   });
+
+  // keyboard focus must never land on something still invisible (a control near the bottom
+  // edge is focused without scrolling, so the observer would not fire for it)
+  document.addEventListener('focusin', function (event) {
+    for (var el = event.target; el && el.classList; el = el.parentElement) {
+      if (el.classList.contains('reveal-init') && !el.classList.contains('is-revealed')) {
+        el.classList.add('is-revealed');
+        observer.unobserve(el);
+      }
+    }
+  });
 })();
