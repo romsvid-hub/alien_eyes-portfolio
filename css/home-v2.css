@@ -108,6 +108,17 @@
   will-change: transform, opacity;
 }
 
+/*
+  The sphere that follows the cursor (js/home-motion.js moves it with transform): Figma
+  1134:790 (hero, 620px) and 1134:792 (case cards, 520px): radial #B49CFF 50% -> #7B61FF 30%
+  at 45% -> transparent, layer blur 60 (Figma's radius is twice the CSS blur radius).
+*/
+.hm-sphere--follow {
+  background: radial-gradient(circle closest-side, rgba(180, 156, 255, 0.5) 0%, rgba(123, 97, 255, 0.3) 45%, rgba(123, 97, 255, 0) 100%);
+  -webkit-filter: blur(30px);
+  filter: blur(30px);
+}
+
 /* ---------- hero (Figma 1134:322) ---------- */
 
 .page-home .hero-section {
@@ -127,8 +138,8 @@
 }
 
 /*
-  Tilt + light spot, shared by the hero card and the six case cards (js/home-motion.js sets
-  --hm-tilt-x / --hm-tilt-y / --mx / --my and .is-hovered while the cursor is over a card).
+  Tilt, shared by the hero card and the six case cards (js/home-motion.js sets
+  --hm-tilt-x / --hm-tilt-y and .is-hovered while the cursor is over a card).
   The transform exists only while a card is hovered, so no card sits on its own 3D layer
   the rest of the time. The scroll-reveal sets transform: none on revealed elements (same
   specificity, loaded later), hence the longer selectors.
@@ -137,8 +148,6 @@
 .page-home .case-card {
   --hm-tilt-x: 0deg;
   --hm-tilt-y: 0deg;
-  --mx: 50%;
-  --my: 50%;
 }
 
 .page-home .hero-card.reveal-init.is-revealed {
@@ -159,46 +168,9 @@
   transform: perspective(1200px) rotateX(var(--hm-tilt-x)) rotateY(var(--hm-tilt-y));
 }
 
-/* light spot on the case cards (the hero card uses its ::after; the cards' ::after is the sphere) */
-.page-home .case-card::before,
-.page-home .case-card:hover::before,
-.page-home .case-card:active::before {
-  display: block;
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  background: radial-gradient(circle 320px at var(--mx) var(--my), rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0) 70%);
-  opacity: 0;
-  transition: opacity 0.3s ease-out;
-}
-
-.page-home .case-card.is-hovered::before {
-  opacity: 1;
-}
-
 /* the dark photo texture is gone: the card is glass */
 .page-home .hero-card__texture {
   display: none;
-}
-
-/* light spot that follows the cursor (--mx / --my) */
-.page-home .hero-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0;
-  background: radial-gradient(circle 280px at var(--mx) var(--my), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 70%);
-  transition: opacity 0.3s ease-out;
-}
-
-.page-home .hero-card.is-hovered::after {
-  opacity: 1;
 }
 
 @media (min-width: 1024px) {
@@ -223,14 +195,22 @@
   }
 }
 
-/* Figma 1134:790 (620px at 560,40) and 1134:791 (380px at -120,360): paint opacity x stop alpha */
+/*
+  Figma 1134:790 (620px at 560,40) and 1134:791 (380px at -120,360). 1134:790 has its paint
+  at 10% on top of 55% / 33% stops, i.e. 5.5% / 3.3%: that is the sphere at rest (the shared
+  50% / 30% gradient at opacity .11). Under the cursor it comes up to the full gradient.
+*/
 .hm-sphere--hero-a {
   left: 560px;
   top: 40px;
   width: 620px;
   height: 620px;
-  background: radial-gradient(circle closest-side, rgba(180, 156, 255, 0.055) 0%, rgba(123, 97, 255, 0.033) 45%, rgba(123, 97, 255, 0) 100%);
-  animation: hm-drift-a 16s ease-in-out infinite;
+  opacity: 0.11;
+  transition: opacity 0.5s ease-out;
+}
+
+.page-home .hero-card.is-hovered .hm-sphere--hero-a {
+  opacity: 1;
 }
 
 .hm-sphere--hero-b {
@@ -239,12 +219,13 @@
   width: 380px;
   height: 380px;
   background: radial-gradient(circle closest-side, rgba(180, 156, 255, 0.25) 0%, rgba(123, 97, 255, 0.15) 45%, rgba(123, 97, 255, 0) 100%);
-  animation: hm-drift-b 13s ease-in-out -4s infinite;
 }
 
-@keyframes hm-drift-a {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 1; }
-  50% { transform: translate3d(-40px, 24px, 0) scale(1.1); opacity: 0.75; }
+/* the small hero sphere drifts on desktop only; on touch and narrow screens it stands still */
+@media (min-width: 1024px) and (hover: hover) {
+  .hm-sphere--hero-b {
+    animation: hm-drift-b 13s ease-in-out -4s infinite;
+  }
 }
 
 @keyframes hm-drift-b {
@@ -422,20 +403,19 @@
   display: none;
 }
 
-.page-home .case-card::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
+/* home.css paints a tinted hover surface on ::before: the glass card is the surface here */
+.page-home .case-card::before {
+  display: none;
+}
+
+.page-home .hm-sphere--card {
   width: 520px;
   height: 520px;
-  border-radius: 50%;
-  pointer-events: none;
-  background: radial-gradient(circle closest-side, rgba(180, 156, 255, 0.5) 0%, rgba(123, 97, 255, 0.3) 45%, rgba(123, 97, 255, 0) 100%);
   top: var(--hm-sphere-y, 257px);
   left: -140px;
 }
 
-.page-home .case-card:nth-of-type(even)::after {
+.page-home .case-card:nth-of-type(even) .hm-sphere--card {
   left: auto;
   right: -140px;
 }
@@ -561,7 +541,7 @@
   transform: rotate(-8deg);
 }
 
-/* ---------- reduced motion: no drift, no tilt, no light spot ---------- */
+/* ---------- reduced motion: no drift, no tilt, spheres stay in place ---------- */
 
 @media (prefers-reduced-motion: reduce) {
   .hm-sphere {
@@ -571,11 +551,6 @@
   .page-home .hero-card.reveal-init.is-revealed.is-hovered,
   .page-home .case-card.reveal-init.is-revealed.is-hovered {
     transform: none;
-  }
-
-  .page-home .hero-card::after,
-  .page-home .case-card::before {
-    display: none;
   }
 }
 
