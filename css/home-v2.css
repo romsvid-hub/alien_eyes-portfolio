@@ -49,8 +49,7 @@
 .page-home .hero-section,
 .page-home .logos-section,
 .page-home .expertise-section,
-.page-home #feedbacks,
-.page-home .site-footer {
+.page-home #feedbacks {
   background-color: var(--hm-bg);
 }
 
@@ -75,16 +74,6 @@
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--hm-line-soft);
-}
-
-/* ---------- footer: no own background, a thin top line ---------- */
-
-.page-home .site-footer {
-  border-top: 1px solid var(--hm-line-soft);
-}
-
-.page-home .site-footer__bg {
-  display: none;
 }
 
 /* ---------- glass (hero card and the six case cards) ---------- */
