@@ -381,6 +381,15 @@
   }
 }
 
+/* the glass card's side padding leaves a narrow text column below 1440: tags wrap instead of
+   being cut off */
+@media (min-width: 1024px) {
+  .page-home .case-card .tag-row {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+}
+
 /* Figma: no tinted hover surface any more, the glass card itself is the surface */
 @media (hover: hover) {
   .page-home .case-card:hover {

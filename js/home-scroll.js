@@ -140,7 +140,9 @@
         var value = opacity;
         var index = cards.indexOf(element);
         if (index !== -1 && !popup) {
-          var away = distanceToCard(index, scroll, top + scroll, navHeight, view) / view;
+          // measured against one card step (card + gap), so tall windows dim the neighbours too
+          var reach = Math.min(view, element.offsetHeight + 120);
+          var away = distanceToCard(index, scroll, top + scroll, navHeight, view) / reach;
           value = opacity * (1 - clamp((away - 0.15) / 0.4) * 0.85);
         }
         writes.push([element, value]);

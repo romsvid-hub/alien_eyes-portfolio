@@ -26,6 +26,13 @@ html.hm-slides.nav-popup-open {
   scroll-snap-type: none;
 }
 
+/* ... and what it borrows must not keep the faded opacity it had on the page (inline) */
+.nav-popup-overlay .reviews-heading,
+.nav-popup-overlay .reviews-carousel,
+.nav-popup-overlay .reviews-progress {
+  opacity: 1 !important;
+}
+
 html.hm-slides .page-home #case-studies,
 html.hm-slides .page-home #experience,
 html.hm-slides .page-home #expertise,
@@ -214,12 +221,35 @@ html.hm-slides .page-home #case-studies .case-card:first-of-type {
   }
 }
 
+/* low windows: less air inside the cards, so each one fits under the header */
+@media (max-height: 760px) {
+  html.hm-slides .page-home #case-studies .case-card__link {
+    padding-block: 24px;
+  }
+}
+
 /* ---------- Experience: the heading stays, the list moves ---------- */
 
 html.hm-slides .page-home .home-section.experience-section {
   min-height: var(--hm-view);
   padding-block: 80px;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/*
+  A second stop at the end of the section: without it Page Down / Space, whose step is longer
+  than what is left of the list, went straight to the finale and the last rows never showed.
+*/
+html.hm-slides .page-home .experience-section::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+  scroll-snap-align: end;
   scroll-snap-stop: always;
 }
 
