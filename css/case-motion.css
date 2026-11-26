@@ -142,13 +142,131 @@ html.cs-slides .cs-impact {
   scroll-snap-stop: always;
 }
 
+/* ---------- B4: related case = a Home case card on the dot grid ---------- */
+
+.related-case {
+  position: relative;
+  --color-cta-purple: #7b61ff;
+  --color-purple-light: #7b61ff;
+  --color-purple-on-dark: #7b61ff;
+}
+
+/* full-width dot grid (Home: 2px dots, 24px step, white 9.75%) */
+.related-case::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 12px 12px, rgba(255, 255, 255, 0.0975) 1px, transparent 1.4px);
+  background-size: 24px 24px;
+}
+
+.related-case {
+  padding-bottom: 80px;
+}
+
+.related-case .case-card {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  padding: 0 16px;
+  background-color: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 32px;
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  --hm-tilt-x: 0deg;
+  --hm-tilt-y: 0deg;
+  transition:
+    transform 0.35s ease-out,
+    scale 150ms ease;
+}
+
+.related-case .case-card.is-hovered {
+  transform: perspective(1200px) rotateX(var(--hm-tilt-x)) rotateY(var(--hm-tilt-y));
+}
+
+.related-case .case-card::before,
+.related-case .case-card:hover::before,
+.related-case .case-card__glow {
+  display: none;
+}
+
+/* the Home glow sphere: in the card's right corner at rest, follows the cursor */
+.related-case .case-card > .hm-sphere--follow {
+  position: absolute;
+  right: -140px;
+  top: 257px;
+  z-index: -1;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle closest-side, rgba(180, 156, 255, 0.5) 0%, rgba(123, 97, 255, 0.3) 45%, rgba(123, 97, 255, 0) 100%);
+  -webkit-filter: blur(30px);
+  filter: blur(30px);
+  will-change: transform;
+}
+
+.related-case .case-card__link {
+  padding-block: 24px;
+}
+
+.related-case .case-card:has(.case-card__link:focus-visible) {
+  border-color: rgba(123, 97, 255, 0.6);
+  box-shadow: 0 0 0 2px #fffefe;
+}
+
+.related-case .case-card__link:focus-visible {
+  outline: none;
+}
+
+@media (hover: hover) {
+  .related-case .case-card:hover {
+    border-color: rgba(123, 97, 255, 0.35);
+  }
+}
+
+@media (min-width: 768px) {
+  .related-case .case-card {
+    padding-inline: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .related-case .case-card {
+    padding-inline: 57px;
+  }
+
+  .related-case .case-card__link {
+    column-gap: 48px;
+    padding-block: 49px;
+  }
+
+  .related-case .case-card__cta {
+    min-width: 274px;
+    justify-content: center;
+  }
+
+  .related-case .case-card .tag-row {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   body .case-hero.is-hovered,
   body .atj-hero.is-hovered,
   body .atj2-hero.is-hovered,
   body .uq2-hero.is-hovered,
   body .yoy-hero.is-hovered,
-  body .ridi-hero.is-hovered {
+  body .ridi-hero.is-hovered,
+  .related-case .case-card.is-hovered {
     transform: none;
   }
 }
