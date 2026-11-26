@@ -437,8 +437,76 @@
   transition: background-color 0.15s ease;
 }
 
-.nav-popup-case:hover {
-  background-color: rgba(255, 255, 255, 0.06);
+/*
+  Hover and keyboard focus: the item is tinted with the accent (#7B61FF). The tint is its own
+  layer, so only opacity animates. 20% plus the brighter description keep the text at
+  4.5:1 or better even over a light page behind the popup and with the glow under the item.
+*/
+.nav-popup-case {
+  position: relative;
+  isolation: isolate;
+}
+
+.nav-popup-case::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: rgba(123, 97, 255, 0.2);
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
+}
+
+.nav-popup-case:hover::before,
+.nav-popup-case:focus-visible::before {
+  opacity: 1;
+}
+
+.nav-popup-case:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: -2px;
+}
+
+.nav-popup-case:hover .nav-popup-case__desc,
+.nav-popup-case:focus-visible .nav-popup-case__desc {
+  color: rgba(255, 254, 254, 0.94);
+}
+
+/*
+  Cursor glow inside the Case Studies popup: the colours of the Home Glow sphere, a bit
+  weaker (35% / 20%) so the text stays readable; clipped by the panel. Mouse only
+  (js/card-motion.js creates and moves it), no tilt.
+*/
+.nav-popup--cases {
+  isolation: isolate;
+}
+
+.nav-popup--cases > .hm-sphere--follow {
+  position: absolute;
+  left: calc(50% - 260px);
+  top: calc(50% - 260px);
+  z-index: -1;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle closest-side, rgba(180, 156, 255, 0.35) 0%, rgba(123, 97, 255, 0.2) 45%, rgba(123, 97, 255, 0) 100%);
+  -webkit-filter: blur(30px);
+  filter: blur(30px);
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+  will-change: transform;
+}
+
+.nav-popup--cases.is-hovered > .hm-sphere--follow {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-popup--cases > .hm-sphere--follow {
+    display: none;
+  }
 }
 
 /*

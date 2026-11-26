@@ -168,6 +168,8 @@ function initNavPopups() {
 
   function openCasesPopup() {
     var content = buildShell();
+    // marks the panel for the cursor glow (js/card-motion.js) and the purple item tint
+    content.parentNode.className += " nav-popup--cases";
     var heading = document.createElement("h2");
     heading.className = "h2-section nav-popup__heading";
     heading.textContent = "Case Studies:";
