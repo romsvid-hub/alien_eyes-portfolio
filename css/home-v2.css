@@ -27,13 +27,15 @@
   background-color: var(--hm-bg);
 }
 
-/* ---------- dot grid: only behind Case Studies and Experience (Figma 1134:784) ---------- */
+/* ---------- dot grid: behind Case Studies and Experience (Figma 1134:784), plus the hero as a test ---------- */
 
 /*
   One fixed layer for the whole viewport (it stays put while scrolling), shown only behind
-  #case-studies and #experience: every other block of the page covers it with the page
-  colour itself, which looks like no background at all. Not done by clipping the layer per
-  section (clip-path), because then the glass cards can no longer blur the dots under them.
+  #case-studies, #experience and, as a test (Roman, 2026-11-26), the hero: to undo the test,
+  add .page-home .hero-section back to the list of covered blocks below. Every other block of
+  the page covers it with the page colour itself, which looks like no background at all. Not
+  done by clipping the layer per section (clip-path), because then the glass cards can no
+  longer blur the dots under them.
 */
 .page-home::before {
   content: "";
@@ -46,7 +48,6 @@
   background-size: 24px 24px;
 }
 
-.page-home .hero-section,
 .page-home .logos-section,
 .page-home .expertise-section,
 .page-home #feedbacks {
