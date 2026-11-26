@@ -24,6 +24,13 @@
         history.scrollRestoration = "manual";
       }
     </script>
+    <!-- Home scroll scenario (css/home-scroll.css, js/home-scroll.js): set before the first
+         layout so that anchors and restored positions land on the final geometry. -->
+    <script>
+      if (window.matchMedia("(min-width: 1024px) and (min-height: 600px) and (prefers-reduced-motion: no-preference)").matches) {
+        document.documentElement.classList.add("hm-slides");
+      }
+    </script>
     <title>Alien Eyes Portfolio</title>
     <meta name="description" content="Roman Sviderskyi — Product Designer. I turn complex systems into interfaces people actually understand. Case studies in UX, design systems, and AI-driven product design." />
     <link rel="canonical" href="https://alieneyes.ink/" />
@@ -73,6 +80,7 @@
     <link rel="stylesheet" href="css/experience.css" />
     <link rel="stylesheet" href="css/home-v2.css" />
     <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/home-scroll.css" />
     <!-- Microsoft Clarity analytics -->
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
@@ -251,6 +259,11 @@
 
       <!-- UI: HOME-EXPERTISE-01 | Expertise section | matches Figma 1000:4315 -->
       <section class="home-section expertise-section" id="expertise">
+        <span class="hm-step" style="--i: 0" aria-hidden="true"></span>
+        <span class="hm-step" style="--i: 1" aria-hidden="true"></span>
+        <span class="hm-step" style="--i: 2" aria-hidden="true"></span>
+        <span class="hm-step" style="--i: 3" aria-hidden="true"></span>
+        <div class="hm-stage">
         <svg class="hm-ufo hm-ufo--1" aria-hidden="true" focusable="false" viewBox="0 0 120 64"><use href="#hm-ufo" /></svg>
         <h2 class="h2-section expertise-heading home-col" data-reveal>Expertise:</h2>
         <ul class="expertise-grid home-col" data-reveal-group>
@@ -294,6 +307,7 @@
             <p class="expertise-item__text">Production front-end: Claude Code, React, Tailwind CSS, Storybook and Vercel, tested and deployed by me.</p>
           </li>
         </ul>
+        </div>
       </section>
 
       <section class="home-section" id="case-studies">
@@ -924,6 +938,7 @@
     <script src="js/experience-accordion.js"></script>
     <script src="js/hero-stars.js"></script>
     <script src="js/home-motion.js"></script>
+    <script src="js/home-scroll.js"></script>
     <script src="js/nbsp-typography.js"></script>
     <script src="js/home-scroll-restore.js"></script>
   </body>

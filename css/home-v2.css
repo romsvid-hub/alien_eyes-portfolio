@@ -163,8 +163,8 @@
     scale 150ms ease;
 }
 
-.page-home .hero-card.reveal-init.is-revealed.is-hovered,
-.page-home .case-card.reveal-init.is-revealed.is-hovered {
+.page-home .hero-card.is-hovered,
+.page-home .case-card.is-hovered {
   transform: perspective(1200px) rotateX(var(--hm-tilt-x)) rotateY(var(--hm-tilt-y));
 }
 
@@ -536,7 +536,7 @@
   width: 120px;
   height: 64px;
   left: calc(50% - 720px + 93.87px);
-  top: 175.29px;
+  top: 66px;
   opacity: 0.45;
   transform: rotate(-8deg);
 }
@@ -548,8 +548,8 @@
     animation: none;
   }
 
-  .page-home .hero-card.reveal-init.is-revealed.is-hovered,
-  .page-home .case-card.reveal-init.is-revealed.is-hovered {
+  .page-home .hero-card.is-hovered,
+  .page-home .case-card.is-hovered {
     transform: none;
   }
 }

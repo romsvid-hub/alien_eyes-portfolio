@@ -14,6 +14,8 @@
 (function () {
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion) return;
+  // Home on desktop runs its own scroll scenario (js/home-scroll.js): no second reveal on top
+  if (document.documentElement.classList.contains('hm-slides')) return;
 
   var targets = [];
 

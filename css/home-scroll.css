@@ -1,0 +1,285 @@
+/*
+  Home scroll scenario (index.html only, with js/home-scroll.js). Everything is scoped to
+  html.hm-slides, which exists only from 1024px (and 600px of height) without
+  prefers-reduced-motion: see the inline script in <head>. Otherwise Home is a plain page.
+
+  No scroll hijacking: stops are native CSS scroll snapping, the Expertise "pin" is
+  position: sticky, and the script only changes opacity / translate (set inline). Snap areas taller than
+  the screen (a long Experience list, small windows) can be scrolled freely.
+*/
+
+/* single wrappers that only matter in slide mode */
+.hm-step {
+  display: none;
+}
+
+html.hm-slides {
+  --hm-nav: 60px; /* sticky header; js/home-scroll.js keeps it exact */
+  --hm-view: calc(100vh - var(--hm-nav));
+  --hm-footer: 160px;
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: var(--hm-nav);
+}
+
+/* the header popups move the reviews out of the page: no snapping while one is open */
+html.hm-slides.nav-popup-open {
+  scroll-snap-type: none;
+}
+
+html.hm-slides .page-home #case-studies,
+html.hm-slides .page-home #experience,
+html.hm-slides .page-home #expertise,
+html.hm-slides .page-home #feedbacks {
+  scroll-margin-top: 0;
+}
+
+/* tilted cards without the scroll reveal still ease (reveal.js is off in slide mode) */
+html.hm-slides .page-home .hero-card:not(.reveal-init),
+html.hm-slides .page-home .case-card:not(.reveal-init) {
+  transition:
+    transform 0.35s ease-out,
+    scale 150ms ease;
+}
+
+/* ---------- slides 1 and 2: hero, "I worked with" ---------- */
+
+html.hm-slides .page-home .hero-section,
+html.hm-slides .page-home .logos-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: var(--hm-view);
+  padding-block: 24px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+html.hm-slides .page-home .hero-section > .hero-card,
+html.hm-slides .page-home .logos-section > .home-col {
+  width: 100%;
+}
+
+html.hm-slides .page-home .hero-card {
+  min-height: min(636px, calc(var(--hm-view) - 48px));
+}
+
+/* narrow desktop: a smaller photo and headline keep the hero on one screen */
+@media (max-width: 1199px) {
+  html.hm-slides .page-home .hero-card {
+    padding-right: 480px;
+  }
+
+  html.hm-slides .page-home .hero-card__photo {
+    width: 440px;
+  }
+
+  html.hm-slides .page-home .hero-title {
+    font-size: 48px;
+    line-height: 58px;
+  }
+}
+
+/* low windows (720-768px high laptops) */
+@media (max-height: 760px) {
+  html.hm-slides .page-home .hero-card {
+    padding-block: 24px;
+    row-gap: 24px;
+  }
+
+  html.hm-slides .page-home .hero-card__body {
+    gap: 24px;
+  }
+
+  html.hm-slides .page-home .hero-title {
+    font-size: 48px;
+    line-height: 58px;
+  }
+}
+
+/* ---------- slide 3: Expertise stays on screen while 01-04 take turns ---------- */
+
+html.hm-slides .page-home .expertise-section {
+  --hm-step: 70vh;
+  height: calc(var(--hm-view) + 3 * var(--hm-step));
+  padding-block: 0;
+}
+
+html.hm-slides .page-home .hm-stage {
+  position: sticky;
+  top: var(--hm-nav);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: var(--hm-view);
+}
+
+html.hm-slides .page-home .hm-stage > .home-col {
+  width: 100%;
+}
+
+/* one snap stop per block: a single flick moves exactly one block on */
+html.hm-slides .page-home .hm-step {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: calc(var(--i) * var(--hm-step));
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* active block = Figma 1134:416; its surface is a layer so only opacity animates */
+html.hm-slides .page-home .expertise-grid.has-active .expertise-item {
+  isolation: isolate;
+  border-color: transparent;
+  background: none;
+  opacity: 0.65;
+  transition: opacity 0.35s ease-out;
+}
+
+html.hm-slides .page-home .expertise-grid.has-active .expertise-item::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border: 1px solid rgba(123, 97, 255, 0.35);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(123, 97, 255, 0.22), rgba(123, 97, 255, 0.02) 90%);
+  opacity: 0;
+  transition: opacity 0.35s ease-out;
+}
+
+html.hm-slides .page-home .expertise-grid.has-active .expertise-item::before {
+  color: rgba(255, 254, 254, 0.7);
+}
+
+html.hm-slides .page-home .expertise-grid.has-active .expertise-item.is-active {
+  opacity: 1;
+}
+
+html.hm-slides .page-home .expertise-grid.has-active .expertise-item.is-active::after {
+  opacity: 1;
+}
+
+html.hm-slides .page-home .expertise-grid.has-active .expertise-item.is-active::before {
+  color: var(--hm-accent);
+}
+
+/* progress line: the track stays, the fill grows with the scroll */
+html.hm-slides .page-home .expertise-grid.has-active::before {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+html.hm-slides .page-home .expertise-grid.has-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -40px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, rgba(123, 97, 255, 0.2), var(--hm-accent));
+  transform-origin: left center;
+  transform: scaleX(var(--hm-progress, 0.225));
+}
+
+/* ---------- Case Studies: one card per stop ---------- */
+
+html.hm-slides .page-home #case-studies {
+  padding-top: 24px;
+  /* the last card stops with the section filling the screen */
+  padding-bottom: max(40px, calc((var(--hm-view) - 618px) / 2));
+}
+
+html.hm-slides .page-home .case-studies-heading {
+  margin-bottom: 32px;
+}
+
+html.hm-slides .page-home #case-studies .case-card {
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+/* the first card shares its stop with the heading (also where #case-studies lands) */
+html.hm-slides .page-home #case-studies .case-card:first-of-type {
+  scroll-snap-align: start;
+  scroll-margin-top: var(--hm-lead, 96px);
+}
+
+@media (max-height: 820px) {
+  html.hm-slides .page-home .case-studies-heading {
+    margin-bottom: 20px;
+  }
+}
+
+/* ---------- Experience: the heading stays, the list moves ---------- */
+
+html.hm-slides .page-home .home-section.experience-section {
+  min-height: var(--hm-view);
+  padding-block: 80px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+html.hm-slides .page-home .experience-section .experience-heading {
+  position: sticky;
+  top: calc(var(--hm-nav) + 80px);
+  align-self: start;
+}
+
+/* the UFO stays above the heading (Figma 1134:853) with the slide's smaller top padding */
+html.hm-slides .page-home .hm-ufo--5 {
+  top: 6px;
+}
+
+/* 1024-1199: the same two columns, narrower */
+@media (max-width: 1199px) {
+  html.hm-slides .page-home .experience-section {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    column-gap: 32px;
+    align-items: start;
+  }
+
+  html.hm-slides .page-home .experience-section .experience-heading {
+    margin: 0;
+    padding: 0;
+    font-size: 32px;
+  }
+
+  html.hm-slides .page-home .experience-section .experience-list {
+    margin: 0;
+    max-width: none;
+  }
+
+  html.hm-slides .page-home .exp {
+    margin-inline: 0;
+    padding-inline: 16px;
+  }
+
+  html.hm-slides .page-home .exp__head {
+    grid-template-columns: 220px minmax(0, 1fr) 24px;
+  }
+}
+
+/* ---------- finale: Reviews, CTA and footer on one screen ---------- */
+
+html.hm-slides .page-home .experience-section + #feedbacks {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(var(--hm-view) - var(--hm-footer));
+  padding-block: 32px 24px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+html.hm-slides .page-home #feedbacks .cta-section {
+  padding-top: 40px;
+}
+
+html.hm-slides .page-home .site-footer {
+  scroll-snap-align: end;
+}
