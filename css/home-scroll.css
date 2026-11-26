@@ -158,20 +158,12 @@ html.hm-slides .page-home .expertise-grid.has-active .expertise-item::after {
   transition: opacity 0.35s ease-out;
 }
 
-html.hm-slides .page-home .expertise-grid.has-active .expertise-item::before {
-  color: rgba(255, 254, 254, 0.7);
-}
-
 html.hm-slides .page-home .expertise-grid.has-active .expertise-item.is-active {
   opacity: 1;
 }
 
 html.hm-slides .page-home .expertise-grid.has-active .expertise-item.is-active::after {
   opacity: 1;
-}
-
-html.hm-slides .page-home .expertise-grid.has-active .expertise-item.is-active::before {
-  color: var(--hm-accent);
 }
 
 /* progress line: the track stays, the fill grows with the scroll */
@@ -201,7 +193,7 @@ html.hm-slides .page-home #case-studies {
 }
 
 html.hm-slides .page-home .case-studies-heading {
-  margin-bottom: 32px;
+  margin-bottom: calc(32px - var(--hm-card-gap));
 }
 
 html.hm-slides .page-home #case-studies .case-card {
@@ -217,7 +209,7 @@ html.hm-slides .page-home #case-studies .case-card:first-of-type {
 
 @media (max-height: 820px) {
   html.hm-slides .page-home .case-studies-heading {
-    margin-bottom: 20px;
+    margin-bottom: calc(20px - var(--hm-card-gap));
   }
 }
 

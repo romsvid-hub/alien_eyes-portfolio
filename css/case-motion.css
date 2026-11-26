@@ -275,6 +275,14 @@ main {
   }
 }
 
+/* one height for the case cards everywhere: the Home cards are 618px at this width */
+@media (min-width: 1280px) {
+  .related-case .case-card__link {
+    min-height: 616px;
+    align-content: center;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   body .case-hero.is-hovered,
   body .atj-hero.is-hovered,

@@ -239,7 +239,6 @@
 
 .page-home .expertise-grid {
   position: relative;
-  counter-reset: hm-ex;
 }
 
 @media (min-width: 1024px) {
@@ -282,8 +281,8 @@
 
 .page-home .expertise-item {
   position: relative;
-  counter-increment: hm-ex;
-  padding: 20px;
+  justify-content: center; /* equal-height blocks, content in the middle */
+  padding: 24px 20px;
   border: 1px solid transparent;
   border-radius: 20px;
   gap: 12px;
@@ -296,24 +295,10 @@
   opacity: 0.65;
 }
 
-.page-home .expertise-item::before {
-  content: counter(hm-ex, decimal-leading-zero);
-  font-family: var(--font-body);
-  font-size: 13px;
-  line-height: 18px;
-  letter-spacing: 0.08em;
-  color: rgba(255, 254, 254, 0.7);
-  margin-bottom: 0;
-}
-
 .page-home .expertise-item:first-child {
   opacity: 1;
   border-color: rgba(123, 97, 255, 0.35);
   background: linear-gradient(135deg, rgba(123, 97, 255, 0.22), rgba(123, 97, 255, 0.02) 90%);
-}
-
-.page-home .expertise-item:first-child::before {
-  color: var(--hm-accent);
 }
 
 /* ---------- Case Studies: 1200 wide, 120px between, a sphere in each card's corner ---------- */
@@ -324,24 +309,53 @@
   padding-bottom: 40px;
 }
 
+/* the heading sits in the same grid as the cards: its space to the first card is written
+   as a margin on top of the grid's gap */
 .page-home .case-studies-heading {
-  margin-bottom: 48px;
+  margin-bottom: 0;
+}
+
+/*
+  All six cards have one height, the tallest one's (grid rows of equal size), and each
+  card's content sits on its middle line.
+*/
+.page-home #case-studies {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto;
+  grid-auto-rows: 1fr;
+  --hm-card-gap: 48px;
+  row-gap: var(--hm-card-gap);
+  align-content: start;
 }
 
 @media (min-width: 1024px) {
-  .page-home .case-studies-heading {
-    margin-bottom: 120px;
+  .page-home #case-studies {
+    --hm-card-gap: 120px;
   }
 }
 
+.page-home #case-studies > .home-col,
+.page-home #case-studies > .case-card {
+  width: 100%;
+  margin-inline: auto;
+}
+
 .page-home .case-card {
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   padding: 0;
   margin-top: 0;
 }
 
+.page-home .case-card__link {
+  flex: 1;
+  align-content: center;
+}
+
 .page-home .case-card + .case-card {
-  margin-top: 48px;
+  margin-top: 0;
 }
 
 /* the card's side air sits on the link, so the whole card stays clickable */
@@ -352,9 +366,6 @@
 }
 
 @media (min-width: 1024px) {
-  .page-home .case-card + .case-card {
-    margin-top: 120px;
-  }
 }
 
 .page-home .case-card__link {
