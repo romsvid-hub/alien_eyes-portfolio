@@ -44,21 +44,23 @@ body .ridi-hero.is-hovered {
 }
 
 /*
-  Glow = the hero's main background colour about 23% darker (measured on the page).
-  Size, blur and easing as the Home Glow sphere (620px, blur 30px CSS).
+  Glow = a clean half-tone of the hero's own colour, only slightly deeper (Roman,
+  2026-11-26: a darker grey of the same colour looked dirty). Blues keep their hue and gain
+  saturation; the grey heroes get a light periwinkle, so the headline stays above 3:1 under
+  the glow. Size, blur and easing as the Home Glow sphere (620px, blur 30px CSS).
 */
 .atj-hero,
 .atj2-hero {
-  --glow-rgb: 168, 168, 169; /* #dadadb -> #a8a8a9 */
+  --glow-rgb: 190, 199, 228; /* on #dadadb: about 8% deeper, cool, not grey */
 }
 
 .uq2-hero {
-  --glow-rgb: 47, 70, 134; /* #3d5bae -> #2f4686 */
+  --glow-rgb: 42, 76, 172; /* #3d5bae -> #2a4cac */
 }
 
-/* the glow sits under the 30% overlay: this ends up 23% darker than the overlaid #33478b */
+/* the glow sits under the 30% overlay, which dims it to the matching half-tone */
 .case-hero {
-  --glow-rgb: 44, 66, 128;
+  --glow-rgb: 52, 90, 196;
 }
 
 .yoy-hero {
