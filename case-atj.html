@@ -58,6 +58,7 @@
       Not used anywhere else on this site, which is otherwise plain hand-written CSS on purpose.
     -->
     <link rel="stylesheet" href="css/job-card-tailwind.css" />
+    <link rel="stylesheet" href="css/mobile.css" />
     <!-- Microsoft Clarity analytics -->
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
@@ -158,7 +159,7 @@
       </section>
 
       <!-- UI: CASE02-IMPACT-01 | Impact stats | inspect/adjust | matches Figma order: Hero, Impact, Context, Role (472:4166) -->
-      <section class="atj-impact">
+      <section class="atj-impact" data-m-impact>
         <p class="atj-eyebrow cc-trick" data-reveal>Impact:</p>
         <div class="atj-impact__grid" data-reveal-group>
           <div class="atj-impact__item">
@@ -1148,7 +1149,7 @@
       <div class="site-footer__row site-footer__row--bottom">
         <p class="body-main site-footer__copyright">© 2026 Roman Sviderskyi<span class="site-footer__sep" aria-hidden="true"> · </span><span class="site-footer__colophon">Designed and hand-coded by me · Built with Claude Code</span></p>
         <p class="body-main site-footer__contact">
-          +380 97 334 9540&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:svidddrommm25@gmail.com"
+          <span class="site-footer__phone">+380 97 334 9540</span><span class="site-footer__slash">&nbsp;&nbsp;/&nbsp;&nbsp;</span><a class="site-footer__email" href="mailto:svidddrommm25@gmail.com"
             >svidddrommm25@gmail.com</a
           >
         </p>
@@ -1161,6 +1162,7 @@
     <script src="js/case-nav.js" defer></script>
     <script src="js/related-case.js" defer></script>
     <script src="js/reviews.js"></script>
+    <script src="js/mobile-screens.js"></script>
     <script src="js/title-enter.js"></script>
     <script src="js/reveal.js"></script>
     <script src="js/link-shimmer.js"></script>

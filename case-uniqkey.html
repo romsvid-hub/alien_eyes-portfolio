@@ -52,6 +52,7 @@
     <link rel="stylesheet" href="css/link-shimmer.css" />
     <link rel="stylesheet" href="css/reveal.css" />
     <link rel="stylesheet" href="css/case-motion.css" />
+    <link rel="stylesheet" href="css/mobile.css" />
     <!-- Microsoft Clarity analytics -->
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
@@ -154,7 +155,7 @@
       </section>
 
       <!-- UI: CASE01-IMPACT-01 | Impact stats | inspect/adjust -->
-      <section class="case-impact">
+      <section class="case-impact" data-m-impact>
         <p class="case-eyebrow cc-trick" data-reveal>Impact:</p>
         <div class="case-impact__grid" data-reveal-group>
           <div class="case-impact__item">
@@ -197,7 +198,7 @@
       </nav>
 
       <!-- UI: CASE01-SCOPE-01 | Product scope card | inspect/adjust -->
-      <section id="cs-context" data-case-section class="case-section case-scope">
+      <section id="cs-context" data-case-section class="case-section case-scope" data-m-screen>
         <p class="case-eyebrow" data-reveal>Context</p>
         <!-- IMAGE: CASE01-SCOPE-MOCKUP-01 | Admin portal, extension/mobile and iPhone device mockups | replaceable
              Column labels (Admin portal / Extension and Mobile App / Partner
@@ -207,19 +208,18 @@
           class="case-scope__devices"
           src="assets/case-uniqkey/scope-devices-composite.webp"
           alt="Admin Portal shown across two MacBook screens and an iPhone"
-          data-reveal
-        />
+          data-reveal data-zoom />
         <p class="body-large case-scope__text" data-reveal>
           This case study centers on the Admin Portal, the core of
-          Uniqkey's management experience.<br />
-          As Lead Designer, I worked across a global ecosystem of
-          platforms, ensuring consistency across all of them.
+          Uniqkey's management experience.<br class="case-context__break" />
+          <span class="case-context__second">As Lead Designer, I worked across a global ecosystem of
+          platforms, ensuring consistency across all of them.</span>
         </p>
       </section>
 
       <!-- UI: CASE01-CHALLENGE-01 | Story / challenge / context | inspect/adjust -->
       <section id="cs-challenge" data-case-section class="case-section case-challenge-wrap">
-        <div class="case-bleed case-challenge" data-reveal-group data-focus>
+        <div class="case-bleed case-challenge" data-reveal-group data-focus data-m-screen>
           <div class="case-challenge__intro">
             <p class="case-eyebrow case-eyebrow--gold cc-trick cs-eyebrow">Challenge.</p>
             <h2 class="h2-section case-challenge__heading">
@@ -258,7 +258,7 @@
           </div>
         </div>
 
-        <div class="case-bleed case-firstgen" data-reveal>
+        <div class="case-bleed case-firstgen" data-reveal data-m-screen>
           <p class="case-eyebrow cc-trick cs-eyebrow">First-gen</p>
           <p class="h3-case-study case-firstgen__heading cs-title">Dashboard</p>
           <p class="body-main case-firstgen__caption">
@@ -357,7 +357,7 @@
       </section>
 
       <!-- UI: CASE01-APPROACH-01 | Approach | inspect/adjust -->
-      <section class="case-section case-approach">
+      <section class="case-section case-approach" data-m-rise>
         <h2 class="h2-section case-approach__heading cs-title" data-reveal>How I approached it</h2>
         <p class="body-main case-approach__intro" data-reveal>
           Working closely with the Product Owner, and with strategic input
@@ -377,7 +377,7 @@
       </section>
 
       <!-- UI: CASE01-SCORE-01 | Redesigned average security score comparison | inspect/adjust -->
-      <section id="cs-key-decisions" data-case-section class="case-section case-score">
+      <section id="cs-key-decisions" data-case-section class="case-section case-score" data-m-rise>
         <p class="case-eyebrow cc-trick cs-eyebrow" data-reveal>Key decisions.</p>
         <h2 class="h2-section case-score__heading" data-reveal>Average security score</h2>
 
@@ -456,7 +456,7 @@
            Solid blue rounded panel (confirmed via Figma fill — corrected
            after an earlier misread), white title, two separate lines
            (not one flowing paragraph). -->
-      <section class="case-section">
+      <section class="case-section" data-m-rise>
         <div class="case-shift case-shift--panel" data-reveal>
           <p class="case-eyebrow case-eyebrow--white cc-trick">The shift</p>
           <p class="case-shift__text">
@@ -471,7 +471,7 @@
 
       <!-- UI: CASE01-DASH1-01 | Redesigned dashboard 1/2 | inspect/adjust -->
       <section class="case-bleed case-dash1">
-        <div class="case-dash1__white">
+        <div class="case-dash1__white" data-m-screen>
           <p class="case-eyebrow cs-eyebrow" data-reveal>After, Iteration 1</p>
           <h2 class="h2-section case-dash__admin-heading cs-title" data-reveal>Admin dashboard</h2>
           <p class="body-main case-dash1__intro" data-reveal>
@@ -506,7 +506,7 @@
           </div>
         </div>
 
-        <div class="case-dash1__blue">
+        <div class="case-dash1__blue" data-m-screen>
           <h2 class="h2-section case-dash1__blue-heading" data-reveal>Key changes</h2>
           <div class="case-dash1__cards" data-reveal-group>
             <div class="case-keychange">
@@ -539,7 +539,7 @@
       </section>
 
       <!-- UI: CASE01-DASH2-01 | Redesigned dashboard 2/2 | inspect/adjust -->
-      <section class="case-section case-dash2">
+      <section class="case-section case-dash2" data-m-rise>
         <p class="case-eyebrow cs-eyebrow" data-reveal>After, Iteration 2 (final)</p>
         <h2 class="h2-section case-dash__admin-heading cs-title" data-reveal>Admin dashboard</h2>
         <p class="body-main case-dash2__intro" data-reveal>
@@ -588,7 +588,7 @@
              (case-score__outro / -heading / -cols). -->
         <!-- "Results" nav item: from "The Shift" to the end of the case (Other Screens, awards, design system, prototype links), before Reviews -->
         <div id="cs-results" data-case-section class="case-results-focus" data-focus>
-        <div class="case-shift-outro" data-reveal>
+        <div class="case-shift-outro" data-reveal data-m-screen>
           <p class="h3-case-study case-shift-outro-heading cs-subtitle">The Shift</p>
           <div class="case-shift-outro-cols body-main">
             <p>
@@ -606,7 +606,7 @@
         <!-- Renamed from "Business impact"; panel color changed from
              green to a muted blue (#3d5bae — distinct from the standalone
              "The Shift" panel's brighter --color-unibrand). -->
-        <div class="case-shift case-shift--panel-results" data-reveal>
+        <div class="case-shift case-shift--panel-results" data-reveal data-m-screen>
           <div class="case-shift__left">
             <p class="h3-case-study case-shift__heading cs-subtitle">Results</p>
             <p class="case-shift__text">
@@ -667,8 +667,7 @@
                 class="case-other-carousel__img"
                 data-other-carousel-img
                 src="assets/case-uniqkey/otherscreens-v2-1-groups.webp"
-                alt="Admin Portal group table view"
-              />
+                alt="Admin Portal group table view" data-zoom="gallery" />
             </div>
 
             <button
@@ -887,7 +886,7 @@
       <div class="site-footer__row site-footer__row--bottom">
         <p class="body-main site-footer__copyright">© 2026 Roman Sviderskyi<span class="site-footer__sep" aria-hidden="true"> · </span><span class="site-footer__colophon">Designed and hand-coded by me · Built with Claude Code</span></p>
         <p class="body-main site-footer__contact">
-          +380 97 334 9540&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:svidddrommm25@gmail.com"
+          <span class="site-footer__phone">+380 97 334 9540</span><span class="site-footer__slash">&nbsp;&nbsp;/&nbsp;&nbsp;</span><a class="site-footer__email" href="mailto:svidddrommm25@gmail.com"
             >svidddrommm25@gmail.com</a
           >
         </p>
@@ -901,6 +900,7 @@
     <script src="js/link-shimmer.js" defer></script>
     <script src="js/related-case.js" defer></script>
     <script src="js/reviews.js"></script>
+    <script src="js/mobile-screens.js"></script>
     <script src="js/title-enter.js"></script>
     <script src="js/reveal.js"></script>
     <script src="js/notif-reveal.js"></script>
@@ -908,6 +908,7 @@
     <script src="js/uniqkey-dash2-scroll.js"></script>
     <script src="js/uniqkey-feedback-pin.js"></script>
     <script src="js/case-other-carousel.js"></script>
+    <script src="js/mobile-zoom.js"></script>
     <script src="js/nbsp-typography.js"></script>
   </body>
 </html>

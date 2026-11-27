@@ -1,0 +1,779 @@
+/*
+  Phones and tablets (below 1024px). Mobile audit, 2026-11-27.
+  Loaded last on every page. Everything sits inside max-width: 1023px, so the desktop
+  layout is not touched. Scripts: js/mobile-screens.js (case nav, section entrances),
+  js/mobile-zoom.js (image viewer, gallery swipe), js/card-motion.js (touch tilt),
+  js/nav.js (backdrop behind the open menu).
+*/
+
+/* parts that only the phone / tablet layout uses */
+.zoom-hint,
+.nav-scrim {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  /* ---------- footer: phone on one line, email under it ---------- */
+
+  .site-footer__phone {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .site-footer__slash {
+    display: none;
+  }
+
+  .site-footer__email {
+    display: inline-block;
+    margin-top: 6px;
+    overflow-wrap: anywhere;
+  }
+
+  /* ---------- Home: hero card, small round portrait next to the name ---------- */
+
+  .page-home .hero-section {
+    padding-top: 16px;
+    padding-bottom: 32px;
+  }
+
+  .page-home .hero-card {
+    grid-template-columns: 72px minmax(0, 1fr);
+    grid-template-areas:
+      "photo identity"
+      "title title"
+      "intro intro"
+      "actions actions";
+    align-items: center;
+    gap: 20px 16px;
+    padding: 24px;
+    border-radius: 20px;
+  }
+
+  .page-home .hero-card__body {
+    display: contents;
+  }
+
+  .page-home .hero-identity {
+    grid-area: identity;
+  }
+
+  .page-home .hero-title {
+    grid-area: title;
+    margin: 4px 0 0;
+  }
+
+  .page-home .hero-intro {
+    grid-area: intro;
+  }
+
+  .page-home .hero-actions {
+    grid-area: actions;
+  }
+
+  .page-home .hero-card__photo {
+    grid-area: photo;
+    width: 72px;
+    height: 72px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 1px solid rgba(180, 156, 255, 0.45);
+    background: radial-gradient(circle at 50% 35%, #3a3155, #1c1828 75%);
+  }
+
+  /* the cut-out portrait is cropped to head and shoulders */
+  .page-home .hero-card__photo img {
+    inset: auto;
+    top: -34%;
+    left: -24%;
+    width: 148%;
+    height: auto;
+    max-width: none;
+    transform: none;
+    object-fit: initial;
+  }
+
+  /* ---------- Home: "I worked with" takes the screen, logos in a column ---------- */
+
+  .page-home .logos-section {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 56px);
+    min-height: calc(100svh - 56px);
+    padding-block: 32px;
+  }
+
+  .page-home .logos-section > .home-col {
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .page-home .logos-heading {
+    text-align: center;
+  }
+
+  .page-home .logos-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(24px, 5.5vh, 48px);
+    margin-top: 16px;
+  }
+
+  .page-home .logos-grid > .client-logo {
+    flex: none;
+    width: 148px;
+  }
+
+  /* ---------- Home: Expertise is a plain dark list, all of it readable ---------- */
+
+  .page-home .expertise-section {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 56px);
+    min-height: calc(100svh - 56px);
+    padding-block: 32px;
+  }
+
+  .page-home .expertise-section .hm-stage,
+  .page-home .expertise-section .home-col {
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .page-home .expertise-heading {
+    margin-bottom: 20px;
+  }
+
+  .page-home .expertise-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .page-home .expertise-grid .expertise-item,
+  .page-home .expertise-grid .expertise-item:first-child,
+  .page-home .expertise-grid .expertise-item:not(:first-child),
+  .page-home .expertise-grid .expertise-item.reveal-init.is-revealed:not(:first-child) {
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr);
+    align-content: center;
+    column-gap: 14px;
+    row-gap: 4px;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.035);
+    opacity: 1;
+  }
+
+  .page-home .expertise-item__icon {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: start;
+    width: 32px;
+    height: 32px;
+  }
+
+  .page-home .expertise-item__title,
+  .page-home .expertise-item__text {
+    grid-column: 2;
+  }
+
+  /* ---------- Case cards (Home and the related-case card): even padding, calmer corners ---------- */
+
+  .page-home #case-studies {
+    grid-auto-rows: auto;
+    --hm-card-gap: 32px;
+  }
+
+  .page-home .case-card,
+  .related-case .case-card {
+    border-radius: 16px;
+  }
+
+  .page-home .case-card__link,
+  .related-case .case-card__link {
+    gap: 20px;
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  /* the artwork keeps inside its box, so it cannot add air on one card and eat it on another */
+  .page-home .case-card__media,
+  .related-case .case-card__media {
+    overflow: hidden;
+  }
+
+  /* ---------- header: open menu on glass, the page behind is blurred ---------- */
+
+  .site-nav.is-open .nav-menu {
+    background: linear-gradient(180deg, rgba(19, 17, 27, 0.9), rgba(25, 20, 42, 0.84));
+    border-bottom: 1px solid rgba(180, 156, 255, 0.22);
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 24px 48px -12px rgba(123, 97, 255, 0.32);
+  }
+
+  .site-nav.is-open .nav-cta {
+    min-height: 44px;
+  }
+
+  /* 32px between the links, 12px between the two buttons */
+  .site-nav.is-open .nav-cta--contact {
+    margin-top: -20px;
+  }
+
+  /* ---------- "Case Studies" popup: almost the whole screen, a vertical list ---------- */
+
+  .nav-popup-overlay:has(> .nav-popup--cases) {
+    padding: 12px;
+    align-items: stretch;
+    background: rgba(8, 6, 14, 0.35);
+  }
+
+  .nav-popup--cases {
+    max-height: none;
+    padding: 16px 12px 12px;
+    border-radius: 20px;
+    background-color: rgba(19, 20, 20, 0.94);
+  }
+
+  .nav-popup--cases .nav-popup__heading {
+    margin: 0 0 16px;
+    padding: 6px 52px 0 8px;
+    font-size: clamp(24px, 7vw, 32px);
+    line-height: 1.2;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .nav-popup--cases .nav-popup__close {
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    background-color: #7b61ff;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35), 0 6px 18px rgba(0, 0, 0, 0.45);
+  }
+
+  .nav-popup--cases .nav-popup__close svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .nav-popup--cases .nav-popup__close svg path {
+    stroke-width: 2.2;
+  }
+
+  .nav-popup--cases .nav-popup__cases-grid {
+    flex: 1;
+    flex-direction: column;
+    gap: 8px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-popup--cases .nav-popup-case {
+    display: grid;
+    grid-template-columns: 108px minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    column-gap: 14px;
+    row-gap: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+
+  .nav-popup--cases .nav-popup-case__media {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: center;
+  }
+
+  .nav-popup--cases .nav-popup-case__title {
+    grid-column: 2;
+    align-self: end;
+    line-height: 1.3;
+  }
+
+  .nav-popup--cases .nav-popup-case__desc {
+    grid-column: 2;
+    align-self: start;
+  }
+
+  /* ---------- touch tilt (js/card-motion.js): no long-press menu or selection on these surfaces ---------- */
+
+  .hero-card,
+  .case-card,
+  .case-hero,
+  .atj-hero,
+  .atj2-hero,
+  .uq2-hero,
+  .yoy-hero,
+  .ridi-hero {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .case-card__link,
+  .case-card img,
+  .case-hero img,
+  .atj-hero img,
+  .atj2-hero img,
+  .uq2-hero img,
+  .yoy-hero img,
+  .ridi-hero img {
+    -webkit-user-drag: none;
+  }
+
+  /* a smaller sphere under the finger */
+  .page-home .hero-card.is-touched .hm-sphere--hero-a {
+    opacity: 1;
+  }
+
+  /* ---------- case heroes: title, description, picture, then the details ---------- */
+
+  .case-hero,
+  .atj-hero,
+  .atj2-hero,
+  .uq2-hero,
+  .yoy-hero,
+  .ridi-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    margin-top: 16px;
+    margin-bottom: 0;
+  }
+
+  .case-hero__content,
+  .atj-hero__content,
+  .atj2-hero__content,
+  .uq2-hero__content,
+  .yoy-hero__content,
+  .ridi-hero__body,
+  .ridi-hero__content {
+    display: contents;
+  }
+
+  .case-hero__title,
+  .atj-hero__title,
+  .atj2-hero__title,
+  .uq2-hero__title,
+  .yoy-hero__title,
+  .ridi-hero__title-row {
+    position: relative;
+    z-index: 1;
+    order: 1;
+    margin: 0;
+  }
+
+  .case-hero__subhead,
+  .atj-hero__desc,
+  .atj2-hero__desc,
+  .uq2-hero__desc,
+  .yoy-hero__desc,
+  .ridi-hero__desc {
+    position: relative;
+    z-index: 1;
+    order: 2;
+    margin: 0;
+  }
+
+  .case-hero__mockup,
+  .atj-hero__mockup-frame,
+  .atj2-hero__media,
+  .uq2-hero__media,
+  .yoy-hero__media,
+  .ridi-hero__screens {
+    position: relative;
+    z-index: 1;
+    order: 3;
+  }
+
+  .case-hero .case-meta,
+  .atj-hero .case-meta,
+  .atj2-hero__meta-row,
+  .uq2-hero .case-meta,
+  .yoy-hero .case-meta,
+  .ridi-hero .case-meta {
+    position: relative;
+    z-index: 1;
+    order: 4;
+    margin: 0;
+    padding-top: 8px;
+  }
+
+  .case-hero {
+    padding: 32px 20px;
+  }
+
+  .uq2-hero {
+    padding: 32px 20px;
+  }
+
+  .atj-hero {
+    padding: 32px 20px;
+  }
+
+  .atj2-hero {
+    padding: 32px 20px;
+  }
+
+  .yoy-hero {
+    padding: 32px 20px;
+  }
+
+  .ridi-hero {
+    padding: 32px 20px;
+  }
+
+  /* ---------- Impact: a screen of its own, heading and numbers only ---------- */
+
+  [data-m-impact] {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - var(--case-nav-top, 56px));
+    min-height: calc(100svh - var(--case-nav-top, 56px));
+    padding-block: 40px;
+  }
+
+  [data-m-impact] > * {
+    width: 100%;
+  }
+
+  /* three or fewer: one column, aligned left */
+  [data-m-impact] :is(.case-impact__grid, .atj-impact__grid, .atj2-facts, .uq2-impact, .yoy-facts) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: start;
+    gap: 32px;
+    margin-top: 24px;
+    text-align: left;
+  }
+
+  /* four: two by two */
+  [data-m-impact] :is(.case-impact__grid, .atj-impact__grid, .atj2-facts, .uq2-impact, .yoy-facts):has(> :nth-child(4)) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 40px 20px;
+  }
+
+  [data-m-impact] :is(.case-impact__item, .atj-impact__item, .atj2-facts__item, .uq2-impact__item) {
+    align-items: flex-start;
+    width: 100%;
+    text-align: left;
+  }
+
+  /* ---------- case nav: hidden over the hero and Impact, slides in with the first section ---------- */
+
+  html.m-nav .case-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 98;
+    gap: 20px;
+    padding-left: 0;
+    background-color: #151616;
+    overflow-x: auto;
+    overflow-y: hidden;
+    /* sideways only: no drag or bounce in any other direction */
+    touch-action: pan-x;
+    overscroll-behavior: contain;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+    transition:
+      transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 180ms ease-out,
+      visibility 0s 220ms;
+  }
+
+  html.m-nav .case-nav.is-shown {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition:
+      transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 180ms ease-out;
+  }
+
+  /* "Home" stays put; the other items slide under it and fade out */
+  html.m-nav .case-nav__lead {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    align-self: stretch;
+    margin-right: -8px;
+    padding-left: var(--page-px);
+    background-color: #151616;
+  }
+
+  html.m-nav .case-nav__lead::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 100%;
+    width: 24px;
+    background: linear-gradient(90deg, #151616 15%, rgba(21, 22, 22, 0));
+    pointer-events: none;
+  }
+
+  html.m-nav .case-nav__home {
+    gap: 16px;
+  }
+
+  .case-nav-spacer {
+    display: none;
+  }
+
+  /* ---------- screens: a section that fills the display; longer ones simply scroll ---------- */
+
+  [data-m-screen] {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - var(--case-nav-top, 56px) - 48px);
+    min-height: calc(100svh - var(--case-nav-top, 56px) - 48px);
+  }
+
+  [data-m-screen] > * {
+    flex-shrink: 0;
+  }
+
+  .m-wait {
+    opacity: 0 !important;
+  }
+
+  .m-wait,
+  .m-enter {
+    transition: none !important;
+  }
+
+  /* the coloured card of a Uniqkey 2 panel fills its screen */
+  .uq2-section--panel[data-m-screen] > .uq2-panel {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* ---------- Uniqkey case 01 ---------- */
+
+  .case-context__second {
+    display: block;
+    margin-top: 20px;
+  }
+
+  .case-context__break {
+    display: none;
+  }
+
+  .case-other-carousel__viewport {
+    touch-action: pan-y;
+  }
+
+  .case-other-carousel__viewport img {
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* ---------- Uniqkey case 02 ---------- */
+
+  #cs-core-features > .uq2-eyebrow {
+    margin-bottom: 32px;
+  }
+
+  /* ---------- "Tap to zoom" ---------- */
+
+  [data-zoom] {
+    cursor: zoom-in;
+  }
+
+  .zoom-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: fit-content;
+    min-height: 36px;
+    margin: 6px auto 0;
+    padding: 6px 14px;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: #6b6f76;
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 18px;
+    cursor: zoom-in;
+  }
+
+  .zoom-hint svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .zoom-hint--on-dark {
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .zoom-hint--button {
+    border: 1px solid currentColor;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-home .logos-section {
+    padding-block: 24px;
+  }
+}
+
+/* tablets: two columns of Expertise cards */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .page-home .expertise-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  /* the blurred layer behind the open menu */
+  .nav-scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    background: rgba(9, 7, 16, 0.42);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.2s ease-out,
+      visibility 0s 0.2s;
+  }
+
+  .site-nav.is-open ~ .nav-scrim {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.2s ease-out;
+  }
+}
+
+@media (max-width: 1023px) and (prefers-reduced-motion: reduce) {
+  html.m-nav .case-nav,
+  html.m-nav .case-nav.is-shown,
+  .nav-scrim {
+    transition: none;
+  }
+}
+
+/* ---------- image viewer (js/mobile-zoom.js) ---------- */
+
+.zoom-view {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  background: #08080b;
+  color: #fffefe;
+  font-family: var(--font-body);
+}
+
+.zoom-view__top,
+.zoom-view__bottom {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 12px;
+}
+
+.zoom-view__top {
+  justify-content: space-between;
+}
+
+.zoom-view__note {
+  font-size: 13px;
+  color: rgba(255, 254, 254, 0.72);
+}
+
+.zoom-view__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+  font: 600 15px/1 var(--font-body);
+  cursor: pointer;
+}
+
+.zoom-view__btn[aria-pressed="true"] {
+  background: #7b61ff;
+  border-color: #7b61ff;
+}
+
+.zoom-view__btn--close {
+  background: #7b61ff;
+  border-color: rgba(255, 255, 255, 0.5);
+  font-size: 22px;
+}
+
+.zoom-view__stage {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  touch-action: none;
+  cursor: grab;
+}
+
+.zoom-view__stage img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  max-width: none;
+  transform-origin: 0 0;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+html.zoom-open,
+html.zoom-open body {
+  overflow: hidden;
+}
+
+/* the Uniqkey artwork has wide transparent margins above and below the laptop */
+@media (max-width: 767px) {
+  .case-card__link .case-card__media:has(.uniqkey-laptop-frame) {
+    margin-block: -36px;
+  }
+}

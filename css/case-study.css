@@ -1363,3 +1363,9 @@
 .case-livefiles__links a {
   color: #2563d9;
 }
+
+/* the space above the panel's label equals the space beside and under the text
+   (desktop and phones; mobile audit, 2026-11-27) */
+.case-section > .case-shift--panel > .case-eyebrow {
+  margin-top: 0;
+}

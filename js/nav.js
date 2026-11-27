@@ -11,6 +11,21 @@ document.addEventListener("DOMContentLoaded", function () {
     toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
   });
 
+  // phones: the blurred layer behind the open menu (css/mobile.css); a tap on it closes
+  var scrim = document.createElement("div");
+  scrim.className = "nav-scrim";
+  scrim.setAttribute("aria-hidden", "true");
+  nav.parentNode.insertBefore(scrim, nav.nextSibling);
+
+  function closeMenu() {
+    nav.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+  }
+  scrim.addEventListener("click", closeMenu);
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && nav.classList.contains("is-open")) closeMenu();
+  });
+
   initNavPopups();
 });
 

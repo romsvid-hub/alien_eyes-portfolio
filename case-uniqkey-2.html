@@ -52,6 +52,7 @@
     <link rel="stylesheet" href="css/case-meta.css" />
     <link rel="stylesheet" href="css/case-nav.css" />
     <link rel="stylesheet" href="css/link-shimmer.css" />
+    <link rel="stylesheet" href="css/mobile.css" />
     <!-- Microsoft Clarity analytics -->
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
@@ -142,7 +143,7 @@
       </section>
 
       <!-- UI: CASE-UQ2-IMPACT-01 | Impact stats | matches Figma "Impact Stats Section" (898:21068) -->
-      <section class="uq2-section">
+      <section class="uq2-section" data-m-impact>
         <p class="uq2-eyebrow uq2-impact-heading" data-reveal>Impact:</p>
         <div class="uq2-impact" data-reveal-group>
           <div class="uq2-impact__item">
@@ -179,7 +180,7 @@
 
       <!-- UI: CASE-UQ2-CONTEXT-01 | Context | matches Figma "Context - Selection" (898:19985) -->
       <!-- "Context" nav item = Context + Product Scope + My Scope, up to The Challenge: the anchor sits on the first of them -->
-      <section id="cs-context" data-case-section class="uq2-section">
+      <section id="cs-context" data-case-section class="uq2-section" data-m-screen>
         <p class="h2-section uq2-eyebrow uq2-eyebrow--lg" data-reveal>Context</p>
         <p class="body-large" data-reveal>
           Uniqkey's mobile app is a password manager and 2FA companion to the Admin Portal — the
@@ -188,7 +189,7 @@
           usability for existing users, once to adapt the same product for enterprise B2B teams.
         </p>
         <div class="uq2-context__media" data-reveal>
-          <img loading="lazy" width="3405" height="1170" src="assets/case-uniqkey-2/context-example.png" alt="Before and after comparison of the mobile app's core screens" />
+          <img loading="lazy" width="3405" height="1170" src="assets/case-uniqkey-2/context-example.png" alt="Before and after comparison of the mobile app's core screens" data-zoom />
         </div>
       </section>
 
@@ -196,17 +197,17 @@
       <section class="uq2-section uq2-section--scope">
         <p class="uq2-eyebrow cs-title" data-reveal>Product Scope</p>
         <p class="body-large uq2-scope__intro" data-reveal>
-          The mobile app is one piece of a larger ecosystem. Corporate logins, permissions,<br />
-          and password policies are set and managed by the admin on the Admin Portal,<br />
+          The mobile app is one piece of a larger ecosystem. Corporate logins, permissions,<br class="br-desktop" />
+          and password policies are set and managed by the admin on the Admin Portal,<br class="br-desktop" />
           the mobile app is where employees access and use that data day to day.
         </p>
         <div class="uq2-scope__panel" data-reveal>
-          <img loading="lazy" width="1024" height="336" src="assets/case-uniqkey-2/product-scope.png" alt="Admin portal dashboard, mobile app paired with the browser extension, and Partner Portal dashboard" />
+          <img loading="lazy" width="1024" height="336" src="assets/case-uniqkey-2/product-scope.png" alt="Admin portal dashboard, mobile app paired with the browser extension, and Partner Portal dashboard" data-zoom />
         </div>
       </section>
 
       <!-- UI: CASE-UQ2-MYSCOPE-01 | My Scope | matches Figma "My Scope - Selection" (898:20021) -->
-      <section class="uq2-section">
+      <section class="uq2-section" data-m-screen>
         <p class="h2-section uq2-eyebrow uq2-eyebrow--lg" data-reveal>My Scope</p>
         <div class="uq2-grid" data-reveal-group>
           <div class="uq2-grid__col">
@@ -231,7 +232,7 @@
       </section>
 
       <!-- UI: CASE-UQ2-CHALLENGE-01 | The Challenge | matches Figma "Challenge - Section" (898:20044) -->
-      <section id="cs-challenge" data-case-section class="uq2-section uq2-section--panel" data-focus>
+      <section id="cs-challenge" data-case-section class="uq2-section uq2-section--panel" data-focus data-m-screen>
         <div class="uq2-panel" data-reveal>
           <div class="uq2-panel__inner">
             <p class="uq2-panel__eyebrow">The Challenge</p>
@@ -265,19 +266,19 @@
       </section>
 
       <!-- UI: CASE-UQ2-BEFORE-01 | Before | matches Figma "Before column" (899:21118) -->
-      <section class="uq2-section uq2-section--before">
+      <section class="uq2-section uq2-section--before" data-m-rise>
         <p class="h2-section uq2-eyebrow uq2-eyebrow--lg" data-reveal>Before:</p>
         <p class="body-large uq2-before__lead" data-reveal>
           Essential navigation tools and search fields were buried in an unstructured list,
           making the app confusing to use.
         </p>
         <div class="uq2-before__media" data-reveal>
-          <img loading="lazy" width="1336" height="883" src="assets/case-uniqkey-2/before.png" alt="Original app: navigation and search buried in an unstructured list" />
+          <img loading="lazy" width="1336" height="883" src="assets/case-uniqkey-2/before.png" alt="Original app: navigation and search buried in an unstructured list" data-zoom />
         </div>
       </section>
 
       <!-- UI: CASE-UQ2-RESEARCH-01 | Research | matches Figma "Research - Selection" (898:20062) -->
-      <section id="cs-research" data-case-section class="uq2-section">
+      <section id="cs-research" data-case-section class="uq2-section" data-m-rise>
         <p class="h2-section uq2-eyebrow uq2-eyebrow--lg" data-reveal>Research</p>
         <p class="body-large" data-reveal>
           Support team feedback showed that simple usability tweaks would be enough, so I started
@@ -371,8 +372,8 @@
           <div class="uq2-panel__inner">
             <p class="uq2-panel__eyebrow uq2-panel__eyebrow--h1">Key Solutions</p>
             <p class="uq2-panel__title">B2B: Access Rights and Department Filtering</p>
-            <div class="uq2-panel__media">
-              <img loading="lazy" width="3856" height="1820" src="assets/case-uniqkey-2/key-solution-flow.png" alt="Flow: filtering logins by department, then opening a detailed login view with 2FA code and sharing tags" />
+            <div class="uq2-panel__media" data-zoom-dark>
+              <img loading="lazy" width="3856" height="1820" src="assets/case-uniqkey-2/key-solution-flow.png" alt="Flow: filtering logins by department, then opening a detailed login view with 2FA code and sharing tags" data-zoom />
             </div>
             <div class="uq2-decision uq2-decision--on-blue" data-reveal-group>
               <div class="uq2-decision__grid">
@@ -413,7 +414,7 @@
       </section>
 
       <!-- UI: CASE-UQ2-FEATURES-01 | Other Core Features | matches Figma "Section — Other Core Features" (898:20213) -->
-      <section id="cs-core-features" data-case-section class="uq2-section">
+      <section id="cs-core-features" data-case-section class="uq2-section" data-m-screen>
         <p class="h2-section uq2-eyebrow uq2-eyebrow--lg" data-reveal>Other Features</p>
         <div class="uq2-features">
           <div data-reveal>
@@ -435,7 +436,7 @@
               </div>
             </div>
             <div class="uq2-feature__media" style="margin-top: 24px">
-              <img loading="lazy" width="1680" height="810" src="assets/case-uniqkey-2/onboarding.png" alt="Startup onboarding checklist with a completion progress bar" />
+              <img loading="lazy" width="1680" height="810" src="assets/case-uniqkey-2/onboarding.png" alt="Startup onboarding checklist with a completion progress bar" data-zoom />
             </div>
           </div>
 
@@ -458,7 +459,7 @@
               </div>
             </div>
             <div class="uq2-feature__media" style="margin-top: 24px">
-              <img loading="lazy" width="1680" height="810" src="assets/case-uniqkey-2/notifications.png" alt="Notification feed with status for each security event" />
+              <img loading="lazy" width="1680" height="810" src="assets/case-uniqkey-2/notifications.png" alt="Notification feed with status for each security event" data-zoom />
             </div>
           </div>
 
@@ -470,7 +471,7 @@
               stays the actual key.
             </p>
             <div class="uq2-feature__media uq2-feature__media--spaced">
-              <img loading="lazy" width="1940" height="1800" src="assets/case-uniqkey-2/extension.png" alt="Browser extension login request approved from the mobile app" />
+              <img loading="lazy" width="1940" height="1800" src="assets/case-uniqkey-2/extension.png" alt="Browser extension login request approved from the mobile app" data-zoom />
             </div>
           </div>
 
@@ -482,7 +483,7 @@
             <!-- Interactive before/after comparison slider, per Roman
                  (node 916:34103 + his own gap edit on 907:32287) —
                  drag the handle to compare. js/case-uniqkey-2-shift.js -->
-            <div class="uq2-shift" data-before-after>
+            <div class="uq2-shift" data-before-after data-zoom-compare>
               <div class="uq2-shift__before">
                 <img loading="lazy" width="1283" height="848" src="assets/case-uniqkey-2/shift-before.png" alt="Before: unstructured, hard-to-navigate password list" />
               </div>
@@ -505,7 +506,7 @@
       </section>
 
       <!-- UI: CASE-UQ2-RESULTS-01 | Results | matches Figma "Section — Results" (898:20259) -->
-      <section id="cs-results" data-case-section class="uq2-section uq2-section--panel" data-focus>
+      <section id="cs-results" data-case-section class="uq2-section uq2-section--panel" data-focus data-m-screen>
         <div class="uq2-panel" data-reveal>
           <div class="uq2-panel__inner">
             <div class="uq2-results">
@@ -641,7 +642,7 @@
       <div class="site-footer__row site-footer__row--bottom">
         <p class="body-main site-footer__copyright">© 2026 Roman Sviderskyi<span class="site-footer__sep" aria-hidden="true"> · </span><span class="site-footer__colophon">Designed and hand-coded by me · Built with Claude Code</span></p>
         <p class="body-main site-footer__contact">
-          +380 97 334 9540&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:svidddrommm25@gmail.com"
+          <span class="site-footer__phone">+380 97 334 9540</span><span class="site-footer__slash">&nbsp;&nbsp;/&nbsp;&nbsp;</span><a class="site-footer__email" href="mailto:svidddrommm25@gmail.com"
             >svidddrommm25@gmail.com</a
           >
         </p>
@@ -655,8 +656,10 @@
     <script src="js/link-shimmer.js" defer></script>
     <script src="js/related-case.js" defer></script>
     <script src="js/reviews.js"></script>
+    <script src="js/mobile-screens.js"></script>
     <script src="js/title-enter.js"></script>
     <script src="js/reveal.js"></script>
+    <script src="js/mobile-zoom.js"></script>
     <script src="js/nbsp-typography.js"></script>
     <script src="js/case-uniqkey-2-shift.js"></script>
   </body>

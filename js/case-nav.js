@@ -105,7 +105,11 @@
     var lr = link.getBoundingClientRect();
     var pad = 16;
     var d = 0;
-    if (lr.left < nr.left + pad) d = lr.left - nr.left - pad;
+    // below 1024 "Home" is pinned on the left (css/mobile.css): items must clear it
+    var lead = nav.querySelector(".case-nav__lead");
+    var left = nr.left;
+    if (lead && getComputedStyle(lead).position === "sticky") left = lead.getBoundingClientRect().right + 8;
+    if (lr.left < left + pad) d = lr.left - left - pad;
     else if (lr.right > nr.right - pad) d = lr.right - nr.right + pad;
     if (d) nav.scrollLeft += d; // instant: a short strip, and it must not depend on animation frames
   }

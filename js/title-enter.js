@@ -8,7 +8,8 @@
             rider types on Ridi ("Audience segmentation").
 
   Works on desktop and phones, never with prefers-reduced-motion (and without JavaScript
-  nothing is ever hidden). Plays again when the block is entered again. Runs before
+  nothing is ever hidden). From 1024px it plays again when the block is entered again;
+  below that it plays once and the content stays. Runs before
   js/reveal.js and the case scripts, and takes these elements over from them.
 */
 (function () {
@@ -96,10 +97,19 @@
     }
 
     wait();
-    // hidden again only once the title has left the screen...
-    new IntersectionObserver(function (entries) {
-      if (!entries[entries.length - 1].isIntersecting) wait();
-    }).observe(title);
+    // hidden again only once the title has left the screen (desktop only: on phones and
+    // tablets the block is taller than the title, and hiding it left an empty screen)
+    if (!window.matchMedia("(max-width: 1023px)").matches) {
+      new IntersectionObserver(function (entries) {
+        if (!entries[entries.length - 1].isIntersecting) wait();
+      }).observe(title);
+    } else {
+      // a jump past the title must not leave the block blank
+      new IntersectionObserver(function (entries) {
+        var entry = entries[entries.length - 1];
+        if (!entry.isIntersecting && entry.boundingClientRect.bottom <= 0) play();
+      }).observe(title);
+    }
     // ...and played when it is well inside it, so a block still fading in is not missed
     new IntersectionObserver(
       function (entries) {
