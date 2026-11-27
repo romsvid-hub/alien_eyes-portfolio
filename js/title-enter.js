@@ -22,8 +22,8 @@
   var STEP = 70; // ms between neighbours
 
   var GROUPS = [
-    { title: ".logos-section .logos-heading", items: ".logos-grid > *" },
-    { title: "#expertise .expertise-heading", items: "#expertise .expertise-item" },
+    { title: ".logos-section .logos-heading", items: ".logos-grid > *", narrowFrom: "-120px 0", narrowStep: 120, narrowMs: 520 },
+    { title: "#expertise .expertise-heading", items: "#expertise .expertise-item", narrowFrom: "0 96px", narrowScale: 0.84, narrowStep: 90, narrowMs: 360 },
     { title: "#case-studies .case-studies-heading" },
     { title: "#experience .experience-heading" },
     // case studies
@@ -78,7 +78,7 @@
         parts.forEach(function (part) {
           part.classList.remove("he-enter");
         });
-      }, ITEMS_AFTER + items.length * STEP + ITEM_MS + 60);
+      }, ITEMS_AFTER + items.length * (group.narrowStep || STEP) + (group.narrowMs || ITEM_MS) + 60);
       // one keyframe at offset 0 = where it starts; it ends wherever the styles put it
       // (without the offset a lone keyframe means where it ends)
       title.animate([{ opacity: 0, translate: "-72px 0", offset: 0 }], {
@@ -89,10 +89,13 @@
       // phones: some blocks come in from the side instead (YOY "Three facts": left to right)
       var narrow = window.matchMedia("(max-width: 1023px)").matches;
       var from = (narrow && group.narrowFrom) || "0 44px";
+      var start = { opacity: 0, translate: from, offset: 0 };
+      if (narrow && group.narrowScale) start.scale = String(group.narrowScale);
+      var step = (narrow && group.narrowStep) || STEP;
       items.forEach(function (item, i) {
-        item.animate([{ opacity: 0, translate: from, offset: 0 }], {
-          duration: ITEM_MS,
-          delay: ITEMS_AFTER + i * STEP,
+        item.animate([start], {
+          duration: (narrow && group.narrowMs) || ITEM_MS,
+          delay: ITEMS_AFTER + i * step,
           easing: "cubic-bezier(0.34, 1.45, 0.64, 1)", // a small hop past the place and back
           fill: "backwards"
         });

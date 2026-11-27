@@ -194,7 +194,7 @@
       </section>
 
       <!-- UI: CASE-UQ2-SCOPE-01 | Product Scope | matches Figma "Product Scope Section" (903:21336) -->
-      <section class="uq2-section uq2-section--scope">
+      <section class="uq2-section uq2-section--scope" data-m-exit="left">
         <p class="uq2-eyebrow cs-title" data-reveal>Product Scope</p>
         <p class="body-large uq2-scope__intro" data-reveal>
           The mobile app is one piece of a larger ecosystem. Corporate logins, permissions,<br class="br-desktop" />
@@ -202,12 +202,12 @@
           the mobile app is where employees access and use that data day to day.
         </p>
         <div class="uq2-scope__panel" data-reveal>
-          <img loading="lazy" width="1024" height="336" src="assets/case-uniqkey-2/product-scope.png" alt="Admin portal dashboard, mobile app paired with the browser extension, and Partner Portal dashboard" data-zoom="badge" />
+          <img loading="lazy" width="1024" height="336" src="assets/case-uniqkey-2/product-scope.png" alt="Admin portal dashboard, mobile app paired with the browser extension, and Partner Portal dashboard" data-zoom />
         </div>
       </section>
 
       <!-- UI: CASE-UQ2-MYSCOPE-01 | My Scope | matches Figma "My Scope - Selection" (898:20021) -->
-      <section class="uq2-section" data-m-screen>
+      <section class="uq2-section" data-m-screen data-m-from="pop">
         <p class="h2-section uq2-eyebrow uq2-eyebrow--lg" data-reveal>My Scope</p>
         <div class="uq2-grid" data-reveal-group>
           <div class="uq2-grid__col">
@@ -232,8 +232,8 @@
       </section>
 
       <!-- UI: CASE-UQ2-CHALLENGE-01 | The Challenge | matches Figma "Challenge - Section" (898:20044) -->
-      <section id="cs-challenge" data-case-section class="uq2-section uq2-section--panel" data-focus data-m-screen>
-        <div class="uq2-panel" data-reveal>
+      <section id="cs-challenge" data-case-section class="uq2-section uq2-section--panel" data-focus data-m-screen data-m-from="pop">
+        <div class="uq2-panel" data-reveal data-m-hold>
           <div class="uq2-panel__inner">
             <p class="uq2-panel__eyebrow">The Challenge</p>
             <div class="uq2-challenge__content">
@@ -273,7 +273,7 @@
           making the app confusing to use.
         </p>
         <div class="uq2-before__media" data-reveal>
-          <img loading="lazy" width="1336" height="883" src="assets/case-uniqkey-2/before.png" alt="Original app: navigation and search buried in an unstructured list" data-zoom="badge" />
+          <img loading="lazy" width="1336" height="883" src="assets/case-uniqkey-2/before.png" alt="Original app: navigation and search buried in an unstructured list" data-zoom />
         </div>
       </section>
 
@@ -373,7 +373,7 @@
             <p class="uq2-panel__eyebrow uq2-panel__eyebrow--h1">Key Solutions</p>
             <p class="uq2-panel__title">B2B: Access Rights and Department Filtering</p>
             <div class="uq2-panel__media" data-zoom-dark>
-              <img loading="lazy" width="3856" height="1820" src="assets/case-uniqkey-2/key-solution-flow.png" alt="Flow: filtering logins by department, then opening a detailed login view with 2FA code and sharing tags" data-zoom="badge" />
+              <img loading="lazy" width="3856" height="1820" src="assets/case-uniqkey-2/key-solution-flow.png" alt="Flow: filtering logins by department, then opening a detailed login view with 2FA code and sharing tags" data-zoom />
             </div>
             <div class="uq2-decision uq2-decision--on-blue" data-reveal-group>
               <div class="uq2-decision__grid">
@@ -436,7 +436,7 @@
               </div>
             </div>
             <div class="uq2-feature__media" style="margin-top: 24px">
-              <img loading="lazy" width="1680" height="810" src="assets/case-uniqkey-2/onboarding.png" alt="Startup onboarding checklist with a completion progress bar" data-zoom="badge" />
+              <img loading="lazy" width="1680" height="810" src="assets/case-uniqkey-2/onboarding.png" alt="Startup onboarding checklist with a completion progress bar" data-zoom />
             </div>
           </div>
 
@@ -459,7 +459,7 @@
               </div>
             </div>
             <div class="uq2-feature__media" style="margin-top: 24px">
-              <img loading="lazy" width="1680" height="810" src="assets/case-uniqkey-2/notifications.png" alt="Notification feed with status for each security event" data-zoom="badge" />
+              <img loading="lazy" width="1680" height="810" src="assets/case-uniqkey-2/notifications.png" alt="Notification feed with status for each security event" data-zoom />
             </div>
           </div>
 
@@ -471,7 +471,7 @@
               stays the actual key.
             </p>
             <div class="uq2-feature__media uq2-feature__media--spaced">
-              <img loading="lazy" width="1940" height="1800" src="assets/case-uniqkey-2/extension.png" alt="Browser extension login request approved from the mobile app" data-zoom="badge" />
+              <img loading="lazy" width="1940" height="1800" src="assets/case-uniqkey-2/extension.png" alt="Browser extension login request approved from the mobile app" data-zoom />
             </div>
           </div>
 
@@ -659,6 +659,7 @@
     <script src="js/mobile-screens.js"></script>
     <script src="js/title-enter.js"></script>
     <script src="js/reveal.js"></script>
+    <script src="js/mobile-motion.js"></script>
     <script src="js/mobile-zoom.js"></script>
     <script src="js/nbsp-typography.js"></script>
     <script src="js/case-uniqkey-2-shift.js"></script>

@@ -2,9 +2,15 @@
   Below 1024px (styles: css/mobile.css). Mobile audit, 2026-11-27.
   - A tap on a marked image opens a full screen viewer: pinch, double tap, drag, + and -
     buttons, mouse wheel.
-      data-zoom            a grey "Tap to zoom" caption under the image
-      data-zoom="badge"    no caption: a small magnifier in the image's corner
+      data-zoom            a "Tap to zoom" caption under the image
+      data-zoom="icon"     no caption: a small magnifier in the image's corner (kept where
+                           the review liked it: Key MVP Contribution and the YOY full map;
+                           for a set the attribute is data-zoom-icon)
       data-zoom="gallery"  the "Other Screens" carousel (caption under it)
+      data-zoom-dash       the pinned Admin dashboard (case 01): the viewer shows the whole
+                           screen, put together from its slices, and can be panned
+    The ATJ questionnaire (a live HTML preview) opens whole in the same viewer.
+    In portrait the viewer suggests turning the phone; it adapts when it is turned.
       data-zoom-set="x"    images sharing a name, or all images inside the marked element,
                            are one gallery: the viewer steps through them (buttons, swipe,
                            arrow keys)
@@ -16,6 +22,9 @@
 */
 (function () {
   var narrow = window.matchMedia("(max-width: 1023px)");
+
+  var CROSS =
+    '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 
   var GLASS =
     '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14M7 5v4M5 7h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
@@ -44,13 +53,16 @@
     var note = document.createElement("span");
     note.className = "zoom-view__note";
     note.textContent = "Pinch or double-tap to zoom";
-    var close = button("zoom-view__btn zoom-view__btn--close", "×", "Close");
+    // drawn, not typed: the letter "x" sat below the middle of the round button
+    var close = button("zoom-view__btn zoom-view__btn--close", "", "Close");
+    close.innerHTML = CROSS;
     top.appendChild(note);
     top.appendChild(close);
 
     var stage = document.createElement("div");
     stage.className = "zoom-view__stage";
     var img = document.createElement("img");
+    var shown = img; // what is on the stage: the picture, or a live block (shots[i].node)
     stage.appendChild(img);
 
     var bottom = document.createElement("div");
@@ -84,10 +96,16 @@
     bottom.appendChild(minus);
     bottom.appendChild(plus);
 
+    var rotate = document.createElement("p");
+    rotate.className = "zoom-view__rotate";
+    rotate.textContent = "Rotate your phone to landscape for a larger view.";
+
     view.appendChild(top);
     view.appendChild(stage);
+    view.appendChild(rotate);
     view.appendChild(bottom);
     document.body.appendChild(view);
+    var scrollBefore = window.pageYOffset;
     document.documentElement.classList.add("zoom-open");
 
     var scale = 1;
@@ -110,9 +128,13 @@
     function draw() {
       clamp();
       // sized, not scaled: the browser redraws the picture sharp at every zoom
-      img.style.width = baseW * scale + "px";
-      img.style.height = baseH * scale + "px";
-      img.style.transform = "translate(" + x + "px, " + y + "px)";
+      if (shown === img) {
+        img.style.width = baseW * scale + "px";
+        img.style.height = baseH * scale + "px";
+        img.style.transform = "translate(" + x + "px, " + y + "px)";
+      } else {
+        shown.style.transform = "translate(" + x + "px, " + y + "px) scale(" + (baseW * scale) / shown.offsetWidth + ")";
+      }
       minus.disabled = scale <= 1.001;
       plus.disabled = scale >= maxScale - 0.001;
     }
@@ -133,8 +155,8 @@
     }
 
     function fit(keep) {
-      var nw = img.naturalWidth || 1;
-      var nh = img.naturalHeight || 1;
+      var nw = (shown === img ? img.naturalWidth : shown.offsetWidth) || 1;
+      var nh = (shown === img ? img.naturalHeight : shown.offsetHeight) || 1;
       var k = Math.min(stage.clientWidth / nw, stage.clientHeight / nh);
       baseW = nw * k;
       baseH = nh * k;
@@ -145,9 +167,21 @@
       }
       scale = Math.min(scale, maxScale);
       // a very tall screenshot would be a thin strip: start at the full width, from its top
-      if (!keep && nh / nw > 2.5 && baseW < stage.clientWidth * 0.6) {
-        scale = Math.min(maxScale, (stage.clientWidth * 0.94) / baseW);
+      var start = shots[current] && shots[current].start;
+      if (!keep && start === "column") {
+        // a form with its column in the middle: larger, centred, from the top
+        scale = Math.min(maxScale, Math.max(1, (stage.clientWidth * 1.8) / baseW));
         x = (stage.clientWidth - baseW * scale) / 2;
+        y = 0;
+      } else if (!keep && start === "wide") {
+        // a long screen to read through: larger than the stage, from its top left corner
+        scale = Math.min(maxScale, Math.max(1, (stage.clientWidth * 1.8) / baseW));
+        x = 0;
+        y = 0;
+      } else if (!keep && (start === "width" || (nh / nw > 2.5 && baseW < stage.clientWidth * 0.6))) {
+        scale = Math.min(maxScale, Math.max(1, (stage.clientWidth * 0.94) / baseW));
+        x = (stage.clientWidth - baseW * scale) / 2;
+        y = 0;
       }
       ready = true;
       draw();
@@ -157,12 +191,24 @@
     function select(i) {
       var keep = how === "states" && current !== -1; // switching Before / After keeps the same spot
       current = i;
-      img.onload = function () {
+      if (shots[i].node) {
+        img.style.display = "none";
+        shown = shots[i].node;
+        stage.appendChild(shown);
         fit(keep);
-      };
-      img.alt = shots[i].alt;
-      img.src = shots[i].src;
-      if (img.complete && img.naturalWidth) fit(keep);
+      } else {
+        img.alt = shots[i].alt;
+        img.onload = function () {
+          fit(keep);
+        };
+        var source = shots[i].src || shots[i].build();
+        Promise.resolve(source).then(function (src) {
+          if (current !== i) return;
+          shots[i].src = src;
+          img.src = src;
+          if (img.complete && img.naturalWidth) fit(keep);
+        });
+      }
       states.forEach(function (b, n) {
         b.setAttribute("aria-pressed", n === i ? "true" : "false");
       });
@@ -272,8 +318,7 @@
     });
 
     function resize() {
-      if (!narrow.matches) return shut();
-      fit(false);
+      if (ready) fit(false);
     }
 
     function keys(ev) {
@@ -294,6 +339,8 @@
       window.removeEventListener("resize", resize);
       view.remove();
       document.documentElement.classList.remove("zoom-open");
+      // the page is where the reader left it, also after the phone was turned and back
+      window.scrollTo({ top: scrollBefore, behavior: "instant" });
       if (opener && opener.focus) opener.focus({ preventScroll: true });
     }
 
@@ -316,7 +363,18 @@
     return parent && parent.tagName === "DIV" && parent.children.length === 1 ? parent : el;
   }
 
-  function hint(text, after, onDark) {
+  // light text where the surface behind is dark or strongly coloured
+  function onDarkSurface(el) {
+    for (var node = el; node && node.nodeType === 1; node = node.parentElement) {
+      var m = /rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?/.exec(getComputedStyle(node).backgroundColor);
+      if (!m || (m[4] !== undefined && +m[4] < 0.5)) continue;
+      return 0.299 * m[1] + 0.587 * m[2] + 0.114 * m[3] < 150;
+    }
+    return false;
+  }
+
+  function hint(text, after) {
+    var onDark = onDarkSurface(after.parentNode);
     var b = button("zoom-hint" + (onDark ? " zoom-hint--on-dark" : ""), "");
     b.innerHTML = GLASS;
     b.appendChild(document.createTextNode(text));
@@ -374,16 +432,16 @@
       if (img.closest("[data-zoom-set]")) return;
       var link = img.closest("a");
       var opener;
-      if (kind === "badge") {
+      if (kind === "icon") {
         opener = badge(link ? link.parentElement : frameOf(img));
       } else {
         var after = kind === "gallery" ? img.closest(".case-other-carousel__stage") : frameOf(img);
-        opener = hint("Tap to zoom", after, img.closest("[data-zoom-dark]") !== null);
+        opener = hint("Tap to zoom", after);
       }
       wire([img], opener);
     });
 
-    // galleries: elements with a set name; one badge per element, one viewer per name
+    // galleries: elements with a set name; one caption per element, one viewer per name
     var sets = {};
     var order = [];
     [].forEach.call(document.querySelectorAll("[data-zoom-set]"), function (el, i) {
@@ -401,33 +459,118 @@
         imgs = imgs.concat(found);
       });
       if (!imgs.length) return;
-      var openers = sets[name].map(function (el) {
-        var first = el.tagName === "IMG" ? el : el.querySelector("img:not([aria-hidden])");
-        return { el: badge(el.tagName === "IMG" ? frameOf(el) : el), at: imgs.indexOf(first) };
-      });
       var open = function (i, opener) {
         if (!narrow.matches) return;
         if (imgs.length === 1) openViewer([shotOf(imgs[0], "")], opener);
         else openViewer(imgs.map(function (img) { return shotOf(img, ""); }), opener, "set", i);
       };
-      openers.forEach(function (o) {
-        o.el.addEventListener("click", function () {
-          open(o.at, o.el);
+      var openers = sets[name].map(function (el) {
+        var first = el.tagName === "IMG" ? el : el.querySelector("img:not([aria-hidden])");
+        var o;
+        if (el.hasAttribute("data-zoom-icon")) {
+          o = badge(el.tagName === "IMG" ? frameOf(el) : el);
+        } else {
+          // a moving row keeps its caption with it, under the screens
+          var moving = el.parentElement && el.parentElement.classList.contains("m-sx__pin");
+          o = hint("Tap to zoom", el.tagName === "IMG" || !moving ? frameOf(el) : el);
+        }
+        var at = imgs.indexOf(first);
+        o.addEventListener("click", function () {
+          open(at, o);
         });
+        return o;
       });
       imgs.forEach(function (img, i) {
         img.setAttribute("data-zoomable", "");
         img.addEventListener("click", function (ev) {
           if (img.closest("a")) ev.preventDefault();
-          open(i, openers[0].el);
+          open(i, openers[0]);
         });
       });
+    });
+
+    /* the pinned Admin dashboards: the viewer gets the whole screen, rebuilt from its
+       slices at their own resolution, in the proportions of the page (css/case-study.css) */
+    [].forEach.call(document.querySelectorAll("[data-dash1-pin], [data-dash2-pin]"), function (pin) {
+      var second = pin.hasAttribute("data-dash2-pin");
+      var menu = pin.querySelector(second ? "[data-dash2-menu]" : "[data-dash1-menu]");
+      var db = pin.querySelector(second ? "[data-dash2-db-track]" : "[data-dash1-db-track]");
+      var strip = second ? pin.querySelector(".case-dash2__top") : null;
+      if (!menu || !db) return;
+      var url = "";
+      var shot = {
+        alt: db.alt,
+        name: "",
+        start: "wide",
+        build: function () {
+          if (url) return url;
+          var parts = [menu, db].concat(strip ? [strip] : []);
+          return Promise.all(parts.map(function (part) {
+            var copy = new Image();
+            copy.src = part.currentSrc || part.src;
+            return copy.decode().then(function () { return copy; });
+          })).then(function (loaded) {
+            var m = loaded[0];
+            var d = loaded[1];
+            var t = loaded[2];
+            var menuShare = second ? 0.194444 : 0.196429;
+            var gapShare = second ? 0 : 0.007143;
+            var width = d.naturalWidth / (1 - menuShare - gapShare);
+            var head = t ? (width * t.naturalHeight) / t.naturalWidth : 0;
+            var canvas = document.createElement("canvas");
+            canvas.width = Math.round(width);
+            canvas.height = Math.round(head + d.naturalHeight);
+            var pen = canvas.getContext("2d");
+            pen.fillStyle = "#ffffff";
+            pen.fillRect(0, 0, canvas.width, canvas.height);
+            if (t) pen.drawImage(t, 0, 0, width, head);
+            pen.drawImage(m, 0, head, width * menuShare, (width * menuShare * m.naturalHeight) / m.naturalWidth);
+            pen.drawImage(d, width * (menuShare + gapShare), head);
+            return new Promise(function (done) {
+              canvas.toBlob(function (blob) {
+                url = URL.createObjectURL(blob);
+                done(url);
+              }, "image/png");
+            });
+          });
+        }
+      };
+      var caption = hint("Tap to zoom", pin);
+      function open() {
+        if (narrow.matches) openViewer([shot], caption);
+      }
+      caption.addEventListener("click", open);
+      pin.addEventListener("click", open);
+      pin.setAttribute("data-zoomable", "");
+    });
+
+    /* the questionnaire preview is live HTML: the viewer shows a still copy of all of it */
+    [].forEach.call(document.querySelectorAll("[data-questionnaire]"), function (box) {
+      var caption = hint("Tap to zoom", box);
+      function open() {
+        if (!narrow.matches) return;
+        var copy = box.cloneNode(true);
+        copy.removeAttribute("data-questionnaire");
+        copy.removeAttribute("data-zoomable");
+        [].forEach.call(copy.querySelectorAll("[data-q-body]"), function (el) {
+          el.removeAttribute("data-q-body");
+          el.style.transform = "none";
+        });
+        [].forEach.call(copy.querySelectorAll("[id]"), function (el) {
+          el.removeAttribute("id");
+        });
+        copy.classList.add("zoom-live");
+        openViewer([{ node: copy, alt: "", name: "", start: "column" }], caption);
+      }
+      caption.addEventListener("click", open);
+      box.addEventListener("click", open);
+      box.setAttribute("data-zoomable", "");
     });
 
     [].forEach.call(document.querySelectorAll("[data-zoom-compare]"), function (box) {
       var images = box.querySelectorAll("img");
       if (images.length < 2) return;
-      var caption = hint("Zoom to compare", box, false);
+      var caption = hint("Zoom to compare", box);
       caption.className += " zoom-hint--button";
       caption.addEventListener("click", function () {
         if (narrow.matches) openViewer([shotOf(images[0], "Before"), shotOf(images[1], "After")], caption, "states");

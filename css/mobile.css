@@ -913,8 +913,7 @@ html.zoom-open body {
   .atj-section.atj-jobcard {
     margin-block: 32px;
     padding-block: 40px;
-    border-top: 4px solid var(--color-atj-accent);
-    border-radius: 28px;
+    border-radius: 24px;
     background: #f7f0ee;
   }
 
@@ -928,17 +927,8 @@ html.zoom-open body {
     margin-top: 32px;
   }
 
-  /* "Survey body": heading and text first, then its own picture, so it cannot be read as part of Notifications */
-  .atj2-features__row[data-m-survey] > .atj2-features__text {
-    order: -1;
-  }
-
   .atj2-features__row[data-m-screen] {
     padding-block: 24px;
-  }
-
-  .atj2-features__row[data-m-survey] {
-    border-top: 1px solid var(--color-light-gray);
   }
 
   /* ---------- case 05: YOY! Events ---------- */
@@ -1069,5 +1059,551 @@ html.zoom-open body {
     width: auto;
     max-width: none;
     height: 400px;
+  }
+}
+
+/* ================= review round 2 (2026-11-28) ================= */
+
+.zoom-view__rotate {
+  display: none;
+  flex: none;
+  margin: 0;
+  padding: 8px 16px 0;
+  color: rgba(255, 254, 254, 0.78);
+  font-size: 13px;
+  line-height: 18px;
+  text-align: center;
+}
+
+@media (orientation: portrait) {
+  .zoom-view__rotate {
+    display: block;
+  }
+}
+
+.zoom-view {
+  touch-action: none;
+  overscroll-behavior: contain;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+/* the cross is drawn and centred in its 44px circle */
+.zoom-view__btn--close {
+  width: 44px;
+  padding: 0;
+}
+
+.zoom-view__btn--close svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+/* a still copy of the whole questionnaire preview */
+.zoom-view__stage .zoom-live {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 900px;
+  max-width: none;
+  margin: 0;
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+
+.zoom-view__stage .zoom-live .atj2-questionnaire__viewport {
+  height: auto;
+  aspect-ratio: auto;
+  overflow: visible;
+}
+
+/* its own scrolling window is opened up too; the room at the top is for the browser bar */
+.zoom-view__stage .zoom-live .atj2-questionnaire__scroll {
+  position: static;
+  height: auto;
+  overflow: visible;
+  padding-top: min(5.417cqw, 60.595px);
+}
+
+.zoom-view__stage .zoom-live .atj2-questionnaire__body {
+  position: static;
+  transform: none;
+}
+
+@media (min-width: 1024px) {
+  .m-hold,
+  .m-sx,
+  .m-sx__pin {
+    display: contents;
+  }
+}
+
+@media (max-width: 1023px) {
+  /* ---------- "Tap to zoom": a comfortable target with a visible focus ---------- */
+
+  .zoom-hint {
+    min-height: 44px;
+    margin-top: 8px;
+  }
+
+  .zoom-hint:focus-visible,
+  .zoom-badge:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  /* ---------- a short hold ---------- */
+
+  .m-hold {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .m-hold::after {
+    content: "";
+    flex: none;
+    height: 26vh;
+  }
+
+  .m-hold > .m-held {
+    position: sticky;
+    z-index: 1;
+  }
+
+  /* ---------- rows that move with the page, from edge to edge ---------- */
+
+  .m-sx {
+    position: relative;
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    align-self: center;
+    flex: none;
+  }
+
+  .m-sx__pin {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .m-sx__pin > .m-sx__row {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 0 0 4px;
+    overflow: hidden;
+    touch-action: pan-y;
+    cursor: grab;
+  }
+
+  .m-sx__row img {
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+
+  .m-sx__pin > .m-sx__row.is-still {
+    display: flex;
+    justify-content: center;
+    cursor: default;
+  }
+
+  /* the picture fits the screen it is held on: never taller than the room under the bars */
+  .yoy-screens.m-sx__row img {
+    width: auto;
+    height: min(420px, calc(100svh - 200px));
+    aspect-ratio: 172 / 352;
+  }
+
+  .yoy-screens.m-sx__row img:first-child {
+    margin-left: 20px;
+  }
+
+  .yoy-screens.m-sx__row img:last-child {
+    margin-right: 20px;
+  }
+
+  .ridi-decision__screens.m-sx__row img {
+    width: auto;
+    max-width: none;
+    height: min(420px, calc(100svh - 200px));
+  }
+
+  .ridi-decision__screens.m-sx__row img:first-child {
+    margin-left: 20px;
+  }
+
+  .ridi-decision__screens.m-sx__row img:last-child {
+    margin-right: 20px;
+  }
+
+  #cs-core-features .ridi-media--wide.m-sx__row {
+    display: flex;
+    border-radius: 0;
+  }
+
+  #cs-core-features .ridi-media--wide.m-sx__row img {
+    flex: none;
+    height: min(420px, calc(100svh - 200px));
+    margin-inline: 20px;
+  }
+
+  /* with reduced motion the rows are swiped by hand, still edge to edge */
+  .yoy-screens[data-m-scrollx]:not(.m-sx__row),
+  .ridi-decision__screens[data-m-scrollx]:not(.m-sx__row) {
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    align-self: center;
+  }
+
+  /* ---------- footer ---------- */
+
+  .site-footer__sep,
+  .site-footer__dot {
+    display: none;
+  }
+
+  .site-footer__colophon,
+  .site-footer__made,
+  .site-footer__claude {
+    display: block;
+  }
+
+  /* ---------- Home: the hero fills the screen of the phone ---------- */
+
+  .page-home .hero-section {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 56px);
+    min-height: calc(100svh - 56px);
+    padding-top: 12px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  }
+
+  .page-home .hero-card {
+    box-sizing: border-box;
+    flex: 1 0 auto;
+    width: 100%;
+    grid-template-columns: 96px minmax(0, 1fr);
+    grid-template-rows: auto minmax(24px, 1fr) auto auto minmax(4px, 0.45fr) auto;
+    grid-template-areas:
+      "photo identity"
+      ". ."
+      "title title"
+      "intro intro"
+      ". ."
+      "actions actions";
+    row-gap: 12px;
+    padding: 28px 24px 24px;
+  }
+
+  .page-home .hero-card__photo {
+    width: 96px;
+    height: 96px;
+    border-radius: 18px;
+  }
+
+  /* centred on the face: its middle is at 52.8% of the cut-out's width */
+  .page-home .hero-card__photo img {
+    top: -30%;
+    left: -28.2%;
+    width: 148%;
+  }
+
+  /* ---------- Home: YOY's two numbers side by side, like on the other cards ---------- */
+
+  .page-home .case-card__metrics,
+  .related-case .case-card__metrics {
+    flex-wrap: nowrap;
+    gap: 24px;
+  }
+
+  .page-home .case-card__metric,
+  .related-case .case-card__metric {
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+
+  /* ---------- case 01 ---------- */
+
+  /* Results: blue from edge to edge, no card inside a card */
+  #cs-results .case-shift.case-shift--panel-results {
+    box-sizing: border-box;
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    padding: 56px max(24px, var(--page-px));
+    border: 0;
+    border-radius: 0;
+    filter: none;
+  }
+
+  /* Development integration, then a quiet line, then the two links built the same way */
+  .case-livefiles__links {
+    gap: 28px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(24, 20, 19, 0.1);
+  }
+
+  .case-livefiles__links p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .case-livefiles__links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+  }
+
+  [data-dash1-pin][data-zoomable],
+  [data-dash2-pin][data-zoomable] {
+    cursor: zoom-in;
+  }
+
+  .case-dash2__pin + .zoom-hint {
+    margin-bottom: 24px;
+  }
+
+  /* ---------- case 02 ---------- */
+
+  [data-m-screen] > .uq2-grid {
+    margin-top: 24px;
+  }
+
+  .uq2-grid__col h3 {
+    margin-top: 8px;
+  }
+
+  .uq2-eyebrow--lg + .uq2-grid {
+    margin-top: 40px;
+  }
+
+  .uq2-logos {
+    row-gap: 48px;
+  }
+
+  .uq2-section--panel[data-m-screen] > .m-hold {
+    flex: 1 0 auto;
+  }
+
+  /* ---------- case 03 ---------- */
+
+  /* Challenge picture: 20px of air above and below while it holds */
+  #cs-challenge .atj-insight__image-frame {
+    top: calc(var(--case-nav-top, 56px) + 68px);
+    box-shadow: 0 0 0 20px var(--color-main-canvas);
+  }
+
+  /* Research: the orange card rests high, just under the pinned heading */
+  .atj-research__grid > .atj-research__card--featured {
+    top: calc(var(--case-nav-top, 56px) + 48px + 88px);
+  }
+
+  /* the orange blocks: a calmer orange and the same corners as the Uniqkey panels */
+  .atj-mvp,
+  .atj-smartfilters.atj-section,
+  .atj-screens {
+    border-radius: 24px;
+  }
+
+  .atj-mvp {
+    border-radius: 24px 24px 0 0;
+  }
+
+  .atj-mvp__band,
+  .atj-smartfilters.atj-section,
+  .atj-screens {
+    background-color: #a94a32;
+  }
+
+  /* Primary Focus and the three after it: room between them */
+  .atj-contrib__grid {
+    gap: 40px;
+  }
+
+  /* job cards: the compiled utility file gives borders a width but no style, and the
+     divider collapsed to a dot in the flex column; both put right here */
+  .atj-jobcard-showcase .border {
+    border-style: solid;
+  }
+
+  .atj-jobcard-showcase hr {
+    width: 100%;
+    height: 0;
+    margin: 0;
+    border: 0;
+    border-top: 1px solid #ebeced;
+  }
+
+  .atj-jobcard-showcase article hr + div {
+    align-items: stretch;
+  }
+
+  .atj-jobcard-showcase article hr + div > div:last-child {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .atj-jobcard-showcase article hr + div > div:last-child > button {
+    display: inline-flex;
+    flex: 1 1 128px;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    margin: 0;
+    padding: 8px 12px;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+
+  /* the heart alone is a square, not a stretched button */
+  .atj-jobcard-showcase article hr + div > div:last-child > button.size-8 {
+    flex: 0 0 44px;
+    padding: 0;
+  }
+
+  /* ---------- case 04 ---------- */
+
+  /* grey logos looked switched off on a phone, where there is no hover: they light up */
+  .atj2-logos.m-logos .atj2-logos__item img {
+    transition:
+      filter 0.5s ease,
+      opacity 0.5s ease;
+    transition-delay: calc(var(--i, 0) * 160ms);
+  }
+
+  .atj2-logos.is-lit .atj2-logos__item img {
+    filter: none;
+    opacity: 1;
+  }
+
+  /* Core Features: five finished compositions, apart from each other */
+  .atj2-features {
+    gap: 8px;
+  }
+
+  .atj2-features > .m-hold + .m-hold > .atj2-features__row {
+    border-top: 1px solid var(--color-light-gray);
+    padding-top: 40px;
+  }
+
+  .atj2-features__row {
+    gap: 12px;
+  }
+
+  /* picture, "Tap to zoom", title, text */
+  .atj2-features__row[data-m-media] > .atj2-features__media {
+    order: -2;
+    flex: none;
+  }
+
+  .atj2-features__row[data-m-media] > .zoom-hint {
+    order: -1;
+    margin-top: 0;
+  }
+
+  .atj2-features__row[data-m-media] > .atj2-features__text {
+    order: 0;
+    flex: none;
+    align-self: stretch;
+  }
+
+  /* Results: blue from edge to edge */
+  #cs-results.atj2-section[data-m-screen] {
+    padding: 0;
+  }
+
+  #cs-results .atj2-results {
+    box-sizing: border-box;
+    flex: 1 0 auto;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 56px max(24px, var(--page-px));
+    border-radius: 0;
+  }
+
+  /* ---------- case 05 ---------- */
+
+  /* The Challenge: the panel, then the mascot, then the picture, then its text */
+  .yoy-row {
+    align-items: center;
+  }
+
+  .yoy-row__content {
+    display: contents;
+  }
+
+  .yoy-row__mascot {
+    order: 1;
+    flex: none;
+  }
+
+  .yoy-row > .yoy-media {
+    order: 2;
+    align-self: stretch;
+  }
+
+  .yoy-row__text {
+    order: 3;
+    align-self: stretch;
+  }
+
+  .yoy-media--linked .yoy-media__hint {
+    margin-top: 28px;
+  }
+
+  /* feature blocks without a box inside the page: the screens can run to the edges */
+  .yoy-feature,
+  .yoy-feature--reverse {
+    padding: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  .yoy-feature + .yoy-feature,
+  .yoy-section > .m-sx + .yoy-feature {
+    margin-top: 48px;
+  }
+
+  /* Results: the yellow panel runs from edge to edge and fills the screen; what follows it
+     (the mascot, the note and the product link) stays on the dark surface */
+  #cs-results.yoy-section[data-m-screen] {
+    justify-content: flex-start;
+    padding-top: 0;
+  }
+
+  #cs-results.yoy-section[data-m-screen] > .yoy-panel.yoy-panel--accent {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+    min-height: calc(100vh - var(--case-nav-top, 56px) - 48px);
+    min-height: calc(100svh - var(--case-nav-top, 56px) - 48px);
+    margin: 0 calc(50% - 50vw);
+    padding: 56px max(24px, var(--page-px));
+    border-radius: 0;
+  }
+
+  /* ---------- case 06 ---------- */
+
+  .ridi-logos {
+    gap: 52px;
+  }
+
+  .ridi-card-block.ridi-card-block {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 1023px) and (prefers-reduced-motion: reduce) {
+  .atj2-logos .atj2-logos__item img {
+    filter: none;
+    opacity: 1;
   }
 }

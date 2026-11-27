@@ -27,7 +27,32 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   initNavPopups();
+  splitColophon();
 });
+
+/*
+  Below 1024px "Built with Claude Code" takes a line of its own (mobile review round 2).
+  Done here, and only there, so that the desktop footer stays exactly as it was: split into
+  pieces in the page itself, its letters were laid out a fraction of a pixel differently.
+*/
+function splitColophon() {
+  var narrow = window.matchMedia("(max-width: 1023px)");
+  function split() {
+    var line = document.querySelector(".site-footer__colophon");
+    if (!narrow.matches || !line || line.children.length) return;
+    var parts = line.textContent.split(/\s*\u00b7\s*/);
+    if (parts.length !== 2) return;
+    line.textContent = "";
+    [["site-footer__made", parts[0]], ["site-footer__dot", " \u00b7 "], ["site-footer__claude", parts[1]]].forEach(function (piece) {
+      var span = document.createElement("span");
+      span.className = piece[0];
+      span.textContent = piece[1];
+      line.appendChild(span);
+    });
+  }
+  split();
+  if (narrow.addEventListener) narrow.addEventListener("change", split);
+}
 
 /*
   Mobile "back to home" chevron (.nav-back, case-study pages only) —

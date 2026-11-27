@@ -63,7 +63,7 @@
   // triples that tell one story: Problem, Solution, Why (and their ATJ counterparts)
   var STORY = ".uq2-decision__grid, .atj2-decision__grid, .yoy-decision__cards, .ridi-decision__cards, .atj-smartfilters__blocks, .atj-jobcard__text";
   // wrappers whose children arrive one by one (a coloured card stays, its content rises)
-  var OPEN = ".uq2-panel, .uq2-panel__inner, .uq2-features, .uq2-grid, .uq2-decision, .uq2-results, .case-feedback__row, .case-dash1__cards, .atj2-challenge, .atj2-challenge__content, .atj2-notif, .atj2-solutions, .atj2-solution, .atj2-decision, .yoy-two-col, .yoy-decision, .yoy-decision__body, .ridi-two-col, .ridi-decisions-panel, .ridi-decision, .ridi-decision__body, .atj-painpoints, .atj-research, .atj-research__grid, .atj-insight__row, .atj-insight__text, .atj-smartfilters__composition, .atj-jobcard__row";
+  var OPEN = ".uq2-panel, .uq2-panel__inner, .uq2-features, .uq2-grid, .uq2-decision, .uq2-results, .case-feedback__row, .case-dash1__cards, .atj2-challenge, .atj2-challenge__content, .atj2-notif, .atj2-solutions, .atj2-solution, .atj2-decision, .yoy-two-col, .yoy-decision, .yoy-decision__body, .ridi-two-col, .ridi-decisions-panel, .ridi-decision, .ridi-decision__body, .atj-painpoints, .atj-research, .atj-research__grid, .atj-insight__row, .atj-insight__text, .atj-smartfilters__composition, .atj-jobcard__row, .atj-jobcard-showcase, .atj-jobcard-showcase__grid";
   // how each kind of part starts
   var MOVES = {
     up: { opacity: 0, translate: "0 56px", offset: 0 },
@@ -104,7 +104,7 @@
       var from = child.getAttribute("data-m-from") || move;
       if (child.hasAttribute("data-m-unit")) {
         add(child, from);
-      } else if (child.querySelector(MARK) || child.querySelector(STORY) || child.querySelector(".atj2-notif[data-m-from]") || child.hasAttribute("data-reveal-group") || (child.matches(OPEN) && child.children.length)) {
+      } else if (child.querySelector(MARK) || child.querySelector(STORY) || child.querySelector(".atj2-notif[data-m-from], .atj-jobcard-showcase__grid[data-m-from]") || child.hasAttribute("data-reveal-group") || (child.matches(OPEN) && child.children.length)) {
         collect(child, from);
       } else {
         add(child, from);
@@ -217,6 +217,12 @@
     cards.forEach(function (card) {
       var box = card.getBoundingClientRect();
       var away = Math.min(1, Math.max(0, (Math.abs(box.top + box.height / 2 - middle) - reach * 0.2) / (reach * 0.8)));
+      if (card.classList.contains("atj-research__card--featured")) {
+        // the last card rests high, just under the heading: in focus until it is let go
+        var rest = parseFloat(getComputedStyle(card).top) || top;
+        if (box.top < rest - 4) away = Math.min(1, (rest - box.top) / reach);
+        else if (box.top <= middle) away = 0;
+      }
       // never below 0.5: every card stays readable
       card.style.opacity = away ? (1 - 0.5 * away).toFixed(3) : "";
       card.style.scale = away ? (1 - 0.08 * away).toFixed(3) : "";

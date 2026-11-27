@@ -56,8 +56,10 @@
     link.setAttribute('data-shimmer', '');
   });
 
+  var narrow = window.matchMedia('(max-width: 1023px)').matches;
   document.querySelectorAll('[data-shimmer]').forEach(function (link) {
-    var section = link.closest('section') || link;
+    // phones: watch the link itself, or its passes are over long before the reader gets there
+    var section = narrow ? link : link.closest('section') || link;
     var observer = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
