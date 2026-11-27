@@ -26,9 +26,11 @@
       card.classList.add('notif-anim');
     });
 
+    var once = window.matchMedia('(max-width: 1023px)').matches;
     var observer = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
+          if (once && entry.target.classList.contains('is-shown')) return;
           var i = cards.indexOf(entry.target);
           // Same top-to-bottom order both ways: first to appear is
           // first to clear, like a real notification queue.

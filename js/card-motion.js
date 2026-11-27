@@ -10,9 +10,9 @@
     the "Case Studies" and "Feedbacks" header popups     glow only
   A sphere that is not in the markup is created on first hover.
 
-  Mouse only, from 1024px, never with prefers-reduced-motion. Elements are picked up on first
-  hover, so cards cloned later (js/related-case.js) and popups work too. Per frame only
-  transform changes.
+  Hover is mouse only and from 1024px; below that, press-and-move (see further down).
+  Never with prefers-reduced-motion. Elements are picked up on first use, so cards cloned
+  later (js/related-case.js) and popups work too. Per frame only transform changes.
 */
 (function () {
   var TILT = ".hero-card, .case-card, .case-hero, .atj-hero, .atj2-hero, .uq2-hero, .yoy-hero, .ridi-hero";
@@ -26,6 +26,7 @@
   var EASE = 0.08; // share of the remaining distance covered per 60fps frame
 
   var attached = new WeakSet();
+  var handles = new WeakMap();
   var live = [];
 
   function enabled() {
@@ -85,9 +86,13 @@
 
     function move(ev) {
       if (ev.pointerType !== "mouse" || !enabled()) return;
+      point(ev.clientX, ev.clientY);
+    }
+
+    function point(clientX, clientY) {
       var r = surface.getBoundingClientRect();
-      var cx = ev.clientX - r.left;
-      var cy = ev.clientY - r.top;
+      var cx = clientX - r.left;
+      var cy = clientY - r.top;
       px = Math.min(1, Math.max(0, cx / r.width));
       py = Math.min(1, Math.max(0, cy / r.height));
       // offsetLeft / offsetTop ignore transforms: this is the sphere's layout place
@@ -98,16 +103,20 @@
     }
 
     surface.addEventListener("pointermove", move, { passive: true });
+    function leave() {
+      if (!surface.classList.contains("is-hovered")) return;
+      surface.classList.remove("is-hovered", "is-touched");
+      px = 0.5;
+      py = 0.5;
+      tx = 0;
+      ty = 0;
+      run();
+    }
+
     surface.addEventListener(
       "pointerleave",
-      function () {
-        if (!surface.classList.contains("is-hovered")) return;
-        surface.classList.remove("is-hovered");
-        px = 0.5;
-        py = 0.5;
-        tx = 0;
-        ty = 0;
-        run();
+      function (ev) {
+        if (ev.pointerType === "mouse" && enabled()) leave();
       },
       { passive: true }
     );
@@ -115,10 +124,12 @@
     live.push(function () {
       window.cancelAnimationFrame(frame);
       frame = last = x = y = tx = ty = 0;
-      surface.classList.remove("is-hovered");
+      surface.classList.remove("is-hovered", "is-touched");
       sphere.style.transform = "";
     });
-    return move;
+    var handle = { move: move, point: point, leave: leave };
+    handles.set(surface, handle);
+    return handle;
   }
 
   document.addEventListener(
@@ -126,9 +137,135 @@
     function (ev) {
       if (ev.pointerType !== "mouse" || !enabled() || !ev.target.closest) return;
       var surface = ev.target.closest(SURFACE);
-      if (surface && !attached.has(surface)) attach(surface)(ev);
+      if (surface && !attached.has(surface)) attach(surface).move(ev);
     },
     { passive: true }
+  );
+
+  /*
+    Below 1024px: press and hold a card (not on a button or link of its own), then move the
+    finger, and the card leans after it. Three gestures stay apart:
+      - a finger that moves before the hold is up is a normal scroll;
+      - a short tap clicks as usual (a case card opens; a case hero does nothing);
+      - once the card is held, the finger tilts it, the page does not scroll, and letting
+        go does not open anything.
+    A mouse can do the same by dragging, so it can be checked in a narrow desktop window.
+  */
+  var narrow = window.matchMedia("(max-width: 1023px)");
+  var HOLD_MS = 180; // how long a finger must rest before the card takes over
+  var SLOP = 10; // px a resting finger may wander
+  var TAP_MS = 450; // a still press shorter than this is still a tap
+  var press = null;
+  var swallowUntil = 0;
+
+  function tiltSurface(target) {
+    if (!narrow.matches || reduce.matches || !target || !target.closest) return null;
+    var surface = target.closest(TILT);
+    if (!surface) return null;
+    // buttons and links keep their own behaviour; the link that covers a whole case card does not count
+    if (target.closest(".case-card__cta, .btn, button, input, label")) return null;
+    var own = target.closest("a");
+    if (own && !own.classList.contains("case-card__link")) return null;
+    return surface;
+  }
+
+  function begin(surface, x, y, isTouch) {
+    cancel();
+    press = { surface: surface, x: x, y: y, lastX: x, lastY: y, at: Date.now(), held: false, moved: false, touch: isTouch, timer: 0 };
+    if (isTouch) press.timer = window.setTimeout(hold, HOLD_MS);
+  }
+
+  function hold() {
+    if (!press || press.held) return;
+    press.held = true;
+    if (!attached.has(press.surface)) attach(press.surface);
+    press.surface.classList.add("is-touched");
+    handles.get(press.surface).point(press.lastX, press.lastY);
+  }
+
+  function drag(x, y) {
+    press.lastX = x;
+    press.lastY = y;
+    if (Math.abs(x - press.x) > SLOP || Math.abs(y - press.y) > SLOP) press.moved = true;
+    if (press.held) handles.get(press.surface).point(x, y);
+  }
+
+  // true when this press was a tilt and must not open anything
+  function end() {
+    if (!press) return false;
+    window.clearTimeout(press.timer);
+    var wasTilt = press.held && (press.moved || Date.now() - press.at > TAP_MS);
+    if (press.held) handles.get(press.surface).leave();
+    press = null;
+    if (wasTilt) swallowUntil = Date.now() + 500;
+    return wasTilt;
+  }
+
+  function cancel() {
+    if (!press) return;
+    window.clearTimeout(press.timer);
+    if (press.held) handles.get(press.surface).leave();
+    press = null;
+  }
+
+  function onTouchStart(ev) {
+    if (ev.touches.length > 1) return cancel();
+    var surface = tiltSurface(ev.target);
+    if (surface) begin(surface, ev.touches[0].clientX, ev.touches[0].clientY, true);
+  }
+
+  function onTouchMove(ev) {
+    if (!press || !press.touch) return;
+    var t = ev.touches[0];
+    if (!press.held) {
+      if (Math.abs(t.clientX - press.x) > SLOP || Math.abs(t.clientY - press.y) > SLOP) cancel(); // a scroll
+      return;
+    }
+    if (ev.cancelable) ev.preventDefault();
+    drag(t.clientX, t.clientY);
+  }
+
+  function onTouchEnd(ev) {
+    if (end() && ev.cancelable) ev.preventDefault();
+  }
+
+  // the listeners sit on the cards (and on the holder of the related-case card, which is
+  // filled later): a page-wide non-passive touchmove would slow down every scroll
+  [].forEach.call(document.querySelectorAll(TILT + ", [data-related-case]"), function (el) {
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchmove", onTouchMove, { passive: false });
+    el.addEventListener("touchend", onTouchEnd, { passive: false });
+    el.addEventListener("touchcancel", cancel, { passive: true });
+  });
+
+  document.addEventListener("pointerdown", function (ev) {
+    if (ev.pointerType !== "mouse" || ev.button !== 0) return;
+    var surface = tiltSurface(ev.target);
+    if (surface) begin(surface, ev.clientX, ev.clientY, false);
+  });
+  document.addEventListener("pointermove", function (ev) {
+    if (!press || press.touch || ev.pointerType !== "mouse") return;
+    if (!press.held && Math.abs(ev.clientX - press.x) + Math.abs(ev.clientY - press.y) > 4) hold();
+    drag(ev.clientX, ev.clientY);
+  });
+  document.addEventListener("pointerup", function (ev) {
+    if (press && !press.touch && ev.pointerType === "mouse") end();
+  });
+  document.addEventListener("dragstart", function (ev) {
+    if (press) ev.preventDefault();
+  });
+  document.addEventListener("contextmenu", function (ev) {
+    if (press && press.touch) ev.preventDefault();
+  });
+  document.addEventListener(
+    "click",
+    function (ev) {
+      if (Date.now() > swallowUntil) return;
+      swallowUntil = 0;
+      ev.preventDefault();
+      ev.stopPropagation();
+    },
+    true
   );
 
   function resetIfDisabled() {

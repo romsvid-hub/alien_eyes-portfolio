@@ -8,7 +8,8 @@
             rider types on Ridi ("Audience segmentation").
 
   Works on desktop and phones, never with prefers-reduced-motion (and without JavaScript
-  nothing is ever hidden). Plays again when the block is entered again. Runs before
+  nothing is ever hidden). From 1024px it plays again when the block is entered again;
+  below that it plays once and the content stays. Runs before
   js/reveal.js and the case scripts, and takes these elements over from them.
 */
 (function () {
@@ -21,8 +22,8 @@
   var STEP = 70; // ms between neighbours
 
   var GROUPS = [
-    { title: ".logos-section .logos-heading", items: ".logos-grid > *" },
-    { title: "#expertise .expertise-heading", items: "#expertise .expertise-item" },
+    { title: ".logos-section .logos-heading", items: ".logos-grid > *", narrowFrom: "-120px 0", narrowStep: 120, narrowMs: 520 },
+    { title: "#expertise .expertise-heading", items: "#expertise .expertise-item", narrowFrom: "0 96px", narrowScale: 0.84, narrowStep: 90, narrowMs: 360 },
     { title: "#case-studies .case-studies-heading" },
     { title: "#experience .experience-heading" },
     // case studies
@@ -30,7 +31,7 @@
     { title: ".atj2-impact .atj2-eyebrow", items: ".atj2-facts__item" },
     { title: ".uq2-impact-heading", items: ".uq2-impact__item" },
     { title: ".case-impact .case-eyebrow", items: ".case-impact__item" },
-    { title: "section:has(> .yoy-facts) > .yoy-heading", items: ".yoy-facts__card" },
+    { title: "section:has(> .yoy-facts) > .yoy-heading", items: ".yoy-facts__card", narrowFrom: "-72px 0" },
     { title: ".ridi-block--audience .ridi-subheading", items: ".ridi-audience__item", block: ".ridi-block--audience" }
   ];
 
@@ -77,7 +78,7 @@
         parts.forEach(function (part) {
           part.classList.remove("he-enter");
         });
-      }, ITEMS_AFTER + items.length * STEP + ITEM_MS + 60);
+      }, ITEMS_AFTER + items.length * (group.narrowStep || STEP) + (group.narrowMs || ITEM_MS) + 60);
       // one keyframe at offset 0 = where it starts; it ends wherever the styles put it
       // (without the offset a lone keyframe means where it ends)
       title.animate([{ opacity: 0, translate: "-72px 0", offset: 0 }], {
@@ -85,10 +86,16 @@
         easing: "cubic-bezier(0.22, 1, 0.36, 1)",
         fill: "backwards"
       });
+      // phones: some blocks come in from the side instead (YOY "Three facts": left to right)
+      var narrow = window.matchMedia("(max-width: 1023px)").matches;
+      var from = (narrow && group.narrowFrom) || "0 44px";
+      var start = { opacity: 0, translate: from, offset: 0 };
+      if (narrow && group.narrowScale) start.scale = String(group.narrowScale);
+      var step = (narrow && group.narrowStep) || STEP;
       items.forEach(function (item, i) {
-        item.animate([{ opacity: 0, translate: "0 44px", offset: 0 }], {
-          duration: ITEM_MS,
-          delay: ITEMS_AFTER + i * STEP,
+        item.animate([start], {
+          duration: (narrow && group.narrowMs) || ITEM_MS,
+          delay: ITEMS_AFTER + i * step,
           easing: "cubic-bezier(0.34, 1.45, 0.64, 1)", // a small hop past the place and back
           fill: "backwards"
         });
@@ -96,10 +103,19 @@
     }
 
     wait();
-    // hidden again only once the title has left the screen...
-    new IntersectionObserver(function (entries) {
-      if (!entries[entries.length - 1].isIntersecting) wait();
-    }).observe(title);
+    // hidden again only once the title has left the screen (desktop only: on phones and
+    // tablets the block is taller than the title, and hiding it left an empty screen)
+    if (!window.matchMedia("(max-width: 1023px)").matches) {
+      new IntersectionObserver(function (entries) {
+        if (!entries[entries.length - 1].isIntersecting) wait();
+      }).observe(title);
+    } else {
+      // a jump past the title must not leave the block blank
+      new IntersectionObserver(function (entries) {
+        var entry = entries[entries.length - 1];
+        if (!entry.isIntersecting && entry.boundingClientRect.bottom <= 0) play();
+      }).observe(title);
+    }
     // ...and played when it is well inside it, so a block still fading in is not missed
     new IntersectionObserver(
       function (entries) {

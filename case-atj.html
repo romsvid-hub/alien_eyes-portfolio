@@ -58,6 +58,7 @@
       Not used anywhere else on this site, which is otherwise plain hand-written CSS on purpose.
     -->
     <link rel="stylesheet" href="css/job-card-tailwind.css" />
+    <link rel="stylesheet" href="css/mobile.css" />
     <!-- Microsoft Clarity analytics -->
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
@@ -158,7 +159,7 @@
       </section>
 
       <!-- UI: CASE02-IMPACT-01 | Impact stats | inspect/adjust | matches Figma order: Hero, Impact, Context, Role (472:4166) -->
-      <section class="atj-impact">
+      <section class="atj-impact" data-m-impact>
         <p class="atj-eyebrow cc-trick" data-reveal>Impact:</p>
         <div class="atj-impact__grid" data-reveal-group>
           <div class="atj-impact__item">
@@ -202,7 +203,7 @@
       </nav>
 
       <!-- UI: CASE02-CONTEXT-01 | Context section | inspect/adjust -->
-      <section id="cs-context" data-case-section class="atj-section atj-context" data-reveal-group>
+      <section id="cs-context" data-case-section class="atj-section atj-context" data-reveal-group data-m-screen>
         <div class="atj-context__text">
           <div class="atj-context__copy">
           <p class="atj-eyebrow atj-eyebrow--lg cs-title">Context</p>
@@ -220,7 +221,7 @@
       </section>
 
       <!-- UI: CASE02-INSIGHT-01 | The insight changed everything | inspect/adjust -->
-      <section id="cs-challenge" data-case-section class="atj-section atj-insight" data-focus>
+      <section id="cs-challenge" data-case-section class="atj-section atj-insight" data-focus data-m-rise>
         <p class="atj-eyebrow cc-trick" data-reveal>Challenge. The insight changed everything</p>
         <div class="atj-insight__row" data-reveal-group>
           <!-- IMAGE: CASE02-INSIGHT-IMAGE-01 | Insight illustration | replaceable -->
@@ -249,7 +250,7 @@
       </section>
 
       <!-- UI: CASE02-RESEARCH-01 | Research stats | inspect/adjust -->
-      <section id="cs-research" data-case-section class="atj-section">
+      <section id="cs-research" data-case-section class="atj-section" data-m-rise>
         <div class="atj-research">
           <p class="atj-eyebrow atj-eyebrow--research atj-eyebrow--lg cc-trick cs-title">RESEARCH:</p>
           <p class="body-large atj-research__intro">
@@ -303,8 +304,10 @@
 
       <!-- UI: CASE02-PAINPOINTS-01 | Candidate pain point cards | inspect/adjust -->
       <section class="atj-section">
-        <div class="atj-painpoints" data-reveal-group>
-          <article class="atj-painpoint">
+        <!-- phones and tablets only (mobile audit, 2026-11-27) -->
+        <p class="atj-eyebrow atj-eyebrow--lg atj-users-heading m-only" data-m-piece>Users</p>
+        <div class="atj-painpoints" data-reveal-group data-m-rise>
+          <article class="atj-painpoint" data-m-from="left" data-m-exit="right">
             <div class="atj-painpoint__head">
               <div class="atj-painpoint__id">
                 <p class="atj-painpoint__name">Alexander Savchuk</p>
@@ -319,7 +322,7 @@
               attitude on the part of employers
             </p>
           </article>
-          <article class="atj-painpoint">
+          <article class="atj-painpoint" data-m-from="left" data-m-exit="right">
             <div class="atj-painpoint__head">
               <div class="atj-painpoint__id">
                 <p class="atj-painpoint__name">Kateryna Lubarska</p>
@@ -334,7 +337,7 @@
               prejudice against mothers
             </p>
           </article>
-          <article class="atj-painpoint">
+          <article class="atj-painpoint" data-m-from="left" data-m-exit="right">
             <div class="atj-painpoint__head">
               <div class="atj-painpoint__id">
                 <p class="atj-painpoint__name">Anna Dubinska</p>
@@ -351,7 +354,7 @@
           </article>
         </div>
         <!-- UI: CASE02-SCOPE-01 | Overall scope of work | matches Figma "OVERALL SCOPE OF WORK:" (472:4311) -->
-        <div class="atj-scope" data-reveal>
+        <div class="atj-scope" data-reveal data-m-screen>
           <p class="atj-eyebrow atj-scope__heading cc-trick cs-title">OVERALL SCOPE OF WORK:</p>
           <p class="body-main atj-scope__text">
             A large team effort went into this project. What's shown here
@@ -402,12 +405,12 @@
             and matches their prepared source exactly.
           -->
           <div class="atj-mvp__gallery" data-reveal-group>
-            <img loading="lazy" width="2200" height="1238" class="atj-mvp__slide-img" src="assets/case-atj/mvp-slide-onboarding.webp" alt="Onboarding: select needs for a comfortable work environment, choose interview format, create or upload a resume" />
-            <img loading="lazy" width="2200" height="1238" class="atj-mvp__slide-img" src="assets/case-atj/mvp-slide-filters.webp" alt="Personalised filters: employers set a real salary range, shown against matching job cards" />
-            <img loading="lazy" width="2200" height="1238" class="atj-mvp__slide-img" src="assets/case-atj/mvp-slide-benefits.webp" alt="Inclusive benefits: accessibility and benefits tags shown clearly on a job card" />
+            <img loading="lazy" width="2200" height="1238" class="atj-mvp__slide-img" src="assets/case-atj/mvp-slide-onboarding.webp" alt="Onboarding: select needs for a comfortable work environment, choose interview format, create or upload a resume" data-zoom-set="mvp" data-zoom-icon />
+            <img loading="lazy" width="2200" height="1238" class="atj-mvp__slide-img" src="assets/case-atj/mvp-slide-filters.webp" alt="Personalised filters: employers set a real salary range, shown against matching job cards" data-zoom-set="mvp" data-zoom-icon />
+            <img loading="lazy" width="2200" height="1238" class="atj-mvp__slide-img" src="assets/case-atj/mvp-slide-benefits.webp" alt="Inclusive benefits: accessibility and benefits tags shown clearly on a job card" data-zoom-set="mvp" data-zoom-icon />
           </div>
         </div>
-        <div class="atj-mvp__contribution" data-reveal>
+        <div class="atj-mvp__contribution" data-reveal data-m-exit="left">
           <p class="atj-eyebrow atj-eyebrow--lg cs-title">My contribution:</p>
           <p class="body-large atj-mvp__contribution-text">
             This was my main area of responsibility — the central search
@@ -419,9 +422,9 @@
       </section>
 
       <!-- UI: CASE02-CONTRIB-01 | Contribution highlights grid | inspect/adjust -->
-      <section class="atj-section atj-contrib" data-focus>
+      <section class="atj-section atj-contrib" data-focus data-m-screen>
         <div class="atj-contrib__grid" data-reveal-group>
-          <div class="atj-contrib__item">
+          <div class="atj-contrib__item" data-m-from="left" data-m-exit="right">
             <!-- IMAGE: CASE02-CONTRIB-ICON-01 | Primary focus icon | replaceable -->
             <img loading="lazy" width="356" height="356" class="atj-contrib__icon--primary" src="assets/case-atj/icon-primary-focus.webp" alt="" />
             <div>
@@ -432,7 +435,7 @@
               </p>
             </div>
           </div>
-          <div class="atj-contrib__item">
+          <div class="atj-contrib__item" data-m-from="left" data-m-exit="right">
             <!-- IMAGE: CASE02-CONTRIB-ICON-02 | Accessibility tags icon | replaceable -->
             <img loading="lazy" width="356" height="356" class="atj-contrib__icon--accessibility" src="assets/case-atj/icon-accessibility-tags.webp" alt="" />
             <div>
@@ -444,7 +447,7 @@
               </p>
             </div>
           </div>
-          <div class="atj-contrib__item">
+          <div class="atj-contrib__item" data-m-from="left" data-m-exit="right">
             <!-- IMAGE: CASE02-CONTRIB-ICON-03 | Dynamic card icon | replaceable -->
             <img loading="lazy" width="366" height="356" src="assets/case-atj/icon-dynamic-card.webp" alt="" />
             <div>
@@ -456,7 +459,7 @@
               </p>
             </div>
           </div>
-          <div class="atj-contrib__item">
+          <div class="atj-contrib__item" data-m-from="left" data-m-exit="right">
             <!-- IMAGE: CASE02-CONTRIB-ICON-04 | CV selector icon | replaceable -->
             <img loading="lazy" width="356" height="356" class="atj-contrib__icon--cvselector" src="assets/case-atj/icon-cv-selector.webp" alt="" />
             <div>
@@ -472,7 +475,7 @@
       </section>
 
       <!-- UI: CASE02-SMARTFILTERS-01 | Matching by smart filters | inspect/adjust -->
-      <section id="cs-core-features" data-case-section class="atj-section atj-smartfilters">
+      <section id="cs-core-features" data-case-section class="atj-section atj-smartfilters" data-m-rise>
         <h2 class="h2-section atj-smartfilters__heading cs-title" data-reveal>Matching by Smart Filters</h2>
         <div class="atj-smartfilters__intro body-main" data-reveal>
           <p>
@@ -501,7 +504,7 @@
         -->
         <div class="atj-smartfilters__composition" data-reveal>
           <!-- IMAGE: CASE02-SMARTFILTERS-SCREEN-01 | Jobs catalog page screenshot | replaceable -->
-          <img loading="lazy" width="2200" height="2756" class="atj-smartfilters__screen" src="assets/case-atj/smartfilters-home.webp" alt="ATJ Jobs Catalog page with smart filters" />
+          <img loading="lazy" width="2200" height="2756" class="atj-smartfilters__screen" src="assets/case-atj/smartfilters-home.webp" alt="ATJ Jobs Catalog page with smart filters" data-zoom />
           <div class="atj-smartfilters__blocks">
             <div>
               <p class="h3-case-study atj-smartfilters__block-title">The Problem:</p>
@@ -535,7 +538,7 @@
       </section>
 
       <!-- UI: CASE02-JOBCARD-01 | Job card deep dive | inspect/adjust -->
-      <section class="atj-section atj-jobcard">
+      <section class="atj-section atj-jobcard" data-m-rise>
         <div class="atj-jobcard__pin" data-jobcard-pin>
         <div class="atj-jobcard__pin-inner">
         <!--
@@ -607,7 +610,7 @@
             file), verified via get_design_context. Mobile only now
             (<1024px) — desktop shows the static exports above instead.
           -->
-          <div class="atj-jobcard-showcase__grid">
+          <div class="atj-jobcard-showcase__grid" data-m-from="left">
 
             <div class="atj-jobcard-showcase__item">
               <p class="atj-jobcard-showcase__state">Default</p>
@@ -890,7 +893,7 @@
       </section>
 
       <!-- UI: CASE02-SCREENS-01 | Other impact screens | inspect/adjust -->
-      <section class="atj-screens">
+      <section class="atj-screens" data-m-screen>
         <h2 class="h2-section atj-screens__heading" data-reveal>Other impact screens</h2>
 
         <div class="atj-screens__row" data-reveal>
@@ -904,14 +907,14 @@
           </div>
           <!-- IMAGE: CASE02-SCREENS-01 | Create CV at onboarding screenshot | replaceable -->
           <div class="atj-screens__image atj-screens__image--createcv">
-            <img loading="lazy" width="1600" height="1003" src="assets/case-atj/screens-create-cv-cropped.webp" alt="Create CV at onboarding screen" />
+            <img loading="lazy" width="1600" height="1003" src="assets/case-atj/screens-create-cv-cropped.webp" alt="Create CV at onboarding screen" data-zoom />
           </div>
         </div>
 
         <div class="atj-screens__row" data-reveal>
           <!-- IMAGE: CASE02-SCREENS-02 | Job page with accessibility tags screenshot | replaceable -->
           <div class="atj-screens__image atj-screens__image--jobpage">
-            <img loading="lazy" width="1600" height="975" src="assets/case-atj/screens-job-page-cropped.webp" alt="Job page with accessibility tags shown first" />
+            <img loading="lazy" width="1600" height="975" src="assets/case-atj/screens-job-page-cropped.webp" alt="Job page with accessibility tags shown first" data-zoom />
           </div>
           <div class="atj-screens__text">
             <p class="h3-case-study atj-screens__title">Job Page with Accessibility Tags First</p>
@@ -935,7 +938,7 @@
           </div>
           <!-- IMAGE: CASE02-SCREENS-03 | CV selector screenshot | replaceable -->
           <div class="atj-screens__image atj-screens__image--selectcv">
-            <img loading="lazy" width="1600" height="1015" src="assets/case-atj/screens-select-cv-cropped.webp" alt="CV selector screen" />
+            <img loading="lazy" width="1600" height="1015" src="assets/case-atj/screens-select-cv-cropped.webp" alt="CV selector screen" data-zoom />
           </div>
         </div>
       </section>
@@ -1025,7 +1028,7 @@
       </section>
 
       <!-- UI: CASE02-RESULTS-01 | Results | matches Figma "Section — Results" (477:38551) -->
-      <section id="cs-results" data-case-section class="atj-section" data-reveal data-focus>
+      <section id="cs-results" data-case-section class="atj-section" data-reveal data-focus data-m-screen>
         <p class="atj-eyebrow atj-eyebrow--lg cs-title">Results</p>
         <p class="body-large atj-final__text">
           What we delivered wasn't a set of screens. It was a hiring system
@@ -1148,7 +1151,7 @@
       <div class="site-footer__row site-footer__row--bottom">
         <p class="body-main site-footer__copyright">© 2026 Roman Sviderskyi<span class="site-footer__sep" aria-hidden="true"> · </span><span class="site-footer__colophon">Designed and hand-coded by me · Built with Claude Code</span></p>
         <p class="body-main site-footer__contact">
-          +380 97 334 9540&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:svidddrommm25@gmail.com"
+          <span class="site-footer__phone">+380 97 334 9540</span><span class="site-footer__slash">&nbsp;&nbsp;/&nbsp;&nbsp;</span><a class="site-footer__email" href="mailto:svidddrommm25@gmail.com"
             >svidddrommm25@gmail.com</a
           >
         </p>
@@ -1161,10 +1164,13 @@
     <script src="js/case-nav.js" defer></script>
     <script src="js/related-case.js" defer></script>
     <script src="js/reviews.js"></script>
+    <script src="js/mobile-screens.js"></script>
     <script src="js/title-enter.js"></script>
     <script src="js/reveal.js"></script>
     <script src="js/link-shimmer.js"></script>
     <script src="js/jobcard-scroll.js"></script>
+    <script src="js/mobile-motion.js"></script>
+    <script src="js/mobile-zoom.js"></script>
     <script src="js/nbsp-typography.js"></script>
   </body>
 </html>

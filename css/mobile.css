@@ -1,0 +1,1609 @@
+/*
+  Phones and tablets (below 1024px). Mobile audit, 2026-11-27.
+  Loaded last on every page. Everything sits inside max-width: 1023px, so the desktop
+  layout is not touched. Scripts: js/mobile-screens.js (case nav, section entrances),
+  js/mobile-zoom.js (image viewer, gallery swipe), js/card-motion.js (touch tilt),
+  js/nav.js (backdrop behind the open menu).
+*/
+
+/* parts that only the phone / tablet layout uses */
+.zoom-hint,
+.nav-scrim {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  /* ---------- footer: phone on one line, email under it ---------- */
+
+  .site-footer__phone {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .site-footer__slash {
+    display: none;
+  }
+
+  .site-footer__email {
+    display: inline-block;
+    margin-top: 6px;
+    overflow-wrap: anywhere;
+  }
+
+  /* ---------- Home: hero card, small round portrait next to the name ---------- */
+
+  .page-home .hero-section {
+    padding-top: 16px;
+    padding-bottom: 32px;
+  }
+
+  .page-home .hero-card {
+    grid-template-columns: 72px minmax(0, 1fr);
+    grid-template-areas:
+      "photo identity"
+      "title title"
+      "intro intro"
+      "actions actions";
+    align-items: center;
+    gap: 20px 16px;
+    padding: 24px;
+    border-radius: 20px;
+  }
+
+  .page-home .hero-card__body {
+    display: contents;
+  }
+
+  .page-home .hero-identity {
+    grid-area: identity;
+  }
+
+  .page-home .hero-title {
+    grid-area: title;
+    margin: 4px 0 0;
+  }
+
+  .page-home .hero-intro {
+    grid-area: intro;
+  }
+
+  .page-home .hero-actions {
+    grid-area: actions;
+  }
+
+  .page-home .hero-card__photo {
+    grid-area: photo;
+    width: 72px;
+    height: 72px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 1px solid rgba(180, 156, 255, 0.45);
+    background: radial-gradient(circle at 50% 35%, #3a3155, #1c1828 75%);
+  }
+
+  /* the cut-out portrait is cropped to head and shoulders */
+  .page-home .hero-card__photo img {
+    inset: auto;
+    top: -34%;
+    left: -24%;
+    width: 148%;
+    height: auto;
+    max-width: none;
+    transform: none;
+    object-fit: initial;
+  }
+
+  /* ---------- Home: "I worked with" takes the screen, logos in a column ---------- */
+
+  .page-home .logos-section {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 56px);
+    min-height: calc(100svh - 56px);
+    padding-block: 32px;
+  }
+
+  .page-home .logos-section > .home-col {
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .page-home .logos-heading {
+    text-align: center;
+  }
+
+  .page-home .logos-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(24px, 5.5vh, 48px);
+    margin-top: 16px;
+  }
+
+  .page-home .logos-grid > .client-logo {
+    flex: none;
+    width: 148px;
+  }
+
+  /* ---------- Home: Expertise is a plain dark list, all of it readable ---------- */
+
+  .page-home .expertise-section {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 56px);
+    min-height: calc(100svh - 56px);
+    padding-block: 32px;
+  }
+
+  .page-home .expertise-section .hm-stage,
+  .page-home .expertise-section .home-col {
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .page-home .expertise-heading {
+    margin-bottom: 20px;
+  }
+
+  .page-home .expertise-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .page-home .expertise-grid .expertise-item,
+  .page-home .expertise-grid .expertise-item:first-child,
+  .page-home .expertise-grid .expertise-item:not(:first-child),
+  .page-home .expertise-grid .expertise-item.reveal-init.is-revealed:not(:first-child) {
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr);
+    align-content: center;
+    column-gap: 14px;
+    row-gap: 4px;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.035);
+    opacity: 1;
+  }
+
+  .page-home .expertise-item__icon {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: start;
+    width: 32px;
+    height: 32px;
+  }
+
+  .page-home .expertise-item__title,
+  .page-home .expertise-item__text {
+    grid-column: 2;
+  }
+
+  /* ---------- Case cards (Home and the related-case card): even padding, calmer corners ---------- */
+
+  .page-home #case-studies {
+    grid-auto-rows: auto;
+    --hm-card-gap: 32px;
+  }
+
+  .page-home .case-card,
+  .related-case .case-card {
+    border-radius: 16px;
+  }
+
+  .page-home .case-card__link,
+  .related-case .case-card__link {
+    gap: 20px;
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  /* the artwork keeps inside its box, so it cannot add air on one card and eat it on another */
+  .page-home .case-card__media,
+  .related-case .case-card__media {
+    overflow: hidden;
+  }
+
+  /* ---------- header: open menu on glass, the page behind is blurred ---------- */
+
+  .site-nav.is-open .nav-menu {
+    background: linear-gradient(180deg, rgba(19, 17, 27, 0.9), rgba(25, 20, 42, 0.84));
+    border-bottom: 1px solid rgba(180, 156, 255, 0.22);
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 24px 48px -12px rgba(123, 97, 255, 0.32);
+  }
+
+  .site-nav.is-open .nav-cta {
+    min-height: 44px;
+  }
+
+  /* 32px between the links, 12px between the two buttons */
+  .site-nav.is-open .nav-cta--contact {
+    margin-top: -20px;
+  }
+
+  /* ---------- "Case Studies" popup: almost the whole screen, a vertical list ---------- */
+
+  .nav-popup-overlay:has(> .nav-popup--cases) {
+    padding: 12px;
+    align-items: stretch;
+    background: rgba(8, 6, 14, 0.35);
+  }
+
+  .nav-popup--cases {
+    max-height: none;
+    padding: 16px 12px 12px;
+    border-radius: 20px;
+    background-color: rgba(19, 20, 20, 0.94);
+  }
+
+  .nav-popup--cases .nav-popup__heading {
+    margin: 0 0 16px;
+    padding: 6px 52px 0 8px;
+    font-size: clamp(24px, 7vw, 32px);
+    line-height: 1.2;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .nav-popup--cases .nav-popup__close {
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    background-color: #7b61ff;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35), 0 6px 18px rgba(0, 0, 0, 0.45);
+  }
+
+  .nav-popup--cases .nav-popup__close svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .nav-popup--cases .nav-popup__close svg path {
+    stroke-width: 2.2;
+  }
+
+  .nav-popup--cases .nav-popup__cases-grid {
+    flex: 1;
+    flex-direction: column;
+    gap: 8px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-popup--cases .nav-popup-case {
+    display: grid;
+    grid-template-columns: 108px minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    column-gap: 14px;
+    row-gap: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+
+  .nav-popup--cases .nav-popup-case__media {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: center;
+  }
+
+  .nav-popup--cases .nav-popup-case__title {
+    grid-column: 2;
+    align-self: end;
+    line-height: 1.3;
+  }
+
+  .nav-popup--cases .nav-popup-case__desc {
+    grid-column: 2;
+    align-self: start;
+  }
+
+  /* ---------- touch tilt (js/card-motion.js): no long-press menu or selection on these surfaces ---------- */
+
+  .hero-card,
+  .case-card,
+  .case-hero,
+  .atj-hero,
+  .atj2-hero,
+  .uq2-hero,
+  .yoy-hero,
+  .ridi-hero {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .case-card__link,
+  .case-card img,
+  .case-hero img,
+  .atj-hero img,
+  .atj2-hero img,
+  .uq2-hero img,
+  .yoy-hero img,
+  .ridi-hero img {
+    -webkit-user-drag: none;
+  }
+
+  /* a smaller sphere under the finger */
+  .page-home .hero-card.is-touched .hm-sphere--hero-a {
+    opacity: 1;
+  }
+
+  /* ---------- case heroes: title, description, picture, then the details ---------- */
+
+  .case-hero,
+  .atj-hero,
+  .atj2-hero,
+  .uq2-hero,
+  .yoy-hero,
+  .ridi-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    margin-top: 16px;
+    margin-bottom: 0;
+  }
+
+  .case-hero__content,
+  .atj-hero__content,
+  .atj2-hero__content,
+  .uq2-hero__content,
+  .yoy-hero__content,
+  .ridi-hero__body,
+  .ridi-hero__content {
+    display: contents;
+  }
+
+  .case-hero__title,
+  .atj-hero__title,
+  .atj2-hero__title,
+  .uq2-hero__title,
+  .yoy-hero__title,
+  .ridi-hero__title-row {
+    position: relative;
+    z-index: 1;
+    order: 1;
+    margin: 0;
+  }
+
+  .case-hero__subhead,
+  .atj-hero__desc,
+  .atj2-hero__desc,
+  .uq2-hero__desc,
+  .yoy-hero__desc,
+  .ridi-hero__desc {
+    position: relative;
+    z-index: 1;
+    order: 2;
+    margin: 0;
+  }
+
+  .case-hero__mockup,
+  .atj-hero__mockup-frame,
+  .atj2-hero__media,
+  .uq2-hero__media,
+  .yoy-hero__media,
+  .ridi-hero__screens {
+    position: relative;
+    z-index: 1;
+    order: 3;
+  }
+
+  .case-hero .case-meta,
+  .atj-hero .case-meta,
+  .atj2-hero__meta-row,
+  .uq2-hero .case-meta,
+  .yoy-hero .case-meta,
+  .ridi-hero .case-meta {
+    position: relative;
+    z-index: 1;
+    order: 4;
+    margin: 0;
+    padding-top: 8px;
+  }
+
+  .case-hero {
+    padding: 32px 20px;
+  }
+
+  .uq2-hero {
+    padding: 32px 20px;
+  }
+
+  .atj-hero {
+    padding: 32px 20px;
+  }
+
+  .atj2-hero {
+    padding: 32px 20px;
+  }
+
+  .yoy-hero {
+    padding: 32px 20px;
+  }
+
+  .ridi-hero {
+    padding: 32px 20px;
+  }
+
+  /* ---------- Impact: a screen of its own, heading and numbers only ---------- */
+
+  [data-m-impact] {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - var(--case-nav-top, 56px));
+    min-height: calc(100svh - var(--case-nav-top, 56px));
+    padding-block: 40px;
+  }
+
+  [data-m-impact] > * {
+    width: 100%;
+  }
+
+  /* three or fewer: one column, aligned left */
+  [data-m-impact] :is(.case-impact__grid, .atj-impact__grid, .atj2-facts, .uq2-impact, .yoy-facts) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: start;
+    gap: 32px;
+    margin-top: 24px;
+    text-align: left;
+  }
+
+  /* four: two by two */
+  [data-m-impact] :is(.case-impact__grid, .atj-impact__grid, .atj2-facts, .uq2-impact, .yoy-facts):has(> :nth-child(4)) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 40px 20px;
+  }
+
+  [data-m-impact] :is(.case-impact__item, .atj-impact__item, .atj2-facts__item, .uq2-impact__item) {
+    align-items: flex-start;
+    width: 100%;
+    text-align: left;
+  }
+
+  /* ---------- case nav: hidden over the hero and Impact, slides in with the first section ---------- */
+
+  html.m-nav .case-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 98;
+    gap: 20px;
+    padding-left: 0;
+    background-color: #151616;
+    overflow-x: auto;
+    overflow-y: hidden;
+    /* sideways only: no drag or bounce in any other direction */
+    touch-action: pan-x;
+    overscroll-behavior: contain;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+    transition:
+      transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 180ms ease-out,
+      visibility 0s 220ms;
+  }
+
+  html.m-nav .case-nav.is-shown {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition:
+      transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 180ms ease-out;
+  }
+
+  /* "Home" stays put; the other items slide under it and fade out */
+  html.m-nav .case-nav__lead {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    align-self: stretch;
+    margin-right: -8px;
+    padding-left: var(--page-px);
+    background-color: #151616;
+  }
+
+  html.m-nav .case-nav__lead::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 100%;
+    width: 24px;
+    background: linear-gradient(90deg, #151616 15%, rgba(21, 22, 22, 0));
+    pointer-events: none;
+  }
+
+  html.m-nav .case-nav__home {
+    gap: 16px;
+  }
+
+  .case-nav-spacer {
+    display: none;
+  }
+
+  /* ---------- screens: a section that fills the display; longer ones simply scroll ---------- */
+
+  [data-m-screen] {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - var(--case-nav-top, 56px) - 48px);
+    min-height: calc(100svh - var(--case-nav-top, 56px) - 48px);
+  }
+
+  [data-m-screen] > * {
+    flex-shrink: 0;
+  }
+
+  .m-wait {
+    opacity: 0 !important;
+  }
+
+  .m-wait,
+  .m-enter {
+    transition: none !important;
+  }
+
+  /* the coloured card of a Uniqkey 2 panel fills its screen */
+  .uq2-section--panel[data-m-screen] > .uq2-panel {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* ---------- Uniqkey case 01 ---------- */
+
+  .case-context__second {
+    display: block;
+    margin-top: 20px;
+  }
+
+  .case-context__break {
+    display: none;
+  }
+
+  .case-other-carousel__viewport {
+    touch-action: pan-y;
+  }
+
+  .case-other-carousel__viewport img {
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* ---------- Uniqkey case 02 ---------- */
+
+  #cs-core-features > .uq2-eyebrow {
+    margin-bottom: 32px;
+  }
+
+  /* ---------- "Tap to zoom" ---------- */
+
+  [data-zoom] {
+    cursor: zoom-in;
+  }
+
+  .zoom-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: fit-content;
+    min-height: 36px;
+    margin: 6px auto 0;
+    padding: 6px 14px;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: #6b6f76;
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 18px;
+    cursor: zoom-in;
+  }
+
+  .zoom-hint svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .zoom-hint--on-dark {
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .zoom-hint--button {
+    border: 1px solid currentColor;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-home .logos-section {
+    padding-block: 24px;
+  }
+}
+
+/* tablets: two columns of Expertise cards */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .page-home .expertise-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  /* the blurred layer behind the open menu */
+  .nav-scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    background: rgba(9, 7, 16, 0.42);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.2s ease-out,
+      visibility 0s 0.2s;
+  }
+
+  .site-nav.is-open ~ .nav-scrim {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.2s ease-out;
+  }
+}
+
+@media (max-width: 1023px) and (prefers-reduced-motion: reduce) {
+  html.m-nav .case-nav,
+  html.m-nav .case-nav.is-shown,
+  .nav-scrim {
+    transition: none;
+  }
+}
+
+/* ---------- image viewer (js/mobile-zoom.js) ---------- */
+
+.zoom-view {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  background: #08080b;
+  color: #fffefe;
+  font-family: var(--font-body);
+}
+
+.zoom-view__top,
+.zoom-view__bottom {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 12px;
+}
+
+.zoom-view__top {
+  justify-content: space-between;
+}
+
+.zoom-view__note {
+  font-size: 13px;
+  color: rgba(255, 254, 254, 0.72);
+}
+
+.zoom-view__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+  font: 600 15px/1 var(--font-body);
+  cursor: pointer;
+}
+
+.zoom-view__btn[aria-pressed="true"] {
+  background: #7b61ff;
+  border-color: #7b61ff;
+}
+
+.zoom-view__btn--close {
+  background: #7b61ff;
+  border-color: rgba(255, 255, 255, 0.5);
+  font-size: 22px;
+}
+
+.zoom-view__stage {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  touch-action: none;
+  cursor: grab;
+}
+
+.zoom-view__stage img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  max-width: none;
+  transform-origin: 0 0;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+html.zoom-open,
+html.zoom-open body {
+  overflow: hidden;
+}
+
+/* the Uniqkey artwork has wide transparent margins above and below the laptop */
+@media (max-width: 767px) {
+  .case-card__link .case-card__media:has(.uniqkey-laptop-frame) {
+    margin-block: -36px;
+  }
+}
+
+/* ================= part 2 of the mobile audit (2026-11-27): cases 03-06 ================= */
+
+/* ---------- parts that exist only on phones and tablets ---------- */
+
+.m-only,
+.zoom-badge {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .zoom-wrap {
+    display: contents;
+  }
+}
+
+@media (max-width: 1023px) {
+  .m-only {
+    display: block;
+  }
+
+  /* ---------- magnifier badge: an image that opens in the viewer ---------- */
+
+  .zoom-wrap {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+  }
+
+  [data-zoomable] {
+    cursor: zoom-in;
+  }
+
+  .zoom-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 50%;
+    background: rgba(14, 12, 20, 0.7);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    cursor: zoom-in;
+  }
+
+  .zoom-badge svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* ---------- case 03: Inclusive Hiring Platform ---------- */
+
+  /* Challenge: the picture holds for a moment while the text moves under it */
+  #cs-challenge .atj-insight__image-frame {
+    position: sticky;
+    top: calc(var(--case-nav-top, 56px) + 48px);
+    z-index: 2;
+    background: var(--color-main-canvas);
+    box-shadow: 0 0 0 12px var(--color-main-canvas);
+  }
+
+  /* Research: the heading holds, the cards pass by one at a time */
+  .atj-research {
+    padding-top: 24px;
+  }
+
+  .atj-research > .atj-eyebrow--research {
+    position: sticky;
+    top: calc(var(--case-nav-top, 56px) + 48px);
+    z-index: 3;
+    margin: 0 0 8px;
+    padding-block: 12px;
+    background: var(--color-main-canvas);
+  }
+
+  .atj-research__grid {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .atj-research__grid > .atj-research__card {
+    flex: none;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 320px;
+    padding: 24px;
+  }
+
+  /* the last, orange card stays in focus for a short stretch, then leaves upwards */
+  .atj-research__grid > .atj-research__card--featured {
+    position: sticky;
+    top: calc(var(--case-nav-top, 56px) + 48px + 24vh);
+    z-index: 2;
+  }
+
+  .atj-research__grid::after {
+    content: "";
+    flex: none;
+    height: 30vh;
+  }
+
+  .atj-users-heading {
+    margin: 0 0 20px;
+  }
+
+  /* "Primary Focus" and its three neighbours on one screen */
+  .atj-contrib__grid {
+    gap: 20px;
+  }
+
+  .atj-contrib__item {
+    gap: 16px;
+  }
+
+  .atj-contrib__item img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .atj-contrib[data-m-screen] {
+    padding-block: 24px;
+  }
+
+  /* Job Card: a section of its own */
+  .atj-section.atj-jobcard {
+    margin-block: 32px;
+    padding-block: 40px;
+    border-radius: 24px;
+    background: #f7f0ee;
+  }
+
+  #cs-results.atj-section[data-m-screen] {
+    padding-block: 48px;
+  }
+
+  /* ---------- case 04: One Questionnaire, Two Audiences ---------- */
+
+  .atj2-challenge__content {
+    margin-top: 32px;
+  }
+
+  .atj2-features__row[data-m-screen] {
+    padding-block: 24px;
+  }
+
+  /* ---------- case 05: YOY! Events ---------- */
+
+  /* screens in a row that can be swiped; a single one stays in the middle */
+  .yoy-screens {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding-bottom: 4px;
+  }
+
+  .yoy-screens img {
+    width: min(66%, 240px);
+    height: auto;
+    aspect-ratio: 172 / 352;
+  }
+
+  .yoy-screens img:first-child {
+    margin-left: auto;
+  }
+
+  .yoy-screens img:last-child {
+    margin-right: auto;
+  }
+
+  .yoy-decision__body .zoom-wrap,
+  .yoy-feature .zoom-wrap {
+    align-self: stretch;
+  }
+
+  /* The Challenge: picture, then the text, then the mascot under it */
+  .yoy-row__content {
+    align-self: stretch;
+    align-items: center;
+  }
+
+  .yoy-row__text {
+    order: 1;
+    align-self: stretch;
+  }
+
+  .yoy-row__mascot {
+    order: 2;
+  }
+
+  /* analog logos: one centred column, a little larger */
+  .yoy-research > .yoy-logos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .yoy-research .yoy-logos__item {
+    height: 40px;
+    max-width: 100%;
+  }
+
+  /* "Open full map" sits under the map, never on it */
+  .yoy-media--linked .yoy-media__hint {
+    position: static;
+    display: flex;
+    width: fit-content;
+    min-height: 44px;
+    box-sizing: border-box;
+    align-items: center;
+    margin: 12px auto 4px;
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ---------- case 06: Ridi ---------- */
+
+  .ridi-two-col {
+    gap: 48px;
+  }
+
+  .ridi-two-col .ridi-subheading {
+    margin-bottom: 12px;
+  }
+
+  .ridi-heading + .ridi-two-col {
+    margin-top: 32px;
+  }
+
+  /* Research follows The Challenge without extra air */
+  #cs-research.ridi-section {
+    padding-top: 32px;
+  }
+
+  #cs-research > .ridi-block--spaced {
+    margin-top: 64px;
+  }
+
+  .ridi-logos {
+    gap: 32px;
+  }
+
+  .ridi-logos img {
+    height: 42px;
+    max-width: 80%;
+  }
+
+  .ridi-block--audience .ridi-audience {
+    gap: 56px;
+    margin-top: 40px;
+  }
+
+  /* design screens: one whole screen and about half of the next one */
+  .ridi-decision__screens img {
+    width: 62%;
+    max-width: 300px;
+    height: auto;
+  }
+
+  /* Onboarding: large enough to read, swiped sideways */
+  #cs-core-features .ridi-media--wide {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    border-radius: 12px;
+  }
+
+  #cs-core-features .ridi-media--wide img {
+    width: auto;
+    max-width: none;
+    height: 400px;
+  }
+}
+
+/* ================= review round 2 (2026-11-28) ================= */
+
+.zoom-view__rotate {
+  display: none;
+  flex: none;
+  margin: 0;
+  padding: 8px 16px 0;
+  color: rgba(255, 254, 254, 0.78);
+  font-size: 13px;
+  line-height: 18px;
+  text-align: center;
+}
+
+@media (orientation: portrait) {
+  .zoom-view__rotate {
+    display: block;
+  }
+}
+
+.zoom-view {
+  touch-action: none;
+  overscroll-behavior: contain;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+/* the cross is drawn and centred in its 44px circle */
+.zoom-view__btn--close {
+  width: 44px;
+  padding: 0;
+}
+
+.zoom-view__btn--close svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+/* a still copy of the whole questionnaire preview */
+.zoom-view__stage .zoom-live {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 900px;
+  max-width: none;
+  margin: 0;
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+
+.zoom-view__stage .zoom-live .atj2-questionnaire__viewport {
+  height: auto;
+  aspect-ratio: auto;
+  overflow: visible;
+}
+
+/* its own scrolling window is opened up too; the room at the top is for the browser bar */
+.zoom-view__stage .zoom-live .atj2-questionnaire__scroll {
+  position: static;
+  height: auto;
+  overflow: visible;
+  padding-top: min(5.417cqw, 60.595px);
+}
+
+.zoom-view__stage .zoom-live .atj2-questionnaire__body {
+  position: static;
+  transform: none;
+}
+
+@media (min-width: 1024px) {
+  .m-hold,
+  .m-sx,
+  .m-sx__pin {
+    display: contents;
+  }
+}
+
+@media (max-width: 1023px) {
+  /* ---------- "Tap to zoom": a comfortable target with a visible focus ---------- */
+
+  .zoom-hint {
+    min-height: 44px;
+    margin-top: 8px;
+  }
+
+  .zoom-hint:focus-visible,
+  .zoom-badge:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  /* ---------- a short hold ---------- */
+
+  .m-hold {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .m-hold::after {
+    content: "";
+    flex: none;
+    height: 26vh;
+  }
+
+  .m-hold > .m-held {
+    position: sticky;
+    z-index: 1;
+  }
+
+  /* ---------- rows that move with the page, from edge to edge ---------- */
+
+  .m-sx {
+    position: relative;
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    align-self: center;
+    flex: none;
+  }
+
+  .m-sx__pin {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .m-sx__pin > .m-sx__row {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 0 0 4px;
+    overflow: hidden;
+    touch-action: pan-y;
+    cursor: grab;
+  }
+
+  .m-sx__row img {
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+
+  .m-sx__pin > .m-sx__row.is-still {
+    display: flex;
+    justify-content: center;
+    cursor: default;
+  }
+
+  /* the picture fits the screen it is held on: never taller than the room under the bars */
+  .yoy-screens.m-sx__row img {
+    width: auto;
+    height: min(420px, calc(100svh - 200px));
+    aspect-ratio: 172 / 352;
+  }
+
+  .yoy-screens.m-sx__row img:first-child {
+    margin-left: 20px;
+  }
+
+  .yoy-screens.m-sx__row img:last-child {
+    margin-right: 20px;
+  }
+
+  .ridi-decision__screens.m-sx__row img {
+    width: auto;
+    max-width: none;
+    height: min(420px, calc(100svh - 200px));
+  }
+
+  .ridi-decision__screens.m-sx__row img:first-child {
+    margin-left: 20px;
+  }
+
+  .ridi-decision__screens.m-sx__row img:last-child {
+    margin-right: 20px;
+  }
+
+  #cs-core-features .ridi-media--wide.m-sx__row {
+    display: flex;
+    border-radius: 0;
+  }
+
+  #cs-core-features .ridi-media--wide.m-sx__row img {
+    flex: none;
+    height: min(420px, calc(100svh - 200px));
+    margin-inline: 20px;
+  }
+
+  /* with reduced motion the rows are swiped by hand, still edge to edge */
+  .yoy-screens[data-m-scrollx]:not(.m-sx__row),
+  .ridi-decision__screens[data-m-scrollx]:not(.m-sx__row) {
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    align-self: center;
+  }
+
+  /* ---------- footer ---------- */
+
+  .site-footer__sep,
+  .site-footer__dot {
+    display: none;
+  }
+
+  .site-footer__colophon,
+  .site-footer__made,
+  .site-footer__claude {
+    display: block;
+  }
+
+  /* ---------- Home: the hero fills the screen of the phone ---------- */
+
+  .page-home .hero-section {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 56px);
+    min-height: calc(100svh - 56px);
+    padding-top: 12px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  }
+
+  .page-home .hero-card {
+    box-sizing: border-box;
+    flex: 1 0 auto;
+    width: 100%;
+    grid-template-columns: 96px minmax(0, 1fr);
+    grid-template-rows: auto minmax(24px, 1fr) auto auto minmax(4px, 0.45fr) auto;
+    grid-template-areas:
+      "photo identity"
+      ". ."
+      "title title"
+      "intro intro"
+      ". ."
+      "actions actions";
+    row-gap: 12px;
+    padding: 28px 24px 24px;
+  }
+
+  .page-home .hero-card__photo {
+    width: 96px;
+    height: 96px;
+    border-radius: 18px;
+  }
+
+  /* centred on the face: its middle is at 52.8% of the cut-out's width */
+  .page-home .hero-card__photo img {
+    top: -30%;
+    left: -28.2%;
+    width: 148%;
+  }
+
+  /* ---------- Home: YOY's two numbers side by side, like on the other cards ---------- */
+
+  .page-home .case-card__metrics,
+  .related-case .case-card__metrics {
+    flex-wrap: nowrap;
+    gap: 24px;
+  }
+
+  .page-home .case-card__metric,
+  .related-case .case-card__metric {
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+
+  /* ---------- case 01 ---------- */
+
+  /* Results: blue from edge to edge, no card inside a card */
+  #cs-results .case-shift.case-shift--panel-results {
+    box-sizing: border-box;
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    padding: 56px max(24px, var(--page-px));
+    border: 0;
+    border-radius: 0;
+    filter: none;
+  }
+
+  /* Development integration, then a quiet line, then the two links built the same way */
+  .case-livefiles__links {
+    gap: 28px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(24, 20, 19, 0.1);
+  }
+
+  .case-livefiles__links p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .case-livefiles__links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+  }
+
+  [data-dash1-pin][data-zoomable],
+  [data-dash2-pin][data-zoomable] {
+    cursor: zoom-in;
+  }
+
+  .case-dash2__pin + .zoom-hint {
+    margin-bottom: 24px;
+  }
+
+  /* ---------- case 02 ---------- */
+
+  [data-m-screen] > .uq2-grid {
+    margin-top: 24px;
+  }
+
+  .uq2-grid__col h3 {
+    margin-top: 8px;
+  }
+
+  .uq2-eyebrow--lg + .uq2-grid {
+    margin-top: 40px;
+  }
+
+  .uq2-logos {
+    row-gap: 48px;
+  }
+
+  .uq2-section--panel[data-m-screen] > .m-hold {
+    flex: 1 0 auto;
+  }
+
+  /* ---------- case 03 ---------- */
+
+  /* Challenge picture: 20px of air above and below while it holds */
+  #cs-challenge .atj-insight__image-frame {
+    top: calc(var(--case-nav-top, 56px) + 68px);
+    box-shadow: 0 0 0 20px var(--color-main-canvas);
+  }
+
+  /* Research: the orange card rests high, just under the pinned heading */
+  .atj-research__grid > .atj-research__card--featured {
+    top: calc(var(--case-nav-top, 56px) + 48px + 88px);
+  }
+
+  /* the orange blocks: a calmer orange and the same corners as the Uniqkey panels */
+  .atj-mvp,
+  .atj-smartfilters.atj-section,
+  .atj-screens {
+    border-radius: 24px;
+  }
+
+  .atj-mvp {
+    border-radius: 24px 24px 0 0;
+  }
+
+  .atj-mvp__band,
+  .atj-smartfilters.atj-section,
+  .atj-screens {
+    background-color: #a94a32;
+  }
+
+  /* Primary Focus and the three after it: room between them */
+  .atj-contrib__grid {
+    gap: 40px;
+  }
+
+  /* job cards: the compiled utility file gives borders a width but no style, and the
+     divider collapsed to a dot in the flex column; both put right here */
+  .atj-jobcard-showcase .border {
+    border-style: solid;
+  }
+
+  .atj-jobcard-showcase hr {
+    width: 100%;
+    height: 0;
+    margin: 0;
+    border: 0;
+    border-top: 1px solid #ebeced;
+  }
+
+  .atj-jobcard-showcase article hr + div {
+    align-items: stretch;
+  }
+
+  .atj-jobcard-showcase article hr + div > div:last-child {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .atj-jobcard-showcase article hr + div > div:last-child > button {
+    display: inline-flex;
+    flex: 1 1 128px;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    margin: 0;
+    padding: 8px 12px;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+
+  /* the heart alone is a square, not a stretched button */
+  .atj-jobcard-showcase article hr + div > div:last-child > button.size-8 {
+    flex: 0 0 44px;
+    padding: 0;
+  }
+
+  /* ---------- case 04 ---------- */
+
+  /* grey logos looked switched off on a phone, where there is no hover: they light up */
+  .atj2-logos.m-logos .atj2-logos__item img {
+    transition:
+      filter 0.5s ease,
+      opacity 0.5s ease;
+    transition-delay: calc(var(--i, 0) * 160ms);
+  }
+
+  .atj2-logos.is-lit .atj2-logos__item img {
+    filter: none;
+    opacity: 1;
+  }
+
+  /* Core Features: five finished compositions, apart from each other */
+  .atj2-features {
+    gap: 8px;
+  }
+
+  .atj2-features > .m-hold + .m-hold > .atj2-features__row {
+    border-top: 1px solid var(--color-light-gray);
+    padding-top: 40px;
+  }
+
+  .atj2-features__row {
+    gap: 12px;
+  }
+
+  /* picture, "Tap to zoom", title, text */
+  .atj2-features__row[data-m-media] > .atj2-features__media {
+    order: -2;
+    flex: none;
+  }
+
+  .atj2-features__row[data-m-media] > .zoom-hint {
+    order: -1;
+    margin-top: 0;
+  }
+
+  .atj2-features__row[data-m-media] > .atj2-features__text {
+    order: 0;
+    flex: none;
+    align-self: stretch;
+  }
+
+  /* Results: blue from edge to edge */
+  #cs-results.atj2-section[data-m-screen] {
+    padding: 0;
+  }
+
+  #cs-results .atj2-results {
+    box-sizing: border-box;
+    flex: 1 0 auto;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 56px max(24px, var(--page-px));
+    border-radius: 0;
+  }
+
+  /* ---------- case 05 ---------- */
+
+  /* The Challenge: the panel, then the mascot, then the picture, then its text */
+  .yoy-row {
+    align-items: center;
+  }
+
+  .yoy-row__content {
+    display: contents;
+  }
+
+  .yoy-row__mascot {
+    order: 1;
+    flex: none;
+  }
+
+  .yoy-row > .yoy-media {
+    order: 2;
+    align-self: stretch;
+  }
+
+  .yoy-row__text {
+    order: 3;
+    align-self: stretch;
+  }
+
+  .yoy-media--linked .yoy-media__hint {
+    margin-top: 28px;
+  }
+
+  /* feature blocks without a box inside the page: the screens can run to the edges */
+  .yoy-feature,
+  .yoy-feature--reverse {
+    padding: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  .yoy-feature + .yoy-feature,
+  .yoy-section > .m-sx + .yoy-feature {
+    margin-top: 48px;
+  }
+
+  /* Results: the yellow panel runs from edge to edge and fills the screen; what follows it
+     (the mascot, the note and the product link) stays on the dark surface */
+  #cs-results.yoy-section[data-m-screen] {
+    justify-content: flex-start;
+    padding-top: 0;
+  }
+
+  #cs-results.yoy-section[data-m-screen] > .yoy-panel.yoy-panel--accent {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+    min-height: calc(100vh - var(--case-nav-top, 56px) - 48px);
+    min-height: calc(100svh - var(--case-nav-top, 56px) - 48px);
+    margin: 0 calc(50% - 50vw);
+    padding: 56px max(24px, var(--page-px));
+    border-radius: 0;
+  }
+
+  /* ---------- case 06 ---------- */
+
+  .ridi-logos {
+    gap: 52px;
+  }
+
+  .ridi-card-block.ridi-card-block {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 1023px) and (prefers-reduced-motion: reduce) {
+  .atj2-logos .atj2-logos__item img {
+    filter: none;
+    opacity: 1;
+  }
+}

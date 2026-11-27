@@ -27,6 +27,15 @@
   if (!spacer || !pinInner || !menu || !viewport || !track) return;
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var narrow = window.matchMedia('(max-width: 1023px)');
+  /* phones (mobile review round 2): the pin sits under the header and the case nav, the
+     window is lower than the dashboard so there is something to scroll inside it, and the
+     page travels further than the picture so the move can be followed */
+  var PACE = 2.2;
+  var SHOWN = 0.62;
+  var pinTop = 0;
+  var pace = 1;
+  var row = spacer && spacer.querySelector('.case-dash2__row');
 
   var ticking = false;
   var active = false;
@@ -42,8 +51,12 @@
 
   function recompute() {
     if (nav) {
-      document.documentElement.style.setProperty('--dash2-pin-top', nav.getBoundingClientRect().height + 'px');
+      pinTop = nav.getBoundingClientRect().height + (narrow.matches ? 56 : 0);
+      document.documentElement.style.setProperty('--dash2-pin-top', pinTop + 'px');
     }
+    pace = narrow.matches ? PACE : 1;
+    if (!narrow.matches) pinTop = 0;
+    if (row) row.style.height = row.style.overflow = '';
 
     if (!pinEnabled()) {
       spacer.style.height = 'auto';
@@ -55,13 +68,23 @@
 
     var menuHeight = menu.getBoundingClientRect().height;
     if (!menuHeight) return;
-    viewport.style.height = Math.round(menuHeight) + 'px';
-
     var trackHeight = track.getBoundingClientRect().height;
-    maxTranslate = Math.max(0, trackHeight - menuHeight);
+    var windowHeight = menuHeight;
+    if (narrow.matches && trackHeight) {
+      // never taller than what is left of the screen (a phone on its side)
+      var strip = pinInner.getBoundingClientRect().height - (row ? row.getBoundingClientRect().height : 0);
+      var room = window.innerHeight - pinTop - Math.max(0, strip) - 12;
+      windowHeight = Math.max(120, Math.min(menuHeight, trackHeight * SHOWN, room));
+      if (row) {
+        row.style.height = Math.round(windowHeight) + 'px';
+        row.style.overflow = 'hidden';
+      }
+    }
+    viewport.style.height = Math.round(windowHeight) + 'px';
+    maxTranslate = Math.max(0, trackHeight - windowHeight);
 
     var pinnedHeight = pinInner.getBoundingClientRect().height;
-    spacer.style.height = pinnedHeight + maxTranslate + 'px';
+    spacer.style.height = pinnedHeight + maxTranslate * pace + 'px';
   }
 
   function applyProgress() {
@@ -69,7 +92,7 @@
     if (!pinEnabled() || !maxTranslate) return;
 
     var rect = spacer.getBoundingClientRect();
-    var progress = clamp(-rect.top / maxTranslate, 0, 1);
+    var progress = clamp((pinTop - rect.top) / (maxTranslate * pace), 0, 1);
     track.style.transform = 'translateY(-' + progress * maxTranslate + 'px)';
   }
 
