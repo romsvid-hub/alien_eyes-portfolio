@@ -204,7 +204,7 @@
       </nav>
 
       <!-- UI: CASE04-OVERVIEW-01 | Overview | matches Figma "Overview" (768:13269) -->
-      <section id="cs-context" data-case-section class="yoy-section">
+      <section id="cs-context" data-case-section class="yoy-section" data-m-screen>
         <h2 class="h2-section yoy-heading" data-reveal>Context</h2>
         <div class="yoy-two-col" data-reveal-group>
           <p class="body-large">
@@ -254,9 +254,9 @@
       <section id="cs-challenge" data-case-section class="yoy-section yoy-section--tint">
         <p class="h3-case-study yoy-label" data-reveal>Before:</p>
         <div class="yoy-media yoy-media--wide" data-reveal>
-          <img loading="lazy" width="1600" height="838" src="assets/case-yoy/before-screenshot.webp" alt="The live MVP before the redesign" />
+          <img loading="lazy" width="1600" height="838" src="assets/case-yoy/before-screenshot.webp" alt="The live MVP before the redesign" data-zoom="badge" />
         </div>
-        <div class="yoy-panel" data-reveal data-focus>
+        <div class="yoy-panel" data-reveal data-focus data-m-screen>
           <h2 class="h2-section yoy-heading">The Challenge</h2>
           <div class="yoy-two-col">
             <p class="body-large">
@@ -292,7 +292,7 @@
       </section>
 
       <!-- UI: CASE04-RESEARCH-01 | Research + Approach | matches Figma "Research - Approach" (768:13294) -->
-      <section id="cs-research" data-case-section class="yoy-section yoy-research">
+      <section id="cs-research" data-case-section class="yoy-section yoy-research" data-m-rise>
         <h2 class="h2-section yoy-heading" data-reveal>Research</h2>
         <p class="body-large" data-reveal>
           Went through the live product, findings: fragmented flows, networking as a dead end,
@@ -317,7 +317,7 @@
           In the per-ticket pattern, the organizer can't see the full sales picture, it's scattered
           across cards.
         </p>
-        <div class="yoy-panel" data-reveal>
+        <div class="yoy-panel" data-reveal data-m-from="pop">
           <h3 class="h3-case-study yoy-subheading">JTBD and gaps (hypothesis)</h3>
           <p class="body-large yoy-body-muted">
             Built JTBD for 3 personas overall: admin, manager, and attendee. Together with the client we
@@ -328,8 +328,8 @@
           </p>
         </div>
 
-        <h2 class="h2-section yoy-heading yoy-heading--spaced" data-reveal>How I Approached It</h2>
-        <div class="yoy-two-col" data-reveal-group>
+        <h2 class="h2-section yoy-heading yoy-heading--spaced" data-reveal data-m-from="pop">How I Approached It</h2>
+        <div class="yoy-two-col" data-reveal-group data-m-from="pop">
           <p class="body-large">
             I didn't overthink it: simple, native solutions that most users already understand. I didn't
             even significantly change the user flow or information architecture. I just applied standard
@@ -344,14 +344,14 @@
         <!-- CONTENT: synced 2026-09-10 — hover-linked to the live FigJam board -->
         <div class="yoy-media yoy-media--wide yoy-media--linked" data-reveal>
           <a href="https://www.figma.com/board/H1DRhmcVqHuqJOGVtP3qfC/yoy-maps?node-id=280-1281&t=oYnc1f4jAi59G3zz-1" target="_blank" rel="noopener" aria-label="Open the full flow map in FigJam (opens in a new tab)">
-            <img loading="lazy" width="2240" height="1220" src="assets/case-yoy/yoy-maps-deep-1.webp" alt="Deep-dive flow mapping for the event-creation architecture" />
+            <img loading="lazy" width="2240" height="1220" src="assets/case-yoy/yoy-maps-deep-1.webp" alt="Deep-dive flow mapping for the event-creation architecture" data-zoom="badge" />
             <span class="yoy-media__hint">Open full map <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
           </a>
         </div>
       </section>
 
       <!-- UI: CASE04-DECISIONS-01 | Key Decisions | matches Figma "Key Decisions" (768:13317) -->
-      <section id="cs-key-decisions" data-case-section class="yoy-section">
+      <section id="cs-key-decisions" data-case-section class="yoy-section" data-m-rise>
         <div class="yoy-panel yoy-panel--dark">
           <p class="h3-case-study yoy-label" data-reveal>After:</p>
           <h2 class="h2-section yoy-heading" data-reveal>Key Decisions</h2>
@@ -387,7 +387,7 @@
                 </div>
               </div>
               <!-- CONTENT: synced 2026-09-10 — real screens, replacing the placeholder -->
-              <div class="yoy-screens">
+              <div class="yoy-screens" data-zoom-set="tickets">
                 <img loading="lazy" width="461" height="940" src="assets/case-yoy/tickets-1.webp" alt="Ticket wave list" />
                 <img loading="lazy" width="461" height="940" src="assets/case-yoy/tickets-2.webp" alt="Ticket wave configuration" />
                 <img loading="lazy" width="461" height="940" src="assets/case-yoy/tickets-3.webp" alt="Adding a new ticket wave" />
@@ -429,7 +429,7 @@
                 </div>
               </div>
               <!-- CONTENT: synced 2026-09-10 — real screens, replacing the placeholder -->
-              <div class="yoy-screens">
+              <div class="yoy-screens" data-zoom-set="networking">
                 <img loading="lazy" width="461" height="940" src="assets/case-yoy/networking-1.webp" alt="Networking tag entry during event setup" />
                 <img loading="lazy" width="461" height="940" src="assets/case-yoy/networking-2.webp" alt="Event page with the networking layer enabled" />
               </div>
@@ -449,7 +449,7 @@
             <p class="body-main yoy-body-muted">A community as a container, not a registration form. Manager invite included right away.</p>
           </div>
           <!-- CONTENT: synced 2026-09-10 — real screens, replacing the placeholder -->
-          <div class="yoy-screens">
+          <div class="yoy-screens" data-zoom-set="core">
             <img loading="lazy" width="461" height="940" src="assets/case-yoy/creating-a-community-1.webp" alt="Create-community form" />
             <img loading="lazy" width="461" height="940" src="assets/case-yoy/creating-a-community-2.webp" alt="Create-community form with manager invite" />
           </div>
@@ -467,7 +467,7 @@
             <p class="body-main yoy-body-muted">Success doesn't end the journey, it leads to the next action: creating a first event.</p>
           </div>
           <!-- CONTENT: synced 2026-09-10 (correction pass) — real screen, replacing the placeholder -->
-          <div class="yoy-screens">
+          <div class="yoy-screens" data-zoom-set="core">
             <img loading="lazy" width="461" height="940" src="assets/case-yoy/community-created.webp" alt="Community created confirmation" />
           </div>
         </div>
@@ -480,7 +480,7 @@
             </p>
           </div>
           <!-- CONTENT: synced 2026-09-10 (correction pass) — real screen, replacing the placeholder -->
-          <div class="yoy-screens">
+          <div class="yoy-screens" data-zoom-set="core">
             <img loading="lazy" width="461" height="940" src="assets/case-yoy/basic-event-information.webp" alt="Basic event information form" />
           </div>
         </div>
@@ -491,7 +491,7 @@
             <p class="body-main yoy-body-muted">The organizer decides what data to collect. Minimal by default.</p>
           </div>
           <!-- CONTENT: synced 2026-09-10 (correction pass) — real screen, replacing the placeholder -->
-          <div class="yoy-screens">
+          <div class="yoy-screens" data-zoom-set="core">
             <img loading="lazy" width="461" height="940" src="assets/case-yoy/fields-to-fill-in.webp" alt="Optional fields selection screen" />
           </div>
         </div>
@@ -502,7 +502,7 @@
             <p class="body-main yoy-body-muted">The organizer sees exactly what the buyer will see. Not a separate screen, the event page seen through a different role.</p>
           </div>
           <!-- CONTENT: synced 2026-09-10 (correction pass) — real screen, replacing the placeholder -->
-          <div class="yoy-screens">
+          <div class="yoy-screens" data-zoom-set="core">
             <img loading="lazy" width="461" height="940" src="assets/case-yoy/preview-screen.webp" alt="Event preview screen" />
           </div>
         </div>
@@ -513,7 +513,7 @@
             <p class="body-main yoy-body-muted">The same page, in admin mode. The role changes in the link, and that's exactly where the organizer's path becomes the attendee's path.</p>
           </div>
           <!-- CONTENT: synced 2026-09-10 — real screens, replacing the placeholder -->
-          <div class="yoy-screens">
+          <div class="yoy-screens" data-zoom-set="core">
             <img loading="lazy" width="461" height="940" src="assets/case-yoy/event-published-1.webp" alt="Published event page, organizer mode" />
             <img loading="lazy" width="461" height="940" src="assets/case-yoy/event-published-2.webp" alt="Published event page, attendee mode" />
           </div>
@@ -550,7 +550,7 @@
       </section>
 
       <!-- UI: CASE04-RESULTS-01 | Results | matches Figma "Results" (768:13414) -->
-      <section id="cs-results" data-case-section class="yoy-section yoy-section--tint" data-focus>
+      <section id="cs-results" data-case-section class="yoy-section yoy-section--tint" data-focus data-m-screen data-m-from="pop">
         <div class="yoy-panel yoy-panel--accent" data-reveal>
           <h2 class="h2-section">Results</h2>
           <div class="yoy-two-col">
@@ -737,6 +737,7 @@
     <script src="js/mobile-screens.js"></script>
     <script src="js/title-enter.js"></script>
     <script src="js/reveal.js"></script>
+    <script src="js/mobile-zoom.js"></script>
     <script src="js/nbsp-typography.js"></script>
   </body>
 </html>

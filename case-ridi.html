@@ -188,7 +188,7 @@
       </nav>
 
       <!-- UI: CASE05-OVERVIEW-01 | Overview | matches Figma "Overview" (816:12988) -->
-      <section id="cs-context" data-case-section class="ridi-section">
+      <section id="cs-context" data-case-section class="ridi-section" data-m-screen>
         <h2 class="h2-section ridi-heading" data-reveal>Context</h2>
         <div class="ridi-two-col" data-reveal-group>
           <p class="body-large">
@@ -234,7 +234,7 @@
       </section>
 
       <!-- UI: CASE05-CHALLENGE-01 | The Challenge | matches Figma "The Challenge" (816:13004) -->
-      <section id="cs-challenge" data-case-section class="ridi-section ridi-section--tint" data-focus>
+      <section id="cs-challenge" data-case-section class="ridi-section ridi-section--tint" data-focus data-m-screen>
         <h2 class="h2-section ridi-heading" data-reveal>The Challenge</h2>
         <div class="ridi-two-col" data-reveal-group>
           <div class="ridi-panel ridi-panel--accent">
@@ -289,7 +289,7 @@
           </div>
         </div>
 
-        <div class="ridi-block--spaced ridi-block--audience" data-reveal data-focus>
+        <div class="ridi-block--spaced ridi-block--audience" data-reveal data-focus data-m-screen data-m-static>
           <h3 class="h3-case-study ridi-subheading">Audience segmentation</h3>
           <!-- "1"/"2"/"3" — jump up on scroll into view, random order, per Roman -->
           <div class="ridi-audience" data-bounce-group="scroll">
@@ -317,24 +317,24 @@
           </div>
         </div>
 
-        <div class="ridi-block--spaced" data-reveal>
+        <div class="ridi-block--spaced" data-reveal data-m-screen>
           <h3 class="ridi-artifact-heading h3-case-study">So I used the research to build the corresponding artifacts</h3>
           <!-- fades in through blur ("з туману"), per Roman -->
           <div class="ridi-artifact-media" data-fog>
-            <img loading="lazy" width="2240" height="971" src="assets/case-ridi/research-artifacts.webp" alt="Research artifacts collage: User Personas, CJM, JTBD" />
+            <img loading="lazy" width="2240" height="971" src="assets/case-ridi/research-artifacts.webp" alt="Research artifacts collage: User Personas, CJM, JTBD" data-zoom="badge" />
           </div>
         </div>
 
-        <div class="ridi-block--spaced" data-reveal>
+        <div class="ridi-block--spaced" data-reveal data-m-screen>
           <h3 class="ridi-artifact-heading h3-case-study">Which I later reshaped into an information architecture for clear logic</h3>
           <div class="ridi-artifact-media" data-fog>
-            <img loading="lazy" width="1908" height="1418" src="assets/case-ridi/information-architecture.webp" alt="Ridi information architecture map" />
+            <img loading="lazy" width="1908" height="1418" src="assets/case-ridi/information-architecture.webp" alt="Ridi information architecture map" data-zoom="badge" />
           </div>
         </div>
       </section>
 
       <!-- UI: CASE05-DECISIONS-01 | Key Decisions | matches Figma "Key Decisions" (816:13050) -->
-      <section id="cs-key-decisions" data-case-section class="ridi-section">
+      <section id="cs-key-decisions" data-case-section class="ridi-section" data-m-rise>
         <div class="ridi-decisions-panel">
           <h1 class="ridi-heading" style="font-size: 40px" data-reveal>Key Decisions</h1>
           <p class="body-large" data-reveal>
@@ -434,7 +434,7 @@
         </div>
         </div>
 
-        <div class="ridi-card-block" data-reveal data-focus>
+        <div class="ridi-card-block" data-reveal data-focus data-m-piece data-m-from="right">
           <div class="ridi-feature__text">
             <h3 class="h3-case-study cs-subtitle">Scenario 1: Direct Route Planning</h3>
             <p class="body-main ridi-body-muted">The rider wants to reach a specific point by the most direct route, with the option to add stops along the way.</p>
@@ -453,7 +453,7 @@
           </div>
         </div>
 
-        <div class="ridi-card-block" data-reveal data-focus>
+        <div class="ridi-card-block" data-reveal data-focus data-m-piece data-m-from="right">
           <div class="ridi-feature__text">
             <h3 class="h3-case-study cs-subtitle">Scenario 2: Custom Route Based on Preferences</h3>
             <p class="body-main ridi-body-muted">The rider wants to ride around their current location; the app suggests routes matched to style and level (Rider Level, Style, Terrain, Distance, Area).</p>
@@ -471,7 +471,7 @@
           </div>
         </div>
 
-        <div class="ridi-card-block" data-reveal data-focus>
+        <div class="ridi-card-block" data-reveal data-focus data-m-piece data-m-from="right">
           <div class="ridi-feature__text">
             <h3 class="h3-case-study cs-subtitle">Scenario 3: Free Riding</h3>
             <p class="body-main ridi-body-muted">Start with no destination or route → the app automatically records the track → save and name it at the end.</p>
@@ -690,6 +690,7 @@
     <script src="js/mobile-screens.js"></script>
     <script src="js/title-enter.js"></script>
     <script src="js/reveal.js"></script>
+    <script src="js/mobile-zoom.js"></script>
     <script src="js/nbsp-typography.js"></script>
     <script src="js/ridi-animations.js"></script>
   </body>

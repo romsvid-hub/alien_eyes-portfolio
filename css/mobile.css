@@ -777,3 +777,297 @@ html.zoom-open body {
     margin-block: -36px;
   }
 }
+
+/* ================= part 2 of the mobile audit (2026-11-27): cases 03-06 ================= */
+
+/* ---------- parts that exist only on phones and tablets ---------- */
+
+.m-only,
+.zoom-badge {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .zoom-wrap {
+    display: contents;
+  }
+}
+
+@media (max-width: 1023px) {
+  .m-only {
+    display: block;
+  }
+
+  /* ---------- magnifier badge: an image that opens in the viewer ---------- */
+
+  .zoom-wrap {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+  }
+
+  [data-zoomable] {
+    cursor: zoom-in;
+  }
+
+  .zoom-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 50%;
+    background: rgba(14, 12, 20, 0.7);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    cursor: zoom-in;
+  }
+
+  .zoom-badge svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* ---------- case 03: Inclusive Hiring Platform ---------- */
+
+  /* Challenge: the picture holds for a moment while the text moves under it */
+  #cs-challenge .atj-insight__image-frame {
+    position: sticky;
+    top: calc(var(--case-nav-top, 56px) + 48px);
+    z-index: 2;
+    background: var(--color-main-canvas);
+    box-shadow: 0 0 0 12px var(--color-main-canvas);
+  }
+
+  /* Research: the heading holds, the cards pass by one at a time */
+  .atj-research {
+    padding-top: 24px;
+  }
+
+  .atj-research > .atj-eyebrow--research {
+    position: sticky;
+    top: calc(var(--case-nav-top, 56px) + 48px);
+    z-index: 3;
+    margin: 0 0 8px;
+    padding-block: 12px;
+    background: var(--color-main-canvas);
+  }
+
+  .atj-research__grid {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .atj-research__grid > .atj-research__card {
+    flex: none;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 320px;
+    padding: 24px;
+  }
+
+  /* the last, orange card stays in focus for a short stretch, then leaves upwards */
+  .atj-research__grid > .atj-research__card--featured {
+    position: sticky;
+    top: calc(var(--case-nav-top, 56px) + 48px + 24vh);
+    z-index: 2;
+  }
+
+  .atj-research__grid::after {
+    content: "";
+    flex: none;
+    height: 30vh;
+  }
+
+  .atj-users-heading {
+    margin: 0 0 20px;
+  }
+
+  /* "Primary Focus" and its three neighbours on one screen */
+  .atj-contrib__grid {
+    gap: 20px;
+  }
+
+  .atj-contrib__item {
+    gap: 16px;
+  }
+
+  .atj-contrib__item img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .atj-contrib[data-m-screen] {
+    padding-block: 24px;
+  }
+
+  /* Job Card: a section of its own */
+  .atj-section.atj-jobcard {
+    margin-block: 32px;
+    padding-block: 40px;
+    border-top: 4px solid var(--color-atj-accent);
+    border-radius: 28px;
+    background: #f7f0ee;
+  }
+
+  #cs-results.atj-section[data-m-screen] {
+    padding-block: 48px;
+  }
+
+  /* ---------- case 04: One Questionnaire, Two Audiences ---------- */
+
+  .atj2-challenge__content {
+    margin-top: 32px;
+  }
+
+  /* "Survey body": heading and text first, then its own picture, so it cannot be read as part of Notifications */
+  .atj2-features__row[data-m-survey] > .atj2-features__text {
+    order: -1;
+  }
+
+  .atj2-features__row[data-m-screen] {
+    padding-block: 24px;
+  }
+
+  .atj2-features__row[data-m-survey] {
+    border-top: 1px solid var(--color-light-gray);
+  }
+
+  /* ---------- case 05: YOY! Events ---------- */
+
+  /* screens in a row that can be swiped; a single one stays in the middle */
+  .yoy-screens {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding-bottom: 4px;
+  }
+
+  .yoy-screens img {
+    width: min(66%, 240px);
+    height: auto;
+    aspect-ratio: 172 / 352;
+  }
+
+  .yoy-screens img:first-child {
+    margin-left: auto;
+  }
+
+  .yoy-screens img:last-child {
+    margin-right: auto;
+  }
+
+  .yoy-decision__body .zoom-wrap,
+  .yoy-feature .zoom-wrap {
+    align-self: stretch;
+  }
+
+  /* The Challenge: picture, then the text, then the mascot under it */
+  .yoy-row__content {
+    align-self: stretch;
+    align-items: center;
+  }
+
+  .yoy-row__text {
+    order: 1;
+    align-self: stretch;
+  }
+
+  .yoy-row__mascot {
+    order: 2;
+  }
+
+  /* analog logos: one centred column, a little larger */
+  .yoy-research > .yoy-logos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .yoy-research .yoy-logos__item {
+    height: 40px;
+    max-width: 100%;
+  }
+
+  /* "Open full map" sits under the map, never on it */
+  .yoy-media--linked .yoy-media__hint {
+    position: static;
+    display: flex;
+    width: fit-content;
+    min-height: 44px;
+    box-sizing: border-box;
+    align-items: center;
+    margin: 12px auto 4px;
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ---------- case 06: Ridi ---------- */
+
+  .ridi-two-col {
+    gap: 48px;
+  }
+
+  .ridi-two-col .ridi-subheading {
+    margin-bottom: 12px;
+  }
+
+  .ridi-heading + .ridi-two-col {
+    margin-top: 32px;
+  }
+
+  /* Research follows The Challenge without extra air */
+  #cs-research.ridi-section {
+    padding-top: 32px;
+  }
+
+  #cs-research > .ridi-block--spaced {
+    margin-top: 64px;
+  }
+
+  .ridi-logos {
+    gap: 32px;
+  }
+
+  .ridi-logos img {
+    height: 42px;
+    max-width: 80%;
+  }
+
+  .ridi-block--audience .ridi-audience {
+    gap: 56px;
+    margin-top: 40px;
+  }
+
+  /* design screens: one whole screen and about half of the next one */
+  .ridi-decision__screens img {
+    width: 62%;
+    max-width: 300px;
+    height: auto;
+  }
+
+  /* Onboarding: large enough to read, swiped sideways */
+  #cs-core-features .ridi-media--wide {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    border-radius: 12px;
+  }
+
+  #cs-core-features .ridi-media--wide img {
+    width: auto;
+    max-width: none;
+    height: 400px;
+  }
+}

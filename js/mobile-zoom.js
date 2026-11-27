@@ -1,12 +1,18 @@
 /*
   Below 1024px (styles: css/mobile.css). Mobile audit, 2026-11-27.
-  - Images marked data-zoom get a grey "Tap to zoom" caption; a tap on either opens a full
-    screen viewer: pinch, double tap, drag, + and - buttons, mouse wheel.
+  - A tap on a marked image opens a full screen viewer: pinch, double tap, drag, + and -
+    buttons, mouse wheel.
+      data-zoom            a grey "Tap to zoom" caption under the image
+      data-zoom="badge"    no caption: a small magnifier in the image's corner
+      data-zoom="gallery"  the "Other Screens" carousel (caption under it)
+      data-zoom-set="x"    images sharing a name, or all images inside the marked element,
+                           are one gallery: the viewer steps through them (buttons, swipe,
+                           arrow keys)
   - [data-zoom-compare] (the Before / After slider) gets its own "Zoom to compare" button,
     so the viewer never competes with the slider's gesture; inside the viewer the two states
     are switched with buttons and the zoom stays where it is.
   - The "Other Screens" carousel can be swiped; its arrows stay.
-  From 1024px nothing is shown and a click on an image does nothing.
+  Nothing is added to the page from 1024px, and a click on an image does nothing there.
 */
 (function () {
   var narrow = window.matchMedia("(max-width: 1023px)");
@@ -25,7 +31,8 @@
 
   /* ---------- the viewer ---------- */
 
-  function openViewer(shots, opener) {
+  // how: "states" (Before / After: same picture, the zoom stays) or "set" (a gallery)
+  function openViewer(shots, opener, how, startAt) {
     var view = document.createElement("div");
     view.className = "zoom-view";
     view.setAttribute("role", "dialog");
@@ -49,7 +56,20 @@
     var bottom = document.createElement("div");
     bottom.className = "zoom-view__bottom";
     var states = [];
-    if (shots.length > 1) {
+    var inSet = how === "set" && shots.length > 1;
+    if (inSet) {
+      var prev = button("zoom-view__btn", "\u2039", "Previous image");
+      var next = button("zoom-view__btn", "\u203a", "Next image");
+      prev.addEventListener("click", function () {
+        step(-1);
+      });
+      next.addEventListener("click", function () {
+        step(1);
+      });
+      bottom.appendChild(prev);
+      bottom.appendChild(next);
+    }
+    if (how === "states") {
       shots.forEach(function (shot, i) {
         var b = button("zoom-view__btn", shot.name);
         b.addEventListener("click", function () {
@@ -124,13 +144,18 @@
         x = y = 0;
       }
       scale = Math.min(scale, maxScale);
+      // a very tall screenshot would be a thin strip: start at the full width, from its top
+      if (!keep && nh / nw > 2.5 && baseW < stage.clientWidth * 0.6) {
+        scale = Math.min(maxScale, (stage.clientWidth * 0.94) / baseW);
+        x = (stage.clientWidth - baseW * scale) / 2;
+      }
       ready = true;
       draw();
     }
 
     var current = -1;
     function select(i) {
-      var keep = current !== -1; // switching Before / After keeps the same spot
+      var keep = how === "states" && current !== -1; // switching Before / After keeps the same spot
       current = i;
       img.onload = function () {
         fit(keep);
@@ -141,12 +166,19 @@
       states.forEach(function (b, n) {
         b.setAttribute("aria-pressed", n === i ? "true" : "false");
       });
+      if (inSet) note.textContent = i + 1 + " / " + shots.length + (how === "set" ? "  \u00b7  swipe, pinch to zoom" : "");
+    }
+
+    function step(by) {
+      ready = false;
+      select((current + by + shots.length) % shots.length);
     }
 
     var points = new Map();
     var pinch = null;
     var lastTap = 0;
     var downAt = null;
+    var swipeFrom = null;
 
     function local(ev) {
       var r = stage.getBoundingClientRect();
@@ -172,6 +204,8 @@
       points.set(ev.pointerId, local(ev));
       if (points.size === 2) pinch = two();
       downAt = points.size === 1 ? local(ev) : null;
+      if (points.size > 1) swipeFrom = null;
+      else swipeFrom = inSet && scale <= 1.01 ? local(ev) : null;
     });
 
     stage.addEventListener("pointermove", function (ev) {
@@ -197,6 +231,15 @@
       var at = local(ev);
       points.delete(ev.pointerId);
       if (points.size < 2) pinch = null;
+      if (ev.type === "pointerup" && swipeFrom) {
+        var dx = at.x - swipeFrom.x;
+        var dy = at.y - swipeFrom.y;
+        swipeFrom = null;
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+          downAt = null;
+          return step(dx < 0 ? 1 : -1);
+        }
+      }
       if (ev.type === "pointerup" && downAt && Math.hypot(at.x - downAt.x, at.y - downAt.y) < 8) {
         var now = Date.now();
         if (now - lastTap < 320) {
@@ -235,6 +278,8 @@
 
     function keys(ev) {
       if (ev.key === "Escape") return shut();
+      if (inSet && ev.key === "ArrowRight") return step(1);
+      if (inSet && ev.key === "ArrowLeft") return step(-1);
       if (ev.key === "+" || ev.key === "=") return zoomTo(scale * 1.6);
       if (ev.key === "-") return zoomTo(scale / 1.6);
       if (ev.key !== "Tab") return;
@@ -255,11 +300,11 @@
     close.addEventListener("click", shut);
     document.addEventListener("keydown", keys);
     window.addEventListener("resize", resize);
-    select(0);
+    select(startAt || 0);
     close.focus({ preventScroll: true });
   }
 
-  /* ---------- captions and taps ---------- */
+  /* ---------- captions, badges and taps ---------- */
 
   function shotOf(img, name) {
     return { src: img.currentSrc || img.src, alt: img.alt, name: name };
@@ -279,26 +324,119 @@
     return b;
   }
 
-  [].forEach.call(document.querySelectorAll("img[data-zoom]"), function (img) {
-    var gallery = img.getAttribute("data-zoom") === "gallery";
-    var after = gallery ? img.closest(".case-other-carousel__stage") : frameOf(img);
-    var caption = hint("Tap to zoom", after, img.closest("[data-zoom-dark]") !== null);
-    function open() {
-      if (narrow.matches) openViewer([shotOf(img, "")], caption);
+  // a magnifier in the corner. It goes inside the picture's own frame; only a bare image or
+  // a row that scrolls gets a wrapper (a wrapper changes what is next to what in the page,
+  // and with it the spacing)
+  function badge(target) {
+    var b = button("zoom-badge", "", "Zoom image");
+    b.innerHTML = GLASS;
+    var scrolls = /auto|scroll/.test(getComputedStyle(target).overflowX);
+    if (target.tagName === "DIV" && target.children.length === 1 && !scrolls) {
+      if (getComputedStyle(target).position === "static") target.style.position = "relative";
+      target.appendChild(b);
+    } else {
+      var wrap = document.createElement("div");
+      wrap.className = "zoom-wrap";
+      target.parentNode.insertBefore(wrap, target);
+      wrap.appendChild(target);
+      wrap.appendChild(b);
     }
-    caption.addEventListener("click", open);
-    img.addEventListener("click", open);
-  });
+    return b;
+  }
 
-  [].forEach.call(document.querySelectorAll("[data-zoom-compare]"), function (box) {
-    var images = box.querySelectorAll("img");
-    if (images.length < 2) return;
-    var caption = hint("Zoom to compare", box, false);
-    caption.className += " zoom-hint--button";
-    caption.addEventListener("click", function () {
-      if (narrow.matches) openViewer([shotOf(images[0], "Before"), shotOf(images[1], "After")], caption);
+  function wire(imgs, opener) {
+    function openAt(i) {
+      if (!narrow.matches) return;
+      if (imgs.length === 1) openViewer([shotOf(imgs[0], "")], opener);
+      else openViewer(imgs.map(function (img) { return shotOf(img, ""); }), opener, "set", i);
+    }
+    opener.addEventListener("click", function () {
+      openAt(0);
     });
-  });
+    imgs.forEach(function (img, i) {
+      img.setAttribute("data-zoomable", "");
+      img.addEventListener("click", function (ev) {
+        if (!narrow.matches) return;
+        // a picture that is also a link: the tap zooms, the link keeps its own button
+        if (img.closest("a")) ev.preventDefault();
+        openAt(i);
+      });
+    });
+  }
+
+  var ready = false;
+  function setUp() {
+    if (ready || !narrow.matches) return;
+    ready = true;
+
+    [].forEach.call(document.querySelectorAll("img[data-zoom]"), function (img) {
+      var kind = img.getAttribute("data-zoom");
+      if (img.closest("[data-zoom-set]")) return;
+      var link = img.closest("a");
+      var opener;
+      if (kind === "badge") {
+        opener = badge(link ? link.parentElement : frameOf(img));
+      } else {
+        var after = kind === "gallery" ? img.closest(".case-other-carousel__stage") : frameOf(img);
+        opener = hint("Tap to zoom", after, img.closest("[data-zoom-dark]") !== null);
+      }
+      wire([img], opener);
+    });
+
+    // galleries: elements with a set name; one badge per element, one viewer per name
+    var sets = {};
+    var order = [];
+    [].forEach.call(document.querySelectorAll("[data-zoom-set]"), function (el, i) {
+      var name = el.getAttribute("data-zoom-set") || "set-" + i;
+      if (!sets[name]) {
+        sets[name] = [];
+        order.push(name);
+      }
+      sets[name].push(el);
+    });
+    order.forEach(function (name) {
+      var imgs = [];
+      sets[name].forEach(function (el) {
+        var found = el.tagName === "IMG" ? [el] : [].slice.call(el.querySelectorAll("img:not([aria-hidden])"));
+        imgs = imgs.concat(found);
+      });
+      if (!imgs.length) return;
+      var openers = sets[name].map(function (el) {
+        var first = el.tagName === "IMG" ? el : el.querySelector("img:not([aria-hidden])");
+        return { el: badge(el.tagName === "IMG" ? frameOf(el) : el), at: imgs.indexOf(first) };
+      });
+      var open = function (i, opener) {
+        if (!narrow.matches) return;
+        if (imgs.length === 1) openViewer([shotOf(imgs[0], "")], opener);
+        else openViewer(imgs.map(function (img) { return shotOf(img, ""); }), opener, "set", i);
+      };
+      openers.forEach(function (o) {
+        o.el.addEventListener("click", function () {
+          open(o.at, o.el);
+        });
+      });
+      imgs.forEach(function (img, i) {
+        img.setAttribute("data-zoomable", "");
+        img.addEventListener("click", function (ev) {
+          if (img.closest("a")) ev.preventDefault();
+          open(i, openers[0].el);
+        });
+      });
+    });
+
+    [].forEach.call(document.querySelectorAll("[data-zoom-compare]"), function (box) {
+      var images = box.querySelectorAll("img");
+      if (images.length < 2) return;
+      var caption = hint("Zoom to compare", box, false);
+      caption.className += " zoom-hint--button";
+      caption.addEventListener("click", function () {
+        if (narrow.matches) openViewer([shotOf(images[0], "Before"), shotOf(images[1], "After")], caption, "states");
+      });
+    });
+  }
+
+  setUp();
+  if (narrow.addEventListener) narrow.addEventListener("change", setUp);
 
   /* ---------- swipe through "Other Screens" ---------- */
 

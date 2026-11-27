@@ -31,7 +31,7 @@
     { title: ".atj2-impact .atj2-eyebrow", items: ".atj2-facts__item" },
     { title: ".uq2-impact-heading", items: ".uq2-impact__item" },
     { title: ".case-impact .case-eyebrow", items: ".case-impact__item" },
-    { title: "section:has(> .yoy-facts) > .yoy-heading", items: ".yoy-facts__card" },
+    { title: "section:has(> .yoy-facts) > .yoy-heading", items: ".yoy-facts__card", narrowFrom: "-72px 0" },
     { title: ".ridi-block--audience .ridi-subheading", items: ".ridi-audience__item", block: ".ridi-block--audience" }
   ];
 
@@ -86,8 +86,11 @@
         easing: "cubic-bezier(0.22, 1, 0.36, 1)",
         fill: "backwards"
       });
+      // phones: some blocks come in from the side instead (YOY "Three facts": left to right)
+      var narrow = window.matchMedia("(max-width: 1023px)").matches;
+      var from = (narrow && group.narrowFrom) || "0 44px";
       items.forEach(function (item, i) {
-        item.animate([{ opacity: 0, translate: "0 44px", offset: 0 }], {
+        item.animate([{ opacity: 0, translate: from, offset: 0 }], {
           duration: ITEM_MS,
           delay: ITEMS_AFTER + i * STEP,
           easing: "cubic-bezier(0.34, 1.45, 0.64, 1)", // a small hop past the place and back
