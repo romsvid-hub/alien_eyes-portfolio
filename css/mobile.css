@@ -13,6 +13,13 @@
 }
 
 @media (max-width: 1023px) {
+  /* blocks that leave sideways (js/mobile-motion.js) must never widen the page. The case
+     pages already clip this (css/case-motion.css); Home did not, and could be dragged
+     sideways. clip, not hidden: sticky blocks inside keep working */
+  main {
+    overflow-x: clip;
+  }
+
   /* ---------- footer: phone on one line, email under it ---------- */
 
   .site-footer__phone {
